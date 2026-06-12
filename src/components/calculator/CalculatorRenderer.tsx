@@ -1,19 +1,32 @@
 import AgeCalculator from "./renderers/AgeCalculator";
 import BMICalculator from "./renderers/BMICalculator";
+import PercentageCalculator from "./renderers/PercentageCalculator";
+import DateCalculator from "./renderers/DateCalculator";
+import GSTCalculator from "./renderers/GSTCalculator";
+import EMICalculator from "./renderers/EMICalculator";
 
 type Props = {
   slug: string;
 };
 
-export default function CalculatorRenderer({
-  slug,
-}: Props) {
+export default function CalculatorRenderer({ slug }: Props) {
   switch (slug) {
     case "age-calculator":
       return <AgeCalculator />;
 
     case "bmi-calculator":
       return <BMICalculator />;
+
+    case "percentage-calculator":
+      return <PercentageCalculator />;
+    case "date-calculator":
+      return <DateCalculator />;
+
+    case "gst-calculator":
+      return <GSTCalculator />;
+
+    case "emi-calculator":
+      return <EMICalculator />;
 
     default:
       return (

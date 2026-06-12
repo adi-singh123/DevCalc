@@ -1,45 +1,147 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
-    <footer className="border-t bg-gray-50">
-      <div className="mx-auto max-w-7xl px-4 py-10">
-        <div className="grid gap-8 md:grid-cols-4">
+    <footer className="mt-20 border-t bg-slate-100">
+      {/* Main Footer */}
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
           <div>
-            <h3 className="text-lg font-bold">DevCalc</h3>
-            <p className="mt-2 text-sm text-gray-600">
-              Free online calculators for finance, health, vehicle,
-              education, and daily use.
+            <h3 className="text-2xl font-bold">DevCalc</h3>
+
+            <p className="mt-4 text-sm leading-6 text-slate-600">
+              Free online calculators for finance, health,
+              education, utility, and everyday calculations.
+              Fast, accurate, and easy to use.
             </p>
           </div>
 
+          {/* Popular Calculators */}
           <div>
-            <h4 className="font-semibold">Finance</h4>
-            <ul className="mt-2 space-y-2 text-sm">
-              <li>SIP Calculator</li>
-              <li>EMI Calculator</li>
-              <li>FD Calculator</li>
+            <h4 className="mb-4 font-semibold">
+              Popular Calculators
+            </h4>
+
+            <ul className="space-y-3 text-sm text-slate-600">
+              <li>
+                <Link href="/age-calculator">
+                  Age Calculator
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/bmi-calculator">
+                  BMI Calculator
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/percentage-calculator">
+                  Percentage Calculator
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/date-calculator">
+                  Date Calculator
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* Categories */}
           <div>
-            <h4 className="font-semibold">Health</h4>
-            <ul className="mt-2 space-y-2 text-sm">
-              <li>BMI Calculator</li>
-              <li>Calorie Calculator</li>
+            <h4 className="mb-4 font-semibold">
+              Categories
+            </h4>
+
+            <ul className="space-y-3 text-sm text-slate-600">
+              <li>
+                <Link href="/category/finance">
+                  Finance
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/category/health">
+                  Health
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/category/math">
+                  Math
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/category/utility">
+                  Utility
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* Newsletter */}
           <div>
-            <h4 className="font-semibold">Company</h4>
-            <ul className="mt-2 space-y-2 text-sm">
-              <li>Contact</li>
-              <li>Privacy Policy</li>
-              <li>Terms</li>
-            </ul>
+            <h4 className="mb-4 font-semibold">
+              Newsletter
+            </h4>
+
+            <p className="mb-4 text-sm text-slate-600">
+              Get updates when new calculators are added.
+            </p>
+
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full rounded-xl border bg-white p-3"
+            />
+
+            <button
+              className="
+                mt-3
+                w-full
+                rounded-xl
+                bg-black
+                py-3
+                text-white
+                transition
+                hover:opacity-90
+              "
+            >
+              Subscribe
+            </button>
           </div>
         </div>
+      </div>
 
-        <div className="mt-8 border-t pt-4 text-sm text-gray-500">
-          © 2026 DevCalc. All rights reserved.
+      {/* Bottom Bar */}
+      <div className="border-t bg-slate-200">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-5 text-sm text-slate-600 md:flex-row">
+          <p>
+            © {new Date().getFullYear()} DevCalc. All rights
+            reserved.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <Link href="/privacy-policy">
+              Privacy Policy
+            </Link>
+
+            <Link href="/terms">
+              Terms
+            </Link>
+
+            <Link href="/contact">
+              Contact
+            </Link>
+
+            <Link href="/calculators">
+              Calculators
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

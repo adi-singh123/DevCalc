@@ -1,33 +1,35 @@
 import Link from "next/link";
-import { popularCalculators } from "@/src/data/calculators/popular";
+import { calculators } from "@/src/data/calculators";
 
 export default function PopularCalculators() {
+  const popular = calculators.filter(
+    (calculator) => calculator.isPopular
+  );
+
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16">
-      <div className="mb-8 text-center">
-        <p className="text-sm font-semibold text-blue-600">
-          ⭐ Most Used
-        </p>
+    <section className="mt-16">
+      <h2 className="text-3xl font-bold">
+        Popular Calculators
+      </h2>
 
-        <h2 className="mt-2 text-3xl font-bold">
-          Popular Calculators
-        </h2>
+      <p className="mt-2 text-slate-600">
+        Most frequently used calculators.
+      </p>
 
-        <p className="mt-2 text-slate-600">
-          Jump straight to the most-used tools
-        </p>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {popularCalculators.map((calculator) => (
+      <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {popular.map((calculator) => (
           <Link
             key={calculator.slug}
             href={`/${calculator.slug}`}
-            className="rounded-xl border p-5 transition hover:shadow-md"
+            className="rounded-2xl border p-5 transition hover:shadow-md"
           >
             <h3 className="font-semibold">
               {calculator.name}
             </h3>
+
+            <p className="mt-2 text-sm text-slate-600">
+              {calculator.description}
+            </p>
           </Link>
         ))}
       </div>
