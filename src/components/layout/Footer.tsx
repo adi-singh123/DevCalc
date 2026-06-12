@@ -126,6 +126,10 @@ export default function Footer() {
           </p>
 
           <div className="flex flex-wrap gap-4">
+            <Link href="/calculators">
+              Calculators
+            </Link>
+
             <Link href="/privacy-policy">
               Privacy Policy
             </Link>
@@ -138,8 +142,8 @@ export default function Footer() {
               Contact
             </Link>
 
-            <Link href="/calculators">
-              Calculators
+            <Link href="/sitemap.xml">
+              Sitemap
             </Link>
           </div>
         </div>

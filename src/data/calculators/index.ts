@@ -4,6 +4,7 @@ import { percentageCalculator } from "./percentage";
 import {dateCalculator} from "./date";
 import {gstCalculator} from "./gst";
 import {emiCalculator} from "./emi";
+import { mileageCalculator } from "./mileage";
 
 export const calculators = [
   ageCalculator,
@@ -12,4 +13,5 @@ export const calculators = [
   dateCalculator,
   gstCalculator,
   emiCalculator,
+  mileageCalculator,
 ];

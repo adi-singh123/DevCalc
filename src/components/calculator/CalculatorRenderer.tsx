@@ -4,6 +4,7 @@ import PercentageCalculator from "./renderers/PercentageCalculator";
 import DateCalculator from "./renderers/DateCalculator";
 import GSTCalculator from "./renderers/GSTCalculator";
 import EMICalculator from "./renderers/EMICalculator";
+import MileageCalculator from "./renderers/MileageCalculator";
 
 type Props = {
   slug: string;
@@ -27,6 +28,8 @@ export default function CalculatorRenderer({ slug }: Props) {
 
     case "emi-calculator":
       return <EMICalculator />;
+    case "mileage-calculator":
+      return <MileageCalculator />;
 
     default:
       return (

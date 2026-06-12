@@ -3,6 +3,7 @@ import "./globals.css";
 import { siteConfig } from "@/src/config/site";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
+import OrganizationSchema from "@/src/components/seo/OrganizationSchema";
 
 
 export const metadata: Metadata = {
@@ -12,6 +13,18 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
+    alternates: {
+    canonical: "/",
+  },
+    authors: [
+    {
+      name: "Aditya Singh",
+    },
+  ],
+
+  creator: "Aditya Singh",
+
+  publisher: "DevCalc",
 
   description: siteConfig.description,
 
@@ -62,9 +75,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="flex min-h-screen flex-col">
+        <OrganizationSchema />
         <Header />
-        {children}
+
+        <main className="flex-1">
+          {children}
+        </main>
+
         <Footer />
       </body>
     </html>

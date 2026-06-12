@@ -9,7 +9,7 @@ type SeoInput = {
 };
 
 export function generateCalculatorMetadata(
-  seo: SeoInput
+  seo: SeoInput,
 ): Metadata {
   const url = `${siteConfig.url}/${seo.slug}`;
 
@@ -20,8 +20,23 @@ export function generateCalculatorMetadata(
 
     keywords: seo.keywords,
 
+    authors: [
+      {
+        name: "Aditya Singh",
+      },
+    ],
+
+    creator: "Aditya Singh",
+
+    publisher: "DevCalc",
+
     alternates: {
       canonical: url,
+    },
+
+    robots: {
+      index: true,
+      follow: true,
     },
 
     openGraph: {
@@ -29,6 +44,7 @@ export function generateCalculatorMetadata(
       description: seo.description,
       url,
       siteName: siteConfig.name,
+      locale: "en_US",
       type: "website",
     },
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -31,11 +32,15 @@ export default function Header() {
       <header className="sticky top-0 z-50 border-b bg-white">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
           {/* Logo */}
-          <Link
-            href="/"
-            className="text-2xl font-bold"
-          >
-            DevCalc
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="DevCalc Logo"
+              width={180}
+              height={60}
+              priority
+              className="h-auto w-auto max-h-12"
+            />
           </Link>
 
           {/* Desktop Menu */}
@@ -71,14 +76,21 @@ export default function Header() {
           <div className="absolute right-0 top-0 h-full w-80 bg-white shadow-xl">
             {/* Drawer Header */}
             <div className="flex items-center justify-between border-b p-5">
-              <h2 className="text-xl font-bold">
-                DevCalc
-              </h2>
-
-              <button
+              <Link
+                href="/"
                 onClick={() => setIsOpen(false)}
-                aria-label="Close Menu"
+                className="flex items-center"
               >
+                <Image
+                  src="/logo.png"
+                  alt="DevCalc Logo"
+                  width={140}
+                  height={45}
+                  className="h-auto w-auto"
+                />
+              </Link>
+
+              <button onClick={() => setIsOpen(false)} aria-label="Close Menu">
                 <X size={24} />
               </button>
             </div>
@@ -90,9 +102,7 @@ export default function Header() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      onClick={() =>
-                        setIsOpen(false)
-                      }
+                      onClick={() => setIsOpen(false)}
                       className="block text-lg font-medium text-slate-700"
                     >
                       {link.label}
@@ -103,9 +113,7 @@ export default function Header() {
 
               <Link
                 href="/calculators"
-                onClick={() =>
-                  setIsOpen(false)
-                }
+                onClick={() => setIsOpen(false)}
                 className="
                   mt-8
                   block
