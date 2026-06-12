@@ -3,6 +3,8 @@ import {
   Clock3,
   Calculator,
   BadgeCheck,
+  Scale,
+  Ruler,
 } from "lucide-react";
 
 type Step = {
@@ -22,6 +24,8 @@ const icons = {
   clock: Clock3,
   calculator: Calculator,
   result: BadgeCheck,
+  weight: Scale,
+  height: Ruler,
 };
 
 export default function StepsSection({

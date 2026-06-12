@@ -1,9 +1,13 @@
 export interface Calculator {
   slug: string;
+
   name: string;
+
   description: string;
 
   category: string;
+
+  isPopular?: boolean;
 
   seo: {
     title: string;
@@ -11,8 +15,28 @@ export interface Calculator {
     keywords: string[];
   };
 
-  faqKey: string;
-  contentKey: string;
+  steps: {
+    step: number;
+    title: string;
+    description: string;
+    icon: string;
+  }[];
 
-  isPopular?: boolean;
+  formula: {
+    title: string;
+    formula: string;
+    explanation: string;
+
+    example?: {
+      input: string;
+      output: string;
+    };
+
+    useCases?: string[];
+  };
+
+  faqs: {
+    question: string;
+    answer: string;
+  }[];
 }

@@ -6,6 +6,7 @@ type Props = {
     input: string;
     output: string;
   };
+  useCases?: string[];
 };
 
 export default function FormulaSection({
@@ -13,38 +14,42 @@ export default function FormulaSection({
   formula,
   explanation,
   example,
+  useCases,
 }: Props) {
   return (
     <section className="mt-12 rounded-3xl border bg-white p-6 shadow-sm">
-      <h2 className="text-3xl font-bold">
-        {title}
-      </h2>
+      <h2 className="text-3xl font-bold">{title}</h2>
 
       <div className="mt-6 rounded-2xl bg-slate-100 p-6 text-center">
-        <p className="text-xl font-semibold">
-          {formula}
-        </p>
+        <p className="text-xl font-semibold">{formula}</p>
       </div>
 
-      <p className="mt-6 leading-7 text-slate-600">
-        {explanation}
-      </p>
+      <p className="mt-6 leading-7 text-slate-600">{explanation}</p>
 
       {example && (
         <div className="mt-8 rounded-2xl border bg-slate-50 p-5">
-          <h3 className="font-semibold">
-            Example Calculation
-          </h3>
+          <h3 className="font-semibold">Example Calculation</h3>
 
           <p className="mt-3">
-            <strong>Input:</strong>{" "}
-            {example.input}
+            <strong>Input:</strong> {example.input}
           </p>
 
           <p className="mt-2">
-            <strong>Output:</strong>{" "}
-            {example.output}
+            <strong>Output:</strong> {example.output}
           </p>
+        </div>
+      )}
+      {useCases && useCases.length > 0 && (
+        <div className="mt-8 rounded-2xl border bg-slate-50 p-5">
+          <h3 className="font-semibold">Common Uses</h3>
+
+          <ul className="mt-4 space-y-2">
+            {useCases.map((item) => (
+              <li key={item} className="text-slate-600">
+                • {item}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </section>

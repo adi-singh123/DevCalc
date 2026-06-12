@@ -8,11 +8,7 @@ import StepsSection from "@/src/components/calculator/StepsSection";
 import FormulaSection from "@/src/components/calculator/FormulaSection";
 import FAQSection from "@/src/components/calculator/FAQSection";
 import RelatedCalculators from "@/src/components/calculator/RelatedCalculators";
-import { ageFaqs } from "@/src/data/faqs/age";
 import FAQSchema from "@/src/components/seo/FAQSchema";
-import { ageSteps } from "@/src/data/content/age";
-import ResultsSection from "@/src/components/calculator/ResultsSection";  
-import { ageFormula } from "@/src/data/formulas/age";
 
 export async function generateStaticParams() {
   return calculators.map((calculator) => ({
@@ -51,36 +47,6 @@ type Props = {
   }>;
 };
 
-const demoResults = [
-  {
-    label: "Current Age",
-    value: "25 Years",
-    highlight: true,
-  },
-  {
-    label: "Months",
-    value: 300,
-  },
-  {
-    label: "Days",
-    value: 9125,
-  },
-  {
-    label: "Hours",
-    value: 219000,
-  },
-  {
-    label: "Minutes",
-    value: 13140000,
-  },
-  {
-    label: "Seconds",
-    value: 788400000,
-  },
-];
-
-
-
 
 export default async function CalculatorPage({
   params,
@@ -97,40 +63,61 @@ export default async function CalculatorPage({
 
 return (
   <main className="mx-auto max-w-7xl px-4 py-12">
-<FAQSchema faqs={ageFaqs} />
+<FAQSchema faqs={calculator.faqs} />
 
     <Breadcrumbs
       category={calculator.category}
       currentPage={calculator.name}
     />
 
-    <h1 className="text-3xl font-bold md:text-5xl">
-      {calculator.name}
-    </h1>
+<div className="max-w-4xl">
+  <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
+    {calculator.name}
+  </h1>
 
-    <p className="mt-4 text-slate-600">
-      {calculator.description}
-    </p>
+  <p className="mt-6 text-lg leading-8 text-slate-600">
+    {calculator.description}
+  </p>
 
-    <CalculatorRenderer />
-    <ResultsSection
-  title="Calculation Results"
-  results={demoResults}
+ <p className="mt-4 leading-7 text-slate-600">
+  Use our free online {calculator.name.toLowerCase()} to get
+  accurate results instantly. The calculator is designed to
+  be fast, easy to use, mobile-friendly, and suitable for
+  everyday calculations.
+</p>
+
+  <div className="mt-6 flex flex-wrap gap-3">
+    <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
+      Accurate Results
+    </span>
+
+    <span className="rounded-full bg-green-50 px-4 py-2 text-sm font-medium text-green-700">
+      Free to Use
+    </span>
+
+    <span className="rounded-full bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700">
+      Instant Calculation
+    </span>
+  </div>
+</div>
+
+  <CalculatorRenderer
+  slug={calculator.slug}
+/>
+<StepsSection
+  title={`How the ${calculator.name} Works`}
+  steps={calculator.steps}
 />
 
-    <StepsSection
-  title="How the Age Calculator Works"
-  steps={ageSteps}
+<FormulaSection
+  title={calculator.formula.title}
+  formula={calculator.formula.formula}
+  explanation={calculator.formula.explanation}
+  example={calculator.formula.example}
+  useCases={calculator.formula.useCases}
 />
 
-    <FormulaSection
-  title={ageFormula.title}
-  formula={ageFormula.formula}
-  explanation={ageFormula.explanation}
-  example={ageFormula.example}
-/>
-
-    <FAQSection faqs={ageFaqs} />
+    <FAQSection faqs={calculator.faqs} />
 
 <RelatedCalculators
   currentSlug={calculator.slug}
