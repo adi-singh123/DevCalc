@@ -1,4 +1,4 @@
-import { categories } from "@/src/data/category/Category";
+import { categories } from "@/src/data/categories/Category";
 
 export default function CalculatorCategories() {
   return (

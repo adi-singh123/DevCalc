@@ -1,3 +1,5 @@
+import CalculatorSearch from "@/src/components/calculator/CalculatorSearch";
+
 export default function Hero() {
   return (
     <section className="border-b bg-slate-50">
@@ -12,11 +14,7 @@ export default function Hero() {
         </p>
 
         <div className="mx-auto mt-8 max-w-2xl">
-          <input
-            type="text"
-            placeholder="Search calculators..."
-            className="w-full rounded-xl border px-4 py-3 outline-none"
-          />
+          <CalculatorSearch />
         </div>
 
         <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">

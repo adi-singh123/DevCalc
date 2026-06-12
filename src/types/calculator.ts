@@ -1,29 +1,18 @@
-export interface CalculatorSEO {
-  title: string;
-  description: string;
-  keywords: string[];
-}
-
-export interface CalculatorFAQ {
-  question: string;
-  answer: string;
-}
-
 export interface Calculator {
   slug: string;
   name: string;
   description: string;
 
-  category:
-    | "Finance"
-    | "Health"
-    | "Vehicle"
-    | "Utility"
-    | "Education";
+  category: string;
 
-  seo: CalculatorSEO;
+  seo: {
+    title: string;
+    description: string;
+    keywords: string[];
+  };
 
-  faq: CalculatorFAQ[];
+  faqKey: string;
+  contentKey: string;
 
   isPopular?: boolean;
 }
