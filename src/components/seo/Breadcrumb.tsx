@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 type BreadcrumbProps = {
   category: string;
@@ -12,21 +13,42 @@ export default function Breadcrumb({
   return (
     <nav
       aria-label="breadcrumb"
-      className="mb-6 text-sm text-slate-600"
+      className="mb-8 rounded-xl bg-blue-50 px-4 py-3"
     >
-      <ol className="flex flex-wrap items-center gap-2">
+      <ol className="flex flex-wrap items-center gap-2 text-sm">
         <li>
-          <Link href="/">Home</Link>
+          <Link
+            href="/"
+            className="font-medium text-slate-600 transition hover:text-blue-600"
+          >
+            Home
+          </Link>
         </li>
 
-        <li>/</li>
+        <li>
+          <ChevronRight
+            size={14}
+            className="text-slate-400"
+          />
+        </li>
 
-        <li>{category}</li>
+        <li>
+          <span className="font-medium text-slate-600">
+            {category}
+          </span>
+        </li>
 
-        <li>/</li>
+        <li>
+          <ChevronRight
+            size={14}
+            className="text-slate-400"
+          />
+        </li>
 
-        <li className="font-medium text-slate-900">
-          {currentPage}
+        <li>
+          <span className="font-semibold text-blue-700">
+            {currentPage}
+          </span>
         </li>
       </ol>
     </nav>

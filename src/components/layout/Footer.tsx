@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -8,86 +9,73 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold">DevCalc</h3>
+            <Link href="/" className="flex items-center gap-3">
+              <Image
+                src="/logo.png"
+                alt="DevCalc Logo"
+                width={48}
+                height={48}
+                className="rounded-lg"
+              />
+
+              <span className="text-2xl font-bold">DevCalc</span>
+            </Link>
 
             <p className="mt-4 text-sm leading-6 text-slate-600">
-              Free online calculators for finance, health,
-              education, utility, and everyday calculations.
-              Fast, accurate, and easy to use.
+              Free online calculators for finance, health, education, utility,
+              and everyday calculations. Fast, accurate, and easy to use.
             </p>
           </div>
 
           {/* Popular Calculators */}
           <div>
-            <h4 className="mb-4 font-semibold">
-              Popular Calculators
-            </h4>
+            <h4 className="mb-4 font-semibold">Popular Calculators</h4>
 
             <ul className="space-y-3 text-sm text-slate-600">
               <li>
-                <Link href="/age-calculator">
-                  Age Calculator
-                </Link>
+                <Link href="/age-calculator">Age Calculator</Link>
               </li>
 
               <li>
-                <Link href="/bmi-calculator">
-                  BMI Calculator
-                </Link>
+                <Link href="/bmi-calculator">BMI Calculator</Link>
               </li>
 
               <li>
-                <Link href="/percentage-calculator">
-                  Percentage Calculator
-                </Link>
+                <Link href="/percentage-calculator">Percentage Calculator</Link>
               </li>
 
               <li>
-                <Link href="/date-calculator">
-                  Date Calculator
-                </Link>
+                <Link href="/date-calculator">Date Calculator</Link>
               </li>
             </ul>
           </div>
 
           {/* Categories */}
           <div>
-            <h4 className="mb-4 font-semibold">
-              Categories
-            </h4>
+            <h4 className="mb-4 font-semibold">Categories</h4>
 
             <ul className="space-y-3 text-sm text-slate-600">
               <li>
-                <Link href="/category/finance">
-                  Finance
-                </Link>
+                <Link href="/category/finance">Finance</Link>
               </li>
 
               <li>
-                <Link href="/category/health">
-                  Health
-                </Link>
+                <Link href="/category/health">Health</Link>
               </li>
 
               <li>
-                <Link href="/category/math">
-                  Math
-                </Link>
+                <Link href="/category/math">Math</Link>
               </li>
 
               <li>
-                <Link href="/category/utility">
-                  Utility
-                </Link>
+                <Link href="/category/utility">Utility</Link>
               </li>
             </ul>
           </div>
 
           {/* Newsletter */}
           <div>
-            <h4 className="mb-4 font-semibold">
-              Newsletter
-            </h4>
+            <h4 className="mb-4 font-semibold">Newsletter</h4>
 
             <p className="mb-4 text-sm text-slate-600">
               Get updates when new calculators are added.
@@ -120,31 +108,18 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t bg-slate-200">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-5 text-sm text-slate-600 md:flex-row">
-          <p>
-            © {new Date().getFullYear()} DevCalc. All rights
-            reserved.
-          </p>
+          <p>© {new Date().getFullYear()} DevCalc. All rights reserved.</p>
 
           <div className="flex flex-wrap gap-4">
-            <Link href="/calculators">
-              Calculators
-            </Link>
+            <Link href="/calculators">Calculators</Link>
 
-            <Link href="/privacy-policy">
-              Privacy Policy
-            </Link>
+            <Link href="/privacy-policy">Privacy Policy</Link>
 
-            <Link href="/terms">
-              Terms
-            </Link>
+            <Link href="/terms">Terms</Link>
 
-            <Link href="/contact">
-              Contact
-            </Link>
+            <Link href="/contact">Contact</Link>
 
-            <Link href="/sitemap.xml">
-              Sitemap
-            </Link>
+            <Link href="/sitemap.xml">Sitemap</Link>
           </div>
         </div>
       </div>
