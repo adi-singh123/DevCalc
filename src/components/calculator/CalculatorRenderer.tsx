@@ -5,6 +5,11 @@ import DateCalculator from "./renderers/DateCalculator";
 import GSTCalculator from "./renderers/GSTCalculator";
 import EMICalculator from "./renderers/EMICalculator";
 import MileageCalculator from "./renderers/MileageCalculator";
+import SIPCalculator from "./renderers/SIPCalculator";
+import FDCalculator from "./renderers/FDCalculator";
+import SimpleInterestCalculator from "./renderers/SimpleInterestCalculator";
+import DiscountCalculator from "./renderers/DiscountCalculator";
+import FuelCostCalculator from "./renderers/FuelCostCalculator";
 
 type Props = {
   slug: string;
@@ -30,6 +35,19 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <EMICalculator />;
     case "mileage-calculator":
       return <MileageCalculator />;
+
+    case "sip-calculator":
+      return <SIPCalculator />;
+    case "fd-calculator":
+      return <FDCalculator />;
+
+    case "simple-interest-calculator":
+      return <SimpleInterestCalculator />;
+
+    case "discount-calculator":
+      return <DiscountCalculator />;
+    case "fuel-cost-calculator":
+      return <FuelCostCalculator />;
 
     default:
       return (
