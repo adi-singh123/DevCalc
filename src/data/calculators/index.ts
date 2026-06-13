@@ -10,6 +10,11 @@ import { fdCalculator } from "./fd";
 import { simpleInterestCalculator } from "./simpleInterestCalculator";
 import {discountCalculator} from "./discountCalculator";
 import { fuelCostCalculator } from "./fuelCostCalculator";
+import { gpaCalculator } from "./gpaCalculator";
+import { unitConverter } from "./unitconverter";
+import { hraCalculator } from "./hraCalculator";
+import { incomeTaxCalculator } from "./incomeTaxCalculator";
+
 
 export const calculators = [
   ageCalculator,
@@ -24,4 +29,8 @@ export const calculators = [
   simpleInterestCalculator,
   discountCalculator,
   fuelCostCalculator,
+  gpaCalculator,
+  unitConverter,
+  hraCalculator,
+  incomeTaxCalculator,
 ];

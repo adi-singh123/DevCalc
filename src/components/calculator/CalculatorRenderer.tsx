@@ -10,6 +10,10 @@ import FDCalculator from "./renderers/FDCalculator";
 import SimpleInterestCalculator from "./renderers/SimpleInterestCalculator";
 import DiscountCalculator from "./renderers/DiscountCalculator";
 import FuelCostCalculator from "./renderers/FuelCostCalculator";
+import GPACalculator from "./renderers/GPACalculator";
+import UnitConverter from "./renderers/UnitConverter";
+import HRACalculator from "./renderers/HRACalculator";
+import IncomeTaxCalculator from "./renderers/IncomeTaxCalculator";
 
 type Props = {
   slug: string;
@@ -48,6 +52,14 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <DiscountCalculator />;
     case "fuel-cost-calculator":
       return <FuelCostCalculator />;
+    case "gpa-calculator":
+      return <GPACalculator />;
+    case "unit-converter":
+      return <UnitConverter />;
+    case "hra-calculator":
+      return <HRACalculator />;
+    case "income-tax-calculator":
+      return <IncomeTaxCalculator/>
 
     default:
       return (
