@@ -5,18 +5,20 @@ import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import OrganizationSchema from "@/src/components/seo/OrganizationSchema";
 
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  verification: {
+    google: "hJr9mhDCoby0tp4SxBFxZsl1cWymDuQEprknv-TWvNk",
+  },
 
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
-    alternates: {
+  alternates: {
     canonical: "/",
   },
-    authors: [
+  authors: [
     {
       name: "Aditya Singh",
     },
@@ -79,9 +81,7 @@ export default function RootLayout({
         <OrganizationSchema />
         <Header />
 
-        <main className="flex-1">
-          {children}
-        </main>
+        <main className="flex-1">{children}</main>
 
         <Footer />
       </body>
