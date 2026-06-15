@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us",
 alternates: {
-    canonical: "/about",
-  },
+  canonical: "https://www.devcalc.in/about",
+},
   description:
     "Learn more about DevCalc and our mission to provide free online calculators.",
 };

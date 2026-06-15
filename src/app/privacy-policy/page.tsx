@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy",
     alternates: {
-    canonical: "/privacy-policy",
+    canonical: "https://www.devcalc.in/privacy-policy",
   },
     authors: [
     {

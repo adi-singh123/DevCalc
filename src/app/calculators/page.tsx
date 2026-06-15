@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   creator: "Aditya Singh",
 
   publisher: "DevCalc",
-  alternates: {
-    canonical: siteConfig.url,
-  },
+alternates: {
+  canonical: `${siteConfig.url}/calculators`,
+},
   description:
     "Browse free online calculators for finance, health, education, utility, math, and everyday calculations. Fast, accurate, mobile-friendly, and easy to use.",
 };

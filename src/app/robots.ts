@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
     ],
 
     sitemap:
-      "https://devcalc.in/sitemap.xml",
+      "https://www.devcalc.in/sitemap.xml",
   };
 }

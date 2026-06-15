@@ -15,9 +15,7 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
-  alternates: {
-    canonical: "/",
-  },
+  
   authors: [
     {
       name: "Aditya Singh",

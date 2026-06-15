@@ -26,23 +26,20 @@ export default function Breadcrumb({
         </li>
 
         <li>
-          <ChevronRight
-            size={14}
-            className="text-slate-400"
-          />
+          <ChevronRight size={14} className="text-slate-400" />
         </li>
 
         <li>
-          <span className="font-medium text-slate-600">
+          <Link
+            href="/blog"
+            className="font-medium text-slate-600 transition hover:text-blue-600"
+          >
             {category}
-          </span>
+          </Link>
         </li>
 
         <li>
-          <ChevronRight
-            size={14}
-            className="text-slate-400"
-          />
+          <ChevronRight size={14} className="text-slate-400" />
         </li>
 
         <li>

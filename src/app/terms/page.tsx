@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Use",
     alternates: {
-    canonical: "/terms",
+    canonical: "https://www.devcalc.in/terms",
   },
     authors: [
     {

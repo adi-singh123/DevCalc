@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Contact Us",
     alternates: {
-    canonical: "/contact",
+    canonical: "https://www.devcalc.in/contact",
   },
     authors: [
     {
