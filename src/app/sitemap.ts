@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { calculators } from "@/src/data/calculators";
 import { categories } from "@/src/data/categories/Category";
+import { blogs } from "@/src/data/blogs/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.devcalc.in";
@@ -19,6 +20,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/category/${category.slug}`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }),
+  );
+
+  const blogUrls = blogs.map(
+    (blog) => ({
+      url: `${baseUrl}/blog/${blog.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
       priority: 0.7,
     }),
   );
@@ -75,5 +85,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     ...categoryUrls,
     ...calculatorUrls,
+    ...blogUrls,
   ];
 }

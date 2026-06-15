@@ -1,299 +1,212 @@
 import { Blog } from "@/src/types/blog";
 
-export const blogs: Blog[] = [
-  {
-    slug: "how-to-calculate-percentage",
-
-    title: "How to Calculate Percentage (With Formula and Examples)",
-
-    icon: "%",
-
-    description:
-      "Learn how to calculate percentage using simple formulas, examples, percentage increase, decrease, marks percentage, and more.",
-
-    category: "Education",
-
-    author: "DevCalc Team",
-
-    publishedDate: "16 June 2026",
-
-    readingTime: "8 min read",
-
-    image: "/blogs/percentage-guide.webp",
-
-    content: [
-      {
-        heading: "Introduction to Percentage",
-        paragraphs: [
-          "Percentage is one of the most commonly used mathematical concepts in everyday life. Whether you're calculating exam results, discounts while shopping, profit margins in business, tax rates, interest earned on savings, or analyzing data, percentages help express values as parts of a whole.",
-          "Understanding percentages makes it easier to compare quantities, measure growth, evaluate performance, and make informed financial decisions. Students, professionals, business owners, and consumers all use percentages regularly.",
-          "The DevCalc Percentage Calculator helps you instantly calculate percentages, percentage increases, percentage decreases, and percentage differences without manual calculations.",
-        ],
-      },
-
-      {
-        heading: "What is Percentage?",
-        paragraphs: [
-          "The word percentage means 'per hundred'. It represents a number or ratio as a fraction of 100.",
-          "For example, 50% means 50 out of every 100, while 25% means 25 out of every 100.",
-          "Percentages provide a standardized way to compare values regardless of their original size, making them useful in mathematics, finance, education, and statistics.",
-        ],
-      },
-
-      {
-        heading: "Percentage Formula",
-        paragraphs: [
-          "The basic percentage formula is:",
-          "Percentage = (Part ÷ Whole) × 100",
-          "For example, if you scored 80 marks out of 100, your percentage would be (80 ÷ 100) × 100 = 80%.",
-          "This formula forms the foundation of nearly all percentage calculations.",
-        ],
-      },
-
-      {
-        heading: "How to Calculate Percentage",
-        paragraphs: [
-          "To calculate a percentage, divide the obtained value by the total value and multiply the result by 100.",
-          "Step 1 — Identify the part value.",
-          "Step 2 — Identify the total or whole value.",
-          "Step 3 — Divide the part by the whole.",
-          "Step 4 — Multiply the result by 100.",
-          "For example, if 30 students passed out of 40 students, Percentage = (30 ÷ 40) × 100 = 75%.",
-        ],
-      },
-      {
-        heading: "Percentage Calculation Examples",
-        paragraphs: [
-          "Understanding percentages becomes easier with real-world examples. Here are some common percentage calculations that students, shoppers, and professionals use every day.",
-
-          "Example 1 — Exam Marks Percentage: A student scores 450 marks out of 500. Percentage = (450 ÷ 500) × 100 = 90%. Therefore, the student's percentage is 90%.",
-
-          "Example 2 — Attendance Percentage: A student attends 180 classes out of 200 classes conducted. Percentage = (180 ÷ 200) × 100 = 90%. Attendance percentage is 90%.",
-
-          "Example 3 — Sales Target Achievement: A salesperson achieves sales of ₹80,000 against a target of ₹100,000. Percentage achieved = (80,000 ÷ 100,000) × 100 = 80%.",
-
-          "Example 4 — Survey Results: If 75 out of 100 people prefer a product, then the preference percentage is 75%.",
-
-          "Example 5 — Completion Rate: If you complete 45 tasks out of 50 assigned tasks, your completion percentage is (45 ÷ 50) × 100 = 90%.",
-        ],
-      },
-
-      {
-        heading: "How to Calculate Discount Percentage",
-        paragraphs: [
-          "Discount percentages are commonly used while shopping online and offline. A discount reduces the original price of a product or service.",
-
-          "Discount Percentage Formula = (Discount Amount ÷ Original Price) × 100",
-
-          "For example, suppose a shirt originally costs ₹2,000 and is sold for ₹1,600. The discount amount is ₹400.",
-
-          "Discount Percentage = (400 ÷ 2,000) × 100 = 20%",
-
-          "This means the store is offering a 20% discount on the product.",
-
-          "Knowing how to calculate discount percentages helps consumers compare deals and make smarter purchasing decisions.",
-        ],
-      },
-
-      {
-        heading: "How to Calculate Profit Percentage",
-        paragraphs: [
-          "Businesses and sellers often calculate profit percentage to measure profitability.",
-
-          "Profit Percentage Formula = (Profit ÷ Cost Price) × 100",
-
-          "Profit = Selling Price − Cost Price",
-
-          "For example, if a product costs ₹500 and is sold for ₹650, the profit is ₹150.",
-
-          "Profit Percentage = (150 ÷ 500) × 100 = 30%",
-
-          "This means the seller earned a profit of 30% on the investment.",
-
-          "Profit percentage is widely used in retail businesses, trading, investments, and financial analysis.",
-        ],
-      },
-
-      {
-        heading: "Percentage Increase Formula",
-        paragraphs: [
-          "Percentage increase measures how much a value has grown compared to its original value.",
-
-          "Percentage Increase Formula = ((New Value − Original Value) ÷ Original Value) × 100",
-
-          "For example, suppose your salary increases from ₹50,000 to ₹60,000.",
-
-          "Percentage Increase = ((60,000 − 50,000) ÷ 50,000) × 100 = 20%",
-
-          "This means your salary increased by 20%.",
-
-          "Percentage increase calculations are commonly used for salary hikes, business growth, investments, and population growth analysis.",
-        ],
-      },
-
-      {
-        heading: "Percentage Decrease Formula",
-        paragraphs: [
-          "Percentage decrease measures how much a value has reduced compared to its original value.",
-
-          "Percentage Decrease Formula = ((Original Value − New Value) ÷ Original Value) × 100",
-
-          "For example, if the price of a product falls from ₹1,000 to ₹800:",
-
-          "Percentage Decrease = ((1,000 − 800) ÷ 1,000) × 100 = 20%",
-
-          "This means the product price decreased by 20%.",
-
-          "Percentage decreases are commonly used when analyzing discounts, cost reductions, revenue declines, and population decreases.",
-        ],
-      },
-      {
-        heading: "Percentage Difference Formula",
-        paragraphs: [
-          "Percentage difference is used to compare two values and determine how different they are from each other in percentage terms.",
-
-          "Percentage Difference Formula = (Difference ÷ Average of the Two Values) × 100",
-
-          "For example, suppose two products cost ₹1,000 and ₹1,200.",
-
-          "Difference = ₹200",
-
-          "Average = (1,000 + 1,200) ÷ 2 = ₹1,100",
-
-          "Percentage Difference = (200 ÷ 1,100) × 100 = 18.18%",
-
-          "Percentage difference is commonly used in statistics, business analysis, scientific research, and financial reporting.",
-        ],
-      },
-
-      {
-        heading: "Common Percentage Calculation Mistakes",
-        paragraphs: [
-          "Many people make mistakes while calculating percentages because they choose the wrong base value or use incorrect formulas.",
-
-          "One common mistake is confusing percentage increase with percentage difference. These are two different calculations and produce different results.",
-
-          "Another mistake is calculating discounts incorrectly by applying multiple percentages separately without considering the updated value.",
-
-          "Students often forget to multiply by 100 after dividing the part by the whole, leading to incorrect answers.",
-
-          "Businesses may incorrectly calculate profit percentages using selling price instead of cost price as the base value.",
-
-          "Using a reliable percentage calculator helps avoid these mistakes and ensures accurate results every time.",
-        ],
-      },
-
-      {
-        heading: "Real-Life Uses of Percentages",
-        paragraphs: [
-          "Percentages are used in nearly every field of life because they make comparisons easy and understandable.",
-
-          "In education, percentages are used to calculate exam scores, attendance rates, and academic performance.",
-
-          "In finance, percentages help calculate interest rates, investment returns, loan costs, inflation rates, and tax amounts.",
-
-          "In business, companies use percentages to analyze profits, losses, growth rates, conversion rates, and market share.",
-
-          "In shopping, percentages are used to calculate discounts, cashback offers, and price reductions.",
-
-          "In health and fitness, percentages are used for body fat calculations, nutritional values, and health statistics.",
-
-          "Understanding percentages is therefore an essential life skill for students, professionals, and business owners alike.",
-        ],
-      },
-
-      {
-        heading: "How to Use the DevCalc Percentage Calculator",
-        paragraphs: [
-          "Our DevCalc Percentage Calculator is designed to provide instant and accurate percentage calculations without manual effort.",
-
-          "Step 1 — Enter the required values into the calculator fields.",
-
-          "Step 2 — Choose the calculation type such as percentage calculation, percentage increase, percentage decrease, or percentage difference.",
-
-          "Step 3 — Click the Calculate button.",
-
-          "Step 4 — The calculator instantly displays the result along with supporting calculations.",
-
-          "Step 5 — Copy, save, or share the result for future reference.",
-
-          "The calculator works on mobile devices, tablets, laptops, and desktop computers and is completely free to use.",
-        ],
-      },
-
-      {
-        heading: "Benefits of Using a Percentage Calculator",
-        paragraphs: [
-          "A percentage calculator saves time by eliminating lengthy manual calculations.",
-
-          "It reduces the chances of mathematical errors and provides accurate results instantly.",
-
-          "The calculator can handle complex percentage increase and decrease calculations that may otherwise be confusing.",
-
-          "Students can quickly verify homework answers and exam calculations.",
-
-          "Business owners can analyze profits, discounts, and sales performance efficiently.",
-
-          "Investors can evaluate growth rates and returns on investments more effectively.",
-
-          "Because it is fast, accurate, and easy to use, a percentage calculator is a valuable tool for everyday calculations.",
-        ],
-      },
-      {
-        heading: "Frequently Asked Questions (FAQs)",
-        paragraphs: [
-          "Q: What is a percentage? → A percentage is a number expressed as a fraction of 100. The symbol used for percentage is %.",
-
-          "Q: What is the basic percentage formula? → Percentage = (Part ÷ Whole) × 100.",
-
-          "Q: How do I calculate percentage from marks? → Divide the marks obtained by total marks and multiply by 100. For example, if you score 450 out of 500, your percentage is 90%.",
-
-          "Q: How do I find 20% of a number? → Multiply the number by 20 and divide by 100. For example, 20% of 500 is 100.",
-
-          "Q: How do I calculate percentage increase? → Percentage Increase = ((New Value − Original Value) ÷ Original Value) × 100.",
-
-          "Q: How do I calculate percentage decrease? → Percentage Decrease = ((Original Value − New Value) ÷ Original Value) × 100.",
-
-          "Q: What is percentage difference? → Percentage difference compares two values using their average as the base and expresses the difference as a percentage.",
-
-          "Q: How do stores calculate discount percentages? → Discount Percentage = (Discount Amount ÷ Original Price) × 100.",
-
-          "Q: What is the profit percentage formula? → Profit Percentage = (Profit ÷ Cost Price) × 100.",
-
-          "Q: What is the loss percentage formula? → Loss Percentage = (Loss ÷ Cost Price) × 100.",
-
-          "Q: Why are percentages important? → Percentages make it easier to compare values, analyze growth, measure performance, and understand financial information.",
-
-          "Q: Can percentages be greater than 100%? → Yes. If a value exceeds the original amount, the percentage can be greater than 100%. For example, 150% means one and a half times the original value.",
-
-          "Q: Are percentages used in finance? → Yes. Percentages are widely used for interest rates, investment returns, taxes, inflation, discounts, and profit calculations.",
-
-          "Q: Are percentages used in statistics? → Yes. Percentages help summarize data, compare groups, and communicate findings clearly.",
-
-          "Q: Can I calculate percentages without a calculator? → Yes. Using the formula (Part ÷ Whole) × 100, percentages can be calculated manually, although calculators are faster and less prone to errors.",
-
-          "Q: Is the DevCalc Percentage Calculator free? → Yes. DevCalc Percentage Calculator is completely free to use and works on all devices without registration.",
-
-          "Q: Does the DevCalc Percentage Calculator support percentage increase and decrease calculations? → Yes. It can calculate percentages, percentage increases, percentage decreases, and percentage differences instantly.",
-
-          "Q: Who can use a percentage calculator? → Students, teachers, business owners, accountants, investors, shoppers, and anyone who works with numerical data can benefit from a percentage calculator.",
-
-          "Q: What is the easiest way to calculate percentages? → The easiest method is to use an online percentage calculator that automatically performs the calculations and displays accurate results instantly.",
-        ],
-      },
-
-      {
-        heading: "Conclusion",
-        paragraphs: [
-          "Percentages are one of the most important mathematical concepts used in everyday life. From calculating exam scores and attendance rates to analyzing profits, discounts, taxes, and investment returns, percentages help simplify complex comparisons and decision-making.",
-
-          "By understanding the basic percentage formula and related concepts such as percentage increase, percentage decrease, profit percentage, and percentage difference, you can solve a wide variety of real-world problems with confidence.",
-
-          "While manual calculations are useful for learning, an online percentage calculator saves time, reduces errors, and provides instant results. Whether you're a student checking marks, a shopper evaluating discounts, or a business owner analyzing performance, percentage calculations become much easier with the right tools.",
-
-          "Use the free DevCalc Percentage Calculator to calculate percentages quickly and accurately. Bookmark DevCalc for access to a growing collection of finance, education, health, and utility calculators designed to make everyday calculations simple and reliable.",
-        ],
-      },
-    ],
-  },
-];
+export const howToCalculatePercentage: Blog = {
+  slug: "how-to-calculate-percentage",
+
+  title: "How to Calculate Percentage",
+
+  seoTitle:
+    "How to Calculate Percentage – Formula, Examples, Tricks & Uses (2026)",
+
+  seoDescription:
+    "Learn how to calculate percentage step by step with easy formulas and real-life examples. Covers percentage of marks, discount, profit & loss, GST, percentage increase and decrease — all explained simply.",
+
+  description:
+    "Master percentage calculation with simple formulas, step-by-step examples, shortcut tricks, and real-life uses in marks, discounts, GST, and finance.",
+
+  category: "Education",
+
+  author: "DevCalc Team",
+
+  publishedDate: "2026-06-15",
+
+  readingTime: "10 min read",
+
+  image: "/blogs/percentage-guide.webp",
+
+  content: [
+    {
+      heading: "What Is Percentage?",
+      paragraphs: [
+        "Percentage is a way of expressing a number as a part of 100. The word 'percentage' comes from the Latin 'per centum', which means 'per hundred'. It is written using the symbol %.",
+        "For example, 75% means 75 out of every 100. If 75 students out of 100 passed an exam, we say the pass percentage is 75%.",
+        "Percentages are used everywhere — in school marks, shopping discounts, bank interest rates, GST, profit and loss, and even in health reports like body fat percentage.",
+      ],
+    },
+
+    {
+      heading: "Percentage Formula",
+      paragraphs: [
+        "The standard formula to calculate percentage is:",
+        "Percentage (%) = (Part ÷ Whole) × 100",
+        "Here, 'Part' is the value you want to find the percentage of, and 'Whole' is the total or reference value.",
+        "Example: If you scored 40 out of 50 in a test — Percentage = (40 ÷ 50) × 100 = 80%.",
+      ],
+    },
+
+    {
+      heading: "How to Calculate Percentage — Step by Step",
+      paragraphs: [
+        "Step 1: Identify the Part and the Whole. The 'Part' is the smaller value. The 'Whole' is the total value.",
+        "Step 2: Divide the Part by the Whole. This gives a decimal number.",
+        "Step 3: Multiply the decimal by 100. The result is the percentage.",
+        "Example: A student scores 450 marks out of 500. Percentage = (450 ÷ 500) × 100 = 90%. The student scored 90%.",
+        "Another Example: A shop sold 80 items out of 200 in stock. Percentage sold = (80 ÷ 200) × 100 = 40%.",
+      ],
+    },
+
+    {
+      heading: "How to Calculate Percentage of Marks",
+      paragraphs: [
+        "To calculate your percentage of marks, divide total marks obtained by maximum marks, then multiply by 100.",
+        "Formula: Marks Percentage = (Marks Obtained ÷ Total Marks) × 100",
+        "Example 1: Rahul scored 360 out of 400 in his Class 10 exams. Percentage = (360 ÷ 400) × 100 = 90%.",
+        "Example 2: Priya scored 525 out of 600 in Class 12 boards. Percentage = (525 ÷ 600) × 100 = 87.5%.",
+        "Tip: Many boards require a minimum of 33% or 35% to pass. Always check the passing criteria for your exam.",
+      ],
+    },
+
+    {
+      heading: "How to Find a Percentage of a Number",
+      paragraphs: [
+        "Sometimes you need to find X% of a given number. The formula is:",
+        "Value = (Percentage ÷ 100) × Number",
+        "Example 1: What is 20% of 500? Value = (20 ÷ 100) × 500 = 100.",
+        "Example 2: What is 15% of ₹2,000? Value = (15 ÷ 100) × 2000 = ₹300.",
+        "This is commonly used to calculate discounts, GST amounts, and commission.",
+      ],
+    },
+
+    {
+      heading: "Percentage Increase Formula",
+      paragraphs: [
+        "Percentage increase tells you by how much percent a value has gone up compared to the original value.",
+        "Formula: Percentage Increase = ((New Value − Original Value) ÷ Original Value) × 100",
+        "Example 1: A salary increased from ₹20,000 to ₹25,000. Increase = ((25000 − 20000) ÷ 20000) × 100 = 25%. The salary increased by 25%.",
+        "Example 2: A product's price went from ₹100 to ₹120. Increase = ((120 − 100) ÷ 100) × 100 = 20%.",
+        "Use this formula to track price hikes, population growth, revenue growth, or salary appraisals.",
+      ],
+    },
+
+    {
+      heading: "Percentage Decrease Formula",
+      paragraphs: [
+        "Percentage decrease tells you by how much percent a value has gone down compared to the original value.",
+        "Formula: Percentage Decrease = ((Original Value − New Value) ÷ Original Value) × 100",
+        "Example 1: A product was priced at ₹1,000 and is now sold for ₹800. Decrease = ((1000 − 800) ÷ 1000) × 100 = 20%.",
+        "Example 2: A company's sales dropped from 5,000 units to 3,500 units. Decrease = ((5000 − 3500) ÷ 5000) × 100 = 30%.",
+        "This formula is useful in tracking price drops, sales decline, weight loss, or stock market falls.",
+      ],
+    },
+
+    {
+      heading: "Percentage Discount Formula",
+      paragraphs: [
+        "When a product is on sale, the discount is usually expressed as a percentage of the original price.",
+        "Formula: Discount Amount = (Discount % ÷ 100) × Original Price",
+        "Sale Price = Original Price − Discount Amount",
+        "Example: A shirt costs ₹800 and has a 25% discount. Discount = (25 ÷ 100) × 800 = ₹200. Sale Price = 800 − 200 = ₹600.",
+        "You can also work backwards — if the sale price and discount percentage are known, the original price = Sale Price ÷ (1 − Discount%/100).",
+      ],
+    },
+
+    {
+      heading: "Percentage in Profit and Loss",
+      paragraphs: [
+        "In business and commerce, profit and loss are always expressed as a percentage of the cost price.",
+        "Profit % = ((Selling Price − Cost Price) ÷ Cost Price) × 100",
+        "Loss % = ((Cost Price − Selling Price) ÷ Cost Price) × 100",
+        "Example 1: A shopkeeper buys an item for ₹500 and sells it for ₹600. Profit = ₹100. Profit % = (100 ÷ 500) × 100 = 20%.",
+        "Example 2: A phone bought for ₹15,000 is sold for ₹12,000. Loss = ₹3,000. Loss % = (3000 ÷ 15000) × 100 = 20%.",
+      ],
+    },
+
+    {
+      heading: "Percentage in GST Calculation (India)",
+      paragraphs: [
+        "GST (Goods and Services Tax) in India is applied as a percentage on the base price of goods and services.",
+        "Formula: GST Amount = (GST Rate ÷ 100) × Base Price",
+        "Total Price = Base Price + GST Amount",
+        "Example: A product costs ₹1,000 and has 18% GST. GST = (18 ÷ 100) × 1000 = ₹180. Total price = ₹1,000 + ₹180 = ₹1,180.",
+        "Common GST slabs in India are 5%, 12%, 18%, and 28% depending on the type of product or service.",
+      ],
+    },
+
+    {
+      heading: "Shortcut Tricks for Percentage Calculation",
+      paragraphs: [
+        "Trick 1 — 10% of any number: Simply move the decimal one place to the left. 10% of 450 = 45.",
+        "Trick 2 — 5% of any number: Find 10% first, then halve it. 5% of 450 = 45 ÷ 2 = 22.5.",
+        "Trick 3 — 25% of any number: Divide the number by 4. 25% of 800 = 800 ÷ 4 = 200.",
+        "Trick 4 — 50% of any number: Divide the number by 2. 50% of 640 = 320.",
+        "Trick 5 — X% of Y = Y% of X: This is a useful swap trick. 8% of 25 = 25% of 8 = 2. Always pick the easier side to calculate.",
+      ],
+    },
+
+    {
+      heading: "Real Life Uses of Percentage",
+      paragraphs: [
+        "School & College: Percentage of marks in exams, attendance percentage, and cut-off percentages for college admissions.",
+        "Shopping: Discount percentage on products during sales, cashback percentages on payment apps.",
+        "Finance & Banking: Interest rates on loans and FDs, EMI calculations, and return on investment (ROI).",
+        "Taxes: Income tax slabs, GST rates, TDS deductions — all expressed as percentages.",
+        "Health: Body fat percentage, blood sugar levels reported as percentage values, COVID recovery rates.",
+        "Business: Profit margin percentage, market share percentage, employee appraisal ratings.",
+        "Understanding percentages makes you better at managing money, evaluating offers, and making smarter decisions in daily life.",
+      ],
+    },
+  ],
+
+  faqs: [
+    {
+      question: "What is the basic percentage formula?",
+      answer:
+        "The basic percentage formula is: Percentage = (Part ÷ Whole) × 100. For example, if you score 45 out of 50, the percentage is (45 ÷ 50) × 100 = 90%.",
+    },
+    {
+      question: "How do I calculate percentage of marks?",
+      answer:
+        "Divide the total marks obtained by the maximum marks, then multiply by 100. Formula: Marks % = (Marks Obtained ÷ Total Marks) × 100. Example: 450 out of 500 = 90%.",
+    },
+    {
+      question: "How do I calculate percentage increase?",
+      answer:
+        "Use the formula: ((New Value − Original Value) ÷ Original Value) × 100. Example: Price goes from ₹200 to ₹250 — increase = ((250 − 200) ÷ 200) × 100 = 25%.",
+    },
+    {
+      question: "How do I calculate percentage decrease?",
+      answer:
+        "Use the formula: ((Original Value − New Value) ÷ Original Value) × 100. Example: Price drops from ₹500 to ₹400 — decrease = ((500 − 400) ÷ 500) × 100 = 20%.",
+    },
+    {
+      question: "How to find X% of a number?",
+      answer:
+        "Multiply the number by the percentage and divide by 100. Formula: Value = (X ÷ 100) × Number. Example: 15% of 200 = (15 ÷ 100) × 200 = 30.",
+    },
+    {
+      question: "How to calculate discount percentage?",
+      answer:
+        "Discount % = ((Original Price − Sale Price) ÷ Original Price) × 100. Example: Original price ₹1,000, sale price ₹750 — Discount = ((1000 − 750) ÷ 1000) × 100 = 25%.",
+    },
+    {
+      question: "How to calculate profit percentage?",
+      answer:
+        "Profit % = ((Selling Price − Cost Price) ÷ Cost Price) × 100. Example: Cost ₹400, Selling Price ₹500 — Profit % = (100 ÷ 400) × 100 = 25%.",
+    },
+    {
+      question: "What is 10% of any number — quick trick?",
+      answer:
+        "To find 10% of any number, simply move the decimal one place to the left. Example: 10% of 350 = 35. 10% of 4,800 = 480.",
+    },
+    {
+      question: "Where are percentages used in daily life?",
+      answer:
+        "Percentages are used in exam marks, shopping discounts, GST and taxes, bank interest rates, profit and loss calculations, investment returns, health metrics, and statistical reports.",
+    },
+    {
+      question: "Is X% of Y equal to Y% of X?",
+      answer:
+        "Yes! X% of Y always equals Y% of X. For example, 8% of 25 = 25% of 8 = 2. Use this trick to pick whichever calculation is easier.",
+    },
+  ],
+};
