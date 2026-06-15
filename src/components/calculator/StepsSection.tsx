@@ -5,6 +5,7 @@ import {
   BadgeCheck,
   Scale,
   Ruler,
+  Target,
 } from "lucide-react";
 
 type Step = {
@@ -26,6 +27,7 @@ const icons = {
   result: BadgeCheck,
   weight: Scale,
   height: Ruler,
+  target: Target,
 };
 
 export default function StepsSection({

@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+
 import { calculators } from "@/src/data/calculators";
 import { categories } from "@/src/data/categories/Category";
 
@@ -13,6 +15,53 @@ export async function generateStaticParams() {
   return categories.map((category) => ({
     slug: category.slug,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
+  const { slug } = await params;
+
+  const category = categories.find(
+    (item) => item.slug === slug,
+  );
+
+  if (!category) {
+    return {
+      title: "Category Not Found | DevCalc",
+    };
+  }
+
+  return {
+    title: `${category.name} Calculators | DevCalc`,
+    description: `Browse free online ${category.name.toLowerCase()} calculators on DevCalc. Accurate formulas, instant results, and easy-to-use tools.`,
+
+    keywords: [
+      `${category.name.toLowerCase()} calculators`,
+      `${category.name.toLowerCase()} tools`,
+      `free ${category.name.toLowerCase()} calculators`,
+      "online calculators",
+      "DevCalc",
+    ],
+
+    alternates: {
+      canonical: `https://www.devcalc.in/category/${slug}`,
+    },
+
+    openGraph: {
+      title: `${category.name} Calculators | DevCalc`,
+      description: `Browse free online ${category.name.toLowerCase()} calculators on DevCalc.`,
+      url: `https://www.devcalc.in/category/${slug}`,
+      siteName: "DevCalc",
+      type: "website",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${category.name} Calculators | DevCalc`,
+      description: `Browse free online ${category.name.toLowerCase()} calculators on DevCalc.`,
+    },
+  };
 }
 
 export default async function CategoryPage({

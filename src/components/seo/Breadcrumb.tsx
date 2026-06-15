@@ -6,10 +6,7 @@ type BreadcrumbProps = {
   currentPage: string;
 };
 
-export default function Breadcrumb({
-  category,
-  currentPage,
-}: BreadcrumbProps) {
+export default function Breadcrumb({ category, currentPage }: BreadcrumbProps) {
   return (
     <nav
       aria-label="breadcrumb"
@@ -31,7 +28,7 @@ export default function Breadcrumb({
 
         <li>
           <Link
-            href="/blog"
+            href={`/category/${category.toLowerCase()}`}
             className="font-medium text-slate-600 transition hover:text-blue-600"
           >
             {category}
@@ -43,9 +40,7 @@ export default function Breadcrumb({
         </li>
 
         <li>
-          <span className="font-semibold text-blue-700">
-            {currentPage}
-          </span>
+          <span className="font-semibold text-blue-700">{currentPage}</span>
         </li>
       </ol>
     </nav>

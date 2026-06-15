@@ -14,6 +14,12 @@ import { gpaCalculator } from "./gpaCalculator";
 import { unitConverter } from "./unitconverter";
 import { hraCalculator } from "./hraCalculator";
 import { incomeTaxCalculator } from "./incomeTaxCalculator";
+import { attendanceCalculator } from "./attendance";
+import { bmrCalculator } from "./bmr";
+import { calorieCalculator } from "./calorie";
+import { bodyFatCalculator } from "./body-fat";
+import { cgpaCalculator } from "./cgpa";
+import { cagrCalculator } from "./cagr";
 
 
 export const calculators = [
@@ -33,4 +39,10 @@ export const calculators = [
   unitConverter,
   hraCalculator,
   incomeTaxCalculator,
+  attendanceCalculator,
+  bmrCalculator,
+  calorieCalculator,
+  bodyFatCalculator,
+  cgpaCalculator,
+  cagrCalculator,
 ];

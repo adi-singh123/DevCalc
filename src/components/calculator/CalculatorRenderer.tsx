@@ -14,6 +14,12 @@ import GPACalculator from "./renderers/GPACalculator";
 import UnitConverter from "./renderers/UnitConverter";
 import HRACalculator from "./renderers/HRACalculator";
 import IncomeTaxCalculator from "./renderers/IncomeTaxCalculator";
+import AttendanceCalculator from "./renderers/AttendanceCalculator";
+import BMRCalculator from "./renderers/BMRCalculator";
+import CalorieCalculator from "./renderers/CalorieCalculator";
+import BodyFatCalculator from "./renderers/BodyFatCalculator";
+import CGPACalculator from "./renderers/CGPACalculator";
+import CAGRCalculator from "./renderers/CAGRCalculator";
 
 type Props = {
   slug: string;
@@ -23,31 +29,24 @@ export default function CalculatorRenderer({ slug }: Props) {
   switch (slug) {
     case "age-calculator":
       return <AgeCalculator />;
-
     case "bmi-calculator":
       return <BMICalculator />;
-
     case "percentage-calculator":
       return <PercentageCalculator />;
     case "date-calculator":
       return <DateCalculator />;
-
     case "gst-calculator":
       return <GSTCalculator />;
-
     case "emi-calculator":
       return <EMICalculator />;
     case "mileage-calculator":
       return <MileageCalculator />;
-
     case "sip-calculator":
       return <SIPCalculator />;
     case "fd-calculator":
       return <FDCalculator />;
-
     case "simple-interest-calculator":
       return <SimpleInterestCalculator />;
-
     case "discount-calculator":
       return <DiscountCalculator />;
     case "fuel-cost-calculator":
@@ -60,6 +59,18 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <HRACalculator />;
     case "income-tax-calculator":
       return <IncomeTaxCalculator/>
+    case "attendance-calculator":
+      return <AttendanceCalculator/>;
+    case "bmr-calculator":
+      return <BMRCalculator/>;
+    case "calorie-calculator":
+      return <CalorieCalculator/>;
+    case "body-fat-calculator":
+      return <BodyFatCalculator/>;
+    case  "cgpa-calculator":
+      return <CGPACalculator/>;
+    case "cagr-calculator":
+      return <CAGRCalculator/>;
 
     default:
       return (
