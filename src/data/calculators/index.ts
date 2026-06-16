@@ -20,6 +20,27 @@ import { calorieCalculator } from "./calorie";
 import { bodyFatCalculator } from "./body-fat";
 import { cgpaCalculator } from "./cgpa";
 import { cagrCalculator } from "./cagr";
+import { compoundInterestCalculator } from "./compound-interest";
+import { averageCalculator } from "./average";
+import { scientificCalculator } from "./scientific";
+import { ppfCalculator } from "./ppf";
+import { inflationCalculator } from "./inflation";
+import { lumpsumCalculator } from "./lumpsum";
+import { swpCalculator } from "./swp";
+import { retirementCalculator } from "./retirement";
+import { fractionCalculator } from "./fraction";
+import { meanMedianModeCalculator } from "./mean-median-mode";
+import { ratioCalculator } from "./ratio";
+import { standardDeviationCalculator } from "./standard-deviation";
+import { probabilityCalculator } from "./probability";
+import { quadraticEquationCalculator } from "./quadratic-equation";
+import { permutationCombinationCalculator } from "./permutation&Combination";
+import { matrixCalculator } from "./matrix";
+import { percentageDifferenceCalculator } from "./percentage-difference";
+import { passwordGenerator } from "./password-generator";
+import { randomNumberGenerator } from "./random-number-generator";
+import { qrCodeGenerator } from "./qr-code-generator";
+
 
 
 export const calculators = [
@@ -45,4 +66,25 @@ export const calculators = [
   bodyFatCalculator,
   cgpaCalculator,
   cagrCalculator,
+  compoundInterestCalculator,
+  averageCalculator,
+  scientificCalculator,
+  ppfCalculator,
+  inflationCalculator,
+  lumpsumCalculator,
+  swpCalculator,
+  retirementCalculator,
+  fractionCalculator,
+  meanMedianModeCalculator,
+  ratioCalculator,
+  standardDeviationCalculator,
+  probabilityCalculator,
+  quadraticEquationCalculator,
+  permutationCombinationCalculator,
+  matrixCalculator,
+  percentageDifferenceCalculator,
+  passwordGenerator,
+  randomNumberGenerator,
+  qrCodeGenerator,
+
 ];

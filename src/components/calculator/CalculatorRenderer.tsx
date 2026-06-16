@@ -20,6 +20,25 @@ import CalorieCalculator from "./renderers/CalorieCalculator";
 import BodyFatCalculator from "./renderers/BodyFatCalculator";
 import CGPACalculator from "./renderers/CGPACalculator";
 import CAGRCalculator from "./renderers/CAGRCalculator";
+import CompoundInterestCalculator from "./renderers/CompoundInterestCalculator";
+import AverageCalculator from "./renderers/AverageCalculator";
+import ScientificCalculator from "./renderers/CalculatorRenderer";
+import PPFCalculator from "./renderers/PPFCalculator";
+import InflationCalculator from "./renderers/InflationCalculator";
+import SWPCalculator from "./renderers/SWPCalculator";
+import RetirementCalculator from "./renderers/RetirementCalculator";
+import FractionCalculator from "./renderers/FractionCalculator";
+import MeanMedianModeCalculator from "./renderers/MeanMedianModeCalculator";
+import RatioCalculator from "./renderers/RationCalculator";
+import StandardDeviationCalculator from "./renderers/StandardDeviationCalculator";
+import ProbabilityCalculator from "./renderers/ProbabilityCalculator";
+import QuadraticEquationCalculator from "./renderers/QuadraticEquationCalculator";
+import PermutationCombinationCalculator from "./renderers/Permutation&Combination";
+import MatrixCalculator from "./renderers/MatrixClaculator";
+import PercentageDifferenceCalculator from "./renderers/PercentageDifferenceCalculator";
+import PasswordGenerator from "./renderers/PasswordGenerator";
+import RandomNumberGenerator from "./renderers/RandomNumberGenerator";
+import QRCodeGenerator from "./renderers/QRCodeGenerator";
 
 type Props = {
   slug: string;
@@ -58,19 +77,58 @@ export default function CalculatorRenderer({ slug }: Props) {
     case "hra-calculator":
       return <HRACalculator />;
     case "income-tax-calculator":
-      return <IncomeTaxCalculator/>
+      return <IncomeTaxCalculator />;
     case "attendance-calculator":
-      return <AttendanceCalculator/>;
+      return <AttendanceCalculator />;
     case "bmr-calculator":
-      return <BMRCalculator/>;
+      return <BMRCalculator />;
     case "calorie-calculator":
-      return <CalorieCalculator/>;
+      return <CalorieCalculator />;
     case "body-fat-calculator":
-      return <BodyFatCalculator/>;
-    case  "cgpa-calculator":
-      return <CGPACalculator/>;
+      return <BodyFatCalculator />;
+    case "cgpa-calculator":
+      return <CGPACalculator />;
     case "cagr-calculator":
-      return <CAGRCalculator/>;
+      return <CAGRCalculator />;
+    case "compound-interest-calculator":
+      return <CompoundInterestCalculator />;
+    case "average-calculator":
+      return <AverageCalculator />;
+    case "scientific-calculator":
+      return <ScientificCalculator />;
+    case "ppf-calculator":
+      return <PPFCalculator/>;
+    case "inflation-calculator":
+      return <InflationCalculator/>
+    case "swp-calculator":
+      return <SWPCalculator/>;
+    case "retirement-calculator":
+      return <RetirementCalculator/>;
+    case "fraction-calculator":
+      return <FractionCalculator/>;
+    case "mean-median-mode-calculator":
+      return <MeanMedianModeCalculator/>;
+    case "ratio-calculator":
+      return <RatioCalculator/>;
+    case "standard-deviation-calculator":
+      return <StandardDeviationCalculator/>;
+    case "probability-calculator":
+      return <ProbabilityCalculator/>;
+    case "quadratic-equation-calculator":
+      return <QuadraticEquationCalculator/>;
+    case "permutation-combination-calculator":
+      return <PermutationCombinationCalculator/>;
+    case "matrix-calculator":
+      return <MatrixCalculator/>
+    case "percentage-difference-calculator":
+      return <PercentageDifferenceCalculator/>;
+    case "password-generator":
+      return <PasswordGenerator/>;
+    case "random-number-generator":
+      return <RandomNumberGenerator/>;
+    case "qr-code-generator":
+      return <QRCodeGenerator/>
+    
 
     default:
       return (
