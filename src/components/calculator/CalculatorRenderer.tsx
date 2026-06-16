@@ -39,6 +39,17 @@ import PercentageDifferenceCalculator from "./renderers/PercentageDifferenceCalc
 import PasswordGenerator from "./renderers/PasswordGenerator";
 import RandomNumberGenerator from "./renderers/RandomNumberGenerator";
 import QRCodeGenerator from "./renderers/QRCodeGenerator";
+import PrimeNumberCalculator from "./renderers/PrimeNumberCalculator";
+import LCMCalculator from "./renderers/LCMCalculator";
+import HCFCalculator from "./renderers/HCFCalculator";
+import DistanceCalculator from "./renderers/DistanceCalculator";
+import SlopeCalculator from "./renderers/SlopeCalculator";
+import IdealBodyWeightCalculator from "./renderers/IdealBodyWeightCalculator";
+import WaterIntakeCalculator from "./renderers/WaterIntakeCalculator";
+import MacroCalculator from "./renderers/MacroCalculator";
+import SleepCycleCalculator from "./renderers/SleepCycleCalculator";
+
+
 
 type Props = {
   slug: string;
@@ -127,7 +138,25 @@ export default function CalculatorRenderer({ slug }: Props) {
     case "random-number-generator":
       return <RandomNumberGenerator/>;
     case "qr-code-generator":
-      return <QRCodeGenerator/>
+      return <QRCodeGenerator/>;
+    case  "prime-number-calculator":
+      return <PrimeNumberCalculator/>;
+    case  "lcm-calculator":
+      return <LCMCalculator/>;
+    case "hcf-calculator":
+      return <HCFCalculator/>
+    case "distance-calculator":
+      return <DistanceCalculator/>;
+    case "slope-calculator":
+      return <SlopeCalculator/>
+    case "ideal-body-weight-calculator":
+      return <IdealBodyWeightCalculator/>;
+    case "water-intake-calculator":
+      return <WaterIntakeCalculator/>;
+    case "macro-calculator":
+      return <MacroCalculator/>
+    case "sleep-cycle-calculator":
+      return <SleepCycleCalculator/>
     
 
     default:

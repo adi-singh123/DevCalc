@@ -40,6 +40,14 @@ import { percentageDifferenceCalculator } from "./percentage-difference";
 import { passwordGenerator } from "./password-generator";
 import { randomNumberGenerator } from "./random-number-generator";
 import { qrCodeGenerator } from "./qr-code-generator";
+import { primeNumberCalculator } from "./prime-number";
+import { lcmCalculator } from "./lcm";
+import { distanceCalculator } from "./distance";
+import { slopeCalculator } from "./slope";
+import { idealBodyWeightCalculator } from "./ideal-body-weight";
+import { waterIntakeCalculator } from "./water-intake";
+import { macroCalculator } from "./macro-calculator";
+import { sleepCycleCalculator } from "./sleep-cycle";
 
 
 
@@ -86,5 +94,14 @@ export const calculators = [
   passwordGenerator,
   randomNumberGenerator,
   qrCodeGenerator,
+  primeNumberCalculator,
+  lcmCalculator,
+  hraCalculator,
+  distanceCalculator,
+  slopeCalculator,
+  idealBodyWeightCalculator,
+  waterIntakeCalculator,
+  macroCalculator,
+  sleepCycleCalculator,
 
 ];

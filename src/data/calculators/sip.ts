@@ -1,123 +1,191 @@
 import { Calculator } from "@/src/types/calculator";
 
 export const sipCalculator: Calculator = {
-  slug: "sip-calculator",
+slug: "sip-calculator",
 
-  name: "SIP Calculator",
+name: "SIP Calculator",
 
+description:
+"Calculate SIP returns, total investment, estimated wealth gained, and future maturity value using our free SIP Calculator. Plan mutual fund investments and long-term wealth creation with accurate projections.",
+
+category: "Finance",
+
+isPopular: true,
+
+seo: {
+title:
+"SIP Calculator - Calculate SIP Returns & Mutual Fund Growth Online",
+
+description:
+  "Use our free SIP Calculator to estimate mutual fund returns, invested amount, wealth gained, and maturity value. Plan your monthly SIP investments and achieve long-term financial goals.",
+
+keywords: [
+  "sip calculator",
+  "sip calculator india",
+  "mutual fund sip calculator",
+  "sip return calculator",
+  "sip maturity calculator",
+  "monthly sip calculator",
+  "systematic investment plan calculator",
+  "investment calculator",
+  "mutual fund calculator",
+  "sip growth calculator",
+  "future value calculator",
+  "wealth creation calculator",
+  "online sip calculator",
+  "best sip calculator",
+  "sip planning calculator",
+  "sip investment calculator",
+  "monthly investment calculator",
+  "retirement sip calculator",
+  "long term investment calculator",
+  "compound growth calculator",
+  "sip returns calculator",
+  "equity mutual fund calculator",
+  "financial planning calculator",
+  "sip amount calculator",
+  "free sip calculator",
+],
+
+},
+
+steps: [
+{
+step: 1,
+title: "Enter Monthly SIP Amount",
+description:
+"Enter the amount you plan to invest every month through a Systematic Investment Plan.",
+icon: "calculator",
+},
+
+{
+  step: 2,
+  title: "Enter Expected Annual Return",
   description:
-    "Calculate SIP returns, wealth gained, invested amount, and future value instantly.",
+    "Provide the expected annual rate of return for your investment portfolio.",
+  icon: "calculator",
+},
 
-  category: "Finance",
+{
+  step: 3,
+  title: "Enter Investment Duration",
+  description:
+    "Select the number of years you intend to continue your SIP investment.",
+  icon: "calculator",
+},
 
-  isPopular: true,
+{
+  step: 4,
+  title: "View Investment Results",
+  description:
+    "See total invested amount, estimated returns, wealth gained, and future maturity value.",
+  icon: "result",
+},
 
-  seo: {
-    title:
-      "SIP Calculator - Calculate SIP Returns & Investment Growth Online",
+],
 
-    description:
-      "Calculate SIP returns instantly. Enter monthly investment, expected return rate, and tenure to estimate future value and wealth creation.",
+formula: {
+title: "SIP Maturity Formula",
 
-    keywords: [
-      "sip calculator",
-      "sip calculator india",
-      "mutual fund sip calculator",
-      "sip return calculator",
-      "sip maturity calculator",
-      "monthly sip calculator",
-      "investment calculator",
-      "systematic investment plan calculator",
-      "sip growth calculator",
-      "future value calculator",
-      "sip planner",
-      "wealth creation calculator",
-      "online sip calculator",
-    ],
-  },
+formula:
+  "M = P × (((1 + i)^n − 1) ÷ i) × (1 + i)",
 
-  steps: [
-    {
-      step: 1,
-      title: "Enter Monthly Investment",
-      description:
-        "Enter the amount you plan to invest every month.",
-      icon: "calculator",
-    },
-    {
-      step: 2,
-      title: "Enter Expected Return",
-      description:
-        "Enter the expected annual return percentage.",
-      icon: "calculator",
-    },
-    {
-      step: 3,
-      title: "Enter Investment Period",
-      description:
-        "Specify the number of years you will stay invested.",
-      icon: "calculator",
-    },
-    {
-      step: 4,
-      title: "View SIP Results",
-      description:
-        "See invested amount, estimated returns, and maturity value.",
-      icon: "result",
-    },
-  ],
+explanation:
+  "The SIP formula calculates the future value of regular monthly investments. It considers monthly contributions, expected returns, investment duration, and the effect of compounding over time.",
 
-  formula: {
-    title: "SIP Formula",
+example: {
+  input:
+    "Monthly SIP: ₹5,000, Expected Return: 12%, Investment Period: 10 Years",
 
-    formula:
-      "M = P × (((1 + i)^n − 1) ÷ i) × (1 + i)",
+  output:
+    "Total Investment: ₹6,00,000, Estimated Maturity Value: ₹11,61,695 (Approx.)",
+},
 
-    explanation:
-      "SIP maturity value is calculated using monthly investments, expected returns, and investment duration while considering compounding growth.",
+useCases: [
+  "Mutual Fund Investments",
+  "Retirement Planning",
+  "Child Education Planning",
+  "Wealth Creation",
+  "Long-Term Financial Planning",
+  "Goal-Based Investing",
+  "Investment Portfolio Planning",
+  "Financial Independence Planning",
+  "Monthly Investment Analysis",
+  "Future Value Estimation",
+],
 
-    example: {
-      input:
-        "Monthly SIP: ₹5,000, Return: 12%, Period: 10 Years",
+},
 
-      output:
-        "Invested Amount: ₹6,00,000, Maturity Value: ₹11,61,695 (approx.)",
-    },
+faqs: [
+{
+question:
+"What is a SIP Calculator?",
+answer:
+"A SIP Calculator estimates the future value of systematic monthly investments based on the investment amount, expected return rate, and investment duration.",
+},
 
-    useCases: [
-      "Mutual Fund Planning",
-      "Retirement Planning",
-      "Child Education Planning",
-      "Wealth Creation",
-      "Long-Term Investments",
-    ],
-  },
+{
+  question:
+    "How is SIP maturity calculated?",
+  answer:
+    "SIP maturity is calculated using a future value formula that accounts for monthly investments, compounding returns, and the total investment period.",
+},
 
-  faqs: [
-    {
-      question: "What is a SIP Calculator?",
-      answer:
-        "A SIP Calculator estimates future investment value, total investment, and wealth gained through systematic monthly investments.",
-    },
-    {
-      question: "How is SIP return calculated?",
-      answer:
-        "SIP returns are calculated using a future value formula that considers monthly contributions, expected returns, and investment duration.",
-    },
-    {
-      question: "Can SIP guarantee returns?",
-      answer:
-        "No. SIP investments are market-linked and returns are not guaranteed.",
-    },
-    {
-      question: "Is SIP better than a Fixed Deposit?",
-      answer:
-        "SIPs have the potential to generate higher long-term returns, while Fixed Deposits offer more predictable returns with lower risk.",
-    },
-    {
-      question: "Can I withdraw SIP anytime?",
-      answer:
-        "Most SIP investments can be redeemed anytime, subject to scheme-specific exit loads and terms.",
-    },
-  ],
+{
+  question:
+    "What is the benefit of investing through SIP?",
+  answer:
+    "SIPs help investors build wealth gradually through disciplined investing, rupee cost averaging, and long-term compounding growth.",
+},
+
+{
+  question:
+    "Can SIP guarantee returns?",
+  answer:
+    "No. SIP investments are market-linked, and returns depend on the performance of the selected mutual fund scheme.",
+},
+
+{
+  question:
+    "Is SIP suitable for beginners?",
+  answer:
+    "Yes. SIPs are one of the easiest and most popular ways for beginners to start investing in mutual funds with small monthly contributions.",
+},
+
+{
+  question:
+    "Can I increase my SIP amount later?",
+  answer:
+    "Yes. Many mutual fund providers allow investors to increase their SIP contributions through Step-Up SIP options.",
+},
+
+{
+  question:
+    "What is the difference between SIP and Lump Sum investing?",
+  answer:
+    "SIP involves investing fixed amounts regularly, while Lump Sum investing involves investing a large amount at one time.",
+},
+
+{
+  question:
+    "Can I stop or withdraw SIP investments anytime?",
+  answer:
+    "Most SIP investments can be stopped, redeemed, or modified at any time, subject to scheme-specific rules and exit loads.",
+},
+
+{
+  question:
+    "Is SIP better than a Fixed Deposit?",
+  answer:
+    "SIPs have the potential to generate higher long-term returns through market participation, whereas Fixed Deposits generally offer stable but lower returns.",
+},
+
+{
+  question:
+    "Is this SIP Calculator free?",
+  answer:
+    "Yes. You can calculate SIP returns, investment growth, wealth gained, and future value online unlimited times completely free.",
+},
+
+],
 };
