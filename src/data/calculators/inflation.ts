@@ -156,4 +156,132 @@ export const inflationCalculator: Calculator = {
         "Generally yes. Inflation means prices rise over time, causing the same amount of money to have less purchasing power in the future.",
     },
   ],
+
+  seoContent: `
+<h2>What is Inflation?</h2>
+
+<p>
+Inflation is the gradual increase in the prices of goods and services over time. As inflation rises, the purchasing power of money decreases, meaning the same amount of money buys fewer goods and services in the future.
+</p>
+
+<h2>Impact of Inflation on Money</h2>
+
+<table>
+  <tr>
+    <th>Current Amount</th>
+    <th>Inflation Rate</th>
+    <th>Value After 10 Years</th>
+  </tr>
+  <tr>
+    <td>₹1,00,000</td>
+    <td>5%</td>
+    <td>Approx. ₹61,391</td>
+  </tr>
+  <tr>
+    <td>₹1,00,000</td>
+    <td>7%</td>
+    <td>Approx. ₹50,834</td>
+  </tr>
+  <tr>
+    <td>₹1,00,000</td>
+    <td>10%</td>
+    <td>Approx. ₹38,554</td>
+  </tr>
+</table>
+
+<h2>Why Inflation Matters</h2>
+
+<ul>
+  <li><strong>Reduces Purchasing Power:</strong> Your money buys less over time.</li>
+  <li><strong>Affects Retirement Planning:</strong> Future expenses become much higher.</li>
+  <li><strong>Impacts Investments:</strong> Returns must exceed inflation to create real wealth.</li>
+  <li><strong>Influences Living Costs:</strong> Housing, education, healthcare, and food become more expensive.</li>
+</ul>
+
+<h2>Common Inflation Examples</h2>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Price Today</th>
+    <th>Price After 20 Years (6%)</th>
+  </tr>
+  <tr>
+    <td>Monthly Rent</td>
+    <td>₹15,000</td>
+    <td>₹48,107</td>
+  </tr>
+  <tr>
+    <td>School Fees</td>
+    <td>₹50,000</td>
+    <td>₹1,60,357</td>
+  </tr>
+  <tr>
+    <td>Groceries</td>
+    <td>₹10,000</td>
+    <td>₹32,071</td>
+  </tr>
+</table>
+
+<h2>Inflation vs Investment Returns</h2>
+
+<table>
+  <tr>
+    <th>Investment Return</th>
+    <th>Inflation Rate</th>
+    <th>Real Return</th>
+  </tr>
+  <tr>
+    <td>8%</td>
+    <td>6%</td>
+    <td>2%</td>
+  </tr>
+  <tr>
+    <td>12%</td>
+    <td>6%</td>
+    <td>6%</td>
+  </tr>
+  <tr>
+    <td>15%</td>
+    <td>6%</td>
+    <td>9%</td>
+  </tr>
+</table>
+
+<h2>Ways to Beat Inflation</h2>
+
+<ul>
+  <li><strong>Invest in Equity:</strong> Stocks and equity mutual funds historically outperform inflation.</li>
+  <li><strong>Increase Income:</strong> Develop skills and improve earning potential.</li>
+  <li><strong>Review Investments:</strong> Ensure returns exceed inflation.</li>
+  <li><strong>Start Early:</strong> Compounding helps overcome inflation.</li>
+</ul>
+
+<h2>Inflation and Retirement Planning</h2>
+
+<p>
+Many people underestimate how inflation affects retirement. A monthly expense of ₹50,000 today may require more than ₹1.5 lakh per month after 20 years if inflation remains high.
+</p>
+
+<h2>Common Inflation Mistakes</h2>
+
+<ul>
+  <li>Keeping all savings in low-interest accounts.</li>
+  <li>Ignoring future cost increases.</li>
+  <li>Not adjusting financial goals annually.</li>
+  <li>Focusing only on nominal returns.</li>
+</ul>
+
+<h2>Rule of 72 for Inflation</h2>
+
+<p>
+Divide 72 by the inflation rate to estimate how long it takes for prices to double. At 6% inflation, prices may double in approximately 12 years.
+</p>
+
+<h2>Pro Tip</h2>
+
+<p>
+When planning long-term goals such as retirement, children's education, or buying a home, always account for inflation. Ignoring inflation can lead to significant shortfalls in future financial planning.
+</p>
+`,
 };

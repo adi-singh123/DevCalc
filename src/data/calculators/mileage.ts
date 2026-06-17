@@ -157,4 +157,123 @@ export const mileageCalculator: Calculator = {
         "Maintain proper tyre pressure, avoid aggressive acceleration and braking, reduce unnecessary vehicle weight, service your vehicle regularly, and drive at consistent speeds to improve fuel efficiency.",
     },
   ],
+
+  seoContent: `
+<h2>What is Vehicle Mileage?</h2>
+
+<p>
+Vehicle mileage refers to the distance a vehicle can travel per unit of fuel consumed. In India, mileage is commonly measured in kilometers per litre (km/l). Higher mileage means better fuel efficiency and lower fuel expenses.
+</p>
+
+<h2>Mileage Comparison Guide</h2>
+
+<table>
+  <tr>
+    <th>Mileage (km/l)</th>
+    <th>Rating</th>
+  </tr>
+  <tr>
+    <td>Below 10</td>
+    <td>Poor</td>
+  </tr>
+  <tr>
+    <td>10 - 15</td>
+    <td>Average</td>
+  </tr>
+  <tr>
+    <td>15 - 20</td>
+    <td>Good</td>
+  </tr>
+  <tr>
+    <td>20 - 30</td>
+    <td>Excellent</td>
+  </tr>
+  <tr>
+    <td>Above 30</td>
+    <td>Outstanding</td>
+  </tr>
+</table>
+
+<h2>Factors That Affect Mileage</h2>
+
+<ul>
+  <li><strong>Driving Speed:</strong> Aggressive acceleration reduces fuel efficiency.</li>
+  <li><strong>Tyre Pressure:</strong> Underinflated tyres increase fuel consumption.</li>
+  <li><strong>Vehicle Maintenance:</strong> Dirty air filters and old engine oil can lower mileage.</li>
+  <li><strong>Traffic Conditions:</strong> Frequent braking and acceleration consume more fuel.</li>
+  <li><strong>Vehicle Load:</strong> Carrying unnecessary weight decreases mileage.</li>
+</ul>
+
+<h2>How to Improve Mileage</h2>
+
+<table>
+  <tr>
+    <th>Tip</th>
+    <th>Potential Improvement</th>
+  </tr>
+  <tr>
+    <td>Maintain Correct Tyre Pressure</td>
+    <td>Up to 3%</td>
+  </tr>
+  <tr>
+    <td>Regular Vehicle Servicing</td>
+    <td>Up to 10%</td>
+  </tr>
+  <tr>
+    <td>Smooth Acceleration</td>
+    <td>Up to 15%</td>
+  </tr>
+  <tr>
+    <td>Reduce Excess Weight</td>
+    <td>Up to 5%</td>
+  </tr>
+</table>
+
+<h2>Petrol vs Diesel vs CNG Mileage</h2>
+
+<table>
+  <tr>
+    <th>Fuel Type</th>
+    <th>Typical Mileage</th>
+    <th>Running Cost</th>
+  </tr>
+  <tr>
+    <td>Petrol</td>
+    <td>15-20 km/l</td>
+    <td>Higher</td>
+  </tr>
+  <tr>
+    <td>Diesel</td>
+    <td>18-25 km/l</td>
+    <td>Medium</td>
+  </tr>
+  <tr>
+    <td>CNG</td>
+    <td>25-35 km/kg</td>
+    <td>Lowest</td>
+  </tr>
+</table>
+
+<h2>Monthly Fuel Cost Example</h2>
+
+<p>
+If you travel 1,500 km per month and your car delivers 15 km/l mileage, you will need approximately 100 litres of fuel every month. Small improvements in mileage can save thousands of rupees annually.
+</p>
+
+<h2>Signs Your Vehicle Mileage is Decreasing</h2>
+
+<ul>
+  <li>Frequent fuel refills.</li>
+  <li>Engine performance feels sluggish.</li>
+  <li>Black smoke from the exhaust.</li>
+  <li>Low tyre pressure.</li>
+  <li>Delayed servicing or maintenance.</li>
+</ul>
+
+<h2>Pro Tip</h2>
+
+<p>
+For most vehicles, driving between 60-80 km/h on highways provides the best balance between speed and fuel efficiency. Sudden acceleration and hard braking can reduce mileage significantly.
+</p>
+`,
 };

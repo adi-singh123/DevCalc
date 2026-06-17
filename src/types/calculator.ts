@@ -15,6 +15,8 @@ export interface Calculator {
     keywords: string[];
   };
 
+  seoContent?: string;
+
   steps: {
     step: number;
     title: string;

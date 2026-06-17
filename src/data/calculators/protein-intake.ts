@@ -170,4 +170,147 @@ export const proteinIntakeCalculator: Calculator = {
         "Yes. You can calculate your recommended daily protein intake online unlimited times completely free.",
     },
   ],
+
+  seoContent: `
+<h2>Why Protein is Important</h2>
+
+<p>
+Protein is one of the most important nutrients for building muscle, repairing tissues, supporting immunity, and maintaining overall health. Your daily protein requirement depends on your weight, activity level, and fitness goals.
+</p>
+
+<h2>Recommended Protein Intake</h2>
+
+<table>
+  <tr>
+    <th>Goal</th>
+    <th>Protein Requirement</th>
+  </tr>
+  <tr>
+    <td>Sedentary Lifestyle</td>
+    <td>0.8g per kg body weight</td>
+  </tr>
+  <tr>
+    <td>Weight Loss</td>
+    <td>1.2 - 1.6g per kg</td>
+  </tr>
+  <tr>
+    <td>Muscle Building</td>
+    <td>1.6 - 2.2g per kg</td>
+  </tr>
+  <tr>
+    <td>Athletes</td>
+    <td>1.8 - 2.5g per kg</td>
+  </tr>
+</table>
+
+<h2>Best High-Protein Foods</h2>
+
+<table>
+  <tr>
+    <th>Food</th>
+    <th>Protein (per 100g)</th>
+  </tr>
+  <tr>
+    <td>Chicken Breast</td>
+    <td>31g</td>
+  </tr>
+  <tr>
+    <td>Eggs</td>
+    <td>13g</td>
+  </tr>
+  <tr>
+    <td>Paneer</td>
+    <td>18g</td>
+  </tr>
+  <tr>
+    <td>Soy Chunks</td>
+    <td>52g</td>
+  </tr>
+  <tr>
+    <td>Lentils (Dal)</td>
+    <td>9g</td>
+  </tr>
+</table>
+
+<h2>Benefits of High Protein Intake</h2>
+
+<ul>
+  <li><strong>Muscle Growth:</strong> Supports muscle repair and development.</li>
+  <li><strong>Fat Loss:</strong> Increases satiety and reduces hunger.</li>
+  <li><strong>Recovery:</strong> Helps recover after workouts.</li>
+  <li><strong>Metabolism:</strong> Protein requires more energy to digest.</li>
+</ul>
+
+<h2>Protein Timing Guide</h2>
+
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Recommended Source</th>
+  </tr>
+  <tr>
+    <td>Breakfast</td>
+    <td>Eggs, Milk, Oats</td>
+  </tr>
+  <tr>
+    <td>Lunch</td>
+    <td>Chicken, Paneer, Dal</td>
+  </tr>
+  <tr>
+    <td>Post Workout</td>
+    <td>Whey Protein, Eggs</td>
+  </tr>
+  <tr>
+    <td>Dinner</td>
+    <td>Fish, Paneer, Soy</td>
+  </tr>
+</table>
+
+<h2>Vegetarian Protein Sources</h2>
+
+<ul>
+  <li>Soy Chunks</li>
+  <li>Paneer</li>
+  <li>Tofu</li>
+  <li>Lentils and Beans</li>
+  <li>Greek Yogurt</li>
+  <li>Milk</li>
+</ul>
+
+<h2>Common Protein Intake Mistakes</h2>
+
+<ul>
+  <li>Eating most protein in a single meal.</li>
+  <li>Ignoring protein after workouts.</li>
+  <li>Not tracking daily intake.</li>
+  <li>Relying only on supplements.</li>
+</ul>
+
+<h2>Protein Intake by Fitness Goal</h2>
+
+<table>
+  <tr>
+    <th>Goal</th>
+    <th>Recommendation</th>
+  </tr>
+  <tr>
+    <td>Weight Loss</td>
+    <td>Higher protein, moderate calories</td>
+  </tr>
+  <tr>
+    <td>Muscle Gain</td>
+    <td>High protein with calorie surplus</td>
+  </tr>
+  <tr>
+    <td>Maintenance</td>
+    <td>Balanced protein intake</td>
+  </tr>
+</table>
+
+<h2>Pro Tip</h2>
+
+<p>
+Instead of consuming all your protein in one meal, distribute it across 3-5 meals throughout the day. This helps maximize muscle protein synthesis and improves recovery.
+</p>
+`,
 };

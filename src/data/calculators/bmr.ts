@@ -122,4 +122,135 @@ export const bmrCalculator: Calculator = {
         "Yes. Knowing your BMR helps determine your daily calorie needs, making it easier to create an effective weight loss or weight maintenance plan.",
     },
   ],
+
+  seoContent: `
+<h2>What is BMR?</h2>
+
+<p>
+Basal Metabolic Rate (BMR) is the number of calories your body burns while at complete rest. These calories are used to maintain essential functions such as breathing, circulation, body temperature regulation, and cell repair.
+</p>
+
+<h2>Why BMR Matters</h2>
+
+<table>
+  <tr>
+    <th>Goal</th>
+    <th>How BMR Helps</th>
+  </tr>
+  <tr>
+    <td>Weight Loss</td>
+    <td>Helps create a safe calorie deficit.</td>
+  </tr>
+  <tr>
+    <td>Weight Gain</td>
+    <td>Helps determine surplus calorie needs.</td>
+  </tr>
+  <tr>
+    <td>Muscle Building</td>
+    <td>Supports proper nutrition planning.</td>
+  </tr>
+  <tr>
+    <td>Maintenance</td>
+    <td>Prevents overeating or undereating.</td>
+  </tr>
+</table>
+
+<h2>BMR vs TDEE</h2>
+
+<table>
+  <tr>
+    <th>Metric</th>
+    <th>Meaning</th>
+  </tr>
+  <tr>
+    <td>BMR</td>
+    <td>Calories burned at complete rest.</td>
+  </tr>
+  <tr>
+    <td>TDEE</td>
+    <td>Total calories burned including daily activities and exercise.</td>
+  </tr>
+</table>
+
+<h2>Factors That Affect BMR</h2>
+
+<ul>
+  <li><strong>Age:</strong> BMR naturally decreases with age.</li>
+  <li><strong>Gender:</strong> Men generally have a higher BMR than women.</li>
+  <li><strong>Muscle Mass:</strong> More muscle burns more calories.</li>
+  <li><strong>Body Weight:</strong> Larger bodies require more energy.</li>
+  <li><strong>Genetics:</strong> Metabolism varies between individuals.</li>
+</ul>
+
+<h2>How to Increase Your BMR</h2>
+
+<ul>
+  <li><strong>Build Muscle:</strong> Strength training increases resting calorie burn.</li>
+  <li><strong>Eat Enough Protein:</strong> Protein has a higher thermic effect.</li>
+  <li><strong>Stay Active:</strong> Regular exercise supports metabolism.</li>
+  <li><strong>Sleep Well:</strong> Poor sleep may negatively affect metabolism.</li>
+  <li><strong>Stay Hydrated:</strong> Water supports efficient metabolic function.</li>
+</ul>
+
+<h2>Daily Calorie Adjustment Guide</h2>
+
+<table>
+  <tr>
+    <th>Goal</th>
+    <th>Calorie Change</th>
+  </tr>
+  <tr>
+    <td>Lose Weight</td>
+    <td>BMR/TDEE - 300 to 500 calories</td>
+  </tr>
+  <tr>
+    <td>Maintain Weight</td>
+    <td>Eat around TDEE calories</td>
+  </tr>
+  <tr>
+    <td>Gain Weight</td>
+    <td>BMR/TDEE + 300 to 500 calories</td>
+  </tr>
+</table>
+
+<h2>Best Foods to Support Metabolism</h2>
+
+<table>
+  <tr>
+    <th>Food Group</th>
+    <th>Examples</th>
+  </tr>
+  <tr>
+    <td>Protein</td>
+    <td>Eggs, Chicken, Fish, Paneer</td>
+  </tr>
+  <tr>
+    <td>Complex Carbs</td>
+    <td>Oats, Brown Rice, Sweet Potato</td>
+  </tr>
+  <tr>
+    <td>Healthy Fats</td>
+    <td>Almonds, Walnuts, Olive Oil</td>
+  </tr>
+  <tr>
+    <td>Hydration</td>
+    <td>Water, Coconut Water</td>
+  </tr>
+</table>
+
+<h2>Common Metabolism Myths</h2>
+
+<ul>
+  <li>Skipping meals does not boost metabolism.</li>
+  <li>Fat-burning supplements are not magic solutions.</li>
+  <li>Metabolism can be improved through lifestyle changes.</li>
+  <li>Muscle mass has a significant impact on calorie expenditure.</li>
+</ul>
+
+<h2>Pro Tip</h2>
+
+<p>
+Your BMR is the foundation of every nutrition plan. Before starting a weight loss or muscle-building program, calculate your BMR and TDEE to set realistic calorie targets.
+</p>
+`,
 };

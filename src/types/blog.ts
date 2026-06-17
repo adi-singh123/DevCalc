@@ -1,7 +1,16 @@
+export interface BlogTable {
+  headers: string[];
+  rows: string[][];
+}
+
 export interface BlogSection {
   heading: string;
 
   paragraphs: string[];
+
+  points?: string[];
+
+  table?: BlogTable;
 }
 
 export interface BlogFaq {

@@ -170,4 +170,114 @@ export const bmiCalculator: Calculator = {
         "Yes. You can calculate your BMI online unlimited times completely free.",
     },
   ],
+  seoContent: `
+<h2>Understanding BMI Categories</h2>
+
+<p>
+Body Mass Index (BMI) is a simple measurement that compares your weight with your height. It helps identify whether you are underweight, at a healthy weight, overweight, or obese.
+</p>
+
+<h2>BMI Classification Table</h2>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>BMI Range</th>
+  </tr>
+  <tr>
+    <td>Underweight</td>
+    <td>Below 18.5</td>
+  </tr>
+  <tr>
+    <td>Healthy Weight</td>
+    <td>18.5 - 24.9</td>
+  </tr>
+  <tr>
+    <td>Overweight</td>
+    <td>25.0 - 29.9</td>
+  </tr>
+  <tr>
+    <td>Obesity</td>
+    <td>30.0 and above</td>
+  </tr>
+</table>
+
+<h2>If You Are Underweight</h2>
+
+<ul>
+  <li><strong>Increase Calories:</strong> Aim for 300-500 extra calories daily.</li>
+  <li><strong>Eat Protein-Rich Foods:</strong> Eggs, milk, paneer, chicken, fish, and soy.</li>
+  <li><strong>Strength Training:</strong> Focus on muscle-building exercises.</li>
+  <li><strong>Healthy Snacks:</strong> Nuts, peanut butter, bananas, and dry fruits.</li>
+</ul>
+
+<h2>If You Are Overweight</h2>
+
+<ul>
+  <li><strong>Create a Calorie Deficit:</strong> Reduce daily calorie intake moderately.</li>
+  <li><strong>Increase Activity:</strong> Walk 8,000-10,000 steps per day.</li>
+  <li><strong>Prioritize Protein:</strong> Helps maintain muscle while losing fat.</li>
+  <li><strong>Reduce Sugar:</strong> Limit soft drinks and processed foods.</li>
+</ul>
+
+<h2>Best Foods for Healthy Weight Management</h2>
+
+<table>
+  <tr>
+    <th>Goal</th>
+    <th>Recommended Foods</th>
+  </tr>
+  <tr>
+    <td>Weight Gain</td>
+    <td>Milk, nuts, rice, potatoes, peanut butter</td>
+  </tr>
+  <tr>
+    <td>Weight Loss</td>
+    <td>Vegetables, fruits, oats, chicken breast, fish</td>
+  </tr>
+  <tr>
+    <td>Muscle Building</td>
+    <td>Eggs, paneer, whey protein, chicken, lentils</td>
+  </tr>
+</table>
+
+<h2>BMI Limitations</h2>
+
+<p>
+BMI is a useful screening tool, but it does not directly measure body fat. Athletes and highly muscular individuals may have a high BMI despite having low body fat levels.
+</p>
+
+<h2>Healthy Lifestyle Tips</h2>
+
+<ul>
+  <li><strong>Exercise Regularly:</strong> Combine cardio and strength training.</li>
+  <li><strong>Sleep Well:</strong> Aim for 7-9 hours each night.</li>
+  <li><strong>Stay Hydrated:</strong> Drink enough water throughout the day.</li>
+  <li><strong>Track Progress:</strong> Monitor weight, BMI, and body measurements.</li>
+</ul>
+
+<h2>BMI vs Body Fat Percentage</h2>
+
+<table>
+  <tr>
+    <th>Measurement</th>
+    <th>Purpose</th>
+  </tr>
+  <tr>
+    <td>BMI</td>
+    <td>Estimates weight category using height and weight.</td>
+  </tr>
+  <tr>
+    <td>Body Fat %</td>
+    <td>Measures actual body fat relative to body weight.</td>
+  </tr>
+</table>
+
+<h2>Who Should Use a BMI Calculator?</h2>
+
+<p>
+BMI calculators are useful for adults who want to monitor their weight status, set fitness goals, track progress, and maintain a healthy lifestyle.
+</p>
+`,
+  
 };

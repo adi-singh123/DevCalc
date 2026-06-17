@@ -170,4 +170,162 @@ export const macroCalculator: Calculator = {
         "Yes. You can calculate your daily protein, carbohydrate, and fat requirements online unlimited times for free.",
     },
   ],
+
+  seoContent: `
+<h2>What Are Macronutrients?</h2>
+
+<p>
+Macronutrients are the nutrients your body needs in large amounts to provide energy and support essential functions. The three main macronutrients are protein, carbohydrates, and fats.
+</p>
+
+<h2>Role of Each Macronutrient</h2>
+
+<table>
+  <tr>
+    <th>Macronutrient</th>
+    <th>Main Function</th>
+  </tr>
+  <tr>
+    <td>Protein</td>
+    <td>Muscle growth, recovery, and tissue repair</td>
+  </tr>
+  <tr>
+    <td>Carbohydrates</td>
+    <td>Primary energy source for the body</td>
+  </tr>
+  <tr>
+    <td>Fats</td>
+    <td>Hormone production and long-term energy storage</td>
+  </tr>
+</table>
+
+<h2>Recommended Macro Ratios</h2>
+
+<table>
+  <tr>
+    <th>Goal</th>
+    <th>Protein</th>
+    <th>Carbs</th>
+    <th>Fat</th>
+  </tr>
+  <tr>
+    <td>Weight Loss</td>
+    <td>35%</td>
+    <td>35%</td>
+    <td>30%</td>
+  </tr>
+  <tr>
+    <td>Maintenance</td>
+    <td>30%</td>
+    <td>40%</td>
+    <td>30%</td>
+  </tr>
+  <tr>
+    <td>Muscle Gain</td>
+    <td>30%</td>
+    <td>50%</td>
+    <td>20%</td>
+  </tr>
+</table>
+
+<h2>Best Protein Sources</h2>
+
+<ul>
+  <li><strong>Animal Sources:</strong> Chicken, fish, eggs, milk, yogurt.</li>
+  <li><strong>Vegetarian Sources:</strong> Paneer, tofu, soy chunks, lentils.</li>
+  <li><strong>Supplements:</strong> Whey protein and plant protein powders.</li>
+</ul>
+
+<h2>Best Carbohydrate Sources</h2>
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Examples</th>
+  </tr>
+  <tr>
+    <td>Complex Carbs</td>
+    <td>Oats, brown rice, sweet potatoes</td>
+  </tr>
+  <tr>
+    <td>Fruits</td>
+    <td>Bananas, apples, oranges</td>
+  </tr>
+  <tr>
+    <td>Whole Grains</td>
+    <td>Whole wheat bread, quinoa</td>
+  </tr>
+</table>
+
+<h2>Best Healthy Fat Sources</h2>
+
+<ul>
+  <li>Almonds and walnuts</li>
+  <li>Peanut butter</li>
+  <li>Avocado</li>
+  <li>Olive oil</li>
+  <li>Fatty fish</li>
+</ul>
+
+<h2>Macro Planning by Goal</h2>
+
+<table>
+  <tr>
+    <th>Goal</th>
+    <th>Strategy</th>
+  </tr>
+  <tr>
+    <td>Weight Loss</td>
+    <td>Higher protein and moderate carbs</td>
+  </tr>
+  <tr>
+    <td>Muscle Gain</td>
+    <td>Higher carbs with sufficient protein</td>
+  </tr>
+  <tr>
+    <td>Maintenance</td>
+    <td>Balanced intake of all macros</td>
+  </tr>
+</table>
+
+<h2>Common Macro Tracking Mistakes</h2>
+
+<ul>
+  <li>Focusing only on calories and ignoring protein.</li>
+  <li>Eating too little fat.</li>
+  <li>Not tracking liquid calories.</li>
+  <li>Using inaccurate portion sizes.</li>
+</ul>
+
+<h2>Sample Muscle Gain Meal Plan</h2>
+
+<table>
+  <tr>
+    <th>Meal</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>Breakfast</td>
+    <td>Oats, milk, banana, eggs</td>
+  </tr>
+  <tr>
+    <td>Lunch</td>
+    <td>Rice, chicken, vegetables</td>
+  </tr>
+  <tr>
+    <td>Snack</td>
+    <td>Peanut butter sandwich</td>
+  </tr>
+  <tr>
+    <td>Dinner</td>
+    <td>Paneer, roti, salad</td>
+  </tr>
+</table>
+
+<h2>Pro Tip</h2>
+
+<p>
+Protein should be distributed evenly across all meals rather than consumed in a single sitting. This improves muscle recovery, satiety, and overall nutrition quality.
+</p>
+`,
 };

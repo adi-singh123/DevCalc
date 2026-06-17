@@ -9,6 +9,8 @@ import FormulaSection from "@/src/components/calculator/FormulaSection";
 import FAQSection from "@/src/components/calculator/FAQSection";
 import RelatedCalculators from "@/src/components/calculator/RelatedCalculators";
 import FAQSchema from "@/src/components/seo/FAQSchema";
+import SEOContent from "@/src/components/home/SEOContent";
+
 
 export async function generateStaticParams() {
   return calculators.map((calculator) => ({
@@ -117,7 +119,11 @@ return (
   useCases={calculator.formula.useCases}
 />
 
-    <FAQSection faqs={calculator.faqs} />
+<FAQSection faqs={calculator.faqs} />
+
+<SEOContent
+  content={calculator.seoContent}
+/>
 
 <RelatedCalculators
   currentSlug={calculator.slug}
