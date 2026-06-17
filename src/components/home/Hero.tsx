@@ -2,13 +2,13 @@ import CalculatorSearch from "@/src/components/calculator/CalculatorSearch";
 
 export default function Hero() {
   return (
-    <section className="border-b bg-slate-50">
+    <section className="border-b bg-slate-50 dark:bg-slate-900 dark:border-slate-700">
       <div className="mx-auto max-w-7xl px-4 py-16 text-center">
-        <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
+        <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-6xl dark:text-white">
           Free Online Calculators
         </h1>
 
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-300">
           Calculate finance, health, vehicle, education, and daily-use
           calculations instantly.
         </p>
@@ -19,23 +19,39 @@ export default function Hero() {
 
         <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
           <div>
-            <p className="text-3xl font-bold">50+</p>
-            <p className="text-sm text-slate-600">Calculators</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">
+              50+
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Calculators
+            </p>
           </div>
 
           <div>
-            <p className="text-3xl font-bold">5</p>
-            <p className="text-sm text-slate-600">Categories</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">
+              5
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Categories
+            </p>
           </div>
 
           <div>
-            <p className="text-3xl font-bold">100%</p>
-            <p className="text-sm text-slate-600">Free</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">
+              100%
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Free
+            </p>
           </div>
 
           <div>
-            <p className="text-3xl font-bold">24/7</p>
-            <p className="text-sm text-slate-600">Available</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">
+              24/7
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Available
+            </p>
           </div>
         </div>
       </div>

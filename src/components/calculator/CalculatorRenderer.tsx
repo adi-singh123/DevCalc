@@ -48,6 +48,11 @@ import IdealBodyWeightCalculator from "./renderers/IdealBodyWeightCalculator";
 import WaterIntakeCalculator from "./renderers/WaterIntakeCalculator";
 import MacroCalculator from "./renderers/MacroCalculator";
 import SleepCycleCalculator from "./renderers/SleepCycleCalculator";
+import ProteinIntakeCalculator from "./renderers/ProteinIntakeCalculator";
+import HeartRateZoneCalculator from "./renderers/HeartRateZoneCalculator";
+import LeanBodyMassCalculator from "./renderers/LeanBodyMassCalculator";
+import WaistToHipRatioCalculator from "./renderers/WaistToHipRatioCalculator";
+import FinalGradeCalculator from "./renderers/FinalGradeCalculator";
 
 
 
@@ -156,7 +161,17 @@ export default function CalculatorRenderer({ slug }: Props) {
     case "macro-calculator":
       return <MacroCalculator/>
     case "sleep-cycle-calculator":
-      return <SleepCycleCalculator/>
+      return <SleepCycleCalculator/>;
+    case "protein-intake-calculator":
+      return <ProteinIntakeCalculator/>;
+    case "heart-rate-zone-calculator":
+      return <HeartRateZoneCalculator/>
+    case "lean-body-mass-calculator":
+      return <LeanBodyMassCalculator/>;
+    case  "waist-to-hip-ratio-calculator":
+      return <WaistToHipRatioCalculator/>;
+    case "final-grade-calculator":
+      return <FinalGradeCalculator/>
     
 
     default:

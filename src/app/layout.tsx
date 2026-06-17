@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
-  
+
   authors: [
     {
       name: "Aditya Singh",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
 
-        images: [
+    images: [
       {
         url: "/logo.png",
         width: 1200,
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images:["/logo.png"]
+    images: ["/logo.png"],
   },
 };
 
@@ -84,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="flex min-h-screen flex-col">
         <OrganizationSchema />
         <Header />

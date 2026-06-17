@@ -48,6 +48,12 @@ import { idealBodyWeightCalculator } from "./ideal-body-weight";
 import { waterIntakeCalculator } from "./water-intake";
 import { macroCalculator } from "./macro-calculator";
 import { sleepCycleCalculator } from "./sleep-cycle";
+import { proteinIntakeCalculator } from "./protein-intake";
+import { heartRateZoneCalculator } from "./heart-rate-zone";
+import { leanBodyMassCalculator } from "./lean-body-mass";
+import { waistToHipRatioCalculator } from "./waist-to-hip-ratio";
+import { finalGradeCalculator } from "./final-grade";
+
 
 
 
@@ -96,12 +102,15 @@ export const calculators = [
   qrCodeGenerator,
   primeNumberCalculator,
   lcmCalculator,
-  hraCalculator,
   distanceCalculator,
   slopeCalculator,
   idealBodyWeightCalculator,
   waterIntakeCalculator,
   macroCalculator,
   sleepCycleCalculator,
-
+proteinIntakeCalculator,
+heartRateZoneCalculator,
+leanBodyMassCalculator,
+waistToHipRatioCalculator,
+finalGradeCalculator,
 ];

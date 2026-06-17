@@ -1,8 +1,55 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 html,
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: white;
+  color: #0f172a;
+}
+
+.dark body {
+  background: #020617;
+  color: white;
+}
+
+/* Existing calculators */
+.dark .bg-white {
+  background-color: #0f172a !important;
+}
+
+.dark .border {
+  border-color: #334155 !important;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #1e293b !important;
+  border-color: #475569 !important;
+  color: white !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #94a3b8;
+}
+
+.dark .text-slate-600,
+.dark .text-slate-500 {
+  color: #cbd5e1 !important;
+}
+
+.dark .bg-blue-50,
+.dark .bg-green-50,
+.dark .bg-red-50,
+.dark .bg-indigo-50,
+.dark .bg-yellow-50 {
+  background-color: #1e293b !important;
 }

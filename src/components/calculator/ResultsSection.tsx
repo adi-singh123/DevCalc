@@ -24,26 +24,42 @@ export default function ResultsSection({
   return (
     <section className="mt-12">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold">
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
           {title}
         </h2>
 
-        <p className="mt-2 text-slate-600">
+        <p className="mt-2 text-slate-600 dark:text-slate-400">
           Your calculated results are shown below.
         </p>
       </div>
 
       {mainResult && (
-        <div className="mb-6 rounded-3xl border bg-gradient-to-r from-blue-50 to-indigo-50 p-8 text-center shadow-sm">
-          <p className="text-sm font-medium uppercase tracking-wide text-slate-500">
+        <div
+          className="
+            mb-6
+            rounded-3xl
+            border
+            border-blue-100
+            bg-gradient-to-r
+            from-blue-50
+            to-indigo-50
+            p-8
+            text-center
+            shadow-sm
+            dark:border-slate-700
+            dark:from-slate-800
+            dark:to-slate-900
+          "
+        >
+          <p className="text-sm font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Main Result
           </p>
 
-          <h3 className="mt-3 break-words text-5xl font-bold text-slate-900">
+          <h3 className="mt-3 break-words text-5xl font-bold text-slate-900 dark:text-white">
             {mainResult.value}
           </h3>
 
-          <p className="mt-2 text-slate-600">
+          <p className="mt-2 text-slate-600 dark:text-slate-300">
             {mainResult.label}
           </p>
         </div>
@@ -57,6 +73,7 @@ export default function ResultsSection({
               className="
                 rounded-2xl
                 border
+                border-slate-200
                 bg-white
                 p-5
                 text-center
@@ -65,13 +82,15 @@ export default function ResultsSection({
                 duration-300
                 hover:-translate-y-1
                 hover:shadow-md
+                dark:border-slate-700
+                dark:bg-slate-900
               "
             >
-              <p className="break-words text-2xl font-bold text-slate-900">
+              <p className="break-words text-2xl font-bold text-slate-900 dark:text-white">
                 {result.value}
               </p>
 
-              <p className="mt-2 text-sm font-medium text-slate-500">
+              <p className="mt-2 text-sm font-medium text-slate-500 dark:text-slate-400">
                 {result.label}
               </p>
             </div>
