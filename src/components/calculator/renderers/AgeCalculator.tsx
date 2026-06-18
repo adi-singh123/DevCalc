@@ -73,7 +73,7 @@ const currentDateRef = useRef<HTMLInputElement>(null);
           value: age.weeks,
         },
         {
-          label: "Remaining Days",
+          label: "Days",
           value: age.days,
         },
         {

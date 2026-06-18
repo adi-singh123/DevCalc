@@ -22,7 +22,7 @@ import CGPACalculator from "./renderers/CGPACalculator";
 import CAGRCalculator from "./renderers/CAGRCalculator";
 import CompoundInterestCalculator from "./renderers/CompoundInterestCalculator";
 import AverageCalculator from "./renderers/AverageCalculator";
-import ScientificCalculator from "./renderers/CalculatorRenderer";
+import ScientificCalculator from "./renderers/ScientificCalculator";
 import PPFCalculator from "./renderers/PPFCalculator";
 import InflationCalculator from "./renderers/InflationCalculator";
 import SWPCalculator from "./renderers/SWPCalculator";
@@ -53,9 +53,15 @@ import HeartRateZoneCalculator from "./renderers/HeartRateZoneCalculator";
 import LeanBodyMassCalculator from "./renderers/LeanBodyMassCalculator";
 import WaistToHipRatioCalculator from "./renderers/WaistToHipRatioCalculator";
 import FinalGradeCalculator from "./renderers/FinalGradeCalculator";
-
-
-
+import DueDateCalculator from "./renderers/DueDateCalculator";
+import OvulationCalculator from "./renderers/OvulationCalculator";
+import BSACalculator from "./renderers/BSACalculator";
+import PregnancyWeightGainCalculator from "./renderers/PregnancyWeight";
+import TimeDurationCalculator from "./renderers/TimeDurationCalculator";
+import StudyHoursCalculator from "./renderers/StudyHourCalculator";
+import MarksRequiredCalculator from "./renderers/MarksRequiredCalculator";
+import ExamCountdownCalculator from "./renderers/ExamCountdown";
+import BusinessDaysCalculator from "./renderers/BusinessDaysCalculator";
 type Props = {
   slug: string;
 };
@@ -171,8 +177,27 @@ export default function CalculatorRenderer({ slug }: Props) {
     case  "waist-to-hip-ratio-calculator":
       return <WaistToHipRatioCalculator/>;
     case "final-grade-calculator":
-      return <FinalGradeCalculator/>
+      return <FinalGradeCalculator/>;
+    case "due-date-calculator":
+      return <DueDateCalculator/>;
+    case "ovulation-calculator":
+      return <OvulationCalculator/>;
+    case "bsa-calculator":
+      return <BSACalculator/>;
+    case "pregnancy-weight-gain-calculator":
+      return <PregnancyWeightGainCalculator/>
+    case "time-duration-calculator":
+      return <TimeDurationCalculator/>;
+    case "study-hours-calculator":
+      return <StudyHoursCalculator/>
+    case "marks-required-calculator":
+      return <MarksRequiredCalculator/>;
+    case "exam-countdown-calculator":
+      return <ExamCountdownCalculator/>
+    case "business-days-calculator":
+      return <BusinessDaysCalculator/>
     
+
 
     default:
       return (

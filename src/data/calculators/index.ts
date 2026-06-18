@@ -1,14 +1,14 @@
 import { ageCalculator } from "./age";
-import {bmiCalculator} from "./bmi";
+import { bmiCalculator } from "./bmi";
 import { percentageCalculator } from "./percentage";
-import {dateCalculator} from "./date";
-import {gstCalculator} from "./gst";
-import {emiCalculator} from "./emi";
+import { dateCalculator } from "./date";
+import { gstCalculator } from "./gst";
+import { emiCalculator } from "./emi";
 import { mileageCalculator } from "./mileage";
 import { sipCalculator } from "./sip";
 import { fdCalculator } from "./fd";
 import { simpleInterestCalculator } from "./simpleInterestCalculator";
-import {discountCalculator} from "./discountCalculator";
+import { discountCalculator } from "./discountCalculator";
 import { fuelCostCalculator } from "./fuelCostCalculator";
 import { gpaCalculator } from "./gpaCalculator";
 import { unitConverter } from "./unitconverter";
@@ -53,9 +53,15 @@ import { heartRateZoneCalculator } from "./heart-rate-zone";
 import { leanBodyMassCalculator } from "./lean-body-mass";
 import { waistToHipRatioCalculator } from "./waist-to-hip-ratio";
 import { finalGradeCalculator } from "./final-grade";
-
-
-
+import { dueDateCalculator } from "./dueDateCalculator";
+import { ovulationCalculator } from "./ovulationCalculator";
+import { bsaCalculator } from "./bsaCalculator";
+import { pregnancyWeightGainCalculator } from "./pregnancyWeightGainCalculator";
+import { timeDurationCalculator } from "./timeDurationCalculator";
+import { studyHoursCalculator } from "./studyHoursCalculator";
+import { marksRequiredCalculator } from "./marksRequiredCalculator";
+import { examCountdownCalculator } from "./examCountdownCalculator";
+import { businessDaysCalculator } from "./businessDaysCalculator";
 
 export const calculators = [
   ageCalculator,
@@ -108,9 +114,18 @@ export const calculators = [
   waterIntakeCalculator,
   macroCalculator,
   sleepCycleCalculator,
-proteinIntakeCalculator,
-heartRateZoneCalculator,
-leanBodyMassCalculator,
-waistToHipRatioCalculator,
-finalGradeCalculator,
+  proteinIntakeCalculator,
+  heartRateZoneCalculator,
+  leanBodyMassCalculator,
+  waistToHipRatioCalculator,
+  finalGradeCalculator,
+  dueDateCalculator,
+  ovulationCalculator,
+  bsaCalculator,
+  pregnancyWeightGainCalculator,
+  timeDurationCalculator,
+  studyHoursCalculator,
+  marksRequiredCalculator,
+  examCountdownCalculator,
+  businessDaysCalculator,
 ];

@@ -30,6 +30,10 @@ export const incomeTaxCalculator: Calculator = {
       "income tax slab calculator",
       "tax planning calculator",
       "tax liability calculator",
+      "detailed income tax calculator",
+      "calculate tax on taxable income",
+      "income and tax calculator india",
+      "online calculator for income tax",
     ],
   },
 

@@ -6,6 +6,8 @@ import {
   Scale,
   Ruler,
   Target,
+  BookOpen,
+  List,
 } from "lucide-react";
 
 type Step = {
@@ -28,6 +30,8 @@ const icons = {
   weight: Scale,
   height: Ruler,
   target: Target,
+  book: BookOpen,
+  list: List,
 };
 
 export default function StepsSection({
@@ -152,7 +156,7 @@ export default function StepsSection({
                   left-0
                   h-1
                   w-full
-                  bg-gradient-to-r
+                  bg-gradient
                   from-blue-500
                   to-indigo-500
                   opacity-0

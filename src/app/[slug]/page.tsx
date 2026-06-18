@@ -10,7 +10,7 @@ import FAQSection from "@/src/components/calculator/FAQSection";
 import RelatedCalculators from "@/src/components/calculator/RelatedCalculators";
 import FAQSchema from "@/src/components/seo/FAQSchema";
 import SEOContent from "@/src/components/home/SEOContent";
-
+import PopularCalculators from "@/src/components/calculator/PopularCalculators";
 
 export async function generateStaticParams() {
   return calculators.map((calculator) => ({
@@ -102,28 +102,39 @@ return (
     </span>
   </div>
 </div>
+<div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
+  <div>
+    <CalculatorRenderer slug={calculator.slug} />
 
-  <CalculatorRenderer
-  slug={calculator.slug}
-/>
-<StepsSection
-  title={`How the ${calculator.name} Works`}
-  steps={calculator.steps}
-/>
+    <StepsSection
+      title={`How the ${calculator.name} Works`}
+      steps={calculator.steps}
+    />
 
-<FormulaSection
-  title={calculator.formula.title}
-  formula={calculator.formula.formula}
-  explanation={calculator.formula.explanation}
-  example={calculator.formula.example}
-  useCases={calculator.formula.useCases}
-/>
+    <FormulaSection
+      title={calculator.formula.title}
+      formula={calculator.formula.formula}
+      explanation={calculator.formula.explanation}
+      example={calculator.formula.example}
+      useCases={calculator.formula.useCases}
+    />
 
-<FAQSection faqs={calculator.faqs} />
+    <FAQSection faqs={calculator.faqs} />
 
-<SEOContent
-  content={calculator.seoContent}
-/>
+    <SEOContent
+      content={calculator.seoContent}
+    />
+  </div>
+
+  <aside className="hidden lg:block">
+    <div className="sticky top-24 space-y-6">
+      <PopularCalculators
+        currentSlug={calculator.slug}
+      />
+
+    </div>
+  </aside>
+</div>
 
 <RelatedCalculators
   currentSlug={calculator.slug}

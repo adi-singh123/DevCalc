@@ -14,7 +14,7 @@ export const ageCalculator: Calculator = {
 
   seo: {
     title:
-      "Age Calculator - Calculate Exact Age Online from Date of Birth",
+      "Age Calculator – Find Your Exact Age in Years, Months and Days",
 
     description:
       "Use our free Age Calculator to calculate your exact age from your date of birth. Find age in years, months, weeks, days, hours, minutes, and seconds instantly.",
@@ -28,7 +28,9 @@ export const ageCalculator: Calculator = {
       "birthday calculator",
       "dob calculator",
       "age finder",
+      "Age in Months",
       "calculate my age",
+      "Age for School Admission",
       "how old am i calculator",
       "age in years calculator",
       "age in months calculator",
