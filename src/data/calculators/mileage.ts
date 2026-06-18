@@ -19,6 +19,7 @@ export const mileageCalculator: Calculator = {
       "Free Mileage Calculator to calculate car mileage, bike mileage, fuel efficiency, fuel cost per km, and trip fuel expenses. Check petrol, diesel, and CNG vehicle mileage instantly using accurate formulas.",
 
     keywords: [
+      "mileage calculator India",
       "mileage calculator",
       "car mileage calculator",
       "how to calculate car mileage",
