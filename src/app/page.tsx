@@ -3,6 +3,7 @@ import Hero from "../components/home/Hero";
 import PopularCalculators from "../components/home/PopularCalculators";
 import CalculatorCategories from "../components/home/Categories";
 import Container from "../components/layout/Container";
+import WebsiteSchema from "@/src/components/seo/WebsiteSchema";
 
 export const metadata: Metadata = {
   title: "DevCalc — Free Online Calculators",
@@ -30,15 +31,20 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <main>
-      <Hero />
-      <section className="py-5">
-        <Container>
-          <PopularCalculators />
-        </Container>
-      </section>
+    <>
+      <WebsiteSchema />
 
-      <CalculatorCategories />
-    </main>
+      <main>
+        <Hero />
+
+        <section className="py-5">
+          <Container>
+            <PopularCalculators />
+          </Container>
+        </section>
+
+        <CalculatorCategories />
+      </main>
+    </>
   );
 }

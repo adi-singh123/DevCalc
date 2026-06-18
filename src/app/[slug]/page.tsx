@@ -12,6 +12,8 @@ import FAQSchema from "@/src/components/seo/FAQSchema";
 import SEOContent from "@/src/components/home/SEOContent";
 import PopularCalculators from "@/src/components/calculator/PopularCalculators";
 import CompareCalculatorSection from "@/src/components/calculator/CompareCalculatorSection";
+import CalculatorSchema from "@/src/components/seo/CalculatorSchema";
+import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 
 
 export async function generateStaticParams() {
@@ -68,6 +70,14 @@ export default async function CalculatorPage({
 return (
   <main className="mx-auto max-w-7xl px-4 py-12">
 <FAQSchema faqs={calculator.faqs} />
+<CalculatorSchema
+  calculator={calculator}
+/>
+<BreadcrumbSchema
+  category={calculator.category}
+  name={calculator.name}
+  slug={calculator.slug}
+/>
 
     <Breadcrumbs
       category={calculator.category}

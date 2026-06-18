@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-
+import ArticleSchema from "@/src/components/seo/ArticleSchema";
 import { blogs } from "@/src/data/blogs/blog";
 import { calculators } from "@/src/data/calculators";
+import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 
 type Props = {
   params: Promise<{
@@ -63,40 +64,6 @@ export default async function BlogDetailsPage({ params }: Props) {
 
   const popularCalculators = calculators.slice(0, 8);
 
-  const articleSchema = {
-    "@context": "https://schema.org",
-
-    "@type": "Article",
-
-    headline: blog.title,
-
-    description: blog.description,
-
-    author: {
-      "@type": "Person",
-
-      name: blog.author,
-    },
-
-    publisher: {
-      "@type": "Organization",
-
-      name: "DevCalc",
-    },
-
-    mainEntityOfPage: {
-      "@type": "WebPage",
-
-      "@id": `https://www.devcalc.in/blog/${blog.slug}`,
-    },
-
-    url: `https://www.devcalc.in/blog/${blog.slug}`,
-
-    datePublished: blog.publishedDate,
-
-    dateModified: blog.publishedDate,
-  };
-
   const faqSchema = {
     "@context": "https://schema.org",
 
@@ -123,12 +90,19 @@ export default async function BlogDetailsPage({ params }: Props) {
 
   return (
     <>
-      <Script
-        id="article-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleSchema),
-        }}
+      <ArticleSchema
+        title={blog.title}
+        description={blog.seoDescription}
+        slug={blog.slug}
+        image={blog.image}
+        publishedDate={blog.publishedDate}
+        author={blog.author}
+      />
+
+      <BreadcrumbSchema
+        category="Blog"
+        name={blog.title}
+        slug={`blog/${blog.slug}`}
       />
 
       <Script
