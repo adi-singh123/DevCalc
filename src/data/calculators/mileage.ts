@@ -53,6 +53,11 @@ export const mileageCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "fuel-cost-calculator",
+  "distance-calculator",
+],
+
   steps: [
     {
       step: 1,

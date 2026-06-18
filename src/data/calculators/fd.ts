@@ -31,6 +31,12 @@ export const fdCalculator: Calculator = {
       "fd return calculator",
     ],
   },
+  compareWith: [
+  "sip-calculator",
+  "ppf-calculator",
+  "swp-calculator",
+  "cagr-calculator",
+],
 
   steps: [
     {

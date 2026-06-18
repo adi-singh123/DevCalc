@@ -43,6 +43,11 @@ export const qrCodeGenerator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "password-generator",
+  "random-number-generator",
+],
+
   steps: [
     {
       step: 1,

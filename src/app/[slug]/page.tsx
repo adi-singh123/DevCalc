@@ -11,6 +11,8 @@ import RelatedCalculators from "@/src/components/calculator/RelatedCalculators";
 import FAQSchema from "@/src/components/seo/FAQSchema";
 import SEOContent from "@/src/components/home/SEOContent";
 import PopularCalculators from "@/src/components/calculator/PopularCalculators";
+import CompareCalculatorSection from "@/src/components/calculator/CompareCalculatorSection";
+
 
 export async function generateStaticParams() {
   return calculators.map((calculator) => ({
@@ -105,6 +107,11 @@ return (
 <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
   <div>
     <CalculatorRenderer slug={calculator.slug} />
+    <CompareCalculatorSection
+  compareWith={
+    calculator.compareWith
+  }
+/>
 
     <StepsSection
       title={`How the ${calculator.name} Works`}

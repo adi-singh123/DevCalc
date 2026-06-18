@@ -36,6 +36,12 @@ export const cagrCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "sip-calculator",
+  "fd-calculator",
+  "compound-interest-calculator",
+],
+
   steps: [
     {
       step: 1,

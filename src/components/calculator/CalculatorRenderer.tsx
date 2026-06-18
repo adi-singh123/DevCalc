@@ -62,6 +62,9 @@ import StudyHoursCalculator from "./renderers/StudyHourCalculator";
 import MarksRequiredCalculator from "./renderers/MarksRequiredCalculator";
 import ExamCountdownCalculator from "./renderers/ExamCountdown";
 import BusinessDaysCalculator from "./renderers/BusinessDaysCalculator";
+import SukanyaSamriddhiCalculator from "./renderers/SukanyaSamriddhiCalculator";
+import NPSCalculator from "./renderers/NPSCalculator";
+import GratuityCalculator from "./renderers/Gratuity";
 type Props = {
   slug: string;
 };
@@ -195,7 +198,13 @@ export default function CalculatorRenderer({ slug }: Props) {
     case "exam-countdown-calculator":
       return <ExamCountdownCalculator/>
     case "business-days-calculator":
-      return <BusinessDaysCalculator/>
+      return <BusinessDaysCalculator/>;
+    case "sukanya-samriddhi-calculator":
+      return <SukanyaSamriddhiCalculator/>;
+    case "nps-calculator":
+      return <NPSCalculator/>;
+    case  "gratuity-calculator":
+      return <GratuityCalculator/>
     
 
 

@@ -48,6 +48,12 @@ export const proteinIntakeCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "macro-calculator",
+  "calorie-calculator",
+  "lean-body-mass-calculator",
+],
+
   steps: [
     {
       step: 1,

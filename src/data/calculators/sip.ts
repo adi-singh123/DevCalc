@@ -51,6 +51,12 @@ keywords: [
 ],
 
 },
+compareWith: [
+  "fd-calculator",
+  "ppf-calculator",
+  "cagr-calculator",
+  "retirement-calculator",
+],
 
 steps: [
 {

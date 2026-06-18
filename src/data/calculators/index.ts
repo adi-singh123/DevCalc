@@ -62,6 +62,9 @@ import { studyHoursCalculator } from "./studyHoursCalculator";
 import { marksRequiredCalculator } from "./marksRequiredCalculator";
 import { examCountdownCalculator } from "./examCountdownCalculator";
 import { businessDaysCalculator } from "./businessDaysCalculator";
+import { sukanyaSamriddhiCalculator } from "./sukanyaSamriddhiCalculator";
+import { npsCalculator } from "./npsCalculator";
+import { gratuityCalculator } from "./gratuityCalculator";
 
 export const calculators = [
   ageCalculator,
@@ -128,4 +131,7 @@ export const calculators = [
   marksRequiredCalculator,
   examCountdownCalculator,
   businessDaysCalculator,
+  sukanyaSamriddhiCalculator,
+  npsCalculator,
+  gratuityCalculator,
 ];

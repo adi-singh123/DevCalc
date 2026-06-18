@@ -66,6 +66,12 @@ export const emiCalculator: Calculator = {
     },
   ],
 
+  compareWith: [
+  "income-tax-calculator",
+  "hra-calculator",
+  "inflation-calculator",
+],
+
   formula: {
     title: "EMI Formula",
 

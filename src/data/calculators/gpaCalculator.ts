@@ -33,6 +33,12 @@ export const gpaCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "cgpa-calculator",
+  "final-grade-calculator",
+  "marks-required-calculator",
+],
+
   steps: [
     {
       step: 1,

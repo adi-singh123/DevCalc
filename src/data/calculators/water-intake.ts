@@ -48,6 +48,12 @@ export const waterIntakeCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "bmi-calculator",
+  "calorie-calculator",
+  "macro-calculator",
+],
+
   steps: [
     {
       step: 1,

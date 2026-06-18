@@ -51,6 +51,13 @@ export const bmiCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "bmr-calculator",
+  "body-fat-calculator",
+  "calorie-calculator",
+  "ideal-body-weight-calculator",
+],
+
   steps: [
     {
       step: 1,

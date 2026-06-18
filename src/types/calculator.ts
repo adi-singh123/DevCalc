@@ -8,6 +8,7 @@ export interface Calculator {
   category: string;
 
   isPopular?: boolean;
+  compareWith?: string[];
 
   seo: {
     title: string;

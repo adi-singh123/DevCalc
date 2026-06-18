@@ -48,6 +48,12 @@ export const ppfCalculator: Calculator = {
       "free ppf calculator",
     ],
   },
+  compareWith: [
+  "sip-calculator",
+  "fd-calculator",
+  "retirement-calculator",
+  "swp-calculator",
+],
 
   steps: [
     {

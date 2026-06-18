@@ -37,6 +37,13 @@ export const calorieCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "bmr-calculator",
+  "bmi-calculator",
+  "macro-calculator",
+  "protein-intake-calculator",
+],
+
   steps: [
     {
       step: 1,

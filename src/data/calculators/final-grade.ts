@@ -48,6 +48,12 @@ export const finalGradeCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "gpa-calculator",
+  "cgpa-calculator",
+  "marks-required-calculator",
+],
+
   steps: [
     {
       step: 1,

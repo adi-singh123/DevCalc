@@ -48,6 +48,11 @@ export const dateCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "time-duration-calculator",
+  "business-days-calculator",
+],
+
   steps: [
     {
       step: 1,

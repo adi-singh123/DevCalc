@@ -38,6 +38,12 @@ export const studyHoursCalculator: Calculator = {
     ],
   },
 
+  compareWith: [
+  "exam-countdown-calculator",
+  "marks-required-calculator",
+  "final-grade-calculator",
+],
+
   steps: [
     {
       step: 1,
