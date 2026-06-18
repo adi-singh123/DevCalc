@@ -113,54 +113,55 @@ export const mileageCalculator: Calculator = {
     ],
   },
 
-  faqs: [
-    {
-      question: "What is mileage?",
-      answer:
-        "Mileage is the distance a vehicle can travel using a specific amount of fuel. It is commonly measured in kilometres per litre (km/L) and is one of the most important indicators of fuel efficiency.",
-    },
-    {
-      question: "How is mileage calculated?",
-      answer:
-        "Mileage is calculated by dividing the total distance travelled by the amount of fuel consumed. For example, if a vehicle travels 500 km using 25 litres of fuel, its mileage is 20 km/L.",
-    },
-    {
-      question: "Can I calculate bike mileage using this calculator?",
-      answer:
-        "Yes. This mileage calculator works for motorcycles, scooters, cars, SUVs, vans, trucks, and commercial vehicles.",
-    },
-    {
-      question:
-        "Does this calculator support petrol, diesel, and CNG vehicles?",
-      answer:
-        "Yes. The calculator can be used for petrol, diesel, CNG, LPG, and other fuel-powered vehicles because the mileage formula remains the same.",
-    },
-    {
-      question: "What is considered good mileage for a car?",
-      answer:
-        "Most modern petrol cars provide between 15 and 25 km/L, while diesel vehicles often achieve higher fuel efficiency. Actual mileage depends on driving conditions, maintenance, and driving habits.",
-    },
-    {
-      question: "Can I calculate fuel cost per kilometre?",
-      answer:
-        "Yes. By entering the fuel price, you can estimate fuel cost per kilometre and total running expenses for your vehicle.",
-    },
-    {
-      question: "Why is actual mileage different from company-claimed mileage?",
-      answer:
-        "Real-world mileage depends on traffic conditions, road quality, driving style, tyre pressure, air conditioning usage, vehicle maintenance, fuel quality, and vehicle load.",
-    },
-    {
-      question: "Why is mileage important?",
-      answer:
-        "Mileage directly affects fuel expenses and overall vehicle running costs. Better mileage means lower fuel consumption and more savings over time.",
-    },
-    {
-      question: "How can I improve my vehicle mileage?",
-      answer:
-        "Maintain proper tyre pressure, avoid aggressive acceleration and braking, reduce unnecessary vehicle weight, service your vehicle regularly, and drive at consistent speeds to improve fuel efficiency.",
-    },
-  ],
+ faqs: [
+  {
+    question: "Why is my bike or car mileage lower than claimed by the manufacturer?",
+    answer:
+      "Vehicle manufacturers publish mileage figures based on standardized testing procedures such as ARAI certification. These tests are performed under controlled conditions with smooth roads, limited traffic, ideal weather, and consistent driving speeds. In real-world Indian driving conditions, mileage is usually lower because of traffic congestion, frequent braking, poor road quality, air conditioner usage, riding habits, tyre pressure, fuel quality, and vehicle load. For example, a car rated at 20 km/l by ARAI may deliver only 14–17 km/l in daily city traffic. Understanding this difference helps vehicle owners estimate fuel expenses more accurately and set realistic expectations for their vehicle's fuel efficiency."
+  },
+
+  {
+    question: "How can I calculate mileage using the tank-to-tank method?",
+    answer:
+      "The tank-to-tank method is one of the most accurate ways to measure real-world vehicle mileage. Start by filling your fuel tank completely and note the odometer reading. Drive normally until your next refuel. Fill the tank completely again and record both the amount of fuel added and the new odometer reading. Subtract the previous odometer reading from the current reading to determine the distance travelled. Then divide the distance by the fuel consumed. For example, if you travelled 480 km and added 24 litres of fuel, your mileage is 20 km/l. Repeating this process over multiple fuel cycles provides a reliable average mileage."
+  },
+
+  {
+    question: "What is considered good mileage for a petrol car in India?",
+    answer:
+      "Good mileage varies depending on the type of vehicle. Most petrol hatchbacks in India typically provide between 15 and 22 km/l under normal driving conditions. Sedans generally offer 14–20 km/l, while petrol SUVs often deliver 10–16 km/l. Hybrid vehicles can exceed 25 km/l. If your petrol car consistently delivers more than 18 km/l in mixed city and highway driving, it is generally considered fuel efficient. Factors such as traffic, maintenance, driving style, road conditions, and vehicle age can significantly affect actual mileage."
+  },
+
+  {
+    question: "How does air conditioner usage affect mileage during Indian summers?",
+    answer:
+      "Using the air conditioner increases the load on the engine and can reduce fuel efficiency. During hot Indian summers, continuous AC usage may lower mileage by approximately 5% to 15%, depending on vehicle type, outside temperature, and traffic conditions. The impact is usually greater in city traffic where vehicles spend more time idling. Maintaining your AC system, using recirculation mode, parking in shaded areas, and avoiding excessive cooling settings can help minimize the effect of AC usage on mileage."
+  },
+
+  {
+    question: "Petrol vs CNG mileage: which option saves more money?",
+    answer:
+      "CNG vehicles generally offer lower running costs than petrol vehicles because CNG fuel is usually less expensive. A petrol car may deliver 15–20 km/l, while a CNG vehicle often provides 20–30 km/kg. Although CNG vehicles may have slightly lower performance and reduced luggage space due to the cylinder installation, they can significantly reduce monthly fuel expenses for high-mileage drivers. For commuters who travel long distances regularly, CNG often provides better overall savings despite the initial conversion or purchase cost."
+  },
+
+  {
+    question: "How can I improve the mileage of my bike in city traffic?",
+    answer:
+      "Improving bike mileage starts with proper maintenance and efficient riding habits. Maintain the recommended tyre pressure, service the engine regularly, clean or replace air filters when necessary, and use quality fuel. Avoid aggressive acceleration and sudden braking, as both increase fuel consumption. In city traffic, maintaining a steady speed and reducing unnecessary idling at signals can improve efficiency. Regular chain lubrication and proper engine tuning also help maximize mileage while reducing wear and tear."
+  },
+
+  {
+    question: "What factors affect vehicle mileage the most?",
+    answer:
+      "Several factors influence mileage, including driving style, tyre pressure, traffic conditions, vehicle maintenance, road quality, weather, fuel quality, and vehicle load. Aggressive acceleration and hard braking consume more fuel, while underinflated tyres increase rolling resistance. Poor maintenance, such as dirty air filters or overdue servicing, can reduce engine efficiency. Understanding these factors helps drivers identify areas where fuel efficiency can be improved and running costs can be reduced."
+  },
+
+  {
+    question: "Can this calculator calculate fuel cost per kilometre and trip expenses?",
+    answer:
+      "Yes. By entering the fuel price along with the distance travelled and fuel consumed, the calculator can estimate fuel cost per kilometre, total fuel expenses, and running costs for a journey. This information is useful for budgeting road trips, comparing vehicle efficiency, estimating monthly fuel expenses, and calculating transportation costs for personal or business use."
+  }
+],
 
   seoContent: `
 <h2>What is Vehicle Mileage?</h2>

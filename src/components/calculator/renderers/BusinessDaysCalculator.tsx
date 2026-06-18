@@ -105,9 +105,7 @@ export default function BusinessDaysCalculator() {
 
   return (
     <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
-      <h2 className="text-2xl font-bold">
-        Business Days Calculator
-      </h2>
+    
 
       <div className="mt-6">
         <label className="mb-2 block font-medium">

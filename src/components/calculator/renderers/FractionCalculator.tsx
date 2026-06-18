@@ -176,9 +176,7 @@ export default function FractionCalculator() {
 
   return (
     <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
-      <h2 className="text-2xl font-bold">
-        Fraction Calculator
-      </h2>
+   
 
       <p className="mt-2 text-slate-600">
         Add, subtract, multiply,

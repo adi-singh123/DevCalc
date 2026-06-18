@@ -99,32 +99,55 @@ export const emiCalculator: Calculator = {
   },
 
   faqs: [
-    {
-      question: "How is EMI calculated?",
-      answer:
-        "EMI is calculated using the loan amount, interest rate, and loan tenure through a standard financial formula.",
-    },
-    {
-      question: "Does this calculator work for home loans?",
-      answer:
-        "Yes. It can be used for home loans, personal loans, car loans, education loans, and other installment-based loans.",
-    },
-    {
-      question: "What affects my EMI amount?",
-      answer:
-        "Your EMI depends on the loan amount, interest rate, and repayment tenure.",
-    },
-    {
-      question: "Can I reduce my EMI?",
-      answer:
-        "Yes. Increasing the tenure, making a larger down payment, or getting a lower interest rate can reduce your EMI.",
-    },
-    {
-      question: "Is the EMI fixed every month?",
-      answer:
-        "For most fixed-rate loans, the EMI remains constant throughout the loan tenure.",
-    },
-  ],
+{
+question: "How is EMI calculated for a loan?",
+answer:
+"EMI (Equated Monthly Installment) is calculated using the loan amount, interest rate, and loan tenure. The EMI formula considers both principal repayment and interest payments over the loan period. Higher loan amounts and interest rates increase EMI, while longer loan tenures reduce EMI but increase the total interest paid. Using an EMI calculator helps borrowers estimate monthly payments before applying for a home loan, car loan, personal loan, or education loan."
+},
+
+{
+question: "What is the difference between fixed and floating interest rates?",
+answer:
+"A fixed interest rate remains unchanged throughout the loan tenure, making monthly EMI payments predictable. A floating interest rate changes based on market conditions and benchmark lending rates set by banks or financial institutions. Fixed rates provide stability and easier budgeting, while floating rates may offer lower costs if interest rates fall. Borrowers should compare both options based on their risk tolerance and expected interest rate trends."
+},
+
+{
+question: "How can I reduce my EMI amount?",
+answer:
+"There are several ways to reduce your EMI. Increasing the loan tenure spreads repayment over a longer period and lowers monthly payments. Making a larger down payment reduces the principal amount borrowed. Negotiating a lower interest rate with the lender can also significantly reduce EMI. Existing borrowers may consider refinancing or transferring their loan to another lender offering a lower rate. However, extending the tenure usually increases the total interest paid over the life of the loan."
+},
+
+{
+question: "What happens if I miss an EMI payment?",
+answer:
+"Missing an EMI payment can result in late payment charges, penalties, and a negative impact on your credit score. Repeated defaults may lead to loan recovery actions by the lender and make it harder to obtain future credit. Most lenders offer a grace period, but borrowers should contact the lender immediately if they anticipate repayment difficulties. Maintaining timely EMI payments helps preserve a healthy credit profile and financial reputation."
+},
+
+{
+question: "Is a longer loan tenure always better?",
+answer:
+"A longer loan tenure reduces monthly EMI payments and improves affordability, but it increases the total interest paid over the loan period. A shorter tenure results in higher EMIs but allows borrowers to become debt-free sooner and save on interest costs. The ideal tenure depends on income stability, financial goals, and repayment capacity. Borrowers should strike a balance between affordable EMIs and minimizing total interest expenses."
+},
+
+{
+question: "How much salary is required for a ₹10 lakh loan?",
+answer:
+"The required salary depends on the loan type, interest rate, tenure, and lender's eligibility criteria. Most lenders prefer that total EMI obligations do not exceed 40% to 50% of a borrower's monthly income. For example, if the EMI for a ₹10 lakh loan is around ₹12,000 per month, lenders may expect a monthly income of ₹25,000 to ₹35,000 or more. Eligibility varies across banks and financial institutions."
+},
+
+{
+question: "Can I prepay my loan and save interest?",
+answer:
+"Yes. Loan prepayment allows borrowers to reduce the outstanding principal amount before the scheduled repayment period. Since interest is calculated on the remaining principal balance, prepaying a loan can significantly reduce total interest costs and shorten the loan tenure. Many home loans allow partial prepayments without penalties, while some personal and business loans may impose charges. Always check the lender's prepayment policy before making extra payments."
+},
+
+{
+question: "Which loans can be calculated using an EMI calculator?",
+answer:
+"An EMI calculator can be used for home loans, personal loans, car loans, education loans, business loans, gold loans, and most other installment-based borrowing products. By adjusting the loan amount, interest rate, and tenure, borrowers can compare repayment options and choose a loan structure that best fits their budget and financial goals."
+}
+],
+
   seoContent: `
 <h2>Understanding EMI</h2>
 

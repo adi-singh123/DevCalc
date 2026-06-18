@@ -106,70 +106,55 @@ export const npsCalculator: Calculator = {
     ],
   },
 
-  faqs: [
-    {
-      question:
-        "What is NPS?",
-      answer:
-        "National Pension System (NPS) is a government-backed retirement savings scheme that helps individuals build a retirement corpus through regular contributions.",
-    },
+ faqs: [
+  {
+    question: "What is the National Pension System (NPS)?",
+    answer:
+      "The National Pension System (NPS) is a government-backed retirement savings scheme designed to help individuals build a retirement corpus through regular contributions. NPS is regulated by the Pension Fund Regulatory and Development Authority (PFRDA) and is available to salaried employees, self-employed individuals, and business owners. Contributions are invested across equity, corporate debt, government securities, and alternative assets based on the investor's chosen allocation. The accumulated corpus grows over time through market-linked returns and can provide financial security during retirement."
+  },
 
-    {
-      question:
-        "Who can invest in NPS?",
-      answer:
-        "Any Indian citizen meeting the eligibility requirements can open an NPS account and contribute towards retirement savings.",
-    },
+  {
+    question: "How does NPS help in retirement planning?",
+    answer:
+      "NPS encourages disciplined long-term investing by allowing individuals to make regular contributions throughout their working years. Since investments remain active for decades, investors benefit from compounding and long-term market growth. At retirement, a portion of the accumulated corpus can be withdrawn as a lump sum, while the remaining amount is generally used to purchase an annuity that provides a regular pension income. This combination helps create a stable source of income after retirement."
+  },
 
-    {
-      question:
-        "How is NPS maturity amount calculated?",
-      answer:
-        "The maturity amount depends on monthly contributions, investment duration, expected returns, and compounding over the investment period.",
-    },
+  {
+    question: "What are the tax benefits of NPS?",
+    answer:
+      "NPS offers some of the most attractive tax benefits available under Indian tax laws. Contributions qualify for deductions under Section 80CCD(1), which falls within the Section 80C limit, and an additional deduction of up to ₹50,000 under Section 80CCD(1B). Employer contributions may also qualify for separate tax benefits under certain conditions. These deductions can significantly reduce taxable income while simultaneously helping investors build a retirement corpus."
+  },
 
-    {
-      question:
-        "Can I withdraw money before retirement?",
-      answer:
-        "Partial withdrawals are allowed under certain conditions, subject to NPS rules and regulations.",
-    },
+  {
+    question: "Which is better: NPS or EPF?",
+    answer:
+      "NPS and EPF are both retirement-focused investments, but they operate differently. EPF provides relatively stable returns and is primarily available to salaried employees. NPS is market-linked and offers potentially higher long-term growth because of equity exposure. EPF is often preferred for stability, while NPS is popular among investors seeking greater retirement corpus growth. Many financial planners recommend using both together for a balanced retirement strategy."
+  },
 
-    {
-      question:
-        "What happens at retirement?",
-      answer:
-        "A portion of the corpus can generally be withdrawn as a lump sum, while the remaining amount is used to purchase an annuity for pension income.",
-    },
+  {
+    question: "Can NPS generate higher returns than Fixed Deposits?",
+    answer:
+      "Historically, NPS has often delivered higher long-term returns than traditional Fixed Deposits because part of the investment is allocated to equity markets. While FD returns are fixed and predictable, NPS returns vary based on market performance. Over long investment periods such as 20–30 years, NPS has generally provided better wealth accumulation potential, although returns are not guaranteed."
+  },
 
-    {
-      question:
-        "Is NPS a safe investment?",
-      answer:
-        "NPS is regulated and managed under government guidelines, making it a popular retirement planning option.",
-    },
+  {
+    question: "Can I withdraw money from NPS before retirement?",
+    answer:
+      "Yes. NPS allows partial withdrawals under specific conditions such as higher education, marriage, home purchase, or medical emergencies. However, withdrawal rules are regulated and certain restrictions apply. Premature exits before retirement may also have limitations regarding lump-sum withdrawals and annuity purchases. Investors should review the latest NPS withdrawal guidelines before making financial decisions."
+  },
 
-    {
-      question:
-        "Does NPS provide tax benefits?",
-      answer:
-        "Yes. NPS investments may qualify for tax deductions under applicable sections of the Income Tax Act.",
-    },
+  {
+    question: "How much should I invest in NPS every month?",
+    answer:
+      "The ideal monthly NPS contribution depends on retirement goals, current age, expected retirement age, and desired post-retirement income. Starting early generally allows investors to contribute smaller amounts while still building a large corpus through compounding. Many financial advisors recommend increasing NPS contributions periodically as income grows to maximize retirement savings."
+  },
 
-    {
-      question:
-        "How much pension can I receive from NPS?",
-      answer:
-        "The pension amount depends on your accumulated corpus, annuity purchase percentage, and prevailing annuity rates.",
-    },
-
-    {
-      question:
-        "Is NPS better than PPF?",
-      answer:
-        "NPS and PPF serve different purposes. NPS focuses on retirement planning and pension generation, while PPF is primarily a long-term savings scheme.",
-    },
-  ],
+  {
+    question: "Is NPS suitable for young investors?",
+    answer:
+      "Yes. NPS can be particularly beneficial for young investors because they have a long investment horizon. Longer investment periods allow greater participation in equity markets and provide more time for compounding to work. Starting NPS contributions in your 20s or early 30s can significantly increase the retirement corpus compared to starting later in life."
+  }
+],
 
   seoContent: `
 <h2>What Is National Pension System (NPS)?</h2>

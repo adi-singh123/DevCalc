@@ -176,10 +176,6 @@ export default function MeanMedianModeCalculator() {
 
   return (
     <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
-      <h2 className="text-2xl font-bold">
-        Mean Median Mode
-        Calculator
-      </h2>
 
       <p className="mt-2 text-slate-600">
         Enter numbers separated

@@ -101,33 +101,55 @@ export const bmrCalculator: Calculator = {
     ],
   },
 
-  faqs: [
-    {
-      question: "What is BMR?",
-      answer:
-        "Basal Metabolic Rate (BMR) is the number of calories your body burns at rest to maintain vital functions such as breathing, circulation, and cell production.",
-    },
-    {
-      question: "Is BMR different from BMI?",
-      answer:
-        "Yes. BMI measures body weight relative to height, while BMR estimates the calories your body needs to function at rest.",
-    },
-    {
-      question: "Which formula does this calculator use?",
-      answer:
-        "This calculator uses the Mifflin-St Jeor Equation, which is considered one of the most accurate methods for estimating BMR in healthy adults.",
-    },
-    {
-      question: "How accurate is the BMR Calculator?",
-      answer:
-        "The calculator provides a reliable estimate based on age, gender, height, and weight. Actual calorie expenditure may vary depending on body composition, genetics, and lifestyle.",
-    },
-    {
-      question: "Can BMR help with weight loss?",
-      answer:
-        "Yes. Knowing your BMR helps determine your daily calorie needs, making it easier to create an effective weight loss or weight maintenance plan.",
-    },
-  ],
+faqs: [
+  {
+    question: "What is Basal Metabolic Rate (BMR)?",
+    answer:
+      "Basal Metabolic Rate (BMR) is the number of calories your body requires each day to perform essential life-sustaining functions while at complete rest. These functions include breathing, blood circulation, body temperature regulation, cell repair, brain activity, and organ function. BMR represents the minimum amount of energy needed to keep your body alive even if you remain inactive all day. Understanding your BMR is important because it serves as the foundation for calculating daily calorie needs, weight loss targets, muscle gain plans, and overall nutrition requirements."
+  },
+
+  {
+    question: "How is BMR calculated?",
+    answer:
+      "BMR is calculated using factors such as age, gender, weight, and height. Most modern calculators use scientifically validated formulas like the Mifflin-St Jeor Equation, which is considered one of the most accurate methods for estimating calorie requirements. Since men generally have more muscle mass than women, they typically have a higher BMR. Likewise, younger individuals and people with more lean muscle mass tend to burn more calories at rest compared to older adults or individuals with lower muscle mass."
+  },
+
+  {
+    question: "What is the difference between BMR and TDEE?",
+    answer:
+      "BMR represents the calories your body needs at complete rest, while Total Daily Energy Expenditure (TDEE) includes all daily activities such as walking, exercising, working, and household tasks. TDEE is calculated by multiplying BMR by an activity factor. For example, if your BMR is 1,800 calories and you have a moderately active lifestyle, your TDEE may be around 2,500 to 2,800 calories per day. BMR is the starting point, whereas TDEE provides a more realistic estimate of daily calorie needs."
+  },
+
+  {
+    question: "Can I use BMR for weight loss planning?",
+    answer:
+      "Yes. BMR is often used as the foundation for creating a calorie deficit, which is required for weight loss. Once you calculate your TDEE, you can reduce daily calorie intake by a reasonable amount to encourage gradual and sustainable fat loss. However, consuming fewer calories than your BMR for extended periods is generally not recommended because it may affect energy levels, muscle mass, metabolism, and overall health. A balanced diet and regular exercise are essential for healthy weight management."
+  },
+
+  {
+    question: "Does BMR change with age?",
+    answer:
+      "Yes. BMR naturally decreases with age because muscle mass tends to decline and metabolic processes slow down over time. Younger individuals generally burn more calories at rest compared to older adults. Maintaining an active lifestyle, performing strength training exercises, and preserving muscle mass can help reduce the rate at which BMR declines with age."
+  },
+
+  {
+    question: "Does increasing muscle mass raise BMR?",
+    answer:
+      "Yes. Muscle tissue requires more energy to maintain than fat tissue, even when the body is at rest. As a result, individuals with greater muscle mass typically have a higher BMR and burn more calories throughout the day. Strength training and resistance exercises can help build muscle, which may gradually increase metabolism and support long-term weight management goals."
+  },
+
+  {
+    question: "Why is my BMR important for fitness goals?",
+    answer:
+      "Knowing your BMR helps you create more effective nutrition and fitness plans. Whether your goal is weight loss, muscle gain, fat reduction, or maintaining your current weight, understanding how many calories your body needs at rest allows you to make informed decisions about food intake and exercise. Many athletes, fitness enthusiasts, and health-conscious individuals use BMR calculations as part of their overall health strategy."
+  },
+
+  {
+    question: "Can a BMR calculator provide exact calorie requirements?",
+    answer:
+      "No calculator can provide a perfectly exact value because metabolism varies between individuals. BMR calculators provide scientifically estimated values based on population averages and proven formulas. Factors such as genetics, hormones, body composition, medical conditions, sleep quality, and lifestyle habits can influence actual calorie requirements. However, BMR calculators are highly useful for establishing a reliable starting point for nutrition and fitness planning."
+  }
+],
 
   seoContent: `
 <h2>What is BMR?</h2>

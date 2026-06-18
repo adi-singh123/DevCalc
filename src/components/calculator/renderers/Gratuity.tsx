@@ -80,9 +80,7 @@ export default function GratuityCalculator() {
 
   return (
     <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-      <h2 className="text-2xl font-bold">
-        Gratuity Calculator
-      </h2>
+
 
       <div className="mt-6">
         <label className="mb-2 block font-medium">

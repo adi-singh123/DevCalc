@@ -119,63 +119,55 @@ export const proteinIntakeCalculator: Calculator = {
     ],
   },
 
-  faqs: [
-    {
-      question:
-        "What is a Protein Intake Calculator?",
-      answer:
-        "A Protein Intake Calculator estimates how much protein you should consume daily based on your body weight and activity level.",
-    },
+faqs: [
+  {
+    question: "How much protein do I need per day?",
+    answer:
+      "Daily protein requirements depend on factors such as age, body weight, activity level, fitness goals, and overall health. Most sedentary adults require approximately 0.8 grams of protein per kilogram of body weight. However, athletes, bodybuilders, and highly active individuals often need between 1.2 and 2.2 grams per kilogram. People recovering from injuries or following weight-loss programs may also benefit from higher protein intake. A protein intake calculator helps estimate personalized protein requirements based on individual goals and lifestyle."
+  },
 
-    {
-      question:
-        "How much protein do I need per day?",
-      answer:
-        "Most adults require at least 0.8 grams of protein per kilogram of body weight, while active individuals often need between 1.2 and 2.2 grams per kilogram.",
-    },
+  {
+    question: "Why is protein important for the body?",
+    answer:
+      "Protein is one of the most important nutrients required for growth, repair, and maintenance of body tissues. It plays a critical role in building muscles, producing enzymes and hormones, supporting immune function, and maintaining healthy skin, hair, and nails. Since the body cannot store protein in large amounts, consuming adequate protein daily is essential for overall health and optimal physical performance."
+  },
 
-    {
-      question:
-        "Why is protein important?",
-      answer:
-        "Protein supports muscle growth, tissue repair, immune function, hormone production, and overall health.",
-    },
+  {
+    question: "How much protein is needed for muscle gain?",
+    answer:
+      "Individuals aiming to build muscle generally require more protein than sedentary adults. Research suggests that consuming between 1.6 and 2.2 grams of protein per kilogram of body weight can help maximize muscle growth when combined with resistance training. Protein provides the amino acids necessary for muscle repair and recovery after exercise. Consistent protein intake throughout the day is often more effective than consuming large amounts in a single meal."
+  },
 
-    {
-      question:
-        "Can protein help with weight loss?",
-      answer:
-        "Yes. Protein can increase satiety, help preserve muscle mass, and support healthy weight management when combined with a balanced diet.",
-    },
+  {
+    question: "Can eating more protein help with weight loss?",
+    answer:
+      "Yes. Protein is known to increase feelings of fullness and may help reduce overall calorie intake by controlling hunger. It also has a higher thermic effect than carbohydrates and fats, meaning the body burns more calories digesting protein. Additionally, adequate protein intake helps preserve muscle mass during weight loss, which is important for maintaining metabolism and long-term weight management."
+  },
 
-    {
-      question:
-        "How much protein is needed for muscle gain?",
-      answer:
-        "Many athletes and individuals building muscle consume between 1.6 and 2.2 grams of protein per kilogram of body weight daily.",
-    },
+  {
+    question: "What happens if I don't consume enough protein?",
+    answer:
+      "Insufficient protein intake can lead to muscle loss, fatigue, slower recovery from exercise, weakened immunity, poor wound healing, and reduced physical performance. In severe cases, prolonged protein deficiency may affect growth, organ function, and overall health. Ensuring adequate protein intake is particularly important for children, older adults, athletes, and individuals recovering from illness or injury."
+  },
 
-    {
-      question:
-        "Can I consume too much protein?",
-      answer:
-        "Excessive protein intake may not provide additional benefits and should be balanced within overall calorie and nutrition goals.",
-    },
+  {
+    question: "Can I consume too much protein?",
+    answer:
+      "While protein is essential, consuming excessive amounts beyond your body's requirements may not provide additional benefits. Extremely high protein intake can increase calorie consumption and may place additional stress on individuals with certain kidney conditions. For most healthy individuals, moderate increases in protein intake are safe and beneficial, but balanced nutrition remains important for overall health."
+  },
 
-    {
-      question:
-        "Does age affect protein requirements?",
-      answer:
-        "Yes. Older adults may benefit from slightly higher protein intake to help maintain muscle mass and strength.",
-    },
+  {
+    question: "What are the best sources of protein?",
+    answer:
+      "High-quality protein sources include eggs, chicken, fish, lean meat, milk, yogurt, paneer, soy products, lentils, beans, chickpeas, nuts, and seeds. Animal proteins generally contain all essential amino acids, while many plant-based proteins can be combined to provide complete nutrition. Choosing a variety of protein-rich foods helps ensure adequate intake of vitamins, minerals, and other nutrients."
+  },
 
-    {
-      question:
-        "Is this Protein Intake Calculator free?",
-      answer:
-        "Yes. You can calculate your recommended daily protein intake online unlimited times completely free.",
-    },
-  ],
+  {
+    question: "Should protein intake be different for vegetarians and vegans?",
+    answer:
+      "Vegetarians and vegans can meet their protein requirements through foods such as lentils, beans, soy products, tofu, tempeh, nuts, seeds, and dairy products if included in the diet. Since some plant proteins are less concentrated or may have different amino acid profiles, vegetarians and vegans may benefit from slightly higher protein intake and a diverse range of protein sources to ensure optimal nutrition."
+  }
+],
 
   seoContent: `
 <h2>Why Protein is Important</h2>

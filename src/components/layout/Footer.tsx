@@ -9,10 +9,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <Link
-              href="/"
-              className="flex items-center gap-3"
-            >
+            <Link href="/" className="flex items-center gap-3">
               <Image
                 src="/logo.png"
                 alt="DevCalc Logo"
@@ -26,16 +23,19 @@ export default function Footer() {
               </span>
             </Link>
 
-            <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-400">
-              Free online calculators for finance,
-              health, education, utility, and
-              everyday calculations. Fast,
-              accurate, and easy to use.
-            </p>
+            <div className="mt-4 rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-slate-700 dark:bg-slate-900">
+              <p className="font-semibold text-slate-900 dark:text-white">
+                DevCalc
+              </p>
 
-            <p className="mt-3 text-sm font-medium text-blue-600 dark:text-blue-400">
-              50+ Free Calculators Available
-            </p>
+              <p className="mt-1 text-slate-600 dark:text-slate-400">
+                76, Pali, Gothawan, Jaunpur, Uttar Pradesh, India - 222162
+              </p>
+
+              <p className="mt-2 text-slate-600 dark:text-slate-400">
+                Contact: devcalc35052@gmail.com
+              </p>
+            </div>
           </div>
 
           {/* Popular Calculators */}
@@ -49,15 +49,9 @@ export default function Footer() {
                 ["Age Calculator", "/age-calculator"],
                 ["EMI Calculator", "/emi-calculator"],
                 ["GST Calculator", "/gst-calculator"],
-                [
-                  "Income Tax Calculator",
-                  "/income-tax-calculator",
-                ],
+                ["Income Tax Calculator", "/income-tax-calculator"],
                 ["BMI Calculator", "/bmi-calculator"],
-                [
-                  "Percentage Calculator",
-                  "/percentage-calculator",
-                ],
+                ["Percentage Calculator", "/percentage-calculator"],
               ].map(([label, href]) => (
                 <li key={href}>
                   <Link
@@ -91,8 +85,7 @@ export default function Footer() {
                     href={`/category/${category}`}
                     className="text-slate-600 transition hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
                   >
-                    {category.charAt(0).toUpperCase() +
-                      category.slice(1)}
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
                   </Link>
                 </li>
               ))}
@@ -109,10 +102,7 @@ export default function Footer() {
               {[
                 ["SIP Calculator", "/sip-calculator"],
                 ["FD Calculator", "/fd-calculator"],
-                [
-                  "Income Tax Calculator",
-                  "/income-tax-calculator",
-                ],
+                ["Income Tax Calculator", "/income-tax-calculator"],
                 ["HRA Calculator", "/hra-calculator"],
                 ["EMI Calculator", "/emi-calculator"],
                 ["GST Calculator", "/gst-calculator"],
@@ -134,10 +124,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-slate-200 bg-slate-200 dark:border-slate-700 dark:bg-slate-900">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-5 text-sm text-slate-600 dark:text-slate-400 md:flex-row">
-          <p>
-            © {new Date().getFullYear()} DevCalc.
-            All rights reserved.
-          </p>
+          <p>© {new Date().getFullYear()} DevCalc. All rights reserved.</p>
 
           <div className="flex flex-wrap gap-4">
             <Link

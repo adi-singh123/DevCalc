@@ -86,27 +86,55 @@ export const incomeTaxCalculator: Calculator = {
     ],
   },
 
-  faqs: [
-    {
-      question:
-        "What is an Income Tax Calculator?",
-      answer:
-        "An Income Tax Calculator helps estimate tax liability based on annual income and tax regime.",
-    },
-    {
-      question:
-        "Does it support the new tax regime?",
-      answer:
-        "Yes, the calculator can estimate tax under the latest Indian tax regime.",
-    },
-    {
-      question:
-        "Can I use it for salary planning?",
-      answer:
-        "Yes, it helps estimate tax before financial planning decisions.",
-    },
-  ],
+faqs: [
+{
+question: "Which is better: the old tax regime or the new tax regime?",
+answer:
+"The best tax regime depends on your income, deductions, and financial situation. The old tax regime allows taxpayers to claim deductions and exemptions such as Section 80C investments, HRA, home loan interest, NPS contributions, and health insurance premiums. The new tax regime offers lower tax rates but removes most deductions and exemptions. Individuals with significant tax-saving investments often benefit from the old regime, while those with fewer deductions may find the new regime more advantageous. Comparing tax liability under both systems using an income tax calculator helps determine the most beneficial option."
+},
 
+{
+question: "How can I legally reduce my income tax in India?",
+answer:
+"Taxpayers can reduce their tax liability through legal tax-saving provisions available under Indian tax laws. Common methods include investing under Section 80C through ELSS funds, PPF, EPF, life insurance, and tax-saving fixed deposits. Additional deductions may be available for NPS contributions under Section 80CCD(1B), health insurance premiums under Section 80D, and home loan interest under Section 24. Proper financial planning throughout the year helps maximize available deductions and minimize tax liability while remaining fully compliant with tax regulations."
+},
+
+{
+question: "What is the Section 80C deduction limit?",
+answer:
+"Section 80C is one of the most popular tax-saving provisions in India. Eligible taxpayers can claim deductions of up to ₹1.5 lakh per financial year through approved investments and expenses. Common options include Employee Provident Fund (EPF), Public Provident Fund (PPF), Equity Linked Savings Schemes (ELSS), life insurance premiums, Sukanya Samriddhi Yojana contributions, tax-saving fixed deposits, and principal repayment of home loans. Utilizing the full Section 80C limit can significantly reduce taxable income under the old tax regime."
+},
+
+{
+question: "Do I have to pay tax on fixed deposit interest?",
+answer:
+"Yes. Interest earned from bank fixed deposits is generally taxable according to the taxpayer's income tax slab rate. Banks may also deduct TDS when interest income exceeds prescribed limits. Even if TDS is not deducted, taxpayers are required to report FD interest while filing their income tax returns. Senior citizens may benefit from certain exemptions and deductions related to interest income under applicable tax provisions."
+},
+
+{
+question: "Is salary income fully taxable?",
+answer:
+"Not necessarily. While salary income is taxable, several components may qualify for deductions or exemptions under the old tax regime. Examples include House Rent Allowance (HRA), Leave Travel Allowance (LTA), standard deduction, employer contributions to retirement schemes, and various tax-saving investments. The final taxable income depends on gross salary, deductions claimed, exemptions available, and the chosen tax regime."
+},
+
+{
+question: "What happens if I file my income tax return late?",
+answer:
+"Filing an income tax return after the due date may result in penalties, interest charges, delayed refunds, and restrictions on carrying forward certain losses. The Income Tax Department may also levy late filing fees under applicable provisions. Filing returns on time helps avoid unnecessary penalties and ensures smooth processing of refunds and tax records."
+},
+
+{
+question: "Can I claim both HRA and home loan benefits?",
+answer:
+"In many situations, taxpayers can claim both HRA and home loan benefits simultaneously, provided they satisfy the relevant conditions. For example, if an individual lives in a rented property due to work requirements while owning a house in another city, both benefits may be available. Eligibility depends on specific circumstances and applicable tax rules. Consulting a tax professional is advisable for complex cases."
+},
+
+{
+question: "Why should I use an income tax calculator before filing returns?",
+answer:
+"An income tax calculator helps estimate tax liability quickly and accurately before filing returns. It allows taxpayers to compare old and new tax regimes, evaluate deductions, estimate refund amounts, and plan tax-saving investments. Using a calculator before the end of the financial year can also help identify opportunities to reduce tax liability and avoid last-minute financial decisions."
+}
+],
   seoContent: `
 <h2>Understanding Income Tax in India</h2>
 

@@ -97,10 +97,7 @@ export default function CompoundInterestCalculator() {
   return (
     <div className="mt-2">
       <div className="rounded-3xl border bg-white p-6 shadow-sm">
-        <h2 className="mb-6 text-2xl font-bold">
-          Compound Interest
-          Calculator
-        </h2>
+      
 
         <div className="grid gap-5 md:grid-cols-2">
           <div>

@@ -76,8 +76,7 @@ export default function BMICalculator() {
 
   return (
     <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
-      <h2 className="text-2xl font-bold">Calculate Your BMI</h2>
-
+    
       <p className="mt-2 text-slate-600">
         Calculate your Body Mass Index using your height and weight.
       </p>

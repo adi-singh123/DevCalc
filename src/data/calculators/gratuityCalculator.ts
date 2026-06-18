@@ -106,79 +106,55 @@ export const gratuityCalculator: Calculator = {
     ],
   },
 
-  faqs: [
-    {
-      question:
-        "What is gratuity?",
+faqs: [
+  {
+    question: "What is gratuity and why is it paid to employees?",
+    answer:
+      "Gratuity is a lump-sum financial benefit paid by an employer to an employee as a reward for long-term service. It is governed by the Payment of Gratuity Act, 1972, and is intended to provide financial security when an employee leaves an organization due to retirement, resignation, disability, or other qualifying circumstances. Gratuity is calculated based on the employee's last drawn salary and years of continuous service. It acts as a form of appreciation for loyalty and commitment and can become a significant part of an employee's retirement corpus."
+  },
 
-      answer:
-        "Gratuity is a lump-sum benefit paid by an employer to an employee as a reward for long-term service and loyalty to the organization.",
-    },
+  {
+    question: "Who is eligible to receive gratuity?",
+    answer:
+      "Under the Payment of Gratuity Act, employees generally become eligible for gratuity after completing at least five years of continuous service with the same employer. However, the five-year requirement may not apply in cases involving death or permanent disability. Both private-sector and public-sector employees working in eligible establishments can qualify for gratuity benefits. Continuous service includes approved leave, sickness, accidents, and other situations recognized under employment laws."
+  },
 
-    {
-      question:
-        "Who is eligible for gratuity?",
+  {
+    question: "How is gratuity calculated?",
+    answer:
+      "For employees covered under the Payment of Gratuity Act, gratuity is generally calculated using the formula: Gratuity = (Last Drawn Salary × 15 × Years of Service) ÷ 26. Here, the last drawn salary typically includes basic salary and dearness allowance. The number 26 represents the average working days in a month. The higher the salary and years of service, the larger the gratuity amount. A gratuity calculator helps estimate this amount instantly without manual calculations."
+  },
 
-      answer:
-        "Generally, employees who have completed at least five years of continuous service with the same employer are eligible for gratuity benefits.",
-    },
+  {
+    question: "Can I receive gratuity if I resign from my job?",
+    answer:
+      "Yes. Employees who resign after completing the minimum qualifying service period are generally eligible to receive gratuity from their employer. The gratuity amount is calculated based on the employee's final salary and years of service. However, employees who resign before completing the required service period may not qualify for gratuity except under special circumstances such as disability or specific legal provisions."
+  },
 
-    {
-      question:
-        "How is gratuity calculated?",
+  {
+    question: "Is gratuity taxable in India?",
+    answer:
+      "The tax treatment of gratuity depends on the employee category and the amount received. Government employees generally receive fully tax-exempt gratuity. For private-sector employees, tax exemptions are available up to prescribed limits under the Income Tax Act. Any gratuity amount exceeding the exemption threshold may become taxable. Tax rules can change over time, so employees should verify the latest provisions before retirement or resignation."
+  },
 
-      answer:
-        "Gratuity is calculated using the formula: (Last Drawn Salary × 15 × Years of Service) ÷ 26.",
-    },
+  {
+    question: "What happens to gratuity if I change jobs frequently?",
+    answer:
+      "Gratuity eligibility is usually linked to continuous service with a specific employer. If an employee changes jobs before completing the minimum service requirement, gratuity benefits from that employer may not become payable. Frequent job changes can therefore reduce opportunities to accumulate gratuity benefits. Employees should consider long-term career plans and employment benefits when evaluating job transitions."
+  },
 
-    {
-      question:
-        "What salary is used for gratuity calculation?",
+  {
+    question: "Can an employer refuse to pay gratuity?",
+    answer:
+      "An employer generally cannot refuse gratuity if an employee satisfies the eligibility requirements under applicable laws. However, gratuity may be partially or fully forfeited in limited circumstances involving serious misconduct, fraud, theft, violence, or actions causing significant financial damage to the employer. Such situations are governed by specific legal provisions and are subject to employment laws and judicial review."
+  },
 
-      answer:
-        "Gratuity is typically calculated using the employee's last drawn basic salary plus dearness allowance (DA).",
-    },
-
-    {
-      question:
-        "Is gratuity taxable?",
-
-      answer:
-        "Tax treatment of gratuity depends on applicable tax laws, employee category, and exemption limits available at the time of payment.",
-    },
-
-    {
-      question:
-        "Can gratuity be received before retirement?",
-
-      answer:
-        "Yes. Eligible employees may receive gratuity when resigning, retiring, superannuating, or under certain other employment termination conditions.",
-    },
-
-    {
-      question:
-        "What happens if I work less than five years?",
-
-      answer:
-        "Generally, gratuity is payable after five years of continuous service, although certain exceptions may apply under specific circumstances.",
-    },
-
-    {
-      question:
-        "Is gratuity paid by the employer?",
-
-      answer:
-        "Yes. Gratuity is paid directly by the employer as a statutory employee benefit.",
-    },
-
-    {
-      question:
-        "Can gratuity help in retirement planning?",
-
-      answer:
-        "Yes. Gratuity can form an important part of an individual's retirement corpus and financial security.",
-    },
-  ],
+  {
+    question: "Why should I use a gratuity calculator?",
+    answer:
+      "A gratuity calculator helps employees estimate their expected gratuity amount instantly based on salary and years of service. This information can assist with retirement planning, financial goal setting, job transition decisions, and long-term wealth management. By understanding future gratuity benefits, employees can better plan investments, emergency funds, and retirement income strategies."
+  }
+],
 
   seoContent: `
 <h2>What Is Gratuity?</h2>

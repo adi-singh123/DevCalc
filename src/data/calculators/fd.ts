@@ -13,8 +13,7 @@ export const fdCalculator: Calculator = {
   isPopular: true,
 
   seo: {
-    title:
-      "FD Calculator - Calculate Fixed Deposit Returns Online",
+    title: "FD Calculator - Calculate Fixed Deposit Returns Online",
 
     description:
       "Use our free FD Calculator to calculate maturity amount, interest earned, and fixed deposit returns instantly.",
@@ -32,39 +31,35 @@ export const fdCalculator: Calculator = {
     ],
   },
   compareWith: [
-  "sip-calculator",
-  "ppf-calculator",
-  "swp-calculator",
-  "cagr-calculator",
-],
+    "sip-calculator",
+    "ppf-calculator",
+    "swp-calculator",
+    "cagr-calculator",
+  ],
 
   steps: [
     {
       step: 1,
       title: "Enter Deposit Amount",
-      description:
-        "Enter the amount you want to invest.",
+      description: "Enter the amount you want to invest.",
       icon: "calculator",
     },
     {
       step: 2,
       title: "Enter Interest Rate",
-      description:
-        "Enter the annual interest rate.",
+      description: "Enter the annual interest rate.",
       icon: "calculator",
     },
     {
       step: 3,
       title: "Enter Investment Period",
-      description:
-        "Specify the FD tenure in years.",
+      description: "Specify the FD tenure in years.",
       icon: "calculator",
     },
     {
       step: 4,
       title: "View FD Returns",
-      description:
-        "See maturity amount and interest earned.",
+      description: "See maturity amount and interest earned.",
       icon: "result",
     },
   ],
@@ -72,18 +67,15 @@ export const fdCalculator: Calculator = {
   formula: {
     title: "FD Formula",
 
-    formula:
-      "A = P × (1 + r/n)^(n×t)",
+    formula: "A = P × (1 + r/n)^(n×t)",
 
     explanation:
       "Fixed Deposit returns are calculated using compound interest based on deposit amount, interest rate, tenure, and compounding frequency.",
 
     example: {
-      input:
-        "₹1,00,000 invested at 7% for 5 years",
+      input: "₹1,00,000 invested at 7% for 5 years",
 
-      output:
-        "Maturity Amount ≈ ₹1,40,255",
+      output: "Maturity Amount ≈ ₹1,40,255",
     },
 
     useCases: [
@@ -96,31 +88,53 @@ export const fdCalculator: Calculator = {
 
   faqs: [
     {
-      question:
-        "What is an FD Calculator?",
+      question: "Is a Fixed Deposit (FD) a safe investment?",
       answer:
-        "An FD Calculator helps estimate maturity value and interest earned on a fixed deposit.",
+        "Fixed Deposits are generally considered one of the safest investment options available to retail investors. Unlike market-linked investments such as mutual funds and stocks, FD returns are fixed and predictable. The interest rate is decided at the time of investment and remains unchanged for the tenure of the deposit. This makes FDs suitable for conservative investors, retirees, and individuals looking to preserve capital. However, investors should also consider inflation because the real purchasing power of FD returns may decline if inflation grows faster than the FD interest rate.",
     },
+
     {
-      question:
-        "How is FD interest calculated?",
+      question: "How is FD interest calculated?",
       answer:
-        "FD interest is usually calculated using compound interest.",
+        "FD interest is calculated based on the principal amount, interest rate, tenure, and compounding frequency. Most banks offer quarterly or monthly compounding, which allows investors to earn interest on previously earned interest. The higher the interest rate and longer the tenure, the greater the maturity amount. A Fixed Deposit Calculator helps estimate maturity value accurately without manually performing complex compound interest calculations.",
     },
+
     {
-      question:
-        "What affects FD returns?",
+      question: "What is the difference between FD and SIP?",
       answer:
-        "Deposit amount, interest rate, tenure, and compounding frequency affect returns.",
+        "FD and SIP serve different financial goals. Fixed Deposits provide guaranteed returns and capital protection, making them suitable for risk-averse investors. SIPs invest money in mutual funds and offer higher long-term growth potential but come with market risk. Historically, SIPs have generated higher returns over long investment periods, while FDs provide stability and predictability. Many investors use both instruments together to balance growth and security in their portfolios.",
     },
+
     {
-      question:
-        "Is FD safe?",
+      question: "Do I have to pay tax on FD interest?",
       answer:
-        "FDs are generally considered one of the safest investment options.",
+        "Yes. Interest earned from Fixed Deposits is generally taxable according to the investor's income tax slab. Banks may deduct Tax Deducted at Source (TDS) when annual interest exceeds the prescribed threshold. Even if TDS is not deducted, FD interest must be reported while filing income tax returns. Investors should consider post-tax returns rather than just the advertised FD interest rate when evaluating investment options.",
+    },
+
+    {
+      question: "Can I withdraw my FD before maturity?",
+      answer:
+        "Most banks allow premature withdrawal of Fixed Deposits before maturity. However, early withdrawal may result in a penalty or a reduced interest rate. The exact penalty varies between banks and financial institutions. Investors who may require liquidity before maturity should review premature withdrawal terms before opening an FD.",
+    },
+
+    {
+      question: "Which FD tenure is best for maximum returns?",
+      answer:
+        "The ideal FD tenure depends on prevailing interest rates, financial goals, and liquidity requirements. In many cases, medium-term FDs between 1 and 5 years offer competitive interest rates. Long-term FDs may provide higher rates in some periods, but investors should compare rates carefully. Using an FD calculator helps evaluate different tenure options and determine which maturity period best aligns with personal financial objectives.",
+    },
+
+    {
+      question: "Are senior citizen Fixed Deposits better than regular FDs?",
+      answer:
+        "Many banks offer senior citizens higher FD interest rates compared to regular customers. The additional interest rate benefit is typically between 0.25% and 0.75% above standard FD rates. Over longer tenures and larger investment amounts, this additional interest can significantly increase maturity value. Senior citizen FDs are often popular among retirees seeking stable income and capital preservation.",
+    },
+
+    {
+      question: "How can I maximize returns from Fixed Deposits?",
+      answer:
+        "Investors can maximize FD returns by comparing interest rates across banks, choosing appropriate tenures, considering special FD schemes, and taking advantage of senior citizen benefits when eligible. Laddering multiple FDs with different maturity dates can also improve liquidity and reduce reinvestment risk. Additionally, evaluating post-tax returns and comparing FDs with alternative investments such as debt funds, PPF, and bonds can help optimize overall investment strategy.",
     },
   ],
-
 
   seoContent: `
 <h2>What is a Fixed Deposit (FD)?</h2>

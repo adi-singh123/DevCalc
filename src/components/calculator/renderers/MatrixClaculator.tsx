@@ -136,7 +136,7 @@ export default function MatrixCalculator() {
 
   return (
     <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
-      <h2 className="text-2xl font-bold">Matrix Calculator</h2>
+
       <p className="mt-2 text-slate-600">
         Perform matrix addition, subtraction, multiplication, and determinant
         calculations for matrices from 2×2 up to 5×5.

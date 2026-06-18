@@ -179,9 +179,7 @@ export default function NPSCalculator() {
 
   return (
     <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-      <h2 className="text-2xl font-bold">
-        NPS Calculator
-      </h2>
+    
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <div>
