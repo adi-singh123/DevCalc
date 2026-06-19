@@ -220,6 +220,7 @@ export default function AttendanceCalculator() {
         <ResultsSection
           title="Attendance Results"
           results={results}
+          calculatorName="Attendance Results"
         />
       )}
     </div>

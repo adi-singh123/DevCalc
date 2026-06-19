@@ -282,6 +282,7 @@ export default function SleepCycleCalculator() {
         <ResultsSection
           title="Sleep Cycle Results"
           results={results}
+          calculatorName="Sleep Cycle Results"
         />
       )}
     </div>

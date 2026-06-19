@@ -207,6 +207,7 @@ export default function CompoundInterestCalculator() {
         <ResultsSection
           title="Compound Interest Results"
           results={results}
+           calculatorName="Compound Interest Results"
         />
       )}
     </div>

@@ -197,6 +197,7 @@ export default function DiscountCalculator() {
         <ResultsSection
           title="Discount Results"
           results={results}
+           calculatorName="Discount Results"
         />
       )}
     </div>

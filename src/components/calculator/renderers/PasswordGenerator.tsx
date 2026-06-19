@@ -212,7 +212,7 @@ export default function PasswordGenerator() {
       )}
 
       {results.length > 0 && (
-        <ResultsSection title="Password Details" results={results} />
+        <ResultsSection title="Password Details" results={results}   calculatorName="Password Details"/>
       )}
     </div>
   );

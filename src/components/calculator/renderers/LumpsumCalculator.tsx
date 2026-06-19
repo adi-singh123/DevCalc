@@ -211,6 +211,8 @@ export default function LumpsumCalculator() {
         <ResultsSection
           title="Lumpsum Investment Results"
           results={results}
+            calculatorName="Lumpsum Investment Results"
+
         />
       )}
     </div>

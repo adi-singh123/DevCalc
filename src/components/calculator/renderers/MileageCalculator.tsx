@@ -268,6 +268,8 @@ export default function MileageCalculator() {
         <ResultsSection
           title="Mileage Results"
           results={results}
+          calculatorName="Mileage Results"
+
         />
       )}
     </div>

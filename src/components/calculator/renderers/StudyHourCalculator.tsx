@@ -273,6 +273,8 @@ export default function StudyHoursCalculator() {
         <ResultsSection
           title="Study Results"
           results={results}
+            calculatorName="Study Results"
+
         />
       )}
     </div>

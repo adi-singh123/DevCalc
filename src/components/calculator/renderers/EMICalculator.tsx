@@ -196,6 +196,7 @@ export default function EMICalculator() {
         <ResultsSection
           title="EMI Results"
           results={results}
+            calculatorName="EMI Results"
         />
       )}
     </div>

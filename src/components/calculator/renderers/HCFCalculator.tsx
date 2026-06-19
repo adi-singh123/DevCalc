@@ -186,6 +186,8 @@ export default function HCFCalculator() {
         <ResultsSection
           title="HCF Results"
           results={results}
+            calculatorName="HCF Results"
+
         />
       )}
     </div>

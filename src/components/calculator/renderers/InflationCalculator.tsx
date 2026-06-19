@@ -210,6 +210,7 @@ export default function InflationCalculator() {
         <ResultsSection
           title="Inflation Calculation Results"
           results={results}
+           calculatorName="Inflation Calculation Results"
         />
       )}
     </div>

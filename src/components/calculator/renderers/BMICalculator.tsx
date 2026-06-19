@@ -183,7 +183,8 @@ export default function BMICalculator() {
       )}
 
       {results.length > 0 && (
-        <ResultsSection title="BMI Results" results={results} />
+        <ResultsSection title="BMI Results" results={results} calculatorName="BMI Results"
+ />
       )}
     </div>
   );

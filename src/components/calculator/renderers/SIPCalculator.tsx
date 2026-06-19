@@ -236,6 +236,8 @@ export default function SIPCalculator() {
         <ResultsSection
           title="SIP Results"
           results={results}
+            calculatorName="SIP Results"
+
         />
       )}
     </div>

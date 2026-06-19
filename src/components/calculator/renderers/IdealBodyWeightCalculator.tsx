@@ -239,6 +239,7 @@ export default function IdealBodyWeightCalculator() {
         <ResultsSection
           title="Ideal Body Weight Results"
           results={results}
+           calculatorName="Ideal Body Weight Results"
         />
       )}
     </div>

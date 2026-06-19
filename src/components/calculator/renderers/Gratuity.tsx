@@ -177,6 +177,7 @@ export default function GratuityCalculator() {
         <ResultsSection
           title="Gratuity Results"
           results={results}
+           calculatorName="Gratuity Results"
         />
       )}
     </div>

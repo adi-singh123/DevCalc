@@ -288,6 +288,7 @@ export default function LeanBodyMassCalculator() {
         <ResultsSection
           title="Lean Body Mass Results"
           results={results}
+            calculatorName="Lean Body Mass Results"
         />
       )}
     </div>

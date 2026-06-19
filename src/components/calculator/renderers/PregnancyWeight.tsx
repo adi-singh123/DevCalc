@@ -239,6 +239,8 @@ export default function PregnancyWeightGainCalculator() {
         <ResultsSection
           title="Pregnancy Weight Results"
           results={results}
+          calculatorName="Pregnancy Weight Results"
+
         />
       )}
     </div>

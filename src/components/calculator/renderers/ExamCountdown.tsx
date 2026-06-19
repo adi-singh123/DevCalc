@@ -237,6 +237,7 @@ export default function ExamCountdownCalculator() {
         <ResultsSection
           title="Exam Preparation Results"
           results={results}
+          calculatorName="Exam Preparation Results"
         />
       )}
     </div>

@@ -264,6 +264,7 @@ export default function FuelCostCalculator() {
         <ResultsSection
           title="Fuel Cost Results"
           results={results}
+           calculatorName="Fuel Cost Results"
         />
       )}
     </div>

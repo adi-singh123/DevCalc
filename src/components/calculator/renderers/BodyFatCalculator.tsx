@@ -270,6 +270,7 @@ export default function BodyFatCalculator() {
         <ResultsSection
           title="Body Fat Results"
           results={results}
+            calculatorName="Body Fat Results"
         />
       )}
     </div>

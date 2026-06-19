@@ -367,6 +367,7 @@ export default function NPSCalculator() {
         <ResultsSection
           title="NPS Results"
           results={results}
+           calculatorName="NPS Results"
         />
       )}
     </div>

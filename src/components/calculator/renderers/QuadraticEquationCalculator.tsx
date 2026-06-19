@@ -299,6 +299,7 @@ export default function QuadraticEquationCalculator() {
         <ResultsSection
           title="Quadratic Equation Results"
           results={results}
+           calculatorName="Quadratic Equation Results"
         />
       )}
     </div>

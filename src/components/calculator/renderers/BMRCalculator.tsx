@@ -220,6 +220,7 @@ export default function BMRCalculator() {
         <ResultsSection
           title="Daily Calorie Needs"
           results={results}
+          calculatorName="Daily Calorie Needs"
         />
       )}
     </div>

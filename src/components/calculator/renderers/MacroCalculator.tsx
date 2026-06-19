@@ -308,6 +308,7 @@ export default function MacroCalculator() {
         <ResultsSection
           title="Macro Results"
           results={results}
+           calculatorName="Macro Results"
         />
       )}
     </div>

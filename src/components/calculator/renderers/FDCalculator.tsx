@@ -225,6 +225,8 @@ export default function FDCalculator() {
         <ResultsSection
           title="FD Results"
           results={results}
+          calculatorName="FD Results"
+
         />
       )}
     </div>

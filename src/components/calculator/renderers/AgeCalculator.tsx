@@ -12,8 +12,8 @@ export default function AgeCalculator() {
 
   const [submitted, setSubmitted] = useState(false);
 
-const birthDateRef = useRef<HTMLInputElement>(null);
-const currentDateRef = useRef<HTMLInputElement>(null);
+  const birthDateRef = useRef<HTMLInputElement>(null);
+  const currentDateRef = useRef<HTMLInputElement>(null);
 
   const age = useMemo(() => {
     if (!birthDate || !submitted) return null;
@@ -97,7 +97,6 @@ const currentDateRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
-     
       <div className="mt-6">
         <label className="mb-2 block font-medium">Date of Birth</label>
 
@@ -155,7 +154,11 @@ const currentDateRef = useRef<HTMLInputElement>(null);
       )}
 
       {results.length > 0 && (
-        <ResultsSection title="Age Results" results={results} />
+        <ResultsSection
+          title="Age Results"
+          results={results}
+          calculatorName="Age Calculator"
+        />
       )}
     </div>
   );

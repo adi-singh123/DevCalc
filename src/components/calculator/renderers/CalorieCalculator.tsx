@@ -258,6 +258,7 @@ export default function CalorieCalculator() {
         <ResultsSection
           title="Calorie Results"
           results={results}
+          calculatorName="Calorie Results"
         />
       )}
     </div>

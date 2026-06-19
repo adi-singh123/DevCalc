@@ -192,6 +192,7 @@ export default function DueDateCalculator() {
         <ResultsSection
           title="Pregnancy Details"
           results={results}
+           calculatorName="Pregnancy Details"
         />
       )}
     </div>

@@ -196,6 +196,7 @@ export default function LCMCalculator() {
         <ResultsSection
           title="LCM Results"
           results={results}
+            calculatorName="LCM Results"
         />
       )}
     </div>

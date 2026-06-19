@@ -219,6 +219,7 @@ export default function StandardDeviationCalculator() {
         <ResultsSection
           title="Statistical Results"
           results={results}
+          calculatorName="Statistical Results"
         />
       )}
     </div>

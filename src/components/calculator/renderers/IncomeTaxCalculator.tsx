@@ -313,6 +313,7 @@ export default function IncomeTaxCalculator() {
           results={
             results
           }
+            calculatorName="Income Tax Results"
         />
       )}
     </div>

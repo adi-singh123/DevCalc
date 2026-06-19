@@ -248,6 +248,7 @@ export default function MeanMedianModeCalculator() {
         <ResultsSection
           title="Statistical Results"
           results={results}
+           calculatorName="Statistical Results"
         />
       )}
     </div>

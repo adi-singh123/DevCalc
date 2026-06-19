@@ -226,6 +226,7 @@ export default function CGPACalculator() {
         <ResultsSection
           title="CGPA Results"
           results={results}
+           calculatorName="CGPA Results"
         />
       )}
     </div>

@@ -1,3 +1,5 @@
+import ResultShare from "./ResultShare";
+
 type ResultItem = {
   label: string;
   value: string | number;
@@ -7,19 +9,17 @@ type ResultItem = {
 type ResultsSectionProps = {
   title: string;
   results: ResultItem[];
+  calculatorName?: string;
 };
 
 export default function ResultsSection({
   title,
   results,
+  calculatorName,
 }: ResultsSectionProps) {
-  const mainResult = results.find(
-    (item) => item.highlight
-  );
+  const mainResult = results.find((item) => item.highlight);
 
-  const secondaryResults = results.filter(
-    (item) => !item.highlight
-  );
+  const secondaryResults = results.filter((item) => !item.highlight);
 
   return (
     <section className="mt-12">
@@ -96,6 +96,16 @@ export default function ResultsSection({
             </div>
           ))}
         </div>
+      )}
+
+      {calculatorName && (
+        <ResultShare
+          calculatorName={calculatorName}
+          results={results.map((item) => ({
+            label: item.label,
+            value: item.value,
+          }))}
+        />
       )}
     </section>
   );

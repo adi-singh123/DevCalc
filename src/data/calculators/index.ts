@@ -65,6 +65,10 @@ import { businessDaysCalculator } from "./businessDaysCalculator";
 import { sukanyaSamriddhiCalculator } from "./sukanyaSamriddhiCalculator";
 import { npsCalculator } from "./npsCalculator";
 import { gratuityCalculator } from "./gratuityCalculator";
+import { loveCalculator } from "./loveCalculator";
+import { friendshipCalculator } from "./friendshipCalculator";
+import { crushCalculator } from "./crush";
+import { luckyNumberCalculator } from "./lucky";
 
 export const calculators = [
   ageCalculator,
@@ -134,4 +138,8 @@ export const calculators = [
   sukanyaSamriddhiCalculator,
   npsCalculator,
   gratuityCalculator,
+  loveCalculator,
+  friendshipCalculator,
+  crushCalculator,
+  luckyNumberCalculator,
 ];

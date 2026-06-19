@@ -267,6 +267,8 @@ export default function SWPCalculator() {
         <ResultsSection
           title="SWP Results"
           results={results}
+            calculatorName="SWP Results"
+
         />
       )}
     </div>

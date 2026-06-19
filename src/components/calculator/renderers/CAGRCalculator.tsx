@@ -191,6 +191,7 @@ export default function CAGRCalculator() {
         <ResultsSection
           title="CAGR Results"
           results={results}
+          calculatorName="CAGR Results"
         />
       )}
     </div>

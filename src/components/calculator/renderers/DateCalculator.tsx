@@ -156,6 +156,7 @@ export default function DateCalculator() {
         <ResultsSection
           title="Date Difference Results"
           results={results}
+          calculatorName="Date Difference Results"
         />
       )}
     </div>

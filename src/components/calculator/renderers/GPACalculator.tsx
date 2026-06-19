@@ -295,6 +295,7 @@ export default function GPACalculator() {
           results={
             results
           }
+           calculatorName="GPA Results"
         />
       )}
     </div>

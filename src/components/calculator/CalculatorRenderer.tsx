@@ -65,6 +65,10 @@ import BusinessDaysCalculator from "./renderers/BusinessDaysCalculator";
 import SukanyaSamriddhiCalculator from "./renderers/SukanyaSamriddhiCalculator";
 import NPSCalculator from "./renderers/NPSCalculator";
 import GratuityCalculator from "./renderers/Gratuity";
+import LoveCalculator from "./renderers/LoveCalculator";
+import FriendshipCalculator from "./renderers/FriendshipCalculator";
+import CrushCalculator from "./renderers/CrushCalculator";
+import LuckyNumberCalculator from "./renderers/LuckyNumberCalculator";
 type Props = {
   slug: string;
 };
@@ -204,7 +208,15 @@ export default function CalculatorRenderer({ slug }: Props) {
     case "nps-calculator":
       return <NPSCalculator/>;
     case  "gratuity-calculator":
-      return <GratuityCalculator/>
+      return <GratuityCalculator/>;
+    case "love-calculator":
+      return <LoveCalculator/>;
+    case "friendship-calculator":
+      return <FriendshipCalculator/>;
+    case "crush-calculator":
+      return <CrushCalculator/>;
+    case "lucky-number-calculator":
+      return <LuckyNumberCalculator/>;
     
 
 

@@ -148,6 +148,7 @@ export default function GSTCalculator() {
         <ResultsSection
           title="GST Results"
           results={results}
+            calculatorName="GST Results"
         />
       )}
     </div>

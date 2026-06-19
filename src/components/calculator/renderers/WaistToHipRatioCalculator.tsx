@@ -274,6 +274,7 @@ export default function WaistToHipRatioCalculator() {
         <ResultsSection
           title="Waist-to-Hip Ratio Results"
           results={results}
+           calculatorName="Waist-to-Hip Ratio Results"
         />
       )}
     </div>

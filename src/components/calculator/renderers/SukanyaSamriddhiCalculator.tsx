@@ -234,6 +234,7 @@ export default function SukanyaSamriddhiCalculator() {
         <ResultsSection
           title="SSY Results"
           results={results}
+           calculatorName="SSY Results"
         />
       )}
     </div>

@@ -229,6 +229,7 @@ export default function DistanceCalculator() {
         <ResultsSection
           title="Distance Results"
           results={results}
+           calculatorName="Distance Results"
         />
       )}
     </div>

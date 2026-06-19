@@ -317,6 +317,7 @@ export default function HeartRateZoneCalculator() {
         <ResultsSection
           title="Heart Rate Zone Results"
           results={results}
+           calculatorName="Heart Rate Zone Results"
         />
       )}
     </div>

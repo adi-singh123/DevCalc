@@ -269,6 +269,7 @@ export default function MarksRequiredCalculator() {
         <ResultsSection
           title="Marks Analysis"
           results={results}
+            calculatorName="Marks Analysis"
         />
       )}
     </div>

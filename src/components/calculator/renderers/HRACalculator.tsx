@@ -291,6 +291,7 @@ export default function HRACalculator() {
           results={
             results
           }
+            calculatorName="HRA Results"
         />
       )}
     </div>

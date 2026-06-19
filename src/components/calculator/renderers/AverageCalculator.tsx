@@ -137,6 +137,7 @@ export default function AverageCalculator() {
         <ResultsSection
           title="Average Results"
           results={results}
+          calculatorName="Average Results"
         />
       )}
     </div>

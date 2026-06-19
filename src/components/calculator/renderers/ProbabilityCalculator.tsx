@@ -205,6 +205,7 @@ export default function ProbabilityCalculator() {
         <ResultsSection
           title="Probability Results"
           results={results}
+           calculatorName="Probability Results"
         />
       )}
     </div>

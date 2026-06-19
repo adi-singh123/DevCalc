@@ -42,6 +42,8 @@ export default function CalculatorSchema({
       "UtilitiesApplication",
     Math:
       "EducationalApplication",
+      Fun:
+    "GameApplication",
   };
 
   const schema = {

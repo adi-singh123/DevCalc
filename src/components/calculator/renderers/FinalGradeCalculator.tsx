@@ -273,6 +273,7 @@ export default function FinalGradeCalculator() {
         <ResultsSection
           title="Final Grade Results"
           results={results}
+          calculatorName="Final Grade Results"
         />
       )}
     </div>

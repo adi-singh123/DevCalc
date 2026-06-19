@@ -193,6 +193,7 @@ export default function BusinessDaysCalculator() {
         <ResultsSection
           title="Business Day Results"
           results={results}
+          calculatorName="Business Day Results"
         />
       )}
     </div>

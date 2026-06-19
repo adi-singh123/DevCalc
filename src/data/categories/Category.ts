@@ -19,4 +19,8 @@ export const categories = [
     name: "Education",
     slug: "education",
   },
+  {
+    name:"Fun",
+    slug:"fun",
+  },
 ];

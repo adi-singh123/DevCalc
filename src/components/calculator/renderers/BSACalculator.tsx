@@ -126,6 +126,7 @@ export default function BSACalculator() {
         <ResultsSection
           title="BSA Results"
           results={results}
+          calculatorName="BSA Results"
         />
       )}
     </div>

@@ -268,6 +268,7 @@ export default function WaterIntakeCalculator() {
         <ResultsSection
           title="Water Intake Results"
           results={results}
+           calculatorName="Water Intake Results"
         />
       )}
     </div>

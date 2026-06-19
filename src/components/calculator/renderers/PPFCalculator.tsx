@@ -217,6 +217,7 @@ export default function PPFCalculator() {
         <ResultsSection
           title="PPF Calculation Results"
           results={results}
+           calculatorName="PPF Calculation Results"
         />
       )}
     </div>

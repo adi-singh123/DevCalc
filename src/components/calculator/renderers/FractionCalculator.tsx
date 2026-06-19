@@ -337,6 +337,7 @@ export default function FractionCalculator() {
         <ResultsSection
           title="Fraction Results"
           results={results}
+          calculatorName="Fraction Results"
         />
       )}
     </div>
