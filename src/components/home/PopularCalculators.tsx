@@ -50,7 +50,7 @@ export default function CalculatorCategories() {
                   </span>
                 </h2>
 
-                <p className="mt-2 max-w-3xl text-sm  text-slate-600 dark:text-slate-400">
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400">
                   {seoDescription}
                 </p>
               </div>
