@@ -69,6 +69,14 @@ import LoveCalculator from "./renderers/LoveCalculator";
 import FriendshipCalculator from "./renderers/FriendshipCalculator";
 import CrushCalculator from "./renderers/CrushCalculator";
 import LuckyNumberCalculator from "./renderers/LuckyNumberCalculator";
+import CementCalculator from "./renderers/HouseConstruction";
+import HouseConstructionCostCalculator from "./renderers/HouseConstruction";
+import BrickCalculator from "./renderers/BrickCalculator";
+import ConcreteCalculator from "./renderers/ConcreateCalculator";
+import JsonFormatter from "./renderers/JsonFormatter";
+import UuidGenerator from "./renderers/UuidGenerator";
+import Base64EncoderDecoder from "./renderers/Base64EncoderDecoder";
+import UrlEncoderDecoder from "./renderers/UrlEncoderDecoder";
 type Props = {
   slug: string;
 };
@@ -217,6 +225,22 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <CrushCalculator/>;
     case "lucky-number-calculator":
       return <LuckyNumberCalculator/>;
+    case "house-construction-cost-calculator":
+      return <HouseConstructionCostCalculator/>
+    case "brick-calculator":
+      return <BrickCalculator/>
+    case "cement-calculator":
+      return <CementCalculator/>
+    case "concrete-calculator":
+      return <ConcreteCalculator/>;
+    case "json-formatter":
+      return <JsonFormatter/>;
+    case "uuid-generator":
+      return <UuidGenerator/>
+    case "base64-encoder-decoder":
+      return <Base64EncoderDecoder/>;
+    case  "url-encoder-decoder":
+      return <UrlEncoderDecoder/>;
     
 
 

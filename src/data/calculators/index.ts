@@ -69,6 +69,14 @@ import { loveCalculator } from "./loveCalculator";
 import { friendshipCalculator } from "./friendshipCalculator";
 import { crushCalculator } from "./crush";
 import { luckyNumberCalculator } from "./lucky";
+import { houseConstructionCostCalculator } from "./houseConstructionCost";
+import { brickCalculator } from "./brickCalculator";
+import { cementCalculator } from "./cementCalculator";
+import { concreteCalculator } from "./concreteCalculator";
+import { jsonFormatter } from "./jsonFormatter";
+import { uuidGenerator } from "./uuid-generator";
+import { base64EncoderDecoder } from "./base64-encoder-decoder";
+import { urlEncoderDecoder } from "./url-encoder-decoder";
 
 export const calculators = [
   ageCalculator,
@@ -142,4 +150,12 @@ export const calculators = [
   friendshipCalculator,
   crushCalculator,
   luckyNumberCalculator,
+  houseConstructionCostCalculator,
+  brickCalculator,
+  cementCalculator,
+  concreteCalculator,
+  jsonFormatter,
+  uuidGenerator,
+  base64EncoderDecoder,
+  urlEncoderDecoder,
 ];

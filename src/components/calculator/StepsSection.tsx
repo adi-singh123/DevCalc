@@ -8,6 +8,7 @@ import {
   Target,
   BookOpen,
   List,
+  MapPin,
 } from "lucide-react";
 
 type Step = {
@@ -32,6 +33,7 @@ const icons = {
   target: Target,
   book: BookOpen,
   list: List,
+  location: MapPin,
 };
 
 export default function StepsSection({
