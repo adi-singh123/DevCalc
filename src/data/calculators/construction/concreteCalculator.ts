@@ -40,6 +40,96 @@ keywords: [
   "concrete estimation calculator",
   "concrete calculator india",
   "concrete cost calculator",
+
+  // Quantity & Volume
+  "concrete requirement calculator",
+  "concrete consumption calculator",
+  "concrete volume estimator",
+  "concrete cubic meter calculator",
+  "concrete cubic yard calculator",
+  "concrete quantity estimator",
+  "concrete volume formula",
+  "concrete quantity per cubic meter",
+  "concrete quantity per square foot",
+  "concrete quantity per square meter",
+
+  // Slab, Beam, Column & Foundation
+  "concrete calculator for slab",
+  "concrete calculator for foundation",
+  "concrete calculator for footing",
+  "concrete calculator for beam",
+  "concrete calculator for column",
+  "concrete calculator for floor",
+  "concrete calculator for driveway",
+  "concrete calculator for patio",
+  "concrete calculator for staircase",
+  "concrete calculator for roof slab",
+
+  // Mix Ratio Keywords
+  "m10 concrete calculator",
+  "m15 concrete calculator",
+  "m20 concrete calculator",
+  "m25 concrete calculator",
+  "m30 concrete calculator",
+  "rcc concrete calculator",
+  "pcc concrete calculator",
+  "1 2 4 concrete calculator",
+  "1 1.5 3 concrete calculator",
+  "concrete mix ratio calculator",
+  "cement sand aggregate ratio calculator",
+
+  // Ready Mix Concrete
+  "rmc calculator",
+  "ready mix concrete quantity calculator",
+  "ready mix concrete cost calculator",
+  "ready mix concrete estimator",
+  "ready mix concrete volume calculator",
+
+  // Material Estimation
+  "cement sand aggregate calculator",
+  "concrete materials calculator",
+  "building material calculator",
+  "construction material estimator",
+  "concrete material quantity calculator",
+  "cement quantity for concrete",
+  "sand quantity for concrete",
+  "aggregate quantity for concrete",
+
+  // Cost Keywords
+  "concrete price calculator",
+  "concrete cost estimator",
+  "concrete cost per cubic meter",
+  "concrete cost per square foot",
+  "construction concrete cost calculator",
+
+  // India Specific
+  "concrete calculator in feet",
+  "concrete calculator in meters",
+  "concrete calculator india",
+  "rcc calculator india",
+  "construction concrete calculator india",
+  "concrete estimation for house construction",
+
+  // House Construction
+  "house construction concrete calculator",
+  "concrete requirement for house",
+  "concrete quantity for house construction",
+  "civil engineering concrete calculator",
+  "concrete estimator for building construction",
+
+  // Question Keywords
+  "how to calculate concrete quantity",
+  "how much concrete do i need",
+  "how many bags of cement for concrete",
+  "how to calculate concrete volume",
+  "how much concrete for a slab",
+  "how much concrete for a foundation",
+  "how much concrete for a driveway",
+  "how much concrete for a column",
+  "how much concrete for a beam",
+  "how much concrete for a footing",
+  "concrete calculation formula",
+  "how to estimate concrete for construction",
 ],
 
 

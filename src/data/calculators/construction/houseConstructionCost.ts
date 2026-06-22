@@ -42,6 +42,98 @@ keywords: [
   "house construction calculator india",
   "building construction calculator",
   "construction budget planner",
+
+  // Cost Estimation
+  "house cost calculator",
+  "building cost estimator",
+  "construction budget calculator",
+  "house building cost estimator",
+  "home construction cost estimator",
+  "building material cost calculator",
+  "construction project cost calculator",
+  "construction expense calculator",
+  "construction pricing calculator",
+  "building budget calculator",
+
+  // Per Sq Ft Keywords
+  "construction cost per square foot",
+  "house construction cost per sq ft india",
+  "building cost per sq ft",
+  "home construction cost per square foot",
+  "residential construction cost per sq ft",
+  "house construction rate per sq ft",
+  "building construction cost per square foot",
+  "cost to build a house per sq ft",
+
+  // House Size Keywords
+  "1000 sq ft house construction cost",
+  "1200 sq ft house construction cost",
+  "1500 sq ft house construction cost",
+  "2000 sq ft house construction cost",
+  "2500 sq ft house construction cost",
+  "3000 sq ft house construction cost",
+  "small house construction cost calculator",
+  "duplex house construction cost calculator",
+
+  // India Specific
+  "house construction cost calculator india",
+  "building construction cost calculator india",
+  "indian house construction calculator",
+  "civil construction cost calculator india",
+  "home building cost calculator india",
+  "house estimate calculator india",
+  "cost of building a house in india",
+  "construction cost india per square foot",
+  "house construction budget india",
+
+  // Material Cost Keywords
+  "construction material calculator",
+  "building materials cost calculator",
+  "cement brick sand cost calculator",
+  "house material cost calculator",
+  "construction quantity estimator",
+  "house construction materials calculator",
+  "building materials estimator",
+
+  // Residential Construction
+  "residential building cost calculator",
+  "single floor house construction cost",
+  "double floor house construction cost",
+  "home building estimate calculator",
+  "residential construction estimator",
+  "new home construction calculator",
+
+  // Contractor & Planning Keywords
+  "construction planning calculator",
+  "construction budget planner",
+  "building project cost estimator",
+  "house construction planning tool",
+  "construction finance calculator",
+  "house construction investment calculator",
+
+  // Question Keywords
+  "how much does it cost to build a house",
+  "how to calculate house construction cost",
+  "how much does a 1000 sq ft house cost",
+  "how much does a 1500 sq ft house cost",
+  "how much does a 2000 sq ft house cost",
+  "what is the construction cost per square foot",
+  "how to estimate building construction cost",
+  "how much money is needed to build a house",
+  "how to calculate building cost",
+  "what is the cost of building a house in india",
+  "house construction cost formula",
+  "building cost estimation formula",
+
+  // Long-Tail Keywords
+  "house construction cost calculator with materials",
+  "house construction cost calculator with labor",
+  "complete house construction cost calculator",
+  "house construction estimate with material breakdown",
+  "online house construction cost calculator",
+  "accurate building cost calculator",
+  "construction cost calculator with gst",
+  "building estimate calculator india",
 ],
 
 

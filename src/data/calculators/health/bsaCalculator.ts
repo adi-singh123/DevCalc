@@ -19,15 +19,137 @@ export const bsaCalculator: Calculator = {
     description:
       " Body Surface Area Calculator to calculate BSA using height and weight. Supports Mosteller formula and medical dosage calculations.",
 
-    keywords: [
-      "bsa calculator",
-      "body surface area calculator",
-      "mosteller formula calculator",
-      "medical dosage calculator",
-      "body surface area formula",
-      "calculate bsa",
-      "bsa medical calculator"
-    ]
+keywords: [
+  "bsa calculator",
+  "body surface area calculator",
+  "mosteller formula calculator",
+  "medical dosage calculator",
+  "body surface area formula",
+  "calculate bsa",
+  "bsa medical calculator",
+
+  // Core Keywords
+  "body surface area",
+  "bsa formula calculator",
+  "body area calculator",
+  "body surface estimator",
+  "bsa measurement calculator",
+  "human body surface area calculator",
+  "body surface calculator online",
+  "body area estimation calculator",
+  "bsa assessment calculator",
+  "body size calculator",
+
+  // Formula Keywords
+  "mosteller formula calculator",
+  "mosteller bsa calculator",
+  "dubois formula calculator",
+  "dubois bsa calculator",
+  "haycock formula calculator",
+  "gehan george formula calculator",
+  "boyd formula calculator",
+  "body surface area equation",
+  "bsa calculation formula",
+  "body surface area method",
+
+  // Medical Keywords
+  "medical bsa calculator",
+  "clinical bsa calculator",
+  "doctor bsa calculator",
+  "patient bsa calculator",
+  "hospital dosage calculator",
+  "medical body surface area calculator",
+  "healthcare bsa calculator",
+  "pharmacy dosage calculator",
+  "oncology dosage calculator",
+  "chemotherapy dosage calculator",
+
+  // Dosage Keywords
+  "drug dosage calculator",
+  "medicine dosage calculator",
+  "bsa dosage calculator",
+  "chemotherapy dose calculator",
+  "pediatric dosage calculator",
+  "adult dosage calculator",
+  "medication dose calculator",
+  "clinical dosage calculator",
+  "drug dosing calculator",
+  "prescription dosage calculator",
+
+  // Height & Weight Keywords
+  "bsa calculator height and weight",
+  "body surface area by height and weight",
+  "height weight bsa calculator",
+  "bsa from weight calculator",
+  "bsa from height calculator",
+  "body surface area estimator",
+  "weight and height calculator medical",
+  "bsa chart calculator",
+  "bsa range calculator",
+  "body size estimation calculator",
+
+  // Health Keywords
+  "health calculator",
+  "medical health calculator",
+  "body measurement calculator",
+  "body metrics calculator",
+  "health assessment calculator",
+  "body composition calculator",
+  "patient assessment calculator",
+  "clinical measurement calculator",
+  "healthcare calculator",
+  "medical formula calculator",
+
+  // Pediatric Keywords
+  "pediatric bsa calculator",
+  "child body surface area calculator",
+  "kids dosage calculator",
+  "child dosage calculator",
+  "pediatric dosing calculator",
+  "infant dosage calculator",
+  "child medical calculator",
+  "pediatric formula calculator",
+  "children bsa calculator",
+  "pediatric healthcare calculator",
+
+  // Question Keywords
+  "what is body surface area",
+  "how to calculate bsa",
+  "what is the mosteller formula",
+  "how does bsa calculator work",
+  "how to calculate body surface area",
+  "what is normal body surface area",
+  "why is bsa used in medicine",
+  "how is chemotherapy dosage calculated",
+  "body surface area calculator example",
+  "medical dosage calculator formula",
+
+  // Hindi Keywords
+  "bsa calculator hindi",
+  "body surface area calculator hindi",
+  "medical dosage calculator hindi",
+  "body surface area formula hindi",
+  "बीएसए कैलकुलेटर",
+  "बॉडी सरफेस एरिया कैलकुलेटर",
+  "शरीर सतह क्षेत्रफल कैलकुलेटर",
+  "मेडिकल डोज कैलकुलेटर",
+  "दवा की मात्रा कैलकुलेटर",
+  "मोस्टेलर फॉर्मूला कैलकुलेटर",
+  "बीएसए कैसे निकालें",
+  "बॉडी सरफेस एरिया फॉर्मूला",
+
+  // Long Tail Keywords
+  "free online bsa calculator",
+  "best body surface area calculator",
+  "accurate bsa calculator",
+  "medical dosage calculator based on bsa",
+  "body surface area calculator for adults",
+  "body surface area calculator for children",
+  "mosteller body surface area calculator",
+  "clinical bsa calculator online",
+  "advanced body surface area calculator",
+  "body surface area and dosage calculator",
+]
   },
 
   steps: [
