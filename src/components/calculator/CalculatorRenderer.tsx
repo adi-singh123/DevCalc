@@ -77,6 +77,10 @@ import JsonFormatter from "./renderers/JsonFormatter";
 import UuidGenerator from "./renderers/UuidGenerator";
 import Base64EncoderDecoder from "./renderers/Base64EncoderDecoder";
 import UrlEncoderDecoder from "./renderers/UrlEncoderDecoder";
+import JwtDecoder from "./renderers/JwtDecoder";
+import HashGenerator from "./renderers/HashGenerator";
+import UnixTimestampConverter from "./renderers/UnixTimestampConverter";
+import RegexTester from "./renderers/RegexTester";
 type Props = {
   slug: string;
 };
@@ -241,6 +245,14 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <Base64EncoderDecoder/>;
     case  "url-encoder-decoder":
       return <UrlEncoderDecoder/>;
+    case "jwt-decoder":
+      return <JwtDecoder/>;
+    case "hash-generator":
+      return <HashGenerator/>
+    case  "unix-timestamp-converter":
+      return <UnixTimestampConverter/>;
+    case  "regex-tester":
+      return <RegexTester/>
     
 
 

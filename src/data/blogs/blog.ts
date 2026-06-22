@@ -15,6 +15,10 @@ import { howToCalculateBusinessDaysBetweenDatesBlog } from "./how-to-calculate-b
 import { carMileageCalculatorGuideBlog } from "./car-mileage-calculator-guide";
 import { petrolVsDieselRunningCostBlog } from "./petrol-vs-diesel-running-cost";
 import { timeDurationCalculatorGuideBlog } from "./time-duration-calculator";
+import { ppfVsFdVsSip } from "./ppf-vs-fd-vs-sip";
+import { sipVsLumpsumInvestment } from "./sip-vs-lumpsum-investment";
+import { oldTaxRegimeVsNewTaxRegime } from "./old-tax-regime-vs-new-tax-regime";
+import { mutualFundVsEtf } from "./mutual-fund-vs-etf";
 
 
 
@@ -37,4 +41,8 @@ export const blogs = [
   carMileageCalculatorGuideBlog,
   petrolVsDieselRunningCostBlog,
   timeDurationCalculatorGuideBlog,
+  ppfVsFdVsSip,
+  sipVsLumpsumInvestment,
+  oldTaxRegimeVsNewTaxRegime,
+  mutualFundVsEtf,
 ];

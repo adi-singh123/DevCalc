@@ -4,6 +4,8 @@ import { siteConfig } from "@/src/config/site";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import OrganizationSchema from "@/src/components/seo/OrganizationSchema";
+import ChatWidget from "@/src/components/chatbot/ChatWidget";
+import AssistantSchema from "@/src/components/seo/AssistantSchema";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -28,24 +30,102 @@ export const metadata: Metadata = {
 
   description: siteConfig.description,
 
-  keywords: [
-    "calculator",
-    "online calculator",
-    "SIP calculator",
-    "EMI calculator",
-    "BMI calculator",
-    "Mileage calculator",
-    "age calculator",
-    "calorie calculator",
-    "loan calculator",
-    "tax calculator",
-    "currency converter",
-    "unit converter",
-    "percentage calculator",
-    "time zone converter",
-    "date calculator",
-    "math calculator",
-  ],
+ keywords: [
+  // General
+  "calculator",
+  "online calculator",
+  "free calculator",
+  "calculator website",
+  "online tools",
+  "free online tools",
+
+  // Finance
+  "SIP calculator",
+  "EMI calculator",
+  "FD calculator",
+  "PPF calculator",
+  "NPS calculator",
+  "GST calculator",
+  "income tax calculator",
+  "compound interest calculator",
+  "simple interest calculator",
+  "retirement calculator",
+  "loan calculator",
+  "investment calculator",
+  "financial calculator",
+
+  // Health
+  "BMI calculator",
+  "BMR calculator",
+  "calorie calculator",
+  "body fat calculator",
+  "water intake calculator",
+  "ideal body weight calculator",
+  "protein intake calculator",
+  "health calculator",
+
+  // Math
+  "percentage calculator",
+  "scientific calculator",
+  "fraction calculator",
+  "matrix calculator",
+  "probability calculator",
+  "quadratic equation calculator",
+  "standard deviation calculator",
+  "math calculator",
+
+  // Education
+  "GPA calculator",
+  "CGPA calculator",
+  "attendance calculator",
+  "study hours calculator",
+  "marks calculator",
+  "education calculator",
+
+  // Utility
+  "age calculator",
+  "date calculator",
+  "time duration calculator",
+  "unit converter",
+  "business days calculator",
+  "password generator",
+  "QR code generator",
+  "random number generator",
+  "utility calculator",
+
+  // Vehicle
+  "mileage calculator",
+  "fuel cost calculator",
+  "vehicle calculator",
+
+  // Construction
+  "house construction cost calculator",
+  "cement calculator",
+  "brick calculator",
+  "concrete calculator",
+  "construction calculator",
+
+  // Developer Tools
+  "JSON formatter",
+  "UUID generator",
+  "Base64 encoder",
+  "Base64 decoder",
+  "URL encoder",
+  "URL decoder",
+  "developer tools",
+  "developer calculator",
+
+  // Fun
+  "love calculator",
+  "friendship calculator",
+  "lucky number calculator",
+  "fun calculator",
+
+  // Branding
+  "DevCalc",
+  "DevCalc calculators",
+  "DevCalc online tools",
+],
 
   robots: {
     index: true,
@@ -87,11 +167,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="flex min-h-screen flex-col">
         <OrganizationSchema />
+        <AssistantSchema />
         <Header />
-
         <main className="flex-1">{children}</main>
-
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   );
