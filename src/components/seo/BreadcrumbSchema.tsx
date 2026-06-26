@@ -1,45 +1,36 @@
-// src/components/seo/BreadcrumbSchema.tsx
+type BreadcrumbItem = {
+  name: string;
+  url?: string;
+};
 
 type Props = {
-  category: string;
-  name: string;
-  slug: string;
+  items: BreadcrumbItem[];
 };
 
 export default function BreadcrumbSchema({
-  category,
-  name,
-  slug,
+  items,
 }: Props) {
   const schema = {
     "@context":
       "https://schema.org",
     "@type":
       "BreadcrumbList",
-    itemListElement: [
-      {
+
+    itemListElement: items.map(
+      (item, index) => ({
         "@type":
           "ListItem",
-        position: 1,
-        name: "Home",
-        item:
-          "https://www.devcalc.in",
-      },
-      {
-        "@type":
-          "ListItem",
-        position: 2,
-        name: category,
-        item: `https://www.devcalc.in/category/${category.toLowerCase()}`,
-      },
-      {
-        "@type":
-          "ListItem",
-        position: 3,
-        name,
-        item: `https://www.devcalc.in/${slug}`,
-      },
-    ],
+
+        position:
+          index + 1,
+
+        name: item.name,
+
+        ...(item.url && {
+          item: `https://www.devcalc.in${item.url}`,
+        }),
+      }),
+    ),
   };
 
   return (

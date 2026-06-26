@@ -9,28 +9,23 @@ export default function DateCalculator() {
   const [submitted, setSubmitted] = useState(false);
 
   const dateDifference = useMemo(() => {
-    if (
-      !submitted ||
-      !startDate ||
-      !endDate
-    ) {
+    if (!submitted || !startDate || !endDate) {
       return null;
     }
 
     const start = new Date(startDate);
     const end = new Date(endDate);
 
-    const diff =
-      Math.abs(end.getTime() - start.getTime());
+    const diff = Math.abs(
+      end.getTime() - start.getTime()
+    );
 
     const days = Math.floor(
       diff / (1000 * 60 * 60 * 24)
     );
 
     const weeks = Math.floor(days / 7);
-
     const months = Math.floor(days / 30.44);
-
     const years = Math.floor(days / 365.25);
 
     const hours = Math.floor(
@@ -82,15 +77,13 @@ export default function DateCalculator() {
     : [];
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
-   
-
-      <p className="mt-2 text-slate-600">
+    <div className="mt-8 rounded-2xl border bg-white p-4 shadow-sm sm:p-6 lg:p-8">
+      <p className="text-sm text-slate-600 sm:text-base">
         Calculate the exact difference between two dates.
       </p>
 
       <div className="mt-6">
-        <label className="mb-2 block font-medium">
+        <label className="mb-2 block text-sm font-medium sm:text-base">
           Start Date
         </label>
 
@@ -100,12 +93,12 @@ export default function DateCalculator() {
           onChange={(e) =>
             setStartDate(e.target.value)
           }
-          className="w-full rounded-xl border p-3"
+          className="w-full rounded-xl border border-slate-300 p-3 text-sm outline-none transition focus:border-black sm:text-base"
         />
       </div>
 
       <div className="mt-4">
-        <label className="mb-2 block font-medium">
+        <label className="mb-2 block text-sm font-medium sm:text-base">
           End Date
         </label>
 
@@ -115,14 +108,14 @@ export default function DateCalculator() {
           onChange={(e) =>
             setEndDate(e.target.value)
           }
-          className="w-full rounded-xl border p-3"
+          className="w-full rounded-xl border border-slate-300 p-3 text-sm outline-none transition focus:border-black sm:text-base"
         />
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-4">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           onClick={() => setSubmitted(true)}
-          className="cursor-pointer rounded-xl bg-black px-6 py-3 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          className="w-full cursor-pointer rounded-xl bg-black px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg sm:w-auto sm:text-base"
         >
           Calculate Difference
         </button>
@@ -133,21 +126,23 @@ export default function DateCalculator() {
             setEndDate("");
             setSubmitted(false);
           }}
-          className="cursor-pointer rounded-xl border px-6 py-3 transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-lg"
+          className="w-full cursor-pointer rounded-xl border px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.02] hover:bg-gray-100 hover:shadow-lg sm:w-auto sm:text-base"
         >
           Reset
         </button>
       </div>
 
       {dateDifference && (
-        <div className="mt-8 rounded-2xl border bg-blue-50 p-6 text-center">
-          <h3 className="text-xl font-semibold">
+        <div className="mt-8 rounded-2xl border bg-blue-50 p-4 text-center sm:p-6">
+          <h3 className="text-lg font-semibold sm:text-xl">
             Difference Between Dates
           </h3>
 
-          <p className="mt-2 text-slate-600">
-            Total Difference:{" "}
-            {dateDifference.days} Days
+          <p className="mt-2 text-sm text-slate-600 sm:text-base">
+            Total Difference:
+            <span className="ml-1 font-semibold">
+              {dateDifference.days} Days
+            </span>
           </p>
         </div>
       )}

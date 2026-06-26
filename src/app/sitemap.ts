@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { calculators } from "@/src/data/calculators";
 import { categories } from "@/src/data/categories/Category";
 import { blogs } from "@/src/data/blogs/blog";
+import { interviewTopics } from "@/src/data/interview";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.devcalc.in";
@@ -32,6 +33,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }),
   );
+
+  const interviewBaseUrls = interviewTopics.flatMap((topic) => {
+    const stages = ['beginner', 'intermediate', 'advanced', 'mnc'];
+    return [
+      { url: `${baseUrl}/interview-questions/${topic.slug}`, priority: 0.7 },
+      ...stages.map(stage => ({ 
+        url: `${baseUrl}/interview-questions/${topic.slug}/${stage}`, 
+        priority: 0.6 
+      }))
+    ];
+  });
 
   return [
     {
@@ -86,5 +98,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...categoryUrls,
     ...calculatorUrls,
     ...blogUrls,
+    ...interviewBaseUrls.map(item => ({
+      ...item,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+    }))
   ];
 }

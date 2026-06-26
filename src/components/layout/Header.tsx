@@ -2,38 +2,79 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+
+type NavLink =
+  | { label: string; href: string; children?: never }
+  | { label: string; href?: never; children: { label: string; href: string }[] };
+
+const NAV_LINKS: NavLink[] = [
+  { label: "Home", href: "/" },
+  { label: "Calculators", href: "/calculators" },
+  {
+    label: "Resources",
+    children: [
+      { label: "Interview Questions", href: "/interview-questions" },
+      { label: "Blog", href: "/blog" },
+    ],
+  },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [resourceOpen, setResourceOpen] = useState(false);
+  const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const navLinks = [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Calculators",
-      href: "/calculators",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "Contact",
-      href: "/contact",
-    },
-  ];
+  // Lock body scroll while the mobile drawer is open (DOM sync only — no setState here)
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // Close mobile drawer + its submenu together, called from event handlers (not an effect)
+  function closeDrawer() {
+    setIsOpen(false);
+    setResourceOpen(false);
+  }
+
+  // Close mobile drawer / desktop dropdown on Escape
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        closeDrawer();
+        setDesktopDropdownOpen(false);
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Close desktop dropdown when clicking outside it
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setDesktopDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center" aria-label="DevCalc home">
             <Image
               src="/logo.png"
               alt="DevCalc Logo"
@@ -46,16 +87,55 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <div className="hidden items-center gap-4 md:flex">
-            <nav>
+            <nav aria-label="Primary">
               <ul className="flex items-center gap-8">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="font-medium text-slate-700 transition hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-400"
-                    >
-                      {link.label}
-                    </Link>
+                {NAV_LINKS.map((link) => (
+                  <li key={link.label} className="relative">
+                    {link.children ? (
+                      <div ref={dropdownRef}>
+                        <button
+                          type="button"
+                          onClick={() => setDesktopDropdownOpen((prev) => !prev)}
+                          aria-expanded={desktopDropdownOpen}
+                          aria-haspopup="true"
+                          className="flex items-center gap-1 font-medium text-slate-700 transition hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-400"
+                        >
+                          {link.label}
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform ${
+                              desktopDropdownOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+
+                        {desktopDropdownOpen && (
+                          <div
+                            role="menu"
+                            className="absolute left-0 top-full z-50 mt-2 w-60 rounded-xl border border-slate-200 bg-white p-2 shadow-lg dark:border-slate-700 dark:bg-slate-900"
+                          >
+                            {link.children.map((child) => (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                role="menuitem"
+                                onClick={() => setDesktopDropdownOpen(false)}
+                                className="block rounded-lg px-4 py-3 text-sm text-slate-700 transition hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="font-medium text-slate-700 transition hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-400"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -64,13 +144,15 @@ export default function Header() {
             <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Trigger */}
           <div className="flex items-center gap-3 md:hidden">
             <ThemeToggle />
 
             <button
+              type="button"
               onClick={() => setIsOpen(true)}
-              aria-label="Open Menu"
+              aria-label="Open menu"
+              aria-expanded={isOpen}
               className="text-slate-900 dark:text-white"
             >
               <Menu size={28} />
@@ -81,14 +163,25 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="fixed inset-0 z-100 bg-black/50 md:hidden">
-          <div className="absolute right-0 top-0 h-full w-80 bg-white shadow-xl dark:bg-slate-900">
-            {/* Drawer Header */}
+        <div
+          className="fixed inset-0 z-[100] bg-black/50 md:hidden"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeDrawer();
+          }}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
+            className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-xl dark:bg-slate-900"
+          >
+            {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-200 p-5 dark:border-slate-700">
               <Link
                 href="/"
-                onClick={() => setIsOpen(false)}
+                onClick={closeDrawer}
                 className="flex items-center"
+                aria-label="DevCalc home"
               >
                 <Image
                   src="/logo.png"
@@ -100,8 +193,9 @@ export default function Header() {
               </Link>
 
               <button
-                onClick={() => setIsOpen(false)}
-                aria-label="Close Menu"
+                type="button"
+                onClick={closeDrawer}
+                aria-label="Close menu"
                 className="text-slate-900 dark:text-white"
               >
                 <X size={24} />
@@ -109,36 +203,59 @@ export default function Header() {
             </div>
 
             {/* Navigation */}
-            <nav className="p-5">
+            <nav className="p-5" aria-label="Mobile primary">
               <ul className="space-y-5">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className="block text-lg font-medium text-slate-700 dark:text-slate-200"
-                    >
-                      {link.label}
-                    </Link>
+                {NAV_LINKS.map((link) => (
+                  <li key={link.label}>
+                    {link.children ? (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => setResourceOpen((prev) => !prev)}
+                          aria-expanded={resourceOpen}
+                          className="flex w-full items-center justify-between text-lg font-medium text-slate-700 dark:text-slate-200"
+                        >
+                          {link.label}
+                          <ChevronDown
+                            size={18}
+                            className={`transition-transform ${
+                              resourceOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+
+                        {resourceOpen && (
+                          <div className="mt-3 ml-4 space-y-3">
+                            {link.children.map((child) => (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                onClick={closeDrawer}
+                                className="block text-slate-600 transition hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        onClick={closeDrawer}
+                        className="block text-lg font-medium text-slate-700 dark:text-slate-200"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
 
               <Link
                 href="/calculators"
-                onClick={() => setIsOpen(false)}
-                className="
-  mt-8
-  block
-  rounded-xl
-  bg-black
-  px-5
-  py-3
-  text-center
-  font-medium
-  text-white
-  dark:bg-blue-600
-"
+                onClick={closeDrawer}
+                className="mt-8 block rounded-xl bg-black px-5 py-3 text-center font-medium text-white transition hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500"
               >
                 Explore Calculators
               </Link>

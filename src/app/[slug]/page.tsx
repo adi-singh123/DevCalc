@@ -74,15 +74,41 @@ return (
   calculator={calculator}
 />
 <BreadcrumbSchema
-  category={calculator.category}
-  name={calculator.name}
-  slug={calculator.slug}
+  items={[
+    {
+      name: "Home",
+      url: "/",
+    },
+    {
+      name: "Calculators",
+      url: "/calculators",
+    },
+    {
+      name: calculator.category,
+      url: `/calculators/category/${calculator.category.toLowerCase()}`,
+    },
+    {
+      name: calculator.name,
+      url: `/${calculator.slug}`,
+    },
+  ]}
 />
 
-    <Breadcrumbs
-      category={calculator.category}
-      currentPage={calculator.name}
-    />
+<Breadcrumbs
+  items={[
+    {
+      label: "Calculators",
+      href: "/calculators",
+    },
+    {
+      label: calculator.category,
+      href: `/calculators/category/${calculator.category.toLowerCase()}`,
+    },
+    {
+      label: calculator.name,
+    },
+  ]}
+/>
 
 <div className="max-w-4xl">
   <h1 className="text-4xl font-bold tracking-tight md:text-6xl">

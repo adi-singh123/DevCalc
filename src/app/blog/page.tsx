@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-
+import Breadcrumb from "@/src/components/seo/Breadcrumb";
+import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import { blogs } from "@/src/data/blogs/blog";
 
 const categories = [
@@ -47,6 +48,26 @@ export default function BlogPage() {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
+        <BreadcrumbSchema
+    items={[
+      {
+        name: "Home",
+        url: "/",
+      },
+      {
+        name: "Blog",
+        url: "/blog",
+      },
+    ]}
+  />
+
+  <Breadcrumb
+    items={[
+      {
+        label: "Blog",
+      },
+    ]}
+  />
       {/* Hero */}
       <section className="mb-12 rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-500 px-8 py-16 text-white">
         <div className="max-w-4xl">

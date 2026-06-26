@@ -6,6 +6,7 @@ import ArticleSchema from "@/src/components/seo/ArticleSchema";
 import { blogs } from "@/src/data/blogs/blog";
 import { calculators } from "@/src/data/calculators";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
+import Breadcrumb from "@/src/components/seo/Breadcrumb";
 
 type Props = {
   params: Promise<{
@@ -100,9 +101,40 @@ export default async function BlogDetailsPage({ params }: Props) {
       />
 
       <BreadcrumbSchema
-        category="Blog"
-        name={blog.title}
-        slug={`blog/${blog.slug}`}
+        items={[
+          {
+            name: "Home",
+            url: "/",
+          },
+          {
+            name: "Blog",
+            url: "/blog",
+          },
+          {
+            name: blog.category,
+            url: `/category/${blog.category.toLowerCase()}`,
+          },
+          {
+            name: blog.title,
+            url: `/blog/${blog.slug}`,
+          },
+        ]}
+      />
+
+      <Breadcrumb
+        items={[
+          {
+            label: "Blog",
+            href: "/blog",
+          },
+          {
+            label: blog.category,
+            href: `/category/${blog.category.toLowerCase()}`,
+          },
+          {
+            label: blog.title,
+          },
+        ]}
       />
 
       <Script
@@ -114,23 +146,6 @@ export default async function BlogDetailsPage({ params }: Props) {
       />
 
       <main className="mx-auto max-w-7xl px-4 py-10">
-        {/* Breadcrumb */}
-        <nav className="mb-6 text-sm text-slate-500">
-          <Link href="/" className="hover:text-blue-600">
-            Home
-          </Link>
-
-          <span className="mx-2">/</span>
-
-          <Link href="/blog" className="hover:text-blue-600">
-            Blog
-          </Link>
-
-          <span className="mx-2">/</span>
-
-          <span>{blog.title}</span>
-        </nav>
-
         <div className="grid gap-10 lg:grid-cols-4">
           {/* Main Content */}
           <article className="lg:col-span-3">
