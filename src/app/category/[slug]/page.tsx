@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { calculators } from "@/src/data/calculators";
 import { categories } from "@/src/data/categories/Category";
+import Breadcrumb from "@/src/components/seo/Breadcrumb";
+import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 
 type Props = {
   params: Promise<{
@@ -83,8 +85,28 @@ export default async function CategoryPage({
       category.name.toLowerCase(),
   );
 
+  const breadcrumbItems = [
+  {
+    label: "Categories",
+  },
+];
+
+const breadcrumbSchema = [
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "Categories",
+    url: "/categories",
+  },
+];
+
   return (
     <main className="mx-auto max-w-7xl px-4 py-12">
+          <BreadcrumbSchema items={breadcrumbSchema} />
+
+    <Breadcrumb items={breadcrumbItems} />
       <section className="max-w-3xl">
         <h1 className="text-4xl font-bold md:text-5xl">
           {category.name} Calculators

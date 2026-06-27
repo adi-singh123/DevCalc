@@ -4,11 +4,14 @@ import { calculators } from "@/src/data/calculators";
 
 const categoryIcons = {
   finance: "💰",
-  health: "🏥",
+  health: "🩺",
   vehicle: "🚗",
   utility: "🛠️",
   education: "🎓",
-  math: "📊",
+  math: "🧮",
+  fun: "🎉",
+  construction: "🏗️",
+  developertool: "👨‍💻",
 };
 
 export default function CalculatorCategories() {

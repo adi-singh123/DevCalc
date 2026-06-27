@@ -6,7 +6,6 @@ import Footer from "@/src/components/layout/Footer";
 import OrganizationSchema from "@/src/components/seo/OrganizationSchema";
 import ChatWidget from "@/src/components/chatbot/ChatWidget";
 import AssistantSchema from "@/src/components/seo/AssistantSchema";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   verification: {
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
 
   authors: [
     {
-      name: "Aditya Singh",
+      name: "Devcalc",
     },
   ],
 
@@ -30,102 +29,112 @@ export const metadata: Metadata = {
 
   description: siteConfig.description,
 
- keywords: [
-  // General
-  "calculator",
-  "online calculator",
-  "free calculator",
-  "calculator website",
-  "online tools",
-  "free online tools",
+  keywords: [
+     //interview
+    "javascript interview question free",
+    "c++ interview question free",
+    "java interview question free",
+    "node.js interview question free",
+    "sql interview question free",
 
-  // Finance
-  "SIP calculator",
-  "EMI calculator",
-  "FD calculator",
-  "PPF calculator",
-  "NPS calculator",
-  "GST calculator",
-  "income tax calculator",
-  "compound interest calculator",
-  "simple interest calculator",
-  "retirement calculator",
-  "loan calculator",
-  "investment calculator",
-  "financial calculator",
 
-  // Health
-  "BMI calculator",
-  "BMR calculator",
-  "calorie calculator",
-  "body fat calculator",
-  "water intake calculator",
-  "ideal body weight calculator",
-  "protein intake calculator",
-  "health calculator",
+    // General
+    "calculator",
+    "online calculator",
+    "free calculator",
+    "calculator website",
+    "online tools",
+    "free online tools",
 
-  // Math
-  "percentage calculator",
-  "scientific calculator",
-  "fraction calculator",
-  "matrix calculator",
-  "probability calculator",
-  "quadratic equation calculator",
-  "standard deviation calculator",
-  "math calculator",
+    // Finance
+    "SIP calculator",
+    "EMI calculator",
+    "FD calculator",
+    "PPF calculator",
+    "NPS calculator",
+    "GST calculator",
+    "income tax calculator",
+    "compound interest calculator",
+    "simple interest calculator",
+    "retirement calculator",
+    "loan calculator",
+    "investment calculator",
+    "financial calculator",
 
-  // Education
-  "GPA calculator",
-  "CGPA calculator",
-  "attendance calculator",
-  "study hours calculator",
-  "marks calculator",
-  "education calculator",
+    // Health
+    "BMI calculator",
+    "BMR calculator",
+    "calorie calculator",
+    "body fat calculator",
+    "water intake calculator",
+    "ideal body weight calculator",
+    "protein intake calculator",
+    "health calculator",
 
-  // Utility
-  "age calculator",
-  "date calculator",
-  "time duration calculator",
-  "unit converter",
-  "business days calculator",
-  "password generator",
-  "QR code generator",
-  "random number generator",
-  "utility calculator",
+    // Math
+    "percentage calculator",
+    "scientific calculator",
+    "fraction calculator",
+    "matrix calculator",
+    "probability calculator",
+    "quadratic equation calculator",
+    "standard deviation calculator",
+    "math calculator",
 
-  // Vehicle
-  "mileage calculator",
-  "fuel cost calculator",
-  "vehicle calculator",
+    // Education
+    "GPA calculator",
+    "CGPA calculator",
+    "attendance calculator",
+    "study hours calculator",
+    "marks calculator",
+    "education calculator",
 
-  // Construction
-  "house construction cost calculator",
-  "cement calculator",
-  "brick calculator",
-  "concrete calculator",
-  "construction calculator",
+    // Utility
+    "age calculator",
+    "date calculator",
+    "time duration calculator",
+    "unit converter",
+    "business days calculator",
+    "password generator",
+    "QR code generator",
+    "random number generator",
+    "utility calculator",
 
-  // Developer Tools
-  "JSON formatter",
-  "UUID generator",
-  "Base64 encoder",
-  "Base64 decoder",
-  "URL encoder",
-  "URL decoder",
-  "developer tools",
-  "developer calculator",
+    // Vehicle
+    "mileage calculator",
+    "fuel cost calculator",
+    "vehicle calculator",
 
-  // Fun
-  "love calculator",
-  "friendship calculator",
-  "lucky number calculator",
-  "fun calculator",
+    // Construction
+    "house construction cost calculator",
+    "cement calculator",
+    "brick calculator",
+    "concrete calculator",
+    "construction calculator",
 
-  // Branding
-  "DevCalc",
-  "DevCalc calculators",
-  "DevCalc online tools",
-],
+    // Developer Tools
+    "JSON formatter",
+    "UUID generator",
+    "Base64 encoder",
+    "Base64 decoder",
+    "URL encoder",
+    "URL decoder",
+    "developer tools",
+    "developer calculator",
+
+    // Fun
+    "love calculator",
+    "friendship calculator",
+    "lucky number calculator",
+    "fun calculator",
+
+    // Branding
+    "DevCalc",
+    "DevCalc calculators",
+    "DevCalc online tools",
+
+   
+  ],
 
   robots: {
     index: true,

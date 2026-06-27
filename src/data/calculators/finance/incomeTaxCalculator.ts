@@ -6,34 +6,90 @@ export const incomeTaxCalculator: Calculator = {
   name: "Income Tax Calculator",
 
   description:
-    "Calculate income tax under the latest Indian tax regimes and estimate your annual tax liability instantly. Compare the Old vs. New tax slabs to optimize your tax planning.",
+    "Calculate your income tax for FY 2025-26 (AY 2026-27) under both the Old and New tax regimes. Compare your tax liability side-by-side, factor in deductions and the Section 87A rebate, and find out which regime saves you more.",
 
   category: "Finance",
 
   isPopular: true,
 
   seo: {
-    title: "Income Tax Calculator India - Calculate Tax Online",
+    title: "Income Tax Calculator India (FY 2025-26) - Old vs New Regime",
 
     description:
-      "Calculate your income tax liability instantly using our free Income Tax Calculator for India. Formatted for the latest fiscal structures and salary breakdowns.",
+      "Calculate your income tax liability for FY 2025-26 instantly with our free Income Tax Calculator. Compare Old vs New tax regime, apply deductions, and check your Section 87A rebate eligibility.",
 
-    keywords: [
-      "income tax calculator",
-      "tax calculator india",
-      "income tax calculator india",
-      "salary tax calculator",
-      "tax estimation calculator",
-      "annual tax calculator",
-      "income tax calculator 2026",
-      "income tax slab calculator",
-      "tax planning calculator",
-      "tax liability calculator",
-      "detailed income tax calculator",
-      "calculate tax on taxable income",
-      "income and tax calculator india",
-      "online calculator for income tax",
-    ],
+keywords: [
+  "income tax calculator",
+  "income tax calculator india",
+  "income tax calculator 2026",
+  "income tax calculator fy 2025-26",
+  "income tax calculator ay 2026-27",
+  "income tax calculator old regime",
+  "income tax calculator new regime",
+  "income tax slab calculator",
+  "income tax calculation",
+  "calculate income tax online",
+  "calculate income tax india",
+  "how to calculate income tax",
+  "tax calculator india",
+  "india tax calculator",
+  "salary tax calculator",
+  "salary income tax calculator",
+  "monthly salary tax calculator",
+  "annual salary tax calculator",
+  "income tax estimator",
+  "income tax planner",
+  "tax planning calculator india",
+  "tax liability calculator",
+  "tax payable calculator",
+  "income tax refund calculator",
+  "income tax deduction calculator",
+  "income tax rebate calculator",
+  "section 87a rebate calculator",
+  "section 80c tax calculator",
+  "section 80d deduction calculator",
+  "hra tax calculator",
+  "new tax regime calculator",
+  "old tax regime calculator",
+  "old vs new tax regime calculator",
+  "old regime vs new regime comparison",
+  "which tax regime is better",
+  "best tax regime calculator",
+  "tax regime comparison india",
+  "new tax slab calculator",
+  "old tax slab calculator",
+  "income tax slabs 2026",
+  "income tax slabs india",
+  "tax slab calculator india",
+  "income tax on salary",
+  "tax on salary calculator",
+  "income tax for salaried employees",
+  "income tax for professionals",
+  "income tax for freelancers",
+  "income tax for business income",
+  "tax calculation example",
+  "income tax formula",
+  "how income tax is calculated",
+  "income tax guide india",
+  "income tax planning",
+  "online tax calculator",
+  "free income tax calculator",
+  "accurate income tax calculator",
+  "latest income tax calculator",
+  "government tax calculator",
+  "income tax calculator with deductions",
+  "income tax calculator with hra",
+  "income tax calculator with standard deduction",
+  "income tax calculator after rebate",
+  "income tax calculator before rebate",
+  "tax savings calculator",
+  "tax saving calculator india",
+  "income tax exemption calculator",
+  "income tax computation",
+  "financial year tax calculator",
+  "assessment year tax calculator",
+  "income tax calculator for india"
+],
   },
 
   steps: [
@@ -41,37 +97,39 @@ export const incomeTaxCalculator: Calculator = {
       step: 1,
       title: "Enter Annual Gross Income",
       description:
-        "Input your total gross annual salary, business revenues, or multi-stream capital earnings.",
+        "Input your total gross annual income — salary, business income, freelance earnings, or income from multiple sources combined. This is your income before any deductions are applied.",
       icon: "calculator",
     },
     {
       step: 2,
       title: "Select Eligible Deductions",
       description:
-        "Declare eligible investments like Section 80C, 80D, HRA allowances, or standard deductions if computing under the old framework.",
+        "If you're comparing the Old Regime, enter your eligible deductions — Section 80C investments, Section 80D health insurance, HRA, home loan interest under Section 24, and the standard deduction. The New Regime allows only the standard deduction and a few employer-side benefits, so this step matters less there.",
       icon: "calculator",
     },
     {
       step: 3,
       title: "Compare and View Results",
       description:
-        "Instantly analyze your parallel tax liabilities across both the Old and New tax slabs to minimize payouts.",
+        "See your tax liability calculated under both the Old and New regimes side by side, including applicable cess, so you can identify which regime results in lower tax for your specific income and deductions.",
       icon: "result",
     },
   ],
 
   formula: {
-    title: "Income Tax Calculation System",
+    title: "Income Tax Calculation Method",
 
-    formula: "Net Tax Liability = (Gross Taxable Income × Tier Slab Rate) + 4% Health & Education Cess − Eligible Rebates",
+    formula:
+      "Tax Payable = (Taxable Income taxed across applicable slab rates) + 4% Health & Education Cess − Section 87A Rebate (if eligible)",
 
     explanation:
-      "Income tax is computed progressively. Your total taxable income is divided across progressive financial brackets or 'slabs.' Each block is taxed at its specific tier rate, summed together, adjusted for marginal relief rebates like Section 87A, and capped with a standard 4% statutory health and education cess.",
+      "Indian income tax is calculated progressively: your taxable income isn't taxed at one flat rate, but is split across slabs, with each slab taxed only at its own rate. For instance, if you fall into the 20% slab, that 20% rate applies only to the portion of income within that slab — not to your entire income. The slabs and rates themselves differ depending on which regime you choose:\n\nUnder the New Tax Regime (now the default), there is no tax up to ₹4 lakh, 5% from ₹4–8 lakh, 10% from ₹8–12 lakh, 15% from ₹12–16 lakh, 20% from ₹16–20 lakh, 25% from ₹20–24 lakh, and 30% above ₹24 lakh. Salaried taxpayers also get a flat ₹75,000 standard deduction here.\n\nUnder the Old Tax Regime, the slabs are: no tax up to ₹2.5 lakh, 5% from ₹2.5–5 lakh, 20% from ₹5–10 lakh, and 30% above ₹10 lakh, with a smaller ₹50,000 standard deduction — but access to a much wider range of deductions (80C, 80D, HRA, home loan interest, and more).\n\nAfter calculating tax across the slabs, two more steps apply. First, if you qualify for the Section 87A rebate, it's subtracted from your tax — this can bring your liability to zero. Second, a flat 4% Health and Education Cess is added on top of whatever tax remains after the rebate. High earners (income above ₹50 lakh) may also owe a surcharge on top of this, which is capped at 25% under the New Regime and can go up to 37% under the Old Regime.",
 
     example: {
-      input: "Annual Taxable Income: ₹12,00,000 under progressive brackets",
+      input: "Annual Taxable Income: ₹12,00,000 under the New Tax Regime",
 
-      output: "Estimated total tax breakdown mapping matching your designated regime constraints.",
+      output:
+        "Tax before rebate ≈ ₹60,000 (₹0 on first ₹4L + ₹20,000 on next ₹4L @5% + ₹40,000 on next ₹4L @10%); fully offset by the Section 87A rebate (up to ₹60,000 for income up to ₹12L) → Final tax liability: ₹0",
     },
 
     useCases: [
@@ -86,117 +144,140 @@ export const incomeTaxCalculator: Calculator = {
     {
       question: "How do I choose between the Old and New Tax Regimes to maximize my tax savings?",
       answer:
-        "The ideal choice depends heavily on your available investment deductions and annual gross income. The Old Tax Regime features higher marginal tax slabs but allows you to significantly reduce your taxable income through various exemptions, such as Section 80C (PPF, ELSS, life insurance up to ₹1.5 lakh), Section 80D (medical insurance), House Rent Allowance (HRA), Leave Travel Allowance (LTA), and Section 24 (home loan interest). The New Tax Regime offers lower progressive tax rates across restructured brackets but eliminates almost all of these deductions. As a rule of thumb, if your total deductions exceed ₹2.5 lakh to ₹3 lakh per year, the Old Regime may remain more financially beneficial. For those who prefer direct investments with fewer lock-in constraints, the New Regime offers a simpler, low-rate filing alternative.",
+        "It depends on how much you can claim in deductions versus how much your income benefits from the New Regime's lower rates and bigger rebate. The Old Regime has higher slab rates but lets you reduce taxable income through Section 80C (PPF, ELSS, EPF, life insurance, up to ₹1.5 lakh), Section 80D (health insurance), HRA, Leave Travel Allowance, and home loan interest under Section 24 (up to ₹2 lakh). The New Regime — now the default — offers lower rates and a much larger Section 87A rebate (up to ₹60,000, making income up to ₹12 lakh effectively tax-free), but it drops almost all of those deductions, keeping only the ₹75,000 standard deduction. As a general guideline: if your total eligible deductions under the Old Regime exceed roughly ₹4–4.5 lakh, the Old Regime may still come out ahead at higher income levels — but for most salaried taxpayers earning up to ₹12–15 lakh with average deductions, the New Regime now usually results in lower or equal tax. Run both calculations with your actual numbers, since the right answer changes with income level and how much you actually invest.",
     },
     {
       question: "What are the most effective ways to legally minimize my taxable income under Indian tax laws?",
       answer:
-        "You can lower your tax liability under the Old Tax Regime by maximizing your eligible investments before the end of the financial year. Start by fully utilizing the ₹1,50,000 cap under Section 80C through options like Equity Linked Savings Schemes (ELSS), the Public Provident Fund (PPF), or Employee Provident Fund (EPF) contributions. Beyond that, you can claim an additional deduction of up to ₹50,000 for voluntary National Pension System (NPS) allocations under Section 80CCD(1B). Health insurance premiums can also lower your taxable income by up to ₹25,000 for yourself and an extra ₹50,000 for senior citizen parents under Section 80D. If you are paying off a home loan, you can deduct up to ₹2 lakh of interest under Section 24, helping you save substantial amounts on your annual filing.",
+        "Most legal tax-reduction options are available only under the Old Regime. Start with the ₹1,50,000 cap under Section 80C — ELSS mutual funds, PPF, or EPF contributions all qualify. Beyond that, you can claim an extra ₹50,000 for voluntary NPS contributions under Section 80CCD(1B), separate from the 80C limit. Health insurance premiums reduce taxable income by up to ₹25,000 for yourself and your family, plus an additional amount for senior citizen parents, under Section 80D. If you're repaying a home loan, you can deduct up to ₹2 lakh of interest paid under Section 24(b). If you've opted for the New Regime instead, your main legal levers are the ₹75,000 standard deduction and structuring your salary to make use of employer NPS contributions under Section 80CCD(2), which remains available even under the New Regime.",
     },
     {
       question: "How does the Section 87A tax rebate work, and does it apply to both tax regimes?",
       answer:
-        "The Section 87A rebate provides a full tax waiver for individuals whose net taxable income stays below specific thresholds. Under the Old Tax Regime, if your taxable income does not exceed ₹5,00,000 after claiming all deductions, you receive a full rebate of up to ₹12,500, reducing your tax liability to zero. Under the New Tax Regime, this benefit is even broader: individuals with a net taxable income of up to ₹7,00,000 receive a full rebate of up to ₹25,000. It is important to note that if your net income crosses these thresholds by even a small amount, you lose the rebate entirely and must pay the full progressive tax across all slabs, though marginal relief may apply in some scenarios.",
+        "Section 87A gives eligible taxpayers a full or partial waiver of tax, and the rules differ sharply by regime. Under the Old Regime, if your net taxable income (after all deductions) stays at or below ₹5,00,000, you get a rebate of up to ₹12,500, bringing your tax to zero. Under the New Regime, the rebate is far larger: a net taxable income up to ₹12,00,000 qualifies for a rebate of up to ₹60,000, which — combined with the ₹75,000 standard deduction — effectively makes salaried income up to ₹12.75 lakh tax-free. If your income crosses these thresholds by even a small amount, you don't lose the rebate entirely; marginal relief kicks in so that the extra tax you owe is capped at the amount your income exceeds the threshold by, rather than jumping to the full slab-rate tax. One exception: the rebate doesn't apply to income taxed at special rates, such as long-term or short-term capital gains on equity.",
     },
     {
       question: "Is the interest earned on standard bank fixed deposits (FD) fully taxable in India?",
       answer:
-        "Yes, any interest earned on standard fixed deposits or recurring deposits is fully taxable and must be declared under 'Income from Other Sources' on your annual return. The interest income is taxed at your regular marginal slab rate. Additionally, banks are required to deduct Tax Deducted at Source (TDS) if your total interest income across all branches exceeds ₹40,000 in a single financial year (the threshold is extended to ₹50,000 for senior citizens). If your total annual taxable income falls below the exemption limit, you can prevent TDS deductions by submitting Form 15G or Form 15H directly to your bank at the start of the fiscal year.",
+        "Yes. Interest from fixed deposits and recurring deposits is fully taxable as 'Income from Other Sources' and is added to your total income, then taxed at your applicable slab rate — there's no special lower rate for FD interest. Banks deduct TDS if your total interest income from all branches and deposits exceeds ₹40,000 in a financial year (this threshold is higher for senior citizens). If your total taxable income is below the exemption threshold for your regime, you can avoid this TDS deduction by submitting Form 15G (for individuals under 60) or Form 15H (for senior citizens) to your bank at the start of the financial year, rather than waiting to claim a refund later.",
     },
     {
       question: "What are the financial penalties and structural consequences of filing my income tax return late?",
       answer:
-        "Filing your Income Tax Return (ITR) past the official statutory deadline triggers a mix of automatic penalties and restrictions under Section 234F. If you miss the standard July 31st deadline, late filing fees can run up to ₹5,000, though this is capped at ₹1,000 if your total annual income stays below ₹5,00,000. Additionally, outstanding tax liabilities accumulate mandatory interest charges at a rate of 1% per month under Section 234A. Filing late also prevents you from carrying forward business or capital losses to offset future profits, and any pending tax refunds will be delayed without accruing standard interest benefits from the department.",
+        "Missing the standard ITR filing deadline (usually July 31st for most individual taxpayers) triggers consequences under two separate sections. Under Section 234F, a late filing fee of up to ₹5,000 applies, reduced to ₹1,000 if your total income is below ₹5,00,000. Separately, under Section 234A, any unpaid tax accrues interest at 1% per month (or part of a month) from the due date until you actually file. Filing late also blocks you from carrying forward certain losses — like business or capital losses — to offset against future years' profits, and if you're owed a refund, it gets delayed without the usual interest benefit that applies to timely-filed returns.",
     },
     {
       question: "Can I claim House Rent Allowance (HRA) exemptions and home loan interest deductions at the same time?",
       answer:
-        "Yes, you can legally claim both House Rent Allowance (HRA) exemptions and Section 24 home loan interest deductions simultaneously, provided your real-world living arrangements satisfy specific statutory requirements. This scenario commonly applies if you own a home in your hometown or a different city but reside in a rented apartment in another metropolitan area due to employment or business obligations. To claim both benefits safely, you must be able to justify your living arrangement, prove that your owned property is genuinely let-out or vacant, and maintain clear records of both your rent receipts and home loan interest certificates during tax audits.",
+        "Yes, and this is a commonly overlooked benefit under the Old Regime. You can claim both simultaneously if your real living situation supports it — for example, if you own a home in one city (perhaps your hometown, where you've taken a loan) but live in rented accommodation in a different city for work. To claim both safely, be prepared to show that the arrangement is genuine: keep your rent receipts and rental agreement for the HRA claim, and your home loan interest certificate from the lender for the Section 24 claim. If the owned property is vacant or let out rather than self-occupied, the rules for how much interest you can deduct differ slightly, so it's worth checking the specific treatment for your situation before filing.",
     },
   ],
 
   seoContent: `
-<h2>Comprehensive Financial Guide to Indian Income Tax Structuring</h2>
+<h2>How Indian Income Tax Works: Old Regime vs New Regime</h2>
 <p>
-  Navigating direct taxation requires a clear understanding of your annual income streams, available deductions, and compliance deadlines. In India, the progressive tax system is structured across distinct filing frameworks. This layout ensures that tax rates scale with your income, helping distribute the national tax burden equitably across different income brackets.
+  Calculating your income tax in India starts with one decision that affects everything else: which tax regime to use. Since the <strong>New Tax Regime</strong> became the default option from FY 2023-24 onward, most taxpayers now need to actively compare both systems rather than simply filing under whichever applied last year. An <strong>Income Tax Calculator</strong> makes this comparison fast — enter your income and deductions once, and see your liability under both regimes side by side.
 </p>
 <p>
-  As the fiscal landscape evolves, choosing between the traditional <strong>Old Tax Regime</strong> and the streamlined <strong>New Tax Regime</strong> has become a core component of personal financial planning. Using an interactive <strong>Income Tax Calculator</strong> allows you to model both options side-by-side, helping you optimize your allocations, maximize rebates, and secure an accurate projection of your tax liabilities.
+  For FY 2025-26 (the year covered by ITRs filed in 2026), the government made the New Regime considerably more attractive by raising the Section 87A rebate and the standard deduction. As a result, income up to ₹12.75 lakh is effectively tax-free for most salaried taxpayers under the New Regime — a threshold that didn't exist in earlier years. The Old Regime remains unchanged and continues to reward taxpayers who actively invest in tax-saving instruments.
 </p>
 
 ---
 
-<h2>Comparative Structural Mapping: Old Regime vs. New Regime Frameworks</h2>
+<h2>Old Regime vs New Regime: Side-by-Side Comparison</h2>
 <p>
-  Deciding which framework aligns best with your financial goals depends on your investment habits and deductible expenses. The table below outlines the core structural differences between the two systems:
+  The table below summarizes the core differences for FY 2025-26 (AY 2026-27):
 </p>
 
 <table>
   <thead>
     <tr>
       <th>Filing Parameter</th>
-      <th>Traditional Old Tax Regime</th>
-      <th>Streamlined New Tax Regime</th>
+      <th>Old Tax Regime</th>
+      <th>New Tax Regime (Default)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Tax Slab Rates</strong></td>
-      <td>Higher base rates, but features steep progressive steps.</td>
-      <td>Lower base rates across expanded brackets.</td>
+      <td><strong>Basic Exemption Limit</strong></td>
+      <td>₹2,50,000</td>
+      <td>₹4,00,000</td>
     </tr>
     <tr>
-      <td><strong>Section 80C Exemptions</strong></td>
-      <td>Fully available up to a maximum cap of ₹1,50,000.</td>
-      <td>Completely disallowed.</td>
+      <td><strong>Standard Deduction (Salaried)</strong></td>
+      <td>₹50,000</td>
+      <td>₹75,000</td>
     </tr>
     <tr>
-      <td><strong>HRA &amp; Salaried Exemptions</strong></td>
-      <td>Available based on actual rent paid and location.</td>
-      <td>Completely disallowed.</td>
+      <td><strong>Section 87A Rebate Threshold</strong></td>
+      <td>Net taxable income up to ₹5,00,000 (rebate up to ₹12,500)</td>
+      <td>Net taxable income up to ₹12,00,000 (rebate up to ₹60,000)</td>
     </tr>
     <tr>
-      <td><strong>Standard Salary Deduction</strong></td>
-      <td>Available as a flat ₹50,000 deduction.</td>
-      <td>Available as a flat ₹50,000 deduction.</td>
+      <td><strong>Effective Tax-Free Income (Salaried)</strong></td>
+      <td>Up to ₹5,50,000 (after standard deduction)</td>
+      <td>Up to ₹12,75,000 (after standard deduction)</td>
     </tr>
     <tr>
-      <td><strong>Section 87A Zero-Tax Limit</strong></td>
-      <td>Applies to net taxable incomes up to ₹5,00,000.</td>
-      <td>Applies to net taxable incomes up to ₹7,00,000.</td>
+      <td><strong>Section 80C, 80D, HRA, Section 24 Deductions</strong></td>
+      <td>Fully available, subject to individual caps</td>
+      <td>Not available (except employer NPS under 80CCD(2))</td>
     </tr>
     <tr>
-      <td><strong>Filing Strategy Focus</strong></td>
-      <td>Optimized for proactive savers with long-term investments.</td>
-      <td>Optimized for individuals seeking lower rates without lock-ins.</td>
+      <td><strong>Maximum Surcharge Rate</strong></td>
+      <td>Up to 37% (income above ₹5 crore)</td>
+      <td>Capped at 25%</td>
+    </tr>
+    <tr>
+      <td><strong>Best Suited For</strong></td>
+      <td>Taxpayers with significant 80C/80D/HRA/home-loan deductions</td>
+      <td>Taxpayers with few deductions, or income up to ~₹12-15 lakh</td>
     </tr>
   </tbody>
 </table>
 
----
-
-<h2>The Progressive Mathematics: Deconstructing Slab-Based Compounding</h2>
 <p>
-  A common misconception is assuming that entering a higher tax bracket means your entire income is taxed at that higher rate. In a progressive system, your income is divided across separate tiers, and the matching rate is applied only to the portion of income that falls within each specific block.
-</p>
-<p>
-  For example, your net taxable liability is calculated by stepping through your regime's specific brackets:
-</p>
-<p align="center">
-  \text{Total Base Tax} = \sum (\text{Income within Slab}_n \times \text{Slab Rate}_n)
-</p>
-<p>
-  Once your base tax is calculated, the system adds a mandatory <strong>4% Health and Education Cess</strong> to determine your final liability:
-</p>
-<p align="center">
-  \text{Final Tax Liability} = \text{Total Base Tax} \times 1.04
+  <strong>Note:</strong> Health and Education Cess of 4% applies on top of the calculated tax (after rebate) under both regimes.
 </p>
 
 ---
 
-<h2>Primary Investment Vehicles for Maximizing Your Deductions</h2>
+<h2>How Slab-Based Taxation Actually Works</h2>
 <p>
-  If you choose the Old Tax Regime, structuring your investments across approved vehicles can significantly lower your taxable income. The table below compares popular tax-saving options under Section 80C and other key sections:
+  A common misunderstanding is thinking that moving into a higher tax bracket means your <em>entire</em> income gets taxed at that higher rate. That's not how it works. Each slab rate applies only to the income that falls within that specific band — income below it is taxed at the lower rates that applied to those earlier slabs.
+</p>
+<p>
+  For example, under the New Regime, the slabs for FY 2025-26 are:
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Taxable Income Slab</th>
+      <th>Tax Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Up to ₹4,00,000</td><td>Nil</td></tr>
+    <tr><td>₹4,00,001 – ₹8,00,000</td><td>5%</td></tr>
+    <tr><td>₹8,00,001 – ₹12,00,000</td><td>10%</td></tr>
+    <tr><td>₹12,00,001 – ₹16,00,000</td><td>15%</td></tr>
+    <tr><td>₹16,00,001 – ₹20,00,000</td><td>20%</td></tr>
+    <tr><td>₹20,00,001 – ₹24,00,000</td><td>25%</td></tr>
+    <tr><td>Above ₹24,00,000</td><td>30%</td></tr>
+  </tbody>
+</table>
+<p>
+  So someone with ₹15 lakh in taxable income under the New Regime doesn't pay 15% on all ₹15 lakh. They pay nothing on the first ₹4 lakh, 5% on the next ₹4 lakh (₹20,000), 10% on the next ₹4 lakh (₹40,000), and 15% only on the remaining ₹3 lakh (₹45,000) — a base tax of ₹1,05,000, before the 4% cess is added. Once base tax is calculated, the formula is straightforward:
+</p>
+<p>
+  <strong>Final Tax Liability = (Tax across slabs − Section 87A rebate, if eligible) × 1.04</strong>
+</p>
+
+---
+
+<h2>Primary Investment Vehicles for Maximizing Old Regime Deductions</h2>
+<p>
+  If the Old Regime works out better for you, structuring your investments across approved instruments lowers your taxable income. Here's a comparison of common options:
 </p>
 
 <table>
@@ -205,52 +286,56 @@ export const incomeTaxCalculator: Calculator = {
       <th>Investment Vehicle</th>
       <th>Applicable Section</th>
       <th>Maximum Annual Cap</th>
-      <th>Standard Lock-In Period</th>
-      <th>Historical Returns Efficacy</th>
+      <th>Lock-In Period</th>
+      <th>Return Profile</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Equity Linked Savings Schemes (ELSS)</strong></td>
+      <td><strong>Equity Linked Savings Scheme (ELSS)</strong></td>
       <td>Section 80C</td>
-      <td>₹1,50,000</td>
-      <td>3 Years (Shortest)</td>
-      <td>Market-linked (12% - 15% historical averages)</td>
+      <td>₹1,50,000 (combined with other 80C items)</td>
+      <td>3 Years</td>
+      <td>Market-linked equity returns</td>
     </tr>
     <tr>
       <td><strong>Public Provident Fund (PPF)</strong></td>
       <td>Section 80C</td>
-      <td>₹1,50,000</td>
+      <td>₹1,50,000 (combined with other 80C items)</td>
       <td>15 Years</td>
-      <td>Sovereign backed (7% - 8% risk-free returns)</td>
+      <td>Government-backed, fixed annual rate</td>
     </tr>
     <tr>
-      <td><strong>National Pension System (NPS)</strong></td>
+      <td><strong>National Pension System (NPS) — Self Contribution</strong></td>
       <td>Section 80CCD(1B)</td>
-      <td>₹50,000 (Additional)</td>
-      <td>Till age 60</td>
-      <td>Market-linked hybrid asset allocation models</td>
+      <td>₹50,000 (additional, over and above 80C)</td>
+      <td>Until age 60</td>
+      <td>Market-linked, hybrid asset allocation</td>
     </tr>
     <tr>
-      <td><strong>Maternal/Personal Health Insurance</strong></td>
+      <td><strong>Health Insurance Premium</strong></td>
       <td>Section 80D</td>
-      <td>Up to ₹75,000</td>
-      <td>None (Annual premium)</td>
-      <td>Risk mitigation plus active tax savings</td>
+      <td>Up to ₹25,000 (self/family) + up to ₹50,000 (senior citizen parents)</td>
+      <td>None — annual premium</td>
+      <td>Risk protection plus tax deduction</td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-<h2>Core Operational Pitfalls to Avoid During Return Filing</h2>
-<h3>1. Misreporting Income from Other Sources</h3>
+<h2>Common Mistakes to Avoid When Filing</h2>
+<h3>1. Forgetting to Declare Income from Other Sources</h3>
 <p>
-  A frequent mistake among taxpayers is declaring only their primary salary or business income while omitting secondary streams. The Income Tax Department tracks all asset movements via your Annual Information Statement (AIS) and Tax Information Summary (TIS). Failing to declare savings account interest, short-term stock profits, or dividend payouts can trigger compliance flags, processing delays, and automatic penalty notices.
+  A frequent error is reporting only salary or business income while leaving out smaller income streams — savings account interest, short-term capital gains, or dividends. The Income Tax Department cross-checks your return against your Annual Information Statement (AIS), which tracks most of your financial transactions automatically. Leaving out even small amounts of declared interest or capital gains can trigger a mismatch notice and delay your refund.
 </p>
-<h3>2. Procrastinating on Investment Proof Submissions</h3>
+<h3>2. Waiting Until March to Make Tax-Saving Investments</h3>
 <p>
-  Waiting until the final weeks of the fiscal year to make your tax-saving investments can lead to poor financial decisions or cash flow strain. It can also cause payroll departments to temporarily deduct higher Tax Deducted at Source (TDS) from your salary due to missing documentation. Planning your investment allocations early ensures your withholding matches your actual liability across all quarters.
+  If you've chosen the Old Regime, putting off your 80C and 80D investments until the last weeks of the financial year often leads to rushed, suboptimal choices — or missing the window for higher TDS deduction to be corrected. Submitting investment proof to your employer early in the year lets your monthly TDS more closely match your actual annual liability, instead of one large deduction (or a large refund claim) at year-end.
+</p>
+<h3>3. Comparing Regimes Using Last Year's Numbers</h3>
+<p>
+  Because the New Regime's rebate and standard deduction changed for FY 2025-26, a regime comparison done with old figures can give the wrong answer. If you compared regimes before this change and stuck with the Old Regime, it's worth re-running the comparison — many taxpayers who previously found the Old Regime cheaper now come out ahead, or roughly even, under the revised New Regime.
 </p>
 `,
 };

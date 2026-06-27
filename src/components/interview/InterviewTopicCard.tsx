@@ -11,6 +11,7 @@ import {
   SiTypescript,
   SiNodedotjs,
   SiNextdotjs,
+  SiCplusplus,
 } from "react-icons/si";
 import { TbDatabase } from "react-icons/tb";
 
@@ -38,6 +39,9 @@ const getTechnologyIcon = (name: string) => {
     case "database":
     case "sql":
       return <TbDatabase className="text-5xl text-indigo-600" />;
+    case "c++":
+    case "cpp":
+      return < SiCplusplus className="text-5xl text-indigo-600" />;
     default:
       return null;
   }

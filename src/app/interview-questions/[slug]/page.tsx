@@ -4,8 +4,6 @@
  * BUG FIX: FAQS now correctly interpolate topic.title at render time.
  */
 
-
-
 import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -14,7 +12,9 @@ import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import { Lock, Unlock, ChevronRight } from "lucide-react";
 import TopCompanies from "@/src/components/interview/TopCompanies";
-
+import FAQSection from "@/src/components/calculator/FAQSection";
+import FAQSchema from "@/src/components/seo/FAQSchema";
+import PopularCalculators from '@/src/components/calculator/PopularCalculators';
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -50,28 +50,45 @@ const STAGES = [
 function buildFaqs(topicTitle: string) {
   return [
     {
-      q: `How to prepare for a ${topicTitle} technical coding interview?`,
-      a: "Success in coding rounds comes from consistent practice of data structures, algorithms, and deep dives into framework internals to master core concepts.",
+      question: `How to prepare for a ${topicTitle} technical coding interview?`,
+      answer:
+        "Success comes from consistent practice of data structures, algorithms, and deep dives into framework internals. Analyze time/space complexity on every solution — not just correctness. Aim for 2–3 problems daily.",
     },
     {
-      q: `Are these ${topicTitle} questions suitable for MNC system design rounds?`,
-      a: "Yes, our expert-curated questions include high-level system design architecture, database scaling, and performance optimization tasks required for top-tier roles.",
+      question: `Are these ${topicTitle} questions suitable for MNC system design rounds?`,
+      answer:
+        "Yes. Our expert-curated questions include high-level architecture, database scaling, CDN usage, caching layers, and load balancing trade-offs required for senior roles at Google, Amazon, and Microsoft.",
     },
     {
-      q: "Why is the Intermediate level locked?",
-      a: "Our roadmap is structured to build a strong foundation. You must achieve a 50% passing mark in the Beginner stage to unlock and progress to the Intermediate level.",
+      question: "Why is the Intermediate stage locked?",
+      answer:
+        "Our roadmap builds a strong foundation first. You must score 50% or above in the Beginner stage to unlock Intermediate — ensuring you've mastered fundamentals before tackling advanced patterns.",
     },
     {
-      q: `Can I practice ${topicTitle} MCQ interview questions for free?`,
-      a: "Absolutely. DevCalc provides 100% free, high-quality technical assessment resources to help developers bridge the gap between theory and real-world application.",
+      question: `Can I practice ${topicTitle} MCQ interview questions for free?`,
+      answer:
+        "Absolutely — 100% free. DevCalc provides high-quality MCQs, code challenges, and detailed explanations to bridge the gap between theory and real-world application. No subscription required.",
     },
     {
-      q: `What is the difference between junior and senior ${topicTitle} interviews?`,
-      a: "Junior interviews prioritize language syntax and fundamental problem-solving, whereas senior roles focus on architectural trade-offs, security, and complex system scalability.",
+      question: `What's the difference between junior and senior ${topicTitle} interviews?`,
+      answer:
+        "Junior interviews focus on syntax, data structures, and basic problem-solving. Senior roles go deeper into system architecture, code review, security, performance optimization, and architectural trade-offs.",
     },
     {
-      q: "How should I handle live coding anxiety during the assessment?",
-      a: "Verbalize your thought process clearly. Interviewers prioritize your logical approach and your ability to ask clarifying questions over writing perfect code immediately.",
+      question:
+        "How should I handle live coding anxiety during the assessment?",
+      answer:
+        "Verbalize your thinking clearly. Interviewers prioritize your logical process and your ability to ask clarifying questions over writing perfect code immediately. Practice talking through your approach before typing.",
+    },
+    {
+      question: "How many attempts do I get per stage?",
+      answer:
+        "Unlimited. You can retry any stage as many times as needed. On each retry, questions and options are reshuffled to prevent answer memorization and keep the experience challenging.",
+    },
+    {
+      question: "Is my progress saved automatically?",
+      answer:
+        "Yes. Answers are auto-saved after every selection. If you refresh or accidentally close the tab mid-quiz, your progress is fully restored when you return to the page.",
     },
   ];
 }
@@ -86,6 +103,7 @@ export default async function TopicOverviewPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
       <div className="max-w-7xl mx-auto px-6 pt-8">
+        <FAQSchema faqs={faqs} />
         <BreadcrumbSchema
           items={[
             { name: "Home", url: "/" },
@@ -193,132 +211,169 @@ export default async function TopicOverviewPage({ params }: Props) {
 
         {/* SEO Article */}
         <article className="max-w-4xl mx-auto mt-10 p-6 md:p-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl prose dark:prose-invert prose-blue max-w-none">
-  
-  <header className="mb-10 text-center">
-    <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">Ultimate Guide</span>
-    <h1 className="text-4xl md:text-5xl font-extrabold mt-3 mb-6">
-      {topic.title} Interview Questions, MCQs & Complete Preparation Roadmap
-    </h1>
-    <p className="text-lg text-slate-600 dark:text-slate-400">
-      Mastering <strong>{topic.title}</strong> is the key to landing high-paying software engineering roles. 
-      This comprehensive guide covers everything you need to ace your next technical interview at top product-based companies.
-    </p>
-  </header>
+          <header className="mb-10 text-center">
+            <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">
+              Ultimate Guide
+            </span>
+            <h1 className="text-4xl md:text-5xl font-extrabold mt-3 mb-6">
+              {topic.title} Interview Questions, MCQs & Complete Preparation
+              Roadmap
+            </h1>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              Mastering <strong>{topic.title}</strong> is the key to landing
+              high-paying software engineering roles. This comprehensive guide
+              covers everything you need to ace your next technical interview at
+              top product-based companies.
+            </p>
+          </header>
 
-  <section className="bg-slate-50 dark:bg-slate-800/50 p-8 rounded-2xl border border-slate-200 dark:border-slate-700">
-    <h2 className="!mt-0">Why {topic.title} Matters in Tech Interviews</h2>
-    <p>
-      Interviewers don't just test your knowledge of <strong>{topic.title}</strong>; they evaluate your 
-      <strong> problem-solving architecture, code optimization skills, and debugging capability</strong>. 
-      In modern technical interviews at companies like Google, Meta, and Amazon, the ability to explain 
-      <em> why</em> you chose a specific approach is just as important as the code itself.
-    </p>
-  </section>
+          <section className="bg-slate-50 dark:bg-slate-800/50 p-8 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <h2 className="!mt-0">
+              Why {topic.title} Matters in Tech Interviews
+            </h2>
+            <p>
+              Interviewers Don&apos;t just test your knowledge of{" "}
+              <strong>{topic.title}</strong>; they evaluate your
+              <strong>
+                {" "}
+                problem-solving architecture, code optimization skills, and
+                debugging capability
+              </strong>
+              . In modern technical interviews at companies like Google, Meta,
+              and Amazon, the ability to explain
+              <em> why</em> you chose a specific approach is just as important
+              as the code itself.
+            </p>
+          </section>
 
-  <h2 className="mt-2 mb-2 bg-gray-50 flex justify-center text-1xl border-rose-100  dark:bg-slate-800 shadow-sm rounded-r-lg ">4-Week {topic.title} Preparation Roadmap</h2>
-  <div className="grid md:grid-cols-2 gap-4">
-    {[
-      { week: "Week 1", focus: "Core Fundamentals & Syntax" },
-      { week: "Week 2", focus: "Data Structures & Algorithmic Patterns" },
-      { week: "Week 3", focus: "Advanced Concepts & Optimization" },
-      { week: "Week 4", focus: "Mock Interviews & System Design" }
-    ].map((item) => (
-      <div key={item.week} className="p-4 border-l-4 border-blue-500 bg-white dark:bg-slate-800 shadow-sm rounded-r-lg">
-        <h4 className="m-0 text-blue-600">{item.week}</h4>
-        <p className="m-0 text-sm font-medium">{item.focus}</p>
-      </div>
-    ))}
-  </div>
+          <h2 className="mt-2 mb-2 bg-gray-50 flex justify-center text-1xl border-rose-100  dark:bg-slate-800 shadow-sm rounded-r-lg ">
+            4-Week {topic.title} Preparation Roadmap
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              { week: "Week 1", focus: "Core Fundamentals & Syntax" },
+              {
+                week: "Week 2",
+                focus: "Data Structures & Algorithmic Patterns",
+              },
+              { week: "Week 3", focus: "Advanced Concepts & Optimization" },
+              { week: "Week 4", focus: "Mock Interviews & System Design" },
+            ].map((item) => (
+              <div
+                key={item.week}
+                className="p-4 border-l-4 border-blue-500 bg-white dark:bg-slate-800 shadow-sm rounded-r-lg"
+              >
+                <h4 className="m-0 text-blue-600">{item.week}</h4>
+                <p className="m-0 text-sm font-medium">{item.focus}</p>
+              </div>
+            ))}
+          </div>
 
-  <h2 className="mt-2 mb-2 bg-gray-50 flex justify-center text-1xl border-rose-100  dark:bg-slate-800 shadow-sm rounded-r-lg" >Key Topics You Must Master</h2>
-  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-    {['Fundamentals', 'Advanced Concepts', 'MCQs', 'Memory Mgmt', 'Optimization', 'Security', 'Debugging', 'Design Patterns'].map((t) => (
-      <span key={t} className="flex items-center gap-2 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-semibold border border-blue-100 dark:border-blue-800">
-        🚀 {t}
-      </span>
-    ))}
-  </div>
+          <h2 className="mt-2 mb-2 bg-gray-50 flex justify-center text-1xl border-rose-100  dark:bg-slate-800 shadow-sm rounded-r-lg">
+            Key Topics You Must Master
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {[
+              "Fundamentals",
+              "Advanced Concepts",
+              "MCQs",
+              "Memory Mgmt",
+              "Optimization",
+              "Security",
+              "Debugging",
+              "Design Patterns",
+            ].map((t) => (
+              <span
+                key={t}
+                className="flex items-center gap-2 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-semibold border border-blue-100 dark:border-blue-800"
+              >
+                🚀 {t}
+              </span>
+            ))}
+          </div>
 
-  <h2>Freshers vs. Experienced: What’s Expected?</h2>
-  <table className="w-full text-left border-collapse border border-slate-300 dark:border-slate-700">
-    <thead>
-     <tr className="bg-slate-100 dark:bg-slate-800">
-          <th className="border border-slate-300 dark:border-slate-700 p-3">Focus Area</th>
-          <th className="border border-slate-300 dark:border-slate-700 p-3">For Freshers</th>
-          <th className="border border-slate-300 dark:border-slate-700 p-3">For Experienced</th>
-        </tr>
-    </thead>
-<tbody>
-        <tr>
-          <td className="border border-slate-300 dark:border-slate-700 p-3">Concepts</td>
-          <td className="border border-slate-300 dark:border-slate-700 p-3">Strong Fundamental Base</td>
-          <td className="border border-slate-300 dark:border-slate-700 p-3">System Design & Scaling</td>
-        </tr>
-        <tr>
-          <td className="border border-slate-300 dark:border-slate-700 p-3">Coding</td>
-          <td className="border border-slate-300 dark:border-slate-700 p-3">Clean, Logical Syntax</td>
-          <td className="border border-slate-300 dark:border-slate-700 p-3">Production-Ready Performance</td>
-        </tr>
-        <tr>
-          <td className="border border-slate-300 dark:border-slate-700 p-3">Problem Solving</td>
-          <td className="border border-slate-300 dark:border-slate-700 p-3">Analytical Thinking</td>
-          <td className="border border-slate-300 dark:border-slate-700 p-3">Trade-offs & Architecture</td>
-        </tr>
-      </tbody>
-  </table>
+          <h2>Freshers vs. Experienced: What’s Expected?</h2>
+          <table className="w-full text-left border-collapse border border-slate-300 dark:border-slate-700">
+            <thead>
+              <tr className="bg-slate-100 dark:bg-slate-800">
+                <th className="border border-slate-300 dark:border-slate-700 p-3">
+                  Focus Area
+                </th>
+                <th className="border border-slate-300 dark:border-slate-700 p-3">
+                  For Freshers
+                </th>
+                <th className="border border-slate-300 dark:border-slate-700 p-3">
+                  For Experienced
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-3">
+                  Concepts
+                </td>
+                <td className="border border-slate-300 dark:border-slate-700 p-3">
+                  Strong Fundamental Base
+                </td>
+                <td className="border border-slate-300 dark:border-slate-700 p-3">
+                  System Design & Scaling
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-3">
+                  Coding
+                </td>
+                <td className="border border-slate-300 dark:border-slate-700 p-3">
+                  Clean, Logical Syntax
+                </td>
+                <td className="border border-slate-300 dark:border-slate-700 p-3">
+                  Production-Ready Performance
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-3">
+                  Problem Solving
+                </td>
+                <td className="border border-slate-300 dark:border-slate-700 p-3">
+                  Analytical Thinking
+                </td>
+                <td className="border border-slate-300 dark:border-slate-700 p-3">
+                  Trade-offs & Architecture
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-  <ul className="mt-2">
-    <li><strong>Skipping the Why:</strong> Never start coding without discussing your approach first.</li>
-    <li><strong>Ignoring Edge Cases:</strong> Always ask about null pointers, memory limits, or empty inputs.</li>
-    <li><strong>Over-Engineering:</strong> Don't write complex code when a simple, readable solution works.</li>
-    <li><strong>Lack of Communication:</strong> Treat the interview as a pair-programming session.</li>
-  </ul>
-
-  <section className="mt-12">
-    <h2 className="text-3xl font-bold mb-6">Frequently Asked Questions (FAQ)</h2>
-    <div className="space-y-4">
-      {[
-        { q: "How do I prepare for {topic.title} coding rounds?", a: "Practice consistent coding on platforms, focusing on time/space complexity analysis rather than just getting the answer." },
-        { q: "Is knowing theory enough?", a: "No. Theoretical knowledge must be backed by practical project experience and the ability to debug real-world code." },
-        { q: "Which companies ask these questions?", a: "Google, Microsoft, Amazon, Meta, and most top-tier tech startups test these skills during technical assessment rounds." }
-      ].map((faq, i) => (
-        <details key={i} className="p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-          <summary className="font-bold cursor-pointer text-lg">{faq.q}</summary>
-          <p className="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">{faq.a}</p>
-        </details>
-      ))}
-    </div>
-  </section>
-
-  <footer className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 text-center">
-    <h3 className="text-2xl">Ready to Start?</h3>
-    <p>Consistently solving {topic.title} questions is the only path to success. Start today!</p>
-  </footer>
-
-</article>
+          <ul className="mt-2">
+            <li>
+              <strong>Skipping the Why:</strong> Never start coding without
+              discussing your approach first.
+            </li>
+            <li>
+              <strong>Ignoring Edge Cases:</strong> Always ask about null
+              pointers, memory limits, or empty inputs.
+            </li>
+            <li>
+              <strong>Over-Engineering:</strong> Don&apos;t write complex code
+              when a simple, readable solution works.
+            </li>
+            <li>
+              <strong>Lack of Communication:</strong> Treat the interview as a
+              pair-programming session.
+            </li>
+          </ul>
+        </article>
         <TopCompanies />
 
         {/* FAQ */}
         <section className="mt-20">
-          <h2 className="text-3xl font-bold mb-10 text-center text-slate-900 dark:text-white">
-            Frequently Asked Questions
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {faqs.map((faq, i) => (
-              <div
-                key={i}
-                className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800"
-              >
-                <h4 className="font-bold text-blue-600 dark:text-blue-400 mb-2 text-sm leading-relaxed">
-                  {faq.q}
-                </h4>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                  {faq.a}
-                </p>
-              </div>
-            ))}
-          </div>
+          <FAQSection
+            faqs={faqs.map((f) => ({ question: f.question, answer: f.answer }))}
+          />
+          
         </section>
+             <PopularCalculators  
+                  currentSlug="developer-tool"/>
       </div>
     </main>
   );

@@ -60,4 +60,14 @@ export const interviewTopics: InterviewTopic[] = [
     totalQuestions: 120,
     lastUpdated: '2026-06-25',
   },
+{
+  id: "7",
+  slug: "cpp",
+  title: "C++",
+  description:
+    "Master C++ interview questions covering OOP, STL, pointers, memory management, templates, multithreading, algorithms, and coding interview problems for freshers and experienced developers.",
+  icon: "cplusplus",
+  totalQuestions: 120,
+  lastUpdated: "2026-06-25",
+},
 ];

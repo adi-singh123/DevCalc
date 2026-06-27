@@ -6,7 +6,7 @@ export const idealBodyWeightCalculator: Calculator = {
   name: "Ideal Body Weight Calculator",
 
   description:
-    "Calculate your ideal body weight based on height and gender using widely accepted health formulas. Determine a healthy target weight range for fitness, nutrition, and weight management goals.",
+    "Calculate your ideal body weight (IBW) by height and gender using the Devine, Hamwi, Robinson, and Miller formulas. Get an instant healthy weight range to guide fitness, nutrition, and weight management goals.",
 
   category: "Health",
 
@@ -14,170 +14,52 @@ export const idealBodyWeightCalculator: Calculator = {
 
   seo: {
     title:
-      "Ideal Body Weight Calculator - Calculate Healthy Weight Online",
+      "Ideal Body Weight Calculator - Calculate Your Healthy Weight (Devine, Hamwi & More)",
 
     description:
-      "Use our free Ideal Body Weight Calculator to estimate your healthy weight based on height and gender. Calculate ideal body weight instantly using proven medical formulas.",
+      "Calculate your ideal body weight instantly with our free IBW calculator. Compare results from the Devine, Hamwi, Robinson, and Miller formulas based on your height and gender.",
 
-keywords: [
-  "ideal body weight calculator",
-  "healthy weight calculator",
-  "ideal weight calculator",
-  "target weight calculator",
-  "body weight calculator",
-  "healthy body weight calculator",
-  "ideal weight for height",
-  "weight range calculator",
-  "perfect weight calculator",
-  "healthy bmi weight calculator",
-  "weight goal calculator",
-  "ideal weight chart",
-  "height weight calculator",
-  "healthy weight range calculator",
-  "online ideal body weight calculator",
-  "free ideal weight calculator",
-  "male ideal weight calculator",
-  "female ideal weight calculator",
-  "body weight estimation calculator",
-  "recommended weight calculator",
-  "fitness weight calculator",
-  "ideal body mass calculator",
-  "body weight goal calculator",
-  "weight planning calculator",
-  "healthy lifestyle calculator",
+    keywords: [
+      // Primary
+      "ideal body weight calculator",
+      "ideal weight calculator",
+      "healthy weight calculator",
+      "ibw calculator",
 
-  // Core Keywords
-  "ideal body weight",
-  "calculate ideal weight",
-  "body weight estimator",
-  "body weight assessment",
-  "healthy weight finder",
-  "optimal weight calculator",
-  "healthy body calculator",
-  "body weight planner",
-  "body weight analyzer",
-  "ideal weight estimator",
+      // Secondary / formula-specific
+      "devine formula calculator",
+      "hamwi formula calculator",
+      "robinson formula calculator",
+      "miller formula calculator",
+      "ideal body weight formula",
 
-  // Height & Weight Keywords
-  "ideal weight for height",
-  "height and weight calculator",
-  "height weight chart",
-  "weight according to height",
-  "healthy weight for height",
-  "height to weight ratio calculator",
-  "body weight by height calculator",
-  "height based weight calculator",
-  "recommended weight by height",
-  "weight to height calculator",
+      // Target / range
+      "target weight calculator",
+      "healthy weight range calculator",
+      "ideal weight range",
+      "goal weight calculator",
 
-  // Men & Women Keywords
-  "male ideal weight calculator",
-  "female ideal weight calculator",
-  "ideal weight for men",
-  "ideal weight for women",
-  "healthy weight for men",
-  "healthy weight for women",
-  "men weight chart",
-  "women weight chart",
-  "male weight calculator",
-  "female weight calculator",
+      // Height & gender variants
+      "ideal weight for height",
+      "ideal weight for men",
+      "ideal weight for women",
+      "male ideal weight calculator",
+      "female ideal weight calculator",
+      "height to weight ratio calculator",
 
-  // Weight Range Keywords
-  "healthy weight range calculator",
-  "ideal weight range",
-  "recommended weight range",
-  "normal weight range calculator",
-  "healthy bmi weight range",
-  "body weight range calculator",
-  "acceptable weight range",
-  "healthy body range calculator",
-  "weight classification calculator",
-  "target weight range calculator",
+      // Related concepts
+      "ideal weight vs bmi",
+      "healthy bmi weight calculator",
+      "body frame size weight calculator",
+      "adjusted body weight calculator",
 
-  // BMI Related Keywords
-  "healthy bmi weight calculator",
-  "bmi ideal weight calculator",
-  "body mass index weight calculator",
-  "ideal bmi calculator",
-  "weight based on bmi",
-  "healthy bmi range calculator",
-  "bmi and ideal weight",
-  "healthy body mass calculator",
-  "bmi target weight calculator",
-  "body weight and bmi calculator",
-
-  // Goal Weight Keywords
-  "target weight calculator",
-  "goal weight calculator",
-  "weight goal planner",
-  "weight loss goal calculator",
-  "healthy target weight",
-  "ideal goal weight",
-  "fitness weight goal calculator",
-  "body transformation calculator",
-  "goal body weight calculator",
-  "weight planning tool",
-
-  // Formula Keywords
-  "hamwi formula calculator",
-  "devine formula calculator",
-  "robinson formula calculator",
-  "miller formula calculator",
-  "ideal body weight formula",
-  "healthy weight formula",
-  "body weight equation calculator",
-  "weight prediction calculator",
-  "ideal body mass formula",
-  "weight estimation formula",
-
-  // Fitness Keywords
-  "fitness weight calculator",
-  "healthy lifestyle calculator",
-  "body composition calculator",
-  "fitness body weight calculator",
-  "gym weight calculator",
-  "athlete weight calculator",
-  "wellness calculator",
-  "body fitness calculator",
-  "health assessment calculator",
-  "weight management calculator",
-
-  // Charts & Tables
-  "ideal weight chart",
-  "ideal body weight chart",
-  "healthy weight chart",
-  "weight chart by height",
-  "height weight chart men",
-  "height weight chart women",
-  "weight chart by age",
-  "healthy body weight chart",
-  "recommended weight chart",
-  "ideal weight table",
-
-  // Question Keywords
-  "what is my ideal weight",
-  "how to calculate ideal body weight",
-  "what is a healthy weight",
-  "what should my weight be",
-  "how much should i weigh",
-  "ideal weight for my height",
-  "how to reach ideal body weight",
-  "healthy weight calculator example",
-  "what is the perfect weight for my height",
-  "recommended weight by height and age",
-
-  // Long Tail Keywords
-  "free online ideal body weight calculator",
-  "best ideal weight calculator",
-  "ideal body weight calculator by age and gender",
-  "healthy weight range calculator for adults",
-  "accurate ideal weight calculator",
-  "ideal weight calculator for men and women",
-  "online healthy body weight calculator",
-  "height and weight ideal calculator",
-  "target body weight calculator free",
-  "advanced ideal body weight calculator",
-],
+      // Question-based / long-tail
+      "what is my ideal weight",
+      "how to calculate ideal body weight",
+      "how much should i weigh for my height",
+      "what is a healthy weight for my height",
+      "free online ideal body weight calculator",
+    ],
   },
 
   steps: [
@@ -185,7 +67,7 @@ keywords: [
       step: 1,
       title: "Enter Your Height",
       description:
-        "Provide your height in centimeters, feet, or inches depending on the calculator settings.",
+        "Input your height in centimeters, or in feet and inches, depending on your preferred unit. Accurate height entry is the single biggest factor in getting a reliable ideal weight estimate.",
       icon: "height",
     },
 
@@ -193,7 +75,7 @@ keywords: [
       step: 2,
       title: "Select Gender",
       description:
-        "Choose male or female to apply the appropriate ideal body weight formula.",
+        "Choose male or female. Ideal body weight formulas use different baseline constants for each sex because average frame size and body composition differ between men and women.",
       icon: "calculator",
     },
 
@@ -201,7 +83,7 @@ keywords: [
       step: 3,
       title: "Calculate Ideal Weight",
       description:
-        "The calculator estimates your recommended healthy body weight.",
+        "The calculator applies the Devine formula (and related methods) to your height and gender to estimate a clinically referenced ideal body weight in kilograms or pounds.",
       icon: "calculator",
     },
 
@@ -209,7 +91,7 @@ keywords: [
       step: 4,
       title: "View Results",
       description:
-        "See your ideal body weight and healthy weight range instantly.",
+        "Review your ideal body weight along with a healthy weight range, so you have a realistic target band rather than a single rigid number.",
       icon: "result",
     },
   ],
@@ -221,14 +103,14 @@ keywords: [
       "Male: 50 kg + 2.3 kg for each inch over 5 ft | Female: 45.5 kg + 2.3 kg for each inch over 5 ft",
 
     explanation:
-      "The Ideal Body Weight (IBW) calculation is commonly based on the Devine Formula, which estimates a healthy body weight using height and gender. It is often used in healthcare, fitness planning, and nutrition assessments.",
+      "This calculator is built around the Devine formula, the most widely referenced method for estimating ideal body weight (IBW) from height and gender alone. Dr. B.J. Devine originally created it in 1974 to help clinicians calculate drug dosages more accurately, since many medications need to be dosed by lean body weight rather than total body weight. The formula starts from a baseline weight for someone 5 feet tall and adds 2.3 kg (about 5 lb) for every inch above that height. Men get a higher baseline (50 kg) than women (45.5 kg) to reflect average differences in muscle mass and skeletal frame.\n\nThree other formulas are commonly used alongside Devine, and you'll often see them quoted together:\n\n• Hamwi formula (1964): Male = 48 kg + 2.7 kg per inch over 5 ft; Female = 45.5 kg + 2.3 kg per inch over 5 ft. Developed for quick bedside estimates, it tends to run slightly higher than Devine for taller people.\n\n• Robinson formula (1983): A refinement of Devine using updated population data. Male = 52 kg + 2.3 kg per inch over 5 ft; Female = 49 kg + 2.3 kg per inch over 5 ft.\n\n• Miller formula (1983): Tends to produce the lowest estimates of the four. Male = 56.2 kg + 1.41 kg per inch over 5 ft; Female = 53.1 kg + 1.36 kg per inch over 5 ft.\n\nNone of these formulas account for muscle mass, bone density, body fat percentage, or frame size directly — they're estimates based on population averages, not a precise measurement of your individual healthy weight. For people under 5 feet tall, some clinicians instead subtract the per-inch adjustment from the baseline, though results become less reliable at shorter heights. That's why the result is best read as a reference point, not a strict target, and why pairing it with a healthy weight range gives a more realistic and usable answer.",
 
     example: {
       input:
-        "Male, Height: 5 ft 10 in",
+        "Male, Height: 5 ft 10 in (70 inches)",
 
       output:
-        "Ideal Body Weight ≈ 73 kg",
+        "Ideal Body Weight ≈ 73 kg (50 kg + 10 in × 2.3 kg = 73 kg), roughly 161 lb",
     },
 
     useCases: [
@@ -250,56 +132,56 @@ keywords: [
       question:
         "What is an Ideal Body Weight Calculator?",
       answer:
-        "An Ideal Body Weight Calculator estimates a healthy body weight based on your height and gender using established medical formulas.",
+        "An Ideal Body Weight (IBW) calculator estimates a reference healthy weight using only your height and gender, based on formulas originally developed for clinical use — most commonly the Devine formula. Rather than giving you a single number to chase, a good IBW calculator should show a healthy weight range, since formula-based estimates don't account for muscle mass, bone density, or body frame. It's a useful starting point for fitness and nutrition planning, not a diagnosis of what you 'should' weigh.",
     },
 
     {
       question:
         "How is ideal body weight calculated?",
       answer:
-        "Most calculators use formulas such as the Devine Formula, Hamwi Formula, or Robinson Formula to estimate ideal body weight.",
+        "The most common method is the Devine formula: for men, start at 50 kg and add 2.3 kg for every inch of height over 5 feet; for women, start at 45.5 kg and add the same 2.3 kg per inch. For example, a man who is 5 ft 10 in tall would have an estimated IBW of 50 + (10 × 2.3) = 73 kg. Other formulas — Hamwi, Robinson, and Miller — use slightly different baseline weights and per-inch adjustments, which is why you may see different ideal weight figures depending on the source. None of these formulas use age, body fat percentage, or activity level as inputs.",
     },
 
     {
       question:
         "Is ideal body weight the same as BMI?",
       answer:
-        "No. BMI measures weight relative to height, while ideal body weight estimates a target healthy weight based on height and gender.",
+        "No, and the two measure different things. BMI (Body Mass Index) is calculated from your current height and current weight to classify you into categories like underweight, normal, overweight, or obese. Ideal body weight, by contrast, is calculated only from your height and gender to estimate a target weight you could aim for. You can have a 'normal' BMI while being well outside your IBW range, or vice versa — they're complementary tools, not interchangeable ones. Many people check both: BMI to see where they currently stand, and IBW to set a goal.",
     },
 
     {
       question:
         "Why is ideal body weight important?",
       answer:
-        "Knowing your ideal body weight can help set realistic fitness goals, manage weight, and support overall health planning.",
+        "IBW gives you a concrete, evidence-based reference point instead of guessing at a weight loss or weight gain goal. It's also used clinically — doctors and pharmacists use ideal body weight (or a related figure called adjusted body weight) to calculate accurate dosages for certain medications, especially in patients who are significantly overweight or underweight, because dosing by total body weight alone can be unsafe in those cases. For everyday use, it helps frame realistic fitness and nutrition targets rather than chasing an arbitrary number.",
     },
 
     {
       question:
         "Can athletes use ideal body weight calculators?",
       answer:
-        "Athletes may have higher muscle mass than average, so ideal body weight estimates may not fully reflect their body composition.",
+        "Athletes and anyone with above-average muscle mass should treat IBW results as a loose reference rather than a target. Because the underlying formulas were built from general population data, they assume an average ratio of muscle to fat. A muscular athlete will often weigh more than their 'ideal' weight while still being lean and healthy, since muscle is denser than fat. In these cases, body composition metrics (body fat percentage, waist-to-hip ratio) are more meaningful than IBW or BMI alone.",
     },
 
     {
       question:
         "What factors affect ideal body weight?",
       answer:
-        "Height, gender, body composition, age, and overall health can influence what is considered an ideal weight.",
+        "Height and gender are the only two inputs the standard formulas use, but several other factors influence what's actually healthy for a given individual: body frame size (small, medium, or large), muscle mass, age, bone density, and overall health history. Two people of the same height and gender can have very different healthy weights depending on these factors. This is why doctors generally use IBW as one data point alongside BMI, waist circumference, and a physical assessment — not as a standalone verdict.",
     },
 
     {
       question:
         "Can I use this calculator for weight loss planning?",
       answer:
-        "Yes. It can provide a useful target weight for setting healthy and realistic weight management goals.",
+        "Yes — IBW is a reasonable starting point for setting a realistic weight loss or weight gain target, especially when you use the full healthy range rather than the single midpoint number. A practical approach is to aim for the upper end of your healthy range if you carry more muscle mass, or the middle of the range for a general fitness goal. For a personalized plan, it's worth combining this with a calorie or BMI calculator and, ideally, input from a healthcare provider or registered dietitian, particularly if you have an existing medical condition.",
     },
 
     {
       question:
         "Is this Ideal Body Weight Calculator free?",
       answer:
-        "Yes. You can calculate your ideal body weight online unlimited times completely free.",
+        "Yes, this calculator is completely free to use, with no sign-up required and no limit on how many times you can run it. You can recalculate any time your height changes or simply to compare results across different formulas.",
     },
   ],
 };

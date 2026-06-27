@@ -29,6 +29,6 @@ export const categories = [
   },
   {
     name:"Developer Tools",
-    slug:"developer-tool"
+    slug:"developertool"
   }
 ];
