@@ -30,14 +30,6 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 
   keywords: [
-     //interview
-    "javascript interview question free",
-    "c++ interview question free",
-    "java interview question free",
-    "node.js interview question free",
-    "sql interview question free",
-
-
     // General
     "calculator",
     "online calculator",
@@ -132,8 +124,6 @@ export const metadata: Metadata = {
     "DevCalc",
     "DevCalc calculators",
     "DevCalc online tools",
-
-   
   ],
 
   robots: {
