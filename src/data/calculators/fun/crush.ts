@@ -6,8 +6,7 @@ export const crushCalculator: Calculator = {
   name: "Crush Calculator",
 
   description:
-    "Check your crush compatibility percentage using names. Discover your crush match score, relationship potential, and compatibility level instantly with our free Crush Calculator.",
-
+"Check your crush compatibility percentage instantly with our free Crush Calculator — just enter two names to discover your crush match score, relationship potential, and compatibility level. Fun, fast, and free to use anytime, anywhere, with no sign-up required!",
   category: "Fun",
 
   isPopular: true,
@@ -22,8 +21,7 @@ export const crushCalculator: Calculator = {
       "Crush Calculator - Check Crush Compatibility by Name",
 
     description:
-      "Use our free Crush Calculator to check compatibility with your crush. Enter two names and discover your crush percentage and match score instantly.",
-
+"Check your compatibility with your crush instantly with our Crush Calculator. Just enter two names to discover your crush percentage, match score, and relationship potential in seconds.",
  keywords: [
   "crush calculator",
   "crush compatibility calculator",
