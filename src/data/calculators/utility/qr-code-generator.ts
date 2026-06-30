@@ -6,8 +6,7 @@ export const qrCodeGenerator: Calculator = {
   name: "QR Code Generator",
 
   description:
-    "Generate QR codes instantly for URLs, text, phone numbers, emails, WiFi credentials, and more. Create and download QR codes for free.",
-
+  "A free, easy-to-use QR Code Generator for websites, text, emails, phone numbers, WiFi networks, and more. Create a custom QR code in seconds, preview it instantly, and download it in high resolution — perfect for business cards, posters, menus, or sharing information quickly without typing.",
   category: "Utility",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const qrCodeGenerator: Calculator = {
       "QR Code Generator - Create Free QR Codes Online",
 
     description:
-      "Generate QR codes online for websites, text, emails, phone numbers, WiFi networks, and more. Free QR Code Generator with instant download.",
-
+  "A free, easy-to-use QR Code Generator for websites, text, emails, phone numbers, WiFi networks, and more. Create a custom QR code in seconds, preview it instantly, and download it in high resolution — perfect for business cards, posters, menus, or sharing information quickly without typing.",
 keywords: [
   "qr code generator",
   "free qr code generator",

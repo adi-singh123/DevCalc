@@ -6,8 +6,7 @@ export const studyHoursCalculator: Calculator = {
   name: "Study Hours Calculator",
 
   description:
-    "Plan your exam preparation effectively by calculating total study hours available, hours per subject, hours per chapter, and recommended daily study time.",
-
+"A complete exam preparation planner for students. Calculate the total study hours you have available before your exam, automatically break that time down per subject and per chapter based on priority, and get a recommended daily study target — helping you build a realistic, balanced schedule instead of guessing how much time each topic deserves.",
   category: "Education",
 
   isPopular: false,
@@ -17,25 +16,33 @@ export const studyHoursCalculator: Calculator = {
       "Study Hours Calculator - Plan Your Exam Preparation",
 
     description:
-      "Calculate study hours available before exams, create a study plan, estimate hours per subject, and optimize your exam preparation schedule.",
-
-    keywords: [
-      "study hours calculator",
-      "study planner calculator",
-      "exam preparation calculator",
-      "study schedule calculator",
-      "study time calculator",
-      "exam study planner",
-      "student planner calculator",
-      "daily study hours calculator",
-      "exam preparation planner",
-      "study routine calculator",
-      "hours per subject calculator",
-      "study management calculator",
-      "education calculator",
-      "student productivity calculator",
-      "revision planner calculator",
-    ],
+"Calculate exactly how many study hours you have available before your exams, build a personalized study plan, estimate hours needed per subject, and optimize your preparation schedule for maximum results.",
+keywords: [
+  "study hours calculator",
+  "study planner calculator",
+  "exam preparation calculator",
+  "study schedule calculator",
+  "study time calculator",
+  "exam study planner",
+  "student planner calculator",
+  "daily study hours calculator",
+  "exam preparation planner",
+  "study routine calculator",
+  "hours per subject calculator",
+  "chapter wise study planner",
+  "revision time calculator",
+  "study hours left before exam",
+  "how many hours to study before exam",
+  "subject wise time table calculator",
+  "exam countdown study planner",
+  "daily revision planner",
+  "study plan generator online",
+  "time management calculator for students",
+  "board exam study planner",
+  "competitive exam study planner",
+  "free study planner online",
+  "study hours distribution calculator",
+],
   },
 
   compareWith: [

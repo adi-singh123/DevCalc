@@ -6,8 +6,7 @@ export const brickCalculator: Calculator = {
   name: "Brick Calculator",
 
   description:
-    "Calculate the exact number of bricks, volume of mortar, bags of cement, and sand required for walls, rooms, and multi-story structures. Get instant material estimations for red clay, fly ash, and AAC blocks.",
-
+"Get precise brick, mortar, cement, and sand quantities for your walls, rooms, or multi-floor construction. Just pick your block type — red clay, fly ash, or AAC — and receive an instant, accurate material estimate.",
   category: "Construction",
 
   isPopular: true,
@@ -21,9 +20,8 @@ export const brickCalculator: Calculator = {
   seo: {
     title: "Brick Calculator - Estimate Brick Quantity & Mortar Cost Online",
 
-    description:
-      "Free online Brick Calculator. Accurately calculate total brick counts, structural wall volumes, mortar mix quantities, and total construction costs with custom wastage parameters.",
-
+description:
+  "Building a wall and unsure how many bricks to order? Enter your wall dimensions and get the exact brick count, mortar quantity, and total material cost — with wastage factored in automatically.",
  keywords: [
   "brick calculator",
   "brick quantity calculator",

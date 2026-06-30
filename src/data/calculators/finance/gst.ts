@@ -6,8 +6,7 @@ export const gstCalculator: Calculator = {
   name: "GST Calculator",
 
   description:
-    "Calculate GST amount and total price instantly using different GST rates.",
-
+"Need to quickly work out GST on a purchase or invoice? Our free GST Calculator instantly calculates the tax amount and final price — just enter the base amount and applicable GST rate to get accurate results in seconds.",
   category: "Finance",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const gstCalculator: Calculator = {
       "GST Calculator - Calculate GST Online",
 
     description:
-      "Free GST Calculator to calculate GST amount and final price instantly.",
-
+"Need to quickly work out GST on a purchase or invoice? Our free GST Calculator instantly calculates the tax amount and final price — just enter the base amount and applicable GST rate to get accurate results in seconds.",
 keywords: [
   "gst calculator",
   "gst calculation",

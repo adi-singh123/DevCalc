@@ -16,9 +16,8 @@ export const fuelCostCalculator: Calculator = {
     title:
       "Fuel Cost Calculator India - Petrol, Diesel & CNG Running Cost",
 
-    description:
-      "Calculate daily, monthly & yearly fuel running cost for petrol, diesel or CNG vehicles in India. Compare fuel expenses and cost per kilometre instantly.",
-
+description:
+  "Wondering how much your vehicle actually costs to run every month? Enter your fuel type, price, and daily distance to get a clear daily, monthly, and yearly fuel expense breakdown.",
   keywords: [
   "fuel cost calculator india",
   "fuel calculator india",

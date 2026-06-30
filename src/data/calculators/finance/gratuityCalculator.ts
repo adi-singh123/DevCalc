@@ -23,9 +23,8 @@ export const gratuityCalculator: Calculator = {
     title:
       "Gratuity Calculator - Calculate Employee Gratuity Amount",
 
-    description:
-      "Calculate gratuity amount based on your last drawn salary and years of service. Estimate gratuity benefits instantly using the gratuity formula.",
-
+description:
+  "Leaving a job or retiring soon? Enter your last drawn salary and years of service to instantly calculate the exact gratuity amount your employer is legally required to pay you.",
 keywords: [
   "gratuity calculator",
   "gratuity amount calculator",

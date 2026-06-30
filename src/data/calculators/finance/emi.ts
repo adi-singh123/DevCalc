@@ -15,9 +15,8 @@ export const emiCalculator: Calculator = {
   seo: {
     title: "EMI Calculator India - Calculate Loan EMI Online",
 
-    description:
-      "Calculate loan EMI instantly. Enter your loan amount, interest rate, and tenure to get monthly EMI, total interest payable, and total repayment amount.",
-
+description:
+  "Planning a home, car, or personal loan? Enter the amount, interest rate, and tenure to instantly see your monthly EMI, total interest payable, and full repayment breakdown.",
 keywords: [
   "emi calculator",
   "loan emi calculator",

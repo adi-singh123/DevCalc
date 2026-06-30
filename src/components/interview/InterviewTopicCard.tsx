@@ -12,6 +12,10 @@ import {
   SiNodedotjs,
   SiNextdotjs,
   SiCplusplus,
+  SiHtml5,
+  SiGo,
+  SiOpenjdk,
+  SiPhp,
 } from "react-icons/si";
 import { TbDatabase } from "react-icons/tb";
 
@@ -39,9 +43,19 @@ const getTechnologyIcon = (name: string) => {
     case "database":
     case "sql":
       return <TbDatabase className="text-5xl text-indigo-600" />;
+    case "html":
+    case "html5":
+      return <SiHtml5 className="text-5xl text-orange-500" />;
+    case "go":
+    case "golang":
+      return <SiGo className="text-5xl text-cyan-500" />;
     case "c++":
     case "cpp":
-      return < SiCplusplus className="text-5xl text-indigo-600" />;
+      return <SiCplusplus className="text-5xl text-indigo-600" />;
+    case "java":
+      return <SiOpenjdk className="text-5xl text-red-600" />;
+    case "php":
+      return <SiPhp className="text-5xl text-indigo-500" />;
     default:
       return null;
   }
@@ -49,10 +63,7 @@ const getTechnologyIcon = (name: string) => {
 
 export const InterviewTopicCard = ({ topic }: Props) => {
   return (
-    <Link
-      href={`/interview-questions/${topic.slug}`}
-      className="block h-full"
-    >
+    <Link href={`/interview-questions/${topic.slug}`} className="block h-full">
       <article
         className="
           group

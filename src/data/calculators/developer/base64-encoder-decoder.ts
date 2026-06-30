@@ -21,9 +21,8 @@ export const base64EncoderDecoder: Calculator = {
   seo: {
     title: "Base64 Encoder Decoder - Encode & Decode Base64 Online",
 
-    description:
-      "Free online Base64 encoder and decoder tool. Convert text, strings, and binary streams to Base64 format or parse Base64 data securely in your browser.",
-
+description:
+  "Encode any text or string to Base64, or decode a Base64 value back to plain text — instantly, privately, and without uploading anything to a server.",
 keywords: [
   "base64 encoder",
   "base64 decoder",

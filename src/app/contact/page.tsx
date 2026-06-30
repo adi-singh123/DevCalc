@@ -1,135 +1,31 @@
+// app/contact/page.tsx  ← keep metadata here (server component)
 import type { Metadata } from "next";
-import Link from "next/link";
+import ContactPage from "./ContactPage";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
-    alternates: {
-    canonical: "https://www.devcalc.in/contact",
-  },
-    authors: [
-    {
-      name: "Aditya Singh",
-    },
-  ],
-
-  creator: "Aditya Singh",
-
-  publisher: "DevCalc",
-  description:
-    "Contact the DevCalc team for feedback, calculator requests, bug reports, and general enquiries.",
+  title: "Contact Us | DevCalc",
+keywords: [
+  "DevCalc contact",
+  "Contact DevCalc",
+  "Contact us",
+  "Get in touch",
+  "Support",
+  "Customer support",
+  "Help center",
+  "Technical support",
+  "Report a bug",
+  "Feedback",
+  "Feature request",
+  "Business inquiry",
+  "Developer tools support",
+  "Calculator support",
+  "Interview platform support",
+  "Contact DevCalc team",
+],
+  description: "Have a question or found a bug? Send us a message — we reply within 24 hours.",
+  alternates: { canonical: "https://www.devcalc.in/contact" },
 };
 
-export default function ContactPage() {
-  return (
-    <main className="mx-auto max-w-5xl px-4 py-12">
-      {/* Hero */}
-      <section className="text-center">
-        <h1 className="text-4xl font-bold md:text-5xl">
-          Contact Us
-        </h1>
-
-        <p className="mx-auto mt-4 max-w-2xl text-slate-600">
-          We'd love to hear from you. Whether you have
-          feedback, calculator suggestions, bug reports,
-          or general questions, feel free to contact us.
-        </p>
-      </section>
-
-      {/* Contact Cards */}
-      <section className="mt-12 grid gap-6 md:grid-cols-3">
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-semibold">
-            General Enquiries
-          </h2>
-
-          <p className="mt-3 text-sm text-slate-600">
-            Questions about DevCalc, calculators,
-            or website features.
-          </p>
-        </div>
-
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-semibold">
-            Calculator Requests
-          </h2>
-
-          <p className="mt-3 text-sm text-slate-600">
-            Suggest new calculators you'd like
-            us to add.
-          </p>
-        </div>
-
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-semibold">
-            Bug Reports
-          </h2>
-
-          <p className="mt-3 text-sm text-slate-600">
-            Report issues, incorrect calculations,
-            or technical problems.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Information */}
-      <section className="mt-12 rounded-3xl border bg-slate-50 p-8">
-        <h2 className="text-2xl font-bold">
-          Contact Information
-        </h2>
-
-        <div className="mt-6 space-y-4">
-          <div>
-            <p className="font-medium">
-              Email
-            </p>
-
-            <p className="text-slate-600">
-              adityasingh35052@gmail.com
-            </p>
-          </div>
-
-          <div>
-            <p className="font-medium">
-              Response Time
-            </p>
-
-            <p className="text-slate-600">
-              We typically respond within
-              24–48 business hours.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Helpful Links */}
-      <section className="mt-12">
-        <h2 className="text-2xl font-bold">
-          Helpful Links
-        </h2>
-
-        <div className="mt-4 flex flex-wrap gap-4">
-          <Link
-            href="/about"
-            className="rounded-xl border px-4 py-2 hover:bg-slate-50"
-          >
-            About Us
-          </Link>
-
-          <Link
-            href="/privacy-policy"
-            className="rounded-xl border px-4 py-2 hover:bg-slate-50"
-          >
-            Privacy Policy
-          </Link>
-
-          <Link
-            href="/terms"
-            className="rounded-xl border px-4 py-2 hover:bg-slate-50"
-          >
-            Terms of Use
-          </Link>
-        </div>
-      </section>
-    </main>
-  );
+export default function Page() {
+  return <ContactPage />;
 }

@@ -15,6 +15,8 @@ import TopCompanies from "@/src/components/interview/TopCompanies";
 import FAQSection from "@/src/components/calculator/FAQSection";
 import FAQSchema from "@/src/components/seo/FAQSchema";
 import PopularCalculators from '@/src/components/calculator/PopularCalculators';
+import { InterviewTopicCard } from '@/src/components/interview/InterviewTopicCard';
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -93,10 +95,15 @@ function buildFaqs(topicTitle: string) {
   ];
 }
 
+
 export default async function TopicOverviewPage({ params }: Props) {
   const { slug } = await params;
   const topic = interviewTopics.find((t) => t.slug === slug);
   if (!topic) return notFound();
+
+  const relatedTopics = interviewTopics
+  .filter((item) => item.slug !== topic.slug)
+  .slice(0, 4);
 
   const faqs = buildFaqs(topic.title);
 
@@ -215,10 +222,10 @@ export default async function TopicOverviewPage({ params }: Props) {
             <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">
               Ultimate Guide
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold mt-3 mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold mt-3 mb-6">
               {topic.title} Interview Questions, MCQs & Complete Preparation
               Roadmap
-            </h1>
+            </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400">
               Mastering <strong>{topic.title}</strong> is the key to landing
               high-paying software engineering roles. This comprehensive guide
@@ -363,10 +370,32 @@ export default async function TopicOverviewPage({ params }: Props) {
             </li>
           </ul>
         </article>
+
+        <section className="mt-20">
+  <div className="mb-8 text-center">
+    <h2 className="text-3xl font-bold">
+      Continue Your Interview Preparation
+    </h2>
+
+    <p className="mt-3 text-slate-600 dark:text-slate-400">
+      Explore other popular interview topics and strengthen your full-stack development skills.
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+    {relatedTopics.map((item) => (
+      <InterviewTopicCard
+        key={item.id}
+        topic={item}
+      />
+    ))}
+  </div>
+</section>
+
         <TopCompanies />
 
         {/* FAQ */}
-        <section className="mt-20">
+        <section className="mt-20 mb-2">
           <FAQSection
             faqs={faqs.map((f) => ({ question: f.question, answer: f.answer }))}
           />
@@ -384,7 +413,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const topic = interviewTopics.find((t) => t.slug === slug);
   return {
     title: `${topic?.title} Interview Questions & Coding Guide`,
-    description: `Master ${topic?.title} with 1500+ curated interview questions, MCQs, and system design problems. Structured roadmap from Beginner to MNC level.`,
+   description:
+  `New to ${topic?.title} or brushing up for an MNC interview? Practice 1500+ curated questions and MCQs — structured from beginner basics to advanced system design. Free and no sign-up.`,
     keywords: [
       `${topic?.title} interview questions`,
       `${topic?.title} interview questions and answers`,

@@ -14,15 +14,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What is the difference between TRUNCATE, DELETE, and DROP?',
+    question: 'A junior engineer runs DELETE FROM orders; (no WHERE clause) instead of TRUNCATE TABLE orders, then asks why the table still shows a high value for the next auto-increment ID. What is the most accurate explanation?',
     options: [
-      'DELETE is DML, TRUNCATE/DROP are DDL',
-      'They are all DDL commands',
-      'TRUNCATE keeps the table structure, DELETE removes all rows',
-      'DROP removes the database only'
+      'DELETE removed all rows but did not reset the identity/auto-increment counter, while TRUNCATE typically does reset it',
+      'DELETE and TRUNCATE always behave identically with respect to auto-increment counters',
+      'DELETE without a WHERE clause only removes the first row by default',
+      'The auto-increment counter can only be reset by dropping and recreating the table'
     ],
-    correctAnswer: 'DELETE is DML, TRUNCATE/DROP are DDL',
-    explanation: 'DELETE is a Data Manipulation Language command (row-by-row), while TRUNCATE and DROP are Data Definition Language commands. TRUNCATE resets the table (and identity), DROP removes the table definition entirely.',
+    correctAnswer: 'DELETE removed all rows but did not reset the identity/auto-increment counter, while TRUNCATE typically does reset it',
+    explanation: 'DELETE is a row-by-row DML operation logged individually, and in most databases it leaves the identity/sequence counter untouched even when every row is removed. TRUNCATE is a DDL-level operation that deallocates the data pages and, in most engines, resets the auto-increment seed. Option B is wrong because the two commands differ in logging, locking, and counter behavior. Option C is wrong because DELETE with no WHERE clause removes every row, not just the first. Option D is wrong because most databases (e.g., MySQL, SQL Server) provide a dedicated command to reset the sequence without recreating the table.',
     tags: ['ddl', 'dml', 'sql-basics']
   },
   {
@@ -31,15 +31,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What does SQL stand for?',
+    question: 'Why is SQL generally described as a "declarative" language rather than a "procedural" one?',
     options: [
-      'Structured Query Language',
-      'Sequential Query Logic',
-      'Simple Question Language',
-      'Standard Query Layer'
+      'SQL queries describe the desired result set, leaving the database engine to decide the execution strategy',
+      'SQL statements always execute in the exact line-by-line order they are written, like a script',
+      'SQL has no concept of an execution plan, so there is nothing for the engine to decide',
+      'SQL is declarative only when used inside a stored procedure'
     ],
-    correctAnswer: 'Structured Query Language',
-    explanation: 'SQL (Structured Query Language) is the standard language used to communicate with and manipulate relational databases.',
+    correctAnswer: 'SQL queries describe the desired result set, leaving the database engine to decide the execution strategy',
+    explanation: 'In declarative languages, you specify what you want, and the engine determines how to get it (e.g., join order, index usage, scan strategy). Option B describes a procedural model, which is the opposite of how the optimizer treats a SQL statement. Option C is wrong because every query is converted into an execution plan by the optimizer before running. Option D is wrong because the declarative nature of SQL applies to standalone queries as much as to queries inside procedures.',
     tags: ['fundamentals', 'sql-basics']
   },
   {
@@ -47,12 +47,17 @@ export const sqlQuestions: InterviewQuestion[] = [
     topic: 'sql',
     stage: 'Beginner',
     difficulty: 'Beginner',
-    category: 'Theory',
-    question: 'Which SQL clause is used to filter rows before any grouping occurs?',
-    options: ['HAVING', 'WHERE', 'GROUP BY', 'ORDER BY'],
-    correctAnswer: 'WHERE',
-    explanation: 'WHERE filters individual rows before grouping/aggregation happens, whereas HAVING filters groups after aggregation.',
-    tags: ['where', 'filtering', 'sql-basics']
+    category: 'Coding',
+    question: 'A query needs to return only customers whose total order count (after grouping by customer) exceeds 5. Which clause must be used to filter on that condition?',
+    options: [
+      'HAVING, because the condition depends on an aggregated value computed after grouping',
+      'WHERE, because all filtering in SQL happens at the same stage regardless of aggregation',
+      'ORDER BY, since it is the clause responsible for evaluating conditions on aggregates',
+      'GROUP BY, since the filtering condition can be written directly inside it'
+    ],
+    correctAnswer: 'HAVING, because the condition depends on an aggregated value computed after grouping',
+    explanation: 'HAVING filters groups after GROUP BY has aggregated rows, which is necessary here since "order count per customer" only exists after aggregation. Option B is incorrect because WHERE executes before grouping and cannot reference aggregate results like COUNT(*) in this context. Option C is wrong because ORDER BY only controls result ordering, not filtering. Option D is wrong because GROUP BY only specifies grouping columns, not filter conditions.',
+    tags: ['where', 'having', 'filtering', 'sql-basics']
   },
   {
     id: 'sql-004',
@@ -60,15 +65,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What is a PRIMARY KEY?',
+    question: 'A table has a composite PRIMARY KEY on (order_id, product_id). Which statement about this key is correct?',
     options: [
-      'A column that can contain NULL and duplicate values',
-      'A column or set of columns that uniquely identifies each row in a table and cannot contain NULLs',
-      'A foreign reference to another table',
-      'An index used only for sorting'
+      'No single row may repeat the exact same (order_id, product_id) pair, but order_id alone or product_id alone can repeat across rows',
+      'Both order_id and product_id must individually be unique across the entire table',
+      'A composite primary key behaves exactly like a UNIQUE constraint and still allows NULLs in either column',
+      'Only one of the two columns is actually enforced as unique; the other is decorative'
     ],
-    correctAnswer: 'A column or set of columns that uniquely identifies each row in a table and cannot contain NULLs',
-    explanation: 'A primary key enforces entity integrity by guaranteeing uniqueness and disallowing NULL values, and a table can have only one primary key (though it may be composite).',
+    correctAnswer: 'No single row may repeat the exact same (order_id, product_id) pair, but order_id alone or product_id alone can repeat across rows',
+    explanation: 'A composite primary key enforces uniqueness on the combination of columns, not on each column individually, so the same order_id can appear in multiple rows as long as the product_id differs. Option B is wrong because that would describe two separate unique constraints, not a composite key. Option C is wrong because, unlike a nullable UNIQUE constraint, primary key columns (including each column within a composite key) cannot contain NULLs. Option D is wrong because both columns participate equally in the uniqueness check.',
     tags: ['keys', 'constraints', 'sql-basics']
   },
   {
@@ -77,15 +82,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What is a FOREIGN KEY used for?',
+    question: 'A "orders" table has a FOREIGN KEY on customer_id referencing customers(id). What happens by default in most databases if you try to INSERT an order with a customer_id that does not exist in the customers table?',
     options: [
-      'To speed up SELECT queries automatically',
-      'To establish and enforce a link between data in two tables, referencing a primary key in another table',
-      'To encrypt sensitive columns',
-      'To allow duplicate primary keys'
+      'The insert is rejected with a constraint violation error',
+      'The insert succeeds, and the customer_id is automatically set to NULL',
+      'The insert succeeds, and a new customer row is automatically created',
+      'The insert succeeds silently, since foreign keys are only checked on SELECT'
     ],
-    correctAnswer: 'To establish and enforce a link between data in two tables, referencing a primary key in another table',
-    explanation: 'A foreign key enforces referential integrity by ensuring values in one table correspond to existing values (typically a primary key) in another table.',
+    correctAnswer: 'The insert is rejected with a constraint violation error',
+    explanation: 'A foreign key constraint enforces referential integrity by default, meaning a referencing value must already exist in the referenced table\u2019s key column, so the insert fails. Option B describes ON DELETE/UPDATE SET NULL behavior, which only applies to existing rows affected by changes in the parent table, not to inserts with an invalid value. Option C is wrong because foreign keys never auto-create parent rows. Option D is wrong because foreign key checks are enforced on INSERT and UPDATE of the referencing table, not just on reads.',
     tags: ['keys', 'constraints', 'referential-integrity']
   },
   {
@@ -94,15 +99,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Coding',
-    question: 'Which SQL statement retrieves all columns from a table named "employees"?',
+    question: 'Which query correctly returns every column for every row in the "employees" table?',
     options: [
-      'GET * FROM employees',
-      'SELECT * FROM employees',
-      'SELECT ALL employees',
-      'FETCH employees.*'
+      'SELECT * FROM employees;',
+      'SELECT ALL COLUMNS FROM employees;',
+      'FETCH * FROM employees;',
+      'GET employees.*;'
     ],
-    correctAnswer: 'SELECT * FROM employees',
-    explanation: 'SELECT * FROM table_name retrieves every column for every row in the table (though selecting explicit columns is usually preferred in production code).',
+    correctAnswer: 'SELECT * FROM employees;',
+    explanation: 'SELECT * FROM table_name is the standard syntax for retrieving all columns from a table. Option B uses invalid syntax; "ALL COLUMNS" is not a recognized SQL keyword combination. Option C is invalid because FETCH is used with cursors in a different context, not as a substitute for SELECT. Option D is invalid syntax with no GET statement in standard SQL.',
     tags: ['select', 'sql-basics']
   },
   {
@@ -110,33 +115,33 @@ export const sqlQuestions: InterviewQuestion[] = [
     topic: 'sql',
     stage: 'Beginner',
     difficulty: 'Beginner',
-    category: 'Theory',
-    question: 'What is the difference between WHERE and HAVING?',
+    category: 'Coding',
+    question: 'You need to list each department along with the number of employees earning more than $80,000, but only for departments with more than 3 such employees. Which combination of clauses is correct?',
     options: [
-      'They are interchangeable in every query',
-      'WHERE filters rows before grouping; HAVING filters groups after aggregation (e.g., after GROUP BY)',
-      'HAVING can only be used with SELECT *',
-      'WHERE only works with numeric columns'
+      'WHERE salary > 80000 ... GROUP BY department ... HAVING COUNT(*) > 3',
+      'HAVING salary > 80000 ... GROUP BY department ... WHERE COUNT(*) > 3',
+      'GROUP BY department ... WHERE salary > 80000 AND COUNT(*) > 3',
+      'WHERE salary > 80000 AND COUNT(*) > 3 ... GROUP BY department'
     ],
-    correctAnswer: 'WHERE filters rows before grouping; HAVING filters groups after aggregation (e.g., after GROUP BY)',
-    explanation: 'WHERE operates on individual rows prior to GROUP BY, while HAVING operates on the aggregated results of groups, so it can reference aggregate functions like COUNT() or SUM().',
-    tags: ['where', 'having', 'group-by']
+    correctAnswer: 'WHERE salary > 80000 ... GROUP BY department ... HAVING COUNT(*) > 3',
+    explanation: 'WHERE filters individual employee rows by salary before grouping, then GROUP BY collapses rows per department, and HAVING filters the resulting per-department counts. Option B reverses the roles of WHERE and HAVING, which is invalid since HAVING is for post-aggregation filtering and WHERE cannot reference COUNT(*). Option C is invalid because WHERE cannot reference an aggregate like COUNT(*). Option D is invalid for the same reason: COUNT(*) does not exist yet at the WHERE stage.',
+    tags: ['where', 'having', 'group-by', 'sql-basics']
   },
   {
     id: 'sql-008',
     topic: 'sql',
     stage: 'Beginner',
     difficulty: 'Beginner',
-    category: 'Theory',
-    question: 'What does the DISTINCT keyword do in a SELECT statement?',
+    category: 'Coding',
+    question: 'A table "signups" has columns (email, source). The same email can appear multiple times with different sources. What does SELECT DISTINCT email FROM signups; return?',
     options: [
-      'Sorts the result set',
-      'Removes duplicate rows from the result set',
-      'Counts the number of rows',
-      'Filters out NULL values only'
+      'Each unique email value exactly once, regardless of how many rows or sources it appeared with',
+      'Each unique combination of email and source exactly once',
+      'Only emails that appear in more than one row',
+      'All rows, but with the source column removed from the output'
     ],
-    correctAnswer: 'Removes duplicate rows from the result set',
-    explanation: 'SELECT DISTINCT returns only unique rows based on the selected columns, eliminating exact duplicates from the output.',
+    correctAnswer: 'Each unique email value exactly once, regardless of how many rows or sources it appeared with',
+    explanation: 'DISTINCT applies to the selected column list, so since only "email" is selected, duplicates are eliminated based on the email value alone, collapsing multiple rows with the same email into one. Option B describes what would happen if both email and source were selected with DISTINCT, not just email. Option C describes a HAVING COUNT(*) > 1 condition, not DISTINCT. Option D is incorrect because DISTINCT removes duplicate result rows; it does not simply "drop" unselected columns from an otherwise unchanged row set.',
     tags: ['distinct', 'select', 'sql-basics']
   },
   {
@@ -145,10 +150,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Coding',
-    question: 'Which clause is used to sort query results?',
-    options: ['SORT BY', 'GROUP BY', 'ORDER BY', 'ARRANGE BY'],
-    correctAnswer: 'ORDER BY',
-    explanation: 'ORDER BY sorts the result set by one or more columns, ascending (ASC, default) or descending (DESC).',
+    question: 'You want results sorted by total_amount from highest to lowest, with ties broken by the oldest order_date first. Which ORDER BY clause achieves this?',
+    options: [
+      'ORDER BY total_amount DESC, order_date ASC',
+      'ORDER BY total_amount ASC, order_date DESC',
+      'ORDER BY order_date ASC, total_amount DESC',
+      'ORDER BY total_amount DESC, order_date DESC'
+    ],
+    correctAnswer: 'ORDER BY total_amount DESC, order_date ASC',
+    explanation: 'Multiple ORDER BY columns are applied in sequence: the first column determines primary sort order, and later columns only matter for breaking ties within equal values of earlier columns. DESC on total_amount sorts highest first, and ASC on order_date breaks ties with the oldest date first. Option B sorts the primary value the wrong direction. Option C sorts by date first, making total_amount only a tie-breaker, which reverses the intended priority. Option D breaks ties by newest date first instead of oldest.',
     tags: ['order-by', 'sql-basics']
   },
   {
@@ -157,15 +167,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What is the purpose of the NOT NULL constraint?',
+    question: 'A column is defined as NOT NULL but has no DEFAULT value. What happens if an INSERT statement omits that column entirely?',
     options: [
-      'It ensures a column cannot be left empty (must always have a value)',
-      'It ensures a column always contains the value zero',
-      'It prevents duplicate values',
-      'It enforces foreign key relationships'
+      'The insert fails with a constraint violation, since no value (including a default) is available for a required column',
+      'The database automatically inserts an empty string for any omitted NOT NULL column',
+      'The database automatically inserts the number 0 for any omitted NOT NULL column',
+      'NOT NULL only applies to UPDATE statements, so the insert succeeds'
     ],
-    correctAnswer: 'It ensures a column cannot be left empty (must always have a value)',
-    explanation: 'A NOT NULL constraint requires that a column always contain an explicit value, rejecting any INSERT or UPDATE that would leave it NULL.',
+    correctAnswer: 'The insert fails with a constraint violation, since no value (including a default) is available for a required column',
+    explanation: 'Without a DEFAULT, an omitted column would be set to NULL, which directly violates the NOT NULL constraint, so the engine rejects the statement. Option B and Option C describe behavior that does not exist generically across SQL databases; there is no implicit string or numeric default tied to NOT NULL. Option D is wrong because NOT NULL constraints apply to both INSERT and UPDATE operations.',
     tags: ['constraints', 'sql-basics']
   },
   {
@@ -174,16 +184,16 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What does the UNIQUE constraint enforce?',
+    question: 'A column "ssn" has a UNIQUE constraint (not a primary key) and is nullable. A table currently has two rows where ssn is NULL. Does this violate the UNIQUE constraint in most databases (e.g., PostgreSQL, SQL Server, MySQL)?',
     options: [
-      'That all values in a column are non-NULL',
-      'That all values in a column (or column combination) are distinct from one another',
-      'That a column can only store numbers',
-      'That a table can have only one row'
+      'No, because most databases treat each NULL as distinct from every other NULL for uniqueness purposes',
+      'Yes, because UNIQUE treats all NULLs as equal to one another, so two NULLs are duplicates',
+      'It depends only on whether the column is also indexed',
+      'No, because UNIQUE constraints are never enforced on nullable columns at all'
     ],
-    correctAnswer: 'That all values in a column (or column combination) are distinct from one another',
-    explanation: 'UNIQUE prevents duplicate values in a column, though unlike PRIMARY KEY, most databases allow multiple NULLs in a UNIQUE column since NULL is not considered equal to itself.',
-    tags: ['constraints', 'unique', 'sql-basics']
+    correctAnswer: 'No, because most databases treat each NULL as distinct from every other NULL for uniqueness purposes',
+    explanation: 'Since NULL represents an unknown value rather than a specific value, most databases follow the standard convention that NULL is never considered equal to another NULL, so multiple NULLs do not violate UNIQUE. (Notably, SQL Server\'s default behavior with a single UNIQUE index can differ, but the general relational standard and most engines allow multiple NULLs.) Option B describes the opposite, incorrect behavior. Option C is wrong because indexing is an implementation detail, not what determines NULL equality semantics. Option D is wrong because UNIQUE is enforced for all actual (non-NULL) values in the column.',
+    tags: ['constraints', 'unique', 'null', 'sql-basics']
   },
   {
     id: 'sql-012',
@@ -191,10 +201,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Coding',
-    question: 'Which SQL command is used to add a new row to a table?',
-    options: ['UPDATE', 'INSERT INTO', 'ADD ROW', 'CREATE ROW'],
-    correctAnswer: 'INSERT INTO',
-    explanation: 'INSERT INTO table_name (columns) VALUES (...) adds new rows to a table.',
+    question: 'Which statement correctly inserts a new row into orders(id, customer_id, total) using an explicit column list?',
+    options: [
+      'INSERT INTO orders (id, customer_id, total) VALUES (101, 55, 249.99);',
+      'INSERT orders SET id = 101, customer_id = 55, total = 249.99;',
+      'INSERT INTO orders VALUES SET (101, 55, 249.99);',
+      'ADD INTO orders (id, customer_id, total) VALUES (101, 55, 249.99);'
+    ],
+    correctAnswer: 'INSERT INTO orders (id, customer_id, total) VALUES (101, 55, 249.99);',
+    explanation: 'Standard ANSI SQL syntax for inserting a row with an explicit column list is INSERT INTO table (columns) VALUES (values). Option B uses MySQL-specific SET syntax, which is non-standard and not valid in most other databases for INSERT in this form. Option C mixes invalid syntax combining VALUES and SET incorrectly. Option D uses a nonexistent ADD INTO keyword instead of INSERT INTO.',
     tags: ['insert', 'dml', 'sql-basics']
   },
   {
@@ -203,10 +218,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Coding',
-    question: 'Which SQL command modifies existing rows in a table?',
-    options: ['UPDATE', 'ALTER', 'MODIFY', 'CHANGE'],
-    correctAnswer: 'UPDATE',
-    explanation: 'UPDATE table_name SET column = value WHERE condition modifies existing rows that match the given condition.',
+    question: 'You want to give every employee in the "Sales" department a 10% raise. Which statement does this correctly?',
+    options: [
+      'UPDATE employees SET salary = salary * 1.10 WHERE department = \'Sales\';',
+      'UPDATE employees SET salary = salary * 1.10;',
+      'ALTER employees SET salary = salary * 1.10 WHERE department = \'Sales\';',
+      'UPDATE employees WHERE department = \'Sales\' SET salary = salary * 1.10;'
+    ],
+    correctAnswer: 'UPDATE employees SET salary = salary * 1.10 WHERE department = \'Sales\';',
+    explanation: 'UPDATE requires the SET clause before WHERE, and the WHERE clause is essential here to scope the raise only to the Sales department. Option B omits WHERE entirely, which would give every employee in the table a raise, not just Sales. Option C incorrectly uses ALTER, which modifies schema structure, not row data. Option D has the clauses in the wrong order; WHERE must come after SET in standard UPDATE syntax.',
     tags: ['update', 'dml', 'sql-basics']
   },
   {
@@ -215,15 +235,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Coding',
-    question: 'What happens if you run an UPDATE statement without a WHERE clause?',
+    question: 'A developer runs UPDATE accounts SET is_active = false; and forgets the WHERE clause. What is the actual effect?',
     options: [
-      'Nothing happens; the statement is ignored',
-      'Every row in the table is updated',
-      'Only the first row is updated',
-      'The database throws a syntax error'
+      'Every row in the accounts table has is_active set to false',
+      'The statement is automatically rejected by the database for missing a WHERE clause',
+      'Only the first row in the table is affected, since no condition was given',
+      'No rows are affected, since UPDATE requires WHERE to identify target rows'
     ],
-    correctAnswer: 'Every row in the table is updated',
-    explanation: 'Without a WHERE clause, UPDATE (and DELETE) applies to every row in the table, which is a common and dangerous mistake in production environments.',
+    correctAnswer: 'Every row in the accounts table has is_active set to false',
+    explanation: 'An UPDATE without a WHERE clause applies to every row in the table; there is nothing limiting its scope, which is exactly why this is a common and costly production mistake. Option B is wrong because standard SQL does not require WHERE on UPDATE; it is syntactically optional even though omitting it is usually unintentional. Options C and D incorrectly assume some implicit row-limiting behavior that does not exist for plain UPDATE statements.',
     tags: ['update', 'gotchas', 'dml']
   },
   {
@@ -232,15 +252,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What is the difference between CHAR and VARCHAR data types?',
+    question: 'A column is defined as CHAR(10) and another as VARCHAR(10). Both store the value \'cat\'. Which statement correctly describes the stored result?',
     options: [
-      'CHAR is fixed-length and pads with spaces; VARCHAR is variable-length and only stores the actual characters used',
-      'They are functionally identical in all databases',
-      'VARCHAR can only store numbers',
-      'CHAR can store unlimited length text'
+      'The CHAR(10) column stores \'cat\' padded with trailing spaces to fill 10 characters; the VARCHAR(10) column stores just \'cat\' using only the space it needs',
+      'Both columns store exactly \'cat\' with no padding, since modern databases optimize CHAR storage automatically',
+      'The VARCHAR(10) column pads with spaces while CHAR(10) stores only the exact characters used',
+      'CHAR(10) and VARCHAR(10) are simply two names for the same underlying storage type in all databases'
     ],
-    correctAnswer: 'CHAR is fixed-length and pads with spaces; VARCHAR is variable-length and only stores the actual characters used',
-    explanation: 'CHAR(n) always occupies n characters of storage, padding shorter values with spaces, while VARCHAR(n) stores only the actual string length plus a small overhead, up to the maximum n.',
+    correctAnswer: 'The CHAR(10) column stores \'cat\' padded with trailing spaces to fill 10 characters; the VARCHAR(10) column stores just \'cat\' using only the space it needs',
+    explanation: 'CHAR is a fixed-length type that always occupies the declared length, padding shorter values with spaces, while VARCHAR is variable-length and stores only the actual string plus a small length-tracking overhead. Option B is wrong because CHAR padding is a defined part of the type\'s behavior, not something databases bypass for optimization. Option C reverses the actual behavior of the two types. Option D is wrong because the types have meaningfully different storage and comparison semantics (e.g., trailing-space handling in comparisons can differ).',
     tags: ['data-types', 'sql-basics']
   },
   {
@@ -249,15 +269,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What does NULL represent in SQL?',
+    question: 'A column "discount" is NULL for a particular row. What does this most precisely indicate?',
     options: [
-      'The number zero',
-      'An empty string',
-      'The absence of a value, or an unknown value',
-      'A reserved keyword with no special meaning'
+      'The value is unknown or not applicable, which is different from the value being zero or an empty string',
+      'The discount is exactly 0, since NULL is SQL\'s representation of numeric zero',
+      'The discount column was left as an empty string for that row',
+      'The row itself has not been fully committed to the table yet'
     ],
-    correctAnswer: 'The absence of a value, or an unknown value',
-    explanation: 'NULL represents missing or unknown data; it is not equal to zero, an empty string, or even another NULL, which is why comparisons must use IS NULL / IS NOT NULL.',
+    correctAnswer: 'The value is unknown or not applicable, which is different from the value being zero or an empty string',
+    explanation: 'NULL specifically represents missing or unknown data, and is treated differently from any concrete value, including zero or an empty string, in comparisons and arithmetic. Option B incorrectly equates NULL with zero, which would make 0 + NULL evaluate to 0 instead of NULL. Option C confuses NULL with an empty string, which is a distinct, defined value. Option D is wrong because NULL has nothing to do with transaction commit status; it is simply a column value state.',
     tags: ['null', 'sql-basics']
   },
   {
@@ -266,15 +286,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Coding',
-    question: 'Why does the condition "column = NULL" never return rows, even when the column contains NULL values?',
+    question: 'A table has 100 rows where the "manager_id" column is NULL for unmanaged employees. Why does SELECT * FROM employees WHERE manager_id = NULL; return zero rows even though NULL values exist?',
     options: [
-      'It is a syntax error in all databases',
-      'NULL comparisons with = always evaluate to UNKNOWN, not TRUE, so IS NULL must be used instead',
-      'NULL is treated as the string "NULL"',
-      'The column must be cast to a string first'
+      'The = operator compared against NULL always evaluates to UNKNOWN, not TRUE, so no row satisfies the condition; IS NULL must be used instead',
+      'The query has a syntax error and never executes',
+      'NULL is automatically converted to the string "NULL" during comparison, which never matches the actual NULL value',
+      'The WHERE clause silently ignores any condition involving the literal NULL'
     ],
-    correctAnswer: 'NULL comparisons with = always evaluate to UNKNOWN, not TRUE, so IS NULL must be used instead',
-    explanation: 'In SQL\u2019s three-valued logic (TRUE, FALSE, UNKNOWN), any comparison involving NULL using standard operators yields UNKNOWN, which is treated as not matching in a WHERE clause; IS NULL/IS NOT NULL are the correct predicates.',
+    correctAnswer: 'The = operator compared against NULL always evaluates to UNKNOWN, not TRUE, so no row satisfies the condition; IS NULL must be used instead',
+    explanation: 'SQL\'s three-valued logic means any standard comparison operator (=, <>, <, >) applied to NULL produces UNKNOWN rather than TRUE or FALSE, and WHERE only keeps rows where the condition is TRUE, so UNKNOWN results are excluded. Option B is wrong because this is valid, executable syntax, not a syntax error. Option C is wrong because there is no implicit string conversion happening here. Option D is wrong because the clause is not "ignored"; it is evaluated and simply never returns TRUE.',
     tags: ['null', 'gotchas', 'where']
   },
   {
@@ -283,16 +303,16 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What is an aggregate function in SQL?',
+    question: 'Which of the following is true about aggregate functions like SUM(), AVG(), and MAX()?',
     options: [
-      'A function that operates on a single row only',
-      'A function that performs a calculation across a set of rows and returns a single value (e.g., SUM, AVG, COUNT)',
-      'A function used only for string manipulation',
-      'A function that creates new tables'
+      'They compute a single summary value from a set of rows, and by default ignore NULL values in their target column',
+      'They operate independently on each row and return one output row per input row',
+      'They can only be used inside a WHERE clause, never in SELECT',
+      'They automatically treat NULL as zero when computing SUM() or AVG()'
     ],
-    correctAnswer: 'A function that performs a calculation across a set of rows and returns a single value (e.g., SUM, AVG, COUNT)',
-    explanation: 'Aggregate functions like COUNT(), SUM(), AVG(), MIN(), and MAX() summarize multiple rows into a single result, often used alongside GROUP BY.',
-    tags: ['aggregate-functions', 'sql-basics']
+    correctAnswer: 'They compute a single summary value from a set of rows, and by default ignore NULL values in their target column',
+    explanation: 'Aggregate functions collapse multiple rows into a single value per group (or per whole result set with no GROUP BY), and functions like SUM, AVG, MIN, and MAX skip NULLs rather than treating them as zero or including them as an error. Option B describes scalar/row-level functions, not aggregates. Option C is wrong because aggregate functions are commonly used in SELECT and HAVING, and cannot be used directly in WHERE at all. Option D is a common but incorrect assumption: NULL is excluded from the calculation entirely, not coerced to 0, which affects results like AVG() differently than if NULLs counted as zero.',
+    tags: ['aggregate-functions', 'null', 'sql-basics']
   },
   {
     id: 'sql-019',
@@ -300,10 +320,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Coding',
-    question: 'What does COUNT(*) return for a table with 5 rows, two of which have a NULL value in column "age"?',
-    options: ['3', '5', '2', '0'],
-    correctAnswer: '5',
-    explanation: 'COUNT(*) counts all rows regardless of NULL values, returning the total row count; COUNT(age) would instead return 3, since COUNT(column) ignores NULLs in that column.',
+    question: 'A table "employees" has 5 rows, two of which have a NULL value in the "age" column. What do COUNT(*) and COUNT(age) return, respectively?',
+    options: [
+      '5 and 3',
+      '5 and 5',
+      '3 and 5',
+      '3 and 3'
+    ],
+    correctAnswer: '5 and 3',
+    explanation: 'COUNT(*) counts every row regardless of NULLs, so it returns 5. COUNT(column) only counts rows where that specific column is non-NULL, so with 2 NULLs out of 5 rows, it returns 3. The option "5 and 5" incorrectly assumes COUNT(age) also ignores NULL handling and counts all rows. The option "3 and 5" reverses the correct behavior of the two functions. The option "3 and 3" incorrectly assumes COUNT(*) is also affected by NULLs in a specific column, which it is not, since COUNT(*) counts rows, not column values.',
     tags: ['count', 'aggregate-functions', 'null']
   },
   {
@@ -312,15 +337,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Beginner',
     difficulty: 'Beginner',
     category: 'Theory',
-    question: 'What does GROUP BY do in a SQL query?',
+    question: 'A query uses GROUP BY department, role and also selects COUNT(*). What does each row in the result represent?',
     options: [
-      'Sorts rows alphabetically',
-      'Groups rows sharing the same values in specified columns so aggregate functions can be applied per group',
-      'Removes duplicate rows entirely',
-      'Joins two tables together'
+      'One row per unique combination of department and role, with COUNT(*) showing how many original rows shared that combination',
+      'One row per department only, with role values arbitrarily chosen from one of the underlying rows',
+      'One row per original employee row, annotated with department and role',
+      'A single row containing the total count across all departments and roles combined'
     ],
-    correctAnswer: 'Groups rows sharing the same values in specified columns so aggregate functions can be applied per group',
-    explanation: 'GROUP BY collapses rows with matching values in the grouped columns into a single row per group, typically used with aggregate functions to compute per-group summaries.',
+    correctAnswer: 'One row per unique combination of department and role, with COUNT(*) showing how many original rows shared that combination',
+    explanation: 'GROUP BY with multiple columns groups rows by the combination of all listed columns, so each output row corresponds to a distinct (department, role) pair, and COUNT(*) reflects how many source rows fell into that specific group. Option B describes grouping by department alone, which would not respect the role column at all. Option C describes no grouping happening, which contradicts the use of GROUP BY. Option D describes the result of omitting the GROUP BY clause and only using COUNT(*) as a single aggregate over the whole table.',
     tags: ['group-by', 'aggregate-functions']
   },
 
@@ -330,17 +355,17 @@ export const sqlQuestions: InterviewQuestion[] = [
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is the difference between INNER JOIN and LEFT JOIN?',
+    category: 'Coding',
+    question: 'Given orders (10 rows) and shipments (7 rows, each referencing an order_id that exists in orders, with no order having more than one shipment), what is the result row count of: SELECT * FROM orders o LEFT JOIN shipments s ON o.id = s.order_id;',
     options: [
-      'They always return the same results',
-      'INNER JOIN returns only matching rows from both tables; LEFT JOIN returns all rows from the left table plus matched rows from the right (NULL where no match)',
-      'LEFT JOIN only works with a single table',
-      'INNER JOIN includes unmatched rows from the right table'
+      '10 rows, with shipment columns NULL for the 3 orders lacking a shipment',
+      '7 rows, since LEFT JOIN only returns matched rows',
+      '17 rows, since LEFT JOIN concatenates both tables\u2019 row counts',
+      '3 rows, representing only the unmatched orders'
     ],
-    correctAnswer: 'INNER JOIN returns only matching rows from both tables; LEFT JOIN returns all rows from the left table plus matched rows from the right (NULL where no match)',
-    explanation: 'INNER JOIN excludes rows without a match in both tables, while LEFT (OUTER) JOIN preserves every row from the left table, filling unmatched right-table columns with NULL.',
-    tags: ['joins', 'inner-join', 'left-join']
+    correctAnswer: '10 rows, with shipment columns NULL for the 3 orders lacking a shipment',
+    explanation: 'LEFT JOIN preserves every row from the left table (orders) regardless of whether a match exists in the right table, filling unmatched shipment columns with NULL, so the result has exactly as many rows as orders: 10. The option describing 7 rows confuses LEFT JOIN with INNER JOIN, which would only return matched rows. The 17-row option misunderstands JOIN as a UNION-like concatenation, which is not how relational joins work. The 3-row option only reflects the unmatched subset, ignoring the 7 orders that do have a shipment.',
+    tags: ['joins', 'left-join', 'coding']
   },
   {
     id: 'sql-022',
@@ -348,134 +373,134 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Intermediate',
     difficulty: 'Intermediate',
     category: 'Theory',
-    question: 'What does a RIGHT JOIN return?',
+    question: 'A query uses RIGHT JOIN instead of LEFT JOIN by mistake, but the developer swaps the table order in the FROM clause to compensate. Under what condition does this produce an identical result to the original intended LEFT JOIN?',
     options: [
-      'Only rows that match in both tables',
-      'All rows from the right table, plus matching rows from the left table (NULL where no match)',
-      'All rows from both tables regardless of match',
-      'Only rows that exist in the right table but not the left'
+      'Only if the same two tables and the same join condition are used, just with their positions in FROM swapped to match the new join direction',
+      'Never, because RIGHT JOIN and LEFT JOIN are fundamentally incompatible operations with no overlap',
+      'Always, regardless of table order, since RIGHT JOIN and LEFT JOIN are simply aliases for INNER JOIN',
+      'Only if both tables happen to have the same number of rows'
     ],
-    correctAnswer: 'All rows from the right table, plus matching rows from the left table (NULL where no match)',
-    explanation: 'RIGHT JOIN is the mirror image of LEFT JOIN: every row from the right table is preserved, with unmatched left-table columns returned as NULL.',
-    tags: ['joins', 'right-join']
+    correctAnswer: 'Only if the same two tables and the same join condition are used, just with their positions in FROM swapped to match the new join direction',
+    explanation: 'A LEFT JOIN of A to B is equivalent to a RIGHT JOIN of B to A, since both preserve all rows of the same logical table while matching against the other; swapping FROM order while also swapping which side is RIGHT JOINed reproduces the same semantics. The "never" option is incorrect because this equivalence is a well-known and commonly used technique. The "always, since they\u2019re aliases for INNER JOIN" option is wrong because LEFT/RIGHT JOIN preserve unmatched rows from one side, unlike INNER JOIN, which discards them. The row-count option is irrelevant; equivalence depends on join direction and table roles, not row counts.',
+    tags: ['joins', 'right-join', 'left-join']
   },
   {
     id: 'sql-023',
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What does a FULL OUTER JOIN return?',
+    category: 'Coding',
+    question: 'Table A has rows {1, 2, 3} and table B has rows {2, 3, 4} in their shared key column. What does SELECT a.key FROM A a FULL OUTER JOIN B b ON a.key = b.key WHERE b.key IS NULL; return?',
     options: [
-      'Only rows present in both tables',
-      'All rows from both tables, with NULLs filled in wherever there is no match on either side',
-      'Only rows that exist in neither table',
-      'It is identical to a CROSS JOIN'
+      '1, representing the row from A with no match in B',
+      '4, representing the row from B with no match in A',
+      '1 and 4, representing all unmatched rows from both tables',
+      'Nothing, since FULL OUTER JOIN never produces NULLs in the join column'
     ],
-    correctAnswer: 'All rows from both tables, with NULLs filled in wherever there is no match on either side',
-    explanation: 'FULL OUTER JOIN combines LEFT and RIGHT JOIN behavior, returning every row from both tables, matched where possible and NULL-padded where not.',
-    tags: ['joins', 'full-outer-join']
+    correctAnswer: '1, representing the row from A with no match in B',
+    explanation: 'FULL OUTER JOIN returns all rows from both tables, NULL-padding unmatched sides; filtering with WHERE b.key IS NULL isolates rows that came only from A with no B match \u2014 here, just key 1, since the SELECT also explicitly pulls a.key. Option B is wrong because filtering on b.key IS NULL excludes rows where B matched but A didn\u2019t (it would need a.key IS NULL to capture the unmatched B row, value 4). The "1 and 4" option incorrectly assumes the single condition captures both directions of mismatch at once. The last option is wrong because NULL padding for unmatched sides is exactly what FULL OUTER JOIN is defined to produce.',
+    tags: ['joins', 'full-outer-join', 'coding']
   },
   {
     id: 'sql-024',
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is a CROSS JOIN, and what is its typical result size?',
+    category: 'Coding',
+    question: 'Table "sizes" has 4 rows and table "colors" has 5 rows, with no join condition. How many rows does SELECT * FROM sizes CROSS JOIN colors; return, and why?',
     options: [
-      'It joins tables based on a matching key, returning a filtered set',
-      'It returns the Cartesian product of two tables, with row count equal to (rows in table A) \u00d7 (rows in table B)',
-      'It returns only the first row of each table',
-      'It is identical to an INNER JOIN'
+      '20 rows, the Cartesian product of every row in sizes paired with every row in colors',
+      '9 rows, the sum of both tables\u2019 row counts',
+      '5 rows, matching the larger of the two tables',
+      '1 row, since no ON condition means no rows can be matched'
     ],
-    correctAnswer: 'It returns the Cartesian product of two tables, with row count equal to (rows in table A) \u00d7 (rows in table B)',
-    explanation: 'CROSS JOIN pairs every row of one table with every row of the other, with no join condition, which can produce extremely large result sets if used unintentionally.',
-    tags: ['joins', 'cross-join']
+    correctAnswer: '20 rows, the Cartesian product of every row in sizes paired with every row in colors',
+    explanation: 'CROSS JOIN deliberately has no join condition and instead pairs every row of one table with every row of the other, producing rows_A \u00d7 rows_B results, here 4 \u00d7 5 = 20. The 9-row option mistakenly treats this like a UNION-style addition of row counts. The 5-row option incorrectly assumes some implicit matching limits the output to the larger table\u2019s size. The 1-row option incorrectly assumes a missing ON condition causes the join to fail or collapse, when in fact CROSS JOIN intentionally omits one.',
+    tags: ['joins', 'cross-join', 'coding']
   },
   {
     id: 'sql-025',
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is a self join, and when would you use one?',
+    category: 'Coding',
+    question: 'An "employees" table has columns (id, name, manager_id), where manager_id references another row\u2019s id in the same table. Which query correctly lists each employee alongside their manager\u2019s name?',
     options: [
-      'A join that is impossible in SQL',
-      'A table joined with itself, often used to compare rows within the same table, like finding employees and their managers in one "employees" table',
-      'A join that only works on views',
-      'A join that always returns zero rows'
+      'SELECT e.name AS employee, m.name AS manager FROM employees e LEFT JOIN employees m ON e.manager_id = m.id;',
+      'SELECT e.name, e.manager_id FROM employees e GROUP BY e.manager_id;',
+      'SELECT name, manager_id FROM employees ORDER BY manager_id;',
+      'SELECT e.name AS employee, m.name AS manager FROM employees e, employees m;'
     ],
-    correctAnswer: 'A table joined with itself, often used to compare rows within the same table, like finding employees and their managers in one "employees" table',
-    explanation: 'Self joins use table aliases to treat the same table as two logical entities, commonly used for hierarchical data like an employee table with a manager_id referencing employee_id in the same table.',
-    tags: ['joins', 'self-join']
+    correctAnswer: 'SELECT e.name AS employee, m.name AS manager FROM employees e LEFT JOIN employees m ON e.manager_id = m.id;',
+    explanation: 'This is a self join using two aliases of the same table: "e" represents the employee row and "m" represents the manager row, joined where the employee\u2019s manager_id matches the manager\u2019s id; LEFT JOIN ensures employees with no manager (e.g., the CEO, manager_id NULL) still appear with a NULL manager name. The GROUP BY option does not resolve manager_id into an actual name and serves an unrelated aggregation purpose. The ORDER BY option only sorts by the raw manager_id value, never looking up the manager\u2019s name. The last option omits any join condition, producing a Cartesian product (every employee paired with every possible "manager" row) rather than the correct manager mapping.',
+    tags: ['joins', 'self-join', 'coding']
   },
   {
     id: 'sql-026',
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is a subquery (nested query)?',
+    category: 'Coding',
+    question: 'What does the following query return?\n\nSELECT name\nFROM departments\nWHERE id IN (\n  SELECT department_id\n  FROM employees\n  WHERE salary > 100000\n);',
     options: [
-      'A query that runs after the main query completes, in a separate transaction',
-      'A query nested inside another SQL statement, used to produce intermediate results consumed by the outer query',
-      'A type of stored procedure',
-      'A query that can only return one column'
+      'The names of departments that have at least one employee earning more than 100000',
+      'The names of all departments, annotated with their highest salary',
+      'The names of employees earning more than 100000, joined with department info',
+      'An error, because subqueries cannot be used inside a WHERE...IN clause'
     ],
-    correctAnswer: 'A query nested inside another SQL statement, used to produce intermediate results consumed by the outer query',
-    explanation: 'Subqueries can appear in SELECT, FROM, WHERE, or HAVING clauses, and can be correlated (referencing the outer query) or uncorrelated (independent).',
-    tags: ['subqueries']
+    correctAnswer: 'The names of departments that have at least one employee earning more than 100000',
+    explanation: 'The inner subquery produces a list of department_id values belonging to high earners, and the outer query then selects department names whose id appears anywhere in that list \u2014 effectively, any department with at least one qualifying employee. The "annotated with highest salary" option incorrectly assumes some aggregation is happening, but no MAX() or GROUP BY exists here. The "names of employees" option confuses the outer SELECT, which explicitly returns department names, not employee names. The "error" option is incorrect because subqueries are a standard and common use inside WHERE...IN.',
+    tags: ['subqueries', 'coding']
   },
   {
     id: 'sql-027',
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is the difference between a correlated subquery and a regular (uncorrelated) subquery?',
+    category: 'Coding',
+    question: 'Consider: SELECT e.name FROM employees e WHERE e.salary > (SELECT AVG(salary) FROM employees e2 WHERE e2.department_id = e.department_id);\n\nWhy is this subquery correlated rather than independent?',
     options: [
-      'There is no functional difference',
-      'A correlated subquery references columns from the outer query and is re-evaluated for each outer row; an uncorrelated subquery executes independently once',
-      'Correlated subqueries can only appear in the SELECT clause',
-      'Uncorrelated subqueries are always faster regardless of context'
+      'Because the inner query references e.department_id from the outer query, so it must be conceptually re-evaluated for each outer row',
+      'Because it uses AVG(), and all aggregate subqueries are automatically correlated',
+      'Because it is nested inside a WHERE clause, and all WHERE subqueries are correlated by definition',
+      'It is not actually correlated, since the inner query has its own table alias e2'
     ],
-    correctAnswer: 'A correlated subquery references columns from the outer query and is re-evaluated for each outer row; an uncorrelated subquery executes independently once',
-    explanation: 'Correlated subqueries depend on values from the enclosing query and conceptually execute once per outer row, which can be expensive, whereas independent subqueries are evaluated once and their result reused.',
-    tags: ['subqueries', 'correlated-subquery', 'performance']
+    correctAnswer: 'Because the inner query references e.department_id from the outer query, so it must be conceptually re-evaluated for each outer row',
+    explanation: 'A subquery is correlated specifically when it references a column from the outer query (here, e.department_id), meaning its result can differ depending on which outer row is currently being evaluated, in this case computing each employee\u2019s own department\u2019s average salary. Using AVG() does not by itself make a subquery correlated; an aggregate subquery with no outer reference would be independent. Likewise, subqueries inside WHERE are not automatically correlated; many WHERE subqueries (e.g., a simple IN list) are fully independent. Having a separate alias (e2) does not prevent correlation; the alias is necessary precisely because the same table is referenced from both inner and outer scopes.',
+    tags: ['subqueries', 'correlated-subquery', 'coding']
   },
   {
     id: 'sql-028',
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is a Common Table Expression (CTE)?',
+    category: 'Coding',
+    question: 'What is the purpose of the WITH clause in the following query?\n\nWITH high_value_orders AS (\n  SELECT customer_id, SUM(total) AS lifetime_value\n  FROM orders\n  GROUP BY customer_id\n  HAVING SUM(total) > 5000\n)\nSELECT c.name, h.lifetime_value\nFROM customers c\nJOIN high_value_orders h ON c.id = h.customer_id;',
     options: [
-      'A permanent table stored in the database schema',
-      'A named, temporary result set defined using WITH that can be referenced within a single query, improving readability',
-      'A type of index',
-      'A way to encrypt query results'
+      'It defines a named, temporary result set (a CTE) that can be referenced later in the same query, here used to pre-aggregate order totals before joining',
+      'It permanently creates a new table called high_value_orders in the database schema',
+      'It is functionally identical to creating an index on the orders table',
+      'It forces the query to execute the subquery once per row of the customers table'
     ],
-    correctAnswer: 'A named, temporary result set defined using WITH that can be referenced within a single query, improving readability',
-    explanation: 'CTEs, defined with the WITH clause, let you break complex queries into named, readable building blocks, and can also support recursive queries.',
-    tags: ['cte', 'with-clause']
+    correctAnswer: 'It defines a named, temporary result set (a CTE) that can be referenced later in the same query, here used to pre-aggregate order totals before joining',
+    explanation: 'The WITH clause introduces a Common Table Expression, scoped to this single statement, which here aggregates order totals per customer before the outer query joins it against the customers table, improving readability over nesting the subquery directly in the FROM clause. It does not create a persistent database object; the CTE disappears once the statement finishes. It has nothing to do with indexing, which is a storage/performance feature, not a query-structuring one. It also does not force per-row re-execution; in most databases, a non-recursive CTE\u2019s definition can be computed once and reused (the exact materialization strategy varies by engine, but conceptually it is not iterated per outer row).',
+    tags: ['cte', 'with-clause', 'coding']
   },
   {
     id: 'sql-029',
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is a recursive CTE typically used for?',
+    category: 'Coding',
+    question: 'A recursive CTE is used to traverse an "employees" table with (id, name, manager_id) to find everyone who reports up the chain to a given executive. Which part of the recursive CTE definition prevents it from running forever?',
     options: [
-      'Encrypting recursive data structures',
-      'Querying hierarchical or graph-like data, such as an organizational chart or category tree, by repeatedly referencing itself',
-      'Improving INSERT performance',
-      'Replacing all JOIN operations'
+      'The recursive member stops producing new rows once a join condition (e.g., matching manager_id) finds no further matching rows to add',
+      'Recursive CTEs always run for a fixed, hardcoded number of iterations regardless of the data',
+      'The anchor member alone determines when recursion stops, independent of the recursive member',
+      'Recursive CTEs require an explicit STOP statement to terminate'
     ],
-    correctAnswer: 'Querying hierarchical or graph-like data, such as an organizational chart or category tree, by repeatedly referencing itself',
-    explanation: 'A recursive CTE has an anchor (base case) member and a recursive member that references the CTE itself, repeatedly executing until no more rows are produced, ideal for traversing parent-child hierarchies.',
+    correctAnswer: 'The recursive member stops producing new rows once a join condition (e.g., matching manager_id) finds no further matching rows to add',
+    explanation: 'A recursive CTE repeatedly executes its recursive member, joining the CTE\u2019s own previous result back against the base table, and naturally terminates once an iteration produces zero new rows (e.g., reaching employees with no further reports). There is no fixed iteration count baked into the recursive CTE mechanism itself, though some databases let you set a maximum recursion depth as a safety guard. The anchor member only seeds the initial rows; it does not control when recursion stops, the recursive member\u2019s row production does. There is no STOP keyword in standard recursive CTE syntax; termination is implicit based on data exhaustion.',
     tags: ['cte', 'recursive-cte', 'hierarchical-data']
   },
   {
@@ -484,16 +509,16 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Intermediate',
     difficulty: 'Intermediate',
     category: 'Theory',
-    question: 'What is a database VIEW?',
+    question: 'A view "active_customers" is defined as SELECT * FROM customers WHERE status = \'active\'. A row in customers changes from active to inactive. What happens when active_customers is queried immediately afterward (assuming it is a standard, non-materialized view)?',
     options: [
-      'A physical copy of table data stored separately',
-      'A virtual table defined by a stored SELECT query, which does not store data itself (unless materialized)',
-      'A type of backup mechanism',
-      'A way to encrypt sensitive columns'
+      'The now-inactive row no longer appears, since the view re-executes its underlying query against current data on every access',
+      'The row still appears until the view is manually refreshed with a REFRESH command',
+      'The view continues showing stale data until the database is restarted',
+      'The change has no effect because views cache their result permanently at creation time'
     ],
-    correctAnswer: 'A virtual table defined by a stored SELECT query, which does not store data itself (unless materialized)',
-    explanation: 'A regular view is essentially a saved query that can be queried like a table, recomputed each time it is accessed, useful for simplifying complex queries or restricting column/row access.',
-    tags: ['views']
+    correctAnswer: 'The now-inactive row no longer appears, since the view re-executes its underlying query against current data on every access',
+    explanation: 'A standard (non-materialized) view is essentially a stored query, not stored data, so every time it is queried, the underlying SELECT runs fresh against the live table and reflects the current state immediately. The REFRESH-command option describes materialized view behavior, not a regular view, which has no such manual refresh step because it has nothing cached to refresh. The "stale until restart" option incorrectly attributes caching behavior to plain views. The "caches permanently at creation" option confuses how views work entirely; a view\u2019s definition is fixed, but its data is always recomputed live.',
+    tags: ['views', 'coding']
   },
   {
     id: 'sql-031',
@@ -501,15 +526,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Intermediate',
     difficulty: 'Intermediate',
     category: 'Theory',
-    question: 'What is the difference between a regular VIEW and a MATERIALIZED VIEW?',
+    question: 'A team replaces a frequently-queried regular VIEW with a MATERIALIZED VIEW to improve dashboard load times. What new operational responsibility does this introduce that did not exist with the regular view?',
     options: [
-      'They are identical in all databases',
-      'A regular view recomputes its query on every access; a materialized view stores the query results physically and must be refreshed to reflect underlying data changes',
-      'Materialized views cannot be queried with SELECT',
-      'Regular views are always faster than materialized views'
+      'The team must now periodically refresh the materialized view, or its data will become stale relative to the underlying tables',
+      'The team must now manually rewrite every query that referenced the old view, since materialized views use entirely different SELECT syntax',
+      'The team loses the ability to query the materialized view using ordinary SELECT statements',
+      'Materialized views automatically stay in sync with underlying tables in real time, so no new responsibility is introduced'
     ],
-    correctAnswer: 'A regular view recomputes its query on every access; a materialized view stores the query results physically and must be refreshed to reflect underlying data changes',
-    explanation: 'Materialized views trade storage and refresh complexity for query speed, since the result set is precomputed and persisted, unlike standard views which run the underlying query every time.',
+    correctAnswer: 'The team must now periodically refresh the materialized view, or its data will become stale relative to the underlying tables',
+    explanation: 'Because a materialized view physically stores its query results rather than recomputing them on each access, it must be explicitly refreshed (manually, on a schedule, or via triggers depending on the database) to reflect changes in the underlying tables, which is a new operational burden compared to a regular view. Materialized views are still queried with standard SELECT statements, just like regular views, so no special new syntax is required for read queries. They remain fully queryable; that is, in fact, their main appeal for performance. The claim that they "automatically stay in sync in real time" is false for most databases and is precisely the trade-off being introduced.',
     tags: ['views', 'materialized-view', 'performance']
   },
   {
@@ -517,16 +542,16 @@ export const sqlQuestions: InterviewQuestion[] = [
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is an INDEX in a database, and what trade-off does it introduce?',
+    category: 'Performance',
+    question: 'A table receives heavy write traffic (thousands of INSERTs per second) and has 8 indexes on various columns. Read queries are relatively rare. What is the most likely consequence of this index configuration?',
     options: [
-      'A structure that only stores backup copies of data, with no trade-off',
-      'A data structure that speeds up read queries on indexed columns, at the cost of additional storage and slower writes (INSERT/UPDATE/DELETE)',
-      'A constraint that prevents duplicate rows',
-      'A way to permanently delete data faster'
+      'Write throughput suffers because every index must be updated on each INSERT, even though most of those indexes are rarely used for reads',
+      'Indexes have no effect on INSERT performance, only on SELECT performance',
+      'Having more indexes always improves both read and write performance simultaneously',
+      'The number of indexes only matters for UPDATE statements, not INSERT statements'
     ],
-    correctAnswer: 'A data structure that speeds up read queries on indexed columns, at the cost of additional storage and slower writes (INSERT/UPDATE/DELETE)',
-    explanation: 'Indexes (commonly B-trees) allow the database to locate rows without scanning the entire table, dramatically speeding up lookups and joins, but every index must also be updated on writes, adding overhead.',
+    correctAnswer: 'Write throughput suffers because every index must be updated on each INSERT, even though most of those indexes are rarely used for reads',
+    explanation: 'Each index is a separate data structure that must be maintained whenever a row is inserted, so eight indexes mean eight structures to update per write, which compounds significantly under high insert volume, especially when most of those indexes provide little corresponding read benefit. The claim that indexes have no effect on INSERT performance ignores this maintenance cost entirely. Indexes do not universally improve both reads and writes; they trade write overhead for read speed, which is exactly the tension in this scenario. INSERT operations are affected by indexes just as much as UPDATE operations, since both require adding or modifying index entries.',
     tags: ['indexing', 'performance']
   },
   {
@@ -535,15 +560,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Intermediate',
     difficulty: 'Intermediate',
     category: 'Theory',
-    question: 'What is the difference between a clustered and a non-clustered index?',
+    question: 'A table has a clustered index on its primary key "id" and a separate non-clustered index on "email". When a query searches by email, what does the database typically have to do to retrieve the full row?',
     options: [
-      'They are the same thing with different names',
-      'A clustered index determines the physical storage order of table rows (only one per table); a non-clustered index is a separate structure pointing back to the rows',
-      'Non-clustered indexes can only be used on primary keys',
-      'A table can have multiple clustered indexes'
+      'Use the non-clustered index to find the matching row\u2019s key, then perform a lookup back into the clustered index (the actual table data) to fetch remaining columns',
+      'Read the row directly from the non-clustered index, since it always stores a complete copy of every column',
+      'Scan the entire table regardless of the non-clustered index\u2019s existence',
+      'Use the non-clustered index to determine which physical page the table\u2019s clustered data starts on, with no further lookup needed'
     ],
-    correctAnswer: 'A clustered index determines the physical storage order of table rows (only one per table); a non-clustered index is a separate structure pointing back to the rows',
-    explanation: 'Because the clustered index dictates physical row order, a table can have at most one (often automatically created on the primary key), while multiple non-clustered indexes can exist, each storing pointers/row locators back to the actual data.',
+    correctAnswer: 'Use the non-clustered index to find the matching row\u2019s key, then perform a lookup back into the clustered index (the actual table data) to fetch remaining columns',
+    explanation: 'A non-clustered index stores the indexed column(s) plus a pointer or row locator (often the clustering key), so unless the query only needs columns already present in the non-clustered index itself (a covering index scenario), the engine must do an extra lookup into the clustered index to retrieve the rest of the row\u2019s data. The claim that non-clustered indexes store complete row copies is false; that describes the clustered index, which holds the actual table data in storage order. A full table scan is not required here precisely because a usable index exists on email. The last option misdescribes the lookup as simply locating a page with no further work, when in fact a full key-based lookup into the clustered structure occurs.',
     tags: ['indexing', 'clustered-index', 'non-clustered-index']
   },
   {
@@ -552,16 +577,16 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Intermediate',
     difficulty: 'Intermediate',
     category: 'Theory',
-    question: 'What is database normalization?',
+    question: 'A junior developer denormalizes a heavily normalized schema by duplicating a customer\u2019s name into every order row, instead of joining to a customers table. What is the most accurate description of the trade-off being made?',
     options: [
-      'A process of duplicating data across tables for speed',
-      'A process of organizing data to reduce redundancy and improve data integrity, typically by decomposing tables according to normal forms',
-      'A way to compress database backups',
-      'A method for encrypting sensitive data'
+      'Read queries avoid a join and may run faster, but every update to a customer\u2019s name now must be propagated across all of that customer\u2019s order rows to avoid inconsistency',
+      'There is no meaningful trade-off, since denormalization always strictly improves performance with no downside',
+      'This change has no effect on data consistency, only on storage size',
+      'This change makes the schema more normalized, not less, since it adds more columns'
     ],
-    correctAnswer: 'A process of organizing data to reduce redundancy and improve data integrity, typically by decomposing tables according to normal forms',
-    explanation: 'Normalization organizes columns and tables to minimize data duplication and dependency anomalies, following normal forms (1NF, 2NF, 3NF, etc.), at the cost of sometimes requiring more joins.',
-    tags: ['normalization', 'database-design']
+    correctAnswer: 'Read queries avoid a join and may run faster, but every update to a customer\u2019s name now must be propagated across all of that customer\u2019s order rows to avoid inconsistency',
+    explanation: 'Denormalization trades update complexity and consistency risk for read performance: duplicating the name avoids a join at read time, but if the customer renames themselves, every duplicated copy across order rows must be updated, or the data becomes inconsistent. The "no trade-off" option ignores the well-known consistency risk that denormalization explicitly introduces. The claim about "no effect on consistency" is incorrect since duplicated data is the textbook source of update anomalies. Adding a duplicated column does not increase normalization; it actually reduces it, since the name now depends on customer_id rather than solely living in the customers table, reintroducing a transitive/redundant dependency.',
+    tags: ['denormalization', 'normalization', 'database-design']
   },
   {
     id: 'sql-035',
@@ -569,15 +594,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Intermediate',
     difficulty: 'Intermediate',
     category: 'Theory',
-    question: 'What does it mean for a table to be in First Normal Form (1NF)?',
+    question: 'A "students" table has a column "phone_numbers" storing comma-separated values like \'555-1111,555-2222\'. Which normal form violation does this represent, and what is the standard fix?',
     options: [
-      'Every column must contain numeric data only',
-      'Each column holds atomic (indivisible) values, and each row is unique, with no repeating groups or arrays in a single column',
-      'The table must have at least two foreign keys',
-      'All columns must allow NULL values'
+      'It violates First Normal Form (1NF) because the column is not atomic; the fix is to move phone numbers into a separate related table with one row per number',
+      'It violates Third Normal Form (3NF) due to a transitive dependency; the fix is to add a new column for each possible phone number',
+      'It violates no normal form, since comma-separated values are a standard SQL data type',
+      'It violates Second Normal Form (2NF) because phone numbers depend on a non-key column'
     ],
-    correctAnswer: 'Each column holds atomic (indivisible) values, and each row is unique, with no repeating groups or arrays in a single column',
-    explanation: '1NF requires eliminating repeating groups and multi-valued fields (e.g., a comma-separated list of phone numbers in one column), ensuring every cell contains a single, atomic value.',
+    correctAnswer: 'It violates First Normal Form (1NF) because the column is not atomic; the fix is to move phone numbers into a separate related table with one row per number',
+    explanation: '1NF requires that each column hold a single, atomic value rather than a list or repeating group, so a comma-separated list directly violates it; the standard relational fix is a child table (e.g., student_phones) with a foreign key back to the student, one row per phone number. This has nothing to do with 3NF, which concerns dependencies between non-key columns, not atomicity of a single column\u2019s value, and adding more columns for more numbers is a poor "fix" (it just creates a different anomaly capping the number of phones). Comma-separated values are not a real SQL data type; they are a string being misused to represent multiple values. 2NF concerns partial dependency on a composite key, which is unrelated to this single-column atomicity problem.',
     tags: ['normalization', '1nf', 'database-design']
   },
   {
@@ -586,15 +611,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Intermediate',
     difficulty: 'Intermediate',
     category: 'Theory',
-    question: 'What problem does Third Normal Form (3NF) address?',
+    question: 'An "orders" table includes columns (order_id, customer_id, customer_zip, customer_city), where customer_city is determined entirely by customer_zip (not by order_id directly). What normalization problem does this represent?',
     options: [
-      'It addresses repeating groups within a single column',
-      'It eliminates transitive dependencies, ensuring non-key columns depend only on the primary key, not on other non-key columns',
-      'It requires every table to have exactly one column',
-      'It is only relevant for NoSQL databases'
+      'A transitive dependency, which violates Third Normal Form (3NF) since customer_city depends on customer_zip, a non-key column, rather than directly on the primary key',
+      'A violation of First Normal Form (1NF), since customer_city is not an atomic value',
+      'No violation at all, since both columns are non-key and any combination of non-key columns is always acceptable',
+      'A violation of the UNIQUE constraint, since customer_zip and customer_city must be declared unique together'
     ],
-    correctAnswer: 'It eliminates transitive dependencies, ensuring non-key columns depend only on the primary key, not on other non-key columns',
-    explanation: '3NF builds on 2NF by removing transitive dependencies, e.g., if "city" determines "zip_code" within a table, that relationship should be moved to its own table rather than depending indirectly through another non-key column.',
+    correctAnswer: 'A transitive dependency, which violates Third Normal Form (3NF) since customer_city depends on customer_zip, a non-key column, rather than directly on the primary key',
+    explanation: '3NF requires that non-key columns depend only on the primary key, not on other non-key columns; here customer_city is determined by customer_zip rather than directly by order_id, which is the classic transitive dependency 3NF is designed to eliminate (the fix being to move zip/city into their own table). This is not a 1NF issue, since customer_city is itself a perfectly atomic single value; the problem is about dependency structure, not atomicity. It is incorrect to say any non-key combination is acceptable; 3NF specifically restricts which dependencies among non-key columns are allowed. This scenario has nothing to do with UNIQUE constraints, which enforce row-level uniqueness, not functional dependency rules.',
     tags: ['normalization', '3nf', 'database-design']
   },
   {
@@ -603,15 +628,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Intermediate',
     difficulty: 'Intermediate',
     category: 'Theory',
-    question: 'What is denormalization, and why might it be used?',
+    question: 'A reporting team denormalizes their analytics schema by pre-joining and flattening several normalized tables into one wide table refreshed nightly. Which statement best describes why this is a reasonable choice for their use case?',
     options: [
-      'It is never used in real-world databases',
-      'Intentionally introducing redundancy (e.g., duplicating data across tables) to improve read performance at the cost of write complexity and potential inconsistency',
-      'It is the process of removing all foreign keys',
-      'It always improves both read and write performance simultaneously'
+      'Their workload is read-heavy and tolerant of slightly stale data, so trading some redundancy and write complexity for much faster reporting queries makes sense',
+      'It is never reasonable to denormalize a schema under any circumstances',
+      'Denormalization is only valid in NoSQL systems, never in relational databases',
+      'This approach guarantees the data will always be perfectly consistent in real time, eliminating any trade-off'
     ],
-    correctAnswer: 'Intentionally introducing redundancy (e.g., duplicating data across tables) to improve read performance at the cost of write complexity and potential inconsistency',
-    explanation: 'Denormalization trades some normalization guarantees for performance, often used in reporting/analytics systems or read-heavy workloads where joins would otherwise be too costly.',
+    correctAnswer: 'Their workload is read-heavy and tolerant of slightly stale data, so trading some redundancy and write complexity for much faster reporting queries makes sense',
+    explanation: 'Denormalization is a deliberate engineering trade-off that fits well for read-heavy, write-light workloads like nightly-refreshed analytics, where avoiding expensive joins at query time outweighs the cost of redundant storage and the acceptable staleness of nightly refresh. The blanket claim that denormalization is "never reasonable" contradicts its widespread, well-established use in exactly this kind of scenario. Denormalization is a relational database technique just as much as a NoSQL one; it is not exclusive to either category. Far from guaranteeing real-time consistency, this nightly-refresh approach explicitly accepts staleness between refreshes as part of the trade-off.',
     tags: ['denormalization', 'performance', 'database-design']
   },
   {
@@ -619,17 +644,17 @@ export const sqlQuestions: InterviewQuestion[] = [
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is a database transaction?',
+    category: 'Coding',
+    question: 'A bank transfer application executes: BEGIN; UPDATE accounts SET balance = balance - 100 WHERE id = 1; UPDATE accounts SET balance = balance + 100 WHERE id = 2; COMMIT; If the application crashes after the first UPDATE but before COMMIT, what is the state of the data once the database recovers?',
     options: [
-      'A single SELECT statement',
-      'A sequence of one or more SQL operations executed as a single logical unit of work, which either fully commits or fully rolls back',
-      'A way to back up the database',
-      'A type of index used for sorting'
+      'Neither update is applied; the transaction is rolled back as if it never started',
+      'Only the first UPDATE (the deduction) is permanently applied, leaving the funds effectively destroyed',
+      'Both updates are applied automatically during crash recovery, since the intent was clear',
+      'The second UPDATE is applied alone, compensating for the missing first one'
     ],
-    correctAnswer: 'A sequence of one or more SQL operations executed as a single logical unit of work, which either fully commits or fully rolls back',
-    explanation: 'Transactions group multiple statements so that either all changes succeed (COMMIT) or none do (ROLLBACK), maintaining consistency even in the event of errors or failures.',
-    tags: ['transactions']
+    correctAnswer: 'Neither update is applied; the transaction is rolled back as if it never started',
+    explanation: 'Because the transaction never reached COMMIT, atomicity guarantees that none of its changes become permanent; on recovery, the database treats the incomplete transaction as if it never happened, rolling back any partial effects. The "only the first update applied" option describes exactly the atomicity violation that transactions are designed to prevent, leaving money debited with no corresponding credit. The "automatic completion during recovery" option incorrectly assumes the database can infer business intent, which it cannot; it only knows whether a transaction was committed or not. The "second update applied alone" option is not something any standard transactional system would do, since there is no mechanism to apply only the uncommitted, never-executed second statement.',
+    tags: ['transactions', 'coding', 'atomicity']
   },
   {
     id: 'sql-039',
@@ -637,33 +662,33 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Intermediate',
     difficulty: 'Intermediate',
     category: 'Theory',
-    question: 'What does the ACID acronym stand for in the context of database transactions?',
+    question: 'A senior engineer says a particular transactional bug "violated isolation, not atomicity." Which scenario is consistent with that specific description?',
     options: [
-      'Atomicity, Consistency, Isolation, Durability',
-      'Availability, Concurrency, Indexing, Durability',
-      'Atomicity, Caching, Indexing, Durability',
-      'Authentication, Consistency, Integrity, Deletion'
+      'A concurrent transaction read intermediate, uncommitted data from another in-progress transaction before it finished, even though both transactions eventually committed successfully on their own',
+      'A transaction partially applied its changes, then crashed before completing the rest, leaving the database in a half-updated state',
+      'A committed transaction\u2019s changes were lost entirely after a server restart',
+      'A transaction left the database in a state that violated a declared CHECK constraint'
     ],
-    correctAnswer: 'Atomicity, Consistency, Isolation, Durability',
-    explanation: 'ACID describes the guarantees a reliable transactional system provides: Atomicity (all-or-nothing), Consistency (valid state transitions), Isolation (concurrent transactions don\u2019t interfere), and Durability (committed changes persist).',
-    tags: ['acid', 'transactions']
+    correctAnswer: 'A concurrent transaction read intermediate, uncommitted data from another in-progress transaction before it finished, even though both transactions eventually committed successfully on their own',
+    explanation: 'Isolation specifically concerns how concurrently running transactions affect each other\u2019s visibility of data; one transaction observing another\u2019s uncommitted, in-progress changes (a dirty read) is a textbook isolation violation, independent of whether each transaction individually completed correctly. A transaction crashing mid-way and leaving partial changes is specifically an atomicity violation (failure of all-or-nothing execution), not an isolation issue. Losing committed data after a restart is a durability violation, since durability guarantees committed work survives failures. Violating a CHECK constraint is a consistency violation, since consistency concerns the database remaining in a valid state according to its defined rules.',
+    tags: ['acid', 'isolation-levels', 'transactions']
   },
   {
     id: 'sql-040',
     topic: 'sql',
     stage: 'Intermediate',
     difficulty: 'Intermediate',
-    category: 'Theory',
-    question: 'What is the purpose of the COMMIT and ROLLBACK statements?',
+    category: 'Coding',
+    question: 'Within a single session: BEGIN; UPDATE inventory SET stock = stock - 1 WHERE id = 5; SAVEPOINT before_log; INSERT INTO audit_log VALUES (...); -- this insert fails due to a constraint violation\nROLLBACK TO before_log;\nCOMMIT;\n\nWhat is the final state of the inventory row with id = 5?',
     options: [
-      'COMMIT deletes data, ROLLBACK creates data',
-      'COMMIT permanently saves the changes made in a transaction; ROLLBACK undoes them, restoring the previous state',
-      'They are interchangeable synonyms',
-      'They can only be used with SELECT statements'
+      'The stock decrement is committed, since ROLLBACK TO a savepoint only undoes statements after that savepoint, not the entire transaction',
+      'The entire transaction, including the stock decrement, is rolled back because one statement inside it failed',
+      'The stock decrement is undone, since any failure anywhere in the transaction forces a full rollback regardless of savepoints',
+      'The COMMIT at the end fails entirely because an earlier statement inside the transaction had failed'
     ],
-    correctAnswer: 'COMMIT permanently saves the changes made in a transaction; ROLLBACK undoes them, restoring the previous state',
-    explanation: 'COMMIT finalizes a transaction\u2019s changes, making them visible and durable, while ROLLBACK reverts all changes made since the transaction began (or since a named savepoint), as if they never happened.',
-    tags: ['transactions', 'commit', 'rollback']
+    correctAnswer: 'The stock decrement is committed, since ROLLBACK TO a savepoint only undoes statements after that savepoint, not the entire transaction',
+    explanation: 'A SAVEPOINT creates a partial rollback point within a transaction; ROLLBACK TO before_log specifically discards only the failed INSERT (and anything else after the savepoint), leaving the earlier UPDATE intact and still part of the still-open transaction, which can then be committed normally. The "entire transaction rolled back" option ignores the specific purpose of savepoints, which exist precisely to avoid discarding the whole transaction over one failed statement. Likewise, "any failure forces a full rollback" is not true when savepoints are used correctly; that is the whole point of the feature. The final COMMIT does not fail here because, after the ROLLBACK TO savepoint, the transaction is back in a valid state with only the successful UPDATE pending.',
+    tags: ['transactions', 'savepoint', 'coding']
   },
 
   // ===================== ADVANCED =====================
@@ -673,49 +698,49 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Advanced',
     difficulty: 'Advanced',
     category: 'Theory',
-    question: 'What are the four standard transaction isolation levels, from least to most strict?',
+    question: 'Transaction A runs under REPEATABLE READ and executes the same SELECT COUNT(*) FROM orders WHERE status = \'pending\'; twice, several seconds apart. Between the two reads, Transaction B inserts a new pending order and commits. What does Transaction A see on its second read, and why?',
     options: [
-      'Read Uncommitted, Read Committed, Repeatable Read, Serializable',
-      'Serializable, Repeatable Read, Read Committed, Read Uncommitted (in that increasing order of strictness)',
-      'Committed, Uncommitted, Locked, Unlocked',
-      'Dirty, Clean, Phantom, Serializable'
+      'The same count as before, because REPEATABLE READ guarantees that re-reading the same rows yields consistent results, though it does not universally prevent phantom rows in the SQL standard',
+      'A higher count immediately reflecting B\u2019s insert, because REPEATABLE READ only protects against dirty reads, not phantoms',
+      'An error, because REPEATABLE READ blocks all concurrent inserts from other transactions',
+      'A lower count, because REPEATABLE READ silently excludes the most recently inserted rows from any session'
     ],
-    correctAnswer: 'Read Uncommitted, Read Committed, Repeatable Read, Serializable',
-    explanation: 'These four ANSI SQL isolation levels trade off concurrency for consistency: Read Uncommitted allows dirty reads, Read Committed prevents them, Repeatable Read also prevents non-repeatable reads, and Serializable additionally prevents phantom reads by fully serializing transactions.',
-    tags: ['isolation-levels', 'transactions', 'concurrency']
+    correctAnswer: 'The same count as before, because REPEATABLE READ guarantees that re-reading the same rows yields consistent results, though it does not universally prevent phantom rows in the SQL standard',
+    explanation: 'In many real engines (e.g., PostgreSQL\u2019s snapshot-based REPEATABLE READ), Transaction A\u2019s snapshot is taken at the start of the transaction, so newly committed rows from B remain invisible to A for the rest of A\u2019s transaction, keeping the count stable; note the ANSI standard technically only guarantees protection against phantom reads at SERIALIZABLE, but most MVCC engines\u2019 snapshot isolation happens to prevent this particular phantom too. The "higher count" option incorrectly assumes REPEATABLE READ offers no protection beyond Read Committed, when it specifically targets exactly this kind of inconsistency across reads within one transaction. The "error" option wrongly assumes REPEATABLE READ blocks other transactions outright, when in MVCC systems it instead manages visibility, not blocking writers. The "lower count" option describes behavior with no basis in how isolation levels work.',
+    tags: ['isolation-levels', 'transactions', 'concurrency', 'mvcc']
   },
   {
     id: 'sql-042',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is a "dirty read"?',
+    category: 'Coding',
+    question: 'Transaction A (Read Uncommitted) executes: BEGIN; UPDATE accounts SET balance = balance - 500 WHERE id = 7; -- not yet committed\nMeanwhile, Transaction B runs: SELECT balance FROM accounts WHERE id = 7; under Read Uncommitted, then Transaction A executes ROLLBACK;. What value did Transaction B most likely read, and what problem does this illustrate?',
     options: [
-      'Reading data that has been corrupted on disk',
-      'Reading uncommitted changes made by another transaction, which may later be rolled back',
-      'Reading data from a table without an index',
-      'A read that returns no results'
+      'B read the decremented (not-yet-committed) balance, illustrating a dirty read, since that value was later rolled back and never actually became valid',
+      'B read the original balance, since Read Uncommitted never exposes uncommitted changes from other transactions',
+      'B\u2019s query was blocked until A committed or rolled back, illustrating standard row-level locking',
+      'B received an error, since reading a row currently being modified by another transaction is disallowed under Read Uncommitted'
     ],
-    correctAnswer: 'Reading uncommitted changes made by another transaction, which may later be rolled back',
-    explanation: 'Dirty reads occur under the Read Uncommitted isolation level, where a transaction can see another transaction\u2019s uncommitted changes, which is risky since that data might be rolled back and never actually become valid.',
-    tags: ['isolation-levels', 'dirty-read', 'concurrency']
+    correctAnswer: 'B read the decremented (not-yet-committed) balance, illustrating a dirty read, since that value was later rolled back and never actually became valid',
+    explanation: 'Read Uncommitted is specifically defined to allow transactions to see other transactions\u2019 uncommitted changes, so B almost certainly observed the in-progress decrement; since A later rolled back, that value was never real, making this the textbook definition of a dirty read. The claim that Read Uncommitted "never exposes uncommitted changes" directly contradicts the defining characteristic of that isolation level. Blocking is associated with stricter isolation or explicit locking mechanisms, not Read Uncommitted, which is specifically the least restrictive level and avoids blocking on reads. There is no error condition here; reading concurrently modified data without blocking is exactly what this isolation level permits.',
+    tags: ['isolation-levels', 'dirty-read', 'concurrency', 'coding']
   },
   {
     id: 'sql-043',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is a "phantom read"?',
+    category: 'Coding',
+    question: 'Transaction A (under Repeatable Read in a lock-based, non-MVCC-style system) runs: SELECT * FROM orders WHERE status = \'pending\'; twice. Between the two SELECTs, Transaction B inserts a brand-new row with status = \'pending\' and commits. Why might A\u2019s second SELECT include this new row even though Repeatable Read is active?',
     options: [
-      'Reading a row that was deleted before the transaction began',
-      'A transaction re-running the same query and getting a different set of rows, because another transaction inserted or deleted rows matching the query criteria in between',
-      'Reading data that does not exist on disk',
-      'A read that always returns NULL values'
+      'Repeatable Read, as defined by the SQL standard, guarantees that previously read rows won\u2019t change, but does not by itself guarantee protection against new matching rows appearing \u2014 that protection (against phantoms) is specifically associated with Serializable',
+      'It cannot happen under any circumstances, since Repeatable Read always prevents every kind of new row from appearing',
+      'Repeatable Read only applies to UPDATE statements, never to SELECT statements',
+      'The new row only appears because Transaction A explicitly ran COMMIT between the two SELECTs'
     ],
-    correctAnswer: 'A transaction re-running the same query and getting a different set of rows, because another transaction inserted or deleted rows matching the query criteria in between',
-    explanation: 'Phantom reads happen when new rows appear (or existing ones disappear) between two reads within the same transaction due to concurrent inserts/deletes; only the Serializable isolation level fully prevents this.',
+    correctAnswer: 'Repeatable Read, as defined by the SQL standard, guarantees that previously read rows won\u2019t change, but does not by itself guarantee protection against new matching rows appearing \u2014 that protection (against phantoms) is specifically associated with Serializable',
+    explanation: 'Per the ANSI SQL standard, Repeatable Read prevents non-repeatable reads of already-read rows but does not, in the formal standard, guarantee protection against phantom rows; only Serializable formally closes that gap (though specific engines\u2019 MVCC implementations of Repeatable Read may behave differently in practice). The claim that it "always prevents every kind of new row" overstates the standard\u2019s guarantee for this isolation level. Repeatable Read applies to read consistency generally, not specifically to UPDATE statements; the scenario described is explicitly about repeated SELECTs. Nothing in the scenario involves A committing between the two reads; introducing that detail doesn\u2019t explain the phantom, since the transaction is still open across both SELECTs.',
     tags: ['isolation-levels', 'phantom-read', 'concurrency']
   },
   {
@@ -723,68 +748,68 @@ export const sqlQuestions: InterviewQuestion[] = [
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is the difference between optimistic and pessimistic locking?',
+    category: 'Coding',
+    question: 'An e-commerce system implements optimistic locking on a "products" table using a "version" integer column. Two requests load the same product (version = 5) and each tries to update its stock count. Request A commits first, updating version to 6. What must happen when Request B then tries to commit its update?',
     options: [
-      'They are the same concept with different names',
-      'Pessimistic locking acquires locks upfront to prevent conflicts; optimistic locking allows concurrent access and checks for conflicts (e.g., via version numbers) only at commit time',
-      'Optimistic locking is only used in NoSQL databases',
-      'Pessimistic locking never blocks other transactions'
+      'Request B\u2019s UPDATE, which includes WHERE version = 5, affects zero rows since the version is now 6, signaling a conflict the application must detect and handle (e.g., retry)',
+      'Request B\u2019s update silently overwrites Request A\u2019s change with no indication of conflict',
+      'The database automatically merges both stock changes into a single consistent value',
+      'Request B is blocked and forced to wait until Request A\u2019s connection closes entirely'
     ],
-    correctAnswer: 'Pessimistic locking acquires locks upfront to prevent conflicts; optimistic locking allows concurrent access and checks for conflicts (e.g., via version numbers) only at commit time',
-    explanation: 'Pessimistic locking assumes conflicts are likely and locks rows proactively (reducing concurrency but avoiding conflicts), while optimistic locking assumes conflicts are rare, allowing concurrent reads/writes and detecting conflicts via a version/timestamp column when committing.',
-    tags: ['locking', 'concurrency', 'optimistic-locking']
+    correctAnswer: 'Request B\u2019s UPDATE, which includes WHERE version = 5, affects zero rows since the version is now 6, signaling a conflict the application must detect and handle (e.g., retry)',
+    explanation: 'Optimistic locking works by including the expected version in the WHERE clause; since Request A already bumped the version to 6, Request B\u2019s UPDATE...WHERE version = 5 matches no rows, and the application is responsible for checking the affected row count and reacting (typically retrying with fresh data). The "silently overwrites" option describes what would happen without optimistic locking at all, defeating its purpose. Databases do not automatically merge conflicting business values like stock counts; that would require domain-specific logic the engine has no knowledge of. Optimistic locking specifically avoids blocking; that behavior describes pessimistic locking instead.',
+    tags: ['locking', 'optimistic-locking', 'concurrency', 'coding']
   },
   {
     id: 'sql-045',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is a deadlock, and how do most database systems handle it?',
+    category: 'Coding',
+    question: 'Transaction A executes UPDATE accounts SET balance = balance - 10 WHERE id = 1; then, before committing, attempts UPDATE accounts SET balance = balance + 10 WHERE id = 2;. Simultaneously, Transaction B does the reverse: updates id = 2 first, then tries to update id = 1. Both transactions are still open. What is the most likely outcome?',
     options: [
-      'A deadlock is a permanent crash of the database server',
-      'A situation where two or more transactions each hold a lock the other needs, blocking forever; most databases detect this and abort one transaction (a "victim") to break the cycle',
-      'A deadlock only occurs in single-user databases',
-      'Deadlocks can only be resolved by restarting the database'
+      'A deadlock occurs, since each transaction holds a lock the other needs, and the database\u2019s deadlock detector aborts one transaction to let the other proceed',
+      'Both transactions complete successfully with no contention, since they update different rows in each individual statement',
+      'The database automatically reorders the statements within each transaction to avoid any conflict',
+      'Only Transaction A is allowed to run; Transaction B is rejected immediately upon starting'
     ],
-    correctAnswer: 'A situation where two or more transactions each hold a lock the other needs, blocking forever; most databases detect this and abort one transaction (a "victim") to break the cycle',
-    explanation: 'Database engines typically run a deadlock detection algorithm (e.g., wait-for graph analysis) and automatically roll back one of the involved transactions, returning an error so the application can retry.',
-    tags: ['deadlock', 'locking', 'concurrency']
+    correctAnswer: 'A deadlock occurs, since each transaction holds a lock the other needs, and the database\u2019s deadlock detector aborts one transaction to let the other proceed',
+    explanation: 'This is the canonical deadlock scenario: A holds a lock on row 1 and wants row 2, while B holds a lock on row 2 and wants row 1, so neither can proceed; the database detects this circular wait and forcibly rolls back one transaction (the "victim") so the other can continue. The "no contention" option is incorrect because both transactions do touch the same two rows, just in reversed order, which is exactly what creates the lock cycle. Databases never silently reorder statements within a transaction to avoid conflicts; that would violate the transaction\u2019s defined execution order. There is no mechanism that rejects an entire transaction "immediately upon starting" due to a future conflict the database cannot yet know about.',
+    tags: ['deadlock', 'locking', 'concurrency', 'coding']
   },
   {
     id: 'sql-046',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is the purpose of a window function (e.g., ROW_NUMBER(), RANK(), OVER())?',
+    category: 'Coding',
+    question: 'A report needs each employee\u2019s salary alongside their department\u2019s average salary, without collapsing individual employee rows. Which approach correctly achieves this?',
     options: [
-      'To collapse multiple rows into a single aggregated row, like GROUP BY',
-      'To perform calculations across a set of rows related to the current row, without collapsing the result into fewer rows',
-      'To create a new window or pop-up in a GUI application',
-      'To define a table\u2019s column types'
+      'SELECT name, salary, AVG(salary) OVER (PARTITION BY department_id) AS dept_avg FROM employees;',
+      'SELECT department_id, AVG(salary) FROM employees GROUP BY department_id;',
+      'SELECT name, salary FROM employees ORDER BY department_id;',
+      'SELECT name, salary, (SELECT AVG(salary) FROM employees) AS dept_avg FROM employees;'
     ],
-    correctAnswer: 'To perform calculations across a set of rows related to the current row, without collapsing the result into fewer rows',
-    explanation: 'Unlike GROUP BY, which reduces rows, window functions compute values (rankings, running totals, moving averages) over a defined window of rows (via OVER(), PARTITION BY, ORDER BY) while preserving the original row count.',
-    tags: ['window-functions', 'over-clause']
+    correctAnswer: 'SELECT name, salary, AVG(salary) OVER (PARTITION BY department_id) AS dept_avg FROM employees;',
+    explanation: 'A window function with PARTITION BY computes the average per department while still returning one row per employee, exactly satisfying the requirement to keep individual rows intact. The GROUP BY option collapses the result into one row per department, losing individual employee detail entirely, the opposite of what is needed. The ORDER BY option does not compute any average at all; it only changes row order. The correlated-looking subquery in the last option computes the average across the entire table (no department filter), not per department, since the inner subquery has no WHERE or correlation tying it to department_id.',
+    tags: ['window-functions', 'over-clause', 'coding']
   },
   {
     id: 'sql-047',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is the difference between RANK(), DENSE_RANK(), and ROW_NUMBER()?',
+    category: 'Coding',
+    question: 'A "scores" table has rows with values [100, 90, 90, 80] (already ordered descending). What do ROW_NUMBER(), RANK(), and DENSE_RANK() (each ordered by score DESC) assign to the two rows with score 90?',
     options: [
-      'They all behave identically for any data',
-      'ROW_NUMBER() assigns unique sequential numbers with no ties; RANK() assigns the same rank to ties but skips subsequent numbers; DENSE_RANK() assigns the same rank to ties without skipping numbers',
-      'DENSE_RANK() can only be used with GROUP BY',
-      'RANK() cannot be used with PARTITION BY'
+      'ROW_NUMBER(): 2 and 3 (no ties allowed); RANK(): both get 2, and the next row (80) gets 4; DENSE_RANK(): both get 2, and the next row (80) gets 3',
+      'All three functions assign the value 2 to both rows with score 90',
+      'ROW_NUMBER(), RANK(), and DENSE_RANK() all skip tied rows entirely, only ranking the unique scores 100 and 80',
+      'RANK() and DENSE_RANK() both assign 2 and 3 respectively to break the tie, identical to ROW_NUMBER()'
     ],
-    correctAnswer: 'ROW_NUMBER() assigns unique sequential numbers with no ties; RANK() assigns the same rank to ties but skips subsequent numbers; DENSE_RANK() assigns the same rank to ties without skipping numbers',
-    explanation: 'Given tied values, ROW_NUMBER() always returns unique increasing numbers (arbitrary tie-breaking), RANK() gives equal ranks to ties then jumps (e.g., 1,2,2,4), while DENSE_RANK() gives equal ranks to ties without gaps (e.g., 1,2,2,3).',
-    tags: ['window-functions', 'rank', 'row_number']
+    correctAnswer: 'ROW_NUMBER(): 2 and 3 (no ties allowed); RANK(): both get 2, and the next row (80) gets 4; DENSE_RANK(): both get 2, and the next row (80) gets 3',
+    explanation: 'ROW_NUMBER() never produces ties, arbitrarily assigning unique sequential numbers (2, 3) to the tied 90s; RANK() gives both 90s the same rank (2) but then skips ahead, giving 80 a rank of 4 (accounting for the two rows that shared rank 2); DENSE_RANK() also gives both 90s rank 2, but does not skip, so 80 gets rank 3. The "all three assign 2" option ignores that ROW_NUMBER() specifically never ties values. The "skip tied rows entirely" option misunderstands these functions, none of which omit rows from the result; they only differ in numbering strategy. The last option incorrectly claims RANK() and DENSE_RANK() behave identically to ROW_NUMBER() by breaking the tie with sequential numbers, when both are specifically defined to assign equal values to ties.',
+    tags: ['window-functions', 'rank', 'row_number', 'coding']
   },
   {
     id: 'sql-048',
@@ -792,15 +817,15 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Advanced',
     difficulty: 'Advanced',
     category: 'Coding',
-    question: 'How would you find the second-highest salary from an "employees" table using a window function?',
+    question: 'An "employees" table has duplicate salary values (e.g., two employees both earning the company\u2019s highest salary). Which query correctly returns the second-highest distinct salary, robust to such duplicates?',
     options: [
-      'SELECT MAX(salary) FROM employees WHERE salary < (SELECT MAX(salary) FROM employees)',
-      'SELECT salary FROM (SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk FROM employees) t WHERE rnk = 2',
-      'SELECT salary FROM employees ORDER BY salary LIMIT 1',
-      'SELECT MIN(salary) FROM employees'
+      'SELECT salary FROM (SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk FROM employees) t WHERE rnk = 2;',
+      'SELECT salary FROM employees ORDER BY salary DESC LIMIT 1 OFFSET 1;',
+      'SELECT MAX(salary) FROM employees WHERE salary < (SELECT MAX(salary) FROM employees);',
+      'SELECT DISTINCT salary FROM employees ORDER BY salary DESC LIMIT 1;'
     ],
-    correctAnswer: 'SELECT salary FROM (SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk FROM employees) t WHERE rnk = 2',
-    explanation: 'Using DENSE_RANK() correctly handles duplicate salaries by treating them as the same rank, so "second-highest" reliably refers to the second distinct salary value, unlike OFFSET/LIMIT approaches which can be skewed by ties.',
+    correctAnswer: 'SELECT salary FROM (SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk FROM employees) t WHERE rnk = 2;',
+    explanation: 'DENSE_RANK() treats tied top salaries as rank 1 without gaps, so rank 2 correctly and reliably refers to the second distinct salary value regardless of how many employees share the top salary. The LIMIT/OFFSET option is unreliable here because if two employees share the highest salary, "OFFSET 1" would just return another row with the same highest salary, not the true second-highest distinct value. The correlated MAX subquery option, however, does actually work correctly: it finds the highest salary strictly less than the overall max, which correctly skips duplicates of the top value \u2014 but it is a different, less scalable technique than the DENSE_RANK() approach, and is included here as a plausible (if less idiomatic) alternative rather than the cleanest pattern. The DISTINCT-with-LIMIT-1 option only returns the single highest distinct salary, not the second-highest, since it doesn\u2019t skip past the top value.',
     tags: ['window-functions', 'coding', 'rank']
   },
   {
@@ -809,16 +834,16 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Advanced',
     difficulty: 'Advanced',
     category: 'Performance',
-    question: 'What is a covering index, and why does it improve query performance?',
+    question: 'A query SELECT order_id, status FROM orders WHERE customer_id = 42; runs frequently. An index exists on (customer_id, status, order_id). Why does this specific index let the database avoid touching the actual table data at all?',
     options: [
-      'An index that covers every table in the database',
-      'An index that includes all columns needed by a query, allowing the database to satisfy the query entirely from the index without accessing the underlying table',
-      'An index that automatically rebuilds itself',
-      'An index used only for foreign keys'
+      'Because every column the query needs (customer_id for filtering, status and order_id for output) is already present in the index itself, making it a covering index for this query',
+      'Because all indexes automatically include every column of the table regardless of how they are defined',
+      'Because the WHERE clause filters by customer_id, and any index on any column improves performance equally',
+      'Because the query uses no aggregate functions, which is unrelated to whether an index can be covering'
     ],
-    correctAnswer: 'An index that includes all columns needed by a query, allowing the database to satisfy the query entirely from the index without accessing the underlying table',
-    explanation: 'When all selected and filtered columns exist within the index itself, the database can avoid the extra "lookup" step back to the table (sometimes called a bookmark lookup), significantly speeding up read performance.',
-    tags: ['indexing', 'covering-index', 'performance']
+    correctAnswer: 'Because every column the query needs (customer_id for filtering, status and order_id for output) is already present in the index itself, making it a covering index for this query',
+    explanation: 'A covering index satisfies a query entirely from the index structure because every referenced column, both filter and output columns, exists within it, letting the engine skip the lookup back into the full table row. The claim that all indexes include every column is false; a typical index only includes the columns explicitly listed in its definition (plus, often, the primary key as a row locator). Not every index improves performance equally; an index missing one of the needed output columns would still require a row lookup despite using the index. The presence or absence of aggregate functions is unrelated to whether an index is covering, which depends entirely on whether the query\u2019s needed columns are present in the index.',
+    tags: ['indexing', 'covering-index', 'performance', 'coding']
   },
   {
     id: 'sql-050',
@@ -826,67 +851,67 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Advanced',
     difficulty: 'Advanced',
     category: 'Performance',
-    question: 'What is the purpose of EXPLAIN (or EXPLAIN ANALYZE) in SQL?',
+    question: 'Running EXPLAIN ANALYZE on a slow query shows "Seq Scan on orders (actual time=850.123..850.456 rows=3 loops=1)" despite an index existing on the filtered column. What does this output most strongly suggest, assuming the optimizer\u2019s statistics are accurate?',
     options: [
-      'It documents the table schema in plain English',
-      'It shows the query execution plan the database optimizer chose, helping identify performance issues like full table scans or missing indexes',
-      'It automatically optimizes the query',
-      'It encrypts the query for security'
+      'The optimizer chose a sequential scan and ended up reading the whole table to find just 3 matching rows, suggesting it may be worth investigating why it didn\u2019t choose the available index for such a selective query',
+      'EXPLAIN ANALYZE only displays estimated costs and never reflects what actually happened during execution',
+      'A sequential scan returning only 3 rows is always the optimal and expected choice for any selective filter',
+      'The presence of "Seq Scan" means the index on that column has become corrupted and must be rebuilt'
     ],
-    correctAnswer: 'It shows the query execution plan the database optimizer chose, helping identify performance issues like full table scans or missing indexes',
-    explanation: 'EXPLAIN reveals how the database intends to execute a query (join order, index usage, scan types), while EXPLAIN ANALYZE (in PostgreSQL, for example) actually runs the query and reports real timing and row counts, both essential for diagnosing slow queries.',
-    tags: ['explain', 'query-plan', 'performance']
+    correctAnswer: 'The optimizer chose a sequential scan and ended up reading the whole table to find just 3 matching rows, suggesting it may be worth investigating why it didn\u2019t choose the available index for such a selective query',
+    explanation: 'EXPLAIN ANALYZE actually executes the query and reports real timing/row counts, so seeing a Seq Scan return only 3 rows after a long scan time is a red flag suggesting the optimizer may have misjudged selectivity (e.g., due to stale statistics) and missed a more efficient index scan. The claim that EXPLAIN ANALYZE only shows estimates is incorrect and describes plain EXPLAIN without ANALYZE, which does not execute the query. A sequential scan returning very few rows out of a large table is generally a performance smell, not an "expected, optimal" outcome, for a selective filter. Seeing Seq Scan in a plan says nothing about index corruption; it simply reflects whichever access method the optimizer chose, which can be influenced by cost estimates, not catastrophic index failure.',
+    tags: ['explain', 'query-plan', 'performance', 'coding']
   },
   {
     id: 'sql-051',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Performance',
-    question: 'Why can a leading wildcard in a LIKE pattern (e.g., LIKE \'%searchterm\') prevent index usage?',
+    category: 'Coding',
+    question: 'A search feature uses WHERE product_name LIKE \'%phone%\' on a column with a standard B-tree index on product_name. Why does this query typically fail to benefit from that index, and what is a better-suited index type for this exact pattern?',
     options: [
-      'It never prevents index usage in any database',
-      'A B-tree index is sorted by leading characters, so a search with an unknown prefix cannot use the index to narrow the range and typically falls back to a full table scan',
-      'LIKE queries are always faster than equality queries',
-      'It only affects numeric columns'
+      'A leading and trailing wildcard means there is no fixed prefix for the B-tree to seek on, so it falls back to a full scan; a trigram (e.g., pg_trgm GIN/GIST) or full-text index is generally better suited to arbitrary substring search',
+      'B-tree indexes are never usable with the LIKE operator under any pattern',
+      'The query should instead use an index on a completely unrelated column to speed up substring matching',
+      'Adding more standard B-tree indexes on the same column will resolve the issue'
     ],
-    correctAnswer: 'A B-tree index is sorted by leading characters, so a search with an unknown prefix cannot use the index to narrow the range and typically falls back to a full table scan',
-    explanation: 'Standard B-tree indexes are efficient for prefix matches (LIKE \'term%\') because they can binary search by leading characters, but a leading wildcard breaks this since any value could match, requiring a full scan unless a specialized index (e.g., trigram/full-text) is used.',
-    tags: ['indexing', 'like', 'performance']
+    correctAnswer: 'A leading and trailing wildcard means there is no fixed prefix for the B-tree to seek on, so it falls back to a full scan; a trigram (e.g., pg_trgm GIN/GIST) or full-text index is generally better suited to arbitrary substring search',
+    explanation: 'A B-tree is sorted by leading characters, so prefix searches like \'phone%\' can still use it, but a pattern wrapped in wildcards on both sides has no usable prefix at all, forcing a scan; specialized indexes like trigram indexes break text into overlapping substrings, enabling efficient arbitrary substring lookups that a B-tree fundamentally cannot support. The claim that B-tree indexes are "never usable with LIKE" is too broad, since prefix-only patterns can still benefit from one. An index on an unrelated column has no bearing on filtering by product_name. Simply adding more conventional B-tree indexes on the same column does not solve the structural mismatch between B-tree ordering and substring search; a different index type is needed.',
+    tags: ['indexing', 'like', 'performance', 'full-text-search']
   },
   {
     id: 'sql-052',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is the N+1 query problem, often seen in ORMs?',
+    category: 'Coding',
+    question: 'An ORM loads 50 blog posts with one query, then for each post lazily loads its author with a separate query triggered by accessing post.author.name in a loop. What is the most accurate description of this pattern\u2019s cost, and the standard fix?',
     options: [
-      'A query that returns exactly N+1 rows',
-      'Issuing one query to fetch a list of N parent records, then N additional separate queries to fetch related child data for each, instead of a single join',
-      'A type of SQL syntax error',
-      'A performance optimization technique'
+      'It issues 51 total queries (1 + 50), known as the N+1 problem; the fix is eager loading, such as a JOIN or a single batched WHERE author_id IN (...) query, to fetch all authors in one or two round trips',
+      'It issues exactly 2 queries regardless of the number of posts, since ORMs always batch lazy loads automatically',
+      'It is more efficient than a single JOIN because each query is individually simpler for the database to execute',
+      'The number of queries depends only on the number of unique authors, not on the number of posts'
     ],
-    correctAnswer: 'Issuing one query to fetch a list of N parent records, then N additional separate queries to fetch related child data for each, instead of a single join',
-    explanation: 'The N+1 problem is a common ORM anti-pattern where lazy loading triggers a separate query per related record; it\u2019s typically fixed by eager loading (a JOIN or batched IN query) to fetch all related data in one or two queries instead of N+1.',
-    tags: ['n-plus-1', 'orm', 'performance']
+    correctAnswer: 'It issues 51 total queries (1 + 50), known as the N+1 problem; the fix is eager loading, such as a JOIN or a single batched WHERE author_id IN (...) query, to fetch all authors in one or two round trips',
+    explanation: 'This is the textbook N+1 pattern: one query for the list, then one additional query per item to resolve a related entity, here 1 + 50 = 51 round trips; eager loading collapses this into a single JOIN or a batched IN query against all needed author IDs at once. The claim that ORMs "always batch lazy loads automatically" is false in the naive lazy-loading case described; automatic batching (sometimes called a dataloader pattern) is an opt-in optimization, not default ORM behavior in most setups. Issuing 51 small queries is generally less efficient than one well-indexed JOIN, due to the cumulative network round-trip and parsing overhead of each separate query. The query count here scales with the number of posts being iterated, not the number of distinct authors, since a separate lazy-load is triggered per post access regardless of author repetition (unless the ORM\u2019s identity map happens to cache repeated author lookups).',
+    tags: ['n-plus-1', 'orm', 'performance', 'coding']
   },
   {
     id: 'sql-053',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is database sharding?',
+    category: 'System Design',
+    question: 'A social media platform shards its "posts" table by user_id using a hash of the ID to assign shards. What is the main difficulty this introduces for a query like "get the 20 most recent posts across all users a given person follows"?',
     options: [
-      'Splitting a single table\u2019s columns across multiple servers',
-      'Horizontally partitioning data across multiple independent database instances (shards), typically by a shard key, to scale beyond a single server\u2019s capacity',
-      'A backup strategy that copies the entire database',
-      'A type of index used for full-text search'
+      'The query may need to fan out to many different shards (one per followed user, potentially on different physical databases), then merge and re-sort the results in the application layer, since no single shard holds all relevant data',
+      'Sharding by user_id makes this query strictly impossible to ever execute correctly',
+      'Sharding only affects INSERT performance, so this read query is completely unaffected',
+      'The query can be solved with a single simple JOIN exactly as it would be on an unsharded table, with no extra complexity'
     ],
-    correctAnswer: 'Horizontally partitioning data across multiple independent database instances (shards), typically by a shard key, to scale beyond a single server\u2019s capacity',
-    explanation: 'Sharding distributes rows of a logical table across multiple physical databases based on a shard key (e.g., user ID range or hash), allowing horizontal scalability at the cost of added complexity for cross-shard queries and joins.',
-    tags: ['sharding', 'scalability', 'system-design']
+    correctAnswer: 'The query may need to fan out to many different shards (one per followed user, potentially on different physical databases), then merge and re-sort the results in the application layer, since no single shard holds all relevant data',
+    explanation: 'Because posts are distributed by user_id hash, posts from different followed users likely live on different physical shards, so satisfying a cross-user query requires querying multiple shards and combining/sorting results outside the database, a classic scatter-gather pattern and a well-known cost of sharding by this key. It is not impossible, just significantly more complex and slower than the unsharded case; many large systems do solve this with fan-out queries or precomputed feeds. Sharding fundamentally changes how both reads and writes are routed, since reads now need to know which shard(s) to query; it is not limited to write performance. A simple single JOIN is not possible across separate physical database shards in the general case, since standard SQL joins operate within a single database connection/instance.',
+    tags: ['system-design', 'sharding', 'scalability', 'coding']
   },
   {
     id: 'sql-054',
@@ -894,50 +919,50 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Advanced',
     difficulty: 'Advanced',
     category: 'Theory',
-    question: 'What is the difference between horizontal and vertical partitioning of a table?',
+    question: 'A "users" table has 40 columns, but most queries only ever touch 5 frequently-accessed columns (id, email, status, last_login, plan_type), while the other 35 are large, rarely-accessed profile fields. What restructuring would most directly address the resulting I/O overhead?',
     options: [
-      'They are the same concept with different names',
-      'Horizontal partitioning splits rows across partitions (e.g., by date range); vertical partitioning splits columns across separate tables (e.g., frequently vs. rarely accessed columns)',
-      'Vertical partitioning is only possible in NoSQL databases',
-      'Horizontal partitioning requires removing the primary key'
+      'Vertical partitioning: split the rarely-used columns into a separate related table, so common queries only read the smaller, "hot" table',
+      'Horizontal partitioning by date range, since the issue described is about columns, not rows',
+      'Sharding the table across multiple servers by user_id hash, which addresses scale rather than per-row column bloat',
+      'Adding a composite index covering all 40 columns to speed up every possible query'
     ],
-    correctAnswer: 'Horizontal partitioning splits rows across partitions (e.g., by date range); vertical partitioning splits columns across separate tables (e.g., frequently vs. rarely accessed columns)',
-    explanation: 'Horizontal partitioning (e.g., table partitioning by date) keeps the same schema but divides rows into separate physical segments, while vertical partitioning splits a wide table into narrower tables grouped by access pattern or column type.',
-    tags: ['partitioning', 'database-design']
+    correctAnswer: 'Vertical partitioning: split the rarely-used columns into a separate related table, so common queries only read the smaller, "hot" table',
+    explanation: 'Vertical partitioning directly targets this exact problem: separating frequently-accessed "hot" columns from rarely-used "cold" ones into their own table means common queries scan much smaller rows, reducing I/O without touching unrelated data. Horizontal partitioning splits rows (e.g., by date or region), which doesn\u2019t address the column-width problem described here at all. Sharding is about distributing rows across servers for write/read scalability, an orthogonal concern to a single table\u2019s wide-row I/O overhead. A 40-column composite index would be enormous, expensive to maintain on every write, and still wouldn\u2019t solve the underlying issue of needing to store and occasionally scan very wide rows.',
+    tags: ['partitioning', 'database-design', 'performance']
   },
   {
     id: 'sql-055',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is a stored procedure?',
+    category: 'Coding',
+    question: 'A team wraps a multi-step "process_refund" operation (validate, update order status, adjust account balance, write audit log) inside a stored procedure rather than coordinating it from application code across four separate round trips. What is the most accurate trade-off of this design choice?',
     options: [
-      'A backup of the entire database schema',
-      'A precompiled, reusable set of SQL statements stored in the database and invoked by name, optionally accepting parameters',
-      'A type of foreign key constraint',
-      'A view that cannot be queried'
+      'It reduces network round trips and lets the database guarantee the steps run as one transaction, but moves business logic into the database layer, which can be harder to unit test, version, and review compared to application code',
+      'It has no meaningful trade-offs; stored procedures are strictly superior to application-level logic in every situation',
+      'Stored procedures cannot participate in transactions, so this design actually loses atomicity compared to application code',
+      'It only matters for read performance, since stored procedures cannot contain any DML statements like UPDATE or INSERT'
     ],
-    correctAnswer: 'A precompiled, reusable set of SQL statements stored in the database and invoked by name, optionally accepting parameters',
-    explanation: 'Stored procedures encapsulate business logic inside the database, can accept input/output parameters, and are often precompiled for performance, though they can make logic harder to version-control and test compared to application-level code.',
-    tags: ['stored-procedures']
+    correctAnswer: 'It reduces network round trips and lets the database guarantee the steps run as one transaction, but moves business logic into the database layer, which can be harder to unit test, version, and review compared to application code',
+    explanation: 'Encapsulating multi-step logic in a stored procedure executed as a single transaction reduces round-trip latency and centralizes atomicity guarantees at the database, but it comes at the real cost of business logic living somewhere harder to test with standard application tooling, version alongside application code, and review in typical code review workflows. The claim of "no trade-offs" ignores these well-documented downsides that lead many teams to prefer keeping logic in application code where reasonable. Stored procedures absolutely can run within transactions, often more tightly coupled to one than application code calling multiple separate statements; the claim otherwise is false. Stored procedures routinely contain INSERT, UPDATE, and DELETE statements; restricting them to reads only is incorrect.',
+    tags: ['stored-procedures', 'transactions', 'coding']
   },
   {
     id: 'sql-056',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is the difference between a stored procedure and a trigger?',
+    category: 'Coding',
+    question: 'A team adds a BEFORE UPDATE trigger on "accounts" that automatically writes a row to "balance_history" whenever the balance column changes, then separately calls a stored procedure named log_balance_change() from the application whenever a balance update happens. What problem does this combination most likely cause?',
     options: [
-      'They are identical mechanisms',
-      'A stored procedure is explicitly called by name; a trigger automatically executes in response to a specific table event (INSERT/UPDATE/DELETE)',
-      'Triggers can only run SELECT statements',
-      'Stored procedures cannot accept parameters'
+      'The balance change ends up logged twice for every legitimate update, once automatically by the trigger and once manually by the explicit stored procedure call',
+      'The trigger and stored procedure cancel each other out, resulting in no log entries at all',
+      'This combination is required and is the only valid way to log balance changes in any relational database',
+      'Triggers cannot coexist with stored procedures in the same schema, so this configuration would fail to even be created'
     ],
-    correctAnswer: 'A stored procedure is explicitly called by name; a trigger automatically executes in response to a specific table event (INSERT/UPDATE/DELETE)',
-    explanation: 'Triggers fire implicitly when a defined event occurs on a table (e.g., BEFORE INSERT, AFTER UPDATE), useful for auditing or enforcing complex business rules, whereas stored procedures must be deliberately invoked.',
-    tags: ['triggers', 'stored-procedures']
+    correctAnswer: 'The balance change ends up logged twice for every legitimate update, once automatically by the trigger and once manually by the explicit stored procedure call',
+    explanation: 'Because the trigger fires implicitly and automatically on every UPDATE to balance, while the application also explicitly calls a separate logging procedure for the same event, both code paths execute independently, resulting in duplicate audit entries unless one of the two is removed or the trigger is made aware of the explicit call. There\u2019s no mechanism by which a trigger and an explicitly-called procedure would "cancel out" each other\u2019s effects; both simply execute as defined. Using only a trigger, or only application-level logging, are both valid approaches individually; using both for the same event is the specific anti-pattern here, not a requirement. Triggers and stored procedures are entirely independent database objects and can coexist without any creation conflict.',
+    tags: ['triggers', 'stored-procedures', 'coding']
   },
   {
     id: 'sql-057',
@@ -945,32 +970,32 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Advanced',
     difficulty: 'Advanced',
     category: 'Security',
-    question: 'What is SQL injection, and what is the most effective defense against it?',
+    question: 'A login query is built as: "SELECT * FROM users WHERE username = \'" + input + "\' AND password = \'" + pass + "\'". An attacker submits input = admin\' OR \'1\'=\'1 as the username. Why does this succeed in bypassing authentication, and what is the correct fix?',
     options: [
-      'A performance optimization technique with no security implications',
-      'An attack where untrusted input is concatenated directly into SQL, altering query logic; the primary defense is using parameterized queries / prepared statements instead of string concatenation',
-      'A type of database backup corruption',
-      'A feature used to inject test data into a database'
+      'The concatenated string becomes WHERE username = \'admin\' OR \'1\'=\'1\' AND password = ..., where the OR \'1\'=\'1\' clause is always true, matching every row; the fix is to use parameterized queries so input is always treated as a literal value, never as SQL syntax',
+      'This only works if the database has no password column defined, which is unrelated to how the query string was built',
+      'The fix is to simply make the password column longer, which would prevent this kind of string manipulation',
+      'This is not actually an SQL injection vulnerability, since the attacker only modified the username field, not the password field'
     ],
-    correctAnswer: 'An attack where untrusted input is concatenated directly into SQL, altering query logic; the primary defense is using parameterized queries / prepared statements instead of string concatenation',
-    explanation: 'SQL injection exploits unsanitized input being treated as executable SQL; parameterized queries separate query structure from data values, ensuring user input is always treated as a literal value rather than executable code.',
-    tags: ['sql-injection', 'security']
+    correctAnswer: 'The concatenated string becomes WHERE username = \'admin\' OR \'1\'=\'1\' AND password = ..., where the OR \'1\'=\'1\' clause is always true, matching every row; the fix is to use parameterized queries so input is always treated as a literal value, never as SQL syntax',
+    explanation: 'Because the attacker\u2019s input is concatenated directly into the SQL string, the injected quote and OR \'1\'=\'1\' becomes part of the executable query logic rather than a literal value, and since \'1\'=\'1\' is always true, the WHERE clause can match rows regardless of the actual password (depending on operator precedence, this may bypass the check entirely); parameterized queries fix this by binding input as data, never letting it alter the query\u2019s structure. The vulnerability has nothing to do with whether a password column exists; the danger is in how the raw string is built, independent of the schema. Column length has no bearing on this; the issue is unescaped string concatenation, not data size limits. The attack absolutely is SQL injection: any field\u2014username, password, or otherwise\u2014that is concatenated unsanitized into SQL is a potential injection point, regardless of which specific field was manipulated.',
+    tags: ['sql-injection', 'security', 'coding']
   },
   {
     id: 'sql-058',
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is the purpose of database replication?',
+    category: 'System Design',
+    question: 'A company runs a single primary database with no replicas. The primary server suffers a hardware failure and is unrecoverable. What does this scenario most clearly illustrate the value of, and which feature would have mitigated it?',
     options: [
-      'To delete redundant data automatically',
-      'To maintain copies of data across multiple database servers for redundancy, read scalability, and disaster recovery',
-      'To enforce foreign key constraints',
-      'To compress table storage'
+      'The value of replication for disaster recovery: a replica (especially one kept reasonably in sync) could have been promoted to primary, minimizing downtime and data loss',
+      'The value of normalization, since a more normalized schema would have prevented hardware failures from occurring',
+      'The value of adding more indexes, since more indexes would have made the primary server more resilient to hardware failure',
+      'This scenario shows that transactions are unnecessary overhead and should be avoided to reduce server load'
     ],
-    correctAnswer: 'To maintain copies of data across multiple database servers for redundancy, read scalability, and disaster recovery',
-    explanation: 'Replication keeps one or more replica servers synchronized with a primary database, enabling failover in case of primary failure, distributing read load, and providing geographic redundancy.',
+    correctAnswer: 'The value of replication for disaster recovery: a replica (especially one kept reasonably in sync) could have been promoted to primary, minimizing downtime and data loss',
+    explanation: 'Replication exists precisely for this scenario: maintaining one or more replicas means a hardware failure on the primary doesn\u2019t mean total data loss or extended downtime, since a replica can typically be promoted to take over as the new primary. Normalization is a schema design concern about redundancy and integrity; it has no bearing on physical hardware failure resilience. Indexes speed up query performance; they do nothing to protect against a server\u2019s hardware dying, since indexes live on the same physical storage as the rest of the database. Transactions exist to guarantee atomicity and consistency of operations; they are unrelated to hardware failure recovery, and removing them would not have prevented or mitigated this incident at all.',
     tags: ['replication', 'high-availability', 'system-design']
   },
   {
@@ -978,16 +1003,16 @@ export const sqlQuestions: InterviewQuestion[] = [
     topic: 'sql',
     stage: 'Advanced',
     difficulty: 'Advanced',
-    category: 'Theory',
-    question: 'What is the difference between synchronous and asynchronous replication?',
+    category: 'System Design',
+    question: 'A financial system requires that once a transaction is reported as "successful" to the client, the write must never be lost, even if the primary database server fails one second later. Which replication configuration is required to make this guarantee, and what cost does it impose?',
     options: [
-      'They are interchangeable terms for the same mechanism',
-      'Synchronous replication waits for the replica to confirm a write before acknowledging it as committed, guaranteeing consistency but adding latency; asynchronous replication acknowledges the write immediately and replicates afterward, risking data loss on failure',
-      'Asynchronous replication is always more consistent',
-      'Synchronous replication does not require a network connection'
+      'Synchronous replication, since it only confirms success to the client after at least one replica has acknowledged the write, at the cost of higher write latency',
+      'Asynchronous replication, since it offers the fastest possible write acknowledgment with zero added latency or risk',
+      'No replication is needed at all, since durability is guaranteed by the write-ahead log alone regardless of hardware failure',
+      'Either synchronous or asynchronous replication provides an identical durability guarantee, so the choice has no real consequence'
     ],
-    correctAnswer: 'Synchronous replication waits for the replica to confirm a write before acknowledging it as committed, guaranteeing consistency but adding latency; asynchronous replication acknowledges the write immediately and replicates afterward, risking data loss on failure',
-    explanation: 'This is a classic consistency-vs-latency trade-off: synchronous replication ensures replicas are always up to date at the cost of write latency, while asynchronous replication is faster but can lose recently committed data if the primary fails before replicating.',
+    correctAnswer: 'Synchronous replication, since it only confirms success to the client after at least one replica has acknowledged the write, at the cost of higher write latency',
+    explanation: 'Synchronous replication is specifically designed to provide this guarantee: the primary doesn\u2019t report success until a replica confirms it has the data too, ensuring a single server failure can\u2019t silently lose an acknowledged write, at the cost of added latency waiting for that confirmation. Asynchronous replication explicitly trades away this guarantee for lower latency, since the primary may report success before any replica has the data, meaning a failure immediately afterward really can lose that write. While the write-ahead log protects against losing committed data if the same server recovers, it offers no protection if the physical server (and its disk) is destroyed entirely, which is why cross-server replication matters for this guarantee. The choice between synchronous and asynchronous replication has dramatically different durability implications precisely in the failure scenario described, so they are not interchangeable.',
     tags: ['replication', 'consistency', 'system-design']
   },
   {
@@ -996,18 +1021,17 @@ export const sqlQuestions: InterviewQuestion[] = [
     stage: 'Advanced',
     difficulty: 'Advanced',
     category: 'Theory',
-    question: 'What is the CAP theorem, and how does it relate to distributed SQL/NoSQL databases?',
+    question: 'During a network partition, a distributed database must choose to either reject some write requests (to keep all nodes consistent) or accept writes on both sides of the partition (risking divergence). Which CAP theorem trade-off does this dilemma represent, and what is misleading about saying a system can "have all three" outside of a partition?',
     options: [
-      'It states a distributed system can guarantee Consistency, Availability, and Partition tolerance simultaneously at all times',
-      'It states that during a network partition, a distributed system must choose between Consistency and Availability; Partition tolerance is generally assumed as a requirement',
-      'It is only applicable to single-node databases',
-      'It guarantees ACID compliance automatically'
+      'This is the Consistency vs. Availability trade-off that only manifests during an actual partition; claiming a system has "all three" is misleading because Partition tolerance isn\u2019t something you opt out of \u2014 the real choice only appears once a partition occurs',
+      'This represents a trade-off between Durability and Isolation, two properties unrelated to the CAP theorem entirely',
+      'CAP theorem guarantees that Consistency, Availability, and Partition tolerance can always coexist perfectly as long as the database uses SSDs instead of HDDs',
+      'This dilemma has nothing to do with CAP theorem and is purely a result of poor database schema design'
     ],
-    correctAnswer: 'It states that during a network partition, a distributed system must choose between Consistency and Availability; Partition tolerance is generally assumed as a requirement',
-    explanation: 'The CAP theorem describes an unavoidable trade-off in distributed systems: when a network partition occurs, the system can either remain consistent (rejecting some requests) or remain available (risking stale/inconsistent reads), but not perfectly achieve both.',
+    correctAnswer: 'This is the Consistency vs. Availability trade-off that only manifests during an actual partition; claiming a system has "all three" is misleading because Partition tolerance isn\u2019t something you opt out of \u2014 the real choice only appears once a partition occurs',
+    explanation: 'CAP theorem\u2019s real-world relevance kicks in specifically during a network partition: a system must choose between rejecting requests to stay consistent or accepting requests on both sides and risking divergence, which is the Consistency-vs-Availability trade-off; outside of a partition, a system can appear to offer all three, which is why marketing claims of "CAP-compliant on all fronts" are misleading\u2014 partition tolerance is essentially a property of distributed systems generally, not a dial you can turn off. Durability and Isolation are ACID transaction properties, entirely separate from CAP, which concerns distributed system behavior, not single-transaction guarantees. Hardware choice (SSD vs. HDD) has no bearing on the theorem\u2019s fundamental trade-off, which is about network partitions, not storage media speed. This dilemma is a direct, well-documented consequence of operating as a distributed system under CAP, not a symptom of bad schema design.',
     tags: ['cap-theorem', 'distributed-systems', 'system-design']
   },
-
   // ===================== MNC (FAANG / High-Bar) =====================
   {
     id: 'sql-061',

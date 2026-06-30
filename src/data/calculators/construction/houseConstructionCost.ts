@@ -6,8 +6,7 @@ slug: "house-construction-cost-calculator",
 name: "House Construction Cost Calculator",
 
 description:
-"Estimate house construction cost in India based on built-up area, construction quality, city location, number of floors, and interior requirements. Get an instant breakdown of material costs, labour expenses, and total building budget.",
-
+"Plan your home construction budget in minutes. Enter your built-up area, preferred construction quality, city, number of floors, and interior needs — and get a detailed cost breakdown covering materials, labour, and total budget, tailored to Indian construction rates.",
 category: "Construction",
 
 isPopular: true,
@@ -24,8 +23,7 @@ title:
 
 
 description:
-  "Calculate house construction cost in India by area, quality, location, and floors. Get an instant breakdown of material cost, labour cost, and total building budget.",
-
+  "Planning to build a house in India? Enter your plot area, city, quality preference, and number of floors to get an instant cost estimate — materials, labour, and total budget broken down clearly.",
 keywords: [
   "house construction cost calculator",
   "construction cost calculator india",

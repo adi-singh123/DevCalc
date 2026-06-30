@@ -6,8 +6,7 @@ export const hashGenerator: Calculator = {
   name: "Hash Generator",
 
   description:
-    "Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes instantly. Free online Hash Generator for developers, cybersecurity professionals, students, and IT administrators.",
-
+"Instantly generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes online — completely free. Built for developers, cybersecurity professionals, students, and IT administrators who need quick, reliable hashing.",
   category: "Developer Tools",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const hashGenerator: Calculator = {
       "Hash Generator - MD5, SHA1, SHA256 & SHA512 Generator Online",
 
     description:
-      "Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes instantly. Secure online Hash Generator for developers, security professionals, and students.",
-
+"Need a quick hash for your text or file? This tool generates MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes instantly — perfect for developers, security testing, or learning how hashing works.",
  keywords: [
   "hash generator",
   "sha256 generator",

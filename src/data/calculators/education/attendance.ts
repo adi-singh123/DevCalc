@@ -6,8 +6,7 @@ export const attendanceCalculator: Calculator = {
   name: "Attendance Calculator",
 
   description:
-    "Calculate your attendance percentage, find how many classes you need to attend to reach a target percentage, and see how many classes you can miss while maintaining required attendance.",
-
+"Not sure if you're on track with your attendance? This free calculator instantly shows your current attendance percentage, tells you exactly how many classes you need to attend to hit 75% or any target percentage, and calculates how many more you can afford to miss without falling short.",
   category: "Education",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const attendanceCalculator: Calculator = {
       "Attendance Calculator - Calculate Attendance Percentage Online",
 
     description:
-      "Free online Attendance Calculator. Calculate attendance percentage, classes needed to reach 75% attendance, and how many classes you can miss while maintaining your target attendance.",
-
+"Not sure if you're on track with your attendance? This free calculator instantly shows your current attendance percentage, tells you exactly how many classes you need to attend to hit 75% or any target percentage, and calculates how many more you can afford to miss without falling short.",
     keywords: [
       "attendance calculator",
       "attendance percentage calculator",

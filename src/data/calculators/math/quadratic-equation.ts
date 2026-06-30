@@ -6,8 +6,7 @@ export const quadraticEquationCalculator: Calculator = {
   name: "Quadratic Equation Calculator",
 
   description:
-    "Solve quadratic equations instantly using our free Quadratic Equation Calculator. Find roots, discriminant, vertex, and nature of roots for equations in the form ax² + bx + c = 0.",
-
+"Struggling with a quadratic equation? Our calculator instantly finds the roots, calculates the discriminant, tells you whether the roots are real or complex, and breaks down the parabola's key properties — perfect for students and quick problem-solving.",
   category: "Math",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const quadraticEquationCalculator: Calculator = {
       "Quadratic Equation Calculator - Solve ax² + bx + c = 0",
 
     description:
-      "Use our Quadratic Equation Calculator to solve quadratic equations, find roots, calculate discriminants, determine root types, and analyze parabolas instantly.",
-
+"Struggling with a quadratic equation? Our calculator instantly finds the roots, calculates the discriminant, tells you whether the roots are real or complex, and breaks down the parabola's key properties — perfect for students and quick problem-solving.",
 keywords: [
   "quadratic equation calculator",
   "quadratic formula calculator",

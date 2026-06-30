@@ -15,9 +15,8 @@ export const dateCalculator: Calculator = {
   seo: {
     title: "Date Calculator - Calculate Days Between Dates Online",
 
-    description:
-      "Use our free Date Calculator to calculate the exact difference between two dates. Find days, weeks, months, years, hours, and minutes between any dates instantly.",
-
+description:
+  "How many days until your exam, wedding, or trip? Or how long since an important date? Enter any two dates and instantly get the exact difference in years, months, weeks, and days.",
 keywords: [
   "date calculator",
   "days between dates",

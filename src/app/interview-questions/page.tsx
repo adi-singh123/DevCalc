@@ -19,7 +19,8 @@ import PopularCalculators from '@/src/components/calculator/PopularCalculators';
 // --- Metadata ---
 export const metadata: Metadata = {
   title: 'Technical Interview Questions 2026 | JavaScript, React, DSA, System Design | DevCalc',
-  description: 'Ace your next software engineering interview with 1500+ curated technical interview questions covering JavaScript, React, Next.js, TypeScript, Node.js, SQL, DSA, and System Design. Free prep for freshers and experienced developers targeting Google, Amazon, Microsoft, TCS, and Infosys.',
+  description:
+  "Most developers fail interviews not because they can't code — but because they didn't prepare the right questions. Practice 1500+ curated tech interview questions, free. Start today.",
   keywords: [
     // Core intent
     'Technical Interview Questions',
@@ -323,6 +324,7 @@ const faqSchema = {
     },
   })),
 };
+
 
 
 export default function InterviewHomePage() {

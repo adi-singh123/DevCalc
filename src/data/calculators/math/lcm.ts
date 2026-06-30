@@ -6,8 +6,7 @@ export const lcmCalculator: Calculator = {
   name: "LCM Calculator",
 
   description:
-    "Calculate the Least Common Multiple (LCM) of two or more numbers instantly. Find the smallest common multiple shared by multiple integers using our free LCM Calculator.",
-
+"Need to find the LCM of a set of numbers fast? Our free LCM Calculator instantly calculates the Least Common Multiple of two or more numbers, with clear results perfect for homework, teaching, or quick math problem-solving.",
   category: "Math",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const lcmCalculator: Calculator = {
       "LCM Calculator - Find Least Common Multiple Online",
 
     description:
-      "Use our LCM Calculator to find the Least Common Multiple of two or more numbers quickly and accurately. Ideal for students, teachers, and mathematical calculations.",
-
+"Need to find the LCM of a set of numbers fast? Our free LCM Calculator instantly calculates the Least Common Multiple of two or more numbers, with clear results perfect for homework, teaching, or quick math problem-solving.",
 keywords: [
   "lcm calculator",
   "least common multiple calculator",

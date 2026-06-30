@@ -21,7 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${topicTitle} ${stageTitle} Interview Questions & MCQ Practice | DevCalc`,
-    description: `Practice ${stageTitle} ${topicTitle} interview questions with MCQs, coding questions, explanations, quizzes, and real interview scenarios. Free unlimited retries with detailed explanations.`,
+    description:
+  `Not confident about ${stageTitle} ${topicTitle} yet? Work through real interview MCQs, coding questions, and scenarios at your own pace — with clear explanations after every answer. Free.`,
     keywords: [
       `${topicTitle} interview questions`,
       `${topicTitle} ${stageTitle} interview`,

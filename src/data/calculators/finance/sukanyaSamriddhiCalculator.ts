@@ -6,8 +6,7 @@ export const sukanyaSamriddhiCalculator: Calculator = {
   name: "Sukanya Samriddhi Yojana Calculator",
 
   description:
-    "Calculate Sukanya Samriddhi Yojana (SSY) maturity amount, total investment, interest earned, and future corpus for your girl child using the latest SSY interest rates.",
-
+"Planning for your daughter's future with Sukanya Samriddhi Yojana? This calculator instantly shows your maturity amount, total investment, and interest earned over the scheme's tenure — using the latest official SSY interest rate, so your projections stay accurate.",
   category: "Finance",
 
   isPopular: true,
@@ -23,8 +22,7 @@ export const sukanyaSamriddhiCalculator: Calculator = {
     title: "Sukanya Samriddhi Yojana Calculator - SSY Maturity Calculator",
 
     description:
-      "Calculate Sukanya Samriddhi Yojana maturity amount, total investment, interest earned, and account value using the latest SSY interest rate.",
-
+ "Planning for your daughter's future with Sukanya Samriddhi Yojana? This calculator instantly shows your maturity amount, total investment, and interest earned over the scheme's tenure — using the latest official SSY interest rate, so your projections stay accurate.",
 keywords: [
   "sukanya samriddhi calculator",
   "ssy calculator",

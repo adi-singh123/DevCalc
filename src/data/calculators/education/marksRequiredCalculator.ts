@@ -16,9 +16,8 @@ export const marksRequiredCalculator: Calculator = {
     title:
       "Marks Required Calculator - Calculate Required Exam Score",
 
-    description:
-      "Find out how many marks you need in upcoming exams to achieve your target percentage, pass a subject, or reach a specific grade.",
-
+description:
+  "Exams coming up and worried about your percentage? Enter your current marks and target grade — we'll tell you exactly what you need to score in each remaining exam.",
     keywords: [
       "marks required calculator",
       "required marks calculator",

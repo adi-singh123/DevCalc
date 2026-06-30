@@ -6,8 +6,7 @@ export const sipCalculator: Calculator = {
   name: "SIP Calculator",
 
   description:
-    "Calculate SIP returns, total investment, estimated wealth gained, and future maturity value instantly. Plan your mutual fund investments and long-term wealth creation with highly accurate compounding projections.",
-
+"A free SIP Calculator built to help you plan smarter mutual fund investments. Just enter your monthly investment amount, expected rate of return, and investment duration to instantly see your total invested amount, wealth gained, and projected maturity value — making it easier to plan systematic investments and work toward long-term financial goals like retirement, education, or wealth creation.",
   category: "Finance",
 
   isPopular: true,
@@ -16,8 +15,7 @@ export const sipCalculator: Calculator = {
     title: "SIP Calculator - Calculate SIP Returns & Mutual Fund Growth Online",
 
     description:
-      "Use our free SIP Calculator to estimate mutual fund returns, invested amount, wealth gained, and future maturity value. Plan your monthly systematic investments and achieve long-term financial goals.",
-
+  "A free SIP Calculator built to help you plan smarter mutual fund investments. Just enter your monthly investment amount, expected rate of return, and investment duration to instantly see your total invested amount, wealth gained, and projected maturity value — making it easier to plan systematic investments and work toward long-term financial goals like retirement, education, or wealth creation.",
     keywords: [
       "sip calculator",
       "sip calculator india",

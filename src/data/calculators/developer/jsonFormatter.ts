@@ -21,9 +21,8 @@ export const jsonFormatter: Calculator = {
   seo: {
     title: "JSON Formatter - Free Online JSON Beautifier & Validator",
 
-    description:
-      "Format, validate, parse, and minify raw JSON instantly. Use our free online JSON Formatter to fix broken JSON syntax and prettify code blocks.",
-
+description:
+  "Got broken or minified JSON? Paste it in and instantly format, validate, and beautify it into clean, readable code. Spot errors in seconds — no setup, no sign-up needed.",
 keywords: [
   "json formatter",
   "json beautifier",

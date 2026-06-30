@@ -16,9 +16,8 @@ export const retirementCalculator: Calculator = {
     title:
       "Retirement Calculator - Calculate Retirement Corpus & Savings",
 
-    description:
-      "Use our Retirement Calculator to estimate retirement corpus, future expenses, inflation-adjusted retirement needs, monthly income, and savings required for financial independence.",
-
+description:
+  "How much money do you actually need to retire comfortably? Enter your age, income, and lifestyle goals — get a clear picture of your target corpus, monthly savings needed, and inflation-adjusted costs.",
     keywords: [
       "retirement calculator",
       "retirement planning calculator",

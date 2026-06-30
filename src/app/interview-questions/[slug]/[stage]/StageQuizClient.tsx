@@ -31,6 +31,11 @@ import { nodeQuestions } from "@/src/data/interview/nodeJS/node";
 import { sqlQuestions } from "@/src/data/interview/sql/sql";
 import { typescriptQuestions } from "@/src/data/interview/typescript/typescript";
 import { cppQuestions } from "@/src/data/interview/C++/c++";
+import { htmlQuestions } from "@/src/data/interview/html/html";
+import { javaQuestions } from "@/src/data/interview/java/java";
+import { phpQuestions } from "@/src/data/interview/php/php";
+import { nextjsQuestions } from "@/src/data/interview/nextjs/next";
+import { goQuestions} from "@/src/data/interview/go/golang";
 
 const MOCK_DB: Record<string, InterviewQuestion[]> = {
   javascript: javascriptQuestions,
@@ -39,6 +44,11 @@ const MOCK_DB: Record<string, InterviewQuestion[]> = {
   sql: sqlQuestions,
   typescript: typescriptQuestions,
   cpp: cppQuestions,
+  html:htmlQuestions,
+  java:javaQuestions,
+  php:phpQuestions,
+  nextjs:nextjsQuestions,
+  go:goQuestions,
 };
 
 const STAGE_ORDER: InterviewStage[] = [

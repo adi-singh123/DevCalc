@@ -16,9 +16,8 @@ export const permutationCombinationCalculator: Calculator = {
     title:
       "Permutation and Combination Calculator (nPr & nCr)",
 
-    description:
-      "Calculate permutations and combinations online. Find nPr, nCr, factorial values, and solve probability and combinatorics problems instantly.",
-
+description:
+  "Need to solve nPr or nCr quickly? Enter n and r values and instantly get permutation, combination, and factorial results — perfect for probability problems, exams, and competitive tests.",
 keywords: [
   "permutation calculator",
   "combination calculator",

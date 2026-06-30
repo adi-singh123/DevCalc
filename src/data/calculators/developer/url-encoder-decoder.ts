@@ -21,9 +21,8 @@ export const urlEncoderDecoder: Calculator = {
   seo: {
     title: "URL Encoder Decoder - Encode & Decode URLs Online Free",
 
-    description:
-      "Free online URL encoder and decoder. Instantly convert query strings, special characters, and parameters to RFC 3986 percent-encoding format or parse them back.",
-
+description:
+  "Paste any URL and instantly encode special characters into percent-format — or decode a messy encoded string back to readable text. Clean, fast, and works right in your browser.",
 keywords: [
   "url encoder",
   "url decoder",

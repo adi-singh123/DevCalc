@@ -22,9 +22,8 @@ export const cementCalculator: Calculator = {
     title:
       "Cement Calculator - Calculate Cement Bags Required Online",
 
-    description:
-      "Free online Cement Calculator. Calculate cement quantity, cement bags, cement weight, and construction cost for slabs, foundations, columns, and concrete work.",
-
+description:
+  "Calculate exactly how many cement bags your construction project needs. Enter the work type — slab, foundation, column, or beam — and get instant quantity, weight, and cost estimates.",
  keywords: [
   "cement calculator",
   "cement bag calculator",

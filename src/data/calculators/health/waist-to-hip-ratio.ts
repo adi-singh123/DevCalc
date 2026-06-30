@@ -6,8 +6,7 @@ export const waistToHipRatioCalculator: Calculator = {
   name: "Waist-to-Hip Ratio Calculator",
 
   description:
-    "Calculate your Waist-to-Hip Ratio (WHR) to assess body fat distribution and potential health risks. Determine whether your waist and hip measurements fall within healthy ranges.",
-
+"A free Waist-to-Hip Ratio (WHR) Calculator to help you understand your body fat distribution and associated health risks. Simply enter your waist and hip measurements to instantly calculate your WHR, see how it compares to standard health ranges, and learn whether your body shape may indicate a higher risk of conditions like heart disease or diabetes. Fast, accurate, and easy to use.",
   category: "Health",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const waistToHipRatioCalculator: Calculator = {
       "Waist-to-Hip Ratio Calculator - Calculate WHR Online",
 
     description:
-      "Use our free Waist-to-Hip Ratio Calculator to calculate your WHR and assess health risks associated with body fat distribution. Fast, accurate, and easy to use.",
-
+ "A free Waist-to-Hip Ratio (WHR) Calculator to help you understand your body fat distribution and associated health risks. Simply enter your waist and hip measurements to instantly calculate your WHR, see how it compares to standard health ranges, and learn whether your body shape may indicate a higher risk of conditions like heart disease or diabetes. Fast, accurate, and easy to use.",
     keywords: [
       "waist to hip ratio calculator",
       "whr calculator",

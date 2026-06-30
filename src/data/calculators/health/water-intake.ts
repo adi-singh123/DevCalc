@@ -6,8 +6,7 @@ export const waterIntakeCalculator: Calculator = {
   name: "Water Intake Calculator",
 
   description:
-    "Calculate your recommended daily water intake based on body weight, activity level, and lifestyle. Stay hydrated and support overall health with personalized hydration recommendations.",
-
+"Not sure if you're drinking enough water? Our free Water Intake Calculator factors in your weight and activity level to instantly tell you your ideal daily hydration target — so you can stay healthy and energized.",
   category: "Health",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const waterIntakeCalculator: Calculator = {
       "Water Intake Calculator - Calculate Daily Water Needs",
 
     description:
-      "Use our free Water Intake Calculator to estimate how much water you should drink daily based on your weight and activity level. Calculate your ideal daily hydration needs instantly.",
-
+"Not sure if you're drinking enough water? Our free Water Intake Calculator factors in your weight and activity level to instantly tell you your ideal daily hydration target — so you can stay healthy and energized.",
 keywords: [
   "water intake calculator",
   "daily water intake calculator",

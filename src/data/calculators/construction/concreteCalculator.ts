@@ -25,8 +25,7 @@ title:
 
 
 description:
-  "Free online Concrete Calculator. Calculate concrete volume, cement bags, sand quantity, aggregate quantity, and construction material costs instantly.",
-
+  "Not sure how much concrete your project needs? Enter your slab or column dimensions and instantly get the exact volume, cement bags, sand, and aggregate required — no guesswork, no waste.",
 keywords: [
   "concrete calculator",
   "concrete volume calculator",

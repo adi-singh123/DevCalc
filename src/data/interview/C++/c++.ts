@@ -20,9 +20,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the main difference between "struct" and "class" in C++?',
     options: [
+      'Structs cannot have member functions',
       'There is no difference at all',
       'Struct members are public by default; class members are private by default',
-      'Structs cannot have member functions',
       'Classes cannot be used with templates'
     ],
     correctAnswer: 'Struct members are public by default; class members are private by default',
@@ -37,10 +37,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What does the "#include" directive do?',
     options: [
-      'It links object files at runtime',
-      'It tells the preprocessor to textually insert the contents of a header file before compilation',
       'It imports a compiled module at link time only',
-      'It declares a namespace alias'
+      'It declares a namespace alias',
+      'It links object files at runtime',
+      'It tells the preprocessor to textually insert the contents of a header file before compilation'
     ],
     correctAnswer: 'It tells the preprocessor to textually insert the contents of a header file before compilation',
     explanation: '"#include" is a preprocessor directive. Before actual compilation begins, the preprocessor replaces the "#include" line with the full text of the named header file, which is why repeated includes need include guards or "#pragma once".',
@@ -54,10 +54,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between "==" and "=" in C++?',
     options: [
-      'They are interchangeable',
       '"=" is assignment; "==" is the equality comparison operator',
       '"==" is only valid for pointers',
-      '"=" can only be used inside loops'
+      '"=" can only be used inside loops',
+      'They are interchangeable'
     ],
     correctAnswer: '"=" is assignment; "==" is the equality comparison operator',
     explanation: '"=" assigns the value on the right to the variable on the left. "==" compares two values and produces a boolean result. Accidentally writing "if (x = 5)" instead of "if (x == 5)" is a classic bug, since the assignment expression itself evaluates to the assigned value.',
@@ -71,10 +71,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is a pointer in C++?',
     options: [
-      'A variable that stores the memory address of another variable',
       'A reserved keyword for function parameters only',
+      'A synonym for a reference',
       'A type used exclusively for arrays',
-      'A synonym for a reference'
+      'A variable that stores the memory address of another variable'
     ],
     correctAnswer: 'A variable that stores the memory address of another variable',
     explanation: 'A pointer, declared with "*", holds the memory address of another object. Dereferencing it with "*ptr" accesses the value stored at that address. Pointers can be reassigned to point elsewhere and can be null, unlike references.',
@@ -90,8 +90,8 @@ export const cppQuestions: InterviewQuestion[] = [
     options: [
       'An alias for an existing variable that must be initialized when declared',
       'A pointer that can be null',
-      'A type-safe array',
-      'A synonym for a macro'
+      'A synonym for a macro',
+      'A type-safe array'
     ],
     correctAnswer: 'An alias for an existing variable that must be initialized when declared',
     explanation: 'A reference, declared with "&", is an alias bound to an existing object at the time of declaration. Unlike a pointer, it cannot be reseated to refer to a different object afterward, and it cannot be null.',
@@ -104,7 +104,12 @@ export const cppQuestions: InterviewQuestion[] = [
     difficulty: 'Beginner',
     category: 'Coding',
     question: 'What does the following code print?\n\nint x = 10;\nint& ref = x;\nref = 20;\nstd::cout << x;',
-    options: ['10', '20', 'Undefined behavior', 'Compile error'],
+    options: [
+      'Compile error',
+      '20',
+      'Undefined behavior',
+      '10'
+    ],
     correctAnswer: '20',
     explanation: 'Since "ref" is a reference bound to "x", modifying "ref" directly modifies "x" itself, because they refer to the same memory location. Printing "x" after "ref = 20" outputs 20.',
     tags: ['references', 'coding']
@@ -118,9 +123,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is the purpose of a constructor in a C++ class?',
     options: [
       'To destroy an object when it goes out of scope',
+      'To define static class members',
       'To initialize an object\'s state when it is created',
-      'To copy one object into another',
-      'To define static class members'
+      'To copy one object into another'
     ],
     correctAnswer: 'To initialize an object\'s state when it is created',
     explanation: 'A constructor is a special member function automatically called when an object is created, responsible for initializing the object\'s data members and acquiring any resources it needs.',
@@ -134,10 +139,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the purpose of a destructor in a C++ class?',
     options: [
-      'To allocate memory for new objects',
-      'To clean up resources when an object goes out of scope or is explicitly deleted',
       'To copy the object into a new instance',
-      'To overload the assignment operator'
+      'To overload the assignment operator',
+      'To allocate memory for new objects',
+      'To clean up resources when an object goes out of scope or is explicitly deleted'
     ],
     correctAnswer: 'To clean up resources when an object goes out of scope or is explicitly deleted',
     explanation: 'A destructor, written as "~ClassName()", is automatically invoked when an object\'s lifetime ends, typically used to release resources like dynamically allocated memory, file handles, or locks.',
@@ -151,10 +156,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is function overloading?',
     options: [
-      'Calling a function more times than it is defined',
-      'Defining multiple functions with the same name but different parameter lists',
+      'Inheriting a function from a base class',
       'Replacing a function\'s implementation at runtime',
-      'Inheriting a function from a base class'
+      'Defining multiple functions with the same name but different parameter lists',
+      'Calling a function more times than it is defined'
     ],
     correctAnswer: 'Defining multiple functions with the same name but different parameter lists',
     explanation: 'Function overloading lets multiple functions share the same name as long as their parameter types, count, or order differ, allowing the compiler to select the appropriate one based on the arguments at the call site.',
@@ -167,7 +172,12 @@ export const cppQuestions: InterviewQuestion[] = [
     difficulty: 'Beginner',
     category: 'Theory',
     question: 'What header is required to use "std::vector"?',
-    options: ['<list>', '<vector>', '<array>', '<container>'],
+    options: [
+      '<vector>',
+      '<array>',
+      '<container>',
+      '<list>'
+    ],
     correctAnswer: '<vector>',
     explanation: '"std::vector" is declared in the "<vector>" header from the C++ Standard Library. It must be included before "std::vector" can be used.',
     tags: ['stl', 'vector', 'headers']
@@ -181,8 +191,8 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is the difference between stack memory and heap memory?',
     options: [
       'They are the same thing with different names',
-      'Stack memory is automatically managed and freed when a scope ends; heap memory is manually managed via "new"/"delete" (or smart pointers) and persists until explicitly freed',
       'Heap memory is faster to access than stack memory in all cases',
+      'Stack memory is automatically managed and freed when a scope ends; heap memory is manually managed via "new"/"delete" (or smart pointers) and persists until explicitly freed',
       'Stack memory can only store pointers'
     ],
     correctAnswer: 'Stack memory is automatically managed and freed when a scope ends; heap memory is manually managed via "new"/"delete" (or smart pointers) and persists until explicitly freed',
@@ -197,8 +207,8 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What does "new" do in C++?',
     options: [
-      'Declares a new variable on the stack',
       'Allocates memory on the heap and returns a pointer to it, optionally invoking a constructor',
+      'Declares a new variable on the stack',
       'Creates a new namespace',
       'Defines a new class'
     ],
@@ -214,9 +224,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Coding',
     question: 'What is wrong with this code?\n\nint* ptr = new int(5);\nptr = new int(10);',
     options: [
+      '"new int(5)" is invalid syntax',
       'Nothing is wrong with it',
       'The first allocated memory is leaked because its address is overwritten before being freed',
-      '"new int(5)" is invalid syntax',
       'Pointers cannot be reassigned'
     ],
     correctAnswer: 'The first allocated memory is leaked because its address is overwritten before being freed',
@@ -231,10 +241,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the purpose of "const" when applied to a function parameter, e.g. "void f(const std::string& s)"?',
     options: [
-      'It makes the function run faster automatically',
-      'It promises the function will not modify the referenced object, while still avoiding a copy',
       'It forces the parameter to be passed by value',
-      'It makes the parameter optional'
+      'It makes the parameter optional',
+      'It makes the function run faster automatically',
+      'It promises the function will not modify the referenced object, while still avoiding a copy'
     ],
     correctAnswer: 'It promises the function will not modify the referenced object, while still avoiding a copy',
     explanation: 'Passing by "const&" avoids the cost of copying the argument (especially for large objects like strings) while telling both the compiler and other developers that the function will not modify the caller\'s object.',
@@ -248,8 +258,8 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between "std::vector" and a C-style array?',
     options: [
-      'They are identical in every respect',
       '"std::vector" can dynamically resize at runtime and manages its own memory; a C-style array has a fixed size and no built-in memory management',
+      'They are identical in every respect',
       'C-style arrays support bounds checking, but std::vector does not',
       '"std::vector" cannot store primitive types'
     ],
@@ -266,9 +276,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is a namespace used for?',
     options: [
       'To define a new data type',
+      'To declare a function as inline',
       'To group related identifiers (functions, classes, variables) under a common name to avoid naming collisions',
-      'To allocate memory dynamically',
-      'To declare a function as inline'
+      'To allocate memory dynamically'
     ],
     correctAnswer: 'To group related identifiers (functions, classes, variables) under a common name to avoid naming collisions',
     explanation: 'Namespaces, declared with "namespace name { ... }", scope identifiers under a named region, which prevents naming conflicts between different libraries or parts of a large codebase that might otherwise define the same identifier name.',
@@ -282,10 +292,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What does "using namespace std;" do?',
     options: [
-      'It deletes the std namespace',
-      'It brings all identifiers from the "std" namespace into the current scope, so they can be used without the "std::" prefix',
       'It creates an alias called "std"',
-      'It is required at the top of every C++ file'
+      'It is required at the top of every C++ file',
+      'It deletes the std namespace',
+      'It brings all identifiers from the "std" namespace into the current scope, so they can be used without the "std::" prefix'
     ],
     correctAnswer: 'It brings all identifiers from the "std" namespace into the current scope, so they can be used without the "std::" prefix',
     explanation: '"using namespace std;" imports every name from the standard namespace into the current scope. It is convenient but commonly discouraged in headers or large codebases because it can introduce naming collisions and reduces clarity about where an identifier comes from.',
@@ -299,10 +309,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between "public", "private", and "protected" access specifiers?',
     options: [
-      'They have no effect on compilation, only documentation value',
       '"public" members are accessible from anywhere; "private" only within the class itself; "protected" within the class and its derived classes',
+      '"private" allows access from derived classes but not external code',
       '"protected" is accessible from anywhere except the class itself',
-      '"private" allows access from derived classes but not external code'
+      'They have no effect on compilation, only documentation value'
     ],
     correctAnswer: '"public" members are accessible from anywhere; "private" only within the class itself; "protected" within the class and its derived classes',
     explanation: 'These access specifiers control visibility: "public" members are accessible to any code with access to the object, "private" members only to the class\'s own member functions and friends, and "protected" members to the class itself and any classes that inherit from it.',
@@ -316,10 +326,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is inheritance in C++?',
     options: [
-      'A mechanism where a class (derived) acquires properties and behaviors from another class (base)',
+      'A feature exclusive to abstract classes',
       'A way to copy a class\'s implementation into a new file',
       'A restriction that prevents classes from having member functions',
-      'A feature exclusive to abstract classes'
+      'A mechanism where a class (derived) acquires properties and behaviors from another class (base)'
     ],
     correctAnswer: 'A mechanism where a class (derived) acquires properties and behaviors from another class (base)',
     explanation: 'Inheritance, declared as "class Derived : public Base { ... }", lets a derived class reuse and extend the members of a base class, forming an "is-a" relationship and enabling polymorphism.',
@@ -333,10 +343,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the purpose of the "this" pointer inside a non-static member function?',
     options: [
-      'It points to the base class instance',
       'It points to the object instance on which the member function was called',
       'It is only valid inside constructors',
-      'It refers to the function\'s return value'
+      'It refers to the function\'s return value',
+      'It points to the base class instance'
     ],
     correctAnswer: 'It points to the object instance on which the member function was called',
     explanation: 'Within a non-static member function, "this" is an implicit pointer to the specific object the function is operating on, allowing the function to access that object\'s own members, even when a local variable shares a name with a member.',
@@ -349,7 +359,12 @@ export const cppQuestions: InterviewQuestion[] = [
     difficulty: 'Beginner',
     category: 'Coding',
     question: 'What does the following print?\n\nfor (int i = 0; i < 3; i++) {\n  std::cout << i << " ";\n}',
-    options: ['0 1 2', '1 2 3', '0 1 2 3', '3 2 1'],
+    options: [
+      '1 2 3',
+      '3 2 1',
+      '0 1 2',
+      '0 1 2 3'
+    ],
     correctAnswer: '0 1 2',
     explanation: 'The loop initializes "i" to 0, continues while "i < 3", and increments "i" after each iteration. It prints 0, 1, and 2, then stops once "i" reaches 3 (since "3 < 3" is false).',
     tags: ['loops', 'coding']
@@ -362,10 +377,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is operator overloading?',
     options: [
+      'A restriction that disables certain operators',
       'Using too many operators in a single expression',
       'Defining custom behavior for an existing operator (like "+" or "==") when applied to a user-defined type',
-      'A compiler optimization technique',
-      'A restriction that disables certain operators'
+      'A compiler optimization technique'
     ],
     correctAnswer: 'Defining custom behavior for an existing operator (like "+" or "==") when applied to a user-defined type',
     explanation: 'Operator overloading lets you define how built-in operators behave for your own classes, for example overloading "+" so that two custom "Vector2D" objects can be added together with natural syntax like "a + b".',
@@ -379,10 +394,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between "while" and "do-while" loops?',
     options: [
-      'They are functionally identical',
+      '"while" loops can only iterate a fixed number of times',
       'A "while" loop checks its condition before the first iteration; a "do-while" loop executes the body at least once before checking the condition',
-      '"do-while" loops cannot use "break"',
-      '"while" loops can only iterate a fixed number of times'
+      'They are functionally identical',
+      '"do-while" loops cannot use "break"'
     ],
     correctAnswer: 'A "while" loop checks its condition before the first iteration; a "do-while" loop executes the body at least once before checking the condition',
     explanation: 'A "do-while" loop guarantees its body runs at least once, since the condition is checked after the first execution, whereas a regular "while" loop checks the condition first and may never execute the body at all.',
@@ -396,10 +411,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the purpose of "static" when applied to a class member variable?',
     options: [
-      'It makes the variable accessible only within that one object instance',
       'It creates a single shared variable across all instances of the class, rather than one copy per object',
-      'It prevents the variable from ever being modified',
-      'It makes the variable thread-local'
+      'It makes the variable accessible only within that one object instance',
+      'It makes the variable thread-local',
+      'It prevents the variable from ever being modified'
     ],
     correctAnswer: 'It creates a single shared variable across all instances of the class, rather than one copy per object',
     explanation: 'A "static" member variable belongs to the class itself rather than to any individual object, meaning there is exactly one copy shared across all instances, and it can typically be accessed without needing an object at all (e.g. "ClassName::member").',
@@ -414,9 +429,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What does "sizeof" return?',
     options: [
       'The number of elements in an array',
-      'The size, in bytes, that a type or object occupies in memory',
       'The maximum value a type can hold',
-      'The number of bits in a type'
+      'The number of bits in a type',
+      'The size, in bytes, that a type or object occupies in memory'
     ],
     correctAnswer: 'The size, in bytes, that a type or object occupies in memory',
     explanation: '"sizeof" is a compile-time operator that returns the size in bytes occupied by a type or expression\'s type, which is useful for low-level memory calculations, though the exact byte sizes of fundamental types are implementation-defined within constraints set by the standard.',
@@ -430,10 +445,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between "int* p" and "int& r" as ways to refer to a variable?',
     options: [
-      'They behave identically in every situation',
+      'Pointers cannot be passed to functions',
       'A pointer can be reassigned to point elsewhere or be null; a reference is permanently bound to one object and cannot be null',
-      'References use more memory than pointers',
-      'Pointers cannot be passed to functions'
+      'They behave identically in every situation',
+      'References use more memory than pointers'
     ],
     correctAnswer: 'A pointer can be reassigned to point elsewhere or be null; a reference is permanently bound to one object and cannot be null',
     explanation: 'Once a reference is initialized, it is permanently bound to that one object and can never refer to anything else or be null. A pointer is a separate object that stores an address and can be reassigned, including to "nullptr".',
@@ -447,10 +462,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the purpose of a default constructor?',
     options: [
-      'A constructor that takes exactly one argument',
-      'A constructor that can be called with no arguments, either explicitly written or implicitly generated by the compiler',
       'A constructor that is automatically deleted',
-      'A constructor used only for copying objects'
+      'A constructor used only for copying objects',
+      'A constructor that can be called with no arguments, either explicitly written or implicitly generated by the compiler',
+      'A constructor that takes exactly one argument'
     ],
     correctAnswer: 'A constructor that can be called with no arguments, either explicitly written or implicitly generated by the compiler',
     explanation: 'A default constructor requires no arguments to be called. If a class defines no constructors at all, the compiler implicitly generates one (unless this is suppressed by other declared constructors), which default-initializes the object\'s members.',
@@ -465,9 +480,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is the difference between "char", "int", and "float" in terms of what they represent?',
     options: [
       'They are all interchangeable representations of the same data',
-      '"char" typically holds a single byte/character, "int" holds whole numbers, and "float" holds single-precision floating-point (decimal) numbers',
+      '"float" cannot represent negative numbers',
       '"char" is used only for arrays of text',
-      '"float" cannot represent negative numbers'
+      '"char" typically holds a single byte/character, "int" holds whole numbers, and "float" holds single-precision floating-point (decimal) numbers'
     ],
     correctAnswer: '"char" typically holds a single byte/character, "int" holds whole numbers, and "float" holds single-precision floating-point (decimal) numbers',
     explanation: 'These are fundamental built-in types: "char" usually represents a single byte (often used for characters), "int" represents signed whole numbers, and "float" represents single-precision floating-point numbers capable of representing fractional values, with "double" offering greater precision.',
@@ -481,10 +496,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What does "std::string" provide over a raw C-style "char*" string?',
     options: [
-      'Nothing — they have identical capabilities',
       'Automatic memory management, dynamic resizing, and a rich set of member functions for manipulation, instead of manual buffer management',
       '"std::string" cannot be concatenated',
-      '"char*" supports more operators than std::string'
+      '"char*" supports more operators than std::string',
+      'Nothing — they have identical capabilities'
     ],
     correctAnswer: 'Automatic memory management, dynamic resizing, and a rich set of member functions for manipulation, instead of manual buffer management',
     explanation: '"std::string" manages its own underlying buffer, automatically growing as needed and handling memory cleanup via RAII, whereas a "char*" string requires manual allocation, careful null-termination, and manual memory management, making it significantly more error-prone.',
@@ -498,10 +513,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is a header file (".h" or ".hpp") typically used for?',
     options: [
-      'To store compiled binary code',
+      'To store runtime configuration values',
       'To declare interfaces (function signatures, class definitions, constants) that can be shared across multiple source files',
       'To define the program\'s entry point exclusively',
-      'To store runtime configuration values'
+      'To store compiled binary code'
     ],
     correctAnswer: 'To declare interfaces (function signatures, class definitions, constants) that can be shared across multiple source files',
     explanation: 'Header files typically contain declarations (not full implementations, aside from inline/template code) that multiple ".cpp" source files can include, allowing them to share class definitions, function prototypes, and constants without duplicating code.',
@@ -520,10 +535,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is RAII (Resource Acquisition Is Initialization)?',
     options: [
-      'A runtime error-checking mechanism',
-      'A design principle where resources are acquired in a constructor and released in the destructor, tying resource lifetime to object lifetime',
       'A way to prevent multiple inheritance',
-      'A compiler optimization for stack allocation'
+      'A design principle where resources are acquired in a constructor and released in the destructor, tying resource lifetime to object lifetime',
+      'A compiler optimization for stack allocation',
+      'A runtime error-checking mechanism'
     ],
     correctAnswer: 'A design principle where resources are acquired in a constructor and released in the destructor, tying resource lifetime to object lifetime',
     explanation: 'RAII ensures that resources like memory, file handles, and locks are always released when the owning object goes out of scope, even if an exception is thrown. std::unique_ptr, std::lock_guard, and std::fstream are all RAII wrappers.',
@@ -537,9 +552,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is a virtual function and why is it needed?',
     options: [
-      'A function that exists only at compile time',
-      'A member function declared with "virtual" that enables dynamic dispatch, allowing a derived class override to be called through a base class pointer or reference at runtime',
       'A function that cannot be overridden in derived classes',
+      'A member function declared with "virtual" that enables dynamic dispatch, allowing a derived class override to be called through a base class pointer or reference at runtime',
+      'A function that exists only at compile time',
       'A function with no implementation'
     ],
     correctAnswer: 'A member function declared with "virtual" that enables dynamic dispatch, allowing a derived class override to be called through a base class pointer or reference at runtime',
@@ -554,9 +569,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is a pure virtual function and what does it mean for a class that contains one?',
     options: [
-      'A virtual function with a default implementation that derived classes can optionally override',
       'A virtual function declared with "= 0", making its class abstract — it cannot be instantiated directly and derived classes must override it',
       'A function that is automatically deleted in derived classes',
+      'A virtual function with a default implementation that derived classes can optionally override',
       'A function with no parameters'
     ],
     correctAnswer: 'A virtual function declared with "= 0", making its class abstract — it cannot be instantiated directly and derived classes must override it',
@@ -572,9 +587,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is the Rule of Three (or Five) in C++?',
     options: [
       'A class should have at most three member variables',
+      'A guideline about the maximum number of base classes',
       'If a class needs a custom destructor, copy constructor, or copy assignment operator, it almost certainly needs all three (Rule of Three); with move semantics, also the move constructor and move assignment (Rule of Five)',
-      'Every class must have exactly three constructors',
-      'A guideline about the maximum number of base classes'
+      'Every class must have exactly three constructors'
     ],
     correctAnswer: 'If a class needs a custom destructor, copy constructor, or copy assignment operator, it almost certainly needs all three (Rule of Three); with move semantics, also the move constructor and move assignment (Rule of Five)',
     explanation: 'If your class manages a resource (e.g. raw pointer), the compiler-generated copy/move/destroy operations will be incorrect. You must define all relevant special member functions consistently to avoid double-free, shallow copies, or resource leaks.',
@@ -588,10 +603,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What are smart pointers and how do std::unique_ptr and std::shared_ptr differ?',
     options: [
-      'They are raw pointers with extra syntax',
-      'RAII wrappers for heap objects: unique_ptr has sole ownership (non-copyable, movable); shared_ptr allows shared ownership via reference counting, destroyed when the last owner is released',
       'shared_ptr is always faster than unique_ptr',
-      'unique_ptr requires manual deletion'
+      'They are raw pointers with extra syntax',
+      'unique_ptr requires manual deletion',
+      'RAII wrappers for heap objects: unique_ptr has sole ownership (non-copyable, movable); shared_ptr allows shared ownership via reference counting, destroyed when the last owner is released'
     ],
     correctAnswer: 'RAII wrappers for heap objects: unique_ptr has sole ownership (non-copyable, movable); shared_ptr allows shared ownership via reference counting, destroyed when the last owner is released',
     explanation: 'std::unique_ptr models exclusive ownership — it cannot be copied, only moved. When the unique_ptr is destroyed, the resource is freed. std::shared_ptr maintains a reference count; the resource is freed only when the last shared_ptr owning it is destroyed. Prefer unique_ptr unless shared ownership is genuinely needed.',
@@ -605,10 +620,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is a template in C++ and what problem does it solve?',
     options: [
-      'A runtime mechanism for switching implementations',
+      'A way to define abstract classes',
       'A compile-time parameterisation mechanism that allows writing type-generic functions and classes, with the compiler generating concrete versions for each type used',
       'A preprocessor macro with type checking',
-      'A way to define abstract classes'
+      'A runtime mechanism for switching implementations'
     ],
     correctAnswer: 'A compile-time parameterisation mechanism that allows writing type-generic functions and classes, with the compiler generating concrete versions for each type used',
     explanation: 'Templates eliminate code duplication for type-specific logic. "template<typename T> T max(T a, T b)" works for any comparable type. The compiler instantiates a concrete version for each unique type it is called with, providing type safety without runtime overhead.',
@@ -622,9 +637,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the STL and what are its main components?',
     options: [
-      'A third-party library for graphics',
       'The Standard Template Library: a part of the C++ standard library providing generic containers, iterators, algorithms, and function objects that work together through a unified iterator interface',
       'A set of macros for string manipulation only',
+      'A third-party library for graphics',
       'A runtime that replaces the OS'
     ],
     correctAnswer: 'The Standard Template Library: a part of the C++ standard library providing generic containers, iterators, algorithms, and function objects that work together through a unified iterator interface',
@@ -639,10 +654,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between std::map and std::unordered_map?',
     options: [
-      'They are identical in performance and ordering',
-      'std::map stores keys in sorted order using a red-black tree (O(log n) operations); std::unordered_map uses a hash table for average O(1) operations but no ordering',
+      'std::map allows duplicate keys',
       'std::unordered_map cannot store custom types',
-      'std::map allows duplicate keys'
+      'They are identical in performance and ordering',
+      'std::map stores keys in sorted order using a red-black tree (O(log n) operations); std::unordered_map uses a hash table for average O(1) operations but no ordering'
     ],
     correctAnswer: 'std::map stores keys in sorted order using a red-black tree (O(log n) operations); std::unordered_map uses a hash table for average O(1) operations but no ordering',
     explanation: 'Use std::map when you need sorted iteration or range queries. Use std::unordered_map for faster average-case lookups when ordering does not matter. Custom types in unordered_map require a custom hash functor and equality operator.',
@@ -657,9 +672,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is move semantics and what problem does it solve?',
     options: [
       'A way to physically move objects in memory',
-      'A C++11 feature that transfers ownership of a resource from one object to another (via rvalue references and std::move) without expensive deep copies, enabling efficient return of large objects',
+      'A garbage collection strategy',
       'A mechanism for moving objects between threads',
-      'A garbage collection strategy'
+      'A C++11 feature that transfers ownership of a resource from one object to another (via rvalue references and std::move) without expensive deep copies, enabling efficient return of large objects'
     ],
     correctAnswer: 'A C++11 feature that transfers ownership of a resource from one object to another (via rvalue references and std::move) without expensive deep copies, enabling efficient return of large objects',
     explanation: 'Before C++11, returning a large object from a function caused an expensive copy. Move semantics allow the resource (e.g. heap buffer) to be "stolen" from a temporary (rvalue), leaving the source in a valid but empty state. This makes operations like push_back on vectors of strings dramatically faster.',
@@ -674,9 +689,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is an rvalue reference (&&) and how does it differ from an lvalue reference (&)?',
     options: [
       'They are the same — both bind to any expression',
+      '&& is a logical AND inside type declarations',
       'An lvalue reference (&) binds to named, persistent objects; an rvalue reference (&&) binds to temporaries or objects explicitly cast with std::move, enabling move constructors and perfect forwarding',
-      'rvalue references are only used with primitives',
-      '&& is a logical AND inside type declarations'
+      'rvalue references are only used with primitives'
     ],
     correctAnswer: 'An lvalue reference (&) binds to named, persistent objects; an rvalue reference (&&) binds to temporaries or objects explicitly cast with std::move, enabling move constructors and perfect forwarding',
     explanation: 'Lvalues are objects with identity (a name, an address). Rvalues are temporaries or expressions whose resources can be safely "stolen". Rvalue references (T&&) were introduced in C++11 to distinguish these, enabling move constructors and perfect forwarding in templates.',
@@ -690,9 +705,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is a lambda expression in C++?',
     options: [
-      'A named function stored in a global variable',
       'An anonymous function object defined inline, optionally capturing variables from its enclosing scope, introduced in C++11',
       'A macro that generates a class',
+      'A named function stored in a global variable',
       'A type alias for std::function'
     ],
     correctAnswer: 'An anonymous function object defined inline, optionally capturing variables from its enclosing scope, introduced in C++11',
@@ -726,8 +741,8 @@ export const cppQuestions: InterviewQuestion[] = [
     options: [
       'It prevents a function from being called',
       'It tells the compiler to verify that the function actually overrides a virtual function in the base class, producing an error if no such virtual function exists',
-      'It makes a function run faster',
-      'It marks a function as deprecated'
+      'It marks a function as deprecated',
+      'It makes a function run faster'
     ],
     correctAnswer: 'It tells the compiler to verify that the function actually overrides a virtual function in the base class, producing an error if no such virtual function exists',
     explanation: 'Without "override", a typo in the function signature silently creates a new non-virtual function instead of overriding the base. "override" makes this a compile error, catching common bugs like wrong parameter types or misspelled names.',
@@ -741,10 +756,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What does the "final" specifier do?',
     options: [
-      'It marks a variable as constant',
       'Applied to a class, it prevents further inheritance; applied to a virtual function, it prevents further overriding in derived classes',
-      'It causes a function to be inlined',
-      'It is equivalent to "= delete"'
+      'It marks a variable as constant',
+      'It is equivalent to "= delete"',
+      'It causes a function to be inlined'
     ],
     correctAnswer: 'Applied to a class, it prevents further inheritance; applied to a virtual function, it prevents further overriding in derived classes',
     explanation: '"class Foo final { ... }" means no class can inherit from Foo. "virtual void f() final;" means no derived class can override f. This enables compiler de-virtualisation optimisations and communicates design intent.',
@@ -758,10 +773,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is std::weak_ptr and why is it needed?',
     options: [
+      'A pointer that expires after a fixed time',
       'A pointer that owns an object weakly, allowing the object to be destroyed',
-      'A non-owning reference to an object managed by std::shared_ptr, used to break circular reference cycles that would otherwise prevent garbage collection',
       'A deprecated alias for std::shared_ptr',
-      'A pointer that expires after a fixed time'
+      'A non-owning reference to an object managed by std::shared_ptr, used to break circular reference cycles that would otherwise prevent garbage collection'
     ],
     correctAnswer: 'A non-owning reference to an object managed by std::shared_ptr, used to break circular reference cycles that would otherwise prevent garbage collection',
     explanation: 'If two shared_ptrs point to each other, the reference count never reaches zero — a memory leak. weak_ptr observes a shared_ptr-managed object without incrementing the reference count. To access the object, call .lock() which returns a shared_ptr (empty if the object is already destroyed).',
@@ -774,7 +789,12 @@ export const cppQuestions: InterviewQuestion[] = [
     difficulty: 'Intermediate',
     category: 'Coding',
     question: 'What is the output of the following?\n\nstd::vector<int> v = {1, 2, 3};\nfor (auto& x : v) x *= 2;\nfor (auto x : v) std::cout << x << " ";',
-    options: ['1 2 3', '2 4 6', '1 4 9', 'Undefined behavior'],
+    options: [
+      'Undefined behavior',
+      '1 4 9',
+      '2 4 6',
+      '1 2 3'
+    ],
     correctAnswer: '2 4 6',
     explanation: 'The first range-for loop captures each element by reference ("auto& x") and doubles it in place, modifying the vector. The second loop captures by value and prints each element, outputting 2 4 6.',
     tags: ['range-for', 'auto', 'vector', 'coding']
@@ -788,9 +808,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is the difference between "delete" and "delete[]"?',
     options: [
       'They are interchangeable',
-      '"delete" frees a single heap-allocated object and calls its destructor; "delete[]" frees a heap-allocated array, calling the destructor for every element',
       '"delete[]" is only for primitive arrays',
-      '"delete" works for arrays allocated with "new[]"'
+      '"delete" works for arrays allocated with "new[]"',
+      '"delete" frees a single heap-allocated object and calls its destructor; "delete[]" frees a heap-allocated array, calling the destructor for every element'
     ],
     correctAnswer: '"delete" frees a single heap-allocated object and calls its destructor; "delete[]" frees a heap-allocated array, calling the destructor for every element',
     explanation: 'Mismatching "new" with "delete[]" or "new[]" with "delete" is undefined behavior. "new[]" stores the number of elements so that "delete[]" knows how many destructors to call before freeing the block. Always match new↔delete and new[]↔delete[].',
@@ -805,9 +825,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is a copy constructor and when is it invoked?',
     options: [
       'A constructor called when an object is destroyed',
-      'A constructor that initializes a new object as a copy of an existing object of the same type, invoked on pass-by-value, return-by-value, and direct copy initialization',
       'A constructor that takes no parameters',
-      'A constructor used only with inheritance'
+      'A constructor used only with inheritance',
+      'A constructor that initializes a new object as a copy of an existing object of the same type, invoked on pass-by-value, return-by-value, and direct copy initialization'
     ],
     correctAnswer: 'A constructor that initializes a new object as a copy of an existing object of the same type, invoked on pass-by-value, return-by-value, and direct copy initialization',
     explanation: 'The copy constructor has the signature "T(const T& other)". It is invoked when passing objects by value to functions, returning objects by value, and writing "T b = a;". If not explicitly defined, the compiler generates one that copies each member — which is problematic for classes managing heap memory.',
@@ -821,10 +841,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between "std::array" and "std::vector"?',
     options: [
-      'They are functionally identical',
-      'std::array has a fixed compile-time size and is typically stack-allocated with zero overhead; std::vector has a dynamic size and heap-allocates its elements',
       'std::vector is always faster than std::array',
-      'std::array cannot store user-defined types'
+      'std::array cannot store user-defined types',
+      'They are functionally identical',
+      'std::array has a fixed compile-time size and is typically stack-allocated with zero overhead; std::vector has a dynamic size and heap-allocates its elements'
     ],
     correctAnswer: 'std::array has a fixed compile-time size and is typically stack-allocated with zero overhead; std::vector has a dynamic size and heap-allocates its elements',
     explanation: 'std::array<T, N> is a thin wrapper around a C array with the size encoded in the type; it has no dynamic allocation and fits well on the stack. std::vector allocates on the heap and can grow, but incurs a pointer indirection. Prefer std::array when the size is known at compile time.',
@@ -838,10 +858,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What does "constexpr" mean in C++?',
     options: [
-      'A constant that can only be set at runtime',
-      'An expression or function that can be evaluated at compile time if given compile-time arguments, enabling compile-time computation and use in constant expressions',
       'A type modifier similar to "const" but for expressions',
-      'A keyword that inlines all function calls'
+      'A keyword that inlines all function calls',
+      'An expression or function that can be evaluated at compile time if given compile-time arguments, enabling compile-time computation and use in constant expressions',
+      'A constant that can only be set at runtime'
     ],
     correctAnswer: 'An expression or function that can be evaluated at compile time if given compile-time arguments, enabling compile-time computation and use in constant expressions',
     explanation: '"constexpr int square(int x) { return x * x; }" can be called with a constant argument and the result embedded directly in the binary. "constexpr" variables are guaranteed compile-time constants. This improves performance and enables use in template parameters and array sizes.',
@@ -855,10 +875,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between std::list and std::vector in terms of performance characteristics?',
     options: [
+      'They have identical performance in all cases',
       'std::list is always faster',
-      'std::vector provides O(1) random access and cache-friendly iteration; std::list provides O(1) insertion/removal at any position but O(n) access and poor cache performance due to pointer chasing',
       'std::list supports random access but std::vector does not',
-      'They have identical performance in all cases'
+      'std::vector provides O(1) random access and cache-friendly iteration; std::list provides O(1) insertion/removal at any position but O(n) access and poor cache performance due to pointer chasing'
     ],
     correctAnswer: 'std::vector provides O(1) random access and cache-friendly iteration; std::list provides O(1) insertion/removal at any position but O(n) access and poor cache performance due to pointer chasing',
     explanation: 'std::vector stores elements contiguously, giving excellent cache locality and O(1) indexed access. std::list (doubly-linked) has O(1) splice and mid-list insert/erase but nodes are scattered in memory. In practice, std::vector often outperforms std::list even for insert-heavy workloads due to cache effects.',
@@ -872,10 +892,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is perfect forwarding and std::forward?',
     options: [
+      'A replacement for std::move',
       'A way to copy arguments perfectly',
       'A template technique using forwarding references (T&&) and std::forward<T> to pass arguments to another function preserving their lvalue/rvalue category, avoiding unnecessary copies',
-      'A method to forward function calls across DLL boundaries',
-      'A replacement for std::move'
+      'A method to forward function calls across DLL boundaries'
     ],
     correctAnswer: 'A template technique using forwarding references (T&&) and std::forward<T> to pass arguments to another function preserving their lvalue/rvalue category, avoiding unnecessary copies',
     explanation: 'In "template<typename T> void wrapper(T&& arg) { target(std::forward<T>(arg)); }", if an lvalue is passed, it stays an lvalue; if an rvalue, it stays an rvalue. Without std::forward, named rvalue references are treated as lvalues, defeating move semantics. This is how make_unique and emplace_back work.',
@@ -889,9 +909,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between "std::sort" and "std::stable_sort"?',
     options: [
+      'std::stable_sort is always faster',
       'They always produce the same result',
       'std::sort (O(n log n), introsort) does not preserve relative order of equal elements; std::stable_sort (O(n log² n) or O(n log n) with extra memory) preserves the relative order of equal elements',
-      'std::stable_sort is always faster',
       'std::sort only works with random-access iterators while std::stable_sort works with any iterator'
     ],
     correctAnswer: 'std::sort (O(n log n), introsort) does not preserve relative order of equal elements; std::stable_sort (O(n log² n) or O(n log n) with extra memory) preserves the relative order of equal elements',
@@ -906,10 +926,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is a functor (function object) in C++?',
     options: [
-      'A raw function pointer',
       'An object of a class that overloads operator(), behaving like a function but able to carry state — used as predicates and comparators for STL algorithms',
+      'A pointer to a member function',
       'A macro that wraps a function',
-      'A pointer to a member function'
+      'A raw function pointer'
     ],
     correctAnswer: 'An object of a class that overloads operator(), behaving like a function but able to carry state — used as predicates and comparators for STL algorithms',
     explanation: 'struct Adder { int n; int operator()(int x) const { return x + n; } }. Adder add5{5}; add5(3); // 8. Functors are more powerful than function pointers because they carry state, and the compiler can inline their operator() calls. Lambdas generate anonymous functor classes behind the scenes.',
@@ -925,8 +945,8 @@ export const cppQuestions: InterviewQuestion[] = [
     options: [
       'Physically moves the object to a new memory location',
       'Casts the argument to an rvalue reference, signalling that its resources may be "stolen" by a move constructor or move assignment operator',
-      'Copies the object and destroys the original',
-      'Swaps two objects in place'
+      'Swaps two objects in place',
+      'Copies the object and destroys the original'
     ],
     correctAnswer: 'Casts the argument to an rvalue reference, signalling that its resources may be "stolen" by a move constructor or move assignment operator',
     explanation: 'std::move is simply a static_cast to T&&. It does not move anything itself; it enables move construction/assignment. After being moved from, an object is in a valid but unspecified state. Use std::move when passing an lvalue to a move constructor to avoid a copy.',
@@ -940,9 +960,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is an initializer list constructor and what advantage does it offer?',
     options: [
+      'A constructor generated automatically for aggregates',
       'A constructor that takes a std::initializer_list<T> parameter, allowing brace-initialization with a variable number of elements',
       'A constructor that initializes only the first member',
-      'A constructor generated automatically for aggregates',
       'A way to initialize static members'
     ],
     correctAnswer: 'A constructor that takes a std::initializer_list<T> parameter, allowing brace-initialization with a variable number of elements',
@@ -957,10 +977,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between "std::endl" and "\\n"?',
     options: [
-      'They produce the same output on all platforms',
       '"\\n" inserts a newline character; "std::endl" inserts a newline AND flushes the output buffer, which is significantly slower when many lines are printed',
-      '"std::endl" adds two newlines',
-      '"\\n" flushes the buffer but std::endl does not'
+      '"\\n" flushes the buffer but std::endl does not',
+      'They produce the same output on all platforms',
+      '"std::endl" adds two newlines'
     ],
     correctAnswer: '"\\n" inserts a newline character; "std::endl" inserts a newline AND flushes the output buffer, which is significantly slower when many lines are printed',
     explanation: 'Flushing forces the underlying I/O buffer to write to the OS immediately, which is expensive. For performance-sensitive output (e.g. inside tight loops), prefer "\\n". Use std::endl only when you explicitly need to flush, such as before waiting for user input.',
@@ -974,10 +994,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is a delegating constructor in C++11?',
     options: [
-      'A constructor that calls a base class constructor',
-      'A constructor that calls another constructor of the same class in its member initializer list, avoiding duplicated initialization logic',
       'A virtual constructor',
-      'A constructor that delegates work to a friend class'
+      'A constructor that calls a base class constructor',
+      'A constructor that delegates work to a friend class',
+      'A constructor that calls another constructor of the same class in its member initializer list, avoiding duplicated initialization logic'
     ],
     correctAnswer: 'A constructor that calls another constructor of the same class in its member initializer list, avoiding duplicated initialization logic',
     explanation: 'Before C++11, shared initialization logic required a private init() function. C++11 allows: "Foo(int x, int y) : Foo(x) { this->y = y; }" — one constructor delegates to another. The target constructor fully initializes the object before the delegating constructor body runs.',
@@ -991,10 +1011,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is std::optional and when should you use it?',
     options: [
-      'A nullable pointer type',
       'A wrapper that may or may not contain a value of type T, avoiding null pointers and out-of-band sentinel values for "no result"',
+      'A compile-time conditional type',
       'A thread-safe optional value',
-      'A compile-time conditional type'
+      'A nullable pointer type'
     ],
     correctAnswer: 'A wrapper that may or may not contain a value of type T, avoiding null pointers and out-of-band sentinel values for "no result"',
     explanation: 'std::optional<T> (C++17) represents an optional value. Use it for functions that may not return a meaningful result: "std::optional<int> find(...)". Check with has_value() or the boolean conversion, access with *opt or opt.value(). It avoids raw pointer returns and magic sentinel values like -1.',
@@ -1008,10 +1028,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is std::variant and how does it differ from a C-style union?',
     options: [
-      'They are identical',
+      'C unions support type-safe access; std::variant does not',
       'std::variant<A, B, C> is a type-safe tagged union that knows which type it currently holds and calls constructors/destructors correctly; C unions do not track the active member and are unsafe with non-trivial types',
       'std::variant uses more memory than a union',
-      'C unions support type-safe access; std::variant does not'
+      'They are identical'
     ],
     correctAnswer: 'std::variant<A, B, C> is a type-safe tagged union that knows which type it currently holds and calls constructors/destructors correctly; C unions do not track the active member and are unsafe with non-trivial types',
     explanation: 'A C union storing a non-trivial object (with a constructor) results in undefined behavior if you read the wrong member. std::variant stores a discriminator, properly constructs/destructs the active member, and provides std::get<T> (throws on wrong type) and std::visit for pattern-matching style dispatch.',
@@ -1025,10 +1045,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is multiple inheritance and what is the diamond problem?',
     options: [
-      'Inheriting from more than one base class; the diamond problem occurs when two base classes share a common ancestor, causing ambiguity and potential data duplication',
       'Multiple inheritance is not supported in C++',
-      'The diamond problem only occurs with virtual functions',
-      'Multiple inheritance requires all base classes to be abstract'
+      'Inheriting from more than one base class; the diamond problem occurs when two base classes share a common ancestor, causing ambiguity and potential data duplication',
+      'Multiple inheritance requires all base classes to be abstract',
+      'The diamond problem only occurs with virtual functions'
     ],
     correctAnswer: 'Inheriting from more than one base class; the diamond problem occurs when two base classes share a common ancestor, causing ambiguity and potential data duplication',
     explanation: 'In "class D : public B, public C" where both B and C inherit from A, D would contain two copies of A\'s members. Virtual inheritance ("class B : virtual public A") ensures only one shared copy of A exists in D. std::iostream uses virtual inheritance of std::ios.',
@@ -1042,10 +1062,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the "auto" keyword used for in modern C++?',
     options: [
-      'Automatic memory allocation',
       'Type deduction — the compiler infers the type of a variable or function return type from the initializer or return statement, reducing verbosity',
+      'Making variables thread-local',
       'Declaring global variables',
-      'Making variables thread-local'
+      'Automatic memory allocation'
     ],
     correctAnswer: 'Type deduction — the compiler infers the type of a variable or function return type from the initializer or return statement, reducing verbosity',
     explanation: '"auto it = myMap.begin();" deduces the iterator type automatically. "auto" is especially useful for complex template types, lambda types, and range-for loops. In C++14, "auto" can be used as a function return type. Note that "auto" deduces the value type (strips references and top-level const), so use "auto&" or "const auto&" to avoid copies.',
@@ -1059,9 +1079,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Coding',
     question: 'What is wrong with the following code?\n\nstd::string& getName() {\n  std::string name = "Alice";\n  return name;\n}',
     options: [
+      'std::string cannot be returned by reference',
       'Nothing is wrong',
       'It returns a reference to a local variable that is destroyed when the function returns — a dangling reference causing undefined behavior',
-      'std::string cannot be returned by reference',
       'The function needs the "const" qualifier'
     ],
     correctAnswer: 'It returns a reference to a local variable that is destroyed when the function returns — a dangling reference causing undefined behavior',
@@ -1077,9 +1097,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is structured binding (C++17)?',
     options: [
       'A way to bind data members to memory addresses',
-      'A syntax "auto [a, b] = pair;" that decomposes a struct, pair, tuple, or array into named variables in a single declaration',
       'A binding between a class and its template parameters',
-      'A way to bind lambda captures'
+      'A way to bind lambda captures',
+      'A syntax "auto [a, b] = pair;" that decomposes a struct, pair, tuple, or array into named variables in a single declaration'
     ],
     correctAnswer: 'A syntax "auto [a, b] = pair;" that decomposes a struct, pair, tuple, or array into named variables in a single declaration',
     explanation: '"auto [key, val] = *myMap.begin();" destructures a std::pair into two named variables. Works with arrays, structs with all-public members, and types providing tuple-like get<>. Greatly improves readability of loop bodies over maps and multi-value returns.',
@@ -1093,9 +1113,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between pre-increment (++i) and post-increment (i++) in terms of performance for iterators?',
     options: [
-      'They are always identical in performance',
-      'Pre-increment increments in place and returns the modified object by reference; post-increment must save a copy of the old value, increment, then return the copy — making it potentially slower for complex types like iterators',
       'Post-increment is always faster',
+      'Pre-increment increments in place and returns the modified object by reference; post-increment must save a copy of the old value, increment, then return the copy — making it potentially slower for complex types like iterators',
+      'They are always identical in performance',
       'Pre-increment is only valid for pointers'
     ],
     correctAnswer: 'Pre-increment increments in place and returns the modified object by reference; post-increment must save a copy of the old value, increment, then return the copy — making it potentially slower for complex types like iterators',
@@ -1115,9 +1135,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is template specialization and partial specialization?',
     options: [
+      'Both are identical mechanisms',
       'A way to restrict templates to one type only',
       'Full specialization provides a completely custom implementation for a specific type; partial specialization provides a custom implementation for a family of types (e.g. all pointer types T*), with the primary template as the fallback',
-      'Both are identical mechanisms',
       'Partial specialization is only available for function templates'
     ],
     correctAnswer: 'Full specialization provides a completely custom implementation for a specific type; partial specialization provides a custom implementation for a family of types (e.g. all pointer types T*), with the primary template as the fallback',
@@ -1132,10 +1152,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is CRTP (Curiously Recurring Template Pattern)?',
     options: [
-      'A runtime polymorphism alternative using dynamic_cast',
       'A static polymorphism idiom where a class Derived inherits from Base<Derived>, allowing the base to call derived methods at compile time without virtual dispatch overhead',
       'A pattern for creating singletons',
-      'A way to implement multiple inheritance safely'
+      'A way to implement multiple inheritance safely',
+      'A runtime polymorphism alternative using dynamic_cast'
     ],
     correctAnswer: 'A static polymorphism idiom where a class Derived inherits from Base<Derived>, allowing the base to call derived methods at compile time without virtual dispatch overhead',
     explanation: 'template<typename Derived> class Base { void interface() { static_cast<Derived*>(this)->impl(); } }; class Derived : public Base<Derived> { void impl(); };. CRTP enables zero-overhead polymorphism (no vtable), mixins (adding functionality via the base), and the "enable_shared_from_this" pattern in the standard library.',
@@ -1149,10 +1169,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is template metaprogramming (TMP)?',
     options: [
-      'Writing programs that generate C++ source files',
+      'A runtime reflection mechanism',
       'Using C++ templates as a compile-time computation engine — performing type manipulations, conditional logic, and value computations entirely at compile time, producing zero-runtime-overhead results',
-      'A debugging technique for complex templates',
-      'A runtime reflection mechanism'
+      'Writing programs that generate C++ source files',
+      'A debugging technique for complex templates'
     ],
     correctAnswer: 'Using C++ templates as a compile-time computation engine — performing type manipulations, conditional logic, and value computations entirely at compile time, producing zero-runtime-overhead results',
     explanation: 'The Turing-complete C++ template system can compute Fibonacci numbers, determine if types are the same (std::is_same), strip qualifiers (std::remove_const), and select types conditionally (std::conditional). constexpr and if constexpr (C++17) provide cleaner alternatives for value computation, while type traits and concept libraries are built on TMP.',
@@ -1166,10 +1186,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What are variadic templates?',
     options: [
+      'Templates for variable-length arrays',
       'Templates that can only take one type parameter',
-      'Templates that accept any number of template parameters (type or non-type) via the "..." pack expansion syntax, enabling type-safe variadic functions like std::make_tuple and std::printf replacements',
       'Templates that vary at runtime',
-      'Templates for variable-length arrays'
+      'Templates that accept any number of template parameters (type or non-type) via the "..." pack expansion syntax, enabling type-safe variadic functions like std::make_tuple and std::printf replacements'
     ],
     correctAnswer: 'Templates that accept any number of template parameters (type or non-type) via the "..." pack expansion syntax, enabling type-safe variadic functions like std::make_tuple and std::printf replacements',
     explanation: '"template<typename... Args> void log(Args&&... args)" accepts zero or more arguments of any type. Pack expansion "f(args...)" expands the pack. Used to implement std::tuple, std::make_unique, std::apply, and any type-safe variadic API. Fold expressions (C++17) simplify pack operations: "(... + args)".',
@@ -1183,10 +1203,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What are concepts (C++20) and how do they improve template error messages?',
     options: [
-      'Runtime type constraints',
-      'Named compile-time predicates on template parameters that provide meaningful error messages when constraints are not satisfied, replacing verbose SFINAE and enable_if patterns',
       'A new syntax for abstract classes',
-      'A way to restrict namespace visibility'
+      'Runtime type constraints',
+      'A way to restrict namespace visibility',
+      'Named compile-time predicates on template parameters that provide meaningful error messages when constraints are not satisfied, replacing verbose SFINAE and enable_if patterns'
     ],
     correctAnswer: 'Named compile-time predicates on template parameters that provide meaningful error messages when constraints are not satisfied, replacing verbose SFINAE and enable_if patterns',
     explanation: '"template<typename T> requires std::integral<T> T gcd(T a, T b)" uses the std::integral concept. If called with a float, the error says "constraints not satisfied" rather than pages of template instantiation noise. Concepts can be defined with "concept Addable = requires(T a, T b) { a + b; }".',
@@ -1200,10 +1220,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is SFINAE (Substitution Failure Is Not An Error)?',
     options: [
-      'A runtime error-handling strategy',
-      'A template resolution rule: when substituting a template argument causes an error in the immediate context of the function signature, that specialization is silently discarded rather than producing a compile error, allowing overload resolution to continue',
+      'A way to suppress all compiler warnings',
       'A linker optimization',
-      'A way to suppress all compiler warnings'
+      'A template resolution rule: when substituting a template argument causes an error in the immediate context of the function signature, that specialization is silently discarded rather than producing a compile error, allowing overload resolution to continue',
+      'A runtime error-handling strategy'
     ],
     correctAnswer: 'A template resolution rule: when substituting a template argument causes an error in the immediate context of the function signature, that specialization is silently discarded rather than producing a compile error, allowing overload resolution to continue',
     explanation: 'SFINAE enables conditional template instantiation. "template<typename T, typename = std::enable_if_t<std::is_integral_v<T>>> void f(T);" is excluded from the overload set for non-integral T. This is the foundation of type traits and was the primary pre-C++20 mechanism for constrained templates. Concepts (C++20) replace most SFINAE use cases.',
@@ -1217,10 +1237,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is undefined behavior (UB) in C++ and why is it dangerous?',
     options: [
-      'Behavior defined as implementation-specific',
-      'Code for which the C++ standard imposes no requirements — the compiler may assume it never occurs and optimise accordingly, potentially producing unpredictable results that change with optimization level or compiler version',
       'Behavior that always causes a crash',
-      'Behavior caught by the runtime'
+      'Behavior caught by the runtime',
+      'Behavior defined as implementation-specific',
+      'Code for which the C++ standard imposes no requirements — the compiler may assume it never occurs and optimise accordingly, producing unpredictable results that change with optimization level or compiler version'
     ],
     correctAnswer: 'Code for which the C++ standard imposes no requirements — the compiler may assume it never occurs and optimise accordingly, producing unpredictable results that change with optimization level or compiler version',
     explanation: 'Common UB: signed integer overflow, out-of-bounds array access, use-after-free, dereferencing null, data races, reading an uninitialized variable. Compilers exploit UB for optimisation (dead code elimination based on "this can\'t happen"). Use AddressSanitizer, UBSanitizer, and ThreadSanitizer to detect UB.',
@@ -1234,8 +1254,8 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is std::move_only_function vs std::function (C++23)?',
     options: [
-      'They are identical',
       'std::function requires callables to be copyable (heap-allocates internally); std::move_only_function (C++23) accepts move-only callables, avoids unnecessary copies, and has no small-buffer-overflow limitations',
+      'They are identical',
       'std::function is deprecated in C++23',
       'std::move_only_function only works with lambdas'
     ],
@@ -1251,9 +1271,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the copy-and-swap idiom?',
     options: [
-      'Using std::copy then std::swap on two containers',
       'An idiom for implementing a strongly exception-safe copy assignment operator: take the argument by value (invoking the copy constructor), then swap the internals with *this — the old data is destroyed when the local copy goes out of scope',
       'Swapping two objects to avoid copies',
+      'Using std::copy then std::swap on two containers',
       'A way to implement move assignment using swap'
     ],
     correctAnswer: 'An idiom for implementing a strongly exception-safe copy assignment operator: take the argument by value (invoking the copy constructor), then swap the internals with *this — the old data is destroyed when the local copy goes out of scope',
@@ -1268,9 +1288,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What are coroutines in C++20?',
     options: [
-      'A multi-threaded execution model',
-      'Functions that can suspend execution and later be resumed, retaining their local state between suspension points, enabling cooperative multitasking, generators, and async/await patterns without threads',
       'Lambdas that run in parallel',
+      'Functions that can suspend execution and later be resumed, retaining their local state between suspension points, enabling cooperative multitasking, generators, and async/await patterns without threads',
+      'A multi-threaded execution model',
       'A way to call C from C++'
     ],
     correctAnswer: 'Functions that can suspend execution and later be resumed, retaining their local state between suspension points, enabling cooperative multitasking, generators, and async/await patterns without threads',
@@ -1285,10 +1305,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the memory model in C++11 and what does it guarantee for multi-threaded programs?',
     options: [
-      'C++ has no defined multi-threading support',
+      'A model that replaces OS-level synchronization entirely',
       'A formal specification of how memory operations in one thread are observed by others, defining happens-before relationships, sequentially consistent atomics, acquire-release semantics, and data race as undefined behavior',
-      'A guarantee that all memory operations are visible immediately to all threads',
-      'A model that replaces OS-level synchronization entirely'
+      'C++ has no defined multi-threading support',
+      'A guarantee that all memory operations are visible immediately to all threads'
     ],
     correctAnswer: 'A formal specification of how memory operations in one thread are observed by others, defining happens-before relationships, sequentially consistent atomics, acquire-release semantics, and data race as undefined behavior',
     explanation: 'The C++11 memory model formally defines when writes in thread A are visible to reads in thread B. Atomic operations on std::atomic<T> with appropriate memory_order (seq_cst, acquire, release, relaxed, acq_rel) establish synchronization. Any unsynchronized concurrent access to shared non-atomic data is a data race — undefined behavior.',
@@ -1302,10 +1322,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is type erasure in C++ and how is it implemented?',
     options: [
-      'Casting types to void*',
-      'A technique to store objects of different types with a common interface without inheritance, typically using virtual dispatch, function pointers, or templated wrappers to hide the concrete type',
       'Removing type information with reinterpret_cast',
-      'A compiler optimization removing redundant type checks'
+      'Casting types to void*',
+      'A compiler optimization removing redundant type checks',
+      'A technique to store objects of different types with a common interface without inheritance, typically using virtual dispatch, function pointers, or templated wrappers to hide the concrete type'
     ],
     correctAnswer: 'A technique to store objects of different types with a common interface without inheritance, typically using virtual dispatch, function pointers, or templated wrappers to hide the concrete type',
     explanation: 'std::function, std::any, and std::shared_ptr<void> all use type erasure. The classic approach: an abstract interface (Concept) + templated concrete wrapper (Model<T> : Concept). The outer handle holds a unique_ptr<Concept>. This achieves value semantics without exposing the concrete type to callers.',
@@ -1320,9 +1340,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is std::atomic and when do you need it?',
     options: [
       'A thread-safe container for complex data',
+      'A way to disable compiler optimizations for a variable',
       'A wrapper around a scalar or pointer type guaranteeing atomic (indivisible) read-modify-write operations without explicit locks, necessary for any shared variable accessed from multiple threads',
-      'An atomic transaction system for databases',
-      'A way to disable compiler optimizations for a variable'
+      'An atomic transaction system for databases'
     ],
     correctAnswer: 'A wrapper around a scalar or pointer type guaranteeing atomic (indivisible) read-modify-write operations without explicit locks, necessary for any shared variable accessed from multiple threads',
     explanation: 'Even "x++" on a shared int is not atomic — it\'s a read, increment, write sequence that can be interleaved. std::atomic<int> x; x.fetch_add(1); is guaranteed indivisible. Use std::atomic for simple flags, counters, and lock-free data structures. For complex operations on multiple variables, use a mutex.',
@@ -1336,10 +1356,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between std::mutex, std::recursive_mutex, and std::shared_mutex?',
     options: [
-      'They are all identical',
-      'mutex: non-recursive exclusive lock; recursive_mutex: allows the same thread to lock multiple times without deadlock; shared_mutex: supports multiple concurrent readers (shared lock) and exclusive writers (unique lock)',
       'recursive_mutex is deprecated in C++17',
-      'shared_mutex is only for process-level synchronization'
+      'They are all identical',
+      'shared_mutex is only for process-level synchronization',
+      'mutex: non-recursive exclusive lock; recursive_mutex: allows the same thread to lock multiple times without deadlock; shared_mutex: supports multiple concurrent readers (shared lock) and exclusive writers (unique lock)'
     ],
     correctAnswer: 'mutex: non-recursive exclusive lock; recursive_mutex: allows the same thread to lock multiple times without deadlock; shared_mutex: supports multiple concurrent readers (shared lock) and exclusive writers (unique lock)',
     explanation: 'std::mutex: locking an already-locked mutex from the same thread is UB. std::recursive_mutex: safe for reentrant algorithms at the cost of slightly higher overhead. std::shared_mutex (C++17): use std::shared_lock for reading (multiple concurrent) and std::unique_lock for writing (exclusive), implementing the readers-writer pattern.',
@@ -1353,10 +1373,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is return value optimization (RVO) and named RVO (NRVO)?',
     options: [
+      'An optimization for returning references',
       'A linker technique for faster startup',
-      'Compiler optimizations that construct a returned object directly in the caller\'s storage, eliminating the copy/move constructor call entirely — RVO for unnamed temporaries, NRVO for named local variables',
       'A runtime check that avoids unnecessary returns',
-      'An optimization for returning references'
+      'Compiler optimizations that construct a returned object directly in the caller\'s storage, eliminating the copy/move constructor call entirely — RVO for unnamed temporaries, NRVO for named local variables'
     ],
     correctAnswer: 'Compiler optimizations that construct a returned object directly in the caller\'s storage, eliminating the copy/move constructor call entirely — RVO for unnamed temporaries, NRVO for named local variables',
     explanation: 'Since C++17, RVO (copy elision for prvalues) is mandatory. NRVO is still optional but widely implemented. This means "return BigObject(args);" has zero copy cost. Avoid hindering RVO by returning different named variables from different branches — compilers cannot always apply NRVO in that case.',
@@ -1370,10 +1390,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is placement new in C++ and when is it used?',
     options: [
-      'Allocating objects in a specific memory arena or buffer, constructing an object at a pre-allocated address without additional heap allocation',
+      'A feature for replacing one object with another in the same address',
       'A way to place objects on the stack using "new"',
       'An alternative to "new" that uses less memory',
-      'A feature for replacing one object with another in the same address'
+      'Allocating objects in a specific memory arena or buffer, constructing an object at a pre-allocated address without additional heap allocation'
     ],
     correctAnswer: 'Allocating objects in a specific memory arena or buffer, constructing an object at a pre-allocated address without additional heap allocation',
     explanation: '"new (ptr) MyClass(args);" constructs a MyClass at the address ptr without allocating memory. Used in custom allocators, memory pools, and std::optional/std::variant internals. You must manually call the destructor: "ptr->~MyClass();". Never use regular delete on placement-new objects.',
@@ -1387,10 +1407,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What are C++20 ranges and how do they improve on iterator pairs?',
     options: [
-      'A container type for numeric ranges',
-      'A lazy, composable abstraction over sequences that replaces algorithm(begin, end) pairs with views and pipes (range | transform | filter), enabling declarative, zero-overhead data pipelines',
       'A syntax for integer ranges like Python\'s range()',
-      'A replacement for std::vector'
+      'A lazy, composable abstraction over sequences that replaces algorithm(begin, end) pairs with views and pipes (range | transform | filter), enabling declarative, zero-overhead data pipelines',
+      'A replacement for std::vector',
+      'A container type for numeric ranges'
     ],
     correctAnswer: 'A lazy, composable abstraction over sequences that replaces algorithm(begin, end) pairs with views and pipes (range | transform | filter), enabling declarative, zero-overhead data pipelines',
     explanation: '"namespace views = std::views; auto result = data | views::filter(isEven) | views::transform(square) | views::take(5);" — each view is lazy; elements are processed only when iterated. Range algorithms (std::ranges::sort(v)) accept the whole container. Views have no temporary container overhead.',
@@ -1404,10 +1424,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is std::span and why is it preferred over passing pointer+size pairs?',
     options: [
-      'A smart pointer for arrays',
+      'A dynamic array with fixed maximum size',
       'A lightweight non-owning view over a contiguous sequence of objects (static or dynamic extent), replacing raw pointer+size pairs while being bounds-checkable and compatible with vectors, arrays, and C arrays',
-      'A thread-safe array wrapper',
-      'A dynamic array with fixed maximum size'
+      'A smart pointer for arrays',
+      'A thread-safe array wrapper'
     ],
     correctAnswer: 'A lightweight non-owning view over a contiguous sequence of objects (static or dynamic extent), replacing raw pointer+size pairs while being bounds-checkable and compatible with vectors, arrays, and C arrays',
     explanation: '"void process(std::span<const int> data)" accepts any contiguous container. std::span<T, N> has compile-time extent; std::span<T> has runtime extent. Avoids pointer+size pairs, enables safe iteration, and works with std::array, std::vector, and C arrays uniformly. Does not own the data.',
@@ -1421,10 +1441,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between std::condition_variable::wait and wait_for?',
     options: [
-      'They are identical',
-      'wait blocks indefinitely until notified (with predicate re-check to handle spurious wakeups); wait_for blocks for at most a specified duration, returning a cv_status indicating timeout or success',
+      'wait is only available on POSIX systems',
       'wait_for does not accept predicates',
-      'wait is only available on POSIX systems'
+      'wait blocks indefinitely until notified (with predicate re-check to handle spurious wakeups); wait_for blocks for at most a specified duration, returning a cv_status indicating timeout or success',
+      'They are identical'
     ],
     correctAnswer: 'wait blocks indefinitely until notified (with predicate re-check to handle spurious wakeups); wait_for blocks for at most a specified duration, returning a cv_status indicating timeout or success',
     explanation: 'Always use the predicate overload: "cv.wait(lock, []{ return ready; });" handles spurious wakeups. "cv.wait_for(lock, 100ms, pred)" returns true if the predicate is satisfied, false on timeout. Condition variables must be used with std::unique_lock<std::mutex>.',
@@ -1439,9 +1459,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is the output of the following code and why?\n\nint i = 0;\nstd::cout << i++ << " " << ++i;',
     options: [
       '0 2',
+      '1 2',
       '0 1',
-      'Undefined behavior',
-      '1 2'
+      'Undefined behavior'
     ],
     correctAnswer: 'Undefined behavior',
     explanation: 'Before C++17, the order of evaluation of function arguments (including operator<< arguments) was unsequenced. Modifying "i" twice between sequence points (i++ and ++i both modify i with no intervening sequence point) is undefined behavior. C++17 sequenced operator<< left-to-right, making this "0 2" in C++17+, but still implementation-defined in C++14.',
@@ -1455,9 +1475,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is std::jthread (C++20) and how does it improve on std::thread?',
     options: [
-      'A thread that uses less memory',
       'A joining thread that automatically joins on destruction (preventing termination for unjoinable threads) and supports cooperative cancellation via stop_token/stop_source',
       'A thread that runs with higher priority',
+      'A thread that uses less memory',
       'A thread pool implementation'
     ],
     correctAnswer: 'A joining thread that automatically joins on destruction (preventing termination for unjoinable threads) and supports cooperative cancellation via stop_token/stop_source',
@@ -1472,9 +1492,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the Pimpl idiom (pointer to implementation)?',
     options: [
-      'Using raw pointers instead of references',
-      'Hiding private implementation details behind an opaque pointer to a forward-declared implementation class, reducing compile-time dependencies and providing a stable ABI',
       'A pattern for implementing pure interfaces',
+      'Hiding private implementation details behind an opaque pointer to a forward-declared implementation class, reducing compile-time dependencies and providing a stable ABI',
+      'Using raw pointers instead of references',
       'A way to avoid virtual functions'
     ],
     correctAnswer: 'Hiding private implementation details behind an opaque pointer to a forward-declared implementation class, reducing compile-time dependencies and providing a stable ABI',
@@ -1489,10 +1509,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is std::launder and when is it required?',
     options: [
-      'A function to sanitize memory before use',
       'A function that tells the compiler to not assume aliasing rules across an object\'s lifetime boundary — required after placement new into existing storage to obtain a valid pointer to the new object',
       'A way to clear memory securely',
-      'A function to reinterpret a pointer type safely'
+      'A function to reinterpret a pointer type safely',
+      'A function to sanitize memory before use'
     ],
     correctAnswer: 'A function that tells the compiler to not assume aliasing rules across an object\'s lifetime boundary — required after placement new into existing storage to obtain a valid pointer to the new object',
     explanation: 'When you placement-new a new object over existing storage and then use the original pointer, the compiler may cache the old object\'s values. std::launder(ptr) prevents the compiler from using stale cached values and tells it the pointed-to object\'s lifetime has changed. Needed in std::optional and std::variant implementations.',
@@ -1506,10 +1526,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What are allocator-aware containers and how do custom allocators work in C++?',
     options: [
-      'Containers that use malloc directly',
-      'Containers parameterised on an Allocator type that can use custom memory sources (memory pools, arenas, stack buffers) instead of the global heap, enabling performance and determinism improvements in critical systems',
+      'Containers that use garbage collection',
       'Containers that count all allocations automatically',
-      'Containers that use garbage collection'
+      'Containers that use malloc directly',
+      'Containers that parameterised on an Allocator type that can use custom memory sources (memory pools, arenas, stack buffers) instead of the global heap, enabling performance and determinism improvements in critical systems'
     ],
     correctAnswer: 'Containers that parameterised on an Allocator type that can use custom memory sources (memory pools, arenas, stack buffers) instead of the global heap, enabling performance and determinism improvements in critical systems',
     explanation: 'All STL containers accept a second Allocator template parameter. Custom allocators provide allocate(n) and deallocate(p, n). std::pmr (C++17) uses runtime-polymorphic allocators via memory_resource: pmr::monotonic_buffer_resource for fast arena allocation, pmr::unsynchronized_pool_resource for pools. This avoids expensive heap calls in game loops and real-time systems.',
@@ -1523,10 +1543,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is EBO (Empty Base Optimization)?',
     options: [
-      'Removing unused base classes at link time',
       'A compiler optimization that allows a base class with no data members to occupy zero bytes when used as a base (not a member), commonly exploited by std::tuple and std::unique_ptr to store empty deleters/allocators without overhead',
       'Optimizing empty constructors away',
-      'A way to share base class memory across derived classes'
+      'A way to share base class memory across derived classes',
+      'Removing unused base classes at link time'
     ],
     correctAnswer: 'A compiler optimization that allows a base class with no data members to occupy zero bytes when used as a base (not a member), commonly exploited by std::tuple and std::unique_ptr to store empty deleters/allocators without overhead',
     explanation: 'C++ requires every complete object to have a unique address, so even an empty class has sizeof == 1. But as a base, EBO allows it to share the address of the derived class subobject, costing zero bytes. std::unique_ptr stores its deleter via EBO — a stateless custom deleter adds no size overhead.',
@@ -1540,10 +1560,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the difference between dynamic_cast, static_cast, reinterpret_cast, and const_cast?',
     options: [
-      'They are all identical',
-      'static_cast: compile-time checked conversion between related types; dynamic_cast: runtime-checked downcast with RTTI; reinterpret_cast: low-level bit reinterpretation with no type safety; const_cast: adds or removes const/volatile qualifiers only',
       'dynamic_cast is the fastest cast',
-      'const_cast can change the underlying type'
+      'const_cast can change the underlying type',
+      'static_cast: compile-time checked conversion between related types; dynamic_cast: runtime-checked downcast with RTTI; reinterpret_cast: low-level bit reinterpretation with no type safety; const_cast: adds or removes const/volatile qualifiers only',
+      'They are all identical'
     ],
     correctAnswer: 'static_cast: compile-time checked conversion between related types; dynamic_cast: runtime-checked downcast with RTTI; reinterpret_cast: low-level bit reinterpretation with no type safety; const_cast: adds or removes const/volatile qualifiers only',
     explanation: 'Prefer static_cast for numeric conversions and upcasts. Use dynamic_cast for safe downcasting (returns nullptr for pointers, throws std::bad_cast for references on failure). Avoid reinterpret_cast except for low-level system code. Use const_cast only when interfacing with APIs that are not const-correct. Never use C-style casts — they silently chain through these in order.',
@@ -1557,9 +1577,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is the "most vexing parse" in C++?',
     options: [
-      'A compiler bug related to parsing templates',
       'An ambiguity where the compiler interprets what looks like a variable definition as a function declaration, e.g. "Widget w(Widget());" declares a function w, not a Widget object',
       'An error caused by missing semicolons',
+      'A compiler bug related to parsing templates',
       'A problem with recursive template instantiation'
     ],
     correctAnswer: 'An ambiguity where the compiler interprets what looks like a variable definition as a function declaration, e.g. "Widget w(Widget());" declares a function w, not a Widget object',
@@ -1574,10 +1594,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is std::future and std::promise and how do they relate?',
     options: [
-      'Both represent the same async object',
       'std::promise is the write end of a single-use async channel (set_value/set_exception); std::future is the read end (get() blocks until the value is ready), enabling communication between threads without explicit shared state',
       'std::future is used for multi-producer, multi-consumer queues',
-      'std::promise is a replacement for std::thread'
+      'std::promise is a replacement for std::thread',
+      'Both represent the same async object'
     ],
     correctAnswer: 'std::promise is the write end of a single-use async channel (set_value/set_exception); std::future is the read end (get() blocks until the value is ready), enabling communication between threads without explicit shared state',
     explanation: 'A promise-future pair shares an internal shared state. Thread A holds the future; thread B holds the promise and calls set_value(). Thread A\'s future.get() returns the value or re-throws the exception. std::async returns a future directly. std::shared_future allows multiple consumers of the same result.',
@@ -1591,10 +1611,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is std::any and when would you use it over std::variant?',
     options: [
+      'std::variant supports any type; std::any has a fixed type list',
       'They are identical',
       'std::any holds a value of any type with type-erased storage, checked at runtime via any_cast; use when the set of types is not known at compile time. std::variant holds one of a fixed compile-time set of types with exhaustive pattern matching',
-      'std::any is faster than std::variant',
-      'std::variant supports any type; std::any has a fixed type list'
+      'std::any is faster than std::variant'
     ],
     correctAnswer: 'std::any holds a value of any type with type-erased storage, checked at runtime via any_cast; use when the set of types is not known at compile time. std::variant holds one of a fixed compile-time set of types with exhaustive pattern matching',
     explanation: 'std::any is like a type-safe void* — use for plugin systems, scripting engines, or heterogeneous data stores where types are not known statically. std::variant is preferred when you know the possible types — it enables exhaustive std::visit, is more efficient, and provides compile-time exhaustiveness checking.',
@@ -1608,10 +1628,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Theory',
     question: 'What is structured exception safety and what are the four exception safety guarantees?',
     options: [
-      'No-throw, basic, strong, nothrow-all',
-      'No guarantee (operation may leave object in an invalid state), Basic guarantee (valid but unspecified state), Strong guarantee (commit-or-rollback — no observable change on failure), No-throw guarantee (never throws)',
       'There are only two levels: safe and unsafe',
-      'Exception safety only applies to constructors'
+      'No guarantee (operation may leave object in an invalid state), Basic guarantee (valid but unspecified state), Strong guarantee (commit-or-rollback — no observable change on failure), No-throw guarantee (never throws)',
+      'Exception safety only applies to constructors',
+      'No-throw, basic, strong, nothrow-all'
     ],
     correctAnswer: 'No guarantee (operation may leave object in an invalid state), Basic guarantee (valid but unspecified state), Strong guarantee (commit-or-rollback — no observable change on failure), No-throw guarantee (never throws)',
     explanation: 'Aim for at least the Basic guarantee in all code. The Strong guarantee is achievable via copy-and-swap. The No-throw guarantee (mark with noexcept) is required for move constructors and destructors for optimal STL performance — std::vector\'s reallocation only uses move if the move constructor is noexcept.',
@@ -1630,8 +1650,8 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How would you design a high-performance memory pool allocator in C++?',
     options: [
-      'Using malloc for every allocation',
       'Pre-allocate a large block; subdivide into fixed-size chunks; maintain a free-list of available chunks; allocate by popping from the free list and deallocate by pushing back — O(1) alloc/free with excellent cache locality',
+      'Using malloc for every allocation',
       'Using std::vector to track allocations',
       'Using a garbage collector'
     ],
@@ -1647,10 +1667,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How do you implement a lock-free queue in C++ using std::atomic?',
     options: [
-      'Using a mutex around a std::deque',
-      'A Michael-Scott queue using atomic head/tail pointers with compare_exchange_weak CAS loops; enqueue atomically links a new node at the tail, dequeue atomically advances the head, both without locks',
+      'A lock-free queue is impossible without hardware support',
       'Using std::atomic<std::queue<T>>',
-      'A lock-free queue is impossible without hardware support'
+      'A Michael-Scott queue using atomic head/tail pointers with compare_exchange_weak CAS loops; enqueue atomically links a new node at the tail, dequeue atomically advances the head, both without locks',
+      'Using a mutex around a std::deque'
     ],
     correctAnswer: 'A Michael-Scott queue using atomic head/tail pointers with compare_exchange_weak CAS loops; enqueue atomically links a new node at the tail, dequeue atomically advances the head, both without locks',
     explanation: 'The Michael-Scott algorithm uses dummy head nodes. Enqueue: allocate node, CAS next of current tail from nullptr to new node, then advance tail. Dequeue: read head->next (the real first element), CAS head forward. Requires ABA protection (tagged pointers or hazard pointers). Avoid for most production use — consider a bounded SPSC queue (single-producer single-consumer) for maximum throughput.',
@@ -1666,8 +1686,8 @@ export const cppQuestions: InterviewQuestion[] = [
     options: [
       'Use more heap allocations for flexibility',
       'Apply data-oriented design: use struct-of-arrays (SoA) over array-of-structs (AoS), keep hot data contiguous, avoid pointer chasing, prefetch with __builtin_prefetch, use alignas to align to cache lines, and minimize false sharing in multi-threaded code',
-      'Use virtual functions for flexibility in the hot path',
-      'Allocate all data on the heap for speed'
+      'Allocate all data on the heap for speed',
+      'Use virtual functions for flexibility in the hot path'
     ],
     correctAnswer: 'Apply data-oriented design: use struct-of-arrays (SoA) over array-of-structs (AoS), keep hot data contiguous, avoid pointer chasing, prefetch with __builtin_prefetch, use alignas to align to cache lines, and minimize false sharing in multi-threaded code',
     explanation: 'Cache performance dominates modern CPU performance. AoS (array of {x,y,z}) wastes bandwidth if only x is needed; SoA (separate x[], y[], z[] arrays) accesses only needed data. False sharing: two threads writing adjacent cache-line words invalidate each other\'s cache; pad with alignas(64). Profile with perf/vtune before optimizing.',
@@ -1681,10 +1701,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How would you design a plugin system in C++ with ABI stability?',
     options: [
-      'Expose all implementation details in headers',
-      'Define a pure virtual C++ interface or a flat C API in the plugin boundary; version the interface; load plugins with dlopen/LoadLibrary; use factory functions returning interface pointers; avoid STL types across the boundary',
+      'Use templates for all plugin interfaces',
       'Share std::vector and std::string directly across plugin boundaries',
-      'Use templates for all plugin interfaces'
+      'Define a pure virtual C++ interface or a flat C API in the plugin boundary; version the interface; load plugins with dlopen/LoadLibrary; use factory functions returning interface pointers; avoid STL types across the boundary',
+      'Expose all implementation details in headers'
     ],
     correctAnswer: 'Define a pure virtual C++ interface or a flat C API in the plugin boundary; version the interface; load plugins with dlopen/LoadLibrary; use factory functions returning interface pointers; avoid STL types across the boundary',
     explanation: 'C++ ABI is not standardized across compilers/versions. The safest plugin boundary is a C API (extern "C" factory functions returning opaque handles). Pure virtual interfaces work if the plugin and host use the same compiler version. Never pass std::string or std::vector across the boundary — their layouts differ. Version interfaces with inheritance for backward compat.',
@@ -1698,10 +1718,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Performance',
     question: 'What techniques do you use to minimize binary size in an embedded C++ project?',
     options: [
+      'Use dynamic linking for all libraries',
       'Enable all optimizations including -O3',
-      'Use -Os or -Oz, disable exceptions and RTTI (-fno-exceptions -fno-rtti), avoid virtual functions, use link-time optimization (LTO), gc-sections with -ffunction-sections -fdata-sections --gc-sections, and avoid std::iostream',
       'Include all STL headers for completeness',
-      'Use dynamic linking for all libraries'
+      'Use -Os or -Oz, disable exceptions and RTTI (-fno-exceptions -fno-rtti), avoid virtual functions, use link-time optimization (LTO), gc-sections with -ffunction-sections -fdata-sections --gc-sections, and avoid std::iostream'
     ],
     correctAnswer: 'Use -Os or -Oz, disable exceptions and RTTI (-fno-exceptions -fno-rtti), avoid virtual functions, use link-time optimization (LTO), gc-sections with -ffunction-sections -fdata-sections --gc-sections, and avoid std::iostream',
     explanation: 'Embedded systems have tight flash constraints. -fno-exceptions saves the unwinding tables (often 10–20% of binary). -fno-rtti removes type_info objects. LTO allows the linker to eliminate dead code across translation units. --gc-sections removes unreferenced functions/data. std::iostream can add 50–100KB; use printf or custom output instead.',
@@ -1715,10 +1735,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How do you implement a type-safe heterogeneous event bus in modern C++?',
     options: [
-      'Using a global std::vector of void*',
+      'Using std::any as the event type for all handlers',
       'Use a std::unordered_map keyed by std::type_index mapping to type-erased handler lists; subscribe<EventType>(handler) stores the handler; publish<EventType>(event) looks up by type_index and invokes all handlers',
       'Using a single global callback function',
-      'Using std::any as the event type for all handlers'
+      'Using a global std::vector of void*'
     ],
     correctAnswer: 'Use a std::unordered_map keyed by std::type_index mapping to type-erased handler lists; subscribe<EventType>(handler) stores the handler; publish<EventType>(event) looks up by type_index and invokes all handlers',
     explanation: 'template<typename E> void subscribe(std::function<void(const E&)> h) { handlers[typeid(E)].push_back([h](const void* e){ h(*static_cast<const E*>(e)); }); }. publish casts and dispatches. Thread safety requires a mutex or read-copy-update. Subscription tokens (RAII unsubscribe handles) prevent stale handlers.',
@@ -1732,10 +1752,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Performance',
     question: 'How do you profile and identify performance bottlenecks in a C++ application?',
     options: [
-      'Add std::cout timing to every function',
+      'Rely on compiler warnings for performance hints',
       'Use sampling profilers (perf, VTune, Instruments) for CPU hotspots, instrumenting profilers (Tracy, Optick) for frame-level detail, std::chrono high-resolution timers for micro-benchmarks, and Google Benchmark for reproducible measurements',
-      'Only optimize after profiling with Valgrind',
-      'Rely on compiler warnings for performance hints'
+      'Add std::cout timing to every function',
+      'Only optimize after profiling with Valgrind'
     ],
     correctAnswer: 'Use sampling profilers (perf, VTune, Instruments) for CPU hotspots, instrumenting profilers (Tracy, Optick) for frame-level detail, std::chrono high-resolution timers for micro-benchmarks, and Google Benchmark for reproducible measurements',
     explanation: 'Sampling profilers interrupt the process and record the call stack — low overhead. perf stat shows cache misses, branch mispredictions, and IPC. Heaptrack/massif profiles heap usage over time. Google Benchmark controls for CPU frequency scaling and reports ns/iteration. Always profile with optimizations enabled (-O2/-O3) on release builds.',
@@ -1749,10 +1769,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How would you implement a thread pool in C++?',
     options: [
-      'Spawning a new thread for every task',
-      'Pre-create N threads; each thread loops on a shared task queue (deque + mutex + condition_variable); submit() enqueues a packaged_task and returns a future; threads pick tasks in FIFO order; graceful shutdown signals all threads',
       'Using a single background thread for all work',
-      'Using std::async for every task'
+      'Spawning a new thread for every task',
+      'Using std::async for every task',
+      'Pre-create N threads; each thread loops on a shared task queue (deque + mutex + condition_variable); submit() enqueues a packaged_task and returns a future; threads pick tasks in FIFO order; graceful shutdown signals all threads'
     ],
     correctAnswer: 'Pre-create N threads; each thread loops on a shared task queue (deque + mutex + condition_variable); submit() enqueues a packaged_task and returns a future; threads pick tasks in FIFO order; graceful shutdown signals all threads',
     explanation: 'Thread pool avoids the overhead of repeated thread creation. Use hardware_concurrency() for N. std::packaged_task<void()> wraps any callable; get_future() provides the result. Shutdown: set a stop flag and notify_all(). Work-stealing pools (like TBB) use per-thread deques to reduce contention. C++23\'s std::execution may standardize this.',
@@ -1766,9 +1786,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Security',
     question: 'What are common C++ security vulnerabilities and how do you prevent them?',
     options: [
-      'C++ has no security vulnerabilities by design',
-      'Buffer overflows (use std::array/vector with at()), use-after-free (use smart pointers and RAII), integer overflow (use -ftrapv or safeint), format string attacks (prefer type-safe streams), and uninitialized reads (value-initialize all variables). Use ASan, TSan, MSan, and fuzzing',
       'Only SQL injection is relevant in C++',
+      'Buffer overflows (use std::array/vector with at()), use-after-free (use smart pointers and RAII), integer overflow (use -ftrapv or safeint), format string attacks (prefer type-safe streams), and uninitialized reads (value-initialize all variables). Use ASan, TSan, MSan, and fuzzing',
+      'C++ has no security vulnerabilities by design',
       'Compile in debug mode to prevent vulnerabilities'
     ],
     correctAnswer: 'Buffer overflows (use std::array/vector with at()), use-after-free (use smart pointers and RAII), integer overflow (use -ftrapv or safeint), format string attacks (prefer type-safe streams), and uninitialized reads (value-initialize all variables). Use ASan, TSan, MSan, and fuzzing',
@@ -1783,10 +1803,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How would you design a zero-copy serialization system in C++?',
     options: [
-      'Using JSON for all data formats',
-      'Use FlatBuffers or Cap\'n Proto: store data in a layout-compatible memory format so it can be used directly from the buffer without deserialization; schema-driven code generation produces accessors; memory-map the file for true zero-copy I/O',
       'Serialize with std::memcpy for every struct',
-      'Use XML for human-readability'
+      'Using JSON for all data formats',
+      'Use XML for human-readability',
+      'Use FlatBuffers or Cap\'n Proto: store data in a layout-compatible memory format so it can be used directly from the buffer without deserialization; schema-driven code generation produces accessors; memory-map the file for true zero-copy I/O'
     ],
     correctAnswer: 'Use FlatBuffers or Cap\'n Proto: store data in a layout-compatible memory format so it can be used directly from the buffer without deserialization; schema-driven code generation produces accessors; memory-map the file for true zero-copy I/O',
     explanation: 'FlatBuffers encodes data in a flat memory layout; the generated C++ accessors read directly from the raw buffer without parsing — O(1) access, no allocation. Cap\'n Proto goes further with no encoding/decoding at all. For custom protocols: pack structs (pragmatic pack), use network byte order (htons/ntohl), validate with CBOR or protobuf. mmap enables the OS to page data on demand.',
@@ -1800,10 +1820,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How do you handle shared library versioning and ABI compatibility in C++?',
     options: [
-      'Never change function signatures',
-      'Use semantic versioning for the library, soname versioning (libfoo.so.1), symbol versioning scripts to expose only stable API, the Pimpl idiom and opaque handles to isolate internals, and restrict the public API to C-compatible or fixed-layout types',
       'Recompile all consumers on every change',
-      'Use dynamic_cast to handle ABI differences at runtime'
+      'Use dynamic_cast to handle ABI differences at runtime',
+      'Never change function signatures',
+      'Use semantic versioning for the library, soname versioning (libfoo.so.1), symbol versioning scripts to expose only stable API, the Pimpl idiom and opaque handles to isolate internals, and restrict the public API to C-compatible or fixed-layout types'
     ],
     correctAnswer: 'Use semantic versioning for the library, soname versioning (libfoo.so.1), symbol versioning scripts to expose only stable API, the Pimpl idiom and opaque handles to isolate internals, and restrict the public API to C-compatible or fixed-layout types',
     explanation: 'ABI breaks happen when: changing vtable layout (adding/reordering virtual functions), changing class size, changing function signatures. Mitigate: never change public base class virtuals; add functionality via non-virtual functions or new classes; use linker version scripts (--version-script) to hide private symbols; verify with ABI compliance checker tools like abidiff.',
@@ -1817,9 +1837,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Performance',
     question: 'What is SIMD and how do you use it in C++?',
     options: [
+      'A compiler flag for optimization',
       'A multi-threading framework',
       'Single Instruction, Multiple Data: CPU instructions that operate on multiple data elements simultaneously (e.g. adding 8 floats in one instruction). Used via intrinsics (<immintrin.h>), auto-vectorization hints (aligned data, restrict), or libraries like Eigen, xsimd, std::experimental::simd',
-      'A compiler flag for optimization',
       'A way to use multiple CPU cores'
     ],
     correctAnswer: 'Single Instruction, Multiple Data: CPU instructions that operate on multiple data elements simultaneously (e.g. adding 8 floats in one instruction). Used via intrinsics (<immintrin.h>), auto-vectorization hints (aligned data, restrict), or libraries like Eigen, xsimd, std::experimental::simd',
@@ -1835,8 +1855,8 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'How would you implement a compile-time reflection system in C++?',
     options: [
       'Using dynamic_cast at runtime',
-      'Use template-based trait registration: REFLECT macros generate constexpr tuples of field name/pointer pairs; iterate at compile time with std::apply or if constexpr; C++26 static reflection (P2996) will provide built-in __reflect() intrinsics',
       'Using std::type_info only',
+      'Use template-based trait registration: REFLECT macros generate constexpr tuples of field name/pointer pairs; iterate at compile time with std::apply or if constexpr; C++26 static reflection (P2996) will provide built-in __reflect() intrinsics',
       'Compile-time reflection is impossible in C++'
     ],
     correctAnswer: 'Use template-based trait registration: REFLECT macros generate constexpr tuples of field name/pointer pairs; iterate at compile time with std::apply or if constexpr; C++26 static reflection (P2996) will provide built-in __reflect() intrinsics',
@@ -1852,8 +1872,8 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'How do you use compile-time computations (consteval, constexpr) to improve runtime performance?',
     options: [
       'Compile-time computations have no runtime benefit',
-      'Evaluate lookup tables, hash maps, CRC tables, prime sieves, and error strings at compile time with constexpr/consteval functions and constinit variables, so the binary contains pre-computed data rather than runtime computation',
       'Use macros instead of constexpr for performance',
+      'Evaluate lookup tables, hash maps, CRC tables, prime sieves, and error strings at compile time with constexpr/consteval functions and constinit variables, so the binary contains pre-computed data rather than runtime computation',
       'consteval runs slower than runtime due to compiler overhead'
     ],
     correctAnswer: 'Evaluate lookup tables, hash maps, CRC tables, prime sieves, and error strings at compile time with constexpr/consteval functions and constinit variables, so the binary contains pre-computed data rather than runtime computation',
@@ -1868,10 +1888,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How would you build a C++ coroutine-based async I/O framework?',
     options: [
-      'Using blocking I/O with threads',
       'Combine C++20 coroutines with an event loop (epoll/io_uring on Linux, IOCP on Windows): co_await suspends the coroutine and registers a completion callback; the event loop resumes the coroutine handle when the I/O completes; tasks compose naturally with co_await',
+      'Coroutines cannot be used for I/O',
       'Using std::async for all I/O',
-      'Coroutines cannot be used for I/O'
+      'Using blocking I/O with threads'
     ],
     correctAnswer: 'Combine C++20 coroutines with an event loop (epoll/io_uring on Linux, IOCP on Windows): co_await suspends the coroutine and registers a completion callback; the event loop resumes the coroutine handle when the I/O completes; tasks compose naturally with co_await',
     explanation: 'io_uring (Linux 5.1+) provides a ring buffer of submission/completion events enabling true async I/O without system call overhead. A custom awaitable wraps the I/O submission; its await_suspend registers the coroutine_handle as the completion continuation. Libraries like liburing, Asio (C++23 executor proposal), and cppcoro provide ready-made building blocks.',
@@ -1885,10 +1905,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How would you implement a safe, generic object pool in C++ with RAII handles?',
     options: [
+      'Use std::shared_ptr with a counter',
       'Using a global array of raw pointers',
-      'Pre-allocate N objects; issue std::unique_ptr with a custom deleter that returns the object to the pool rather than destroying it; use std::deque or intrusive list as the free list; provide acquire() returning a RAII handle (PoolHandle<T>)',
       'Allocate and destroy on every acquire/release',
-      'Use std::shared_ptr with a counter'
+      'Pre-allocate N objects; issue std::unique_ptr with a custom deleter that returns the object to the pool rather than destroying it; use std::deque or intrusive list as the free list; provide acquire() returning a RAII handle (PoolHandle<T>)'
     ],
     correctAnswer: 'Pre-allocate N objects; issue std::unique_ptr with a custom deleter that returns the object to the pool rather than destroying it; use std::deque or intrusive list as the free list; provide acquire() returning a RAII handle (PoolHandle<T>)',
     explanation: 'Custom deleter: auto deleter = [this](T* p){ pool_.push_back(p); }; return std::unique_ptr<T, decltype(deleter)>(obj, deleter);. The handle type is a unique_ptr with a custom deleter — it is RAII-safe and moveable. For thread-safety, protect the free list with a mutex or use a lock-free stack. Reset the object state on release to prevent stale data leaks.',
@@ -1904,8 +1924,8 @@ export const cppQuestions: InterviewQuestion[] = [
     options: [
       'Branches are always predicted perfectly by modern CPUs',
       'Branch prediction is the CPU\'s guess about which path an if/switch will take; help it with [[likely]]/[[unlikely]] attributes (C++20), sort data to make branches predictable, prefer branchless code for tight loops, and use profile-guided optimization (PGO)',
-      'Use more branches to give the CPU more data',
-      'Only SIMD code is affected by branch prediction'
+      'Only SIMD code is affected by branch prediction',
+      'Use more branches to give the CPU more data'
     ],
     correctAnswer: 'Branch prediction is the CPU\'s guess about which path an if/switch will take; help it with [[likely]]/[[unlikely]] attributes (C++20), sort data to make branches predictable, prefer branchless code for tight loops, and use profile-guided optimization (PGO)',
     explanation: 'A branch misprediction costs 10–20 cycles on modern CPUs. [[likely]] if (condition) hints the compiler to layout code for the common path. Branchless: use conditional moves (ternary often compiles to cmov). Sort arrays before processing — a sorted array makes "if x > threshold" perfectly predictable. PGO instruments the binary, profiles real workloads, and recompiles with actual branch probabilities.',
@@ -1920,9 +1940,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'How would you design a header-only C++ library and what are the tradeoffs?',
     options: [
       'Put everything in a single .cpp file',
-      'Implement all code in headers (using inline, template, constexpr): easy distribution (drop-in include), no separate compilation step. Tradeoffs: longer compile times, increased binary size from multiple instantiations, internal details exposed, harder to maintain ABI stability',
+      'Use shared libraries for header-only code',
       'Header-only libraries are always the best approach',
-      'Use shared libraries for header-only code'
+      'Implement all code in headers (using inline, template, constexpr): easy distribution (drop-in include), no separate compilation step. Tradeoffs: longer compile times, increased binary size from multiple instantiations, internal details exposed, harder to maintain ABI stability'
     ],
     correctAnswer: 'Implement all code in headers (using inline, template, constexpr): easy distribution (drop-in include), no separate compilation step. Tradeoffs: longer compile times, increased binary size from multiple instantiations, internal details exposed, harder to maintain ABI stability',
     explanation: 'Header-only works well for small, template-heavy libraries (Catch2, nlohmann/json, GLM). For larger libraries, use explicit template instantiation declarations to reduce compile times. Precompiled headers (PCH) and C++20 modules mitigate compilation overhead. Provide an optional "single-file" amalgamation for easy embedding.',
@@ -1954,8 +1974,8 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'What is link-time optimization (LTO) and whole program optimization (WPO) in C++?',
     options: [
       'Optimizations that only affect header files',
-      'LTO/WPO defer optimization to link time when the full call graph is visible across translation units, enabling cross-module inlining, dead code elimination, and interprocedural constant propagation — typically 5–15% runtime improvement',
       'A way to reduce link times',
+      'LTO/WPO defer optimization to link time when the full call graph is visible across translation units, enabling cross-module inlining, dead code elimination, and interprocedural constant propagation — typically 5–15% runtime improvement',
       'Optimizations exclusive to debug builds'
     ],
     correctAnswer: 'LTO/WPO defer optimization to link time when the full call graph is visible across translation units, enabling cross-module inlining, dead code elimination, and interprocedural constant propagation — typically 5–15% runtime improvement',
@@ -1970,10 +1990,10 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How would you implement a domain-specific language (DSL) embedded in C++ using expression templates?',
     options: [
+      'Expression templates require C++ macros',
       'Using std::string concatenation',
-      'Expression templates build a compile-time tree of operation nodes (Add<Mul<A,B>,C>) by overloading operators to return expression objects rather than values; the tree is evaluated lazily when assigned to a result, fusing operations and eliminating temporaries — used in Eigen, Blaze, and LLDB\'s type system',
       'Using a separate parser for the DSL',
-      'Expression templates require C++ macros'
+      'Expression templates build a compile-time tree of operation nodes (Add<Mul<A,B>,C>) by overloading operators to return expression objects rather than values; the tree is evaluated lazily when assigned to a result, fusing operations and eliminating temporaries — used in Eigen, Blaze, and LLDB\'s type system'
     ],
     correctAnswer: 'Expression templates build a compile-time tree of operation nodes (Add<Mul<A,B>,C>) by overloading operators to return expression objects rather than values; the tree is evaluated lazily when assigned to a result, fusing operations and eliminating temporaries — used in Eigen, Blaze, and LLDB\'s type system',
     explanation: 'template<typename L, typename R> struct Add { L l; R r; auto eval(int i) { return l.eval(i) + r.eval(i); } }. operator+(Vec a, Vec b) returns Add<Vec,Vec> not a Vec. The full expression "a + b * c" builds the tree Add<Vec, Mul<Vec,Vec>>. eval() traverses it once, fusing all operations — no intermediate temporaries, no extra loops. C++20 constexpr and ranges reduce the need but expression templates remain the performance ceiling for linear algebra.',
@@ -1987,9 +2007,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'Security',
     question: 'How do you write secure cryptographic code in C++?',
     options: [
-      'Implement cryptographic primitives from scratch',
-      'Use audited libraries (OpenSSL, libsodium, Botan); never roll your own crypto; use constant-time comparison (CRYPTO_memcmp or std::equal with a HMAC to prevent timing attacks); zeroize secret memory (SecureZeroMemory / explicit_bzero); avoid caching secrets in registers; use hardware RNG (RAND_bytes)',
       'Store keys in global variables for easy access',
+      'Use audited libraries (OpenSSL, libsodium, Botan); never roll your own crypto; use constant-time comparison (CRYPTO_memcmp or std::equal with a HMAC to prevent timing attacks); zeroize secret memory (SecureZeroMemory / explicit_bzero); avoid caching secrets in registers; use hardware RNG (RAND_bytes)',
+      'Implement cryptographic primitives from scratch',
       'Use MD5 for fast secure hashing'
     ],
     correctAnswer: 'Use audited libraries (OpenSSL, libsodium, Botan); never roll your own crypto; use constant-time comparison (CRYPTO_memcmp or std::equal with a HMAC to prevent timing attacks); zeroize secret memory (SecureZeroMemory / explicit_bzero); avoid caching secrets in registers; use hardware RNG (RAND_bytes)',
@@ -2004,9 +2024,9 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How do C++20 modules improve on the traditional header/source file model?',
     options: [
-      'Modules are just precompiled headers with a new syntax',
       'Modules partition code into named units with explicit import/export; they are parsed and compiled once into Binary Module Interface (BMI) files; macros do not leak across module boundaries; compile times improve dramatically for large codebases; no include guards needed',
       'Modules replace the linker',
+      'Modules are just precompiled headers with a new syntax',
       'Modules are only for standard library code'
     ],
     correctAnswer: 'Modules partition code into named units with explicit import/export; they are parsed and compiled once into Binary Module Interface (BMI) files; macros do not leak across module boundaries; compile times improve dramatically for large codebases; no include guards needed',
@@ -2021,8 +2041,8 @@ export const cppQuestions: InterviewQuestion[] = [
     category: 'System Design',
     question: 'How would you design a heterogeneous task graph execution engine in C++?',
     options: [
+      'Model tasks as nodes in a DAG with dependency edges; topologically sort or use a reference-count-to-zero trigger (decrement predecessor count on completion, enqueue when it reaches zero); execute ready tasks on a thread pool; support heterogeneous executors (CPU, CPU-SIMD, GPU-CUDA, IO)',
       'Execute all tasks in a single thread in sequence',
-      'Model tasks as nodes in a DAG with dependency edges; topologically sort or use a reference-count-to-zero trigger (decrement predecessor count on completion, enqueue when it reaches zero); execute ready tasks on a thread pool; support heterogeneous executors (CPU, GPU, IO)',
       'Use a single global queue for all task types',
       'Use std::async for every individual task'
     ],
@@ -2039,9 +2059,9 @@ export const cppQuestions: InterviewQuestion[] = [
     question: 'How do you build a production-grade C++ project with CMake, testing, sanitizers, and CI?',
     options: [
       'Use a single Makefile with hardcoded compiler flags',
-      'Use CMake with modern targets (target_include_directories, target_link_libraries); CTest + Google Test/Catch2 for testing; AddressSanitizer/UBSanitizer builds as separate CMake presets; clang-tidy and cppcheck for static analysis; ccache to speed incremental builds; GitHub Actions/GitLab CI for PR gates',
       'Compile manually and share binaries',
-      'Use only release builds in CI'
+      'Use only release builds in CI',
+      'Use CMake with modern targets (target_include_directories, target_link_libraries); CTest + Google Test/Catch2 for testing; AddressSanitizer/UBSanitizer builds as separate CMake presets; clang-tidy and cppcheck for static analysis; ccache to speed incremental builds; GitHub Actions/GitLab CI for PR gates'
     ],
     correctAnswer: 'Use CMake with modern targets (target_include_directories, target_link_libraries); CTest + Google Test/Catch2 for testing; AddressSanitizer/UBSanitizer builds as separate CMake presets; clang-tidy and cppcheck for static analysis; ccache to speed incremental builds; GitHub Actions/GitLab CI for PR gates',
     explanation: 'Modern CMake (3.15+) avoids global flags; each target declares its own requirements. CMakePresets.json standardizes Debug/Release/Sanitizer/RelWithDebInfo configurations. CI pipeline: configure → build → unit tests → sanitizer runs → static analysis → packaging. Conan or vcpkg for dependency management. clang-format for consistent style enforced as a CI gate.',

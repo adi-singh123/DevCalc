@@ -16,9 +16,8 @@ export const compoundInterestCalculator: Calculator = {
     title:
       "Compound Interest Calculator - Calculate CI Online",
 
-    description:
-      "Free Compound Interest Calculator to calculate maturity amount, future value, investment growth, and total interest earned using compound interest formulas.",
-
+description:
+  "See how your money grows over time with compounding. Enter your principal, interest rate, and duration to instantly get the maturity amount, total interest earned, and investment growth.",
 keywords: [
   "compound interest calculator",
   "ci calculator",

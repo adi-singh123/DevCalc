@@ -22,9 +22,8 @@ export const luckyNumberCalculator: Calculator = {
     title:
       "Lucky Number Calculator - Find Your Lucky Number by Date of Birth",
 
-    description:
-      "Use our free Lucky Number Calculator to find your lucky number from your date of birth. Learn your numerology number, personality traits, and life path insights instantly.",
-
+description:
+  "What does your date of birth say about you? Find your personal lucky number, discover your numerology life path, and get a peek into your personality traits — instantly and free.",
  keywords: [
   "lucky number calculator",
   "lucky number by date of birth",

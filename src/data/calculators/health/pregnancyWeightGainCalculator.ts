@@ -16,8 +16,7 @@ export const pregnancyWeightGainCalculator: Calculator = {
     title: "Pregnancy Weight Gain Calculator - Healthy Weight Gain During Pregnancy",
 
     description:
-      "Calculate recommended pregnancy weight gain based on pre-pregnancy BMI and pregnancy stage.倾 Check healthy weight gain ranges, trimester guidelines, and pregnancy growth recommendations.",
-
+"Calculate your recommended pregnancy weight gain based on your pre-pregnancy BMI and current pregnancy stage. Check healthy weight gain ranges, trimester-wise guidelines, and overall pregnancy growth recommendations.",
 keywords: [
   "pregnancy weight gain calculator",
   "pregnancy weight gain chart",

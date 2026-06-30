@@ -15,9 +15,8 @@ export const matrixCalculator: Calculator = {
   seo: {
     title: "Matrix Calculator - Matrix Operations & Determinant Calculator",
 
-    description:
-      "Calculate matrix addition, subtraction, multiplication, determinants, and inverses online. Fast and accurate Matrix Calculator for students and professionals.",
-
+description:
+  "Struggling with matrix problems? Enter your matrix values and instantly get addition, subtraction, multiplication, determinant, and inverse results — step by step, no errors.",
 keywords: [
   "matrix calculator",
   "matrix multiplication calculator",

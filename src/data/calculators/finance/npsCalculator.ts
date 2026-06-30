@@ -23,9 +23,8 @@ export const npsCalculator: Calculator = {
     title:
       "NPS Calculator - National Pension System Calculator",
 
-    description:
-      "Calculate NPS maturity amount, retirement corpus, lump sum withdrawal, annuity value, and monthly pension using the National Pension System.",
-
+description:
+  "Contributing to NPS and wondering what you'll get at retirement? Enter your monthly contribution and expected return to see your total corpus, lump sum payout, and estimated monthly pension.",
     keywords: [
       "nps calculator",
       "national pension system calculator",

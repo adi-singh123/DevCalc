@@ -6,8 +6,7 @@ export const jwtDecoder: Calculator = {
   name: "JWT Decoder",
 
   description:
-    "Decode JWT tokens online and view header, payload, expiration time, issued time, and token details instantly.",
-
+"Decode JWT tokens instantly, right in your browser — nothing is sent to a server. View the header, payload, expiration time, and issue time at a glance.",
   category: "Developer Tools",
 
   isPopular: true,

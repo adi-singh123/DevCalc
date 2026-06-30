@@ -6,8 +6,7 @@ export const examCountdownCalculator: Calculator = {
   name: "Exam Countdown Calculator",
 
   description:
-    "Calculate the exact number of days, weeks, and study hours remaining until your exam. Plan your preparation effectively and stay on track.",
-
+"Get an exact countdown of the days, weeks, and study hours remaining until your exam. Use it to break your syllabus into manageable chunks, set daily and weekly study targets, track your preparation progress over time, and avoid last-minute cramming — so you walk into the exam fully prepared and on schedule.",
   category: "Education",
 
   isPopular: false,
@@ -17,8 +16,7 @@ export const examCountdownCalculator: Calculator = {
       "Exam Countdown Calculator - Days Until Your Exam",
 
     description:
-      "Calculate how many days, weeks, and study hours remain before your exam. Create a better study schedule and track preparation time effectively.",
-
+   "Get an exact countdown of the days, weeks, and study hours remaining until your exam. Use it to break your syllabus into manageable chunks, set daily and weekly study targets, track your preparation progress over time, and avoid last-minute cramming — so you walk into the exam fully prepared and on schedule.",
     keywords: [
       "exam countdown calculator",
       "days until exam",

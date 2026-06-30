@@ -22,9 +22,8 @@ export const uuidGenerator: Calculator = {
     title:
       "UUID Generator - Generate Bulk UUID v4 Online Free",
 
-    description:
-      "Free online UUID v4 generator. Create high-entropy bulk random UUIDs and GUIDs instantly for databases, software development, mock testing, and APIs.",
-
+description:
+  "Need unique IDs for your database, API, or test data? Generate single or bulk UUID v4 values instantly — cryptographically random, copy-ready, and completely free.",
 keywords: [
   "uuid generator",
   "uuid v4 generator",

@@ -15,9 +15,8 @@ export const mileageCalculator: Calculator = {
   seo: {
     title: "Mileage Calculator - Calculate Car, Bike & Fuel Cost Per KM Online",
 
-    description:
-      "Free Mileage Calculator to quickly measure real-world car mileage, bike fuel efficiency, running cost per km, and total trip expenses. Optimized for petrol, diesel, and CNG vehicles.",
-
+description:
+  "Is your car giving the mileage it promised? Enter fuel filled and distance covered to instantly find your real-world mileage, cost per km, and total trip expense — petrol, diesel, or CNG.",
 keywords: [
   "mileage calculator india",
   "mileage calculator",

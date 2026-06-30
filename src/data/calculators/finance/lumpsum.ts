@@ -6,8 +6,7 @@ export const lumpsumCalculator: Calculator = {
   name: "Lumpsum Calculator",
 
   description:
-    "Calculate the future value of a one-time investment using our free Lumpsum Calculator. Estimate returns, wealth growth, and investment maturity based on expected annual returns and investment duration.",
-
+"A free Lumpsum Calculator designed for investors planning a one-time mutual fund investment. Enter your investment amount, expected annual return, and time horizon to instantly see your projected maturity value, total wealth gained, and overall investment growth — helping you make informed decisions for goals like retirement, a child's education, or long-term wealth building.",
   category: "Finance",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const lumpsumCalculator: Calculator = {
       "Lumpsum Calculator - Calculate One-Time Investment Returns",
 
     description:
-      "Use our free Lumpsum Calculator to estimate mutual fund returns, investment growth, maturity value, and wealth creation from a one-time investment.",
-
+"A free Lumpsum Calculator designed for investors planning a one-time mutual fund investment. Enter your investment amount, expected annual return, and time horizon to instantly see your projected maturity value, total wealth gained, and overall investment growth — helping you make informed decisions for goals like retirement, a child's education, or long-term wealth building.",
 keywords: [
   "lumpsum calculator",
   "lump sum calculator",

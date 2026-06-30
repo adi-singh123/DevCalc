@@ -17,9 +17,8 @@ export const loveCalculator: Calculator = {
   seo: {
     title: "Love Calculator - Check Love Percentage by Name Online Free",
 
-    description:
-      "Use our free Love Calculator to find your love compatibility percentage by name. Enter two names and discover your love match score instantly. Fun, fast, and free to use.",
-
+description:
+  "Curious if you and your crush are meant to be? Enter two names and get your love compatibility score instantly — just for fun, totally free, and very shareable.",
 keywords: [
   "love calculator",
   "love calculator by name",

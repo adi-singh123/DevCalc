@@ -6,8 +6,7 @@ export const discountCalculator: Calculator = {
   name: "Discount Calculator",
 
   description:
-    "Calculate discount amount, final price, and total savings instantly.",
-
+"Trying to figure out how much you're actually saving on a sale? Our free Discount Calculator instantly works out the discount percentage, savings amount, and final price — so you know exactly what you're paying before you buy.",
   category: "Finance",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const discountCalculator: Calculator = {
       "Discount Calculator - Calculate Sale Price & Savings Online",
 
     description:
-      "Calculate discount percentage, savings amount, and final sale price instantly using our free Discount Calculator.",
-
+"Trying to figure out how much you're actually saving on a sale? Our free Discount Calculator instantly works out the discount percentage, savings amount, and final price — so you know exactly what you're paying before you buy.",
 keywords: [
   "discount calculator",
   "sale price calculator",

@@ -21,9 +21,8 @@ export const friendshipCalculator: Calculator = {
     title:
       "Friendship Calculator - Check Your Friendship Percentage by Name",
 
-    description:
-      "Use our free Friendship Calculator to find friendship compatibility by name. Enter two names and discover your friendship match percentage instantly — fun, fast, and shareable.",
-
+description:
+  "How compatible are you and your best friend? Enter two names and instantly find out your friendship match percentage — a fun way to settle the debate once and for all.",
  keywords: [
 
   "friendship calculator",

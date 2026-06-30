@@ -6,8 +6,7 @@ export const averageCalculator: Calculator = {
   name: "Average Calculator",
 
   description:
-    "Calculate the average (mean) of a set of numbers instantly. Find the average, sum, count, minimum value, and maximum value with our free online average calculator.",
-
+"Need to find the average of a list of numbers? This free calculator instantly works out the mean, total, count, minimum, and maximum values — and shows you the full step-by-step calculation so you understand exactly how the result was reached.",
   category: "Education",
 
   isPopular: true,
@@ -17,8 +16,7 @@ export const averageCalculator: Calculator = {
       "Average Calculator - Calculate Mean Online",
 
     description:
-      "Free Average Calculator to calculate the mean of numbers instantly. Find average values, totals, counts, minimums, and maximums with step-by-step calculations.",
-
+"Need to find the average of a list of numbers? This free calculator instantly works out the mean, total, count, minimum, and maximum values — and shows you the full step-by-step calculation so you understand exactly how the result was reached.",
     keywords: [
       "average calculator",
       "mean calculator",

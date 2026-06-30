@@ -16,7 +16,7 @@ export const ageCalculator: Calculator = {
     title: "Age Calculator – Find Your Exact Age in Years, Months and Days",
 
     description:
-      "Use our free Age Calculator to calculate your exact age from your date of birth. Find age in years, months, weeks, days, hours, minutes, and seconds instantly.",
+      "Born on a specific date and curious how old you really are? Enter your date of birth and instantly get your exact age in years, months, weeks, days, hours, and even seconds — no math needed.",
 
 keywords: [
   "age calculator",
