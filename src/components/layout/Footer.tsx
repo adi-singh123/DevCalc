@@ -176,6 +176,29 @@ export default function Footer() {
               Sitemap
             </Link>
           </div>
+                {/* Featured On */}
+      <div className="border-t border-slate-200 dark:border-slate-700">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-3 px-6 py-8">
+          <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+            Proudly Featured On
+          </p>
+
+          <a
+            href="https://launchbuff.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Featured on LaunchBuff"
+          >
+            <Image
+              src="https://launchbuff.com/badge-featured-light.svg"
+              alt="Featured on LaunchBuff"
+              width="256"
+              height="80"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
         </div>
       </div>
     </footer>
