@@ -30,5 +30,9 @@ export const categories = [
   {
     name:"Developer Tools",
     slug:"developertool"
-  }
+  },
+  {
+  name: "Other",
+  slug: "other",
+}
 ];

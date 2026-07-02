@@ -81,6 +81,14 @@ import { jwtDecoder } from "./developer/jwt-decoder";
 import { hashGenerator } from "./developer/hash-generator";
 import { unixTimestampConverter } from "./developer/unix-timestamp-converter";
 import { regexTester } from "./developer/regex-tester";
+import { goldMakingChargesCalculator } from "./other/goldMakingChargesCalculato";
+import { goldPriceCalculator } from "./other/goldPriceCalculator";
+import { silverPriceCalculator } from "./other/silverPriceCalculator";
+import { goldGstCalculator } from "./other/goldGstCalculator";
+import { weddingBudgetCalculator } from "./other/weddingBudgetCalculator";
+import { partyBudgetCalculator } from "./other/partyBudgetCalculator";
+import { eventCostCalculator } from "./other/eventCostCalculator";
+import { travelCostCalculator } from "./other/travelCostCalculator";
 
 export const calculators = [
   ageCalculator,
@@ -166,4 +174,12 @@ export const calculators = [
   hashGenerator,
   unixTimestampConverter,
   regexTester,
+  goldMakingChargesCalculator,
+  goldPriceCalculator,
+  silverPriceCalculator,
+  goldGstCalculator,
+  weddingBudgetCalculator,
+  partyBudgetCalculator,
+  eventCostCalculator,
+  travelCostCalculator,
 ];

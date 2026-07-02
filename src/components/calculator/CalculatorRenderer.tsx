@@ -81,6 +81,14 @@ import JwtDecoder from "./renderers/JwtDecoder";
 import HashGenerator from "./renderers/HashGenerator";
 import UnixTimestampConverter from "./renderers/UnixTimestampConverter";
 import RegexTester from "./renderers/RegexTester";
+import GoldMakingChargesCalculator from "./renderers/GoldMakingChargesCalculator";
+import GoldPriceCalculator from "./renderers/GoldPriceCalculator";
+import SilverPriceCalculator from "./renderers/Silverpricecalculator";
+import GoldGstCalculator from "./renderers/Goldgst";
+import PartyBudgetCalculator from "./renderers/Partybudgetcalculator";
+import WeddingBudgetCalculator from "./renderers/Weddingbudgetcalculator";
+import EventCostCalculator from "./renderers/Eventcalculator ";
+import TravelCostCalculator from "./renderers/Travelcostcalculator";
 type Props = {
   slug: string;
 };
@@ -253,7 +261,22 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <UnixTimestampConverter/>;
     case  "regex-tester":
       return <RegexTester/>
-    
+    case "gold-making-charges-calculator":
+      return <GoldMakingChargesCalculator/>;
+    case "gold-price-calculator":
+      return <GoldPriceCalculator/>;
+    case "silver-price-calculator":
+      return <SilverPriceCalculator/>;
+    case "gold-gst-calculator":
+      return <GoldGstCalculator/>;
+    case "wedding-budget-calculator": 
+        return <WeddingBudgetCalculator/>;
+    case "party-budget-calculator":
+        return <PartyBudgetCalculator/>;
+    case "event-cost-calculator":
+      return <EventCostCalculator/>
+    case "travel-cost-calculator":
+      return <TravelCostCalculator/>
 
 
     default:

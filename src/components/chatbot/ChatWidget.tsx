@@ -274,7 +274,7 @@ export default function ChatWidget() {
                 }`}
               >
                 <div
-                  className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm break-words ${
+                  className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm overflow-x-auto ${
                     message.role === "user"
                       ? "bg-blue-600 text-white"
                       : "bg-slate-100 dark:bg-slate-800"

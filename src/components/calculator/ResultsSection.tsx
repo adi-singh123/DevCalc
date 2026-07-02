@@ -55,7 +55,7 @@ export default function ResultsSection({
             Main Result
           </p>
 
-          <h3 className="mt-3 break-words text-5xl font-bold text-slate-900 dark:text-white">
+          <h3 className="mt-3 overflow-x-auto text-5xl font-bold text-slate-900 dark:text-white">
             {mainResult.value}
           </h3>
 
@@ -86,7 +86,7 @@ export default function ResultsSection({
                 dark:bg-slate-900
               "
             >
-              <p className="break-words text-2xl font-bold text-slate-900 dark:text-white">
+              <p className="overflow-x-auto text-2xl font-bold text-slate-900 dark:text-white">
                 {result.value}
               </p>
 
