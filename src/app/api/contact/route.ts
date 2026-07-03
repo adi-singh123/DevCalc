@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-export const runtime = "node";
+// export const runtime = "node";
 
 export async function POST(req: NextRequest) {
   try {
