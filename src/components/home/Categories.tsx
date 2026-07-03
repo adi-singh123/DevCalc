@@ -13,6 +13,7 @@ const categoryIcons = {
   construction: "🏗️",
   developertool: "👨‍💻",
   other: "🧰",
+  Vehicle: "🚗",
 };
 
 export default function CalculatorCategories() {

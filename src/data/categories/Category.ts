@@ -34,5 +34,9 @@ export const categories = [
   {
   name: "Other",
   slug: "other",
+},
+{
+  name:"Vehicle",
+  slug:"vehicle"
 }
 ];

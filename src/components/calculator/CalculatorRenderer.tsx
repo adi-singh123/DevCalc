@@ -69,6 +69,8 @@ import LoveCalculator from "./renderers/LoveCalculator";
 import FriendshipCalculator from "./renderers/FriendshipCalculator";
 import CrushCalculator from "./renderers/CrushCalculator";
 import LuckyNumberCalculator from "./renderers/LuckyNumberCalculator";
+import SafePeriodCalculator from "./renderers/SafePeriodCalculator";
+import CondomSizeCalculator from "./renderers/CondomSizeCalculator";
 import CementCalculator from "./renderers/HouseConstruction";
 import HouseConstructionCostCalculator from "./renderers/HouseConstruction";
 import BrickCalculator from "./renderers/BrickCalculator";
@@ -237,6 +239,10 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <CrushCalculator/>;
     case "lucky-number-calculator":
       return <LuckyNumberCalculator/>;
+    case "safe-period-calculator":
+      return <SafePeriodCalculator/>;
+    case "condom-size-calculator":
+      return <CondomSizeCalculator/>;
     case "house-construction-cost-calculator":
       return <HouseConstructionCostCalculator/>
     case "brick-calculator":

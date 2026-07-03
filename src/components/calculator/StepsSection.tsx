@@ -9,6 +9,21 @@ import {
   BookOpen,
   List,
   MapPin,
+  Heart,
+  Droplets,
+  Baby,
+  Activity,
+  ClipboardList,
+  CircleDot,
+  DollarSign,
+  Coins,
+  Landmark,
+  Sprout,
+  Hammer,
+  Wrench,
+  ShieldCheck,
+  Package,
+  TrendingUp,
 } from "lucide-react";
 
 type Step = {
@@ -34,6 +49,32 @@ const icons = {
   book: BookOpen,
   list: List,
   location: MapPin,
+  ruler: Ruler,
+
+  // Health
+  heart: Heart,
+  period: Droplets,
+  baby: Baby,
+  activity: Activity,
+  ovulation: CircleDot,
+
+  // Finance / Gold
+  money: DollarSign,
+  gold: Coins,
+  bank: Landmark,
+
+  // Agriculture
+  agriculture: Sprout,
+
+  // Construction
+  construction: Hammer,
+  tools: Wrench,
+
+  // General
+  verify: ShieldCheck,
+  package: Package,
+  summary: ClipboardList,
+  growth: TrendingUp,
 };
 
 export default function StepsSection({

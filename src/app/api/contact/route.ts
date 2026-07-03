@@ -2,6 +2,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+export const runtime = "node";
+
 export async function POST(req: NextRequest) {
   try {
     const { name, email, category, message } = await req.json();
@@ -21,6 +23,20 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const gmailUser = process.env.GMAIL_USER;
+    const gmailPass = process.env.GMAIL_PASS;
+
+    if (!gmailUser || !gmailPass) {
+      console.error("Missing Gmail credentials for contact form.");
+      return NextResponse.json(
+        {
+          error:
+            "Server configuration error: GMAIL_USER and GMAIL_PASS are required.",
+        },
+        { status: 500 }
+      );
+    }
+
     // ── Nodemailer transporter ───────────────────────────────────────────────
     // Uses Gmail — add these to your .env.local:
     //   GMAIL_USER=your@gmail.com
@@ -32,8 +48,8 @@ export async function POST(req: NextRequest) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
+        user: gmailUser,
+        pass: gmailPass,
       },
     });
 
@@ -108,11 +124,18 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true }, { status: 200 });
 
-  } catch (error) {
-    console.error("Contact form error:", error);
-    return NextResponse.json(
-      { error: "Failed to send message. Please try again." },
-      { status: 500 }
-    );
-  }
+} catch (error: any) {
+  console.error("Contact form error:");
+  console.error(error);
+  console.error(error?.message);
+  console.error(error?.response);
+  console.error(error?.code);
+
+  return NextResponse.json(
+    {
+      error: error?.message || "Failed to send message.",
+    },
+    { status: 500 }
+  );
+}
 }
