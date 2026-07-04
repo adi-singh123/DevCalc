@@ -8,7 +8,11 @@ import ThemeToggle from "./ThemeToggle";
 
 type NavLink =
   | { label: string; href: string; children?: never }
-  | { label: string; href?: never; children: { label: string; href: string }[] };
+  | {
+      label: string;
+      href?: never;
+      children: { label: string; href: string }[];
+    };
 
 const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
@@ -74,7 +78,11 @@ export default function Header() {
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center" aria-label="DevCalc home">
+          <Link
+            href="/"
+            className="flex items-center gap-3"
+            aria-label="DevCalc home"
+          >
             <Image
               src="/logo.png"
               alt="DevCalc Logo"
@@ -83,6 +91,11 @@ export default function Header() {
               priority
               className="h-auto w-auto max-h-12"
             />
+            <div className="flex flex-col leading-none">
+              <span className="text-xl font-bold text-slate-900 dark:text-white">
+                DevCalc
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
@@ -95,7 +108,9 @@ export default function Header() {
                       <div ref={dropdownRef}>
                         <button
                           type="button"
-                          onClick={() => setDesktopDropdownOpen((prev) => !prev)}
+                          onClick={() =>
+                            setDesktopDropdownOpen((prev) => !prev)
+                          }
                           aria-expanded={desktopDropdownOpen}
                           aria-haspopup="true"
                           className="flex items-center gap-1 font-medium text-slate-700 transition hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-400"

@@ -91,6 +91,7 @@ import PartyBudgetCalculator from "./renderers/Partybudgetcalculator";
 import WeddingBudgetCalculator from "./renderers/Weddingbudgetcalculator";
 import EventCostCalculator from "./renderers/Eventcalculator ";
 import TravelCostCalculator from "./renderers/Travelcostcalculator";
+import TileCalculator from "./renderers/TileCalculator";
 type Props = {
   slug: string;
 };
@@ -283,6 +284,8 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <EventCostCalculator/>
     case "travel-cost-calculator":
       return <TravelCostCalculator/>
+    case "tile-calculator":
+      return <TileCalculator/>
 
 
     default:

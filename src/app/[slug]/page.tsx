@@ -14,7 +14,7 @@ import PopularCalculators from "@/src/components/calculator/PopularCalculators";
 import CompareCalculatorSection from "@/src/components/calculator/CompareCalculatorSection";
 import CalculatorSchema from "@/src/components/seo/CalculatorSchema";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
-
+import { getCalculatorIntro } from "@/src/lib/seo/generation";
 
 export async function generateStaticParams() {
   return calculators.map((calculator) => ({
@@ -85,7 +85,7 @@ return (
     },
     {
       name: calculator.category,
-      url: `/calculators/category/${calculator.category.toLowerCase()}`,
+      url: `/category/${calculator.category.toLowerCase()}`,
     },
     {
       name: calculator.name,
@@ -102,7 +102,7 @@ return (
     },
     {
       label: calculator.category,
-      href: `/calculators/category/${calculator.category.toLowerCase()}`,
+      href: `/category/${calculator.category.toLowerCase()}`,
     },
     {
       label: calculator.name,
@@ -119,11 +119,8 @@ return (
     {calculator.description}
   </p>
 
- <p className="mt-4 leading-7 text-slate-600">
-  Use our free online {calculator.name.toLowerCase()} to get
-  accurate results instantly. The calculator is designed to
-  be fast, easy to use, mobile-friendly, and suitable for
-  everyday calculations.
+<p className="mt-4 leading-7 text-slate-600">
+  {getCalculatorIntro(calculator)}
 </p>
 
   <div className="mt-6 flex flex-wrap gap-3">

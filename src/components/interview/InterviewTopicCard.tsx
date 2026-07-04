@@ -16,6 +16,7 @@ import {
   SiGo,
   SiOpenjdk,
   SiPhp,
+  SiPython
 } from "react-icons/si";
 import { TbDatabase } from "react-icons/tb";
 
@@ -56,6 +57,8 @@ const getTechnologyIcon = (name: string) => {
       return <SiOpenjdk className="text-5xl text-red-600" />;
     case "php":
       return <SiPhp className="text-5xl text-indigo-500" />;
+    case "python":
+  return <SiPython className="text-5xl text-blue-500" />;
     default:
       return null;
   }

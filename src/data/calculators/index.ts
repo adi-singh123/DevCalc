@@ -91,6 +91,7 @@ import { weddingBudgetCalculator } from "./other/weddingBudgetCalculator";
 import { partyBudgetCalculator } from "./other/partyBudgetCalculator";
 import { eventCostCalculator } from "./other/eventCostCalculator";
 import { travelCostCalculator } from "./other/travelCostCalculator";
+import {tileCalculator } from "./construction/tileCalculator";
 
 export const calculators = [
   ageCalculator,
@@ -186,4 +187,5 @@ export const calculators = [
   partyBudgetCalculator,
   eventCostCalculator,
   travelCostCalculator,
+  tileCalculator,
 ];

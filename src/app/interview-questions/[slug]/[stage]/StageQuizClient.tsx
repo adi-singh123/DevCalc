@@ -36,7 +36,7 @@ import { javaQuestions } from "@/src/data/interview/java/java";
 import { phpQuestions } from "@/src/data/interview/php/php";
 import { nextjsQuestions } from "@/src/data/interview/nextjs/next";
 import { goQuestions} from "@/src/data/interview/go/golang";
-
+import { pythonQuestions } from "@/src/data/interview/python/python";
 const MOCK_DB: Record<string, InterviewQuestion[]> = {
   javascript: javascriptQuestions,
   react: reactQuestions,
@@ -49,6 +49,7 @@ const MOCK_DB: Record<string, InterviewQuestion[]> = {
   php:phpQuestions,
   nextjs:nextjsQuestions,
   go:goQuestions,
+  python:pythonQuestions,
 };
 
 const STAGE_ORDER: InterviewStage[] = [

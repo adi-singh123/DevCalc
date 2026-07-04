@@ -116,4 +116,14 @@ export const interviewTopics: InterviewTopic[] = [
   totalQuestions: 120,
   lastUpdated: "2026-06-25",
 },
+{
+  id: "12",
+  slug: "python",
+  title: "Python",
+  description:
+    "Practice Python interview questions covering core syntax, data types, object-oriented programming, functions, modules, exception handling, file handling, iterators, generators, decorators, multithreading, asynchronous programming, popular libraries, algorithms, and real-world coding scenarios for beginners to advanced developers.",
+  icon: "python",
+  totalQuestions: 120,
+  lastUpdated: "2026-06-25",
+},
 ];
