@@ -1,22 +1,23 @@
 import type { calculators } from "@/src/data/calculators";
 
-// The data module exports `calculators` (an array). Derive a single
-// calculator item type from that array so callers can use it as before.
-type Calculators = (typeof calculators)[number];
+// Derive the item type from the data array itself, so there's only
+// one place (calculators.ts) that defines the shape.
+type Calculator = (typeof calculators)[number];
 
 /**
- * Builds a richer, calculator-specific intro using every use case
- * and related calculator already defined in the data — so content
- * length and depth scale with how well each entry is filled in,
- * without repeating text across calculators.
+ * Builds a calculator-specific intro from use cases and related
+ * calculators already in the data. Deliberately does NOT repeat
+ * `formula.explanation` here — that's already rendered verbatim
+ * further down the page in <FormulaSection>, so reusing it here
+ * would duplicate content within the same page.
  */
-export function getCalculatorIntro(calculator: Calculators): string {
+export function getCalculatorIntro(calculator: Calculator): string {
   const useCases = calculator.formula?.useCases ?? [];
   const compareWith = calculator.compareWith ?? [];
 
   const parts: string[] = [];
 
-  // 1. Use cases — list all of them instead of just the first.
+  // 1. Use cases
   if (useCases.length === 1) {
     parts.push(
       `This calculator is commonly used for ${useCases[0]}, giving you an exact figure instead of a rough estimate.`
@@ -35,25 +36,21 @@ export function getCalculatorIntro(calculator: Calculators): string {
     );
   }
 
-  // 2. Formula context, if available — adds depth beyond just use cases.
-  if (calculator.formula?.explanation) {
-    parts.push(calculator.formula.explanation);
-  }
-
-  // 3. Related calculators — mention all of them, not just one, since
-  // each is a genuine internal link opportunity.
+  // 2. Related calculators — genuine internal links, not shown
+  // elsewhere on this page (CompareCalculatorSection renders cards,
+  // not this sentence form, so no duplication here).
   if (compareWith.length === 1) {
+    const name =
+      typeof compareWith[0] === "string" ? compareWith[0] : (compareWith[0] as any).name;
     parts.push(
-      `If you need a related figure, our ${compareWith[0]} covers that calculation too.`
+      `If you need a related figure, our ${name} covers that calculation too.`
     );
   } else if (compareWith.length > 1) {
-    const names = compareWith;
+    const names = compareWith.map((c) => (typeof c === "string" ? c : (c as any).name));
     const last = names[names.length - 1];
     const rest = names.slice(0, -1);
     parts.push(
-      `For related figures, you can also check our ${rest.join(
-        ", "
-      )}, or ${last}.`
+      `For related figures, you can also check our ${rest.join(", ")}, or ${last}.`
     );
   }
 
