@@ -32,7 +32,7 @@ export default function Hero() {
 
           <div>
             <p className="text-3xl font-bold text-slate-900 dark:text-white">
-              8
+              8+
             </p>
             <p className="text-sm text-slate-600 dark:text-slate-400">
               Categories

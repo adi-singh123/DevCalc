@@ -13,6 +13,8 @@ export function generateCalculatorMetadata(
 ): Metadata {
   const url = `${siteConfig.url}/${seo.slug}`;
 
+  const ogImage = `${siteConfig.url}/og-image.png`; // public/og-image.png
+
   return {
     title: seo.title,
 
@@ -22,11 +24,11 @@ export function generateCalculatorMetadata(
 
     authors: [
       {
-        name: "Aditya Singh",
+        name: "DevCalc",
       },
     ],
 
-    creator: "Aditya Singh",
+    creator: "DevCalc",
 
     publisher: "DevCalc",
 
@@ -46,12 +48,21 @@ export function generateCalculatorMetadata(
       siteName: siteConfig.name,
       locale: "en_US",
       type: "website",
+      images: [
+        {
+          url: `/logo.png`,
+          width: 1200,
+          height: 630,
+          alt: seo.title,
+        },
+      ],
     },
 
     twitter: {
       card: "summary_large_image",
       title: seo.title,
       description: seo.description,
+      images: [`logo.png`],
     },
   };
 }

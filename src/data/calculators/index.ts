@@ -92,6 +92,9 @@ import { partyBudgetCalculator } from "./other/partyBudgetCalculator";
 import { eventCostCalculator } from "./other/eventCostCalculator";
 import { travelCostCalculator } from "./other/travelCostCalculator";
 import {tileCalculator } from "./construction/tileCalculator";
+import { zodiacCompatibilityCalculator } from "./fun/zodiacCompatibilityCalculator";
+import { kundliMilanCalculator } from "./fun/Kundli";
+import { braSizeCalculator } from "./fun/braCalculator";
 
 export const calculators = [
   ageCalculator,
@@ -188,4 +191,7 @@ export const calculators = [
   eventCostCalculator,
   travelCostCalculator,
   tileCalculator,
+  zodiacCompatibilityCalculator,
+  kundliMilanCalculator,
+  braSizeCalculator,
 ];

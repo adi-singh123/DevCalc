@@ -18,6 +18,18 @@ export const mileageCalculator: Calculator = {
 description:
   "Is your car giving the mileage it promised? Enter fuel filled and distance covered to instantly find your real-world mileage, cost per km, and total trip expense — petrol, diesel, or CNG.",
 keywords: [
+  "bike mileage calculator",
+  "bike average calculator",
+  "motorcycle mileage calculator",
+  "bike fuel cost calculator",
+  "bike fuel consumption calculator",
+  "bike trip cost calculator",
+  "scooter mileage calculator",
+  "two wheeler mileage calculator",
+  "bike running cost calculator",
+  "motorbike fuel calculator",
+
+
   "mileage calculator india",
   "mileage calculator",
   "car mileage calculator",
@@ -63,17 +75,7 @@ keywords: [
   "car fuel estimator",
   "car mileage checker",
 
-  // Bike Mileage Keywords
-  "bike mileage calculator",
-  "bike average calculator",
-  "motorcycle mileage calculator",
-  "bike fuel cost calculator",
-  "bike fuel consumption calculator",
-  "bike trip cost calculator",
-  "scooter mileage calculator",
-  "two wheeler mileage calculator",
-  "bike running cost calculator",
-  "motorbike fuel calculator",
+
 
   // Fuel Cost Keywords
   "fuel expense calculator",

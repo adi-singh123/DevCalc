@@ -1,38 +1,41 @@
 import Link from "next/link";
 import { calculators } from "@/src/data/calculators";
 
-type PopularCalculatorsProps = {
-  currentSlug: string;
+type CalculatorListByCategoryProps = {
+  title: string;
+  category: string;
+  currentSlug?: string;
+  limit?: number;
 };
 
-export default function PopularCalculators({
+export default function CalculatorListByCategory({
+  title,
+  category,
   currentSlug,
-}: PopularCalculatorsProps) {
-const filteredCalculators = calculators.filter(
-  (calculator) =>
-    calculator.isPopular &&
-    calculator.slug !== currentSlug
-);
+  limit = 6,
+}: CalculatorListByCategoryProps) {
+  const filteredCalculators = calculators
+    .filter(
+      (calculator) =>
+        calculator.category === category &&
+        calculator.slug !== currentSlug
+    )
+    .slice(0, limit);
 
-const currentIndex = filteredCalculators.findIndex(
-  (item) => item.slug === currentSlug
-);
-
-const popularCalculators = [
-  ...filteredCalculators.slice(currentIndex + 1),
-  ...filteredCalculators.slice(0, currentIndex + 1),
-].slice(0, 8);
+  if (filteredCalculators.length === 0) {
+    return null;
+  }
 
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
       <div className="border-b border-slate-200 p-4 dark:border-slate-700">
         <h3 className="font-semibold text-slate-900 dark:text-white">
-          Popular Calculators
+          {title}
         </h3>
       </div>
 
       <div className="divide-y divide-slate-200 dark:divide-slate-700">
-        {popularCalculators.map((calculator) => (
+        {filteredCalculators.map((calculator) => (
           <Link
             key={calculator.slug}
             href={`/${calculator.slug}`}

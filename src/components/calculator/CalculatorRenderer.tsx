@@ -92,6 +92,12 @@ import WeddingBudgetCalculator from "./renderers/Weddingbudgetcalculator";
 import EventCostCalculator from "./renderers/Eventcalculator ";
 import TravelCostCalculator from "./renderers/Travelcostcalculator";
 import TileCalculator from "./renderers/TileCalculator";
+import ZodiacCompatibilityCalculator from "./renderers/Zodiaccompatibilitycalculator";
+import KundliMilanCalculator from "./renderers/KundliMilanCalculator";
+import BraSizeCalculator from "./renderers/BraCalculator";
+
+
+
 type Props = {
   slug: string;
 };
@@ -286,7 +292,12 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <TravelCostCalculator/>
     case "tile-calculator":
       return <TileCalculator/>
-
+    case "zodiac-compatibility-calculator": 
+      return <ZodiacCompatibilityCalculator/>
+    case "kundli-milan-calculator":
+      return <KundliMilanCalculator/>
+    case "bra-size-calculator":
+      return <BraSizeCalculator/>
 
     default:
       return (

@@ -20,6 +20,7 @@ export const crushCalculator: Calculator = {
       "Check your compatibility with your crush instantly with our Crush Calculator. Just enter two names to discover your crush percentage, match score, and relationship potential in seconds.",
     keywords: [
       "crush calculator",
+      "crush calculation",
       "crush compatibility calculator",
       "crush percentage calculator",
       "crush calculator by name",
@@ -52,7 +53,6 @@ export const crushCalculator: Calculator = {
       "crush compatibility by name",
       "crush match by name",
       "crush score by name",
-      "crush percentage by names",
       "crush checker by name",
       "name crush calculator",
       "crush predictor by name",
@@ -77,7 +77,6 @@ export const crushCalculator: Calculator = {
       "secret crush compatibility",
       "crush finder calculator",
       "secret love calculator",
-      "hidden crush calculator",
       "crush attraction calculator",
       "secret crush percentage",
       "crush attraction test",
