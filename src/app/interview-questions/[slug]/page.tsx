@@ -14,7 +14,7 @@ import { Lock, Unlock, ChevronRight } from "lucide-react";
 import TopCompanies from "@/src/components/interview/TopCompanies";
 import FAQSection from "@/src/components/calculator/FAQSection";
 import FAQSchema from "@/src/components/seo/FAQSchema";
-import PopularCalculators from '@/src/components/calculator/PopularCalculators';
+
 import { InterviewTopicCard } from '@/src/components/interview/InterviewTopicCard';
 
 interface Props {
@@ -401,8 +401,6 @@ export default async function TopicOverviewPage({ params }: Props) {
           />
           
         </section>
-             <PopularCalculators  
-                  currentSlug="developer-tool"/>
       </div>
     </main>
   );

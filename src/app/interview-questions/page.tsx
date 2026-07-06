@@ -14,7 +14,6 @@ import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import WhyChooseDevCalc from '@/src/components/interview/WhyChooseDevCalc';
 import TopCompanies from '@/src/components/interview/TopCompanies';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import PopularCalculators from '@/src/components/calculator/PopularCalculators';
 
 // --- Metadata ---
 export const metadata: Metadata = {
@@ -495,8 +494,6 @@ export default function InterviewHomePage() {
     </div>
   </div>
 </section>
-        <PopularCalculators  
-          currentSlug="developer-tool"/>
       </div>
     </main>
   );
