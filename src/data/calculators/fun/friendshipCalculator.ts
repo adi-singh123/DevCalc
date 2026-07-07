@@ -34,6 +34,7 @@ description:
   "friendship calculator by name",
 
   "friendship test",
+"  दोस्ती कैलकुलेटर",
 
   "friendship meter",
 
@@ -240,9 +241,6 @@ description:
   "friendship score calculator free",
 
   "friendship match calculator online",
-
-  "fun friendship percentage test",
-
   "online friendship meter calculator",
 
   "friendship compatibility checker",

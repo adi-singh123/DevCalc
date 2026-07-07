@@ -129,6 +129,14 @@ export default async function CalculatorPage({ params }: Props) {
         <div>
           <CalculatorRenderer slug={calculator.slug} />
           <CompareCalculatorSection compareWith={calculator.compareWith} />
+          <div className="mt-8 space-y-6 lg:hidden">
+            
+            <CalculatorListByCategory
+              title="Try Some Fun Calculators"
+              category="Fun"
+              currentSlug={calculator.slug}
+            />
+          </div>
 
           <StepsSection
             title={`How the ${calculator.name} Works`}

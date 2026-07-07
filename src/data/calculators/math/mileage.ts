@@ -20,6 +20,7 @@ description:
 keywords: [
   "bike mileage calculator",
   "bike average calculator",
+  "vehicle mileage check online free",
   "motorcycle mileage calculator",
   "bike fuel cost calculator",
   "bike fuel consumption calculator",
@@ -49,8 +50,6 @@ keywords: [
   "monthly fuel cost calculator",
   "daily fuel expense calculator",
   "fuel budget calculator",
-  "bike mileage calculator",
-  "fuel efficiency calculator",
   "fuel consumption calculator",
   "fuel cost calculator",
   "fuel cost per km calculator",

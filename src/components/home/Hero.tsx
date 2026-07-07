@@ -13,7 +13,6 @@ export default function Hero() {
           free, accurate, and easy-to-use online calculators — no signup
           required.
         </p>
-
     
 
         <div className="mx-auto mt-8 max-w-2xl">
