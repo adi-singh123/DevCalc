@@ -116,7 +116,7 @@ export default function CGPACalculator() {
   };
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="calculator-panel mt-8 rounded-3xl border bg-white p-6 shadow-sm">
    
 
       <p className="mt-2 text-slate-600">

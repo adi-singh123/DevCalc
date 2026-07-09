@@ -126,8 +126,10 @@ export default async function CalculatorPage({ params }: Props) {
         </div>
       </div>
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
-        <div>
-          <CalculatorRenderer slug={calculator.slug} />
+        <div className="min-w-0">
+          <div className="calculator-shell w-full min-w-0 overflow-x-hidden">
+            <CalculatorRenderer slug={calculator.slug} />
+          </div>
           <CompareCalculatorSection compareWith={calculator.compareWith} />
           <div className="mt-8 space-y-6 lg:hidden">
             

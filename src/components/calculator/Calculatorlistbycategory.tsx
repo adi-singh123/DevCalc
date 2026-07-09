@@ -5,22 +5,26 @@ type CalculatorListByCategoryProps = {
   title: string;
   category: string;
   currentSlug?: string;
+  /** Optional hard cap. Leave unset to show every calculator in the category
+   *  inside a scrollable panel instead of truncating the list. */
   limit?: number;
+  /** Max height (px) of the scrollable list before a scrollbar appears. */
+  maxHeightPx?: number;
 };
 
 export default function CalculatorListByCategory({
   title,
   category,
   currentSlug,
-  limit = 6,
+  limit,
+  maxHeightPx = 380,
 }: CalculatorListByCategoryProps) {
-  const filteredCalculators = calculators
-    .filter(
-      (calculator) =>
-        calculator.category === category &&
-        calculator.slug !== currentSlug
-    )
-    .slice(0, limit);
+  const allFiltered = calculators.filter(
+    (calculator) =>
+      calculator.category === category && calculator.slug !== currentSlug
+  );
+
+  const filteredCalculators = limit ? allFiltered.slice(0, limit) : allFiltered;
 
   if (filteredCalculators.length === 0) {
     return null;
@@ -34,7 +38,10 @@ export default function CalculatorListByCategory({
         </h3>
       </div>
 
-      <div className="divide-y divide-slate-200 dark:divide-slate-700">
+      <div
+        className="thin-scrollbar divide-y divide-slate-200 overflow-y-auto dark:divide-slate-700"
+        style={{ maxHeight: maxHeightPx }}
+      >
         {filteredCalculators.map((calculator) => (
           <Link
             key={calculator.slug}

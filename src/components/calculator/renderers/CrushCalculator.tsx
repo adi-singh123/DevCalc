@@ -209,7 +209,7 @@ export default function CrushCalculator() {
     : [];
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:p-6">
       <div className="mt-4">
         <label className="mb-2 block font-medium">
           Your Name
@@ -250,17 +250,17 @@ export default function CrushCalculator() {
         </div>
       )}
 
-      <div className="mt-6 flex gap-4">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           onClick={handleCalculate}
-          className="cursor-pointer rounded-xl bg-rose-600 px-6 py-3 text-white transition-all duration-300 hover:scale-105 hover:bg-rose-700 hover:shadow-lg"
+          className="w-full cursor-pointer rounded-xl bg-rose-600 px-6 py-3 text-white transition-all duration-300 hover:scale-105 hover:bg-rose-700 hover:shadow-lg sm:w-auto"
         >
           Calculate Crush Match
         </button>
 
         <button
           onClick={handleReset}
-          className="cursor-pointer rounded-xl border px-6 py-3 transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-lg"
+          className="w-full cursor-pointer rounded-xl border px-6 py-3 transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-lg sm:w-auto"
         >
           Reset
         </button>

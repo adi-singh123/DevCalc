@@ -450,7 +450,7 @@ export default function TileCalculator() {
   const isCustomTileSize = tileSizeKey === "custom";
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="calculator-panel mt-8 rounded-3xl border bg-white p-6 shadow-sm">
       {/* ---- Room area (multi-section for irregular rooms) ---- */}
       <div className="mb-6">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-3">

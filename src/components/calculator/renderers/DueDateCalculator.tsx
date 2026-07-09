@@ -110,7 +110,7 @@ export default function DueDateCalculator() {
     : [];
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="calculator-panel mt-8 rounded-3xl border bg-white p-6 shadow-sm">
      
 
       <div className="mt-6">

@@ -104,11 +104,11 @@ export default function PartyBudgetCalculator() {
   };
 
   return (
-    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-6 shadow-sm">
-      <h2 className="mb-4 text-xl font-semibold overflow-x-autoautoauto">Party Budget Calculator</h2>
+    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-4 shadow-sm sm:p-6">
+      <h2 className="mb-4 overflow-x-auto text-xl font-semibold">Party Budget Calculator</h2>
 
       <div className="flex flex-wrap gap-4">
-       <div className="flex-[2_1_260px] min-w-[200px]">
+       <div className="flex-[2_1_260px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Party Type</label>
           <select
             className="w-full min-w-0 rounded-xl border px-3 py-2 pr-8"
@@ -123,7 +123,7 @@ export default function PartyBudgetCalculator() {
           </select>
         </div>
 
-        <div className="flex-1 basis-[180px] min-w-[140px]">
+        <div className="flex-1 basis-[180px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Number of Guests</label>
           <input
             ref={guestsRef}
@@ -135,7 +135,7 @@ export default function PartyBudgetCalculator() {
           />
         </div>
 
-        <div className="flex-1 basis-56 min-w-[160px]">
+        <div className="flex-1 basis-56 min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Venue Type</label>
           <select
             className="w-full min-w-0 rounded-xl border px-3 py-2"
@@ -150,7 +150,7 @@ export default function PartyBudgetCalculator() {
           </select>
         </div>
 
-        <div className="flex-1 basis-56 min-w-[160px]">
+        <div className="flex-1 basis-56 min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Catering Tier</label>
           <select
             className="w-full min-w-0 rounded-xl border px-3 py-2"
@@ -165,7 +165,7 @@ export default function PartyBudgetCalculator() {
           </select>
         </div>
 
-        <div className="flex-[2_1_260px] min-w-[200px]">
+        <div className="flex-[2_1_260px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Entertainment Budget (₹)</label>
           <input
             ref={entertainmentRef}
@@ -181,13 +181,13 @@ export default function PartyBudgetCalculator() {
       <div className="mt-6 flex flex-wrap gap-3">
         <button
           onClick={() => setSubmitted(true)}
-          className="flex-1 basis-[140px] min-w-[100px] rounded-xl bg-amber-600 px-4 py-2 font-medium text-white hover:bg-amber-700"
+          className="flex-1 basis-[140px] min-w-0 rounded-xl bg-amber-600 px-4 py-2 font-medium text-white hover:bg-amber-700"
         >
           Calculate
         </button>
         <button
           onClick={handleReset}
-          className="flex-1 basis-[140px] min-w-[100px] rounded-xl border px-4 py-2 font-medium text-gray-700 hover:bg-gray-50"
+          className="flex-1 basis-[140px] min-w-0 rounded-xl border px-4 py-2 font-medium text-gray-700 hover:bg-gray-50"
         >
           Reset
         </button>
@@ -195,9 +195,9 @@ export default function PartyBudgetCalculator() {
 
       {result && (
         <div className="mt-6 overflow-hidden rounded-2xl bg-amber-50 p-5">
-          <p className="overflow-x-autoautoautoautoautoautoautoautoauto text-sm text-gray-600">Estimated Total Party Cost</p>
-          <p className="overflow-x-autoautoautoautoautoautoautoautoautoautoautoauto text-3xl font-bold text-amber-700">{formatINR(result.total)}</p>
-          <p className="mt-1 overflow-x-autoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoauto text-sm text-gray-600">
+          <p className="overflow-x-autoautoautoautoautoautoautoauto text-sm text-gray-600">Estimated Total Party Cost</p>
+          <p className="overflow-x-autoautoautoautoautoautoautoautoautoautoauto text-3xl font-bold text-amber-700">{formatINR(result.total)}</p>
+          <p className="mt-1 overflow-x-autoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoauto text-sm text-gray-600">
             {formatINR(result.perGuest)} per guest
           </p>
         </div>

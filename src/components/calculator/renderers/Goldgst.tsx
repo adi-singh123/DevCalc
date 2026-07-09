@@ -144,7 +144,7 @@ export default function GoldGstCalculator() {
   };
 
   return (
-    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-4 shadow-sm sm:p-6">
       {/* Purity — flex-wrap with a min basis per button, reflows based on
           actual available width rather than viewport breakpoints */}
       <div>
@@ -155,7 +155,7 @@ export default function GoldGstCalculator() {
               key={opt.value}
               type="button"
               onClick={() => setPurity(opt.value)}
-              className={`min-w-[72px] flex-1 basis-[72px] cursor-pointer rounded-xl border p-3 text-sm transition-all duration-300 ${
+              className={`min-w-0 flex-1 basis-[72px] cursor-pointer rounded-xl border p-3 text-sm transition-all duration-300 ${
                 purity === opt.value
                   ? "border-black bg-black text-white"
                   : "hover:bg-gray-100"
@@ -168,7 +168,7 @@ export default function GoldGstCalculator() {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-4">
-        <div className="min-w-[180px] flex-1 basis-56">
+        <div className="min-w-0 flex-1 basis-56">
           <label className="mb-2 block font-medium">
             Gold Rate (₹ per gram)
           </label>
@@ -184,7 +184,7 @@ export default function GoldGstCalculator() {
           />
         </div>
 
-        <div className="min-w-[180px] flex-1 basis-56">
+        <div className="min-w-0 flex-1 basis-56">
           <label className="mb-2 block font-medium">Weight (grams)</label>
           <input
             ref={weightRef}
@@ -308,7 +308,7 @@ export default function GoldGstCalculator() {
 
       {result && (
         <div className="mt-8 rounded-2xl border bg-yellow-50 p-6 text-center">
-          <h3 className="text-xl font-semibold overflow-x-autoautoauto">
+          <h3 className="text-xl font-semibold overflow-x-autoauto">
             Total GST: {formatINR(result.totalGst)}
           </h3>
 

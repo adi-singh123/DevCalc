@@ -267,7 +267,7 @@ export default function HouseConstructionCostCalculator() {
   }
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="calculator-panel mt-8 rounded-3xl border bg-white p-6 shadow-sm">
       <div className="grid gap-4 md:grid-cols-2">
         <div>
           <label htmlFor={areaId} className={LABEL_CLASS}>

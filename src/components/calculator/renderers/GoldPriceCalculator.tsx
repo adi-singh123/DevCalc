@@ -111,11 +111,11 @@ export default function GoldPriceCalculator() {
   };
 
   return (
-    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-4 shadow-sm sm:p-6">
       {/* Gold rate + weight/unit — flex-wrap instead of a fixed grid,
           so it reflows based on actual available width, not viewport size */}
       <div className="flex flex-wrap gap-4">
-        <div className="min-w-[180px] flex-1 basis-56">
+        <div className="min-w-0 flex-1 basis-56">
           <label className="mb-2 block font-medium">
             Gold Rate (₹ per gram)
           </label>
@@ -131,7 +131,7 @@ export default function GoldPriceCalculator() {
           />
         </div>
 
-        <div className="min-w-[180px] flex-1 basis-[220px]">
+        <div className="min-w-0 flex-1 basis-[220px]">
           <label className="mb-2 block font-medium">Weight</label>
           <div className="flex flex-wrap gap-2">
             <input
@@ -142,7 +142,7 @@ export default function GoldPriceCalculator() {
               placeholder="e.g. 10"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
-              className="min-w-0 flex-[2] basis-[90px] rounded-xl border p-3"
+              className="min-w-0 flex-2 basis-[90px] rounded-xl border p-3"
             />
 
             <select
@@ -171,7 +171,7 @@ export default function GoldPriceCalculator() {
               key={opt.value}
               type="button"
               onClick={() => setPurity(opt.value)}
-              className={`min-w-[72px] flex-1 basis-[72px] cursor-pointer rounded-xl border p-3 text-sm transition-all duration-300 ${
+              className={`min-w-0 flex-1 basis-[72px] cursor-pointer rounded-xl border p-3 text-sm transition-all duration-300 ${
                 purity === opt.value
                   ? "border-black bg-black text-white"
                   : "hover:bg-gray-100"
@@ -184,7 +184,7 @@ export default function GoldPriceCalculator() {
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border p-3">
-        <label className="min-w-0 flex-1 overflow-x-autoautoautoauto pr-2 font-medium">
+        <label className="min-w-0 flex-1 overflow-x-autoautoauto pr-2 font-medium">
           Rate entered is already for {purity} (not the 24K base rate)
         </label>
         <input
@@ -198,14 +198,14 @@ export default function GoldPriceCalculator() {
       <div className="mt-6 flex flex-wrap gap-4">
         <button
           onClick={() => setSubmitted(true)}
-          className="flex-1 basis-[140px] cursor-pointer rounded-xl bg-black px-6 py-3 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          className="flex-1 basis-35 cursor-pointer rounded-xl bg-black px-6 py-3 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
         >
           Calculate Value
         </button>
 
         <button
           onClick={handleReset}
-          className="flex-1 basis-[100px] cursor-pointer rounded-xl border px-6 py-3 transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-lg"
+          className="flex-1 basis-25 cursor-pointer rounded-xl border px-6 py-3 transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-lg"
         >
           Reset
         </button>
@@ -213,7 +213,7 @@ export default function GoldPriceCalculator() {
 
       {result && (
         <div className="mt-8 rounded-2xl border bg-yellow-50 p-6 text-center">
-          <h3 className="text-xl font-semibold overflow-x-autoautoautoautoautoautoauto">
+          <h3 className="text-xl font-semibold overflow-x-autoautoautoautoautoauto">
             Your gold is worth {formatINR(result.totalValue)}
           </h3>
 

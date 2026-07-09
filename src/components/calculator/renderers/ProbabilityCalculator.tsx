@@ -106,7 +106,7 @@ export default function ProbabilityCalculator() {
   };
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="calculator-panel mt-8 rounded-3xl border bg-white p-6 shadow-sm">
       <h2 className="text-2xl font-bold">
         Probability Calculator
       </h2>

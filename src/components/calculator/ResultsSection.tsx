@@ -22,7 +22,7 @@ export default function ResultsSection({
   const secondaryResults = results.filter((item) => !item.highlight);
 
   return (
-    <section className="mt-12">
+    <section className="mt-12 w-full">
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
           {title}
@@ -55,7 +55,7 @@ export default function ResultsSection({
             Main Result
           </p>
 
-          <h3 className="mt-3 overflow-x-auto text-5xl font-bold text-slate-900 dark:text-white">
+          <h3 className="mt-3 overflow-x-auto text-4xl font-bold text-slate-900 dark:text-white sm:text-5xl">
             {mainResult.value}
           </h3>
 
@@ -66,7 +66,7 @@ export default function ResultsSection({
       )}
 
       {secondaryResults.length > 0 && (
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {secondaryResults.map((result) => (
             <div
               key={result.label}

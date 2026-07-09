@@ -96,7 +96,7 @@ export default function AgeCalculator() {
     : "";
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-4 shadow-sm sm:p-6">
       <div className="mt-6">
         <label className="mb-2 block font-medium">Date of Birth</label>
 
@@ -123,10 +123,10 @@ export default function AgeCalculator() {
         />
       </div>
 
-      <div className="mt-6 flex gap-4">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           onClick={() => setSubmitted(true)}
-          className="cursor-pointer rounded-xl bg-black px-6 py-3 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          className="w-full cursor-pointer rounded-xl bg-black px-6 py-3 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg sm:w-auto"
         >
           Calculate Age
         </button>
@@ -137,7 +137,7 @@ export default function AgeCalculator() {
             setCurrentDate(new Date().toISOString().split("T")[0]);
             setSubmitted(false);
           }}
-          className="cursor-pointer rounded-xl border px-6 py-3 transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-lg"
+          className="w-full cursor-pointer rounded-xl border px-6 py-3 transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-lg sm:w-auto"
         >
           Reset
         </button>

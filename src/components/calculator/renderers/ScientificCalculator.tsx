@@ -107,7 +107,7 @@ export default function ScientificCalculator() {
   "rounded-lg border p-3 font-medium transition hover:bg-slate-100";
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="calculator-panel mt-8 rounded-3xl border bg-white p-6 shadow-sm">
       <h2 className="text-2xl font-bold">Scientific Calculator</h2>
 
       <div className="mt-6">

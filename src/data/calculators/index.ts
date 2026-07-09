@@ -95,6 +95,8 @@ import {tileCalculator } from "./construction/tileCalculator";
 import { zodiacCompatibilityCalculator } from "./fun/zodiacCompatibilityCalculator";
 import { kundliMilanCalculator } from "./fun/Kundli";
 import { braSizeCalculator } from "./fun/braCalculator";
+import { rebarCuttingLengthCalculator } from "./construction/rebarcuttinglengthcalculator";
+import { fertilizerRequirementCalculator } from "./other/fertilizerRequirementCalculator";
 
 export const calculators = [
   ageCalculator,
@@ -194,4 +196,6 @@ export const calculators = [
   zodiacCompatibilityCalculator,
   kundliMilanCalculator,
   braSizeCalculator,
+  rebarCuttingLengthCalculator,
+  fertilizerRequirementCalculator,
 ];

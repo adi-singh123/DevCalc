@@ -95,8 +95,8 @@ import TileCalculator from "./renderers/TileCalculator";
 import ZodiacCompatibilityCalculator from "./renderers/Zodiaccompatibilitycalculator";
 import KundliMilanCalculator from "./renderers/KundliMilanCalculator";
 import BraSizeCalculator from "./renderers/BraCalculator";
-
-
+import RebarCalculator from "./renderers/Rebarcuttinglengthcalculator";
+import FertilizerRequirementCalculator from "./renderers/Fertilizercalculator";
 
 type Props = {
   slug: string;
@@ -298,6 +298,10 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <KundliMilanCalculator/>
     case "bra-size-calculator":
       return <BraSizeCalculator/>
+    case "rebar-cutting-length-calculator":
+      return <RebarCalculator/>
+    case "fertilizer-requirement-calculator":
+      return <FertilizerRequirementCalculator/>
 
     default:
       return (

@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-// export const runtime = "node";
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   try {
@@ -46,7 +46,9 @@ export async function POST(req: NextRequest) {
     //   Google Account → Security → 2-Step Verification → App Passwords
     //   Select "Mail" + "Other" → copy the 16-char password
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: gmailUser,
         pass: gmailPass,

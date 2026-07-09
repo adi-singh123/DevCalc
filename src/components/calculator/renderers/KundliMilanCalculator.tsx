@@ -321,7 +321,7 @@ export default function KundliMilanCalculator() {
   const handleGirlRashiChange = makeChangeHandler(setGirlRashi, "girlRashi");
 
   return (
-    <div className="mt-8 rounded-3xl border bg-white p-6 shadow-sm">
+    <div className="calculator-panel mt-8 rounded-3xl border bg-white p-6 shadow-sm">
       <div className="grid gap-6 md:grid-cols-2">
         {/* Boy */}
         <div className="space-y-4 rounded-2xl border p-4">

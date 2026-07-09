@@ -103,11 +103,11 @@ export default function WeddingBudgetCalculator() {
   };
 
   return (
-    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-6 shadow-sm">
-      <h2 className="mb-4 text-xl font-semibold overflow-x-auto">Wedding Budget Calculator</h2>
+    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-4 shadow-sm sm:p-6">
+      <h2 className="mb-4 overflow-x-auto text-xl font-semibold">Wedding Budget Calculator</h2>
 
       <div className="flex flex-wrap gap-4">
-        <div className="flex-1 basis-[220px] min-w-[160px]">
+        <div className="flex-1 basis-[220px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Number of Guests</label>
           <input
             ref={guestsRef}
@@ -119,7 +119,7 @@ export default function WeddingBudgetCalculator() {
           />
         </div>
 
-        <div className="flex-1 basis-[220px] min-w-[160px]">
+        <div className="flex-1 basis-[220px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Number of Events</label>
           <input
             ref={eventsRef}
@@ -131,7 +131,7 @@ export default function WeddingBudgetCalculator() {
           />
         </div>
 
-        <div className="flex-1 basis-[260px] min-w-[180px]">
+        <div className="flex-1 basis-[260px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">City Tier</label>
           <select
             className="w-full min-w-0 rounded-xl border px-3 py-2"
@@ -146,7 +146,7 @@ export default function WeddingBudgetCalculator() {
           </select>
         </div>
 
-        <div className="flex-1 basis-[220px] min-w-[160px]">
+        <div className="flex-1 basis-[220px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Wedding Style</label>
           <select
             className="w-full min-w-0 rounded-xl border px-3 py-2"
@@ -161,7 +161,7 @@ export default function WeddingBudgetCalculator() {
           </select>
         </div>
 
-        <div className="flex-1 basis-[220px] min-w-[160px]">
+        <div className="flex-1 basis-[220px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Contingency (%)</label>
           <input
             ref={contingencyRef}
@@ -177,13 +177,13 @@ export default function WeddingBudgetCalculator() {
       <div className="mt-6 flex flex-wrap gap-3">
         <button
           onClick={() => setSubmitted(true)}
-          className="flex-1 basis-[140px] min-w-[100px] rounded-xl bg-rose-600 px-4 py-2 font-medium text-white hover:bg-rose-700"
+          className="flex-1 basis-[140px] min-w-0 rounded-xl bg-rose-600 px-4 py-2 font-medium text-white hover:bg-rose-700"
         >
           Calculate
         </button>
         <button
           onClick={handleReset}
-          className="flex-1 basis-[140px] min-w-[100px] rounded-xl border px-4 py-2 font-medium text-gray-700 hover:bg-gray-50"
+          className="flex-1 basis-[140px] min-w-0 rounded-xl border px-4 py-2 font-medium text-gray-700 hover:bg-gray-50"
         >
           Reset
         </button>

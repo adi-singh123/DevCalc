@@ -8,11 +8,78 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: white;
   color: #0f172a;
+}
+
+.calculator-shell,
+.calculator-shell * {
+  box-sizing: border-box;
+}
+
+.calculator-shell {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.calculator-shell input,
+.calculator-shell select,
+.calculator-shell textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.calculator-shell button {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .calculator-shell button {
+    width: auto;
+  }
+}
+
+.calculator-shell .flex,
+.calculator-shell .inline-flex {
+  flex-wrap: wrap;
+}
+
+.calculator-panel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.calculator-panel input,
+.calculator-panel select,
+.calculator-panel textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.calculator-panel button {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .calculator-panel button {
+    width: auto;
+  }
 }
 
 .dark body {
@@ -53,4 +120,40 @@ body {
 .dark .bg-indigo-50,
 .dark .bg-yellow-50 {
   background-color: #1e293b !important;
+}
+
+
+/* Thin, low-visual-weight scrollbar for scrollable lists */
+.thin-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgb(203 213 225) transparent; /* thumb / track — slate-300 */
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(203 213 225); /* slate-300 */
+  border-radius: 9999px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(148 163 184); /* slate-400 */
+}
+
+.dark .thin-scrollbar {
+  scrollbar-color: rgb(71 85 105) transparent; /* slate-600 */
+}
+
+.dark .thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(71 85 105);
+}
+
+.dark .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(100 116 139); /* slate-500 */
 }

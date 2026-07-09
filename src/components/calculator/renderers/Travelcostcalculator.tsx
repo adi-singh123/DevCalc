@@ -131,11 +131,11 @@ export default function TravelCostCalculator() {
   };
 
   return (
-    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-6 shadow-sm">
-      <h2 className="mb-4 text-xl font-semibold overflow-x-autoautoautoauto">Travel Cost Calculator</h2>
+    <div className="mt-8 w-full max-w-full overflow-hidden rounded-3xl border bg-white p-4 shadow-sm sm:p-6">
+      <h2 className="mb-4 overflow-x-auto text-xl font-semibold">Travel Cost Calculator</h2>
 
       <div className="flex flex-wrap gap-4">
-        <div className="flex-1 basis-[200px] min-w-[150px]">
+        <div className="flex-1 basis-[200px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Distance (km, one-way)</label>
           <input
             ref={distanceRef}
@@ -147,7 +147,7 @@ export default function TravelCostCalculator() {
           />
         </div>
 
-        <div className="flex-1 basis-[180px] min-w-[140px]">
+        <div className="flex-1 basis-[180px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Trip Type</label>
           <select
             className="w-full min-w-0 rounded-xl border px-3 py-2"
@@ -162,7 +162,7 @@ export default function TravelCostCalculator() {
           </select>
         </div>
 
-        <div className="flex-1 basis-[200px] min-w-[150px]">
+        <div className="flex-1 basis-[200px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Fuel Type</label>
           <select
             className="w-full min-w-0 rounded-xl border px-3 py-2"
@@ -177,7 +177,7 @@ export default function TravelCostCalculator() {
           </select>
         </div>
 
-        <div className="flex-1 basis-[180px] min-w-[140px]">
+        <div className="flex-1 basis-[180px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">
             Mileage (km/{FUEL_OPTIONS.find((f) => f.value === fuelType)?.unit})
           </label>
@@ -191,7 +191,7 @@ export default function TravelCostCalculator() {
           />
         </div>
 
-        <div className="flex-1 basis-[180px] min-w-[140px]">
+        <div className="flex-1 basis-[180px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">
             Fuel Price (₹/{FUEL_OPTIONS.find((f) => f.value === fuelType)?.unit})
           </label>
@@ -205,7 +205,7 @@ export default function TravelCostCalculator() {
           />
         </div>
 
-        <div className="flex-1 basis-[160px] min-w-[120px]">
+        <div className="flex-1 basis-[160px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Travelers</label>
           <input
             ref={travelersRef}
@@ -217,7 +217,7 @@ export default function TravelCostCalculator() {
           />
         </div>
 
-        <div className="flex-1 basis-[160px] min-w-[120px]">
+        <div className="flex-1 basis-[160px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Days</label>
           <input
             ref={daysRef}
@@ -229,7 +229,7 @@ export default function TravelCostCalculator() {
           />
         </div>
 
-        <div className="flex-1 basis-56w-[160px]">
+        <div className="flex-1 basis-56 min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Hotel Tier</label>
           <select
             className="w-full min-w-0 rounded-xl border px-3 py-2"
@@ -244,7 +244,7 @@ export default function TravelCostCalculator() {
           </select>
         </div>
 
-        <div className="flex-1 basis-[200px] min-w-[150px]">
+        <div className="flex-1 basis-[200px] min-w-0">
           <label className="mb-1 block text-sm font-medium text-gray-700">Food Per Person/Day (₹)</label>
           <input
             ref={foodRef}
@@ -260,13 +260,13 @@ export default function TravelCostCalculator() {
       <div className="mt-6 flex flex-wrap gap-3">
         <button
           onClick={() => setSubmitted(true)}
-          className="flex-1 basis-[140px] min-w-[100px] rounded-xl bg-teal-600 px-4 py-2 font-medium text-white hover:bg-teal-700"
+          className="flex-1 basis-[140px] min-w-0 rounded-xl bg-teal-600 px-4 py-2 font-medium text-white hover:bg-teal-700"
         >
           Calculate
         </button>
         <button
           onClick={handleReset}
-          className="flex-1 basis-[140px] min-w-[100px] rounded-xl border px-4 py-2 font-medium text-gray-700 hover:bg-gray-50"
+          className="flex-1 basis-[140px] min-w-0 rounded-xl border px-4 py-2 font-medium text-gray-700 hover:bg-gray-50"
         >
           Reset
         </button>
@@ -274,9 +274,9 @@ export default function TravelCostCalculator() {
 
       {result && (
         <div className="mt-6 overflow-hidden rounded-2xl bg-teal-50 p-5">
-          <p className="overflow-x-autoautoautoautoautoautoautoautoautoauto text-sm text-gray-600">Estimated Total Trip Cost</p>
-          <p className="overflow-x-autoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoauto text-3xl font-bold text-teal-700">{formatINR(result.total)}</p>
-          <p className="mt-1 overflow-x-autoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoauto text-sm text-gray-600">
+          <p className="overflow-x-autoautoautoautoautoautoautoautoauto text-sm text-gray-600">Estimated Total Trip Cost</p>
+          <p className="overflow-x-autoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoauto text-3xl font-bold text-teal-700">{formatINR(result.total)}</p>
+          <p className="mt-1 overflow-x-autoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoauto text-sm text-gray-600">
             {formatINR(result.perTraveler)} per traveler
           </p>
         </div>
