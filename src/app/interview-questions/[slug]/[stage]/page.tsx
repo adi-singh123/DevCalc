@@ -11,6 +11,14 @@ interface Props {
   params: Promise<{ slug: string; stage: string }>;
 }
 
+const STAGES = ["beginner", "intermediate", "advanced", "mnc"];
+
+export async function generateStaticParams() {
+  return interviewTopics.flatMap((topic) =>
+    STAGES.map((stage) => ({ slug: topic.slug, stage }))
+  );
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, stage } = await params;
 

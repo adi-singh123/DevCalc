@@ -73,8 +73,11 @@ interface Props {
 export default function StageQuizClient({ slug, stage }: Props) {
   const router = useRouter();
 
-  const normalizedStage = (stage.charAt(0).toUpperCase() +
-    stage.slice(1)) as InterviewStage;
+  const normalizedStage = (
+    stage.toLowerCase() === "mnc"
+      ? "MNC"
+      : (stage.charAt(0).toUpperCase() + stage.slice(1))
+  ) as InterviewStage;
   const nextStage = getNextStage(normalizedStage);
   const isFinalStage = normalizedStage === "MNC";
 

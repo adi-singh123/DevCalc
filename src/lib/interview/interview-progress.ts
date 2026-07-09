@@ -63,7 +63,7 @@ export const saveProgress = (topicSlug: string, progress: InterviewProgress): vo
 
 export const checkStageAccess = (stage: InterviewStage, progress: InterviewProgress | null): boolean => {
   if (!progress) return stage === 'Beginner';
-  return progress.stages[stage].isUnlocked;
+  return progress.stages[stage]?.isUnlocked ?? false;
 };
 
 export const getNextStage = (currentStage: InterviewStage): InterviewStage | null => {
