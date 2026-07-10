@@ -17,8 +17,7 @@ export const percentageDifferenceCalculator: Calculator = {
       "Percentage Difference Calculator - Find Percentage Change",
 
     description:
-      "Use our Percentage Difference Calculator to compare two numbers and calculate percentage difference, increase, decrease, and percentage change instantly.",
-
+"Compare two numbers and instantly calculate the percentage difference, increase, or decrease between them — free, accurate, and easy to use.",
     keywords: [
       "percentage difference calculator",
       "percent difference calculator",

@@ -13,10 +13,10 @@ export const cagrCalculator: Calculator = {
   isPopular: true,
 
   seo: {
-    title: "CAGR Calculator - Calculate Compound Annual Growth Rate Online",
+    title: "CAGR Calculator - Compound Annual Growth Rate Online",
 
 description:
-  "Want to know how fast your investment actually grew per year? Enter the start value, end value, and duration — get the exact CAGR, absolute return, and profit amount instantly.",
+  "Enter your start value, end value, and duration to instantly calculate CAGR, absolute return, and total profit on your investment.",
 keywords: [
   "cagr calculator",
   "compound annual growth rate calculator",

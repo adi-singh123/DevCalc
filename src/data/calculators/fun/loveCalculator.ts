@@ -15,10 +15,10 @@ export const loveCalculator: Calculator = {
   compareWith: ["friendship-calculator", "crush-calculator"],
 
   seo: {
-    title: "Love Calculator - Check Love Percentage by Name Online Free",
+    title: "Love Calculator - Check Love Percentage by Name",
 
 description:
-  "Curious if you and your crush are meant to be? Enter two names and get your love compatibility score instantly — just for fun, totally free, and very shareable.",
+"Curious if you and your crush are meant to be? Enter two names and get your love compatibility score instantly — free, fun, and shareable.",
 keywords: [
   "love calculator",
   "love calculator by name",

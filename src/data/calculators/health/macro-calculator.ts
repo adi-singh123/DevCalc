@@ -17,8 +17,7 @@ export const macroCalculator: Calculator = {
       "Macro Calculator - Calculate Protein, Carbs & Fat Intake",
 
     description:
-      "Use our free Macro Calculator to determine your daily protein, carbohydrate, and fat requirements. Perfect for weight loss, muscle gain, fitness, and healthy eating plans.",
-
+"Calculate your daily protein, carb, and fat needs with our free Macro Calculator. Ideal for weight loss, muscle gain, and balanced fitness nutrition.",
 keywords: [
   "macro calculator",
   "macronutrient calculator",

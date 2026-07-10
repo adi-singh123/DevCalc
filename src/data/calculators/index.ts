@@ -4,12 +4,12 @@ import { percentageCalculator } from "./math/percentage";
 import { dateCalculator } from "./utility/date";
 import { gstCalculator } from "./finance/gst";
 import { emiCalculator } from "./finance/emi";
-import { mileageCalculator } from "./math/mileage";
+import { mileageCalculator } from "./vehical/mileage";
 import { sipCalculator } from "./finance/sip";
 import { fdCalculator } from "./finance/fd";
 import { simpleInterestCalculator } from "./finance/simpleInterestCalculator";
 import { discountCalculator } from "./math/discountCalculator";
-import { fuelCostCalculator } from "./math/fuelCostCalculator";
+import { fuelCostCalculator } from "./vehical/fuelCostCalculator";
 import { gpaCalculator } from "./education/gpaCalculator";
 import { unitConverter } from "./utility/unitconverter";
 import { hraCalculator } from "./finance/hraCalculator";
@@ -97,6 +97,8 @@ import { kundliMilanCalculator } from "./fun/Kundli";
 import { braSizeCalculator } from "./fun/braCalculator";
 import { rebarCuttingLengthCalculator } from "./construction/rebarcuttinglengthcalculator";
 import { fertilizerRequirementCalculator } from "./other/fertilizerRequirementCalculator";
+import { roadTaxCalculator } from "./vehical/roadTaxCalculator";
+import { armyCalculator } from "./other/army";
 
 export const calculators = [
   ageCalculator,
@@ -198,4 +200,6 @@ export const calculators = [
   braSizeCalculator,
   rebarCuttingLengthCalculator,
   fertilizerRequirementCalculator,
+  roadTaxCalculator,
+  armyCalculator,
 ];

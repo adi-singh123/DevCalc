@@ -97,6 +97,8 @@ import KundliMilanCalculator from "./renderers/KundliMilanCalculator";
 import BraSizeCalculator from "./renderers/BraCalculator";
 import RebarCalculator from "./renderers/Rebarcuttinglengthcalculator";
 import FertilizerRequirementCalculator from "./renderers/Fertilizercalculator";
+import RoadTaxCalculator from "./renderers/Roadtaxcalculator";
+import ArmyCalculator from "./renderers/Armycalculator";
 
 type Props = {
   slug: string;
@@ -302,6 +304,10 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <RebarCalculator/>
     case "fertilizer-requirement-calculator":
       return <FertilizerRequirementCalculator/>
+    case "road-tax-calculator":
+      return <RoadTaxCalculator/>;
+    case "army-physical-eligibility-calculator":
+      return <ArmyCalculator/>
 
     default:
       return (

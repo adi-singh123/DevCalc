@@ -19,10 +19,10 @@ export const friendshipCalculator: Calculator = {
 
   seo: {
     title:
-      "Friendship Calculator - Check Your Friendship Percentage by Name",
+      "Friendship Calculator - Check Your Friendship Percentage",
 
 description:
-  "How compatible are you and your best friend? Enter two names and instantly find out your friendship match percentage — a fun way to settle the debate once and for all.",
+  "Enter two names to instantly discover your friendship percentage. A fun, free way to see how compatible you and your best friend really are.",
  keywords: [
 
   "friendship calculator",

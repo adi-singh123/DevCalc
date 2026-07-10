@@ -52,7 +52,6 @@ export default function MileageCalculator() {
       costPer100Km,
     };
   }, [
-    vehicleType,
     distance,
     fuelUsed,
     fuelPrice,

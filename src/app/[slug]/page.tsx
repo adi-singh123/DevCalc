@@ -138,6 +138,11 @@ export default async function CalculatorPage({ params }: Props) {
               category="Fun"
               currentSlug={calculator.slug}
             />
+            <CalculatorListByCategory
+              title="Construction Calculators"
+              category="Construction"
+              currentSlug={calculator.slug}
+            />
           </div>
 
           <StepsSection

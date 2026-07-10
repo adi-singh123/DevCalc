@@ -13,10 +13,10 @@ export const mileageCalculator: Calculator = {
   isPopular: true,
 
   seo: {
-    title: "Mileage Calculator - Calculate Car, Bike & Fuel Cost Per KM Online",
+    title: "Mileage Calculator – Calculate Bike & Car Fuel Cost",
 
 description:
-  "Is your car giving the mileage it promised? Enter fuel filled and distance covered to instantly find your real-world mileage, cost per km, and total trip expense — petrol, diesel, or CNG.",
+ "Calculate your car or bike's real mileage, fuel cost per km, and trip expense instantly. Works for petrol, diesel, CNG, and EVs — free online tool.",
 keywords: [
   "bike mileage calculator",
   "bike average calculator",
