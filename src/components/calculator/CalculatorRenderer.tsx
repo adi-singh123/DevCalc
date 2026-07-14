@@ -99,6 +99,8 @@ import RebarCalculator from "./renderers/Rebarcuttinglengthcalculator";
 import FertilizerRequirementCalculator from "./renderers/Fertilizercalculator";
 import RoadTaxCalculator from "./renderers/Roadtaxcalculator";
 import ArmyCalculator from "./renderers/Armycalculator";
+import EvVsPetrolCalculator from "./renderers/EvVsPetrolCalculator";
+import NetWorthCalculator from "./renderers/Networth";
 
 type Props = {
   slug: string;
@@ -308,6 +310,10 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <RoadTaxCalculator/>;
     case "army-physical-eligibility-calculator":
       return <ArmyCalculator/>
+    case "ev-vs-petrol-cost-calculator":
+      return <EvVsPetrolCalculator/>;
+    case  "net-worth-calculator":
+      return <NetWorthCalculator/>
 
     default:
       return (

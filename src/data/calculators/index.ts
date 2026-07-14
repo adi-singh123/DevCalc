@@ -99,6 +99,8 @@ import { rebarCuttingLengthCalculator } from "./construction/rebarcuttinglengthc
 import { fertilizerRequirementCalculator } from "./other/fertilizerRequirementCalculator";
 import { roadTaxCalculator } from "./vehical/roadTaxCalculator";
 import { armyCalculator } from "./other/army";
+import { evVsPetrolCalculator } from "./vehical/ev-vs-petrol";
+import { netWorthCalculator } from "./other/netWorthCalculator";
 
 export const calculators = [
   ageCalculator,
@@ -202,4 +204,6 @@ export const calculators = [
   fertilizerRequirementCalculator,
   roadTaxCalculator,
   armyCalculator,
+  evVsPetrolCalculator,
+  netWorthCalculator,
 ];

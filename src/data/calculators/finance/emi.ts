@@ -18,7 +18,7 @@ export const emiCalculator: Calculator = {
 description:
   "Planning a home, car, or personal loan? Enter the amount, interest rate, and tenure to instantly see your monthly EMI, total interest payable, and full repayment breakdown.",
 keywords: [
-  "emi calculator",
+  "emi calculator for 20 lakh home loan",
   "loan emi calculator",
   "emi calculator india",
   "monthly emi calculator",
@@ -26,7 +26,7 @@ keywords: [
   "personal loan emi calculator",
   "car loan emi calculator",
   "loan repayment calculator",
-  "emi calculation",
+  "emi calculator for 5 lakh personal loan",
   "bank loan emi calculator",
   "finance calculator",
   "emi calculator 2026",
@@ -151,17 +151,7 @@ keywords: [
   "real estate finance calculator",
   "house purchase calculator",
 
-  // Educational Keywords
-  "emi formula",
-  "emi calculation formula",
-  "how to calculate emi",
-  "loan emi formula",
-  "emi examples",
-  "emi explained",
-  "loan repayment examples",
-  "finance calculator examples",
-  "emi tutorial",
-  "monthly installment formula",
+
 
   // India Specific Keywords
   "emi calculator india",
@@ -175,23 +165,6 @@ keywords: [
   "finance calculator india",
   "emi calculator 2026",
 
-  // Hindi Keywords
-  "emi calculator hindi",
-  "loan emi calculator hindi",
-  "home loan emi calculator hindi",
-  "personal loan emi calculator hindi",
-  "car loan emi calculator hindi",
-  "ईएमआई कैलकुलेटर",
-  "लोन ईएमआई कैलकुलेटर",
-  "होम लोन ईएमआई कैलकुलेटर",
-  "पर्सनल लोन ईएमआई कैलकुलेटर",
-  "कार लोन ईएमआई कैलकुलेटर",
-  "ईएमआई कैसे निकाले",
-  "मासिक किस्त कैलकुलेटर",
-  "ऋण भुगतान कैलकुलेटर",
-  "लोन कैलकुलेटर",
-  "ईएमआई गणना सूत्र",
-
   // Long Tail Keywords
   "free online emi calculator",
   "best loan emi calculator india",
@@ -203,6 +176,18 @@ keywords: [
   "personal loan emi calculator online free",
   "advanced emi repayment calculator",
   "loan installment calculator with formula",
+
+    // Educational Keywords
+  "emi formula",
+  "emi calculation formula",
+  "how to calculate emi",
+  "loan emi formula",
+  "emi examples",
+  "emi explained",
+  "loan repayment examples",
+  "finance calculator examples",
+  "emi tutorial",
+  "monthly installment formula",
 ],
   },
 

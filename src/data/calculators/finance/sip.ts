@@ -17,7 +17,7 @@ export const sipCalculator: Calculator = {
     description:
   "A free SIP Calculator built to help you plan smarter mutual fund investments. Just enter your monthly investment amount, expected rate of return, and investment duration to instantly see your total invested amount, wealth gained, and projected maturity value — making it easier to plan systematic investments and work toward long-term financial goals like retirement, education, or wealth creation.",
     keywords: [
-      "sip calculator",
+      "sip calculator for 5000 per month",
       "sip calculator india",
       "mutual fund sip calculator",
       "sip return calculator",

@@ -32,8 +32,8 @@ keywords: [
 
 
   "mileage calculator india",
-  "mileage calculator",
-  "car mileage calculator",
+  "cng vs petrol running cost calculator",
+  "car mileage calculator km per liter",
   "how to calculate car mileage",
   "actual mileage calculator",
   "real mileage calculator",
@@ -177,6 +177,7 @@ keywords: [
   compareWith: [
     "fuel-cost-calculator",
     "distance-calculator",
+    "ev-vs-petrol-cost-calculator",
   ],
 
   steps: [
