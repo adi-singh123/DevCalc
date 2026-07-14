@@ -205,5 +205,6 @@ export const calculators = [
   roadTaxCalculator,
   armyCalculator,
   evVsPetrolCalculator,
+  
   netWorthCalculator,
 ];
