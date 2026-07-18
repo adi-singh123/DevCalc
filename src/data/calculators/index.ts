@@ -101,6 +101,8 @@ import { roadTaxCalculator } from "./vehical/roadTaxCalculator";
 import { armyCalculator } from "./other/army";
 import { evVsPetrolCalculator } from "./vehical/ev-vs-petrol";
 import { netWorthCalculator } from "./other/netWorthCalculator";
+import { rvSolarCalculator } from "./other/rvSolarCalculator";
+import { flatBuyCalculator } from "./construction/flat";
 
 export const calculators = [
   ageCalculator,
@@ -205,6 +207,7 @@ export const calculators = [
   roadTaxCalculator,
   armyCalculator,
   evVsPetrolCalculator,
-  
   netWorthCalculator,
+  rvSolarCalculator,
+  flatBuyCalculator,
 ];

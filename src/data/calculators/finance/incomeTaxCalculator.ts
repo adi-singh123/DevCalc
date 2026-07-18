@@ -13,11 +13,11 @@ export const incomeTaxCalculator: Calculator = {
   isPopular: true,
 
   seo: {
-    title: "Income Tax Calculator India (FY 2025-26) - Old vs New",
+    title: "Income Tax Calculator 2026: Old vs New Regime – See Which Saves You More",
 
     description:
-     "Calculate income tax for FY 2025-26 instantly. Compare Old vs New regime, apply deductions, and check Section 87A rebate eligibility online for free.",
-keywords: [
+    "Enter your income once and instantly compare Old vs New regime tax, including deductions and the ₹60,000 rebate. Free, accurate, updated for FY 2025-26",
+    keywords: [
   "income tax calculator",
   "income tax calculator india",
   "income tax calculator 2026",

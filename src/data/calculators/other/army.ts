@@ -14,10 +14,10 @@ export const armyCalculator: Calculator = {
 
   seo: {
     title:
-      "Indian Army Physical & Eligibility Calculator 2026 | Agniveer, CAPF, SSB",
+      "Indian Army Agniveer Eligibility Calculator – Height, Weight, BMI, 1.6km Run 2026",
 
     description:
-      "Free Indian Army eligibility calculator covering Age, Height, Weight, BMI, Running (1.6 km), Chest, Push-ups, Sit-ups and Army Fitness Score for Agniveer, CAPF, BSF, CRPF, ITBP, CISF and SSB — all in one place.",
+      "Free Agniveer & Army Bharti eligibility check — height, weight, BMI, running time, chest, push-ups. Get instant pass/fail results by zone and category",
 
     keywords: [
       "indian army calculator",

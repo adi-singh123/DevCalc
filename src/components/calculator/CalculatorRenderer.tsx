@@ -101,6 +101,8 @@ import RoadTaxCalculator from "./renderers/Roadtaxcalculator";
 import ArmyCalculator from "./renderers/Armycalculator";
 import EvVsPetrolCalculator from "./renderers/EvVsPetrolCalculator";
 import NetWorthCalculator from "./renderers/Networth";
+import RvSolarCalculator from "./renderers/Rvsolarculator";
+import FlatBuyCalculator from "./renderers/FlatClaculator";
 
 type Props = {
   slug: string;
@@ -314,6 +316,10 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <EvVsPetrolCalculator/>;
     case  "net-worth-calculator":
       return <NetWorthCalculator/>
+    case "rv-solar-calculator":
+      return <RvSolarCalculator/>
+    case "Flat Buy Calculator":
+      return <FlatBuyCalculator/>
 
     default:
       return (

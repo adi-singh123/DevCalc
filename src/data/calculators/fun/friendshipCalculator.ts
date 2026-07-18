@@ -19,11 +19,10 @@ export const friendshipCalculator: Calculator = {
 
   seo: {
     title:
-      "Friendship Calculator - Check Your Friendship Percentage",
-
+      "Friendship Calculator: How Strong Is Your Friendship? Test by Name",
 description:
-  "Enter two names to instantly discover your friendship percentage. A fun, free way to see how compatible you and your best friend really are.",
- keywords: [
+  "See how strong your friendship really is. Enter two names, get an instant score from Casual Friendship to BFF, and share the result with your friend.",
+  keywords: [
 
   "friendship calculator",
 
@@ -34,7 +33,7 @@ description:
   "friendship calculator by name",
 
   "friendship test",
-"  दोस्ती कैलकुलेटर",
+"दोस्ती कैलकुलेटर",
 
   "friendship meter",
 

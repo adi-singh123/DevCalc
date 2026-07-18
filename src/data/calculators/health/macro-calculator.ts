@@ -14,10 +14,10 @@ export const macroCalculator: Calculator = {
 
   seo: {
     title:
-      "Macro Calculator - Calculate Protein, Carbs & Fat Intake",
+      "Macro Calculator: Find Your Ideal Protein, Carbs & Fat for Your Goal",
 
     description:
-"Calculate your daily protein, carb, and fat needs with our free Macro Calculator. Ideal for weight loss, muscle gain, and balanced fitness nutrition.",
+"Enter your calories and goal to get your exact daily protein, carb, and fat targets in grams — tailored for weight loss, muscle gain, or maintenance. Free, instant, no sign-up",
 keywords: [
   "macro calculator",
   "macronutrient calculator",

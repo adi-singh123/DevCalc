@@ -23,9 +23,9 @@ export const houseConstructionCostCalculator: Calculator = {
 
   seo: {
     title:
-    "House Construction Cost Calculator India (2026) – Per Sq Ft",
+    "House Construction Cost Calculator India – Per Sq Ft + Material & Labour Breakdown",
     description:
-      "Estimate house construction cost in India by plot area, city, and floors. Get instant per sq ft cost with materials, labour, and total budget breakdown.",
+      "Know your real construction budget before you start. Get an instant per sq ft estimate with a full materials + labour breakdown, based on your city, floors, and quality tier",
     keywords: [
       "house construction cost calculator",
       "construction cost calculator india",

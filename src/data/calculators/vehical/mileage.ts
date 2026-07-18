@@ -6,7 +6,7 @@ export const mileageCalculator: Calculator = {
   name: "Mileage Calculator",
 
   description:
-    "Calculate car mileage, bike mileage, fuel efficiency, fuel consumption, fuel cost per kilometer, and vehicle running costs instantly. Measure real-world mileage for petrol, diesel, CNG, and other vehicles with highly accurate results.",
+    "Free Mileage Calculator to calculate car mileage, bike mileage, fuel cost per km, trip fuel expense, fuel consumption, and running cost. Supports petrol, diesel, CNG, hybrid, and EV vehicles with accurate results.",
 
   category: "Vehicle",
 
@@ -16,10 +16,11 @@ export const mileageCalculator: Calculator = {
     title: "Mileage Calculator – Calculate Bike & Car Fuel Cost",
 
 description:
- "Calculate your car or bike's real mileage, fuel cost per km, and trip expense instantly. Works for petrol, diesel, CNG, and EVs — free online tool.",
+ "Calculate your car and bike's real mileage, fuel cost per km, and trip expense instantly. Works for petrol, diesel, CNG, and EVs — free online tool.",
 keywords: [
   "bike mileage calculator",
   "bike average calculator",
+  "scooter mileage calculator",
   "vehicle mileage check online free",
   "motorcycle mileage calculator",
   "bike fuel cost calculator",
