@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/src/config/site";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import OrganizationSchema from "@/src/components/seo/OrganizationSchema";
@@ -171,6 +172,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <ChatWidget />
+        <GoogleAnalytics gaId="G-RXYYY7TG81" />
       </body>
     </html>
   );

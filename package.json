@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@next/third-parties": "^16.2.11",
     "@tailwindcss/typography": "^0.5.20",
     "dotenv": "^17.4.2",
     "html-to-image": "^1.11.13",
