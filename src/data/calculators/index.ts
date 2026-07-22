@@ -104,6 +104,7 @@ import { netWorthCalculator } from "./other/netWorthCalculator";
 import { rvSolarCalculator } from "./other/rvSolarCalculator";
 import { flatBuyCalculator } from "./construction/flat";
 import { chickenCoopCalculator } from "./other/chickenCoop";
+import { paintCalculator } from "./construction/paint";
 
 export const calculators = [
   ageCalculator,
@@ -211,5 +212,6 @@ export const calculators = [
   netWorthCalculator,
   rvSolarCalculator,
   flatBuyCalculator,
-  chickenCoopCalculator
+  chickenCoopCalculator,
+  paintCalculator,
 ];

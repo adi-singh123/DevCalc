@@ -46,12 +46,14 @@ export default function Footer() {
 
             <ul className="space-y-3 text-sm">
               {[
+                ["Mileage Calculator", "/mileage-calculator"],
                 ["Age Calculator", "/age-calculator"],
                 ["EMI Calculator", "/emi-calculator"],
                 ["GST Calculator", "/gst-calculator"],
                 ["Income Tax Calculator", "/income-tax-calculator"],
                 ["BMI Calculator", "/bmi-calculator"],
                 ["Percentage Calculator", "/percentage-calculator"],
+
               ].map(([label, href]) => (
                 <li key={href}>
                   <Link

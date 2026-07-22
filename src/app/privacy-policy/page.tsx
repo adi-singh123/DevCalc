@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | DevCalc",
+  title: "Privacy Policy",
   description:
     "Read DevCalc's Privacy Policy to understand how we collect, use, and protect your data. DevCalc does not sell your personal information. All calculators run privately in your browser.",
   alternates: {
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     "DevCalc user data",
     "DevCalc personal information",
   ],
-  authors:   [{ name: "Aditya Singh" }],
-  creator:   "Aditya Singh",
+  authors:   [{ name: "Devcalc" }],
+  creator:   "Devcalc",
   publisher: "DevCalc",
 };
 

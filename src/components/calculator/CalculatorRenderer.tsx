@@ -103,6 +103,8 @@ import EvVsPetrolCalculator from "./renderers/EvVsPetrolCalculator";
 import NetWorthCalculator from "./renderers/Networth";
 import RvSolarCalculator from "./renderers/Rvsolarculator";
 import FlatBuyCalculator from "./renderers/FlatClaculator";
+import PaintCalculator from "./renderers/Paint";
+import ChickenCoopCalculator from "./renderers/ChickenCoop";
 
 type Props = {
   slug: string;
@@ -320,6 +322,10 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <RvSolarCalculator/>
     case "Flat Buy Calculator":
       return <FlatBuyCalculator/>
+    case "paint-calculator":
+      return <PaintCalculator/>
+    case "chicken-coop-calculator":
+      return <ChickenCoopCalculator/>
 
     default:
       return (

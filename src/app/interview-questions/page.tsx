@@ -17,7 +17,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 
 // --- Metadata ---
 export const metadata: Metadata = {
-  title: 'Technical Interview Questions 2026 | JavaScript, React, DSA, System Design | DevCalc',
+  title: 'Technical Interview Questions 2026 | JavaScript, React, DSA, System Design',
   description:
   "Most developers fail interviews not because they can't code — but because they didn't prepare the right questions. Practice 1500+ curated tech interview questions, free. Start today.",
   keywords: [

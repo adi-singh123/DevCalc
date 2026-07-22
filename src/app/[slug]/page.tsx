@@ -133,16 +133,16 @@ export default async function CalculatorPage({ params }: Props) {
           <CompareCalculatorSection compareWith={calculator.compareWith} />
           <div className="mt-8 space-y-6 lg:hidden">
             
-            <CalculatorListByCategory
-              title="Try Some Fun Calculators"
-              category="Fun"
-              currentSlug={calculator.slug}
-            />
-            <CalculatorListByCategory
+           <CalculatorListByCategory
               title="Construction Calculators"
               category="Construction"
               currentSlug={calculator.slug}
             />
+            <CalculatorListByCategory
+              title="Other Calculators"
+              category="Other"
+              currentSlug={calculator.slug}
+             />
           </div>
 
           <StepsSection
@@ -166,13 +166,13 @@ export default async function CalculatorPage({ params }: Props) {
         <aside className="hidden lg:block">
           <div className="space-y-6">
             <CalculatorListByCategory
-              title="Fun Calculators"
-              category="Fun"
+              title="Other Calculators"
+              category="Other"
               currentSlug={calculator.slug}
             />
             <CalculatorListByCategory
-              title="Other Calculators"
-              category="Other"
+              title="Fun Calculators"
+              category="Fun"
               currentSlug={calculator.slug}
             />
             <CalculatorListByCategory

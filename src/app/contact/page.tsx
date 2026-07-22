@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import ContactPage from "./ContactPage";
 
 export const metadata: Metadata = {
-  title: "Contact Us | DevCalc",
+  title: "Contact Us",
 keywords: [
   "DevCalc contact",
   "Contact DevCalc",

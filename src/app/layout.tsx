@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     },
   ],
 
-  creator: "Aditya Singh",
+  creator: "Devcalc",
 
   publisher: "DevCalc",
 

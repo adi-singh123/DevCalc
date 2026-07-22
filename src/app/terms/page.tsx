@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | DevCalc",
+  title: "Terms of Use",
   description:
     "Read DevCalc's Terms of Use to understand the conditions for using our free online calculators. DevCalc results are for informational purposes only — not financial or medical advice.",
   alternates: {
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     "DevCalc liability disclaimer",
     "online calculator usage policy",
   ],
-  authors:   [{ name: "Aditya Singh" }],
-  creator:   "Aditya Singh",
+  authors:   [{ name: "Devcalc" }],
+  creator:   "Devcalc",
   publisher: "DevCalc",
 };
 

@@ -15,7 +15,7 @@ export default function ArticleSchema({
   image,
   publishedDate,
   modifiedDate,
-  author = "Aditya Singh",
+  author = "Devcalc",
 }: ArticleSchemaProps) {
   const schema = {
     "@context": "https://schema.org",

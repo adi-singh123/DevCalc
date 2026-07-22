@@ -30,12 +30,12 @@ export async function generateMetadata({
 
   if (!category) {
     return {
-      title: "Category Not Found | DevCalc",
+      title: "Category Not Found",
     };
   }
 
   return {
-    title: `${category.name} Calculators | DevCalc`,
+    title: `${category.name} Calculators`,
     description: `Browse free online ${category.name.toLowerCase()} calculators on DevCalc. Accurate formulas, instant results, and easy-to-use tools.`,
 
     keywords: [

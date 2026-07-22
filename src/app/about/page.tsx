@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About DevCalc | Built by Aditya Singh",
+  title: "About DevCalc – Free Calculators Built by Aditya Singh",
   keywords: [
   "About DevCalc",
   "DevCalc platform",
@@ -25,12 +25,12 @@ export const metadata: Metadata = {
   "About us",
 ],
   description:
-    "DevCalc is built by Aditya Singh, a Full Stack Developer from India. Learn the story behind 80+ free calculators for finance, health, education, and everyday use — no sign-up, no cost, ever.",
+    "DevCalc is built by Aditya Singh, a Full Stack Developer from India. Learn the story behind 100+ free calculators for finance, health, education, and everyday use — no sign-up, no cost, ever.",
   alternates: {
     canonical: "https://www.devcalc.in/about",
   },
-  authors: [{ name: "Aditya Singh" }],
-  creator: "Aditya Singh",
+  authors: [{ name: "Devcalc" }],
+  creator: "Davcalc",
   publisher: "DevCalc",
 };
 
@@ -192,7 +192,7 @@ export default function AboutPage() {
         <div className="text-center">
           <h2 className="text-2xl font-bold">What You&apos;ll Find on DevCalc</h2>
           <p className="mt-2 text-slate-500">
-            80+ calculators across 8 categories — and growing every month.
+            100+ calculators across 8 categories — and growing every month.
           </p>
         </div>
 

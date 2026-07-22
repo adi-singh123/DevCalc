@@ -35,17 +35,23 @@ export default function SEOContent({
             dark:[&_strong]:text-white
 
             [&_table]:my-6
+            [&_table]:block
             [&_table]:w-full
+            [&_table]:max-w-full
+            [&_table]:overflow-x-auto
             [&_table]:border-collapse
+            [&_table]:[-webkit-overflow-scrolling:touch]
 
             [&_th]:border
             [&_th]:bg-slate-100
             dark:[&_th]:bg-slate-800
             [&_th]:p-3
             [&_th]:text-left
+            [&_th]:whitespace-nowrap
 
             [&_td]:border
             [&_td]:p-3
+            [&_td]:whitespace-nowrap
           "
           dangerouslySetInnerHTML={{
             __html: content,
