@@ -31,22 +31,22 @@ export default function CalculatorListByCategory({
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
-      <div className="border-b border-slate-200 p-4 dark:border-slate-700">
-        <h3 className="font-semibold text-slate-900 dark:text-white">
+    <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+      <div className="border-b border-stone-200 bg-[#faf7f0] p-4 dark:border-slate-700 dark:bg-slate-900">
+        <h3 className="font-serif text-lg font-semibold text-[#26364a] dark:text-white">
           {title}
         </h3>
       </div>
 
       <div
-        className="thin-scrollbar divide-y divide-slate-200 overflow-y-auto dark:divide-slate-700"
+        className="thin-scrollbar divide-y divide-stone-100 overflow-y-auto dark:divide-slate-700"
         style={{ maxHeight: maxHeightPx }}
       >
         {filteredCalculators.map((calculator) => (
           <Link
             key={calculator.slug}
             href={`/${calculator.slug}`}
-            className="block p-4 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-primary dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+            className="block p-4 text-sm font-medium text-stone-700 transition-colors hover:bg-[#faf7f0] hover:text-[#1f3a5c] dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
           >
             {calculator.name}
           </Link>

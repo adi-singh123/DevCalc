@@ -320,7 +320,7 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <NetWorthCalculator/>
     case "rv-solar-calculator":
       return <RvSolarCalculator/>
-    case "Flat Buy Calculator":
+    case "flat-buy-calculator":
       return <FlatBuyCalculator/>
     case "paint-calculator":
       return <PaintCalculator/>

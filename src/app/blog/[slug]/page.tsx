@@ -149,11 +149,19 @@ export default async function BlogDetailsPage({ params }: Props) {
         <div className="grid gap-10 lg:grid-cols-4">
           {/* Main Content */}
           <article className="lg:col-span-3">
-            <h1 className="text-4xl font-bold md:text-5xl">{blog.title}</h1>
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-slate-400">
+              {blog.category}
+            </span>
 
-            <p className="mt-5 text-xl text-slate-600">{blog.description}</p>
+            <h1 className="mt-3 font-serif text-4xl font-semibold tracking-tight text-[#26364a] md:text-5xl dark:text-white">
+              {blog.title}
+            </h1>
 
-            <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-500">
+            <p className="mt-5 text-xl leading-8 text-stone-600 dark:text-slate-300">
+              {blog.description}
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-4 border-b border-stone-200 pb-6 text-sm text-stone-500 dark:border-slate-700 dark:text-slate-400">
               <span>{blog.author}</span>
 
               <span>{blog.publishedDate}</span>
@@ -162,8 +170,10 @@ export default async function BlogDetailsPage({ params }: Props) {
             </div>
 
             {/* TOC */}
-            <section className="mt-10 rounded-2xl border bg-slate-50 p-6">
-              <h2 className="mb-4 text-xl font-bold">Table of Contents</h2>
+            <section className="mt-10 rounded-2xl border border-stone-200 bg-[#faf7f0] p-6 dark:border-slate-700 dark:bg-slate-900">
+              <h2 className="mb-4 font-serif text-xl font-semibold text-[#26364a] dark:text-white">
+                Table of Contents
+              </h2>
 
               <ul className="space-y-2">
                 {blog.content.map((section) => (
@@ -172,7 +182,7 @@ export default async function BlogDetailsPage({ params }: Props) {
                       href={`#${section.heading
                         .toLowerCase()
                         .replace(/\s+/g, "-")}`}
-                      className="text-blue-600 hover:underline"
+                      className="text-[#1f3a5c] hover:underline dark:text-blue-400"
                     >
                       {section.heading}
                     </a>
@@ -188,35 +198,41 @@ export default async function BlogDetailsPage({ params }: Props) {
                   key={index}
                   id={section.heading.toLowerCase().replace(/\s+/g, "-")}
                 >
-                  <h2 className="mb-5 text-3xl font-bold">{section.heading}</h2>
+                  <h2 className="mb-5 font-serif text-3xl font-semibold tracking-tight text-[#26364a] dark:text-white">
+                    {section.heading}
+                  </h2>
 
                   <div className="space-y-5">
                     {section.paragraphs.map((paragraph, idx) => (
                       <p
                         key={idx}
-                        className="leading-8 text-slate-700 dark:text-slate-300"
+                        className="leading-8 text-stone-700 dark:text-slate-300"
                       >
                         {paragraph}
                       </p>
                     ))}
 
                     {section.points && (
-                      <ul className="space-y-3 rounded-2xl border bg-slate-50 p-5 dark:bg-slate-900">
+                      <ul className="space-y-3 rounded-2xl border border-stone-200 bg-[#faf7f0] p-5 dark:border-slate-700 dark:bg-slate-900">
                         {section.points.map((point, idx) => (
                           <li key={idx} className="flex gap-3">
-                            <span className="font-bold text-green-600">✓</span>
+                            <span className="font-bold text-[#1f3a5c] dark:text-blue-400">
+                              ✓
+                            </span>
 
-                            <span>{point}</span>
+                            <span className="text-stone-700 dark:text-slate-300">
+                              {point}
+                            </span>
                           </li>
                         ))}
                       </ul>
                     )}
 
                     {section.table && (
-                      <div className="overflow-x-auto rounded-2xl border">
+                      <div className="overflow-x-auto rounded-2xl border border-stone-200 dark:border-slate-700">
                         <table className="w-full border-collapse">
                           <thead>
-                            <tr className="bg-blue-600 text-white">
+                            <tr className="bg-[#1f3a5c] text-white">
                               {section.table.headers.map((header) => (
                                 <th
                                   key={header}
@@ -230,9 +246,15 @@ export default async function BlogDetailsPage({ params }: Props) {
 
                           <tbody>
                             {section.table.rows.map((row, rowIndex) => (
-                              <tr key={rowIndex} className="border-t">
+                              <tr
+                                key={rowIndex}
+                                className="border-t border-stone-200 dark:border-slate-700"
+                              >
                                 {row.map((cell, cellIndex) => (
-                                  <td key={cellIndex} className="px-4 py-3">
+                                  <td
+                                    key={cellIndex}
+                                    className="px-4 py-3 text-stone-700 dark:text-slate-300"
+                                  >
                                     {cell}
                                   </td>
                                 ))}
@@ -249,16 +271,23 @@ export default async function BlogDetailsPage({ params }: Props) {
 
             {/* FAQs */}
             <section className="mt-16">
-              <h2 className="mb-6 text-3xl font-bold">
+              <h2 className="mb-6 font-serif text-3xl font-semibold text-[#26364a] dark:text-white">
                 Frequently Asked Questions
               </h2>
 
               <div className="space-y-4">
                 {blog.faqs.map((faq) => (
-                  <div key={faq.question} className="rounded-xl border p-5">
-                    <h3 className="font-semibold">{faq.question}</h3>
+                  <div
+                    key={faq.question}
+                    className="rounded-xl border border-stone-200 bg-[#faf7f0] p-5 dark:border-slate-700 dark:bg-slate-900"
+                  >
+                    <h3 className="font-semibold text-[#26364a] dark:text-white">
+                      {faq.question}
+                    </h3>
 
-                    <p className="mt-2 text-slate-600">{faq.answer}</p>
+                    <p className="mt-2 leading-7 text-stone-600 dark:text-slate-400">
+                      {faq.answer}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -266,18 +295,22 @@ export default async function BlogDetailsPage({ params }: Props) {
 
             {/* Related Blogs */}
             <section className="mt-16">
-              <h2 className="mb-6 text-3xl font-bold">Related Articles</h2>
+              <h2 className="mb-6 font-serif text-3xl font-semibold text-[#26364a] dark:text-white">
+                Related Articles
+              </h2>
 
               <div className="grid gap-4 md:grid-cols-2">
                 {relatedBlogs.map((item) => (
                   <Link
                     key={item.slug}
                     href={`/blog/${item.slug}`}
-                    className="rounded-xl border p-5 transition hover:shadow-md"
+                    className="group rounded-xl border border-stone-200 bg-[#faf7f0] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#1f3a5c]/50 hover:shadow-md dark:border-slate-700 dark:bg-slate-900"
                   >
-                    <h3 className="font-semibold">{item.title}</h3>
+                    <h3 className="font-serif text-lg font-semibold text-[#26364a] transition-colors group-hover:text-[#1f3a5c] dark:text-white dark:group-hover:text-blue-400">
+                      {item.title}
+                    </h3>
 
-                    <p className="mt-2 text-sm text-slate-600">
+                    <p className="mt-2 line-clamp-2 text-sm text-stone-600 dark:text-slate-400">
                       {item.description}
                     </p>
                   </Link>
@@ -289,17 +322,17 @@ export default async function BlogDetailsPage({ params }: Props) {
           {/* Sidebar */}
           <aside>
             <div className="sticky top-24 space-y-6">
-              <div className="rounded-2xl border">
-                <div className="border-b p-4 font-semibold">
+              <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+                <div className="border-b border-stone-200 bg-[#faf7f0] p-4 font-serif text-lg font-semibold text-[#26364a] dark:border-slate-700 dark:bg-slate-900 dark:text-white">
                   Related Articles
                 </div>
 
-                <div className="divide-y">
+                <div className="divide-y divide-stone-100 dark:divide-slate-700">
                   {categoryRelatedBlogs.map((item) => (
                     <Link
                       key={item.slug}
                       href={`/blog/${item.slug}`}
-                      className="block p-4 hover:bg-slate-50 dark:hover:bg-slate-800"
+                      className="block p-4 text-sm font-medium text-stone-700 transition-colors hover:bg-[#faf7f0] hover:text-[#1f3a5c] dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                     >
                       {item.title}
                     </Link>
@@ -307,17 +340,17 @@ export default async function BlogDetailsPage({ params }: Props) {
                 </div>
               </div>
 
-              <div className="rounded-2xl border">
-                <div className="border-b p-4 font-semibold">
+              <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+                <div className="border-b border-stone-200 bg-[#faf7f0] p-4 font-serif text-lg font-semibold text-[#26364a] dark:border-slate-700 dark:bg-slate-900 dark:text-white">
                   Popular Calculators
                 </div>
 
-                <div className="divide-y">
+                <div className="divide-y divide-stone-100 dark:divide-slate-700">
                   {popularCalculators.map((calculator) => (
                     <Link
                       key={calculator.slug}
                       href={`/${calculator.slug}`}
-                      className="block p-4 hover:bg-slate-50"
+                      className="block p-4 text-sm font-medium text-stone-700 transition-colors hover:bg-[#faf7f0] hover:text-[#1f3a5c] dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                     >
                       {calculator.name}
                     </Link>

@@ -45,7 +45,7 @@ export default function CalculatorSearch() {
           text-slate-900
           outline-none
           transition
-          focus:border-blue-500
+          focus:border-[#1f3a5c]
           dark:border-slate-600
           dark:bg-slate-800
           dark:text-white

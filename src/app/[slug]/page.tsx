@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { CheckCircle2, BadgeCheck, Zap } from "lucide-react";
 import { calculators } from "@/src/data/calculators";
 import type { Metadata } from "next";
 import { generateCalculatorMetadata } from "@/src/lib/seo/generateMetadata";
@@ -99,30 +100,36 @@ export default async function CalculatorPage({ params }: Props) {
       />
 
       <div className="max-w-4xl">
-        <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-slate-400">
+          {calculator.category} Calculator
+        </span>
+
+        <h1 className="mt-3 font-serif text-4xl font-semibold tracking-tight text-[#26364a] md:text-5xl dark:text-white">
           {calculator.name}
         </h1>
 
-        <p className="mt-6 text-lg leading-8 text-slate-600">
+        <p className="mt-5 text-lg leading-8 text-stone-600 dark:text-slate-300">
           {calculator.description}
         </p>
 
-        <p className="mt-4 leading-7 text-slate-600">
+        <p className="mt-4 leading-7 text-stone-600 dark:text-slate-400">
           {getCalculatorIntro(calculator)}
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
-          <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
-            Accurate Results
-          </span>
-
-          <span className="rounded-full bg-green-50 px-4 py-2 text-sm font-medium text-green-700">
-            Free to Use
-          </span>
-
-          <span className="rounded-full bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700">
-            Instant Calculation
-          </span>
+          {[
+            { icon: CheckCircle2, label: "Accurate Results" },
+            { icon: BadgeCheck, label: "Free to Use" },
+            { icon: Zap, label: "Instant Calculation" },
+          ].map(({ icon: Icon, label }) => (
+            <span
+              key={label}
+              className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-[#faf7f0] px-4 py-2 text-sm font-medium text-[#1f3a5c] dark:border-slate-700 dark:bg-slate-900 dark:text-blue-400"
+            >
+              <Icon size={16} strokeWidth={1.75} />
+              {label}
+            </span>
+          ))}
         </div>
       </div>
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">

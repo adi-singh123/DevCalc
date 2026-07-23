@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 
 import { calculators } from "@/src/data/calculators";
 import { categories } from "@/src/data/categories/Category";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
+import CalculatorCard from "@/src/components/calculator/CalculatorCard";
 
 type Props = {
   params: Promise<{
@@ -108,50 +108,30 @@ const breadcrumbSchema = [
 
     <Breadcrumb items={breadcrumbItems} />
       <section className="max-w-3xl">
-        <h1 className="text-4xl font-bold md:text-5xl">
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-slate-400">
+          Category
+        </span>
+
+        <h1 className="mt-3 font-serif text-4xl font-semibold tracking-tight text-[#26364a] md:text-5xl dark:text-white">
           {category.name} Calculators
         </h1>
 
-        <p className="mt-4 text-slate-600">
-          Browse all calculators available in the{" "}
-          {category.name} category.
+        <p className="mt-4 text-lg leading-8 text-stone-600 dark:text-slate-300">
+          Browse all calculators available in the {category.name} category.
         </p>
 
-        <p className="mt-2 text-sm text-slate-500">
+        <p className="mt-2 text-sm text-stone-500 dark:text-slate-400">
           {categoryCalculators.length} calculators found
         </p>
       </section>
 
       <section className="mt-12">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {categoryCalculators.map((calculator) => (
-            <Link
+            <CalculatorCard
               key={calculator.slug}
-              href={`/${calculator.slug}`}
-              className="
-                rounded-2xl
-                border
-                bg-white
-                p-6
-                shadow-sm
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:shadow-lg
-              "
-            >
-              <h2 className="text-lg font-semibold">
-                {calculator.name}
-              </h2>
-
-              <p className="mt-3 text-sm text-slate-600">
-                {calculator.description}
-              </p>
-
-              <p className="mt-4 text-sm font-medium text-blue-600">
-                Open Calculator →
-              </p>
-            </Link>
+              calculator={calculator}
+            />
           ))}
         </div>
       </section>

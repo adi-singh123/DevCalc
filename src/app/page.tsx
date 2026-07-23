@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "../components/home/Hero";
+import Features from "../components/home/Features";
 import PopularCalculators from "../components/home/PopularCalculators";
 import CalculatorCategories from "../components/home/Categories";
 import Container from "../components/layout/Container";
@@ -35,6 +36,8 @@ export default function HomePage() {
 
       <main>
         <Hero />
+
+        <Features />
 
         <section className="py-5">
           <Container>

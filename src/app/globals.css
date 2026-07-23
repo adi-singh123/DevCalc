@@ -16,8 +16,8 @@ body {
 }
 
 body {
-  background: white;
-  color: #0f172a;
+  background: #f7f4ee; /* warm ivory — softer on the eyes than pure white */
+  color: #292524; /* warm charcoal (stone-800) */
 }
 
 .calculator-shell,

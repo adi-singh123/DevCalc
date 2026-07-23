@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-950">
+    <footer className="mt-20 border-t border-stone-200 bg-[#f1ece3] dark:border-slate-700 dark:bg-slate-950">
       {/* Main Footer */}
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
@@ -23,7 +23,7 @@ export default function Footer() {
               </span>
             </Link>
 
-            <div className="mt-4 rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-slate-700 dark:bg-slate-900">
+            <div className="mt-4 rounded-xl border border-stone-200 bg-white p-3 text-sm dark:border-slate-700 dark:bg-slate-900">
               <p className="font-semibold text-slate-900 dark:text-white">
                 DevCalc
               </p>
@@ -58,7 +58,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-slate-600 transition hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                    className="text-slate-600 transition hover:text-[#1f3a5c] dark:text-slate-400 dark:hover:text-blue-400"
                   >
                     {label}
                   </Link>
@@ -85,7 +85,7 @@ export default function Footer() {
                 <li key={category}>
                   <Link
                     href={`/category/${category}`}
-                    className="text-slate-600 transition hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                    className="text-slate-600 transition hover:text-[#1f3a5c] dark:text-slate-400 dark:hover:text-blue-400"
                   >
                     {category.charAt(0).toUpperCase() + category.slice(1)}
                   </Link>
@@ -112,7 +112,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-slate-600 transition hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                    className="text-slate-600 transition hover:text-[#1f3a5c] dark:text-slate-400 dark:hover:text-blue-400"
                   >
                     {label}
                   </Link>
@@ -124,62 +124,62 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-200 bg-slate-200 dark:border-slate-700 dark:bg-slate-900">
+      <div className="border-t border-stone-200 bg-[#e9e2d6] dark:border-slate-700 dark:bg-slate-900">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-5 text-sm text-slate-600 dark:text-slate-400 md:flex-row">
           <p>© {new Date().getFullYear()} DevCalc. All rights reserved.</p>
 
           <div className="flex flex-wrap gap-4">
             <Link
               href="/calculators"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
             >
               Calculators
             </Link>
 
             <Link
               href="/blog"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
             >
               Blog
             </Link>
 
             <Link
               href="/about"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
             >
               About
             </Link>
 
             <Link
               href="/privacy-policy"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
             >
               Privacy Policy
             </Link>
 
             <Link
               href="/terms"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
             >
               Terms
             </Link>
 
             <Link
               href="/contact"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
             >
               Contact
             </Link>
 
             <Link
               href="/sitemap.xml"
-              className="hover:text-blue-600 dark:hover:text-blue-400"
+              className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
             >
               Sitemap
             </Link>
           </div>
                 {/* Featured On */}
-      <div className="border-t border-slate-200 dark:border-slate-700">
+      <div className="border-t border-stone-200 dark:border-slate-700">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-3 px-6 py-8">
           <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
             Proudly Featured On
