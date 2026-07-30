@@ -52,7 +52,7 @@ import { proteinIntakeCalculator } from "./health/protein-intake";
 import { heartRateZoneCalculator } from "./health/heart-rate-zone";
 import { leanBodyMassCalculator } from "./health/lean-body-mass";
 import { waistToHipRatioCalculator } from "./health/waist-to-hip-ratio";
-import { condomSizeCalculator } from "./fun/condomSizeCalculator";
+// import { condomSizeCalculator } from "./fun/condomSizeCalculator";
 import { finalGradeCalculator } from "./education/final-grade";
 import { dueDateCalculator } from "./health/dueDateCalculator";
 import { ovulationCalculator } from "./health/ovulationCalculator";
@@ -70,7 +70,7 @@ import { loveCalculator } from "./fun/loveCalculator";
 import { friendshipCalculator } from "./fun/friendshipCalculator";
 import { crushCalculator } from "./fun/crush";
 import { luckyNumberCalculator } from "./fun/lucky";
-import { safePeriodCalculator } from "./fun/safePeriodCalculator";
+// import { safePeriodCalculator } from "./fun/safePeriodCalculator";
 import { houseConstructionCostCalculator } from "./construction/houseConstructionCost";
 import { brickCalculator } from "./construction/brickCalculator";
 import { cementCalculator } from "./construction/cementCalculator";
@@ -127,7 +127,7 @@ export const calculators = [
   bmrCalculator,
   calorieCalculator,
   bodyFatCalculator,
-  condomSizeCalculator,
+  // condomSizeCalculator,
   cgpaCalculator,
   cagrCalculator,
   compoundInterestCalculator,
@@ -179,7 +179,7 @@ export const calculators = [
   friendshipCalculator,
   crushCalculator,
   luckyNumberCalculator,
-  safePeriodCalculator,
+  // safePeriodCalculator,
   houseConstructionCostCalculator,
   brickCalculator,
   cementCalculator,
