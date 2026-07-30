@@ -165,6 +165,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+       <head>
+        <meta name="google-adsense-account" content="ca-pub-3757135541422436"/>
+      </head>
       <body className="flex min-h-screen flex-col">
         <OrganizationSchema />
         <AssistantSchema />
