@@ -7,6 +7,8 @@ import Footer from "@/src/components/layout/Footer";
 import OrganizationSchema from "@/src/components/seo/OrganizationSchema";
 import ChatWidget from "@/src/components/chatbot/ChatWidget";
 import AssistantSchema from "@/src/components/seo/AssistantSchema";
+import Script from "next/script";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   verification: {
@@ -167,6 +169,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
        <head>
         <meta name="google-adsense-account" content="ca-pub-3757135541422436"/>
+        <Script
+      id="adsense-script"
+      async
+      strategy="afterInteractive"
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3757135541422436"
+      crossOrigin="anonymous"
+       />
       </head>
       <body className="flex min-h-screen flex-col">
         <OrganizationSchema />
