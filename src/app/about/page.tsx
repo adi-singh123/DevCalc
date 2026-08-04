@@ -128,7 +128,7 @@ const TECH = [
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
 const STATS = [
-  { number: "80+",  label: "Free Calculators"   },
+  { number: "100+", label: "Free Calculators"   },
   { number: "8",    label: "Categories"          },
   { number: "100%", label: "Free Forever"        },
   { number: "0",    label: "Sign-ups Required"   },
@@ -294,7 +294,7 @@ export default function AboutPage() {
         {/* Founder stats */}
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {[
-            { value: "80+",      label: "Calculators built"         },
+            { value: "100+",     label: "Calculators built"         },
             { value: "8",        label: "Categories covered"        },
             { value: "Made in India 🇮🇳", label: "Jaunpur, UP" },
           ].map((s) => (
