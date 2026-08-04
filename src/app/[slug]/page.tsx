@@ -15,6 +15,19 @@ import CalculatorSchema from "@/src/components/seo/CalculatorSchema";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import { getCalculatorIntro } from "@/src/lib/seo/generation";
 import CalculatorListByCategory from "@/src/components/calculator/Calculatorlistbycategory";
+import AuthorBio from "@/src/components/common/AuthorBio";
+
+// Category-appropriate YMYL disclaimer for ad-bearing content.
+function getDisclaimer(category: string): string | undefined {
+  const key = category.toLowerCase();
+  if (key === "finance") {
+    return "This calculator and its guidance are for general educational purposes only and do not constitute financial, investment, or tax advice. Verify figures with a qualified professional before making financial decisions.";
+  }
+  if (key === "health") {
+    return "This calculator is for general informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. Consult a qualified healthcare provider for health decisions.";
+  }
+  return undefined;
+}
 
 export async function generateStaticParams() {
   return calculators.map((calculator) => ({
@@ -168,6 +181,8 @@ export default async function CalculatorPage({ params }: Props) {
           <FAQSection faqs={calculator.faqs} />
 
           <SEOContent content={calculator.seoContent} />
+
+          <AuthorBio disclaimer={getDisclaimer(calculator.category)} />
         </div>
 
         <aside className="hidden lg:block">

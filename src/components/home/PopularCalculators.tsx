@@ -12,6 +12,9 @@ const CATEGORY_SEO_DESCRIPTIONS: Record<string, string> = {
   "Math": "Solve advanced linear algebra grids and equation systems effortlessly. Run matrices additions, dot-product multiplications, matrix inversions, and scalar determinants.",
   "Health": "Monitor your vital body composition and biometric baselines. Calculate exact BMI scores, track healthy prenatal gestational weight gain curves, and map peak ovulation windows.",
   "Construction": "Plan structural raw material logistics with industrial precision. Calculate total brick counts, mortar volumes, concrete mixing frameworks, and structural masonry budgets.",
+  "Education": "Stay on top of your academic scores. Convert marks to percentages, work out GPA and CGPA, find the grade you still need in a final exam, and plan your study hours.",
+  "Fun": "Lighthearted calculators for a quick smile. Check a playful love or friendship score, find your lucky number, or test zodiac compatibility — just for entertainment.",
+  "Other": "Handy everyday helpers that don't fit a single box. Generate passwords and QR codes, convert units and timestamps, and run quick one-off calculations in seconds.",
 };
 
 export default function CalculatorCategories() {

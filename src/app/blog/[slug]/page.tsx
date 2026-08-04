@@ -7,6 +7,7 @@ import { blogs } from "@/src/data/blogs/blog";
 import { calculators } from "@/src/data/calculators";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
+import AuthorBio from "@/src/components/common/AuthorBio";
 
 type Props = {
   params: Promise<{
@@ -317,6 +318,8 @@ export default async function BlogDetailsPage({ params }: Props) {
                 ))}
               </div>
             </section>
+
+            <AuthorBio updated={blog.publishedDate} />
           </article>
 
           {/* Sidebar */}

@@ -360,7 +360,7 @@ keywords: [
 
 <h2>The Impact of Timeline Extensions: Balancing Monthly Payments against Total Interest</h2>
 <p>
-  To see how changing your repayment duration impacts your long-term borrowing costs, observe how a principal loan of <strong>₹50,000,000</strong> scales across different timelines, assuming a steady baseline interest rate of <strong>8.5% per annum</strong>:
+  To see how changing your repayment duration impacts your long-term borrowing costs, observe how a principal loan of <strong>₹50,00,000</strong> scales across different timelines, assuming a steady baseline interest rate of <strong>8.5% per annum</strong>:
 </p>
 
 <table>
@@ -368,7 +368,7 @@ keywords: [
     <tr>
       <th>Repayment Duration Horizon</th>
       <th>Calculated Monthly Payment (EMI)</th>
-      <th>Total Principal Principal Due</th>
+      <th>Total Principal Due</th>
       <th>Accumulated Interest Charges</th>
       <th>Gross Lifetime Cost of the Loan</th>
     </tr>

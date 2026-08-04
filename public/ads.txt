@@ -1,1 +1,3 @@
+# DevCalc — Authorized Digital Sellers (ads.txt)
+# https://iabtechlab.com/ads-txt/
 google.com, pub-3757135541422436, DIRECT, f08c47fec0942fa0
