@@ -185,20 +185,39 @@ export default function Footer() {
             Proudly Featured On
           </p>
 
-          <a
-            href="https://launchbuff.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Featured on LaunchBuff"
-          >
-            <Image
-              src="https://launchbuff.com/badge-featured-light.svg"
-              alt="Featured on LaunchBuff"
-              width="256"
-              height="80"
-              loading="lazy"
-            />
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <a
+              href="https://launchbuff.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Featured on LaunchBuff"
+            >
+              <Image
+                src="https://launchbuff.com/badge-featured-light.svg"
+                alt="Featured on LaunchBuff"
+                width="256"
+                height="80"
+                loading="lazy"
+              />
+            </a>
+
+            <a
+              href="https://tools.cafe"
+              target="_blank"
+              rel="noopener"
+              title="Featured on tools.cafe"
+            >
+              {/* Plain img: external SVG badge, avoids next/image remote-domain config */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://tools.cafe/b/light.svg"
+                alt="Featured on tools.cafe"
+                width={256}
+                height={80}
+                loading="lazy"
+              />
+            </a>
+          </div>
         </div>
       </div>
         </div>
