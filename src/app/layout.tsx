@@ -172,13 +172,12 @@ export default function RootLayout({
     
       </head>
       <body className="flex min-h-screen flex-col">
-            <Script
-      id="adsense-script"
-      async
-      strategy="afterInteractive"
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3757135541422436"
-      crossOrigin="anonymous"
-       />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3757135541422436"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <OrganizationSchema />
         <AssistantSchema />
         <Header />
