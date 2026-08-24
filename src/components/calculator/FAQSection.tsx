@@ -102,8 +102,8 @@ export default function FAQSection({
                 />
               </button>
 
-              {isOpen && (
-                <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700">
+              <div className={`border-t border-slate-200 dark:border-slate-700 ${isOpen ? "" : "hidden"}`}>
+                <div className="px-5 py-4">
                   <div
                     className="
                       max-h-72
@@ -117,7 +117,7 @@ export default function FAQSection({
                     {faq.answer}
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}

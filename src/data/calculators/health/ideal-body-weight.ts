@@ -20,45 +20,15 @@ export const idealBodyWeightCalculator: Calculator = {
       "Calculate your ideal body weight instantly with our free IBW calculator. Compare results from the Devine, Hamwi, Robinson, and Miller formulas based on your height and gender.",
 
     keywords: [
-      // Primary
       "ideal body weight calculator",
       "ideal weight calculator",
       "healthy weight calculator",
       "ibw calculator",
-
-      // Secondary / formula-specific
       "devine formula calculator",
       "hamwi formula calculator",
-      "robinson formula calculator",
-      "miller formula calculator",
-      "ideal body weight formula",
-
-      // Target / range
-      "target weight calculator",
       "healthy weight range calculator",
-      "ideal weight range",
-      "goal weight calculator",
-
-      // Height & gender variants
       "ideal weight for height",
-      "ideal weight for men",
-      "ideal weight for women",
-      "male ideal weight calculator",
-      "female ideal weight calculator",
-      "height to weight ratio calculator",
-
-      // Related concepts
-      "ideal weight vs bmi",
-      "healthy bmi weight calculator",
-      "body frame size weight calculator",
       "adjusted body weight calculator",
-
-      // Question-based / long-tail
-      "what is my ideal weight",
-      "how to calculate ideal body weight",
-      "how much should i weigh for my height",
-      "what is a healthy weight for my height",
-      "free online ideal body weight calculator",
     ],
   },
 
@@ -179,9 +149,9 @@ export const idealBodyWeightCalculator: Calculator = {
 
     {
       question:
-        "Is this Ideal Body Weight Calculator free?",
+        "How do different body frame sizes affect ideal body weight targets?",
       answer:
-        "Yes, this calculator is completely free to use, with no sign-up required and no limit on how many times you can run it. You can recalculate any time your height changes or simply to compare results across different formulas.",
+        "Standard IBW equations assume an average body frame. Individuals with a smaller skeletal frame may thrive with a target weight roughly 10% below the formula baseline, whereas larger-framed individuals naturally carry more structural weight without excess body fat.",
     },
   ],
 };

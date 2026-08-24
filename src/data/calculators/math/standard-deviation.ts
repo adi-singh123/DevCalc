@@ -22,29 +22,13 @@ export const standardDeviationCalculator: Calculator = {
     keywords: [
       "standard deviation calculator",
       "variance calculator",
-      "statistics calculator",
       "sample standard deviation calculator",
       "population standard deviation calculator",
-      "data analysis calculator",
-      "statistical analysis calculator",
       "mean and standard deviation calculator",
       "standard deviation formula calculator",
-      "standard deviation solver",
-      "variance and standard deviation calculator",
-      "math statistics calculator",
-      "research statistics calculator",
-      "data spread calculator",
-      "online standard deviation calculator",
-      "free standard deviation calculator",
-      "descriptive statistics calculator",
-      "standard deviation finder",
-      "calculate standard deviation",
-      "statistics homework calculator",
-      "dataset statistics calculator",
       "sample variance calculator",
       "population variance calculator",
       "statistical variability calculator",
-      "data science calculator",
     ],
   },
 
@@ -164,9 +148,9 @@ export const standardDeviationCalculator: Calculator = {
 
     {
       question:
-        "Is this calculator free?",
+        "What is the difference between sample and population standard deviation?",
       answer:
-        "Yes. You can use the Standard Deviation Calculator online for free.",
+        "Population standard deviation divides by N (total population size), while sample standard deviation divides by n - 1 (Bessel's correction) to correct for bias when estimating population variability from a sample.",
     },
   ],
 };

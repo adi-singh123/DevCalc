@@ -22,229 +22,18 @@ export const friendshipCalculator: Calculator = {
       "Friendship Calculator: How Strong Is Your Friendship? Test by Name",
 description:
   "See how strong your friendship really is. Enter two names, get an instant score from Casual Friendship to BFF, and share the result with your friend.",
-  keywords: [
-
-  "friendship calculator",
-
-  "friendship percentage calculator",
-
-  "friendship compatibility calculator",
-
-  "friendship calculator by name",
-
-  "friendship test",
-"दोस्ती कैलकुलेटर",
-
-  "friendship meter",
-
-  "best friend calculator",
-
-  "bff calculator",
-
-  "friendship score calculator",
-
-  "friendship match calculator",
-
-  "online friendship calculator",
-
-  "friendship checker",
-
-  "friend compatibility calculator",
-
-  "friendship percentage by name",
-
-  "fun friendship calculator",
-
-
-
-  // Core Keywords
-
-  "friendship predictor",
-
-  "friendship analyzer",
-
-  "friendship rating calculator",
-
-  "friendship level calculator",
-
-  "friendship percentage test",
-
-  "friendship strength calculator",
-
-  "friendship match test",
-
-  "friendship relationship calculator",
-
-  "friendship score test",
-
-  "friendship compatibility test",
-
-
-
-  // Name Based Keywords
-
-  "friendship calculator with names",
-
-  "name friendship calculator",
-
-  "friendship percentage by names",
-
-  "best friend calculator by name",
-
-  "friendship match by name",
-
-  "friendship checker by name",
-
-  "friendship test by name",
-
-  "friendship score by name",
-
-  "friendship predictor by name",
-
-  "friendship meter by name",
-
-
-
-  // BFF Keywords
-
-  "bff compatibility calculator",
-
-  "best friend compatibility test",
-
-  "bff percentage calculator",
-
-  "bestie calculator",
-
-  "best friend test",
-
-  "bff friendship checker",
-
-  "bff match calculator",
-
-  "best friend score calculator",
-
-  "bff percentage test",
-
-  "friendship quiz calculator",
-
-
-
-  // Fun & Entertainment Keywords
-
-  "fun friendship test",
-
-  "friendship game calculator",
-
-  "friendship prediction tool",
-
-  "friendship challenge calculator",
-
-  "friendship fun calculator",
-
-  "friendship entertainment tool",
-
-  "friendship checker online",
-
-  "friendship match game",
-
-  "friendship calculator game",
-
-  "friendship score game",
-
-
-
-  // Compatibility Keywords
-
-  "friend compatibility test",
-
-  "friendship compatibility score",
-
-  "friendship relationship test",
-
-  "friendship matching calculator",
-
-  "friendship chemistry calculator",
-
-  "friendship bond calculator",
-
-  "friendship connection calculator",
-
-  "friendship affinity calculator",
-
-  "friendship partner calculator",
-
-  "friendship relationship checker",
-
-
-
-  // Social Keywords
-
-  "friendship calculator for friends",
-
-  "friendship calculator for classmates",
-
-  "friendship calculator for boys and girls",
-
-  "friendship calculator for best friends",
-
-  "friendship calculator for school friends",
-
-  "friendship calculator for college friends",
-
-  "friendship calculator for groups",
-
-  "friendship calculator online free",
-
-  "friendship percentage checker",
-
-  "friendship score finder",
-
-
-
-  // Question Keywords
-
-  "how strong is our friendship",
-
-  "what is our friendship percentage",
-
-  "how to calculate friendship percentage",
-
-  "how good friends are we",
-
-  "how compatible are we as friends",
-
-  "how to check friendship score",
-
-  "how does friendship calculator work",
-
-  "friendship calculator example",
-
-  "best friend compatibility test",
-
-  "friendship percentage meaning",
-
-
-
-  // Long Tail Keywords
-
-  "free online friendship calculator",
-
-  "best friendship calculator online",
-
-  "friendship percentage calculator by name",
-
-  "friendship compatibility calculator online",
-
-  "friendship checker and tester",
-
-  "friendship score calculator free",
-
-  "friendship match calculator online",
-  "online friendship meter calculator",
-
-  "friendship compatibility checker",
-
-],
+    keywords: [
+      "friendship calculator",
+      "friendship percentage calculator",
+      "friendship compatibility calculator",
+      "friendship calculator by name",
+      "friendship test",
+      "best friend calculator",
+      "bff calculator",
+      "friendship meter",
+      "friendship score calculator",
+      "bff compatibility test",
+    ],
   },
 
   steps: [
@@ -352,9 +141,9 @@ description:
 
     {
       question:
-        "Is the Friendship Calculator free?",
+        "What factors actually build a strong and lasting friendship?",
       answer:
-        "Yes, completely free, with no sign-up and no limit on how many times you can use it. Test it with as many friends, classmates, or family members as you like.",
+        "While name calculators provide a playful metric, genuine friendship is grounded in active listening, mutual trust, consistent emotional support, and shared values. Making intentional time to connect and respecting each other's boundaries are proven ways to nurture deep, long-term bonds.",
     },
 
     {

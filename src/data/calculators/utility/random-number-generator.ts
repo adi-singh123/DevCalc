@@ -22,24 +22,13 @@ export const randomNumberGenerator: Calculator = {
     keywords: [
       "random number generator",
       "rng generator",
-      "number generator",
       "random number picker",
-      "random number tool",
-      "generate random number",
-      "online random number generator",
-      "free random number generator",
-      "random picker",
-      "randomizer",
-      "lucky number generator",
-      "lottery number generator",
       "random integer generator",
-      "random number creator",
+      "generate random number",
       "random selection generator",
-      "pick random number",
-      "number picker",
+      "lottery number generator",
       "random draw generator",
-      "rng tool",
-      "random value generator",
+      "randomizer tool",
     ],
   },
 
@@ -138,9 +127,9 @@ export const randomNumberGenerator: Calculator = {
 
     {
       question:
-        "Is it free?",
+        "What is the difference between pseudo-random and true random numbers?",
       answer:
-        "Yes. The Random Number Generator is completely free to use.",
+        "Pseudo-random number generators use deterministic mathematical algorithms starting from a seed value to produce sequences that appear random, whereas true random number generators capture unpredictable physical phenomena like atmospheric noise or radioactive decay.",
     },
   ],
 };

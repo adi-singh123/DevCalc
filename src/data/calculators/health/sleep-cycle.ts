@@ -25,25 +25,9 @@ export const sleepCycleCalculator: Calculator = {
       "best time to sleep calculator",
       "best time to wake up calculator",
       "sleep schedule calculator",
-      "sleep timing calculator",
       "bedtime calculator",
       "wake up calculator",
-      "sleep planner",
-      "sleep tracker calculator",
-      "healthy sleep calculator",
-      "sleep duration calculator",
-      "sleep rhythm calculator",
-      "sleep quality calculator",
-      "online sleep calculator",
-      "free sleep cycle calculator",
-      "sleep optimization calculator",
-      "sleep pattern calculator",
-      "sleep management calculator",
       "90 minute sleep cycle calculator",
-      "sleep routine calculator",
-      "sleep health calculator",
-      "ideal bedtime calculator",
-      "ideal wake time calculator",
       "circadian rhythm calculator",
     ],
   },
@@ -165,9 +149,9 @@ export const sleepCycleCalculator: Calculator = {
 
     {
       question:
-        "Is this Sleep Cycle Calculator free?",
+        "How does sleep inertia affect how alert I feel upon waking up?",
       answer:
-        "Yes. You can calculate sleep schedules, bedtimes, and wake-up times online unlimited times completely free.",
+        "Sleep inertia is the temporary feeling of grogginess caused by waking up abruptly from deep slow-wave sleep. Aligning your alarm with the end of a full 90-minute sleep cycle ensures you wake during lighter sleep stages, reducing morning disorientation.",
     },
   ],
 

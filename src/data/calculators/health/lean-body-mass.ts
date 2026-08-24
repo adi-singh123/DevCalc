@@ -27,24 +27,8 @@ export const leanBodyMassCalculator: Calculator = {
       "body composition calculator",
       "muscle mass calculator",
       "lean body weight calculator",
-      "body fat free mass calculator",
-      "fitness calculator",
-      "health calculator",
-      "body composition estimator",
-      "weight loss calculator",
-      "muscle building calculator",
-      "bodybuilding calculator",
-      "lean muscle calculator",
       "lbm formula calculator",
-      "fat free weight calculator",
-      "online lean body mass calculator",
-      "free lbm calculator",
-      "body mass calculator",
-      "fitness body calculator",
-      "lean weight calculator",
-      "healthy body composition calculator",
-      "weight management calculator",
-      "body analysis calculator",
+      "lean muscle calculator",
     ],
   },
 
@@ -151,9 +135,9 @@ export const leanBodyMassCalculator: Calculator = {
 
     {
       question:
-        "Is this Lean Body Mass Calculator free?",
+        "How does knowing my lean body mass help determine protein needs?",
       answer:
-        "Yes. You can calculate your lean body mass online unlimited times completely free.",
+        "Athletes and active individuals often calculate daily protein targets using lean mass rather than total body weight. This approach ensures accurate amino acid delivery for muscle repair without overestimating requirements in individuals carrying higher fat mass.",
     },
   ],
 };

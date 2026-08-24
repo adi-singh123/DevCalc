@@ -21,30 +21,14 @@ export const primeNumberCalculator: Calculator = {
 
     keywords: [
       "prime number calculator",
-      "prime checker",
+      "prime number checker",
       "is prime calculator",
-      "prime number finder",
-      "prime number test",
+      "prime factor calculator",
+      "prime and composite calculator",
       "prime number generator",
       "check prime number",
-      "prime factor calculator",
-      "prime number tool",
-      "prime number checker",
-      "online prime calculator",
-      "free prime number calculator",
-      "prime and composite calculator",
-      "prime number detector",
-      "number factor calculator",
-      "prime mathematics calculator",
-      "prime divisibility calculator",
-      "prime factor finder",
-      "math prime calculator",
-      "prime number analysis",
-      "is this number prime",
-      "find prime numbers",
-      "prime number formula",
-      "prime number solver",
-      "prime checker online",
+      "prime number test",
+      "prime number finder",
     ],
   },
 
@@ -148,9 +132,9 @@ export const primeNumberCalculator: Calculator = {
 
     {
       question:
-        "Is this Prime Number Calculator free?",
+        "Why are prime numbers critical in modern cryptography?",
       answer:
-        "Yes. You can use it unlimited times for free.",
+        "Modern encryption algorithms like RSA rely on the fact that multiplying two large prime numbers together is computationally easy, but factoring their large product back into its prime components is extremely difficult and time-consuming.",
     },
   ],
 };

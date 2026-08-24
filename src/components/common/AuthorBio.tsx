@@ -6,6 +6,8 @@ type Props = {
   disclaimer?: string;
   /** Optional ISO date string, e.g. "2026-01-15", to show a "last reviewed" line. */
   updated?: string;
+  /** Calculator category — used to scope credibility claims appropriately. */
+  category?: string;
 };
 
 /**
@@ -13,7 +15,10 @@ type Props = {
  * Reused on calculator pages and blog posts so ad-bearing content carries a
  * clear, accountable author and an appropriate disclaimer.
  */
-export default function AuthorBio({ disclaimer, updated }: Props) {
+export default function AuthorBio({ disclaimer, updated, category }: Props) {
+  const key = category?.toLowerCase() ?? "";
+  const useInstitutionalClaim = ["finance", "education", "health", "construction", "math"].includes(key);
+
   return (
     <section className="mt-16 rounded-2xl border border-stone-200 bg-[#faf7f0] p-6 dark:border-slate-700 dark:bg-slate-900">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
@@ -32,9 +37,9 @@ export default function AuthorBio({ disclaimer, updated }: Props) {
           <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-slate-400">
             Aditya Singh is a software engineer and the founder of DevCalc,
             based in Uttar Pradesh, India. He builds and maintains every
-            calculator on this site, using standard, verified formulas — the same
-            ones used by banks, institutions, and educators — with careful
-            attention to accuracy.{" "}
+            {useInstitutionalClaim
+              ? " calculator on this site, using standard, verified formulas — the same ones used by banks, institutions, and educators — with careful attention to accuracy."
+              : " tool on this site with careful attention to accuracy and user experience."}{" "}
             <Link
               href="/about"
               className="font-semibold text-[#1f3a5c] hover:underline dark:text-blue-400"

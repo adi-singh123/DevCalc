@@ -22,27 +22,11 @@ export const finalGradeCalculator: Calculator = {
     keywords: [
       "final grade calculator",
       "final exam calculator",
-      "grade calculator",
       "what do i need on my final",
       "required final grade calculator",
       "course grade calculator",
-      "college grade calculator",
-      "school grade calculator",
-      "exam grade calculator",
-      "final score calculator",
       "target grade calculator",
       "grade requirement calculator",
-      "student calculator",
-      "university grade calculator",
-      "marks calculator",
-      "percentage grade calculator",
-      "academic calculator",
-      "online grade calculator",
-      "free final grade calculator",
-      "education calculator",
-      "semester grade calculator",
-      "class grade calculator",
-      "final test calculator",
       "required exam score calculator",
       "grade prediction calculator",
     ],
@@ -150,9 +134,9 @@ export const finalGradeCalculator: Calculator = {
 
     {
       question:
-        "Is this Final Grade Calculator free?",
+        "What happens if my final exam is worth 0% of my grade?",
       answer:
-        "Yes. You can calculate required final exam scores online unlimited times completely free.",
+        "If the final exam has no weight (0%), your current grade is already your permanent final grade, and exam performance will not alter your overall course standing.",
     },
   ],
 };

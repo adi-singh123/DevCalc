@@ -94,7 +94,7 @@ import { travelCostCalculator } from "./other/travelCostCalculator";
 import {tileCalculator } from "./construction/tileCalculator";
 import { zodiacCompatibilityCalculator } from "./fun/zodiacCompatibilityCalculator";
 import { kundliMilanCalculator } from "./fun/Kundli";
-import { braSizeCalculator } from "./fun/braCalculator";
+// import { braSizeCalculator } from "./fun/braCalculator";
 import { rebarCuttingLengthCalculator } from "./construction/rebarcuttinglengthcalculator";
 import { fertilizerRequirementCalculator } from "./other/fertilizerRequirementCalculator";
 import { roadTaxCalculator } from "./vehical/roadTaxCalculator";
@@ -203,7 +203,7 @@ export const calculators = [
   tileCalculator,
   zodiacCompatibilityCalculator,
   kundliMilanCalculator,
-  braSizeCalculator,
+  // braSizeCalculator,
   rebarCuttingLengthCalculator,
   fertilizerRequirementCalculator,
   roadTaxCalculator,

@@ -19,6 +19,8 @@ const NAV_LINKS: NavLink[] = [
   {
     label: "Resources",
     children: [
+      { label: "College Projects (24h Prototype)", href: "/collegeProject" },
+      { label: "Automation & Scraping", href: "/want-automation" },
       { label: "Interview Questions", href: "/interview-questions" },
       { label: "Blog", href: "/blog" },
     ],

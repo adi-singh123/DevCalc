@@ -21,30 +21,14 @@ export const slopeCalculator: Calculator = {
 
     keywords: [
       "slope calculator",
-      "find slope calculator",
-      "slope between two points",
-      "line slope calculator",
+      "find slope between two points",
+      "rise over run calculator",
       "slope formula calculator",
       "coordinate slope calculator",
-      "math slope calculator",
-      "rise over run calculator",
-      "calculate slope",
-      "slope finder",
-      "geometry slope calculator",
-      "algebra slope calculator",
-      "online slope calculator",
-      "slope equation calculator",
-      "coordinate geometry calculator",
-      "graph slope calculator",
-      "line equation slope",
-      "slope of a line calculator",
-      "free slope calculator",
-      "slope mathematics calculator",
       "point slope calculator",
-      "rise and run calculator",
-      "slope problem solver",
-      "linear slope calculator",
-      "coordinate line calculator",
+      "line slope calculator",
+      "slope of a line calculator",
+      "geometry slope calculator",
     ],
   },
 
@@ -149,9 +133,9 @@ export const slopeCalculator: Calculator = {
 
     {
       question:
-        "Is this Slope Calculator free?",
+        "What is the relationship between the slopes of perpendicular lines?",
       answer:
-        "Yes. You can calculate slopes between points unlimited times for free.",
+        "The slopes of two perpendicular non-vertical lines are negative reciprocals of each other (m₁ · m₂ = -1), meaning one slope is the inverted negative value of the other.",
     },
   ],
 };

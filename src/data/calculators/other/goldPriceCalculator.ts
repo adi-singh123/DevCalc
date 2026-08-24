@@ -29,32 +29,14 @@ export const goldPriceCalculator: Calculator = {
 
     keywords: [
       "gold price calculator",
-      "gold value calculator",
+      "gold value by weight",
       "gold rate calculator",
-      "gold calculator",
-      "gold price calculator india",
-      "gold cost calculator",
-      "gold weight calculator",
-      "gold purity calculator",
-      "gold price per gram",
-      "22k gold calculator",
-      "24k gold calculator",
+      "22k gold price calculator",
+      "24k gold value per gram",
       "18k gold calculator",
-
-      // Unit specific
       "gold price per tola",
-      "gold price per ounce",
-      "gold price per kg",
-      "tola to gram gold calculator",
-      "gold price per 10 grams",
-
-      // Question-based / long-tail
-      "how to calculate gold value",
-      "what is my gold worth",
-      "how much is 1 gram of 22k gold",
-      "how to check gold purity at home",
-      "difference between 22k and 24k gold price",
-      "how is gold price determined in india",
+      "gold weight to value calculator",
+      "tola to gram gold rate",
     ],
   },
 

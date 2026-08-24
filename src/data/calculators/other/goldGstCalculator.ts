@@ -29,29 +29,14 @@ export const goldGstCalculator: Calculator = {
 
     keywords: [
       "gold gst calculator",
-      "gst on gold calculator",
-      "gold gst calculator india",
       "gst on gold jewellery",
       "gst on gold making charges",
       "3 percent gst on gold",
       "5 percent gst on making charges",
-      "gold gst rate 2026",
-      "gold gst calculator by purity",
-      "22k gold gst calculator",
-      "24k gold gst calculator",
-      "18k gold gst calculator",
-      "gold gst hsn code",
+      "22k gold gst calculation",
       "gst on gold bars and coins",
-      "gst on digital gold",
       "gst on old gold exchange",
-
-      // Question-based / long-tail
-      "how much gst is charged on gold in india",
-      "is gst different for gold purity",
-      "how to calculate gst on gold jewellery",
-      "gst on gold making charges percentage",
-      "does gst apply to gold coins",
-      "gst on old gold sold to jeweller",
+      "gold gst tax breakdown",
     ],
   },
 

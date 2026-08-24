@@ -17,144 +17,20 @@ export const loveCalculator: Calculator = {
   seo: {
     title: "Love Calculator - Check Love Percentage by Name",
 
-description:
-"Curious if you and your crush are meant to be? Enter two names and get your love compatibility score instantly — free, fun, and shareable.",
-keywords: [
-  "love calculator",
-  "love calculator by name",
-  "love percentage calculator",
-  "love compatibility calculator",
-  "name compatibility calculator",
-  "love test calculator",
-  "crush calculator",
-  "love meter",
-  "true love calculator",
-  "free love calculator",
-  "online love calculator",
-  "couple compatibility calculator",
-  "relationship compatibility calculator",
-  "love score calculator",
-  "love percentage by name",
-  "name love calculator",
-  "love calculator india",
-  "fun love calculator",
-
-  // Core Keywords
-  "love match calculator",
-  "love compatibility test",
-  "love percentage test",
-  "relationship calculator",
-  "romance calculator",
-  "love predictor",
-  "love analyzer",
-  "love checker",
-  "love matching calculator",
-  "love rating calculator",
-
-  // Name Based Keywords
-  "love calculator with names",
-  "name love compatibility",
-  "love match by name",
-  "couple match calculator by name",
-  "love score by name",
-  "relationship percentage by name",
-  "crush compatibility calculator",
-  "name matching calculator",
-  "romantic compatibility calculator",
-  "love predictor by name",
-
-  // Compatibility Keywords
-  "couple compatibility test",
-  "relationship compatibility test",
-  "partner compatibility calculator",
-  "boyfriend girlfriend compatibility",
-  "romantic compatibility test",
-  "dating compatibility calculator",
-  "relationship match calculator",
-  "love chemistry calculator",
-  "relationship score calculator",
-  "compatibility percentage calculator",
-
-  // Crush Keywords
-  "crush love calculator",
-  "crush compatibility test",
-  "crush percentage calculator",
-  "secret crush calculator",
-  "crush match calculator",
-  "crush love percentage",
-  "crush relationship test",
-  "crush score calculator",
-  "online crush calculator",
-  "crush checker",
-
-  // Couple Keywords
-  "couple match test",
-  "couple love calculator",
-  "couple percentage calculator",
-  "couple score calculator",
-  "couple chemistry test",
-  "relationship percentage calculator",
-  "boyfriend girlfriend love calculator",
-  "partner love calculator",
-  "romantic relationship calculator",
-  "couple compatibility score",
-
-  // Fun & Entertainment Keywords
-  "fun love test",
-  "love game calculator",
-  "romance test calculator",
-  "love prediction tool",
-  "love compatibility game",
-  "love percentage game",
-  "relationship game calculator",
-  "fun relationship calculator",
-  "love score game",
-  "romantic calculator online",
-
-  // India Specific
-  "love calculator india",
-  "love test india",
-  "online love calculator india",
-  "love percentage calculator india",
-  "name compatibility calculator india",
-  "relationship calculator india",
-
-  // Question Keywords
-  "what is our love percentage",
-  "how compatible are we",
-  "how to calculate love percentage",
-  "is my crush compatible with me",
-  "how strong is our relationship",
-  "how does love calculator work",
-  "love calculator by name example",
-  "relationship compatibility example",
-  "how to check love compatibility",
-  "true love percentage calculator",
-
-  // Long Tail Keywords
-  "free online love calculator",
-  "best love calculator online",
-  "love percentage calculator by name",
-  "couple compatibility calculator online",
-  "relationship compatibility checker",
-  "love match calculator free",
-  "online true love calculator",
-  "romantic compatibility calculator free",
-  "love calculator for couples",
-  "accurate love calculator online",
-
-  // Viral Search Terms
-  "love test",
-  "love quiz",
-  "relationship test",
-  "crush test",
-  "soulmate calculator",
-  "soulmate compatibility calculator",
-  "romance compatibility test",
-  "love percentage checker",
-  "dating test calculator",
-  "true love test",
-],
+    description:
+      "Curious if you and your crush are meant to be? Enter two names and get your love compatibility score instantly — free, fun, and shareable.",
+    keywords: [
+      "love calculator",
+      "love calculator by name",
+      "love percentage calculator",
+      "love compatibility test",
+      "name compatibility calculator",
+      "crush calculator",
+      "couple compatibility calculator",
+      "love meter",
+      "relationship compatibility calculator",
+      "true love test",
+    ],
   },
 
   steps: [
@@ -337,5 +213,12 @@ keywords: [
   <li><strong>Experiment with Short Nicknames:</strong> Compare your formal results against the casual pet names or shortened terms you use with each other every day.</li>
   <li><strong>Check Iconic Fictional Couples:</strong> Run the names of famous silver-screen pairings or historical romances through the calculator to see if their fictional chemistry holds up to the math.</li>
 </ul>
+
+---
+
+<h2>Important Disclaimer</h2>
+<p>
+  This Love Calculator is intended strictly for entertainment purposes only. The percentage score is generated through character-mapping algorithms and numerology-inspired formulas, not psychological evaluations or scientific relationship analysis. Real romantic compatibility depends on open communication, mutual trust, respect, and shared values.
+</p>
 `,
 };

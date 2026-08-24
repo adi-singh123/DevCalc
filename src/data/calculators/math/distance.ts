@@ -24,27 +24,11 @@ export const distanceCalculator: Calculator = {
       "distance formula calculator",
       "distance between two points",
       "coordinate distance calculator",
-      "geometry distance calculator",
       "2d distance calculator",
-      "point distance calculator",
       "cartesian distance calculator",
-      "distance finder",
-      "distance equation calculator",
-      "math distance calculator",
-      "online distance calculator",
-      "distance solver",
-      "coordinate geometry calculator",
-      "distance formula solver",
-      "find distance between points",
-      "plane geometry calculator",
-      "distance calculation tool",
       "euclidean distance calculator",
-      "distance mathematics calculator",
-      "coordinate point calculator",
-      "distance equation solver",
-      "graph distance calculator",
-      "distance finder online",
-      "free distance calculator",
+      "find distance between points",
+      "coordinate geometry calculator",
     ],
   },
 
@@ -148,9 +132,9 @@ export const distanceCalculator: Calculator = {
 
     {
       question:
-        "Is this Distance Calculator free?",
+        "Can the distance formula result in a negative number?",
       answer:
-        "Yes. You can calculate unlimited distances for free.",
+        "No, distance is always non-negative because it represents a physical length, and the squared differences under the square root always yield a positive value or zero.",
     },
   ],
 };

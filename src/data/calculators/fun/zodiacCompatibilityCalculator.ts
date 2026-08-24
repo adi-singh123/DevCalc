@@ -23,101 +23,12 @@ export const zodiacCompatibilityCalculator: Calculator = {
       "zodiac sign compatibility calculator",
       "star sign compatibility calculator",
       "zodiac love calculator",
-      "zodiac match calculator",
       "astrology compatibility calculator",
       "sun sign compatibility calculator",
       "zodiac compatibility test",
-      "zodiac percentage calculator",
       "zodiac love match calculator",
       "zodiac compatibility by birthdate",
-      "star sign match calculator",
-      "zodiac relationship calculator",
-      "online zodiac compatibility calculator",
-      "free zodiac compatibility calculator",
-
-      // Core keywords
-      "zodiac checker",
-      "zodiac predictor",
-      "zodiac analyzer",
-      "zodiac rating calculator",
-      "zodiac compatibility checker",
-      "zodiac match test",
-      "zodiac percentage test",
-      "zodiac score calculator",
-      "zodiac love test",
-      "astrology love calculator",
-
-      // Sign-pair keywords
-      "leo and libra compatibility",
-      "scorpio and cancer compatibility",
-      "aries and aries compatibility",
-      "taurus and virgo compatibility",
-      "gemini and sagittarius compatibility",
-      "pisces and capricorn compatibility",
-      "aquarius and leo compatibility",
-      "cancer and scorpio love match",
-      "virgo and taurus compatibility percentage",
-      "libra and gemini compatibility",
-
-      // Element keywords
-      "fire sign compatibility",
-      "water sign compatibility",
-      "earth sign compatibility",
-      "air sign compatibility",
-      "zodiac element compatibility",
-      "best zodiac matches by element",
-      "most compatible zodiac elements",
-      "fire and air sign compatibility",
-      "water and earth sign compatibility",
-      "zodiac element chart compatibility",
-
-      // Love & relationship keywords
-      "love compatibility by zodiac sign",
-      "zodiac soulmate calculator",
-      "zodiac romantic compatibility",
-      "best zodiac love matches",
-      "worst zodiac matches",
-      "zodiac marriage compatibility",
-      "zodiac dating compatibility",
-      "zodiac relationship compatibility test",
-      "star sign love percentage",
       "horoscope compatibility calculator",
-
-      // Question keywords
-      "what is my zodiac compatibility",
-      "how compatible are our zodiac signs",
-      "which zodiac signs are most compatible",
-      "how does zodiac compatibility work",
-      "how to check zodiac sign match",
-      "is my zodiac sign compatible with my partner",
-      "which star signs make the best couple",
-      "how accurate is zodiac compatibility",
-      "what zodiac sign am i most compatible with",
-      "zodiac compatibility calculator example",
-
-      // Long-tail keywords
-      "free online zodiac compatibility calculator",
-      "best zodiac compatibility calculator online",
-      "zodiac compatibility calculator by birthdate",
-      "accurate zodiac compatibility calculator",
-      "instant zodiac compatibility calculator",
-      "zodiac love match percentage calculator",
-      "zodiac sign compatibility percentage",
-      "zodiac compatibility calculator for couples",
-      "zodiac compatibility calculator for crush",
-      "sun sign love match calculator",
-
-      // Related viral keywords
-      "love test",
-      "compatibility test",
-      "soulmate calculator",
-      "horoscope match test",
-      "astrology test online",
-      "star sign test",
-      "birth chart compatibility",
-      "relationship compatibility test",
-      "true love test",
-      "zodiac sign test",
     ],
   },
 
@@ -219,9 +130,9 @@ export const zodiacCompatibilityCalculator: Calculator = {
     },
     {
       question:
-        "Is the Zodiac Compatibility Calculator free, and are there any limits on how often I can use it?",
+        "Why do some people with 'incompatible' zodiac signs have great relationships?",
       answer:
-        "Yes, the Zodiac Compatibility Calculator is completely free to use, with no sign-up, account creation, email address, or payment required at any point. You can open the tool, enter two birth dates or select two signs, and get your result within seconds, and there's no cap on how many times you can run it. This means you're free to check your compatibility with a partner, then test a few friends, then compare your sign against every other sign in the zodiac just out of curiosity, all in a single sitting without hitting any kind of usage wall. The tool is designed to work smoothly on both desktop browsers and mobile devices, so you can pull it up quickly whether you're at home on a laptop or checking it during a conversation about horoscopes with friends. Because there's no account system, your results also aren't stored or tied to any personal profile — each calculation is a fresh, standalone check that disappears once you navigate away, unless you choose to save or share it yourself. This no-friction approach is part of why astrology tools like this tend to spread quickly among friend groups and on social platforms: anyone can try it instantly without creating an account or providing any personal information beyond a birth date or sign selection. Keeping the tool free is also a deliberate choice rather than an accident, since it's typically used in spontaneous, low-commitment moments — a quick check during a conversation about horoscopes, a curious click while chatting with a partner, or a spur-of-the-moment idea after learning someone's zodiac sign for the first time. Requiring an account or payment would add friction to exactly the kind of casual, impulsive use case the calculator is built for, so keeping it fully free and instantly accessible helps preserve that lighthearted, spontaneous feeling that makes astrology tools like this genuinely enjoyable to revisit.",
+        "Astrological compatibility is based on broad sun-sign traditions, but real human relationships depend on emotional maturity, shared values, communication, and mutual commitment. Furthermore, in astrology, a full birth chart contains many other planetary placements beyond just the sun sign.",
     },
     {
       question: "Can I share or save my zodiac compatibility result?",
@@ -362,14 +273,17 @@ Social sharing has also helped keep zodiac compatibility tools thriving. A singl
 Psychologists often point to a concept called the <strong>Barnum effect</strong> to help explain why astrology feels so personally accurate to so many people: general, flattering, or broadly applicable descriptions tend to feel uniquely tailored to us, even when they could apply to almost anyone. Zodiac compatibility descriptions are often written in exactly this style, which is part of why a compatibility message can feel surprisingly relatable regardless of which two signs are actually being compared. This doesn't diminish the enjoyment or cultural value of astrology — it simply helps explain, from a psychological standpoint, why these tools feel so engaging and personally resonant even without scientific backing.
 </p>
 
-<h2>Building Real Compatibility Beyond a Zodiac Score</h2>
+<h2>Navigating Relationship Harmony Beyond Astrological Archetypes</h2>
 <p>
-Genuine compatibility is built gradually, through repeated interactions rather than a single instant calculation. Shared values matter a great deal over time — how you each handle disagreements, what you prioritize in life, and how you treat people when things get stressful. Communication style is another major factor; two people who can talk openly, listen well, and navigate disagreements without shutting down tend to build stronger connections than two people who simply share a favorable zodiac pairing on paper. Consistency also plays a bigger role than most people expect — real compatibility usually reveals itself across dozens of smaller, less dramatic moments rather than a single dramatic first impression.
+While exploring elemental harmony between Fire, Earth, Air, and Water signs provides engaging conversational insight, genuine interpersonal harmony is created through day-to-day emotional maturity and shared life goals. Even pairs with theoretically conflicting astrological elements can form deeply fulfilling bonds when both individuals practice active listening, demonstrate vulnerability, and respect each other's unique perspectives.
+</p>
+<p>
+Sun-sign pairings offer a fun symbolic lens for reflecting on personality tendencies, but they should never limit your dating choices or define your expectations. Lasting partnerships thrive on emotional safety, mutual accountability, and transparent communication — qualities developed through real human connection rather than celestial charts.
 </p>
 
-<h2>Limitations and an Honest Disclaimer</h2>
+<h2>Limitations and Entertainment Disclaimer</h2>
 <p>
-It's worth stating plainly: this Zodiac Compatibility Calculator is built for entertainment and cultural exploration. The percentage it generates comes from applying traditional astrological element and modality rules to two birth dates — it has no access to personality traits, emotional history, communication patterns, or any of the real factors that shape whether two people actually connect. A high score is fun to see, but it isn't evidence of guaranteed compatibility, and a low score certainly isn't a verdict on whether something could work between two people. If you're genuinely curious about compatibility with someone, the most reliable path forward is spending real time together, communicating honestly, and paying attention to how you both show up for each other in everyday moments.
+This Zodiac Compatibility Calculator is provided strictly for entertainment and cultural interest. The scores reflect traditional Western astrological formulas based on sun-sign dates, elements, and modalities rather than empirical psychological research or relationship science. Use these readings as a fun, lighthearted tool for discussion rather than a definitive forecast for personal or romantic decisions.
 </p>
 
 <h2>A Brief History of Zodiac Compatibility</h2>

@@ -182,7 +182,7 @@ export default async function CalculatorPage({ params }: Props) {
 
           <SEOContent content={calculator.seoContent} />
 
-          <AuthorBio disclaimer={getDisclaimer(calculator.category)} />
+          <AuthorBio disclaimer={getDisclaimer(calculator.category)} category={calculator.category} />
         </div>
 
         <aside className="hidden lg:block">

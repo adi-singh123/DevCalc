@@ -30,34 +30,13 @@ export const goldMakingChargesCalculator: Calculator = {
     keywords: [
       "gold making charges calculator",
       "gold jewellery price calculator",
-      "gold making charges india",
-      "gold price calculator with gst",
-      "22 carat gold price calculator",
-      "gold jewellery cost calculator",
-      "gold rate calculator",
-      "gold hallmark charges",
-      "gold wastage charges calculator",
-      "how are gold making charges calculated",
-
-      // Purity specific
-      "22k gold making charges",
-      "18k gold making charges",
-      "24k gold coin making charges",
-      "916 gold price calculator",
-
-      // Bill breakdown
-      "gold bill calculator with making charges",
-      "gold jewellery gst calculator",
+      "gold bill breakdown with gst",
+      "22k gold jewellery cost",
+      "gold hallmark charges calculator",
+      "gold wastage charges estimator",
       "gold making charges percentage",
-      "flat rate vs percentage gold making charges",
-
-      // Question-based / long-tail
-      "how much are gold making charges in india",
-      "what is a reasonable making charge for gold jewellery",
-      "how to calculate final price of gold jewellery",
-      "is gst applicable on gold making charges",
-      "how to reduce gold making charges",
-      "difference between wastage and making charges",
+      "916 gold price calculation",
+      "jewellery making charges and tax",
     ],
   },
 

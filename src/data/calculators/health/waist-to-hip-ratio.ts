@@ -22,27 +22,11 @@ export const waistToHipRatioCalculator: Calculator = {
       "whr calculator",
       "waist hip ratio calculator",
       "body fat distribution calculator",
-      "waist measurement calculator",
-      "hip measurement calculator",
-      "health risk calculator",
-      "body shape calculator",
-      "obesity risk calculator",
-      "waist to hip calculator",
-      "whr health calculator",
-      "fitness calculator",
-      "body composition calculator",
-      "weight loss calculator",
-      "healthy waist ratio",
-      "waist hip percentage calculator",
-      "online whr calculator",
-      "free waist to hip ratio calculator",
-      "waist circumference calculator",
-      "body health calculator",
       "abdominal obesity calculator",
-      "waist fat calculator",
-      "healthy body ratio calculator",
-      "risk assessment calculator",
-      "fitness health calculator",
+      "body shape calculator",
+      "healthy waist ratio",
+      "waist circumference calculator",
+      "obesity risk calculator",
     ],
   },
 
@@ -149,9 +133,9 @@ export const waistToHipRatioCalculator: Calculator = {
 
     {
       question:
-        "Is this Waist-to-Hip Ratio Calculator free?",
+        "Why is abdominal visceral fat considered more hazardous than subcutaneous fat?",
       answer:
-        "Yes. You can calculate your WHR online unlimited times completely free.",
+        "Visceral fat deposits deep within the abdominal cavity around vital organs, secreting inflammatory cytokines and fatty acids into circulation. This significantly increases insulin resistance and cardiovascular strain compared to subcutaneous fat stored beneath the skin.",
     },
   ],
 };

@@ -14,26 +14,37 @@ type Calculator = (typeof calculators)[number];
 export function getCalculatorIntro(calculator: Calculator): string {
   const useCases = calculator.formula?.useCases ?? [];
   const compareWith = calculator.compareWith ?? [];
+  // Deterministic variation: pick a sentence pattern based on slug hash
+  // so different pages get different phrasing.
+  const hash = calculator.slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
 
   const parts: string[] = [];
 
-  // 1. Use cases
+  // 1. Use cases — three pattern families rotated by hash
   if (useCases.length === 1) {
-    parts.push(
-      `This calculator is commonly used for ${useCases[0]}, giving you an exact figure instead of a rough estimate.`
-    );
+    const patterns = [
+      `Commonly used for ${useCases[0]}, this tool gives you an exact figure instead of a rough estimate.`,
+      `Whether you need it for ${useCases[0]} or a quick sanity check, the result is calculated to full precision.`,
+      `Designed for ${useCases[0]}, it returns a precise answer so you can skip the manual math.`,
+    ];
+    parts.push(patterns[hash % patterns.length]);
   } else if (useCases.length > 1) {
     const last = useCases[useCases.length - 1];
     const rest = useCases.slice(0, -1);
-    parts.push(
-      `This calculator is useful in several situations, including ${rest.join(
-        ", "
-      )}, and ${last}. In each case, it applies the correct formula automatically so you get a precise result without manual calculation.`
-    );
+    const joined = rest.join(", ");
+    const patterns = [
+      `People reach for this calculator when working on ${joined}, or ${last}. It handles the formula automatically so the result is precise every time.`,
+      `Useful across scenarios like ${joined}, and ${last} — enter your numbers and the math is done for you.`,
+      `From ${rest[0]} to ${last}, this tool covers multiple use cases. Plug in your values and get an accurate answer without manual calculation.`,
+    ];
+    parts.push(patterns[hash % patterns.length]);
   } else {
-    parts.push(
-      `It applies the correct formula automatically so you get a precise result without manual calculation, whatever your specific situation.`
-    );
+    const patterns = [
+      `Enter your values and the correct formula is applied automatically — no manual calculation needed.`,
+      `It handles the underlying math for you, delivering a precise result whatever your specific situation.`,
+      `Plug in your numbers to get an accurate answer instantly, regardless of the scenario.`,
+    ];
+    parts.push(patterns[hash % patterns.length]);
   }
 
   // 2. Related calculators — genuine internal links, not shown

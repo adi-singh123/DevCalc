@@ -25,24 +25,8 @@ export const probabilityCalculator: Calculator = {
       "odds calculator",
       "event probability calculator",
       "statistics probability calculator",
-      "probability solver",
-      "probability formula calculator",
-      "probability percentage calculator",
-      "math probability calculator",
-      "online probability calculator",
-      "probability equation calculator",
-      "probability finder",
-      "likelihood calculator",
-      "probability statistics calculator",
-      "free probability calculator",
-      "simple probability calculator",
-      "probability math solver",
-      "event odds calculator",
-      "probability and statistics calculator",
       "conditional probability calculator",
-      "exam probability calculator",
       "probability distribution calculator",
-      "probability of success calculator",
       "probability of event calculator",
       "calculate probability online",
     ],
@@ -165,9 +149,9 @@ export const probabilityCalculator: Calculator = {
 
     {
       question:
-        "Is this calculator free?",
+        "What is the difference between odds and probability?",
       answer:
-        "Yes. You can use the Probability Calculator online for free.",
+        "Probability compares the number of favorable outcomes to the total number of all possible outcomes, whereas odds compare the number of favorable outcomes directly against the number of unfavorable outcomes.",
     },
   ],
 };

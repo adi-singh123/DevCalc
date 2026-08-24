@@ -20,89 +20,14 @@ export const roadTaxCalculator: Calculator = {
 
     keywords: [
       "road tax calculator",
-      "road tax calculator india",
-      "rto tax calculator",
-      "rto charges calculator",
-      "motor vehicle tax calculator",
-      "vehicle road tax calculator",
-      "car road tax calculator",
-      "bike road tax calculator",
-      "road tax calculator by state",
-      "rto road tax calculator india",
-
-      // State Specific Keywords
-      "road tax calculator delhi",
-      "road tax calculator maharashtra",
-      "road tax calculator karnataka",
-      "road tax calculator uttar pradesh",
-      "road tax calculator tamil nadu",
-      "road tax calculator gujarat",
-      "road tax calculator rajasthan",
-      "road tax calculator haryana",
-      "road tax calculator punjab",
-      "road tax calculator kerala",
-      "road tax calculator west bengal",
-      "road tax calculator telangana",
-      "road tax calculator andhra pradesh",
-      "road tax calculator madhya pradesh",
-      "road tax calculator bihar",
-
-      // Registration & RTO Keywords
       "rto registration charges calculator",
-      "vehicle registration fee calculator",
-      "new car rto charges calculator",
-      "car registration cost calculator",
-      "bike registration charges calculator",
-      "rto charges for new car",
-      "vehicle lifetime tax calculator",
-      "lifetime tax calculator car",
-      "one time road tax calculator",
-      "state road tax percentage calculator",
-
-      // Vehicle Type Keywords
+      "motor vehicle tax calculator",
+      "state-wise road tax slabs",
       "car road tax percentage",
       "two wheeler road tax calculator",
-      "commercial vehicle tax calculator",
-      "suv road tax calculator",
-      "luxury car road tax calculator",
-      "petrol car road tax calculator",
-      "diesel car road tax calculator",
-      "cng vehicle road tax calculator",
-
-      // EV Keywords
-      "ev road tax calculator",
-      "electric vehicle road tax exemption",
-      "ev road tax exemption states",
-      "electric car registration tax",
-      "ev rto charges calculator",
-      "green tax calculator ev",
-
-      // On-Road Price Keywords
-      "on road price calculator with road tax",
-      "car on road price rto breakdown",
-      "vehicle on road cost calculator",
-      "road tax and insurance calculator",
-      "total rto cost calculator",
-
-      // BH Series Keywords
+      "ev road tax exemption calculator",
       "bh series registration tax calculator",
-      "bharat series road tax",
-      "bh number plate tax calculator",
-
-      // Question Keywords
-      "how to calculate road tax in india",
-      "how is rto tax calculated",
-      "how much road tax for new car",
-      "which state has lowest road tax",
-      "which state has highest road tax",
-      "how to pay road tax online",
-
-      // Long Tail Keywords
-      "free road tax calculator india",
-      "accurate rto tax calculator online",
-      "state wise road tax comparison calculator",
-      "road tax calculator 2026",
-      "rto tax calculator all states india",
+      "on road price tax breakdown",
     ],
   },
 

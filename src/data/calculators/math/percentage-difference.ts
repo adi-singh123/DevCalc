@@ -24,25 +24,9 @@ export const percentageDifferenceCalculator: Calculator = {
       "percentage change calculator",
       "percentage increase calculator",
       "percentage decrease calculator",
-      "difference percentage calculator",
-      "compare percentages calculator",
       "percentage comparison calculator",
       "percentage variance calculator",
       "calculate percentage difference",
-      "online percentage difference calculator",
-      "free percentage difference calculator",
-      "percent change calculator",
-      "percentage growth calculator",
-      "percentage drop calculator",
-      "math percentage calculator",
-      "percentage formula calculator",
-      "percentage increase decrease calculator",
-      "difference between two numbers percentage",
-      "percentage analysis calculator",
-      "percentage calculator",
-      "value comparison calculator",
-      "percentage fluctuation calculator",
-      "percentage variation calculator",
       "percentage difference formula",
     ],
   },
@@ -151,9 +135,9 @@ export const percentageDifferenceCalculator: Calculator = {
 
     {
       question:
-        "Is this calculator free?",
+        "When should you use percentage difference instead of percentage error?",
       answer:
-        "Yes. The Percentage Difference Calculator is completely free to use.",
+        "Percentage difference is used when comparing two observed values where neither is considered a standard or true benchmark. Percentage error is used when comparing an experimental result against a known theoretical or accepted true value.",
     },
   ],
 };

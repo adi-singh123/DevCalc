@@ -20,127 +20,15 @@ export const crushCalculator: Calculator = {
       "Check your compatibility with your crush instantly with our Crush Calculator. Just enter two names to discover your crush percentage, match score, and relationship potential in seconds.",
     keywords: [
       "crush calculator",
-      "crush calculation",
       "crush compatibility calculator",
       "crush percentage calculator",
       "crush calculator by name",
-      "love crush calculator",
       "crush meter",
       "crush score calculator",
-      "crush test",
       "secret crush calculator",
-      "crush match calculator",
       "crush compatibility test",
-      "online crush calculator",
       "crush love calculator",
-      "crush percentage by name",
-      "fun crush calculator",
-
-      // Core Keywords
-      "crush checker",
-      "crush predictor",
-      "crush analyzer",
-      "crush rating calculator",
-      "crush relationship calculator",
-      "crush compatibility checker",
-      "crush match test",
       "crush percentage test",
-      "crush score test",
-      "crush love test",
-
-      // Name-Based Keywords
-      "crush calculator with names",
-      "crush compatibility by name",
-      "crush match by name",
-      "crush score by name",
-      "crush checker by name",
-      "name crush calculator",
-      "crush predictor by name",
-      "secret crush compatibility by name",
-      "crush meter by name",
-
-      // Love & Relationship Keywords
-      "love calculator for crush",
-      "crush love percentage",
-      "romantic crush calculator",
-      "relationship compatibility calculator",
-      "love compatibility test",
-      "crush relationship test",
-      "romantic compatibility calculator",
-      "crush chemistry calculator",
-      "love match calculator",
-      "relationship score calculator",
-
-      // Secret Crush Keywords
-      "secret crush calculator",
-      "secret admirer calculator",
-      "secret crush compatibility",
-      "crush finder calculator",
-      "secret love calculator",
-      "crush attraction calculator",
-      "secret crush percentage",
-      "crush attraction test",
-      "secret crush match calculator",
-
-      // Teen & Fun Keywords
-      "fun crush test",
-      "crush game calculator",
-      "crush challenge calculator",
-      "school crush calculator",
-      "college crush calculator",
-      "crush compatibility game",
-      "crush percentage game",
-      "fun relationship calculator",
-      "crush score game",
-      "crush quiz calculator",
-
-      // Compatibility Keywords
-      "compatibility test for crush",
-      "crush matching calculator",
-      "crush affinity calculator",
-      "crush connection calculator",
-      "crush bond calculator",
-      "romantic compatibility test",
-      "dating compatibility calculator",
-      "partner compatibility test",
-      "crush relationship checker",
-      "crush chemistry test",
-
-      // Question Keywords
-      "does my crush like me",
-      "what is my crush percentage",
-      "how compatible are me and my crush",
-      "how to calculate crush compatibility",
-      "how to check crush percentage",
-      "how does crush calculator work",
-      "crush compatibility test online",
-      "is my crush compatible with me",
-      "how strong is my crush connection",
-      "crush calculator example",
-
-      // Long Tail Keywords
-      "free online crush calculator",
-      "best crush calculator online",
-      "crush compatibility calculator by name",
-      "secret crush percentage calculator",
-      "crush checker and tester",
-      "crush love compatibility calculator",
-      "accurate crush calculator",
-      "online crush meter calculator",
-      "crush match calculator free",
-      "instant crush compatibility calculator",
-
-      // Related Viral Keywords
-      "love test",
-      "crush test online",
-      "relationship test",
-      "compatibility test",
-      "love percentage test",
-      "soulmate calculator",
-      "dating test",
-      "love meter online",
-      "relationship compatibility test",
-      "true love test",
     ],
   },
 
@@ -237,9 +125,9 @@ export const crushCalculator: Calculator = {
     },
 
     {
-      question: "Is the Crush Calculator free, and are there any limits on how often I can use it?",
+      question: "How can I tell if my crush might be interested in me in real life?",
       answer:
-        "Yes, the Crush Calculator is completely free to use, with no sign-up, account creation, email address, or payment required at any point. You can open the tool, type in two names, and get your result within seconds, and there's no cap on how many times you can run it. This means you're free to test your own name against a crush, then try a friend's name against theirs, then experiment with a few nickname variations, all in a single sitting without hitting any kind of usage wall. The tool is designed to work smoothly on both desktop browsers and mobile devices, so you can pull it up quickly whether you're at home on a laptop or checking it discreetly on your phone during a break. Because there's no account system, your results also aren't stored or tied to any personal profile — each calculation is a fresh, standalone check that disappears once you navigate away, unless you choose to save or share it yourself. This no-friction approach is part of why tools like this tend to spread quickly among friend groups and on social platforms: anyone can try it instantly without creating an account or providing any personal information beyond the two names they choose to enter. Keeping the tool free is also a deliberate choice rather than an accident, since it's typically used in spontaneous, low-commitment moments — a quick check during a study break, a curious click while chatting with friends, or a spur-of-the-moment idea after meeting someone new. Requiring an account or payment would add friction to exactly the kind of casual, impulsive use case the calculator is built for, so keeping it fully free and instantly accessible helps preserve that lighthearted, spontaneous feeling. You also don't need to worry about subscription fees, hidden charges, or upsells appearing partway through the process; the entire experience, from entering names to viewing your result, is designed to be quick, simple, and cost-free from start to finish. Whether you use it once out of curiosity or come back to it regularly whenever a new name pops into your life, the free and unlimited nature of the tool means there's never any pressure or cost attached to indulging that curiosity.",
+        "While a crush calculator provides a fun metric, real signs of romantic interest include consistent two-way communication, making plans to spend time together, remembering small details you mention, and open body language like leaning in and making frequent eye contact.",
     },
 
     {
@@ -362,12 +250,12 @@ While no list can guarantee how another person feels, there are some patterns th
 Body language can offer clues too, such as maintaining eye contact, angling toward you in conversation, or smiling more when you're around, though these signals vary a lot from person to person and culture to culture, so they're never fully reliable on their own. Ultimately, the clearest way to understand how someone feels is through honest, direct communication rather than guesswork, however tempting the guesswork might be.
 </p>
 
-<h2>Building Real Compatibility Beyond a Percentage Score</h2>
+<h2>Moving From an Initial Crush to Real Emotional Compatibility</h2>
 <p>
-Genuine compatibility is built gradually, through repeated interactions rather than a single instant calculation. Shared values tend to matter a great deal over time — things like how you each handle disagreements, what you prioritize in life, and how you treat people when things get stressful. Communication style is another major factor; two people who can talk openly, listen well, and navigate disagreements without shutting down tend to build stronger connections than two people who simply share similar interests on paper.
+Navigating an initial crush is often filled with excitement, anticipation, and daydreams, but genuine compatibility only develops once you interact regularly in real-world situations. While a name calculator pairs letters together for a playful number, lasting attraction requires discovering each other's genuine sense of humor, how you handle quiet moments together, and whether your conversational rhythms naturally align.
 </p>
 <p>
-Consistency also plays a bigger role than most people expect. A single exciting conversation can feel like strong chemistry, but real compatibility usually reveals itself across dozens of smaller, less dramatic moments — how someone behaves on an ordinary Tuesday, how they respond when plans change, or how they treat people who can't do anything for them. None of that can be captured by a name-based algorithm, which is exactly why tools like this are best treated as fun icebreakers rather than genuine relationship forecasts.
+Transitioning past infatuation also involves discovering mutual interests and respecting personal boundaries. Observing how someone treats peers, how they respond to your ideas, and whether effort is reciprocated equally will tell you far more about potential chemistry than any algorithmic score. Treat your crush percentage as an entertaining icebreaker, while letting authentic dialogue guide how you pursue the connection.
 </p>
 
 <h2>Tips for Talking to Your Crush Without Overthinking It</h2>

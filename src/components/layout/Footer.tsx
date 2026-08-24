@@ -137,6 +137,20 @@ export default function Footer() {
             </Link>
 
             <Link
+              href="/collegeProject"
+              className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
+            >
+              College Projects
+            </Link>
+
+            <Link
+              href="/want-automation"
+              className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
+            >
+              Automation Services
+            </Link>
+
+            <Link
               href="/blog"
               className="hover:text-[#1f3a5c] dark:hover:text-blue-400"
             >

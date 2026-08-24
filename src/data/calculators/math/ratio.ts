@@ -22,29 +22,13 @@ export const ratioCalculator: Calculator = {
     keywords: [
       "ratio calculator",
       "simplify ratio calculator",
-      "ratio solver",
-      "ratio finder",
       "ratio and proportion calculator",
       "equivalent ratio calculator",
       "ratio simplifier",
-      "math ratio calculator",
-      "ratio formula calculator",
-      "ratio comparison calculator",
-      "ratio value calculator",
-      "online ratio calculator",
-      "free ratio calculator",
       "proportion calculator",
       "ratio percentage calculator",
-      "number ratio calculator",
-      "ratio equation calculator",
-      "ratio math solver",
-      "ratio converter",
       "ratio reduction calculator",
-      "ratio calculator online",
-      "ratio and proportion solver",
-      "simplify ratios online",
       "ratio calculator with steps",
-      "ratio calculator math",
     ],
   },
 
@@ -162,9 +146,9 @@ export const ratioCalculator: Calculator = {
 
     {
       question:
-        "Is this Ratio Calculator free?",
+        "How do you solve a proportion equation with an unknown variable?",
       answer:
-        "Yes. You can use the Ratio Calculator online for free without registration.",
+        "To solve a proportion such as a/b = c/x, cross-multiply to get a · x = b · c, then divide both sides by a to solve for the missing term x = (b · c) / a.",
     },
   ],
 };

@@ -17,7 +17,7 @@ export const simpleInterestCalculator: Calculator = {
       "Simple Interest Calculator - Calculate SI Online",
 
 description:
-  "Opening an SSY account for your daughter? Calculate exactly how much it will grow — total investment, interest earned, and final maturity amount — using the latest government interest rate.",
+  "Enter a principal amount, annual interest rate, and time period to instantly calculate the simple interest earned and total maturity value. Useful for short-term loans, FDs, and basic financial planning.",
     keywords: [
       "simple interest calculator",
       "si calculator",

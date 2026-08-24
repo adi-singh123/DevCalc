@@ -29,35 +29,14 @@ export const silverPriceCalculator: Calculator = {
 
     keywords: [
       "silver price calculator",
-      "silver value calculator",
+      "silver value by weight",
       "silver rate calculator",
-      "silver calculator",
-      "silver price calculator india",
-      "silver cost calculator",
-      "silver weight calculator",
-      "silver purity calculator",
-      "silver price per gram",
-      "999 silver calculator",
-      "925 sterling silver calculator",
-      "silver rate today calculator",
-      "silver valuation calculator",
-      "silver investment calculator",
-      "silver coin calculator",
-      "silver bar calculator",
-
-      // Unit specific
+      "999 fine silver calculator",
+      "925 sterling silver value",
+      "silver coin valuation",
       "silver price per tola",
       "silver price per ounce",
-      "silver price per kg",
-      "silver price per 10 grams",
-
-      // Question-based / long-tail
-      "how to calculate silver value",
-      "what is my silver worth",
-      "how much is 1 gram of silver",
-      "how to check silver purity at home",
-      "difference between 999 and 925 silver price",
-      "how is silver price determined in india",
+      "silver purity calculator",
     ],
   },
 
