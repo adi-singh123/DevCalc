@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -50,7 +50,7 @@ export default function Footer() {
                   href="/collegeProject"
                   className="font-medium text-emerald-700 transition hover:underline dark:text-emerald-400"
                 >
-                  ⚡ Student Software Builds (24h Prototype)
+                  Student Software Builds (24h Prototype)
                 </Link>
               </li>
               <li>
@@ -58,7 +58,15 @@ export default function Footer() {
                   href="/want-automation"
                   className="font-medium text-blue-700 transition hover:underline dark:text-blue-400"
                 >
-                  🤖 Automation &amp; Web Scraping
+                  Automation &amp; Web Scraping
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/tug-of-war-calculator"
+                  className="font-medium text-rose-700 transition hover:underline dark:text-rose-400"
+                >
+                Calculator Tug of War (Math Game)
                 </Link>
               </li>
               <li>

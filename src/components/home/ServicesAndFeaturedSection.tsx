@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Sparkles, Bot, Building2, Car, ArrowRight, Code2, CheckCircle2 } from "lucide-react";
 
 export default function ServicesAndFeaturedSection() {
@@ -118,6 +118,34 @@ export default function ServicesAndFeaturedSection() {
                 className="inline-flex items-center gap-1 text-sm font-bold text-purple-600 hover:text-purple-700 dark:text-purple-400"
               >
                 Calculate Road Tax <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 5: Calculator Tug of War Game */}
+          <div className="flex flex-col justify-between rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900 sm:col-span-2 lg:col-span-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400">
+                  <Sparkles className="h-6 w-6" />
+                </div>
+                <div>
+                  <div className="inline-flex items-center gap-1 rounded-md bg-rose-50 px-2 py-0.5 text-xs font-bold text-rose-700 dark:bg-rose-950/80 dark:text-rose-300">
+                    🎮 Interactive Speed Math Game
+                  </div>
+                  <h3 className="mt-1 text-lg font-bold text-slate-900 dark:text-white">
+                    Calculator Tug of War — Beat the Bot
+                  </h3>
+                  <p className="mt-0.5 text-xs text-slate-600 dark:text-slate-400">
+                    Test your mental arithmetic speed in a head-to-head tug of war against our AI bot.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/tug-of-war-calculator"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2.5 text-xs font-bold text-white shadow-md hover:from-blue-700 hover:to-indigo-700"
+              >
+                Play Match Now <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>

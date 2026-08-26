@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -60,6 +60,11 @@ const NAV_LINKS: NavLink[] = [
     label: "Resources",
     id: "resources",
     children: [
+      {
+        label: "Calculator Tug of War (Game)",
+        href: "/tug-of-war-calculator",
+        desc: "Interactive speed math duel against our AI bot",
+      },
       {
         label: "Interview Questions",
         href: "/interview-questions",
