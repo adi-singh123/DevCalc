@@ -16,6 +16,7 @@ import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import { getCalculatorIntro } from "@/src/lib/seo/generation";
 import CalculatorListByCategory from "@/src/components/calculator/Calculatorlistbycategory";
 import AuthorBio from "@/src/components/common/AuthorBio";
+import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -151,6 +152,22 @@ export default async function CalculatorPage({ params }: Props) {
             <CalculatorRenderer slug={calculator.slug} />
           </div>
           <CompareCalculatorSection compareWith={calculator.compareWith} />
+
+          {calculator.slug === "road-tax-calculator" && (
+            <StateSelectorSection
+              type="road-tax"
+              title="Select Your State for Exact RTO Road Tax Slabs"
+              subtitle="Get exact 2026 motor vehicle tax brackets, diesel surcharges, EV policy exemptions, and local RTO registration guidelines."
+            />
+          )}
+
+          {calculator.slug === "stamp-duty-calculator" && (
+            <StateSelectorSection
+              type="stamp-duty"
+              title="Select Your State for Exact Stamp Duty & Circle Rates"
+              subtitle="Get exact 2026 stamp duty percentages, Ready Reckoner / Guideline values, women buyer concessions, and registration fee caps."
+            />
+          )}
           <div className="mt-8 space-y-6 lg:hidden">
             
            <CalculatorListByCategory

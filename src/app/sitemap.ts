@@ -3,6 +3,8 @@ import { calculators } from "@/src/data/calculators";
 import { categories } from "@/src/data/categories/Category";
 import { blogs } from "@/src/data/blogs/blog";
 import { interviewTopics } from "@/src/data/interview";
+import { STAMP_DUTY_STATES } from "@/src/data/states/stamp-duty-states";
+import { ROAD_TAX_STATES } from "@/src/data/states/road-tax-states";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.devcalc.in";
@@ -26,6 +28,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
+  }));
+
+  const stampDutyStateUrls = STAMP_DUTY_STATES.map((state) => ({
+    url: `${baseUrl}/stamp-duty-calculator/${state.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  const roadTaxStateUrls = ROAD_TAX_STATES.map((state) => ({
+    url: `${baseUrl}/road-tax-calculator/${state.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
   }));
 
   const interviewBaseUrls = interviewTopics.flatMap((topic) => {
@@ -111,6 +127,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     ...categoryUrls,
     ...calculatorUrls,
+    ...stampDutyStateUrls,
+    ...roadTaxStateUrls,
     ...blogUrls,
     ...interviewBaseUrls.map((item) => ({
       ...item,

@@ -7,39 +7,34 @@ import {
   PhoneCall,
   MessageSquare,
   ShieldCheck,
-  GraduationCap,
   Sparkles,
-  FileText,
-  Video,
-  CheckCircle2,
   Layers,
   Cpu,
   Database,
   Globe,
   Smartphone,
   BrainCircuit,
-  HelpCircle,
   Zap,
   BookOpen,
-  Award,
+  FileCode,
+  Laptop,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "College Software Projects for B.Tech, BCA, MCA & CS/IT Students | DevCalc",
+  title: "Custom Software Builds for Students — Web, AI/ML, Mobile & Cloud | DevCalc",
   description:
-    "Need a custom software college project for B.Tech, BCA, MCA, or IT? Get a working prototype within 24 hours before payment discussions. Full source code, documentation, PPT, and viva prep. Call/WhatsApp: 8081158775.",
+    "Custom software development service for students. Web applications, AI/ML models, mobile apps, and cloud systems with a working prototype delivered within 24 hours. Call/WhatsApp: 8081158775.",
   keywords: [
-    "college software projects",
-    "btech final year projects",
-    "bca major project",
-    "mca capstone project",
-    "cs it college projects",
-    "full stack college project",
-    "ai ml final year project",
-    "python college project",
-    "react nextjs college project",
-    "student project prototype in 24 hours",
-    "college project source code and report",
+    "custom software builds for students",
+    "student software development service",
+    "web app development for students",
+    "ai ml student software projects",
+    "mobile app development student projects",
+    "full stack student software builds",
+    "custom software prototype in 24 hours",
+    "python student software development",
+    "react nextjs custom software builds",
+    "custom software engineering for students",
   ],
   alternates: {
     canonical: "https://www.devcalc.in/collegeProject",
@@ -56,9 +51,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "College Software Projects for B.Tech, BCA, MCA & CS/IT | 24-Hour Prototype",
+    title: "Custom Software Builds for Students — Web, AI/ML, Mobile & Cloud",
     description:
-      "Get custom B.Tech, BCA, MCA software projects with a working prototype delivered within 24 hours. Full code, report, PPT & viva prep. Call/WhatsApp: 8081158775.",
+      "Custom software development service for students across Web, AI/ML, Mobile, and Cloud. Review a working prototype within 24 hours. Call/WhatsApp: 8081158775.",
     url: "https://www.devcalc.in/collegeProject",
     siteName: "DevCalc",
     locale: "en_IN",
@@ -68,15 +63,15 @@ export const metadata: Metadata = {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "DevCalc College Software Projects",
+        alt: "DevCalc Custom Software Builds for Students",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "College Software Projects for B.Tech, BCA, MCA | 24h Prototype",
+    title: "Custom Software Builds for Students | 24h Prototype",
     description:
-      "Get a working software project prototype within 24 hours before payment. Full code, report, PPT & viva prep. Call/WhatsApp: 8081158775.",
+      "Get custom-built software across Web, AI/ML, Mobile, and Cloud with a working prototype delivered in 24 hours. Call/WhatsApp: 8081158775.",
     images: ["/logo.png"],
   },
 };
@@ -86,37 +81,37 @@ const DOMAINS = [
     icon: Globe,
     title: "Full-Stack Web Applications",
     tech: "React, Next.js, MERN Stack, Node.js, Django, FastAPI, Spring Boot, PHP/Laravel",
-    desc: "Production-grade web apps with authentication, admin panels, analytics dashboards, payment gateways, and role-based access control.",
+    desc: "Production-grade web apps with authentication, admin dashboards, analytics panels, payment integrations, and role-based access control.",
   },
   {
     icon: BrainCircuit,
     title: "AI, Machine Learning & Data Science",
     tech: "Python, PyTorch, TensorFlow, OpenCV, Scikit-learn, NLP, LLMs, Computer Vision",
-    desc: "Deep learning models, predictive algorithms, healthcare diagnostics, recommendation engines, sentiment analysis, and generative AI apps.",
+    desc: "Deep learning pipelines, predictive modeling, image classification, recommendation engines, sentiment analysis, and generative AI integrations.",
   },
   {
     icon: Smartphone,
     title: "Mobile App Development",
-    tech: "Flutter, React Native, Android (Java/Kotlin), Firebase, REST APIs",
-    desc: "Cross-platform and native mobile apps with real-time cloud sync, geolocation, push notifications, offline databases, and modern UI.",
+    tech: "Flutter, React Native, Android (Kotlin/Java), Firebase, REST APIs",
+    desc: "Cross-platform and native mobile apps with real-time cloud database sync, geolocation, push notifications, and modern responsive UI.",
   },
   {
     icon: Database,
     title: "Database & Enterprise Systems",
     tech: "PostgreSQL, MongoDB, MySQL, Redis, AWS, Firebase, Docker, Microservices",
-    desc: "Hospital ERPs, college management portals, inventory trackers, and high-concurrency cloud-backed microservices architectures.",
+    desc: "Management portals, inventory systems, scheduling platforms, and scalable backend microservices architectures.",
   },
   {
     icon: Cpu,
     title: "IoT & Smart Hardware Interfacing",
     tech: "ESP32, Raspberry Pi, Arduino + Live Web Dashboards, MQTT, WebSockets",
-    desc: "Smart home automation, environmental telemetry, RFID attendance, and biometric systems with real-time live sensor feeds.",
+    desc: "Connected telemetry, sensor data visualization, automated monitoring, and hardware-to-cloud data ingestion dashboards.",
   },
   {
     icon: ShieldCheck,
     title: "Cybersecurity & Blockchain",
-    tech: "Solidity, Ethereum, Web3.js, Cryptography, Steganography, Network Scanners",
-    desc: "Decentralized applications (DApps), secure electronic voting systems, intrusion detection, packet sniffers, and phishing analyzers.",
+    tech: "Solidity, Ethereum, Web3.js, Cryptography, Network Scanners, Security Tools",
+    desc: "Decentralized applications (DApps), automated security scanners, packet analysis utilities, and cryptographic verification tools.",
   },
 ];
 
@@ -124,114 +119,114 @@ const WHAT_YOU_GET = [
   {
     icon: Code2,
     title: "100% Working, Clean Source Code",
-    desc: "Well-commented, modular, and plagiarism-free source code adhering to industry standards and clean architecture.",
+    desc: "Well-structured, modular, and cleanly commented source code adhering to modern industry standards and clean architecture.",
   },
   {
-    icon: FileText,
-    title: "Complete Project Report & Synopsis",
-    desc: "IEEE-format 40-80+ page project report including SRS, System Architecture, UML Diagrams, DFDs, ERDs, and testing test-cases.",
+    icon: Laptop,
+    title: "Remote Installation & Environment Setup",
+    desc: "Full local environment configuration on your machine via AnyDesk or Google Meet, ensuring smooth 1-click execution.",
   },
   {
-    icon: Layers,
-    title: "Professional Presentation Deck (PPT)",
-    desc: "Custom-designed 15-20 slide presentation ready for initial review, progress checks, and final project defense.",
+    icon: FileCode,
+    title: "Technical Documentation & Setup Guide",
+    desc: "Comprehensive README documentation detailing local installation steps, environment variables, dependencies, and API endpoints.",
   },
   {
-    icon: Video,
-    title: "1-on-1 Viva & Defense Coaching",
-    desc: "Live walkthrough sessions over Google Meet / Zoom explaining every function, API, and database query in plain language.",
+    icon: BookOpen,
+    title: "1-on-1 Code Walkthrough Session",
+    desc: "Live interactive session over Google Meet explaining the software architecture, data flow, and key functions line-by-line.",
   },
   {
     icon: Zap,
-    title: "Remote Installation & Setup Support",
-    desc: "Full local environment configuration on your laptop via AnyDesk or Google Meet, ensuring 1-click execution.",
+    title: "Post-Delivery Revisions & Tweaks",
+    desc: "Prompt adjustments if you need UI refinements, database schema updates, or logic modifications after reviewing the software.",
   },
   {
     icon: ShieldCheck,
-    title: "Free Guide Feedback & Revisions",
-    desc: "Immediate modifications if your college guide or professor asks for additional validations, UI tweaks, or new features.",
+    title: "Full Code Ownership & Git Repository",
+    desc: "Complete, unrestricted ownership of the codebase and repository to learn from, customize, extend, and deploy.",
   },
 ];
 
 const STEPS = [
   {
     step: "01",
-    title: "Share Your Project Requirements",
-    desc: "Call or WhatsApp us on 8081158775 with your project title, college guidelines, or problem statement. If you need inspiration, we can suggest trending, high-scoring project ideas.",
+    title: "Share Your Software Requirements",
+    desc: "Call or WhatsApp us on 8081158775 with your project scope, tech stack preferences, and desired features. If you are starting fresh, we can suggest viable architectural approaches.",
   },
   {
     step: "02",
-    title: "Get a Working Prototype in 24 Hours",
-    desc: "We build and demonstrate a live working prototype/demo of your project within 24 hours — zero upfront payment required.",
+    title: "Review Working Prototype in 24 Hours",
+    desc: "We build and demonstrate a foundational working prototype of your application within 24 hours — zero upfront payment required.",
   },
   {
     step: "03",
     title: "Review Demo & Finalize Scope",
-    desc: "Review the prototype video or live demo, request any UI/feature tweaks, and only then discuss fair, student-friendly pricing based on your scope.",
+    desc: "Review the working demo video or live screen share, request any UI or logic adjustments, and finalize transparent, student-friendly pricing.",
   },
   {
     step: "04",
-    title: "Full Code, Report & Viva Preparation",
-    desc: "Receive the complete source code, documentation, PPT, and attend a personal 1-on-1 code walkthrough to ace your viva examiner.",
+    title: "Complete Code Delivery & Setup",
+    desc: "Receive the full codebase with documentation, and get live remote setup support to run and test everything on your machine.",
   },
 ];
 
 const FAQS = [
   {
-    q: "How does the 24-Hour Prototype Guarantee work?",
-    a: "Once you share your project requirements with us on WhatsApp or call (8081158775), we immediately begin developing a foundational prototype/demo. Within 24 hours, we show you a video recording or live demonstration of the working prototype on Google Meet. This allows you to verify our technical capability, UI design, and project direction before you make any payment.",
+    q: "How does the 24-Hour Prototype work?",
+    a: "Once you share your software requirements with us on WhatsApp or phone (8081158775), we immediately begin developing a foundational prototype. Within 24 hours, we share a recorded video demo or host a live Google Meet screen share of the working application. This lets you inspect the architecture, user interface, and features firsthand before making any payment commitment.",
   },
   {
-    q: "What software domains and project types can you develop?",
-    a: "We develop projects across all modern tech stacks: Full-Stack Web Development (MERN, Next.js, React, Node.js, Django, FastAPI, Spring Boot, PHP/Laravel), Artificial Intelligence & Machine Learning (Computer Vision, NLP, PyTorch, TensorFlow, OpenCV, Generative AI), Mobile Apps (Flutter, React Native, Android), IoT & Embedded Systems (ESP32, Raspberry Pi, Arduino with cloud dashboards), Blockchain DApps, and Cybersecurity tools.",
+    q: "What software domains and tech stacks do you build with?",
+    a: "We build across all modern development stacks: Full-Stack Web (React, Next.js, Node.js, Express, Django, FastAPI, Spring Boot, PHP/Laravel), Artificial Intelligence & Machine Learning (Computer Vision, NLP, PyTorch, TensorFlow, OpenCV, Generative AI), Mobile Apps (Flutter, React Native, Android), IoT Dashboards (ESP32, Raspberry Pi, Arduino with WebSockets/MQTT), Blockchain DApps (Solidity, Web3), and Cloud Databases (PostgreSQL, MongoDB, MySQL, Firebase).",
   },
   {
-    q: "Which academic courses, degrees, and colleges do you support?",
-    a: "We develop minor, major, semester, and final-year capstone projects for B.Tech / B.E. (Computer Science, Information Technology, AI & DS, ECE), BCA, MCA, B.Sc Computer Science / IT, M.Tech, and Polytechnic / Diploma engineering students across all major Indian universities (AKTU, VTU, JNTU, Mumbai University, Pune University, IPU, Anna University, etc.).",
+    q: "What does the delivered code package include?",
+    a: "Every build includes the complete, clean source code repository, database schema files (with seed data), environment configuration templates (.env.example), and an exhaustive README guide detailing prerequisites, installation commands, and architecture diagrams.",
   },
   {
-    q: "Do I receive complete project documentation, synopsis, and PPT for submission?",
-    a: "Yes! Every project includes a complete IEEE-format Project Report (40 to 80+ pages), Project Synopsis, Software Requirement Specification (SRS), System Architecture diagrams, UML Diagrams (Class, Use Case, Sequence, Activity), Data Flow Diagrams (DFD Level 0/1/2), Entity-Relationship (ER) Diagrams, Database Schemas, Test Cases, and a customized 15–20 slide PowerPoint Presentation (PPT).",
+    q: "Will you help install and configure the software on my laptop?",
+    a: "Yes, absolutely. We provide live remote assistance via AnyDesk or Google Meet to configure all required runtimes (Node.js, Python, database servers, Docker, VS Code) and environment variables directly on your system, testing the entire application end-to-end.",
   },
   {
-    q: "How will I understand the code for my final year Viva and Project Defense?",
-    a: "We conduct dedicated 1-on-1 online sessions (via Google Meet or Zoom) where we explain the architecture, data flow, algorithms, and key source code functions line-by-line in simple, conversational language. We also provide a Viva Cheat Sheet covering top 30+ potential examiner questions and answers so you can defend your project with absolute confidence.",
+    q: "Can you explain how the code works during a live call?",
+    a: "Yes. We host a dedicated 1-on-1 code walkthrough on Google Meet where we explain the directory structure, data flow, API route handlers, and algorithm implementation step-by-step in clear, accessible language so you fully understand the application.",
   },
   {
-    q: "Will you help install and run the project on my laptop?",
-    a: "Yes, 100%. We connect remotely via AnyDesk or Google Meet to configure all dependencies (Node.js, Python, MySQL/PostgreSQL, MongoDB, Docker, VS Code, environment variables) on your machine. We test the entire project live in front of you so that it runs with a single command on your submission day.",
+    q: "What if I need modifications or extra features after delivery?",
+    a: "We provide comprehensive post-delivery revision support. If you need UI adjustments, additional API endpoints, altered validation rules, or database tweaks after testing, we implement them promptly.",
   },
   {
-    q: "What if my college guide or professor suggests modifications or extra features?",
-    a: "We provide comprehensive post-delivery revision support. If your faculty guide requests adjustments to the database schema, additional validation rules, UI theme modifications, or specific reports, we implement them promptly without any hassle.",
+    q: "Is the source code original, modular, and well-commented?",
+    a: "Yes. Every application is built with clean, modular, and heavily commented code tailored to your exact specifications. We avoid bloated, hardcoded templates and follow industry best practices for separation of concerns.",
   },
   {
-    q: "Is the source code plagiarism-free and original?",
-    a: "Every project is written with clean, modular, and well-commented code customized to your specific problem statement. We never recycle duplicate templates. You receive 100% full ownership of the source code and GitHub repository.",
+    q: "What are your pricing and payment terms?",
+    a: "Our pricing is transparent, student-friendly, and based on project complexity and scope. You pay nothing upfront — payment is only discussed after you review and approve the working 24-hour prototype demonstration.",
   },
   {
-    q: "What are the pricing and payment terms?",
-    a: "Our pricing is transparent, student-friendly, and tailored to project complexity and timeline. You pay nothing upfront — you only pay after seeing the working 24-hour prototype demo. We also support milestone-based payments (demo approval -> final code -> viva coaching).",
+    q: "Do I get full ownership of the source code?",
+    a: "Yes. You receive 100% complete, unrestricted ownership of the source code and repository to learn from, modify, expand, or deploy on cloud platforms.",
   },
   {
-    q: "How fast can you deliver if my project submission deadline is very close?",
-    a: "For urgent submissions, we offer express delivery within 24 to 48 hours, including working code, database dump, quick synopsis, and installation guide. Call or WhatsApp 8081158775 immediately to check express availability.",
+    q: "How fast can you build a project if I have a tight timeline?",
+    a: "For urgent timelines, we provide fast-track development within 24 to 48 hours for standard applications, including live demonstration and environment setup. Contact us on 8081158775 to verify current availability.",
   },
 ];
 
 export default function CollegeProjectPage() {
   const phoneNumber = "8081158775";
   const whatsappUrl = `https://wa.me/918081158775?text=${encodeURIComponent(
-    "Hi Aditya, I am looking for a college software project. Can you help me with details and a 24-hour prototype?"
+    "Hi Aditya, I am looking for custom software development for my project. Can you help me with details and a 24-hour prototype?"
   )}`;
 
   // JSON-LD Structured Data for Google Rich Snippets
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "DevCalc College Software Project Development",
+    name: "DevCalc Custom Software Development for Students",
     description:
-      "Custom software project development for engineering and IT students (B.Tech, BCA, MCA) with 24-hour prototype delivery, complete IEEE documentation, PPT, and viva preparation.",
+      "Custom software development service for students across Web, AI/ML, Mobile Apps, and Cloud with 24-hour prototype delivery, clean source code, and remote environment setup.",
     url: "https://www.devcalc.in/collegeProject",
     telephone: "+918081158775",
     priceRange: "₹₹",
@@ -265,24 +260,24 @@ export default function CollegeProjectPage() {
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "College Software Project Services",
+      name: "Custom Student Software Services",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "B.Tech Final Year Software Project",
+            name: "Custom Full-Stack Web Application Build",
             description:
-              "End-to-end full stack web, AI/ML, or mobile project with IEEE report and viva coaching.",
+              "End-to-end full stack web application with modern frontend, backend API, database, and setup support.",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "BCA / MCA Major Capstone Project",
+            name: "AI / Machine Learning Software Development",
             description:
-              "Custom software application with database, UI dashboard, documentation, and setup support.",
+              "Custom machine learning models, computer vision pipelines, and predictive algorithms with clean code and walkthrough.",
           },
         },
       ],
@@ -315,7 +310,7 @@ export default function CollegeProjectPage() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "College Projects",
+        name: "Software Builds for Students",
         item: "https://www.devcalc.in/collegeProject",
       },
     ],
@@ -346,7 +341,7 @@ export default function CollegeProjectPage() {
             </Link>
             <span className="mx-2">/</span>
             <span className="text-slate-800 dark:text-slate-200 font-medium">
-              College Projects
+              Software Builds for Students
             </span>
           </nav>
         </div>
@@ -356,20 +351,20 @@ export default function CollegeProjectPage() {
           <div className="mx-auto max-w-5xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur dark:border-blue-900/50 dark:bg-blue-950/50 dark:text-blue-300">
               <Sparkles className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-              <span>24-Hour Prototype Guarantee · B.Tech, BCA, MCA &amp; CS/IT Students</span>
+              <span>24-Hour Working Prototype · Web, AI/ML, Mobile &amp; Cloud Software</span>
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-slate-900 dark:text-white">
-              Custom College Software Projects with a{" "}
+              Custom Software Builds for Students —{" "}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-                24-Hour Prototype
+                Web, AI/ML, Mobile &amp; Cloud
               </span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              Stuck on your Minor, Major, or Final Year College Project? Get a custom-built, fully functional software project in Web, AI/ML, Mobile App, or Cloud.{" "}
+              Need custom software built for your project or technical portfolio? We build production-ready applications in Web, AI/ML, Mobile Apps, and Cloud backends.{" "}
               <strong className="font-semibold text-slate-900 dark:text-white">
-                We deliver a working prototype within 24 hours before you make any payment.
+                Review a working prototype within 24 hours before finalizing scope and payment.
               </strong>
             </p>
 
@@ -404,20 +399,20 @@ export default function CollegeProjectPage() {
 
               <div className="rounded-2xl border border-stone-200 bg-white/80 p-4 text-center shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
                 <Code2 className="mx-auto h-6 w-6 text-emerald-600 dark:text-emerald-400" />
-                <p className="mt-2 text-sm font-bold text-slate-900 dark:text-white">100% Working Code</p>
-                <p className="text-xs text-slate-500">Clean &amp; well-commented</p>
+                <p className="mt-2 text-sm font-bold text-slate-900 dark:text-white">Clean Source Code</p>
+                <p className="text-xs text-slate-500">Modular &amp; well-commented</p>
               </div>
 
               <div className="rounded-2xl border border-stone-200 bg-white/80 p-4 text-center shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
-                <FileText className="mx-auto h-6 w-6 text-amber-600 dark:text-amber-400" />
-                <p className="mt-2 text-sm font-bold text-slate-900 dark:text-white">Report &amp; PPT</p>
-                <p className="text-xs text-slate-500">Complete IEEE format</p>
+                <Laptop className="mx-auto h-6 w-6 text-amber-600 dark:text-amber-400" />
+                <p className="mt-2 text-sm font-bold text-slate-900 dark:text-white">Setup &amp; Installation</p>
+                <p className="text-xs text-slate-500">Remote config via AnyDesk</p>
               </div>
 
               <div className="rounded-2xl border border-stone-200 bg-white/80 p-4 text-center shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
-                <GraduationCap className="mx-auto h-6 w-6 text-indigo-600 dark:text-indigo-400" />
-                <p className="mt-2 text-sm font-bold text-slate-900 dark:text-white">Viva Preparation</p>
-                <p className="text-xs text-slate-500">1-on-1 code explanation</p>
+                <Zap className="mx-auto h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                <p className="mt-2 text-sm font-bold text-slate-900 dark:text-white">Feature Revisions</p>
+                <p className="text-xs text-slate-500">Post-delivery adjustments</p>
               </div>
             </div>
           </div>
@@ -430,10 +425,10 @@ export default function CollegeProjectPage() {
               How It Works
             </span>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              From Idea to Submission in 4 Simple Steps
+              From Idea to Working Software in 4 Steps
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-              A transparent, risk-free process designed to give you peace of mind and top academic grades.
+              A straightforward, transparent development process focused on delivering reliable, functional code.
             </p>
           </div>
 
@@ -468,7 +463,7 @@ export default function CollegeProjectPage() {
                 Software Domains &amp; Technologies We Build
               </h2>
               <p className="mx-auto mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-                Whatever stack your curriculum requires, we have hands-on expertise building production-ready code.
+                Modern, battle-tested technologies built to industry standards.
               </p>
             </div>
 
@@ -503,13 +498,13 @@ export default function CollegeProjectPage() {
         <section className="px-4 py-16 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <div className="text-center">
             <span className="rounded-full bg-amber-100 px-3.5 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">
-              Complete Package
+              Core Deliverables
             </span>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              Everything You Need for a 100% Submission
+              What You Receive with Every Build
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-              We do not just hand over code — we give you an end-to-end academic package so you score the highest grade.
+              Everything needed to run, understand, and extend your software.
             </p>
           </div>
 
@@ -549,7 +544,7 @@ export default function CollegeProjectPage() {
                 Frequently Asked Questions
               </h2>
               <p className="mt-2 text-slate-600 dark:text-slate-400">
-                Detailed answers to common questions asked by B.Tech, BCA, MCA &amp; IT engineering students.
+                Answers to common questions about our custom software development service for students.
               </p>
             </div>
 
@@ -557,14 +552,21 @@ export default function CollegeProjectPage() {
           </div>
         </section>
 
+        {/* ── Plainly Worded Service Disclaimer ── */}
+        <div className="mx-auto max-w-4xl px-4 py-8 text-center">
+          <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+            This is a custom software development service. The code is yours to learn from, extend, and reuse — we recommend fully understanding any code before presenting it as your own academic work.
+          </p>
+        </div>
+
         {/* ── Bottom Call To Action ── */}
-        <section className="px-4 py-16 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <section className="px-4 pb-16 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           <div className="rounded-3xl border border-blue-200 bg-gradient-to-r from-blue-900 to-indigo-950 p-8 text-center text-white shadow-xl sm:p-12 dark:border-slate-800">
             <h2 className="text-3xl font-bold sm:text-4xl">
-              Get Your 24-Hour College Project Prototype Today
+              Get Your 24-Hour Software Prototype Today
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-blue-100 leading-relaxed">
-              Don&apos;t risk late submissions or low grades. Reach out directly on WhatsApp or phone to discuss your project topic and review your working prototype within 24 hours.
+              Reach out directly on WhatsApp or phone to discuss your technical requirements and review your working prototype within 24 hours.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -588,7 +590,7 @@ export default function CollegeProjectPage() {
             </div>
 
             <p className="mt-6 text-xs text-blue-200">
-              Available 7 days a week · Direct Developer Interaction · 100% Student Confidentiality
+              Available 7 days a week · Direct Developer Interaction · Fast Turnaround
             </p>
           </div>
         </section>

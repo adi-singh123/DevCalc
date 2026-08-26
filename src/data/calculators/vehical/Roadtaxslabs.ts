@@ -213,8 +213,34 @@ export const ROAD_TAX_SLABS: StateTaxConfig[] = [
       ev: [{ minPrice: 0, maxPrice: null, ratePercent: 0 }],
     },
   },
-  // TODO: add remaining states — TN, TG, AP, WB, RJ, HR, PB, KL, MP, BJ, etc.
-  // following the same StateTaxConfig shape above.
+  {
+    stateCode: "TN",
+    stateName: "Tamil Nadu",
+    usesPreGstBase: false,
+    evFullyExempt: true, // 100% exemption active Jan 2026 – Dec 2027
+    car: {
+      petrol: [
+        { minPrice: 0, maxPrice: 1000000, ratePercent: 10 },
+        { minPrice: 1000000, maxPrice: null, ratePercent: 15 },
+      ],
+      diesel: [
+        { minPrice: 0, maxPrice: 1000000, ratePercent: 10 },
+        { minPrice: 1000000, maxPrice: null, ratePercent: 15 },
+      ],
+      cng: [
+        { minPrice: 0, maxPrice: 1000000, ratePercent: 10 },
+        { minPrice: 1000000, maxPrice: null, ratePercent: 15 },
+      ],
+      ev: [{ minPrice: 0, maxPrice: null, ratePercent: 0 }],
+    },
+    bike: {
+      petrol: [
+        { minPrice: 0, maxPrice: 100000, ratePercent: 8 },
+        { minPrice: 100000, maxPrice: null, ratePercent: 12 },
+      ],
+      ev: [{ minPrice: 0, maxPrice: null, ratePercent: 0 }],
+    },
+  },
 ];
 
 // --- Core calculation function ---

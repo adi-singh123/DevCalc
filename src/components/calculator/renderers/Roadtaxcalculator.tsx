@@ -10,9 +10,13 @@ import {
 type StateTaxConfig,
 } from "@/src/data/calculators/vehical/Roadtaxslabs";
 
-export default function RoadTaxCalculator() {
+export default function RoadTaxCalculator({
+  defaultStateCode,
+}: {
+  defaultStateCode?: string;
+} = {}) {
   const [stateCode, setStateCode] = useState(
-    ROAD_TAX_SLABS[0]?.stateCode || "DL",
+    defaultStateCode || ROAD_TAX_SLABS[0]?.stateCode || "DL",
   );
 
   const [vehicleType, setVehicleType] =

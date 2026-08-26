@@ -3,6 +3,7 @@ import Hero from "../components/home/Hero";
 import Features from "../components/home/Features";
 import PopularCalculators from "../components/home/PopularCalculators";
 import CalculatorCategories from "../components/home/Categories";
+import ServicesAndFeaturedSection from "../components/home/ServicesAndFeaturedSection";
 import Container from "../components/layout/Container";
 import WebsiteSchema from "@/src/components/seo/WebsiteSchema";
 
@@ -38,6 +39,8 @@ export default function HomePage() {
         <Hero />
 
         <Features />
+
+        <ServicesAndFeaturedSection />
 
         <section className="py-5">
           <Container>
