@@ -6,11 +6,24 @@ export const calorieCalculator: Calculator = {
   name: "Calorie Calculator",
 
   description:
-    "Calculate your daily calorie needs for weight maintenance, weight loss, or weight gain based on your age, gender, height, weight, and activity level.",
+    "Calculate your Total Daily Energy Expenditure (TDEE) and daily calorie targets for sustainable fat loss, muscle gain, or weight maintenance based on the clinical Mifflin-St Jeor equation and physical activity coefficients.",
 
   category: "Health",
 
   isPopular: true,
+
+  editorialIntro:
+    "Daily energy balance is governed by your Total Daily Energy Expenditure (TDEE), which combines your Basal Metabolic Rate (BMR ~60-70%), Non-Exercise Activity Thermogenesis (NEAT ~15%), Thermic Effect of Food (TEF ~10%), and Exercise Activity (EAT). Creating a moderate 300–500 kcal/day deficit facilitates safe fat loss of ~0.5 kg per week while preserving lean muscle mass.",
+
+  benchmarkContext: {
+    title: "ICMR & Mifflin-St Jeor Daily Energy Standards",
+    badge: "Clinical Nutrition Standards",
+    stat: "Mifflin-St Jeor ±5% Accuracy Benchmark",
+    description:
+      "According to the American Dietetic Association, the Mifflin-St Jeor formula is the most clinically accurate predictive BMR equation. ICMR daily reference intake: ~2,110 kcal for sedentary adult females and ~2,710 kcal for sedentary adult males.",
+    source: "Indian Council of Medical Research (ICMR-NIN) & Journal of the American Dietetic Association",
+    lastUpdated: "January 2026",
+  },
 
   seo: {
     title:
@@ -38,25 +51,23 @@ export const calorieCalculator: Calculator = {
   },
 
   compareWith: [
-  "bmr-calculator",
-  "bmi-calculator",
-  "macro-calculator",
-  "protein-intake-calculator",
-],
+    "bmr-calculator",
+    "bmi-calculator",
+    "macro-calculator",
+    "protein-intake-calculator",
+  ],
 
   steps: [
     {
       step: 1,
-      title: "Select Gender",
-      description:
-        "Choose your gender for accurate calorie estimation.",
+      title: "Select Biological Sex & Age",
+      description: "Biological sex determines baseline lean tissue mass algorithms for metabolic rate.",
       icon: "calculator",
     },
     {
       step: 2,
-      title: "Enter Personal Details",
-      description:
-        "Provide your age, weight, and height.",
+      title: "Input Height & Weight",
+      description: "Provide accurate current body weight and standing height.",
       icon: "calendar",
     },
     {

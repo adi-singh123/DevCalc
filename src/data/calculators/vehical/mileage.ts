@@ -12,11 +12,24 @@ export const mileageCalculator: Calculator = {
 
   isPopular: true,
 
-  seo: {
-  title: "Mileage Calculator – Check Car & Bike Fuel Cost Per Km",
+  editorialIntro:
+    "Official ARAI (Automotive Research Association of India) test figures represent idealized laboratory chassis dynamometer conditions. Real-world Indian city driving typically yields 20%–35% lower fuel economy due to bumper-to-bumper traffic idling, air conditioning compressor load, and E20 ethanol-blended fuel characteristics.",
 
-description:
-"Easy mileage calculator for car and bike. Just enter distance and fuel used to check your mileage, fuel cost per km, and trip expense — free and simple.",
+  benchmarkContext: {
+    title: "ARAI vs Real-World Fuel Economy & The Full-Tank Method",
+    badge: "Automotive Engineering Benchmark",
+    stat: "Tank-to-Tank Method: ±1% Precision",
+    description:
+      "Onboard Multi-Information Displays (MID) routinely overestimate fuel economy by 5%–12%. The only scientifically verified real-world measurement is the Tank-to-Tank auto-cut method: dividing exact odometer distance by exact litres to second auto-cut.",
+    source: "Automotive Research Association of India (ARAI) & Society of Indian Automobile Manufacturers (SIAM)",
+    lastUpdated: "January 2026",
+  },
+
+  seo: {
+    title: "Mileage Calculator – Check Car & Bike Fuel Cost Per Km",
+
+    description:
+      "Easy mileage calculator for car and bike. Just enter distance and fuel used to check your mileage, fuel cost per km, and trip expense — free and simple.",
 
     keywords: [
       "mileage calculator",

@@ -6,17 +6,30 @@ export const gstCalculator: Calculator = {
   name: "GST Calculator",
 
   description:
-"Need to quickly work out GST on a purchase or invoice? Our free GST Calculator instantly calculates the tax amount and final price — just enter the base amount and applicable GST rate to get accurate results in seconds.",
+    "Calculate Indian Goods and Services Tax (GST) instantly for both inclusive and exclusive amounts. Breakdown base price, CGST, SGST, IGST, and total invoice value across all standard GST slabs (5%, 12%, 18%, 28%).",
+
   category: "Finance",
 
   isPopular: true,
 
+  editorialIntro:
+    "Whether billing clients as a freelancer, managing merchant inventory, or auditing purchase bills, understanding the mathematical split between intra-state (CGST + SGST) and inter-state (IGST) transactions is critical for maintaining accurate GST Input Tax Credit (ITC) reconciliation in your GSTR-1 and GSTR-3B filings.",
+
+  benchmarkContext: {
+    title: "GST Slabs & Statutory Compliance Slabs (India)",
+    badge: "GST Council Statutory Norms",
+    stat: "4 Primary Slabs (5%, 12%, 18%, 28%)",
+    description:
+      "Threshold for mandatory GST registration is ₹40 Lakhs aggregate annual turnover for goods (₹20 Lakhs in special category states) and ₹20 Lakhs for services. Mandatory e-invoicing applies to B2B businesses with turnover exceeding ₹5 Crores.",
+    source: "Central Board of Indirect Taxes and Customs (CBIC) & GST Council",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
-    title:
-      "GST Calculator - Calculate GST Online",
+    title: "GST Calculator - Calculate GST Online (Inclusive & Exclusive)",
 
     description:
-"Need to quickly work out GST on a purchase or invoice? Our free GST Calculator instantly calculates the tax amount and final price — just enter the base amount and applicable GST rate to get accurate results in seconds.",
+      "Free online GST Calculator for India. Calculate GST amount, gross price, net base price, CGST, SGST, and IGST across 5%, 12%, 18%, and 28% slabs with reverse GST calculation support.",
     keywords: [
       "gst calculator",
       "calculate gst",
@@ -34,206 +47,152 @@ export const gstCalculator: Calculator = {
   steps: [
     {
       step: 1,
-      title: "Enter Amount",
-      description:
-        "Enter the original amount before GST.",
+      title: "Input Transaction Value",
+      description: "Enter the base net cost (for adding GST) or the final MRP/invoice total (for removing GST).",
       icon: "calculator",
     },
     {
       step: 2,
-      title: "Select GST Rate",
-      description:
-        "Choose the GST percentage.",
+      title: "Select Statutory Slab (%)",
+      description: "Choose 5%, 12%, 18%, or 28%, or enter a custom rate (e.g. 0.25% for diamonds, 3% for gold).",
       icon: "calculator",
     },
     {
       step: 3,
-      title: "Calculate GST",
-      description:
-        "Calculate GST amount instantly.",
+      title: "Choose Calculation Mode",
+      description: "Select 'Add GST' (Exclusive to Gross) or 'Remove GST' (Inclusive to Base Amount).",
       icon: "calculator",
     },
     {
       step: 4,
-      title: "View Results",
-      description:
-        "See GST amount and final total.",
+      title: "Review Tax Invoice Split",
+      description: "Inspect the exact CGST (50%), SGST (50%), or IGST (100%) tax component and final billable total.",
       icon: "result",
     },
   ],
 
   formula: {
-    title: "GST Formula",
+    title: "GST Calculation & Reverse Extraction Formulas",
 
-    formula:
-      "GST Amount = (Amount × GST Rate) ÷ 100",
+    formula: "\\text{GST (Exclusive)} = \\text{Base} \\times \\frac{\\text{Rate}}{100} \\quad | \\quad \\text{Base (Inclusive)} = \\frac{\\text{Gross} \\times 100}{100 + \\text{Rate}}",
 
     explanation:
-      "GST is calculated by multiplying the original amount by the GST percentage.",
+      "For exclusive pricing (adding GST), multiply the base amount by the rate percentage. For inclusive pricing (extracting GST from an MRP), the base is derived by dividing the gross price by (1 + Rate/100), and the tax equals Gross minus Base.",
 
     example: {
-      input:
-        "Amount: ₹1000, GST Rate: 18%",
-
-      output:
-        "GST = ₹180, Total = ₹1180",
+      input: "Invoice Gross: ₹11,800 | GST Rate: 18% (Inclusive Mode)",
+      output: "Net Base Amount = ₹10,000 | Total GST = ₹1,800 (CGST ₹900 + SGST ₹900 or IGST ₹1,800)",
     },
 
     useCases: [
-      "Business invoices",
-      "Retail billing",
-      "Tax calculations",
-      "Purchase planning",
+      "Freelancer & B2B Service Invoicing",
+      "Retail Price Tag Reverse Engineering (MRP to Base)",
+      "Input Tax Credit (ITC) Purchase Bookkeeping",
+      "E-Commerce Seller Settlement Verification",
+      "Inter-State (IGST) vs Intra-State (CGST+SGST) Billing",
     ],
   },
 
   faqs: [
     {
-      question:
-        "How is GST calculated?",
+      question: "How do I extract the pre-tax base price from a GST-inclusive MRP?",
       answer:
-        "GST is calculated as a percentage of the original amount.",
+        "To find the pre-tax base amount from an inclusive price, use the formula: Base Price = (Gross Amount × 100) ÷ (100 + GST Rate). For example, if an item with 18% GST costs ₹5,900 on the bill: Base = (5,900 × 100) ÷ 118 = ₹5,000. The GST component is ₹900 (CGST ₹450 + SGST ₹450).",
     },
     {
-      question:
-        "Can I calculate GST for different rates?",
+      question: "When should I charge IGST instead of CGST and SGST?",
       answer:
-        "Yes, common rates like 5%, 12%, 18%, and 28% are supported.",
+        "Charge IGST (Integrated GST) whenever the Place of Supply (location of the buyer/client) is in a different state or union territory from your registered business location (Inter-State transaction). Charge CGST (Central GST) and SGST (State GST) in equal 50:50 parts when both your business and the customer are located within the same state (Intra-State transaction).",
+    },
+    {
+      question: "Can business owners claim Input Tax Credit (ITC) on all business expenses?",
+      answer:
+        "Under Section 16 of the CGST Act, registered businesses can claim ITC on goods and services used in furtherance of business, provided the supplier has uploaded the invoice to GSTR-1 and it reflects in your GSTR-2B. However, Section 17(5) 'blocked credits' disallow ITC on motor vehicles (with passenger capacity ≤13), food and beverages, outdoor catering, employee health club memberships, and personal consumption goods.",
+    },
+    {
+      question: "What are the turnover limits for GST Composition Scheme eligibility?",
+      answer:
+        "Manufacturers and traders with an aggregate annual turnover of up to ₹1.5 Crores (₹75 Lakhs for special category states) can opt for the Composition Scheme, paying a flat tax of 1% (0.5% CGST + 0.5% SGST) on turnover without claiming ITC. For standalone service providers, the turnover limit under Section 10(2A) is ₹50 Lakhs with a flat 6% tax rate.",
+    },
+    {
+      question: "What is the penalty for late filing of monthly GSTR-3B returns?",
+      answer:
+        "The statutory late fee for delayed GSTR-3B filing is ₹50 per day (₹25 CGST + ₹25 SGST) for regular returns, capped at ₹500 to ₹10,000 based on turnover slabs. For Nil returns, the late fee is reduced to ₹20 per day (₹10 CGST + ₹10 SGST) with a maximum cap of ₹500. Additionally, penal interest is levied at 18% per annum on the net cash tax liability.",
     },
   ],
 
   seoContent: `
-<h2>What is GST?</h2>
-
+<h2>The Structure of India's Dual GST Regime</h2>
 <p>
-Goods and Services Tax (GST) is an indirect tax applied to the supply of goods and services in India. It replaced multiple indirect taxes and created a unified tax system across the country.
+  Implemented under the 101st Constitutional Amendment Act, the Goods and Services Tax (GST) unified India's fragmented indirect tax landscape by subsuming Central Excise, Service Tax, VAT, CST, and Octroi. India operates a <strong>Dual GST Model</strong> where both the Central and State governments simultaneously levy tax on a common tax base.
 </p>
 
-<h2>GST Tax Slabs in India</h2>
+---
 
+<h2>Official GST Slabs & HSN/SAC Classification Guide</h2>
 <table>
-  <tr>
-    <th>GST Rate</th>
-    <th>Common Products & Services</th>
-  </tr>
-  <tr>
-    <td>5%</td>
-    <td>Essential items, transportation services</td>
-  </tr>
-  <tr>
-    <td>12%</td>
-    <td>Processed foods, mobile phones</td>
-  </tr>
-  <tr>
-    <td>18%</td>
-    <td>Most services and consumer goods</td>
-  </tr>
-  <tr>
-    <td>28%</td>
-    <td>Luxury items and premium products</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>GST Slab</th>
+      <th>Primary Product &amp; Service Categories</th>
+      <th>Representative Items / HSN Examples</th>
+      <th>Applicable Cess</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>0% (Exempt)</strong></td>
+      <td>Unprocessed food, fresh milk, fruits, unbranded grains, public healthcare, school education</td>
+      <td>Fresh vegetables, eggs, curd (unbranded), salt</td>
+      <td>Nil</td>
+    </tr>
+    <tr>
+      <td><strong>5%</strong></td>
+      <td>Essential commodities, life-saving medicines, economy air travel, railway passenger tickets</td>
+      <td>Packaged food items, tea, coffee, edible oils, domestic LPG</td>
+      <td>Nil</td>
+    </tr>
+    <tr>
+      <td><strong>12%</strong></td>
+      <td>Processed foods, specific medical equipment, business class air tickets, diagnostic kits</td>
+      <td>Butter, cheese, frozen meat products, sewing machines, cell phones</td>
+      <td>Nil</td>
+    </tr>
+    <tr>
+      <td><strong>18%</strong></td>
+      <td>Standard rate for major industrial goods, capital goods, IT software, SaaS, banking &amp; telecommunications</td>
+      <td>Financial services, software development, restaurants (AC), hair oil, soap</td>
+      <td>Nil</td>
+    </tr>
+    <tr>
+      <td><strong>28%</strong></td>
+      <td>Sin goods, demerit goods, luxury automobiles, high-end consumer electronics</td>
+      <td>Automobiles, cement, aerated drinks, high-end air conditioners</td>
+      <td>1% to 290% Compensation Cess</td>
+    </tr>
+  </tbody>
 </table>
 
-<h2>GST Components Explained</h2>
+---
 
-<table>
-  <tr>
-    <th>Type</th>
-    <th>Meaning</th>
-  </tr>
-  <tr>
-    <td>CGST</td>
-    <td>Central Goods and Services Tax collected by the Central Government.</td>
-  </tr>
-  <tr>
-    <td>SGST</td>
-    <td>State Goods and Services Tax collected by State Governments.</td>
-  </tr>
-  <tr>
-    <td>IGST</td>
-    <td>Integrated GST applicable on interstate transactions.</td>
-  </tr>
-</table>
-
-<h2>GST Inclusive vs GST Exclusive Price</h2>
-
-<table>
-  <tr>
-    <th>Pricing Type</th>
-    <th>Meaning</th>
-  </tr>
-  <tr>
-    <td>GST Inclusive</td>
-    <td>Product price already includes GST.</td>
-  </tr>
-  <tr>
-    <td>GST Exclusive</td>
-    <td>GST is added separately to the base price.</td>
-  </tr>
-</table>
-
-<h2>Benefits of GST</h2>
-
-<ul>
-  <li><strong>Single Tax System:</strong> Simplifies taxation across India.</li>
-  <li><strong>Reduced Tax Cascading:</strong> Eliminates tax-on-tax effect.</li>
-  <li><strong>Greater Transparency:</strong> Improves compliance and reporting.</li>
-  <li><strong>Ease of Business:</strong> Simplifies interstate trade.</li>
-</ul>
-
-<h2>Common GST Calculation Examples</h2>
-
-<table>
-  <tr>
-    <th>Product Price</th>
-    <th>GST Rate</th>
-    <th>GST Amount</th>
-    <th>Final Price</th>
-  </tr>
-  <tr>
-    <td>₹1,000</td>
-    <td>18%</td>
-    <td>₹180</td>
-    <td>₹1,180</td>
-  </tr>
-  <tr>
-    <td>₹5,000</td>
-    <td>12%</td>
-    <td>₹600</td>
-    <td>₹5,600</td>
-  </tr>
-</table>
-
-<h2>Who Should Use a GST Calculator?</h2>
-
-<ul>
-  <li>Business Owners</li>
-  <li>Shopkeepers</li>
-  <li>Freelancers</li>
-  <li>Accountants</li>
-  <li>Tax Consultants</li>
-  <li>Consumers Checking Bills</li>
-</ul>
-
-<h2>Common GST Mistakes</h2>
-
-<ul>
-  <li>Using the wrong GST slab.</li>
-  <li>Confusing GST-inclusive and GST-exclusive pricing.</li>
-  <li>Incorrectly calculating interstate transactions.</li>
-  <li>Ignoring input tax credit benefits.</li>
-</ul>
-
-<h2>Input Tax Credit (ITC)</h2>
-
+<h2>Intra-State vs. Inter-State Billing Workflow</h2>
 <p>
-Input Tax Credit allows businesses to reduce the GST paid on purchases from the GST collected on sales. This helps lower the overall tax burden and avoids double taxation.
+  Tax computation depends strictly on the registered <strong>Place of Supply (POS)</strong>:
 </p>
 
-<h2>Pro Tip</h2>
+<ul>
+  <li><strong>Intra-State Supply (Supplier &amp; Buyer in Same State):</strong> Total GST is split exactly 50:50 into <strong>CGST</strong> (Central GST) and <strong>SGST</strong> (State GST) or <strong>UTGST</strong> (Union Territory GST). On an 18% invoice of ₹10,000, ₹900 goes to CGST and ₹900 goes to SGST.</li>
+  <li><strong>Inter-State Supply (Supplier &amp; Buyer in Different States):</strong> The entire tax amount is levied as <strong>IGST</strong> (Integrated GST) and collected by the Central Government before being apportioned to the destination consumption state. On an 18% invoice of ₹10,000, ₹1,800 is levied as IGST.</li>
+  <li><strong>Export of Services / Goods (Zero-Rated):</strong> Exports are treated as zero-rated supplies. Exporters can supply under a Letter of Undertaking (LUT) without paying IGST, or pay IGST and claim full refunds.</li>
+</ul>
 
-<p>
-Always verify whether a quoted price is GST-inclusive or GST-exclusive before making a purchase. This helps avoid surprises when calculating the final payable amount.
-</p>
+---
+
+<h2>How to Reconcile Input Tax Credit (ITC) Accurately</h2>
+<ol>
+  <li><strong>Invoice Verification in GSTR-2B:</strong> Always ensure your suppliers upload their outbound invoices in GSTR-1 on or before the 11th of each month so the tax appears in your auto-drafted, static GSTR-2B statement.</li>
+  <li><strong>180-Day Payment Rule:</strong> Under the second proviso to Section 16(2), if a buyer fails to pay the supplier the invoice value plus GST within 180 days from the invoice date, the claimed ITC must be reversed along with 18% interest.</li>
+  <li><strong>Matching GSTIN &amp; HSN:</strong> Ensure your 15-digit GSTIN, invoice date, and 4-to-6 digit HSN/SAC code match exactly to avoid automated scrutiny notices under Section 61.</li>
+</ol>
 `,
 };

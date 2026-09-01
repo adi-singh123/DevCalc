@@ -12,12 +12,25 @@ export const compoundInterestCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Compounding reinvests accrued interest back into the principal baseline, creating exponential wealth growth over time. Using the classical Rule of 72 (dividing 72 by the annual interest rate), an investment at 12% compounding doubles every 6 years, whereas simple interest only grows linearly.",
+
+  benchmarkContext: {
+    title: "Compounding Frequencies & The Rule of 72",
+    badge: "Financial Mathematics Benchmark",
+    stat: "Rule of 72 Doubling Time Metric",
+    description:
+      "On a ₹10 Lakh principal at 10% p.a. over 10 years, annual compounding yields ₹25.93 Lakhs, while daily compounding yields ₹27.18 Lakhs (+₹1.25 Lakhs extra due solely to compounding velocity).",
+    source: "Standard Financial Economics & Actuarial Mathematics",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title:
       "Compound Interest Calculator - Calculate CI Online",
 
-description:
-  "See how your money grows over time with compounding. Enter your principal, interest rate, and duration to instantly get the maturity amount, total interest earned, and investment growth.",
+    description:
+      "See how your money grows over time with compounding. Enter your principal, interest rate, and duration to instantly get the maturity amount, total interest earned, and investment growth.",
     keywords: [
       "compound interest calculator",
       "ci calculator",

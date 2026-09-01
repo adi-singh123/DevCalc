@@ -12,6 +12,19 @@ export const bmrCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Basal Metabolic Rate (BMR) represents the absolute minimum baseline caloric energy your body expends in 24 hours to sustain vital autonomic biological functions—including cellular respiration, circulation, neural processing, and core temperature regulation—in a thermoneutral, resting state.",
+
+  benchmarkContext: {
+    title: "Mifflin-St Jeor vs. Harris-Benedict Metabolic Accuracy",
+    badge: "Clinical Physiology Benchmark",
+    stat: "60%–70% of Total Daily Calories",
+    description:
+      "BMR accounts for roughly 60% to 70% of total daily energy expenditure in sedentary to moderately active adults. The Mifflin-St Jeor equation revised in 1990 is proven to estimate BMR within 10% of measured indirect calorimetry in over 82% of non-obese and obese subjects.",
+    source: "American Journal of Clinical Nutrition & Oxford Human Nutrition",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title:
       "BMR Calculator - Calculate Basal Metabolic Rate Online",

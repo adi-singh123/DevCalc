@@ -12,11 +12,24 @@ export const cagrCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Unlike absolute returns or simple arithmetic averages which distort multi-year performance due to volatility, Compound Annual Growth Rate (CAGR) computes the exact smoothed geometric annual growth of an investment, making it the industry standard for benchmarking equity portfolios, real estate appreciation, and revenue expansion.",
+
+  benchmarkContext: {
+    title: "Asset Class CAGR Benchmarks (10-Year Indian Market Context)",
+    badge: "NSE & RBI Capital Market Data",
+    stat: "13.8% Nifty 50 10-Yr CAGR",
+    description:
+      "Historical 10-year rolling CAGRs in India: Nifty 50 Index (12%–14%), Gold INR (10%–12%), Commercial Bank FDs (6.5%–7.5%), and Residential Real Estate Tier-1 metros (7%–9%).",
+    source: "National Stock Exchange (NSE) & RBI Historical Indices",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title: "CAGR Calculator - Compound Annual Growth Rate Online",
 
-description:
-  "Enter your start value, end value, and duration to instantly calculate CAGR, absolute return, and total profit on your investment.",
+    description:
+      "Enter your start value, end value, and duration to instantly calculate CAGR, absolute return, and total profit on your investment.",
     keywords: [
       "cagr calculator",
       "compound annual growth rate calculator",

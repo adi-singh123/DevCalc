@@ -1,4 +1,4 @@
-﻿import { Calculator } from "@/src/types/calculator";
+import { Calculator } from "@/src/types/calculator";
 
 export const stampDutyCalculator: Calculator = {
   slug: "stamp-duty-calculator",
@@ -11,6 +11,19 @@ export const stampDutyCalculator: Calculator = {
   category: "Construction",
 
   isPopular: true,
+
+  editorialIntro:
+    "Stamp duty and registration charges in India are levied under the Indian Stamp Act, 1899 and state-specific amendments. Calculations are always assessed on the higher of the negotiated Agreement Value or the government-notified Guidance Value (Circle Rate / Ready Reckoner Rate).",
+
+  benchmarkContext: {
+    title: "State Property Registration Benchmarks (2026)",
+    badge: "State Revenue Department Norms",
+    stat: "Assessment on Higher of Agreement vs Circle Rate",
+    description:
+      "Key state stamp duty ranges: Maharashtra (5%–6% + 1% registration capped at ₹30,000 for >₹30L), Karnataka (2%–5% + 1% registration), Delhi (4% female / 6% male + 1% reg), Uttar Pradesh (6% female / 7% male + 1% reg), Tamil Nadu (7% stamp duty + 4% reg).",
+    source: "State Inspector General of Registration & Stamps (IGR)",
+    lastUpdated: "January 2026",
+  },
 
   seo: {
     title: "Stamp Duty Calculator India — Property Registration Charges by State | DevCalc",

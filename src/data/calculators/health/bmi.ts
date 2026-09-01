@@ -6,18 +6,30 @@ export const bmiCalculator: Calculator = {
   name: "BMI Calculator",
 
   description:
-    "Calculate your Body Mass Index (BMI) instantly using your height and weight. Determine whether you are underweight, normal weight, overweight, or obese with our free BMI Calculator.",
+    "Calculate your Body Mass Index (BMI) instantly using your height and weight. Determine whether you are underweight, normal weight, overweight, or obese across both International WHO and Asian-specific ICMR diagnostic standards.",
 
   category: "Health",
 
   isPopular: true,
 
+  editorialIntro:
+    "For South Asian and Indian populations, the World Health Organization (WHO) and Indian Council of Medical Research (ICMR) recommend lower BMI cutoffs: 18.5–22.9 kg/m² is normal, 23.0–24.9 kg/m² is overweight, and ≥25.0 kg/m² indicates obesity, due to higher visceral fat accumulation at lower body weights.",
+
+  benchmarkContext: {
+    title: "ICMR & WHO Asian Population BMI Classifications",
+    badge: "Clinical Epidemiology Guideline",
+    stat: "23.0 kg/m² Asian Overweight Cutoff",
+    description:
+      "Unlike Western standards (where overweight begins at 25.0 and obesity at 30.0), South Asians experience elevated cardiometabolic risks (Type 2 diabetes, hypertension) at lower BMI thresholds. Normal range is strictly 18.5 to 22.9 kg/m².",
+    source: "Indian Council of Medical Research (ICMR) & WHO Western Pacific Region",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title: "BMI Calculator - Calculate Body Mass Index Online",
 
     description:
-      "Use our free BMI Calculator to calculate Body Mass Index from height and weight. Check BMI categories, healthy weight ranges, and overall weight status instantly.",
-
+      "Calculate Body Mass Index (BMI) from height and weight. Check healthy weight ranges, International WHO categories, and Asian ICMR clinical thresholds instantly.",
     keywords: [
       "bmi calculator",
       "body mass index calculator",
@@ -41,20 +53,20 @@ export const bmiCalculator: Calculator = {
   steps: [
     {
       step: 1,
-      title: "Enter Your Weight",
-      description: "Input your current body weight using kilograms or pounds on the metric/imperial selector.",
+      title: "Select Measurement System",
+      description: "Choose Metric (kilograms, centimeters/meters) or Imperial (pounds, feet/inches).",
       icon: "weight",
     },
     {
       step: 2,
-      title: "Enter Your Height",
-      description: "Enter your exact height using centimeters, meters, or feet and inches.",
+      title: "Input Exact Height",
+      description: "Enter standing stature without shoes (e.g., 175 cm or 5 ft 9 in).",
       icon: "height",
     },
     {
       step: 3,
-      title: "Calculate BMI",
-      description: "The calculation engine applies the Quetelet index formula to your physical metrics.",
+      title: "Input Body Weight",
+      description: "Enter morning fasting body weight in kg or lbs.",
       icon: "calculator",
     },
     {

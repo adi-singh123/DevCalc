@@ -151,6 +151,33 @@ export default async function CalculatorPage({ params }: Props) {
           <div className="calculator-shell w-full min-w-0 overflow-x-hidden">
             <CalculatorRenderer slug={calculator.slug} />
           </div>
+          {calculator.benchmarkContext && (
+            <div className="mt-8 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50/80 via-white to-amber-50/40 p-5 shadow-sm dark:border-blue-900/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-stone-200/70 pb-3 dark:border-slate-800">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-blue-100 px-2.5 py-0.5 text-xs font-bold text-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                  <BadgeCheck size={14} /> {calculator.benchmarkContext.badge}
+                </span>
+                <span className="text-xs text-stone-500 dark:text-slate-400">
+                  Verified: {calculator.benchmarkContext.lastUpdated}
+                </span>
+              </div>
+              <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  {calculator.benchmarkContext.title}
+                </h3>
+                <span className="text-lg font-mono font-bold text-blue-700 dark:text-blue-400">
+                  {calculator.benchmarkContext.stat}
+                </span>
+              </div>
+              <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                {calculator.benchmarkContext.description}
+              </p>
+              <div className="mt-3 pt-2 border-t border-stone-100 dark:border-slate-800 text-[11px] text-stone-500 dark:text-slate-400">
+                Source Reference: <span className="font-medium text-slate-700 dark:text-slate-300">{calculator.benchmarkContext.source}</span>
+              </div>
+            </div>
+          )}
+
           <CompareCalculatorSection compareWith={calculator.compareWith} />
 
           {calculator.slug === "road-tax-calculator" && (

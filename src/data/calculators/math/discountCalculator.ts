@@ -6,10 +6,24 @@ export const discountCalculator: Calculator = {
   name: "Discount Calculator",
 
   description:
-"Trying to figure out how much you're actually saving on a sale? Our free Discount Calculator instantly works out the discount percentage, savings amount, and final price — so you know exactly what you're paying before you buy.",
+    "Calculate sale prices, net savings, and successive stacked discounts (e.g. 50% + 20% off) instantly. Determine true discount percentages from MRP to checkout price.",
+
   category: "Finance",
 
   isPopular: true,
+
+  editorialIntro:
+    "Retail promotional sales frequently employ 'Double Discount' phrasing (such as 'Flat 40% Off + Extra 20% Off'). Because consecutive discounts compound multiplicatively rather than additively, 40% + 20% yields a net 52% reduction, not 60%.",
+
+  benchmarkContext: {
+    title: "Retail Successive Discount Multiplier Rules",
+    badge: "Consumer Pricing Math",
+    stat: "50% + 20% Off = 60% Net Discount",
+    description:
+      "Successive discounts apply to the diminishing balance: $Net \\, Price = MRP \\times (1 - d_1) \\times (1 - d_2)$. On a ₹1,000 item, '50% + 20%' yields ₹400 final price (saving ₹600 or 60%), never 70%.",
+    source: "Applied Retail Commercial Economics",
+    lastUpdated: "January 2026",
+  },
 
   seo: {
     title:
@@ -33,23 +47,20 @@ export const discountCalculator: Calculator = {
   steps: [
     {
       step: 1,
-      title: "Enter Original Price",
-      description:
-        "Enter the product's original price.",
+      title: "Input Listed MRP / Price",
+      description: "Enter the pre-discount sticker price (e.g., ₹2,499).",
       icon: "calculator",
     },
     {
       step: 2,
       title: "Enter Discount Percentage",
-      description:
-        "Enter the discount percentage offered.",
+      description: "Specify the promotional markdown rate (%) or cash off amount.",
       icon: "calculator",
     },
     {
       step: 3,
-      title: "Calculate Savings",
-      description:
-        "View savings amount and final price.",
+      title: "View Net Price & Savings",
+      description: "Instantly see the exact money saved and your final payable checkout price.",
       icon: "result",
     },
   ],

@@ -6,18 +6,30 @@ export const fdCalculator: Calculator = {
   name: "FD Calculator",
 
   description:
-    "Calculate Fixed Deposit maturity amount, interest earned, and total returns instantly.",
+    "Calculate Fixed Deposit (FD) maturity amount, cumulative interest earned, and quarterly compounding returns. Compare interest rates across leading Indian public, private, and small finance banks with DICGC insurance and tax deduction guidance.",
 
   category: "Finance",
 
   isPopular: true,
 
+  editorialIntro:
+    "Indian scheduled commercial banks calculate Fixed Deposit interest on a quarterly compounding basis (every 90 days). Under the Deposit Insurance and Credit Guarantee Corporation (DICGC) Act, deposits including principal and accrued interest are insured up to ₹5,00,000 per depositor per bank.",
+
+  benchmarkContext: {
+    title: "Indian Bank FD Benchmarks & DICGC Safety",
+    badge: "RBI & DICGC Banking Framework",
+    stat: "₹5,00,000 DICGC Insurance Cap",
+    description:
+      "Interest earned on bank FDs is fully taxable per slab rates. TDS is deducted under Section 194A at 10% if annual interest exceeds ₹40,000 (₹50,000 for senior citizens). Senior citizens also enjoy Section 80TTB deduction up to ₹50,000 under the Old Regime.",
+    source: "Reserve Bank of India (RBI) & Income Tax Department",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title: "FD Calculator - Calculate Fixed Deposit Returns Online",
 
     description:
-      "Use our free FD Calculator to calculate maturity amount, interest earned, and fixed deposit returns instantly.",
-
+      "Calculate Fixed Deposit (FD) maturity amount, interest earned, and quarterly compounding returns. Check bank FD interest rates, senior citizen benefits, and DICGC insurance rules.",
     keywords: [
       "fd calculator",
       "fixed deposit calculator",
@@ -40,20 +52,20 @@ export const fdCalculator: Calculator = {
   steps: [
     {
       step: 1,
-      title: "Enter Deposit Amount",
-      description: "Enter the amount you want to invest.",
+      title: "Input Principal Lump-Sum",
+      description: "Enter your initial one-time deposit (e.g., ₹1,00,000 or ₹5,00,000).",
       icon: "calculator",
     },
     {
       step: 2,
-      title: "Enter Interest Rate",
-      description: "Enter the annual interest rate.",
+      title: "Set Annual Interest Rate (%)",
+      description: "Enter your bank's rate (typically 6.75%–7.50% regular, +0.50% extra for senior citizens).",
       icon: "calculator",
     },
     {
       step: 3,
-      title: "Enter Investment Period",
-      description: "Specify the FD tenure in years.",
+      title: "Specify Tenure Horizon",
+      description: "Select the deposit term in years or months (7 days up to 10 years).",
       icon: "calculator",
     },
     {

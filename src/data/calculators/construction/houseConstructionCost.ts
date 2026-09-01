@@ -12,6 +12,19 @@ export const houseConstructionCostCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Indian residential construction costs are divided into RCC Grey Structure (civil work ~65% of budget: cement, TMT steel, sand, aggregate, masonry) and Finishing Works (~35% of budget: vitrified flooring, electrical wiring, sanitaryware, paint, woodwork).",
+
+  benchmarkContext: {
+    title: "Residential Construction Cost Benchmarks (India 2026)",
+    badge: "Civil Engineering & CPWD Rates",
+    stat: "₹1,650 – ₹2,400 per sq. ft. (Standard Quality)",
+    description:
+      "CPWD Schedule of Rates (DSR) & market rates by tier: Basic/Economic (₹1,350–₹1,600/sq.ft), Standard Quality (₹1,650–₹2,100/sq.ft), Premium Quality (₹2,200–₹2,900/sq.ft), and Luxury/Turnkey (₹3,000–₹4,500+/sq.ft). RCC steel consumption benchmark is 3.5 to 4.5 kg per sq.ft.",
+    source: "Central Public Works Department (CPWD) & Builders Association of India",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "home-loan-calculator",
     "emi-calculator",

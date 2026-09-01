@@ -18,6 +18,17 @@ export interface Calculator {
 
   seoContent?: string;
 
+  editorialIntro?: string;
+
+  benchmarkContext?: {
+    title: string;
+    badge: string;
+    stat: string;
+    description: string;
+    source: string;
+    lastUpdated: string;
+  };
+
   steps: {
     step: number;
     title: string;

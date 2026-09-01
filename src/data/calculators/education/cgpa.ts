@@ -12,6 +12,19 @@ export const cgpaCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Cumulative Grade Point Average (CGPA) computes your aggregate academic performance across all completed semesters by weighting each semester's SGPA against total semester credits ($CGPA = \\sum (S_j \\times C_j) / \\sum C_j$). It serves as the definitive metric for degree honors, gatekeeper corporate cutoffs, and postgraduate university admissions.",
+
+  benchmarkContext: {
+    title: "All India Council for Technical Education (AICTE) CGPA Norms",
+    badge: "AICTE & UGC Academic Norms",
+    stat: "Formula: Percentage = (CGPA - 0.75) × 10",
+    description:
+      "For Indian engineering and technical degrees, AICTE circular guidelines standardize conversion to percentage using: $\\text{Percentage} = (\\text{CGPA} - 0.75) \\times 10$. For a 8.0 CGPA, the official percentage equivalent is $(8.0 - 0.75) \\times 10 = 72.5\\%$.",
+    source: "All India Council for Technical Education (AICTE) Gazette",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title:
       "CGPA Calculator - Calculate CGPA & Percentage Online",
@@ -32,8 +45,6 @@ export const cgpaCalculator: Calculator = {
       "online cgpa calculator",
       "cgpa formula",
       "cumulative grade point average calculator",
-      "academic calculator",
-      "education calculator",
     ],
   },
 

@@ -12,11 +12,24 @@ export const incomeTaxCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Under the Finance Act (No. 2) 2024, the New Tax Regime (Section 115BAC) provides an increased ₹75,000 standard deduction for salaried employees and a Section 87A rebate that makes taxable income up to ₹7 Lakhs (₹7.75 Lakhs for salaried) effectively tax-free. Evaluating your Old vs. New regime breakeven point helps avoid overpaying advance tax.",
+
+  benchmarkContext: {
+    title: "Income Tax Slabs & Regime Breakeven (FY 2025-26)",
+    badge: "CBDT & Finance Act 2024",
+    stat: "₹7.75L Tax-Free Threshold (New Regime)",
+    description:
+      "For salaried individuals, the New Regime offers ₹75,000 standard deduction + ₹25,000 Section 87A rebate on taxable income up to ₹7 Lakhs. The Old Regime is advantageous only if your total Chapter VI-A deductions (80C, 80D, HRA, Sec 24b) exceed ₹3.75 Lakhs to ₹4.25 Lakhs.",
+    source: "Central Board of Direct Taxes (CBDT), Ministry of Finance",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title: "Income Tax Calculator 2026: Old vs New Regime – See Which Saves You More",
 
     description:
-    "Enter your income once and instantly compare Old vs New regime tax, including deductions and the ₹60,000 rebate. Free, accurate, updated for FY 2025-26",
+      "Enter your income once and instantly compare Old vs New regime tax, including deductions and the Section 87A rebate. Free, accurate, updated for FY 2025-26",
     keywords: [
       "income tax calculator",
       "old vs new tax regime calculator",
