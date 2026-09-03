@@ -9,6 +9,37 @@ type Props = {
   useCases?: string[];
 };
 
+function formatMathFormula(formula: string): string {
+  if (!formula) return "";
+  let clean = formula;
+  // Handle \frac{numerator}{denominator} and double-escaped \\frac
+  clean = clean.replace(/\\*frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1 ÷ $2");
+  // Handle \text{...} and double-escaped \\text
+  clean = clean.replace(/\\*text\{([^{}]+)\}/g, "$1");
+  // Handle LaTeX symbol escapes
+  clean = clean.replace(/\\*times/g, "×");
+  clean = clean.replace(/\\*div/g, "÷");
+  clean = clean.replace(/\\*pm/g, "±");
+  clean = clean.replace(/\\*approx/g, "≈");
+  clean = clean.replace(/\\*cdot/g, "·");
+  clean = clean.replace(/\\*left\s*\[/g, "[");
+  clean = clean.replace(/\\*right\s*\]/g, "]");
+  clean = clean.replace(/\\*left\s*\(/g, "(");
+  clean = clean.replace(/\\*right\s*\)/g, ")");
+  clean = clean.replace(/\\*quad/g, "  |  ");
+  // Superscripts
+  clean = clean.replace(/\^2\b/g, "²");
+  clean = clean.replace(/\^3\b/g, "³");
+  clean = clean.replace(/\^t\b/g, "ᵗ");
+  clean = clean.replace(/\^n\b/g, "ⁿ");
+  // Subscripts
+  clean = clean.replace(/_0\b/g, "₀");
+  clean = clean.replace(/_n\b/g, "ₙ");
+  // Remove leftover backslashes and braces if any
+  clean = clean.replace(/\\/g, "");
+  return clean;
+}
+
 export default function FormulaSection({
   title,
   formula,
@@ -16,6 +47,8 @@ export default function FormulaSection({
   example,
   useCases,
 }: Props) {
+  const formattedFormula = formatMathFormula(formula);
+
   return (
     <section
       className="
@@ -30,7 +63,7 @@ export default function FormulaSection({
         dark:bg-slate-900
       "
     >
-      <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+      <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
         {title}
       </h2>
 
@@ -38,14 +71,17 @@ export default function FormulaSection({
         className="
           mt-6
           rounded-2xl
-          bg-slate-100
+          border
+          border-blue-100
+          bg-blue-50/60
           p-6
           text-center
+          dark:border-blue-900/40
           dark:bg-slate-800
         "
       >
-        <p className="text-xl font-semibold text-slate-900 dark:text-white">
-          {formula}
+        <p className="font-mono text-lg sm:text-xl font-bold text-blue-900 dark:text-blue-300">
+          {formattedFormula}
         </p>
       </div>
 
