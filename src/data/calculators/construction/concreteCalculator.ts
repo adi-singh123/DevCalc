@@ -12,33 +12,42 @@ category: "Construction",
 
 isPopular: true,
 
+editorialIntro:
+  "Concrete volume calculation determines the precise quantities of cement, fine aggregate (sand), and coarse aggregate (gravel) needed for structural pouring. Converting wet volume ($Length \\times Width \\times Depth$) to dry volume using the 1.54 multiplier ensures structural strength without costly batching shortages.",
+
+benchmarkContext: {
+  title: "IS 456 & Nominal Concrete Design Mix Proportions",
+  badge: "Civil Structural Engineering Standard",
+  stat: "1.54 Dry Volume Multiplier Benchmark",
+  description:
+    "Nominal concrete mix ratios by volume (Cement : Sand : Aggregate): M10 (1:3:6 for lean bed PCC), M15 (1:2:4 for plain paving), M20 (1:1.5:3 for standard RCC slabs/beams), and M25 (1:1:2 for high-load columns and footings).",
+  source: "Indian Standards Code of Practice for Structural Concrete (IS 456)",
+  lastUpdated: "January 2026",
+},
+
 compareWith: [
-"cement-calculator",
-"brick-calculator",
-"house-construction-cost-calculator",
-"steel-weight-calculator",
+  "cement-calculator",
+  "brick-calculator",
+  "house-construction-cost-calculator",
+  "steel-weight-calculator",
 ],
 
 seo: {
-title:
-"Concrete Calculator - Calculate Concrete Volume & Material Quantity",
+  title: "Concrete Calculator - Calculate Concrete Volume & Material Quantity",
 
-
-description:
-  "Not sure how much concrete your project needs? Enter your slab or column dimensions and instantly get the exact volume, cement bags, sand, and aggregate required — no guesswork, no waste.",
-keywords: [
-  "concrete calculator",
-  "concrete volume calculator",
-  "ready mix concrete calculator",
-  "concrete quantity estimator",
-  "concrete mix ratio calculator",
-  "slab concrete calculator",
-  "foundation concrete estimator",
-  "cement sand aggregate calculator",
-  "concrete cost calculator",
-],
-
-
+  description:
+    "Not sure how much concrete your project needs? Enter your slab or column dimensions and instantly get the exact volume, cement bags, sand, and aggregate required — no guesswork, no waste.",
+  keywords: [
+    "concrete calculator",
+    "concrete volume calculator",
+    "ready mix concrete calculator",
+    "concrete quantity estimator",
+    "concrete mix ratio calculator",
+    "slab concrete calculator",
+    "foundation concrete estimator",
+    "cement sand aggregate calculator",
+    "concrete cost calculator",
+  ],
 },
 
 steps: [

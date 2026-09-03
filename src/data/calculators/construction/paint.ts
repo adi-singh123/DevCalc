@@ -12,6 +12,19 @@ export const paintCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Estimating architectural paint quantities requires subtracting window and door openings from gross wall areas, and applying product-specific spreading rates (measured in sq.ft per litre per coat) with proper primer sealing coats.",
+
+  benchmarkContext: {
+    title: "Indian Paint Industry Spreading Rates (IS 15489 & IS 5411)",
+    badge: "Architectural Coatings Standard",
+    stat: "120–140 sq.ft / Litre (2 Coats Premium Emulsion)",
+    description:
+      "Benchmark spreading rates per litre for 2 coats: Interior Acrylic Distemper (50–65 sq.ft/L), Interior Tractor/Plastic Emulsion (120–140 sq.ft/L), Exterior Weatherproof Emulsion (60–80 sq.ft/L), and Water-based Wall Primer (120–150 sq.ft/L single coat).",
+    source: "Indian Paint Association (IPA) & Asian Paints / Berger Technical Manuals",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "cement-calculator",
     "tile-calculator",

@@ -12,6 +12,19 @@ export const urlEncoderDecoder: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "URL percent-encoding transforms non-ASCII characters and reserved delimiter symbols (`&`, `=`, `?`, `/`, `#`, spaces) into standardized UTF-8 hexadecimal triplets (`%XX`) under RFC 3986, ensuring query parameters and URI components transmit reliably across web servers without breaking HTTP request routing.",
+
+  benchmarkContext: {
+    title: "IETF RFC 3986 Uniform Resource Identifier (URI) Standards",
+    badge: "Web Infrastructure Standard",
+    stat: "Percent-Encoding Formula: `%` + 2 Hex Digits",
+    description:
+      "Unreserved characters (`A-Z`, `a-z`, `0-9`, `-`, `_`, `.`, `~`) are never encoded. `encodeURIComponent()` safely encodes all delimiters within parameter values, while `encodeURI()` preserves full URL protocol separators (`http://`, `?`, `/`, `&`).",
+    source: "Internet Engineering Task Force (IETF RFC 3986) & W3C URI Specifications",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "base64-encoder-decoder",
     "json-formatter",
@@ -21,19 +34,19 @@ export const urlEncoderDecoder: Calculator = {
   seo: {
     title: "URL Encoder Decoder - Encode & Decode URLs Online Free",
 
-description:
-  "Paste any URL and instantly encode special characters into percent-format — or decode a messy encoded string back to readable text. Clean, fast, and works right in your browser.",
-keywords: [
-  "url encoder",
-  "url decoder",
-  "percent encoding converter",
-  "query string encoder",
-  "url escape characters",
-  "rfc 3986 encoder",
-  "encode query parameters",
-  "uri decode tool",
-  "url safe string converter",
-],
+    description:
+      "Paste any URL and instantly encode special characters into percent-format — or decode a messy encoded string back to readable text. Clean, fast, and works right in your browser.",
+    keywords: [
+      "url encoder",
+      "url decoder",
+      "percent encoding converter",
+      "query string encoder",
+      "url escape characters",
+      "rfc 3986 encoder",
+      "encode query parameters",
+      "uri decode tool",
+      "url safe string converter",
+    ],
   },
 
   steps: [

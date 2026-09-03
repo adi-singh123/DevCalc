@@ -12,12 +12,25 @@ export const retirementCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Planning for retirement requires projecting inflation-adjusted monthly living expenses and computing a terminal corpus capable of sustaining withdrawals across a 25-to-35 year post-retirement horizon without principal exhaustion.",
+
+  benchmarkContext: {
+    title: "FIRE 25x–33x Rule & Trinity Study Benchmarks",
+    badge: "Actuarial & Wealth Planning Standards",
+    stat: "30x Annual Expenses Target (for 6% Inflation)",
+    description:
+      "While the US Trinity Study suggests a 25x annual expense corpus (4% withdrawal rate), Indian retirement planners recommend a 30x to 33x multiple (3%–3.33% safe withdrawal rate) to compensate for India's higher 6% average retail inflation and longer life expectancy.",
+    source: "Society of Actuaries & Financial Planning Standards Board India (FPSB)",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title:
       "Retirement Calculator - Calculate Retirement Corpus & Savings",
 
-description:
-  "How much money do you actually need to retire comfortably? Enter your age, income, and lifestyle goals — get a clear picture of your target corpus, monthly savings needed, and inflation-adjusted costs.",
+    description:
+      "Calculate your retirement corpus, monthly savings needed, and inflation-adjusted living costs. Plan for financial independence and early retirement (FIRE).",
     keywords: [
       "retirement calculator",
       "retirement planning calculator",
@@ -28,7 +41,6 @@ description:
       "retirement expense calculator",
       "retirement income calculator",
       "financial independence calculator",
-      "retirement fund calculator",
     ],
   },
 

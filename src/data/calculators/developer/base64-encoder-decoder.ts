@@ -12,6 +12,19 @@ export const base64EncoderDecoder: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Base64 encoding translates 8-bit binary data into a restricted 64-character ASCII representation (A–Z, a–z, 0–9, `+`, `/`) under RFC 4648. It enables safe binary transmission over protocols historically designed strictly for plain text, such as HTTP headers, email attachments (MIME), and data URIs.",
+
+  benchmarkContext: {
+    title: "IETF RFC 4648 Base64 & Data URI Standards",
+    badge: "Binary Serialization Standard",
+    stat: "+33% Data Expansion (4 ASCII Chars per 3 Bytes)",
+    description:
+      "Base64 converts groups of 3 bytes (24 bits) into 4 six-bit chunks ($2^6 = 64$ symbols), with `=` padding added if the input length is not a multiple of 3. This increases raw payload byte size by exactly 33.33%.",
+    source: "Internet Engineering Task Force (IETF RFC 4648)",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "json-formatter",
     "uuid-generator",
@@ -21,19 +34,19 @@ export const base64EncoderDecoder: Calculator = {
   seo: {
     title: "Base64 Encoder Decoder - Encode & Decode Base64 Online",
 
-description:
-  "Encode any text or string to Base64, or decode a Base64 value back to plain text — instantly, privately, and without uploading anything to a server.",
-keywords: [
-  "base64 encoder",
-  "base64 decoder",
-  "base64 converter",
-  "text to base64",
-  "base64 to text",
-  "binary to base64",
-  "url safe base64 encoder",
-  "base64 string converter",
-  "rfc 4648 base64",
-],
+    description:
+      "Encode any text or string to Base64, or decode a Base64 value back to plain text — instantly, privately, and without uploading anything to a server.",
+    keywords: [
+      "base64 encoder",
+      "base64 decoder",
+      "base64 converter",
+      "text to base64",
+      "base64 to text",
+      "binary to base64",
+      "url safe base64 encoder",
+      "base64 string converter",
+      "rfc 4648 base64",
+    ],
   },
 
   steps: [

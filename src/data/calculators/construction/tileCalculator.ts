@@ -12,6 +12,19 @@ export const tileCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Calculating floor and wall tile requirements requires factoring in room surface area, tile dimensions, skirtings (typically 4-inch baseboard perimeter cuts), and layout pattern wastage (10% for straight grid, 15% for diagonal herringbone layouts).",
+
+  benchmarkContext: {
+    title: "Tile Industry Sizing & Grout Coverage Benchmarks",
+    badge: "Interior Finishing Standards",
+    stat: "10% Grid / 15% Diagonal Wastage Standard",
+    description:
+      "Standard vitrified tile formats: 600 × 600 mm (2×2 ft = 3.87 sq.ft/tile), 600 × 1200 mm (2×4 ft = 7.75 sq.ft/tile), 800 × 800 mm (2.6×2.6 ft). Tile adhesive coverage is benchmarked at 1 bag (20 kg) per 50 to 60 sq.ft at 3mm bed thickness.",
+    source: "Tile Council of North America (TCNA) & Indian Ceramic Society",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "brick-calculator",
     "paint-calculator",

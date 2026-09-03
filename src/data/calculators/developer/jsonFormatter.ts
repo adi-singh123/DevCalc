@@ -12,6 +12,19 @@ export const jsonFormatter: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "JavaScript Object Notation (JSON) is the universal data interchange format for modern REST and GraphQL APIs. Adhering to RFC 8259 specifications, formatting ensures strict double-quoted key validation, array boundary checks, and human-readable indented pretty-printing.",
+
+  benchmarkContext: {
+    title: "IETF RFC 8259 & ECMA-404 JSON Standards",
+    badge: "Web Engineering Standard",
+    stat: "Strict UTF-8 & Double-Quote Mandatory Rule",
+    description:
+      "Unlike JavaScript object literals, valid JSON strictly prohibits single quotes, trailing commas after the final element, unquoted keys, `NaN`/`undefined` values, and comments. Minification reduces payload size over HTTP networks by removing unnecessary whitespace and line breaks.",
+    source: "Internet Engineering Task Force (IETF RFC 8259) & ECMA International",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "base64-encoder-decoder",
     "url-encoder-decoder",

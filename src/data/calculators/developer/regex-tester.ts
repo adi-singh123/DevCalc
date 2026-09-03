@@ -12,24 +12,36 @@ export const regexTester: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Regular Expressions (RegEx) define formal search patterns using deterministic and non-deterministic finite automata under the ECMAScript RegExp standard. Live pattern testing allows developers to test character classes, quantifiers, lookahead/lookbehind assertions, and flag modifiers (`g`, `i`, `m`, `s`, `u`) before deploying to production code.",
+
+  benchmarkContext: {
+    title: "ECMAScript 2026 (ECMA-262) Regular Expression Standards",
+    badge: "Language Specification Standard",
+    stat: "NFA Engine with Lookaround & Named Capture Groups",
+    description:
+      "Modern JavaScript regex engines support positive/negative lookaheads (`(?=...)`, `(?!...)`), lookbehinds (`(?<=...)`, `(?<!...)`), named capture groups (`(?<name>...)`), and Unicode property escapes (`\\p{Letter}`). Testing protects against Regular Expression Denial of Service (ReDoS) caused by nested quantifiers.",
+    source: "ECMA International (ECMA-262) & Mozilla Developer Network (MDN)",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title:
       "Regex Tester - Regular Expression Tester Online",
 
     description:
-      "Test and validate regular expressions instantly. Free Regex Tester with live matching, pattern validation, and regex debugging.",
-
-  keywords: [
-    "regex tester",
-    "regular expression tester",
-    "regex pattern validator",
-    "regex syntax checker",
-    "regex match tester",
-    "javascript regex tester",
-    "regex debugger",
-    "email regex validator",
-    "regex cheat sheet and tester",
-  ],
+      "Test and validate regular expressions in real-time. Debug JavaScript regex patterns, test character classes, lookarounds, and evaluate capture groups with live highlighting.",
+    keywords: [
+      "regex tester",
+      "regular expression tester",
+      "regex pattern validator",
+      "regex syntax checker",
+      "regex match tester",
+      "javascript regex tester",
+      "regex debugger",
+      "email regex validator",
+      "regex cheat sheet and tester",
+    ],
   },
 
   steps: [

@@ -11,6 +11,19 @@ export const brickCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Accurately estimating brickwork volume prevents expensive job-site shortages and mortar wastage. In Indian masonry, 1 cubic meter of standard brickwork requires approximately 500 traditional bricks (with 10mm mortar joints) and 0.25 to 0.30 cubic meters of 1:6 cement-sand mortar.",
+
+  benchmarkContext: {
+    title: "Bureau of Indian Standards (IS 1077 & IS 2212) Masonry Rules",
+    badge: "Civil Engineering Standards",
+    stat: "500 Bricks / m³ (IS 2212 Standard Rule)",
+    description:
+      "Standard modular brick dimension is 190 × 90 × 90 mm (nominal 200 × 100 × 100 mm with 10mm mortar). Traditional red clay brick size is 9″ × 4.25″ × 2.75″ (225 × 110 × 75 mm). A 5% to 10% cutting and transit breakage allowance is standard.",
+    source: "Bureau of Indian Standards (BIS) & Central Public Works Department (CPWD)",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "cement-calculator",
     "house-construction-cost-calculator",
@@ -20,9 +33,9 @@ export const brickCalculator: Calculator = {
   seo: {
     title: "Brick Calculator - Estimate Brick Quantity & Mortar Cost Online",
 
-description:
-  "Building a wall and unsure how many bricks to order? Enter your wall dimensions and get the exact brick count, mortar quantity, and total material cost — with wastage factored in automatically.",
- keywords: [
+    description:
+      "Building a wall and unsure how many bricks to order? Enter your wall dimensions and get the exact brick count, mortar quantity, and total material cost — with wastage factored in automatically.",
+    keywords: [
       "brick calculator",
       "brick quantity estimator",
       "brick and mortar calculator",

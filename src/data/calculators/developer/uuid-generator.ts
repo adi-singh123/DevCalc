@@ -12,6 +12,19 @@ export const uuidGenerator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Universally Unique Identifiers (UUID v4) provide 128-bit standardized identifiers without centralized registration authorities. Built using cryptographically secure pseudorandom numbers (CSPRNG), UUID v4 guarantees virtually zero collision probability across distributed databases, microservices, and session states.",
+
+  benchmarkContext: {
+    title: "IETF RFC 4122 & ITU-T Rec. X.667 UUID Specifications",
+    badge: "Distributed Systems Architecture Standard",
+    stat: "122 Bits of Cryptographic Entropy ($5.3 \\times 10^{36}$ Unique IDs)",
+    description:
+      "A UUID v4 consists of 32 hexadecimal digits displayed in 5 groups (`8-4-4-4-12`). The 13th digit is always fixed at `4` (version indicator) and the 17th character is restricted to `8`, `9`, `a`, or `b` (variant 1 indicator). Generating 1 billion UUIDs per second for 100 years has a collision chance under 1 in 1 billion.",
+    source: "Internet Engineering Task Force (IETF RFC 4122) & ISO/IEC 9834-8",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "json-formatter",
     "hash-generator",
@@ -22,19 +35,19 @@ export const uuidGenerator: Calculator = {
     title:
       "UUID Generator - Generate Bulk UUID v4 Online Free",
 
-description:
-  "Need unique IDs for your database, API, or test data? Generate single or bulk UUID v4 values instantly — cryptographically random, copy-ready, and completely free.",
-keywords: [
-  "uuid generator",
-  "uuid v4 generator",
-  "guid generator",
-  "bulk uuid generator",
-  "rfc 4122 uuid",
-  "random unique id generator",
-  "cryptographic uuid generator",
-  "uuid v1 v4 v5 generator",
-  "database unique identifier tool",
-],
+    description:
+      "Need unique IDs for your database, API, or test data? Generate single or bulk UUID v4 values instantly — cryptographically random, copy-ready, and completely free.",
+    keywords: [
+      "uuid generator",
+      "uuid v4 generator",
+      "guid generator",
+      "bulk uuid generator",
+      "rfc 4122 uuid",
+      "random unique id generator",
+      "cryptographic uuid generator",
+      "uuid v1 v4 v5 generator",
+      "database unique identifier tool",
+    ],
   },
 
   steps: [

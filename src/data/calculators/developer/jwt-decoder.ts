@@ -11,23 +11,35 @@ export const jwtDecoder: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "JSON Web Tokens (JWT) operate as compact, URL-safe security credentials under RFC 7519. Decoding parses the Base64Url-encoded Header and Payload JSON structures locally in your browser, enabling instant auditing of token claims, issuer identity (`iss`), audience (`aud`), and expiration timestamps (`exp`) with zero server transmissions.",
+
+  benchmarkContext: {
+    title: "IETF RFC 7519 JSON Web Token (JWT) Standards",
+    badge: "Web Application Security Standard",
+    stat: "Base64Url Structure: Header.Payload.Signature",
+    description:
+      "A standard JWT consists of three parts separated by dots: Header (algorithm & token type), Payload (claims data & timestamps in UNIX epoch seconds), and Signature (cryptographic hash validating integrity via HMAC SHA-256 or RSA/ECDSA public keys).",
+    source: "Internet Engineering Task Force (IETF RFC 7519) & OpenID Foundation",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title: "JWT Decoder - Decode JWT Tokens Online Free",
 
     description:
-      "Free JWT Decoder tool to decode JWT tokens and inspect headers, payloads, expiration dates, and claims instantly.",
-
-  keywords: [
-    "jwt decoder",
-    "jwt token parser",
-    "decode jwt online",
-    "jwt payload viewer",
-    "jwt claims inspector",
-    "json web token debugger",
-    "jwt header decoder",
-    "decode bearer token",
-    "jwt token expiration checker",
-  ]
+      "Decode JWT tokens instantly in your browser. Inspect header, payload claims, expiration dates (exp), and signature algorithms with 100% client-side privacy.",
+    keywords: [
+      "jwt decoder",
+      "jwt token parser",
+      "decode jwt online",
+      "jwt payload viewer",
+      "jwt claims inspector",
+      "json web token debugger",
+      "jwt header decoder",
+      "decode bearer token",
+      "jwt token expiration checker",
+    ],
   },
 
   steps: [

@@ -12,13 +12,25 @@ export const inflationCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Inflation acts as a silent erosion on uninvested cash. At an average retail inflation rate of 6% p.a., the purchasing power of your money halves every 12 years (Rule of 70). Forecasting inflation-adjusted future costs is the foundational prerequisite for setting realistic retirement and higher education targets.",
+
+  benchmarkContext: {
+    title: "RBI Monetary Policy Inflation Targets (CPI)",
+    badge: "Reserve Bank of India Statutory Mandate",
+    stat: "4.0% Target Band (±2.0% Tolerance)",
+    description:
+      "Under the RBI Act Monetary Policy Framework, the Consumer Price Index (CPI) combined inflation target is anchored at 4% with a 2% to 6% tolerance band. Real returns equal nominal investment returns minus CPI inflation.",
+    source: "Reserve Bank of India (RBI) & Ministry of Statistics and Programme Implementation (MoSPI)",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title:
       "Inflation Calculator - Calculate Future Value & Purchasing Power",
 
     description:
-      "Use our free Inflation Calculator to estimate future costs, inflation-adjusted values, purchasing power, and the real value of money over time.",
-
+      "Calculate future costs, purchasing power erosion, and inflation-adjusted values over 5, 10, 20, and 30 years using verified CPI inflation models.",
     keywords: [
       "inflation calculator",
       "purchasing power calculator",
@@ -28,7 +40,6 @@ export const inflationCalculator: Calculator = {
       "real value of money calculator",
       "price inflation calculator",
       "salary inflation calculator",
-      "inflation impact calculator",
     ],
   },
 

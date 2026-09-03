@@ -12,6 +12,19 @@ export const cementCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Calculating cement requirements for RCC slabs, columns, and foundations requires converting wet concrete volume to dry volume by multiplying by the statutory factor of 1.54 (accounting for 54% void reduction when water is added to dry cement, sand, and coarse aggregates).",
+
+  benchmarkContext: {
+    title: "IS 456:2000 Concrete Mix & Cement Bag Standards",
+    badge: "Bureau of Indian Standards Code",
+    stat: "1 Bag = 50 kg (Volume: 0.0347 m³ / 1.226 cu.ft)",
+    description:
+      "Standard mix ratios: M15 1:2:4 (~6.6 bags/m³), M20 1:1.5:3 (~8.0 bags/m³ for residential slabs), M25 1:1:2 (~10.5 bags/m³ for heavy load columns). Cement density is standardized at 1,440 kg/m³.",
+    source: "Bureau of Indian Standards (IS 456:2000 Plain and Reinforced Concrete)",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "concrete-calculator",
     "brick-calculator",
@@ -22,8 +35,8 @@ export const cementCalculator: Calculator = {
     title:
       "Cement Calculator - Calculate Cement Bags Required Online",
 
-description:
-"Calculate cement bags needed for slab, foundation, column, or beam. Get instant quantity, weight, and cost estimates for your construction project.",
+    description:
+      "Calculate cement bags needed for slab, foundation, column, or beam. Get instant quantity, weight, and cost estimates for your construction project.",
     keywords: [
       "cement calculator",
       "cement bag quantity calculator",

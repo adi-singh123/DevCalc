@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import InteractiveFaq from "@/src/components/common/InteractiveFaq";
 import {
@@ -40,14 +40,11 @@ export const metadata: Metadata = {
     canonical: "https://www.devcalc.in/collegeProject",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
     googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      index: false,
+      follow: false,
     },
   },
   openGraph: {

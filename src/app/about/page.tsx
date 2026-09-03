@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.devcalc.in/about",
   },
-  authors: [{ name: "Devcalc" }],
-  creator: "Davcalc",
+  authors: [{ name: "Aditya Singh" }],
+  creator: "Aditya Singh",
   publisher: "DevCalc",
 };
 

@@ -12,6 +12,19 @@ export const rebarCuttingLengthCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Preparing a precise Bar Bending Schedule (BBS) under IS 2502 requires deducting elongated steel length caused by bending tension (1d for 45°, 2d for 90°, 3d for 135°) while adding anchorage hooks (9d for 90° standard hook, 24d for 135° stirrup seismic hooks) and clear concrete cover offsets.",
+
+  benchmarkContext: {
+    title: "IS 2502 & IS 13920 Bar Bending Schedule (BBS) Standards",
+    badge: "Structural Steel Detailing Code",
+    stat: "Standard Bend Deductions: 45°=1d, 90°=2d, 135°=3d",
+    description:
+      "Concrete clear cover benchmarks: Slab (20mm), Beam (25mm), Column (40mm), Footing (50mm). Unit weight formula for TMT steel bars is $d^2 / 162$ kg per running metre ($d$ = bar diameter in mm).",
+    source: "Bureau of Indian Standards (IS 2502 Bending and Fixing of Bars for Concrete Reinforcement)",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "development-length-calculator",
     "lap-length-calculator",

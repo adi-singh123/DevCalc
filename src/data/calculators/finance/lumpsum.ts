@@ -6,17 +6,30 @@ export const lumpsumCalculator: Calculator = {
   name: "Lumpsum Calculator",
 
   description:
-"A free Lumpsum Calculator designed for investors planning a one-time mutual fund investment. Enter your investment amount, expected annual return, and time horizon to instantly see your projected maturity value, total wealth gained, and overall investment growth — helping you make informed decisions for goals like retirement, a child's education, or long-term wealth building.",
+    "Calculate the future value of a one-time mutual fund lump-sum investment. Estimate compounding growth, total wealth gained, and long-term capital accumulation across equity, debt, and hybrid assets.",
+
   category: "Finance",
 
   isPopular: true,
 
+  editorialIntro:
+    "A lump-sum investment deploys your entire capital into the market upfront, allowing 100% of your principal to compound from Day 1. When investing during market dips or deploying windfalls (such as annual bonuses, property sales, or ESOP liquidations), lump-sum investing historically captures strong multi-year compounding cycles.",
+
+  benchmarkContext: {
+    title: "Lump-Sum vs. STP Deployment Strategy",
+    badge: "SEBI & Wealth Management Norms",
+    stat: "STP (Systematic Transfer Plan) Volatility Defense",
+    description:
+      "When market valuations (P/E ratios) are elevated, wealth managers recommend parking lump sums in liquid/overnight funds and executing a 6-to-12 month Systematic Transfer Plan (STP) into equity funds to mitigate single-day entry point timing risks.",
+    source: "Association of Mutual Funds in India (AMFI) & NSE Historical Valuation Metrics",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
-    title:
-      "Lumpsum Calculator - Calculate One-Time Investment Returns",
+    title: "Lumpsum Calculator - Calculate One-Time Investment Returns",
 
     description:
-"A free Lumpsum Calculator designed for investors planning a one-time mutual fund investment. Enter your investment amount, expected annual return, and time horizon to instantly see your projected maturity value, total wealth gained, and overall investment growth — helping you make informed decisions for goals like retirement, a child's education, or long-term wealth building.",
+      "Calculate mutual fund lumpsum investment returns, future maturity value, and compounding growth. Compare lumpsum vs SIP strategies for wealth creation.",
     keywords: [
       "lumpsum calculator",
       "mutual fund lumpsum calculator",
@@ -26,129 +39,77 @@ export const lumpsumCalculator: Calculator = {
       "lumpsum vs sip calculator",
       "investment maturity calculator",
       "mutual fund future value calculator",
-      "long term investment calculator",
-      "wealth creation calculator",
     ],
   },
 
   steps: [
     {
       step: 1,
-      title: "Enter Investment Amount",
-      description:
-        "Enter the amount you want to invest as a one-time lumpsum investment.",
+      title: "Input Initial Principal",
+      description: "Enter your one-time investible lump sum (e.g., ₹1,00,000, ₹5,00,000, or ₹25,00,000).",
       icon: "calculator",
     },
-
     {
       step: 2,
-      title: "Enter Expected Return",
-      description:
-        "Provide the expected annual rate of return on your investment.",
+      title: "Target Annual CAGR (%)",
+      description: "Set expected annualized compound return (e.g. 12% for Large Cap, 14% for Mid/Small Cap).",
       icon: "calculator",
     },
-
     {
       step: 3,
-      title: "Select Investment Duration",
-      description:
-        "Choose the number of years you plan to keep your investment.",
+      title: "Select Investment Horizon",
+      description: "Specify holding tenure in years to evaluate long-term compounding multiples.",
       icon: "calculator",
     },
-
     {
       step: 4,
-      title: "View Investment Growth",
-      description:
-        "See the estimated maturity value, investment gain, and wealth created.",
+      title: "Analyze Terminal Wealth",
+      description: "Review your initial capital vs estimated capital gains and final maturity corpus.",
       icon: "result",
     },
   ],
 
   formula: {
-    title: "Lumpsum Calculator Formula",
+    title: "Lump-Sum Compound Growth Formula",
 
-    formula:
-      "Future Value = Principal × (1 + Rate)^Time",
+    formula: "A = P × (1 + r)^t",
 
     explanation:
-      "The Lumpsum Calculator uses the compound interest formula to estimate how a one-time investment grows over time. The maturity value depends on the investment amount, annual return rate, and investment period.",
+      "The future maturity valuation (A) is calculated by compounding the starting principal (P) at the annual interest/growth rate (r) over the total investment tenure in years (t).",
 
     example: {
-      input:
-        "Investment: ₹100,000 | Return: 12% | Period: 10 Years",
-
-      output:
-        "Future Value ≈ ₹310,585",
+      input: "Principal: ₹5,00,000 | Expected CAGR: 12% | Horizon: 15 Years",
+      output: "Total Invested = ₹5,00,000 | Estimated Capital Gains = ₹22,36,783 | Maturity Value = ₹27,36,783 (5.47x Growth)",
     },
 
     useCases: [
-      "Mutual Fund Investments",
-      "Long-Term Wealth Creation",
-      "Retirement Planning",
-      "Goal-Based Investing",
-      "Education Planning",
-      "Investment Forecasting",
-      "Financial Planning",
-      "Portfolio Growth Analysis",
+      "Inheritance & Property Sale Proceed Allocation",
+      "Annual Bonus & ESOP Liquidity Deployment",
+      "Children Higher Education Trust Funding",
+      "Lump-Sum vs SIP Comparative Analysis",
     ],
   },
 
   faqs: [
     {
-      question:
-        "What is a Lumpsum Calculator?",
+      question: "When is a Lump-Sum investment better than a monthly SIP?",
       answer:
-        "A Lumpsum Calculator estimates the future value of a one-time investment using compound growth over a selected period.",
+        "Lump-sum investing historically outperforms SIPs in long-term secular bull markets because 100% of your capital begins compounding immediately, rather than sitting in low-yield cash waiting to be deployed over months. However, if markets are at all-time highs, using a Systematic Transfer Plan (STP) over 6–12 months helps mitigate near-term correction risks.",
     },
-
     {
-      question:
-        "How does a Lumpsum Calculator work?",
+      question: "How are capital gains taxed on equity lump-sum redemptions?",
       answer:
-        "The calculator uses compound interest calculations based on investment amount, expected annual return, and investment duration.",
+        "Under Budget 2024, equity mutual fund units held for more than 12 months qualify as Long-Term Capital Gains (LTCG) and are taxed at 12.5% on gains exceeding ₹1.25 Lakhs per financial year. Units sold within 12 months are taxed as Short-Term Capital Gains (STCG) at a flat 20%.",
     },
-
     {
-      question:
-        "What is a lumpsum investment?",
+      question: "What is the Rule of 72 and how does it apply to lump-sum investments?",
       answer:
-        "A lumpsum investment is a one-time investment made at the beginning rather than investing regularly through SIPs.",
+        "The Rule of 72 estimates how quickly your lump sum doubles: divide 72 by your expected annual return rate. At a 12% CAGR, your investment doubles every 6 years (72 / 12 = 6). A ₹10 Lakh lump sum becomes ₹20 Lakhs in 6 years, ₹40 Lakhs in 12 years, and ₹80 Lakhs in 18 years.",
     },
-
     {
-      question:
-        "Is lumpsum better than SIP?",
+      question: "Can market timing destroy lump-sum returns?",
       answer:
-        "Both have advantages. Lumpsum investments may benefit more during market growth, while SIPs help reduce market timing risk.",
-    },
-
-    {
-      question:
-        "Can I use this calculator for mutual funds?",
-      answer:
-        "Yes. This calculator is commonly used for mutual fund lumpsum investment planning and return estimation.",
-    },
-
-    {
-      question:
-        "What return rate should I use?",
-      answer:
-        "You can use expected returns based on historical investment performance or your financial advisor's guidance.",
-    },
-
-    {
-      question:
-        "Does the calculator guarantee returns?",
-      answer:
-        "No. The results are estimates based on the return rate entered and actual returns may vary.",
-    },
-
-    {
-      question:
-        "Why use a Lumpsum Calculator?",
-      answer:
-        "It helps investors estimate future wealth, compare investment opportunities, and make informed financial decisions.",
+        "Investing right before a market peak can cause short-term portfolio drawdowns. However, historical rolling return data shows that holding broad-market equity index funds for 7+ years almost completely eliminates negative return probabilities.",
     },
   ],
 
