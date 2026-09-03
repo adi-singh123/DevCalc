@@ -6,25 +6,37 @@ export const npsCalculator: Calculator = {
   name: "NPS Calculator",
 
   description:
-    "Calculate NPS maturity amount, retirement corpus, lump sum withdrawal, annuity value, and estimated monthly pension using the National Pension System.",
+    "Calculate your National Pension System (NPS) maturity corpus at age 60, the 60% tax-free lump-sum withdrawal, 40% mandatory annuity allocation, and estimated lifelong monthly pension.",
 
   category: "Finance",
 
   isPopular: true,
 
+  editorialIntro:
+    "Regulated by the PFRDA, the National Pension System (NPS) combines low fund management fees (<0.09%) with equity market compounding. At age 60, subscribers can withdraw up to 60% of their accumulated corpus completely tax-free, with the remaining 40% invested into an annuity plan to secure a guaranteed lifelong monthly pension.",
+
+  benchmarkContext: {
+    title: "PFRDA Regulatory Norms & Section 80CCD Tax Slabs",
+    badge: "PFRDA Statutory Framework",
+    stat: "60% Tax-Free Lump Sum | 40% Min Annuity at Age 60",
+    description:
+      "Exclusive tax deductions: Up to ₹1.5 Lakh under Section 80CCD(1) within the 80C umbrella + an additional ₹50,000 under Section 80CCD(1B) under the Old Regime. Employer contributions up to 10% (14% for Central/State Govt) of Basic+DA qualify under Section 80CCD(2) under both Old and New Tax Regimes.",
+    source: "Pension Fund Regulatory and Development Authority (PFRDA) & Income Tax Department",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
-    "epf-calculator",
     "ppf-calculator",
     "retirement-calculator",
     "sip-calculator",
+    "swp-calculator",
   ],
 
   seo: {
-    title:
-      "NPS Calculator - National Pension System Calculator",
+    title: "NPS Calculator - National Pension System Calculator Online",
 
-description:
-  "Contributing to NPS and wondering what you'll get at retirement? Enter your monthly contribution and expected return to see your total corpus, lump sum payout, and estimated monthly pension.",
+    description:
+      "Calculate your NPS retirement corpus, 60% tax-free lump sum, and monthly pension payout. Check Section 80CCD(1B) tax savings and asset allocation returns.",
     keywords: [
       "nps calculator",
       "national pension system calculator",
@@ -34,121 +46,75 @@ description:
       "nps retirement calculator",
       "nps withdrawal calculator",
       "monthly pension calculator",
-      "nps investment calculator",
-      "annuity calculator",
+      "section 80ccd 1b calculator",
     ],
   },
 
   steps: [
     {
       step: 1,
-      title: "Enter Current Age",
-      description:
-        "Provide your current age and retirement age.",
+      title: "Set Current Age & Retirement Age",
+      description: "Enter your starting age and target retirement horizon (standard superannuation is age 60).",
       icon: "calculator",
     },
-
     {
       step: 2,
-      title: "Enter Monthly Contribution",
-      description:
-        "Specify the amount you contribute to NPS every month.",
+      title: "Input Monthly Contribution",
+      description: "Specify your recurring monthly deposit (e.g., ₹5,000, ₹10,000, or ₹25,000).",
       icon: "calculator",
     },
-
     {
       step: 3,
-      title: "Enter Expected Return",
-      description:
-        "Choose your expected annual return rate.",
+      title: "Set Growth & Annuity Return (%)",
+      description: "Input expected portfolio return (typically 9%–11% for Active Choice) and annuity rate (typically 6%).",
       icon: "calculator",
     },
-
     {
       step: 4,
-      title: "View Retirement Corpus",
-      description:
-        "Get pension estimates, annuity value, and retirement corpus.",
+      title: "Review Lump-Sum & Pension Split",
+      description: "Analyze your total accumulated corpus, 60% tax-free payout, and estimated lifelong monthly pension.",
       icon: "result",
     },
   ],
 
   formula: {
-    title: "NPS Calculator Formula",
+    title: "NPS Compounding & Annuity Allocation Formula",
 
-    formula:
-      "Future Value = Monthly Contribution × Compounded Growth Until Retirement",
+    formula: "\\text{Corpus} = P \\times \\left[ \\frac{(1 + r)^n - 1}{r} \\right] \\times (1 + r) \\quad | \\quad \\text{Monthly Pension} = \\frac{\\text{Corpus} \\times 40\\% \\times \\text{Annuity Rate}}{12}",
 
     explanation:
-      "The National Pension System (NPS) allows individuals to invest regularly for retirement. Contributions grow through compounding over time, helping build a retirement corpus. At retirement, a portion can be withdrawn as a lump sum while the remaining amount is used to purchase an annuity for pension income.",
+      "Contributions compound monthly until age 60 under your selected asset allocation (Equity Scheme E, Corporate Bonds Scheme C, Govt Securities Scheme G). Upon superannuation, a minimum 40% of the terminal corpus is annuitized with an ASP (Annuity Service Provider) to generate guaranteed monthly pension cash flows.",
 
     example: {
-      input:
-        "Monthly Contribution: ₹5,000, Expected Return: 10%, Investment Period: 30 Years",
-
-      output:
-        "The calculator estimates retirement corpus, lump sum withdrawal, and monthly pension based on your inputs.",
+      input: "Age: 30 | Retirement: 60 (30 Yrs) | Monthly Deposit: ₹10,000 | Expected CAGR: 10% | Annuity Rate: 6%",
+      output: "Total Invested = ₹36,00,000 | Total Corpus = ₹2,27,93,600 | 60% Tax-Free Lump Sum = ₹1,36,76,160 | Monthly Pension = ₹45,587 / month",
     },
 
     useCases: [
-      "Retirement planning",
-      "Pension planning",
-      "Long-term wealth creation",
-      "Government-backed retirement savings",
-      "Retirement corpus estimation",
-      "Monthly pension estimation",
+      "Structuring Guaranteed Lifelong Post-60 Monthly Income",
+      "Maximizing Section 80CCD(1B) ₹50,000 Extra Tax Deductions",
+      "Corporate Employer NPS Salary Structuring under 80CCD(2)",
+      "Active vs Auto Choice (LC75, LC50, LC25) Lifecycle Allocation Planning",
     ],
   },
 
- faqs: [
-  {
-    question: "What is the National Pension System (NPS)?",
-    answer:
-      "The National Pension System (NPS) is a government-backed retirement savings scheme designed to help individuals build a retirement corpus through regular contributions. NPS is regulated by the Pension Fund Regulatory and Development Authority (PFRDA) and is available to salaried employees, self-employed individuals, and business owners. Contributions are invested across equity, corporate debt, government securities, and alternative assets based on the investor's chosen allocation. The accumulated corpus grows over time through market-linked returns and can provide financial security during retirement."
-  },
-
-  {
-    question: "How does NPS help in retirement planning?",
-    answer:
-      "NPS encourages disciplined long-term investing by allowing individuals to make regular contributions throughout their working years. Since investments remain active for decades, investors benefit from compounding and long-term market growth. At retirement, a portion of the accumulated corpus can be withdrawn as a lump sum, while the remaining amount is generally used to purchase an annuity that provides a regular pension income. This combination helps create a stable source of income after retirement."
-  },
-
-  {
-    question: "What are the tax benefits of NPS?",
-    answer:
-      "NPS offers some of the most attractive tax benefits available under Indian tax laws. Contributions qualify for deductions under Section 80CCD(1), which falls within the Section 80C limit, and an additional deduction of up to ₹50,000 under Section 80CCD(1B). Employer contributions may also qualify for separate tax benefits under certain conditions. These deductions can significantly reduce taxable income while simultaneously helping investors build a retirement corpus."
-  },
-
-  {
-    question: "Which is better: NPS or EPF?",
-    answer:
-      "NPS and EPF are both retirement-focused investments, but they operate differently. EPF provides relatively stable returns and is primarily available to salaried employees. NPS is market-linked and offers potentially higher long-term growth because of equity exposure. EPF is often preferred for stability, while NPS is popular among investors seeking greater retirement corpus growth. Many financial planners recommend using both together for a balanced retirement strategy."
-  },
-
-  {
-    question: "Can NPS generate higher returns than Fixed Deposits?",
-    answer:
-      "Historically, NPS has often delivered higher long-term returns than traditional Fixed Deposits because part of the investment is allocated to equity markets. While FD returns are fixed and predictable, NPS returns vary based on market performance. Over long investment periods such as 20–30 years, NPS has generally provided better wealth accumulation potential, although returns are not guaranteed."
-  },
-
-  {
-    question: "Can I withdraw money from NPS before retirement?",
-    answer:
-      "Yes. NPS allows partial withdrawals under specific conditions such as higher education, marriage, home purchase, or medical emergencies. However, withdrawal rules are regulated and certain restrictions apply. Premature exits before retirement may also have limitations regarding lump-sum withdrawals and annuity purchases. Investors should review the latest NPS withdrawal guidelines before making financial decisions."
-  },
-
-  {
-    question: "How much should I invest in NPS every month?",
-    answer:
-      "The ideal monthly NPS contribution depends on retirement goals, current age, expected retirement age, and desired post-retirement income. Starting early generally allows investors to contribute smaller amounts while still building a large corpus through compounding. Many financial advisors recommend increasing NPS contributions periodically as income grows to maximize retirement savings."
-  },
-
-  {
-    question: "Is NPS suitable for young investors?",
-    answer:
-      "Yes. NPS can be particularly beneficial for young investors because they have a long investment horizon. Longer investment periods allow greater participation in equity markets and provide more time for compounding to work. Starting NPS contributions in your 20s or early 30s can significantly increase the retirement corpus compared to starting later in life."
-  }
-],
+  faqs: [
+    {
+      question: "What is the tax treatment of the NPS maturity corpus at age 60?",
+      answer:
+        "At age 60, up to 60% of your total accumulated corpus can be withdrawn as a 100% tax-free lump sum under Section 10(12A). The remaining 40% must be used to purchase an annuity, which is also exempt from tax at purchase. However, the recurring monthly pension received from the annuity is taxed as regular income under your applicable tax slab.",
+    },
+    {
+      question: "What is the difference between NPS Tier 1 and Tier 2 accounts?",
+      answer:
+        "Tier 1 is the primary retirement account with statutory lock-in until age 60, offering exclusive tax deductions under Section 80CCD(1), 80CCD(1B), and 80CCD(2). Tier 2 is a voluntary, liquid investment account with zero lock-in and unrestricted withdrawals anytime, but contributions do not qualify for tax deductions.",
+    },
+    {
+      question: "Can I withdraw my NPS corpus before reaching age 60?",
+      answer:
+        "Partial premature withdrawals up to 25% of your own contributions (excluding employer contributions and returns) are permitted after 3 years for specific purposes: children's higher education, marriage, residential house purchase, or treatment of critical illnesses. In case of premature full account closure before age 60, at least 80% of the total corpus must be utilized to buy an annuity, and only 20% can be taken as a lump sum.",
+    },
+  ],
 
   seoContent: `
 <h2>What Is National Pension System (NPS)?</h2>

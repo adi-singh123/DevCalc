@@ -8,11 +8,10 @@ export const metadata: Metadata = {
   title: "All Calculators - Free Online Calculator Collection",
   authors: [
     {
-      name: "Devcalc",
+      name: "Aditya Singh",
     },
   ],
 
-  creator: "Devcalc",
 
   publisher: "DevCalc",
 alternates: {
