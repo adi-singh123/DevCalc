@@ -225,7 +225,7 @@ export default function Footer() {
                   className="h-auto w-auto"
                 />
               </a>
-
+              
               <a
                 href="https://tools.cafe"
                 target="_blank"
