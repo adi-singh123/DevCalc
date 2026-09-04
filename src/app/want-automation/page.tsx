@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import InteractiveFaq from "@/src/components/common/InteractiveFaq";
 import {

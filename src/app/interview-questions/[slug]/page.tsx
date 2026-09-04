@@ -25,76 +25,203 @@ const STAGES = [
   {
     id: "beginner",
     title: "Beginner",
-    desc: "Core fundamentals and basic syntax.",
+    desc: "Core fundamentals, syntax, data types, and primary language building blocks.",
     unlocked: true,
   },
   {
     id: "intermediate",
     title: "Intermediate",
-    desc: "Hooks, state, and API handling.",
-    unlocked: false,
+    desc: "Asynchronous workflows, memory behavior, standard libraries, and common design patterns.",
+    unlocked: true,
   },
   {
     id: "advanced",
     title: "Advanced",
-    desc: "Architecture, patterns, and optimization.",
-    unlocked: false,
+    desc: "Internal runtime mechanics, performance profiling, concurrency, and architecture.",
+    unlocked: true,
   },
   {
     id: "mnc",
     title: "MNC Level",
-    desc: "System design, scale, and trade-offs.",
-    unlocked: false,
+    desc: "Large-scale system design, distributed constraints, resilience, and FAANG-style trade-offs.",
+    unlocked: true,
   },
 ];
 
-// ── FAQs are now a function so topic.title resolves correctly ──────────────
-function buildFaqs(topicTitle: string) {
+const TOPIC_SPECIFIC_FAQS: Record<
+  string,
+  Array<{ question: string; answer: string }>
+> = {
+  javascript: [
+    {
+      question: "How does the JavaScript Event Loop handle microtasks vs macrotasks?",
+      answer:
+        "The JavaScript runtime executes synchronous code on the call stack first. When the stack clears, the Event Loop drains the entire Microtask Queue (Promise callbacks, queueMicrotask, MutationObserver) before picking a single task from the Macrotask / Task Queue (setTimeout, setInterval, I/O, setImmediate). If microtasks continuously schedule more microtasks, macrotask execution is starved.",
+    },
+    {
+      question: "What is the difference between Prototypal Inheritance and Classical Inheritance?",
+      answer:
+        "JavaScript uses prototypal inheritance where objects inherit directly from other objects via their [[Prototype]] chain (accessible via Object.getPrototypeOf or __proto__). There are no true classes in the engine; the 'class' syntax introduced in ES6 is syntactic sugar over prototype chains and constructor functions.",
+    },
+    {
+      question: "How does JavaScript Garbage Collection work (Mark-and-Sweep)?",
+      answer:
+        "Modern V8 engines use generational mark-and-sweep garbage collection. The GC starts at global roots (window/global, call stack, active closures) and traverses references. Unreachable memory in the Young Generation (Scavenge/Nursery) is collected rapidly via Cheney's copying algorithm, while surviving long-lived objects are promoted to the Old Generation and collected via Mark-Sweep-Compact.",
+    },
+    {
+      question: "What is the practical difference between Debouncing and Throttling?",
+      answer:
+        "Debouncing delays function execution until a specified delay has passed since the last event trigger (ideal for search autocomplete inputs). Throttling enforces a maximum frequency of execution, ensuring the handler runs at most once per defined time interval (ideal for scroll listeners, window resize, and game loops).",
+    },
+    {
+      question: "Why does 0.1 + 0.2 !== 0.3 in JavaScript?",
+      answer:
+        "JavaScript uses IEEE 754 double-precision 64-bit floating-point arithmetic. Fractions like 0.1 and 0.2 have infinite repeating representations in binary, causing tiny precision rounding errors when summed (yielding 0.30000000000000004). For precise monetary or math calculations, use scaled integers or libraries like decimal.js.",
+    },
+  ],
+  react: [
+    {
+      question: "How does React 18/19 Concurrent Rendering and Fiber reconciliation work?",
+      answer:
+        "React Fiber represents the component tree as a linked list of mutable work units. In Concurrent Mode, React breaks rendering into interruptible chunks, allowing higher-priority user inputs (clicks, typing) to pause background render passes (via startTransition or useDeferredValue) and prevent UI freezing.",
+    },
+    {
+      question: "What is the difference between useMemo, useCallback, and React.memo?",
+      answer:
+        "React.memo is a higher-order component that skips re-rendering a child if its props have not shallowly changed. useCallback memoizes a function definition between renders so child props remain referentially equal. useMemo caches the computed result of an expensive calculation across renders.",
+    },
+    {
+      question: "Why should React state never be mutated directly?",
+      answer:
+        "React relies on reference equality (Object.is) to detect state changes and schedule re-renders. Directly mutating state objects/arrays preserves the existing memory reference, causing React's reconciliation cycle to miss the update and resulting in stale UI, broken devtools time-travel, and erratic concurrent behavior.",
+    },
+    {
+      question: "What is the difference between Server Components (RSC) and Client Components?",
+      answer:
+        "React Server Components execute solely on the server, send zero JavaScript to the client bundle, and can directly access databases, file systems, and server secrets. Client Components ('use client') run on both server (for SSR) and client, supporting interactive state, effects, browser APIs, and event listeners.",
+    },
+  ],
+  node: [
+    {
+      question: "How does Node.js achieve high concurrency despite being single-threaded?",
+      answer:
+        "Node.js runs your JavaScript code on a single main thread via V8, but delegates asynchronous I/O, file system access, network sockets, DNS queries, and cryptographic operations to the underlying C library libuv. Libuv utilizes operating system kernel notification primitives (epoll, kqueue, IOCP) and an internal thread pool to handle non-blocking operations efficiently.",
+    },
+    {
+      question: "What causes Event Loop blockages in Node.js production servers?",
+      answer:
+        "CPU-intensive tasks (complex regex execution with catastrophic backtracking, heavy JSON parsing of multi-megabyte payloads, synchronous fs operations like fs.readFileSync, and heavy cryptographic hashing) run directly on the main thread, freezing the event loop and delaying all incoming HTTP requests.",
+    },
+    {
+      question: "What is the difference between process.nextTick() and setImmediate()?",
+      answer:
+        "Callbacks passed to process.nextTick() execute immediately after the current phase completes and before the Event Loop advances to any other phase. setImmediate() callbacks run in the 'Check' phase of the Event Loop (after I/O callbacks).",
+    },
+  ],
+  sql: [
+    {
+      question: "What is the difference between Clustered and Non-Clustered Indexes?",
+      answer:
+        "A Clustered Index physically dictates the on-disk sorting and storage order of table data (a table can have only one clustered index, usually the Primary Key). A Non-Clustered Index creates a separate B-tree structure holding index key values with row pointers back to the actual data rows.",
+    },
+    {
+      question: "How do ACID properties guarantee transactional reliability in relational databases?",
+      answer:
+        "Atomicity ensures all statements in a transaction succeed or all roll back. Consistency guarantees database constraints and foreign keys remain valid. Isolation ensures concurrent transactions do not interfere. Durability guarantees committed data survives system crashes via Write-Ahead Logging (WAL).",
+    },
+    {
+      question: "What is the difference between WHERE and HAVING clauses?",
+      answer:
+        "The WHERE clause filters individual rows before any grouping or aggregation takes place. The HAVING clause filters aggregated group results produced by a GROUP BY clause.",
+    },
+  ],
+  typescript: [
+    {
+      question: "What is the difference between 'type' and 'interface' in TypeScript?",
+      answer:
+        "Both define object structures, but 'interface' supports declaration merging (adding fields across multiple interface blocks with the same name) and is preferred for public API models. 'type' aliases are more flexible and support union types, primitive aliases, tuple definitions, mapped types, and conditional types.",
+    },
+    {
+      question: "What is the difference between 'unknown' and 'any'?",
+      answer:
+        "'any' turns off all type checking, allowing arbitrary property accesses and assignments. 'unknown' is the type-safe counterpart; it accepts any value, but TypeScript forces you to perform type narrowing before invoking methods or properties on it.",
+    },
+    {
+      question: "How do Discriminated Unions work in TypeScript?",
+      answer:
+        "A Discriminated Union combines multiple object types that share a common literal discriminant property. When matching on that property inside a switch or if statement, TypeScript automatically narrows the remaining properties to the specific subtype.",
+    },
+  ],
+  python: [
+    {
+      question: "What is the Global Interpreter Lock (GIL) in CPython and how does it affect concurrency?",
+      answer:
+        "The GIL is a mutex that prevents multiple native OS threads from executing Python bytecode simultaneously within a single CPython process. While it protects CPython's reference-counting memory management from race conditions, it limits multi-threaded CPU-bound programs to a single CPU core. CPU-bound concurrency requires the multiprocessing module.",
+    },
+    {
+      question: "How do Python Generators and the 'yield' keyword save memory?",
+      answer:
+        "Generators produce items lazily on-demand one at a time using 'yield' instead of constructing entire collections in RAM. When 'yield' is encountered, execution state is paused and saved. This allows streaming multi-gigabyte files with O(1) memory consumption.",
+    },
+    {
+      question: "What is the difference between 'is' and '==' in Python?",
+      answer:
+        "'==' compares equality of values (invoking __eq__), whereas 'is' checks reference identity (whether both variables point to the exact same object in memory, comparing id(a) == id(b)).",
+    },
+  ],
+};
+
+function buildFaqs(topicTitle: string, slug: string) {
+  const specific = TOPIC_SPECIFIC_FAQS[slug.toLowerCase()];
+  if (specific && specific.length > 0) {
+    return [
+      ...specific,
+      {
+        question: `How should I prepare for a ${topicTitle} technical interview?`,
+        answer:
+          "Master core language primitives, practice timed MCQ assessments to test edge cases, and build working projects. When answering coding questions, always discuss time/space complexity (Big O) and explain edge case handling upfront.",
+      },
+      {
+        question: `Can I practice all ${topicTitle} stages (Beginner to MNC) for free?`,
+        answer:
+          "Yes, all DevCalc interview stages are completely free and open. You can attempt Beginner, Intermediate, Advanced, and MNC stages directly with detailed explanations for every question.",
+      },
+      {
+        question: "How many attempts do I get per stage?",
+        answer:
+          "Unlimited. You can retake any stage as many times as needed. On each attempt, questions and options are shuffled to reinforce conceptual learning rather than rote memorization.",
+      },
+    ];
+  }
+
   return [
     {
-      question: `How to prepare for a ${topicTitle} technical coding interview?`,
+      question: `What are the core ${topicTitle} concepts evaluated in technical interviews?`,
       answer:
-        "Success comes from consistent practice of data structures, algorithms, and deep dives into framework internals. Analyze time/space complexity on every solution — not just correctness. Aim for 2–3 problems daily.",
+        `Interviewers assess syntax precision, memory lifecycle management, algorithmic efficiency, error handling, and production debugging patterns in ${topicTitle}.`,
     },
     {
-      question: `Are these ${topicTitle} questions suitable for MNC system design rounds?`,
+      question: `What is the difference between fresher and senior ${topicTitle} interview questions?`,
       answer:
-        "Yes. Our expert-curated questions include high-level architecture, database scaling, CDN usage, caching layers, and load balancing trade-offs required for senior roles at Google, Amazon, and Microsoft.",
+        `Fresher interviews emphasize syntax, foundational algorithms, and core language structures. Senior interviews delve into concurrency, performance optimization, architectural trade-offs, and distributed systems integration.`,
     },
     {
-      question: "Why is the Intermediate stage locked?",
+      question: `Are these ${topicTitle} questions aligned with top MNC hiring assessments?`,
       answer:
-        "Our roadmap builds a strong foundation first. You must score 50% or above in the Beginner stage to unlock Intermediate — ensuring you've mastered fundamentals before tackling advanced patterns.",
+        `Yes. Questions are curated from real technical screening patterns used at global tech companies, service-based MNCs, and high-growth product startups.`,
     },
     {
-      question: `Can I practice ${topicTitle} MCQ interview questions for free?`,
+      question: `Can I attempt all ${topicTitle} interview stages for free?`,
       answer:
-        "Absolutely — 100% free. DevCalc provides high-quality MCQs, code challenges, and detailed explanations to bridge the gap between theory and real-world application. No subscription required.",
+        `Yes. DevCalc provides completely free access to Beginner, Intermediate, Advanced, and MNC level interview quizzes with comprehensive answer explanations.`,
     },
     {
-      question: `What's the difference between junior and senior ${topicTitle} interviews?`,
+      question: "How does practicing MCQs help in technical interview preparation?",
       answer:
-        "Junior interviews focus on syntax, data structures, and basic problem-solving. Senior roles go deeper into system architecture, code review, security, performance optimization, and architectural trade-offs.",
-    },
-    {
-      question:
-        "How should I handle live coding anxiety during the assessment?",
-      answer:
-        "Verbalize your thinking clearly. Interviewers prioritize your logical process and your ability to ask clarifying questions over writing perfect code immediately. Practice talking through your approach before typing.",
-    },
-    {
-      question: "How many attempts do I get per stage?",
-      answer:
-        "Unlimited. You can retry any stage as many times as needed. On each retry, questions and options are reshuffled to prevent answer memorization and keep the experience challenging.",
-    },
-    {
-      question: "Is my progress saved automatically?",
-      answer:
-        "Yes. Answers are auto-saved after every selection. If you refresh or accidentally close the tab mid-quiz, your progress is fully restored when you return to the page.",
+        "MCQs with realistic distractors test edge cases, operator precedence, type coercion, and execution lifecycles that verbal questions often overlook, sharpening your technical precision.",
     },
   ];
 }
-
 
 export default async function TopicOverviewPage({ params }: Props) {
   const { slug } = await params;
@@ -102,10 +229,11 @@ export default async function TopicOverviewPage({ params }: Props) {
   if (!topic) return notFound();
 
   const relatedTopics = interviewTopics
-  .filter((item) => item.slug !== topic.slug)
-  .slice(0, 4);
+    .filter((item) => item.slug !== topic.slug)
+    .slice(0, 4);
 
-  const faqs = buildFaqs(topic.title);
+  const faqs = buildFaqs(topic.title, slug);
+
 
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
