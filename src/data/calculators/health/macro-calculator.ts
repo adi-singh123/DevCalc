@@ -10,7 +10,28 @@ export const macroCalculator: Calculator = {
 
   category: "Health",
 
-  isPopular: false,
+  isPopular: true,
+
+  editorialIntro:
+    "Macronutrient partitioning splits total daily energy expenditure (TDEE) into protein (4 kcal/g), carbohydrates (4 kcal/g), and dietary fats (9 kcal/g). Following International Society of Sports Nutrition (ISSN) guidelines, protein intake is prioritized at 1.6–2.2 g per kg of body weight to preserve lean skeletal tissue during calorie deficits and optimize muscle protein synthesis (MPS).",
+
+  benchmarkContext: {
+    title: "ISSN Sports Nutrition & Atwater Caloric Partitioning",
+    badge: "Sports Nutrition Standard",
+    stat: "Protein 4 kcal/g | Carb 4 kcal/g | Fat 9 kcal/g",
+    description:
+      "Recommended splits: Fat Loss (40% Protein, 35% Carbs, 25% Fat), Maintenance (30% Protein, 45% Carbs, 25% Fat), Muscle Hypertrophy (25% Protein, 55% Carbs, 20% Fat). Minimum dietary fat should remain above 0.6–0.8 g/kg to support steroid hormone synthesis.",
+    source: "International Society of Sports Nutrition (ISSN) Position Stand & USDA Nutrient Database",
+    lastUpdated: "January 2026",
+  },
+
+  compareWith: [
+    "calorie-calculator",
+    "protein-intake-calculator",
+    "bmr-calculator",
+    "body-fat-calculator",
+    "water-intake-calculator",
+  ],
 
   seo: {
     title:

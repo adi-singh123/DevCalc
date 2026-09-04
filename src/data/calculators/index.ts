@@ -83,6 +83,7 @@ import { jwtDecoder } from "./developer/jwt-decoder";
 import { hashGenerator } from "./developer/hash-generator";
 import { unixTimestampConverter } from "./developer/unix-timestamp-converter";
 import { regexTester } from "./developer/regex-tester";
+import { diffcheckCalculator } from "./developer/diffcheck";
 import { goldMakingChargesCalculator } from "./other/goldMakingChargesCalculato";
 import { goldPriceCalculator } from "./other/goldPriceCalculator";
 import { silverPriceCalculator } from "./other/silverPriceCalculator";
@@ -193,6 +194,7 @@ export const calculators = [
   hashGenerator,
   unixTimestampConverter,
   regexTester,
+  diffcheckCalculator,
   goldMakingChargesCalculator,
   goldPriceCalculator,
   silverPriceCalculator,

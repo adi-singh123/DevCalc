@@ -12,13 +12,33 @@ export const bodyFatCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Body fat percentage measures the proportion of adipose tissue relative to total body weight (including skeletal muscle, bone density, and water). Using the empirical U.S. Navy circumference method (neck, waist, and hip circumferences), it distinguishes between lean athletic muscle mass and visceral fat far more accurately than basic BMI.",
+
+  benchmarkContext: {
+    title: "American Council on Exercise (ACE) Body Fat Classifications",
+    badge: "Exercise Physiology Standard",
+    stat: "14%–17% Men | 21%–24% Women (Fitness Benchmark)",
+    description:
+      "ACE categories: Essential Fat (2–5% men, 10–13% women), Athletes (6–13% men, 14–20% women), Fitness (14–17% men, 21–24% women), Average (18–24% men, 25–31% women), and Obese (25%+ men, 32%+ women).",
+    source: "American Council on Exercise (ACE) & U.S. Navy Bureau of Medicine and Surgery",
+    lastUpdated: "January 2026",
+  },
+
+  compareWith: [
+    "bmi-calculator",
+    "bmr-calculator",
+    "calorie-calculator",
+    "lean-body-mass-calculator",
+    "ideal-body-weight-calculator",
+  ],
+
   seo: {
     title:
       "Body Fat Calculator - Calculate Body Fat Percentage Online",
 
     description:
-      "Free online Body Fat Calculator. Estimate body fat percentage using the U.S. Navy Method and determine your body fat category for fitness and health tracking.",
-
+      "Calculate your body fat percentage using the U.S. Navy circumference method. Estimate fat mass, lean body mass, and fitness categories instantly.",
     keywords: [
       "body fat calculator",
       "body fat percentage calculator",
@@ -28,12 +48,6 @@ export const bodyFatCalculator: Calculator = {
       "fat percentage calculator",
       "ideal body fat percentage",
       "body composition calculator",
-      "health calculator",
-      "fitness calculator",
-      "online body fat calculator",
-      "body fat measurement",
-      "body fat chart",
-      "us navy body fat calculator",
     ],
   },
 

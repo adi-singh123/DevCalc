@@ -83,6 +83,7 @@ import JwtDecoder from "./renderers/JwtDecoder";
 import HashGenerator from "./renderers/HashGenerator";
 import UnixTimestampConverter from "./renderers/UnixTimestampConverter";
 import RegexTester from "./renderers/RegexTester";
+import DiffChecker from "./renderers/DiffChecker";
 import GoldMakingChargesCalculator from "./renderers/GoldMakingChargesCalculator";
 import GoldPriceCalculator from "./renderers/GoldPriceCalculator";
 import SilverPriceCalculator from "./renderers/Silverpricecalculator";
@@ -281,8 +282,10 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <HashGenerator/>
     case  "unix-timestamp-converter":
       return <UnixTimestampConverter/>;
-    case  "regex-tester":
-      return <RegexTester/>
+    case "regex-tester":
+      return <RegexTester/>;
+    case "diffcheck":
+      return <DiffChecker/>;
     case "gold-making-charges-calculator":
       return <GoldMakingChargesCalculator/>;
     case "gold-price-calculator":

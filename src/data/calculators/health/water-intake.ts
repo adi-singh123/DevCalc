@@ -6,10 +6,24 @@ export const waterIntakeCalculator: Calculator = {
   name: "Water Intake Calculator",
 
   description:
-"Not sure if you're drinking enough water? Our free Water Intake Calculator factors in your weight and activity level to instantly tell you your ideal daily hydration target — so you can stay healthy and energized.",
+    "Calculate your recommended daily fluid intake based on body weight, physical exertion levels, and environmental climate factors following EFSA and National Academies hydration guidelines.",
+
   category: "Health",
 
   isPopular: true,
+
+  editorialIntro:
+    "Daily fluid requirements depend directly on metabolic body mass, respiratory evaporative loss, sweat rates during physical exercise, and ambient climate temperature. The European Food Safety Authority (EFSA) and U.S. National Academies recommend a baseline fluid intake of 30–35 mL per kg of body weight, plus 350–500 mL of additional hydration for every 30 minutes of moderate-to-vigorous exercise.",
+
+  benchmarkContext: {
+    title: "EFSA & National Academies Daily Hydration Guidelines",
+    badge: "Clinical Hydration Standard",
+    stat: "35 mL / kg Body Weight + 500 mL / 30 min Exercise",
+    description:
+      "Baseline: Men ≈ 2.5–3.0 L/day, Women ≈ 2.0–2.2 L/day from all fluid and beverage sources. High-temperature environments and elevated sweat rates require isotonic electrolyte balance to avoid hyponatremia.",
+    source: "European Food Safety Authority (EFSA Journal) & U.S. National Academies of Sciences",
+    lastUpdated: "January 2026",
+  },
 
   seo: {
     title:

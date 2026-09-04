@@ -12,13 +12,33 @@ export const fractionCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Fraction arithmetic solves addition, subtraction, multiplication, and division of rational numbers $\\frac{a}{b}$ by determining the Least Common Multiple (LCM) of denominators and reducing final results to lowest terms via the Euclidean Greatest Common Divisor (GCD) algorithm.",
+
+  benchmarkContext: {
+    title: "Rational Arithmetic & Euclidean GCD Reduction",
+    badge: "Discrete Mathematics Standard",
+    stat: "Exact Rational Arithmetic (Integer GCD / LCM Reduction)",
+    description:
+      "Addition: $\\frac{a}{b} + \\frac{c}{d} = \\frac{ad + bc}{bd}$. Division: $\\frac{a}{b} \\div \\frac{c}{d} = \\frac{ad}{bc}$. Supports automatic conversion between proper fractions, improper fractions, mixed numbers, and IEEE 754 decimal equivalents.",
+    source: "Knuth, Donald E. (1997) The Art of Computer Programming, Vol. 2: Seminumerical Algorithms",
+    lastUpdated: "January 2026",
+  },
+
+  compareWith: [
+    "percentage-calculator",
+    "ratio-calculator",
+    "percentage-difference-calculator",
+    "scientific-calculator",
+    "lcm-calculator",
+  ],
+
   seo: {
     title:
       "Fraction Calculator - Add, Subtract, Multiply & Divide Fractions",
 
     description:
-      "Use our Fraction Calculator to add, subtract, multiply, divide, simplify fractions, convert fractions to decimals, and solve fraction equations instantly.",
-
+      "Add, subtract, multiply, divide, simplify fractions, convert fractions to decimals, and solve mixed fraction equations with step-by-step reduction.",
     keywords: [
       "fraction calculator",
       "fraction simplifier",
@@ -28,8 +48,6 @@ export const fractionCalculator: Calculator = {
       "divide fractions calculator",
       "fraction to decimal calculator",
       "mixed fraction calculator",
-      "improper fraction calculator",
-      "decimal to fraction calculator",
     ],
   },
 

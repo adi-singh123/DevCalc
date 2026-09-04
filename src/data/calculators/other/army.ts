@@ -12,6 +12,19 @@ export const armyCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Indian Army Agniveer recruitment applies dual qualifying thresholds: Physical Fitness Tests (PFT) and strict Physical Measurement Standards (PMS) covering zonal height, proportionate BMI (18.0–25.0 kg/m²), 1.6 km rally running times (Group I $\\le 5:30$, Group II $\\le 5:45$), 10 pull-ups (beam), 9-foot ditch jump, and 5 cm chest expansion.",
+
+  benchmarkContext: {
+    title: "Indian Army Agniveer & CAPF Physical Measurement Standards",
+    badge: "Defense Recruitment Standard",
+    stat: "1.6 km Run (Group I: 60 Marks / Group II: 48 Marks) + 10 Beam Pull-ups (40 Marks)",
+    description:
+      "Physical standards vary by regional recruitment zone: Plains (170 cm GD / 162 cm Clerk), Western Himalayan (163 cm), Eastern Himalayan / Gorkha (160 cm). Proportionate weight requires BMI strictly within 18.0–25.0 at medical examination.",
+    source: "Join Indian Army (HQ Recruiting Zone Notifications & Agniveer Rally Guidelines)",
+    lastUpdated: "January 2026",
+  },
+
   seo: {
     title:
       "Indian Army Agniveer Eligibility Calculator – Height, Weight, BMI, 1.6km Run 2026",

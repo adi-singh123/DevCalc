@@ -22,11 +22,11 @@ export const metadata: Metadata = {
 
   authors: [
     {
-      name: "Devcalc",
+      name: "Aditya Singh",
     },
   ],
 
-  creator: "Devcalc",
+  creator: "Aditya Singh",
 
   publisher: "DevCalc",
 

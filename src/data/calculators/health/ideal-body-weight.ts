@@ -12,13 +12,33 @@ export const idealBodyWeightCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Ideal Body Weight (IBW) provides a clinical reference target originally developed by Dr. Ben J. Devine (1974) to standardize medication dosages for narrow therapeutic index pharmaceuticals (e.g. aminoglycosides, theophylline). Unlike raw BMI, IBW formulas estimate baseline mass strictly as a function of skeletal frame height above 5 feet.",
+
+  benchmarkContext: {
+    title: "Clinical Pharmacokinetics & IBW Diagnostic Formulas",
+    badge: "Clinical Pharmacology Guideline",
+    stat: "50 kg Men | 45.5 kg Women (Base for 5'0\" Stature)",
+    description:
+      "Devine Formula: Men = 50 kg + 2.3 kg per inch over 5 ft; Women = 45.5 kg + 2.3 kg per inch over 5 ft. Robinson Formula: Men = 52 kg + 1.9 kg/inch; Women = 49 kg + 1.7 kg/inch.",
+    source: "Devine BJ (1974) / Robinson JD (1983) American Journal of Hospital Pharmacy",
+    lastUpdated: "January 2026",
+  },
+
+  compareWith: [
+    "bmi-calculator",
+    "bmr-calculator",
+    "calorie-calculator",
+    "body-fat-calculator",
+    "lean-body-mass-calculator",
+  ],
+
   seo: {
     title:
-      "Ideal Body Weight Calculator - Calculate Your Healthy Weight (Devine, Hamwi & More)",
+      "Ideal Body Weight Calculator - Calculate Healthy Weight (Devine & Hamwi)",
 
     description:
-      "Calculate your ideal body weight instantly with our free IBW calculator. Compare results from the Devine, Hamwi, Robinson, and Miller formulas based on your height and gender.",
-
+      "Calculate your ideal body weight instantly with Devine, Hamwi, Robinson, and Miller formulas based on height and gender for clinical and nutritional targets.",
     keywords: [
       "ideal body weight calculator",
       "ideal weight calculator",
@@ -28,7 +48,6 @@ export const idealBodyWeightCalculator: Calculator = {
       "hamwi formula calculator",
       "healthy weight range calculator",
       "ideal weight for height",
-      "adjusted body weight calculator",
     ],
   },
 

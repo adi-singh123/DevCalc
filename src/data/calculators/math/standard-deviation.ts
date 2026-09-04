@@ -12,13 +12,33 @@ export const standardDeviationCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Standard deviation measures the average statistical dispersion of data points around the arithmetic mean. It provides both Population Standard Deviation $(\\sigma = \\sqrt{\\frac{\\sum (x_i - \\mu)^2}{N}})$ for complete census datasets and Sample Standard Deviation $(s = \\sqrt{\\frac{\\sum (x_i - \\bar{x})^2}{n - 1}})$ utilizing Bessel's correction $(n-1)$ to eliminate bias when inferring population parameters from subset samples.",
+
+  benchmarkContext: {
+    title: "Gaussian Normal Distribution & Empirical Rule (68–95–99.7)",
+    badge: "Statistical Inference Standard",
+    stat: "68.27% (±1σ) | 95.45% (±2σ) | 99.73% (±3σ)",
+    description:
+      "For standard normal distributions $\\mathcal{N}(\\mu, \\sigma^2)$, approximately 68.3% of observations lie within 1 standard deviation of the mean, 95.5% within 2 standard deviations, and 99.7% within 3 standard deviations (the 3-sigma process capability threshold).",
+    source: "NIST/SEMATECH e-Handbook of Statistical Methods (Section 1.3.5: Quantitative Measures)",
+    lastUpdated: "January 2026",
+  },
+
+  compareWith: [
+    "mean-median-mode-calculator",
+    "probability-calculator",
+    "average-calculator",
+    "percentage-calculator",
+    "scientific-calculator",
+  ],
+
   seo: {
     title:
-      "Standard Deviation Calculator - Variance & Statistics Calculator",
+      "Standard Deviation Calculator - Sample & Population Variance",
 
     description:
-      "Calculate standard deviation, variance, mean, and statistical measures online. Analyze data distribution and variability instantly with our free calculator.",
-
+      "Calculate sample and population standard deviation, variance, mean, and data dispersion with Bessel's correction and step-by-step normal distribution metrics.",
     keywords: [
       "standard deviation calculator",
       "variance calculator",
@@ -28,7 +48,6 @@ export const standardDeviationCalculator: Calculator = {
       "standard deviation formula calculator",
       "sample variance calculator",
       "population variance calculator",
-      "statistical variability calculator",
     ],
   },
 

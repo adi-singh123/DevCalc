@@ -6,10 +6,24 @@ export const sukanyaSamriddhiCalculator: Calculator = {
   name: "Sukanya Samriddhi Yojana Calculator",
 
   description:
-"Planning for your daughter's future with Sukanya Samriddhi Yojana? This calculator instantly shows your maturity amount, total investment, and interest earned over the scheme's tenure — using the latest official SSY interest rate, so your projections stay accurate.",
+    "Calculate the maturity corpus, total investment, and compounding interest earnings for the Sukanya Samriddhi Yojana (SSY) small savings scheme for a girl child under Ministry of Finance statutory rules.",
+
   category: "Finance",
 
   isPopular: true,
+
+  editorialIntro:
+    "Sukanya Samriddhi Yojana (SSY) is a sovereign-backed small savings scheme backed by the Government of India for the welfare of the girl child (under 10 years of age). Offering an 8.2% annual compounded interest rate with Exempt-Exempt-Exempt (EEE) tax status, deposits are required for 15 years while the corpus compounds through full maturity at 21 years from account opening.",
+
+  benchmarkContext: {
+    title: "Ministry of Finance Sukanya Samriddhi Scheme Rules",
+    badge: "Government Sovereign Small Savings",
+    stat: "8.2% p.a. Compounded Annually (Q4 FY 2024-25)",
+    description:
+      "Statutory parameters: Minimum deposit ₹250/year, Maximum ₹1,50,000/year (Section 80C deductible). Mandatory 15-year deposit period; complete maturity at 21 years or upon marriage after age 18. Interest and maturity proceeds are 100% tax-free under Section 10(11A).",
+    source: "Department of Economic Affairs, Ministry of Finance (Notification G.S.R. 323(E))",
+    lastUpdated: "January 2026",
+  },
 
   compareWith: [
     "ppf-calculator",
@@ -22,7 +36,7 @@ export const sukanyaSamriddhiCalculator: Calculator = {
     title: "Sukanya Samriddhi Yojana Calculator - SSY Maturity Calculator",
 
     description:
- "Planning for your daughter's future with Sukanya Samriddhi Yojana? This calculator instantly shows your maturity amount, total investment, and interest earned over the scheme's tenure — using the latest official SSY interest rate, so your projections stay accurate.",
+      "Calculate Sukanya Samriddhi Yojana (SSY) maturity amount, investment, and tax-free interest earnings with latest official 8.2% government interest rates.",
     keywords: [
       "sukanya samriddhi calculator",
       "ssy calculator",

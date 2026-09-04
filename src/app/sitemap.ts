@@ -78,13 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
 
     {
-      url: `${baseUrl}/collegeProject`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-
-    {
       url: `${baseUrl}/want-automation`,
       lastModified: new Date(),
       changeFrequency: "weekly",

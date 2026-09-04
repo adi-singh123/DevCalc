@@ -12,13 +12,33 @@ export const meanMedianModeCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Mean, median, and mode represent the three fundamental measures of central tendency in descriptive statistics. While the arithmetic mean $(\\bar{x} = \\frac{\\sum x_i}{n})$ measures the mathematical center of mass, the median identifies the exact 50th percentile rank (immune to extreme outliers), and the mode reveals the highest-frequency peak in the distribution.",
+
+  benchmarkContext: {
+    title: "Descriptive Statistics & Central Tendency Standards",
+    badge: "Statistical Analysis Standard",
+    stat: "Mean (Sum / N) | Median (50th Percentile) | Mode (Peak Frequency)",
+    description:
+      "Symmetric distributions exhibit $\\text{Mean} \\approx \\text{Median} \\approx \\text{Mode}$. In right-skewed datasets (e.g. income distributions), $\\text{Mean} > \\text{Median} > \\text{Mode}$, making the median the robust metric for typical observations.",
+    source: "ISO 3534-1: Statistics — Vocabulary and symbols — Part 1: General statistical terms and terms used in probability",
+    lastUpdated: "January 2026",
+  },
+
+  compareWith: [
+    "standard-deviation-calculator",
+    "average-calculator",
+    "probability-calculator",
+    "percentage-calculator",
+    "gpa-calculator",
+  ],
+
   seo: {
     title:
-      "Mean Median Mode Calculator - Statistics Calculator",
+      "Mean Median Mode Calculator - Descriptive Statistics Calculator",
 
     description:
-      "Use our free Mean Median Mode Calculator to calculate mean, median, mode, average, and statistical measures from a list of numbers instantly.",
-
+      "Calculate mean, median, mode, range, and frequency distributions from any dataset instantly with outlier-resistant statistical metrics.",
     keywords: [
       "mean median mode calculator",
       "central tendency calculator",
@@ -28,7 +48,6 @@ export const meanMedianModeCalculator: Calculator = {
       "descriptive statistics calculator",
       "dataset statistics calculator",
       "measures of central tendency",
-      "grouped data statistics calculator",
     ],
   },
 

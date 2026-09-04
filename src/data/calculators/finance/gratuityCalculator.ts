@@ -12,6 +12,19 @@ export const gratuityCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Gratuity is a statutory monetary retirement benefit mandated by the Payment of Gratuity Act, 1972 for employees completing 5 or more continuous years of service in an organization with 10+ employees. Calculated using the statutory 15/26 formula (15 days of last-drawn Basic Salary + Dearness Allowance for every completed year of service), gratuity proceeds are exempt from income tax up to a maximum statutory cap of ₹20,00,000.",
+
+  benchmarkContext: {
+    title: "Payment of Gratuity Act, 1972 Statutory Rules",
+    badge: "Labor Law & Statutory Benefit",
+    stat: "15/26 × Last Drawn (Basic + DA) × Completed Years",
+    description:
+      "Statutory parameters: Minimum 5 years of continuous service required (waived in case of death or permanent disablement). Rounding rule: service tenure > 6 months rounds up to the next full year. Maximum tax-free limit is ₹20 Lakh under Section 10(10)(ii) of the Income Tax Act.",
+    source: "Ministry of Labour & Employment, Government of India (Payment of Gratuity Act, 1972)",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "nps-calculator",
     "epf-calculator",

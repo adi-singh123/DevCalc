@@ -12,6 +12,26 @@ export const fuelCostCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "Fuel cost modeling calculates trip expenses, monthly transit outlays, and true cost-per-kilometer across Petrol, Diesel, CNG, and Hybrid powertrains. Dividing fuel price per unit by real-world operating fuel efficiency $(\\text{Cost/km} = \\frac{\\text{Price/L}}{\\text{Efficiency (km/L)}})$ provides an exact metric to evaluate daily office commutes, highway road trips, and passenger expense sharing.",
+
+  benchmarkContext: {
+    title: "Automotive Running Cost & Fuel Economics",
+    badge: "Automotive Fleet Economics",
+    stat: "₹4.50–₹7.50/km (Petrol) | ₹3.50–₹5.50/km (Diesel) | ₹2.20–₹3.20/km (CNG)",
+    description:
+      "Calculated on real-world Indian city-highway mixed transit averages. Daily fuel expense $= \\left(\\frac{\\text{Daily km}}{\\text{Mileage}}\\right) \\times \\text{Fuel Price/L}$. Highway cruising typically yields 15%–20% higher mileage than stop-and-go urban traffic with AC active.",
+    source: "Petroleum Planning & Analysis Cell (PPAC), Ministry of Petroleum and Natural Gas",
+    lastUpdated: "January 2026",
+  },
+
+  compareWith: [
+    "mileage-calculator",
+    "ev-vs-petrol-calculator",
+    "road-tax-calculator",
+    "distance-calculator",
+  ],
+
   seo: {
     title:
       "Fuel Cost Calculator India - Petrol, Diesel & CNG Running Cost",
@@ -30,8 +50,6 @@ export const fuelCostCalculator: Calculator = {
       "daily commute fuel cost",
     ],
   },
-
-  compareWith: ["mileage-calculator", "distance-calculator"],
 
   steps: [
     {

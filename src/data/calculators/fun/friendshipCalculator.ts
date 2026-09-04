@@ -12,6 +12,19 @@ export const friendshipCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "The Friendship Calculator evaluates character sequences between two names to produce an instant, repeatable friendship compatibility score (0%–100%). Intended purely for casual amusement and group games, identical name combinations always return identical results.",
+
+  benchmarkContext: {
+    title: "Deterministic String Hashing & Friendship Compatibility",
+    badge: "Entertainment Algorithm Benchmark",
+    stat: "Deterministic String Hash (0%–100% Normalized Output)",
+    description:
+      "Calculates a repeatable percentage based on character frequency and ASCII integer values. Provided solely for personal amusement and lighthearted entertainment; true human friendship is built upon mutual trust, loyalty, and empathy.",
+    source: "DevCalc Fun & Entertainment Suite",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: [
     "love-calculator",
     "crush-calculator",

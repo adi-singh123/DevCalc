@@ -12,6 +12,19 @@ export const loveCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "The Love Calculator utilizes a deterministic string character-frequency algorithm to map two submitted names into a consistent numerical compatibility percentage (0%–100%). Intended strictly for lighthearted social entertainment, identical name combinations always yield identical results.",
+
+  benchmarkContext: {
+    title: "Deterministic Name Hashing & Social Compatibility Metrics",
+    badge: "Entertainment Algorithm Benchmark",
+    stat: "Deterministic String Hash (0%–100% Normalized Output)",
+    description:
+      "Calculates letter frequency matrices across string inputs using classic FLAMES-inspired integer mapping. Provided solely for personal amusement; human interpersonal relationships depend on mutual respect, shared values, and communication.",
+    source: "DevCalc Fun & Entertainment Algorithm Suite",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: ["friendship-calculator", "crush-calculator"],
 
   seo: {

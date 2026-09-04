@@ -11,6 +11,19 @@ export const crushCalculator: Calculator = {
 
   isPopular: true,
 
+  editorialIntro:
+    "The Crush Calculator evaluates character combinations between two names to generate an instant, repeatable compatibility percentage. Designed strictly for playful social interaction and casual fun, the scoring algorithm applies consistent character-mapping logic so identical inputs yield matching scores.",
+
+  benchmarkContext: {
+    title: "Playful Name Character-Mapping & Social Icebreakers",
+    badge: "Entertainment Algorithm Benchmark",
+    stat: "Deterministic Name Matching (Repeatable Percentage Index)",
+    description:
+      "Processes alphabet strings to generate a consistent numerical score. Provided solely for personal amusement and lighthearted entertainment; real-world relationship compatibility requires interpersonal communication, shared values, and mutual respect.",
+    source: "DevCalc Fun & Entertainment Suite",
+    lastUpdated: "January 2026",
+  },
+
   compareWith: ["love-calculator", "friendship-calculator"],
 
   seo: {

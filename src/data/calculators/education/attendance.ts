@@ -6,17 +6,37 @@ export const attendanceCalculator: Calculator = {
   name: "Attendance Calculator",
 
   description:
-"Not sure if you're on track with your attendance? This free calculator instantly shows your current attendance percentage, tells you exactly how many classes you need to attend to hit 75% or any target percentage, and calculates how many more you can afford to miss without falling short.",
+    "Calculate your current class attendance percentage, determine the exact number of consecutive lectures needed to reach mandatory 75% or 80% criteria, and calculate how many classes can be safely skipped.",
+
   category: "Education",
 
   isPopular: true,
 
-  seo: {
-    title:
-      "Attendance Calculator - Calculate Attendance Percentage Online",
+  editorialIntro:
+    "University Grants Commission (UGC) and AICTE regulations mandate a minimum 75% attendance threshold for students to appear in end-semester university examinations. Calculating your current attendance percentage and projecting future class requirements prevents semester debarment while allowing safe planning for medical leaves.",
 
+  benchmarkContext: {
+    title: "UGC & AICTE Mandatory Semester Attendance Regulations",
+    badge: "University Academic Standard",
+    stat: "75% Mandatory Attendance Minimum (65% with Medical Condonation)",
     description:
-"Not sure if you're on track with your attendance? This free calculator instantly shows your current attendance percentage, tells you exactly how many classes you need to attend to hit 75% or any target percentage, and calculates how many more you can afford to miss without falling short.",
+      "Mathematical formulas: Current % $= \\left(\\frac{\\text{Attended}}{\\text{Total}}\\right) \\times 100$. Required consecutive classes to reach target $T$: $N = \\left\\lceil \\frac{T \\times \\text{Total} - \\text{Attended}}{1 - T} \\right\\rceil$. Safe skips when above target: $M = \\left\\lfloor \\frac{\\text{Attended} - (T \\times \\text{Total})}{T} \\right\\rfloor$.",
+    source: "University Grants Commission (UGC) Academic Regulations & Guidelines",
+    lastUpdated: "January 2026",
+  },
+
+  compareWith: [
+    "gpa-calculator",
+    "cgpa-calculator",
+    "average-calculator",
+    "marks-required-calculator",
+    "study-hours-calculator",
+  ],
+
+  seo: {
+    title: "Attendance Calculator - Calculate 75% Attendance & Safe Bunks",
+    description:
+      "Calculate your college attendance percentage, find classes needed for 75%, and see how many classes you can safely miss with our free attendance calculator.",
     keywords: [
       "attendance calculator",
       "attendance percentage calculator",
