@@ -48,11 +48,11 @@ export async function runXRayScan(rawUrl: string, forceFresh = false): Promise<X
   const finalParsed = new URL(httpResult.finalUrl);
   const tlsResult = await scanTls(finalParsed.hostname, finalParsed.port ? parseInt(finalParsed.port) : 443);
 
-  // Run all detectors
+  // Run all detectors with combined HTML and bundled script texts
   const technologies = detectTechnologies(httpResult.html, httpResult.rawHeaders, httpResult.headers);
   const infrastructure = detectInfrastructure(httpResult.rawHeaders, dnsResult, tlsResult);
   const thirdPartyServices = detectThirdPartyServices(httpResult.html);
-  const apis = discoverApis(httpResult.html, finalParsed.hostname);
+  const apis = discoverApis(httpResult.html, httpResult.scriptsContent || "", finalParsed.hostname);
   const security = auditSecurity(httpResult.rawHeaders, finalParsed.protocol === "https:");
   const seo = auditSeo(httpResult.html);
 
@@ -144,4 +144,3 @@ export async function runXRayScan(rawUrl: string, forceFresh = false): Promise<X
 
   return scanResult;
 }
-

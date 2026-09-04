@@ -1,6 +1,7 @@
 /**
  * src/lib/website-xray/fetcher.ts
- * Safe HTTP fetcher with timeout, redirect tracking, byte limits, and SSRF verification on every hop.
+ * Safe HTTP fetcher with realistic browser headers, redirect tracking, byte limits,
+ * SSRF verification on every hop, and first-party script bundle discovery.
  */
 
 import { validateTargetUrl } from "./ssrf";
@@ -13,6 +14,7 @@ export interface HttpResponseData {
   headers: Record<string, string>;
   rawHeaders: Headers;
   html: string;
+  scriptsContent: string;
   bodyBytes: number;
   timing: {
     dnsMs: number;
@@ -26,8 +28,98 @@ export interface HttpResponseData {
 }
 
 const MAX_REDIRECTS = 5;
-const TIMEOUT_MS = 10000;
+const TIMEOUT_MS = 12000;
+const SCRIPT_TIMEOUT_MS = 3500;
 const MAX_BODY_BYTES = 2 * 1024 * 1024; // 2 MB
+const MAX_SCRIPT_BYTES = 600 * 1024; // 600 KB per script
+
+const BROWSER_HEADERS = {
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 (compatible; DevCalc-XRayBot/1.0; +https://devcalc.in/website-x-ray)",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.9",
+  "sec-ch-ua": '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+  "sec-ch-ua-mobile": "?0",
+  "sec-ch-ua-platform": '"Windows"',
+  "Sec-Fetch-Dest": "document",
+  "Sec-Fetch-Mode": "navigate",
+  "Sec-Fetch-Site": "none",
+  "Sec-Fetch-User": "?1",
+  "Upgrade-Insecure-Requests": "1",
+  "Cache-Control": "no-cache",
+};
+
+/**
+ * Extracts and safely fetches top first-party script bundles to expose client-side APIs
+ */
+async function fetchFirstPartyScripts(html: string, baseUrl: string): Promise<string> {
+  try {
+    const base = new URL(baseUrl);
+    const scriptSrcMatches = html.matchAll(/<script[^>]+src=["']([^"']+)["']/gi);
+    const scriptUrls: string[] = [];
+
+    for (const match of scriptSrcMatches) {
+      const src = match[1]?.trim();
+      if (!src || src.startsWith("data:") || src.startsWith("blob:")) continue;
+
+      try {
+        const resolved = new URL(src, base);
+        // Only fetch first-party or CDN assets on the same root domain or relative paths
+        const isSameDomain = resolved.hostname === base.hostname || resolved.hostname.endsWith(`.${base.hostname}`);
+        const isAppBundle = resolved.pathname.includes("/_next/") || 
+                            resolved.pathname.includes("/static/") || 
+                            resolved.pathname.includes("/assets/") || 
+                            resolved.pathname.includes("/js/") ||
+                            resolved.pathname.includes("/build/");
+
+        if ((isSameDomain || isAppBundle) && resolved.pathname.endsWith(".js")) {
+          if (!scriptUrls.includes(resolved.toString())) {
+            scriptUrls.push(resolved.toString());
+          }
+        }
+      } catch {
+        continue;
+      }
+
+      if (scriptUrls.length >= 5) break;
+    }
+
+    if (scriptUrls.length === 0) return "";
+
+    const scriptPromises = scriptUrls.map(async (url) => {
+      try {
+        const ssrfCheck = await validateTargetUrl(url);
+        if (!ssrfCheck.safe) return "";
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), SCRIPT_TIMEOUT_MS);
+
+        const res = await fetch(url, {
+          headers: {
+            "User-Agent": BROWSER_HEADERS["User-Agent"],
+            "Accept": "*/*",
+          },
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+
+        if (!res.ok) return "";
+        const buf = await res.arrayBuffer();
+        const text = new TextDecoder("utf-8").decode(buf.slice(0, MAX_SCRIPT_BYTES));
+        return text;
+      } catch {
+        return "";
+      }
+    });
+
+    const results = await Promise.allSettled(scriptPromises);
+    return results
+      .filter((r): r is PromiseFulfilledResult<string> => r.status === "fulfilled")
+      .map((r) => r.value)
+      .join("\n\n");
+  } catch {
+    return "";
+  }
+}
 
 export async function fetchTargetSafely(initialUrl: string): Promise<HttpResponseData> {
   const redirectChain: Array<{ url: string; statusCode: number }> = [];
@@ -49,12 +141,7 @@ export async function fetchTargetSafely(initialUrl: string): Promise<HttpRespons
     try {
       const res = await fetch(currentUrl, {
         method: "GET",
-        headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; DevCalc-XRayBot/1.0; +https://devcalc.in/website-x-ray)",
-          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-          "Accept-Language": "en-US,en;q=0.5",
-          "Cache-Control": "no-cache",
-        },
+        headers: BROWSER_HEADERS,
         redirect: "manual",
         signal: controller.signal,
       });
@@ -97,6 +184,9 @@ export async function fetchTargetSafely(initialUrl: string): Promise<HttpRespons
       const totalMs = Math.round(endTime - startTime);
       const ttfbMs = Math.round(firstByteTime - startTime);
 
+      // Fetch top first-party scripts for deep client API discovery
+      const scriptsContent = await fetchFirstPartyScripts(html, currentUrl);
+
       return {
         url: initialUrl,
         finalUrl: currentUrl,
@@ -105,6 +195,7 @@ export async function fetchTargetSafely(initialUrl: string): Promise<HttpRespons
         headers: headersMap,
         rawHeaders: res.headers,
         html,
+        scriptsContent,
         bodyBytes: arrayBuffer.byteLength,
         timing: {
           dnsMs: 0,
@@ -130,4 +221,3 @@ export async function fetchTargetSafely(initialUrl: string): Promise<HttpRespons
 
   throw new Error(`Exceeded maximum redirect limit of ${MAX_REDIRECTS} hops`);
 }
-

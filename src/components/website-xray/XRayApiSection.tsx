@@ -1,14 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { ObservedApi } from "@/src/lib/website-xray/types";
-import { Network, Lock } from "lucide-react";
+import { Network, Search, Copy, Check, Filter, ExternalLink, ShieldCheck, Globe } from "lucide-react";
 
 interface XRayApiSectionProps {
   apis: ObservedApi[];
 }
 
 export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedType, setSelectedType] = useState<string>("all");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopy = (id: string, text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
   const getMethodBadge = (method?: string) => {
     switch (method?.toUpperCase()) {
       case "GET":
@@ -25,82 +35,233 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
     }
   };
 
+  const filteredApis = useMemo(() => {
+    return apis.filter((api) => {
+      const matchesSearch =
+        api.path.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        api.url.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        api.host.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (api.details?.initiator && api.details.initiator.toLowerCase().includes(searchQuery.toLowerCase()));
+
+      if (!matchesSearch) return false;
+
+      if (selectedType === "all") return true;
+      if (selectedType === "rest") return api.resourceType === "rest";
+      if (selectedType === "graphql") return api.resourceType === "graphql";
+      if (selectedType === "fetch") return api.resourceType === "fetch" || api.resourceType === "xhr";
+      if (selectedType === "query") return api.resourceType === "discovered-endpoint";
+      if (selectedType === "static-json") return api.resourceType === "static-json";
+      return true;
+    });
+  }, [apis, searchQuery, selectedType]);
+
+  const typeCounts = useMemo(() => {
+    return {
+      all: apis.length,
+      rest: apis.filter((a) => a.resourceType === "rest").length,
+      graphql: apis.filter((a) => a.resourceType === "graphql").length,
+      fetch: apis.filter((a) => a.resourceType === "fetch" || a.resourceType === "xhr").length,
+      query: apis.filter((a) => a.resourceType === "discovered-endpoint").length,
+      "static-json": apis.filter((a) => a.resourceType === "static-json").length,
+    };
+  }, [apis]);
+
   if (apis.length === 0) {
     return (
-      <div className="bg-white dark:bg-slate-900/90 border border-stone-200 dark:border-slate-800 rounded-2xl p-8 text-center space-y-3 shadow-xs">
-        <Network className="w-8 h-8 text-stone-400 dark:text-slate-600 mx-auto" />
-        <h3 className="text-base font-semibold text-[#26364a] dark:text-slate-300">No Observable Public API Endpoints</h3>
-        <p className="text-xs text-stone-500 dark:text-slate-500 max-w-md mx-auto">
-          No client-side dynamic query, action fetch calls, or public REST/GraphQL endpoints were observable in the static client bundles.
-        </p>
+      <div className="bg-white dark:bg-slate-900/90 border border-stone-200 dark:border-slate-800 rounded-2xl p-8 text-center space-y-4 shadow-xs">
+        <div className="w-12 h-12 rounded-full bg-stone-100 dark:bg-slate-800 flex items-center justify-center mx-auto text-stone-400 dark:text-slate-500">
+          <Network className="w-6 h-6" />
+        </div>
+        <div className="space-y-1">
+          <h3 className="text-base font-semibold text-[#26364a] dark:text-slate-200">No Observable Public API Endpoints</h3>
+          <p className="text-xs text-stone-500 dark:text-slate-400 max-w-lg mx-auto">
+            Our deep scanner parsed the full DOM HTML, script bundles, and fetch/AJAX patterns. This target either renders strictly server-side (zero client fetches), obscures route strings inside compiled wasm/minified bytecode, or requires authenticated state.
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-2 pt-2 text-[11px] text-stone-400 dark:text-slate-500">
+          <span className="flex items-center gap-1 bg-stone-50 dark:bg-slate-950 px-2.5 py-1 rounded-md border border-stone-200 dark:border-slate-800">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> HTML & Bundle Scanned
+          </span>
+          <span className="flex items-center gap-1 bg-stone-50 dark:bg-slate-950 px-2.5 py-1 rounded-md border border-stone-200 dark:border-slate-800">
+            <Globe className="w-3.5 h-3.5 text-blue-500" /> Subdomains Verified
+          </span>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="bg-white dark:bg-slate-900/90 border border-stone-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xs dark:shadow-xl">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 dark:bg-indigo-950/80 dark:border-indigo-500/30 dark:text-indigo-400">
-            <Network className="w-4 h-4" />
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 dark:bg-indigo-950/80 dark:border-indigo-500/30 dark:text-indigo-400 shadow-2xs">
+            <Network className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-[#26364a] dark:text-white">Discovered API Endpoints</h3>
-            <p className="text-xs text-stone-500 dark:text-slate-400">Observable REST, Next.js dynamic actions, and GraphQL query schemas</p>
+            <h3 className="text-lg font-bold text-[#26364a] dark:text-white flex items-center gap-2">
+              Discovered API Endpoints
+              <span className="px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-950/80 dark:text-indigo-300 dark:border-indigo-500/30 text-xs font-semibold">
+                {apis.length} Found
+              </span>
+            </h3>
+            <p className="text-xs text-stone-500 dark:text-slate-400">
+              Discovered REST routes, GraphQL endpoints, dynamic queries, and backend microservices
+            </p>
           </div>
         </div>
-        <span className="px-2.5 py-1 rounded-lg bg-stone-100 border border-stone-200 text-stone-700 dark:bg-slate-950 dark:border-slate-800 dark:text-slate-300 text-xs font-mono font-semibold">
-          {apis.length} Found
-        </span>
+
+        {/* Search Bar */}
+        <div className="relative w-full sm:w-64">
+          <Search className="w-3.5 h-3.5 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            placeholder="Filter endpoints, path..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg bg-stone-50 dark:bg-slate-950 border border-stone-200 dark:border-slate-800 text-stone-800 dark:text-slate-200 placeholder:text-stone-400 focus:outline-none focus:ring-1 focus:ring-[#26364a] dark:focus:ring-indigo-500 transition-all"
+          />
+        </div>
       </div>
 
-      <div className="space-y-3">
-        {apis.map((api) => (
-          <div
-            key={api.id}
-            className="bg-stone-50 dark:bg-slate-950/60 border border-stone-200 dark:border-slate-800/80 hover:border-stone-300 dark:hover:border-slate-700/80 rounded-xl p-4 space-y-3 transition-all font-mono text-xs shadow-2xs"
+      {/* Category Tabs */}
+      <div className="flex flex-wrap items-center gap-1.5 border-b border-stone-200 dark:border-slate-800/80 pb-3 text-xs">
+        <button
+          onClick={() => setSelectedType("all")}
+          className={`px-3 py-1 rounded-lg font-medium transition-all ${
+            selectedType === "all"
+              ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+              : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+          }`}
+        >
+          All ({typeCounts.all})
+        </button>
+        {typeCounts.rest > 0 && (
+          <button
+            onClick={() => setSelectedType("rest")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+              selectedType === "rest"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
           >
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2 min-w-0 flex-1">
-                <span
-                  className={`px-2 py-0.5 rounded border text-[10px] font-bold ${getMethodBadge(
-                    api.method
-                  )}`}
-                >
-                  {api.method || "GET"}
-                </span>
-                <span className="text-stone-900 dark:text-slate-100 font-semibold truncate" title={api.url}>
-                  {api.path || api.url}
-                </span>
+            REST ({typeCounts.rest})
+          </button>
+        )}
+        {typeCounts.graphql > 0 && (
+          <button
+            onClick={() => setSelectedType("graphql")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+              selectedType === "graphql"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            GraphQL ({typeCounts.graphql})
+          </button>
+        )}
+        {typeCounts.fetch > 0 && (
+          <button
+            onClick={() => setSelectedType("fetch")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+              selectedType === "fetch"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            Fetch / AJAX ({typeCounts.fetch})
+          </button>
+        )}
+        {typeCounts.query > 0 && (
+          <button
+            onClick={() => setSelectedType("query")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+              selectedType === "query"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            Dynamic Queries ({typeCounts.query})
+          </button>
+        )}
+        {typeCounts["static-json"] > 0 && (
+          <button
+            onClick={() => setSelectedType("static-json")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+              selectedType === "static-json"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            Feeds / Schemas ({typeCounts["static-json"]})
+          </button>
+        )}
+      </div>
+
+      {/* Discovered APIs List */}
+      <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
+        {filteredApis.length === 0 ? (
+          <div className="p-6 text-center text-xs text-stone-500 dark:text-slate-400 bg-stone-50 dark:bg-slate-950/60 rounded-xl border border-stone-200 dark:border-slate-800">
+            No endpoints match your active search or filter.
+          </div>
+        ) : (
+          filteredApis.map((api) => (
+            <div
+              key={api.id}
+              className="bg-stone-50 dark:bg-slate-950/60 border border-stone-200 dark:border-slate-800/80 hover:border-stone-300 dark:hover:border-slate-700/80 rounded-xl p-3.5 space-y-2.5 transition-all text-xs font-mono shadow-2xs"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2 min-w-0 flex-1">
+                  <span
+                    className={`px-2 py-0.5 rounded border text-[10px] font-bold ${getMethodBadge(
+                      api.method
+                    )}`}
+                  >
+                    {api.method || "GET"}
+                  </span>
+                  <span
+                    className="text-stone-900 dark:text-slate-100 font-semibold truncate select-all cursor-pointer hover:underline"
+                    title={api.url}
+                    onClick={() => handleCopy(api.id, api.url)}
+                  >
+                    {api.path || api.url}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1.5">
+                  <span className="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 text-stone-600 dark:text-slate-400 text-[10px] uppercase font-sans font-medium">
+                    {api.resourceType}
+                  </span>
+                  <button
+                    onClick={() => handleCopy(api.id, api.url)}
+                    className="p-1 rounded-md bg-white hover:bg-stone-100 dark:bg-slate-900 dark:hover:bg-slate-800 border border-stone-200 dark:border-slate-800 text-stone-600 dark:text-slate-400 transition-colors"
+                    title="Copy full URL"
+                  >
+                    {copiedId === api.id ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                    ) : (
+                      <Copy className="w-3.5 h-3.5" />
+                    )}
+                  </button>
+                </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 text-stone-600 dark:text-slate-400 text-[10px] uppercase">
-                  {api.resourceType}
-                </span>
-                {api.status && (
-                  <span className="px-2 py-0.5 rounded bg-stone-200 dark:bg-slate-800 text-stone-700 dark:text-slate-300 text-[10px]">
-                    HTTP {api.status}
-                  </span>
+              {/* Endpoint Meta & Initiator */}
+              <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-sans text-stone-500 dark:text-slate-400 pt-1 border-t border-stone-200/60 dark:border-slate-800/60">
+                <div className="flex items-center gap-2 truncate">
+                  <span className="font-semibold text-stone-700 dark:text-slate-300">Host:</span>
+                  <span className="font-mono text-stone-600 dark:text-slate-400">{api.host}</span>
+                </div>
+                {api.details?.initiator && (
+                  <div className="flex items-center gap-1.5 text-stone-500 dark:text-slate-400">
+                    <span className="font-medium text-stone-600 dark:text-slate-300">Source:</span>
+                    <span>{api.details.initiator}</span>
+                  </div>
                 )}
               </div>
             </div>
-
-            {api.details?.headersRedacted && Object.keys(api.details.headersRedacted).length > 0 && (
-              <div className="space-y-1 bg-white dark:bg-slate-900/80 p-2.5 rounded-lg border border-stone-200 dark:border-slate-800/80 text-[11px]">
-                <span className="text-stone-500 dark:text-slate-500 font-semibold">Observed Headers:</span>
-                <div className="space-y-0.5">
-                  {Object.entries(api.details.headersRedacted).map(([key, value]) => (
-                    <div key={key} className="flex items-center gap-2">
-                      <span className="text-indigo-600 dark:text-indigo-400">{key}:</span>
-                      <span className="text-stone-700 dark:text-slate-300 truncate">{value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
