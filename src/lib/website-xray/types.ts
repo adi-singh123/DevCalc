@@ -61,7 +61,7 @@ export interface ObservedApi {
   status?: number;
   contentType?: string;
   durationMs?: number;
-  resourceType: "fetch" | "xhr" | "rest" | "graphql" | "static-json" | "discovered-endpoint";
+  resourceType: "fetch" | "xhr" | "rest" | "graphql" | "static-json" | "discovered-endpoint" | "cdn-transform" | "next-data" | "structured-data" | "microservice";
   source: "live-request" | "html-discovery" | "script-analysis";
   details?: {
     initiator?: string;

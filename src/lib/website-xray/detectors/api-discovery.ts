@@ -1,7 +1,7 @@
 /**
  * src/lib/website-xray/detectors/api-discovery.ts
- * Scans document HTML, embedded scripts, RSC flight data, JSON-LD, and client bundles
- * to discover public REST, GraphQL, AJAX, search/filter, and backend API endpoints.
+ * Scans document HTML, embedded scripts, Next.js App Router chunks, JSON-LD feeds,
+ * and CDN image transform APIs to discover public REST, GraphQL, AJAX, dynamic query/calculation routes.
  */
 
 import { ObservedApi } from "@/src/lib/website-xray/types";
@@ -29,32 +29,40 @@ export function discoverApis(html: string, scriptsContent: string, targetHostnam
       .replace(/\\n|\\r|\\t/g, "")
       .replace(/[,;)}]$/, "");
 
-    // Ignore static asset extensions, CSS, images, and fonts
-    if (
-      !clean ||
-      clean.length < 2 ||
-      clean.length > 250 ||
-      clean.endsWith(".png") ||
-      clean.endsWith(".jpg") ||
-      clean.endsWith(".jpeg") ||
-      clean.endsWith(".gif") ||
-      clean.endsWith(".svg") ||
-      clean.endsWith(".webp") ||
-      clean.endsWith(".avif") ||
-      clean.endsWith(".ico") ||
-      clean.endsWith(".css") ||
-      clean.endsWith(".woff") ||
-      clean.endsWith(".woff2") ||
-      clean.endsWith(".ttf") ||
-      clean.endsWith(".eot") ||
-      clean.endsWith(".mp4") ||
-      clean.endsWith(".webm") ||
-      clean.startsWith("#") ||
-      clean.startsWith("javascript:") ||
-      clean.startsWith("mailto:") ||
-      clean.startsWith("tel:")
-    ) {
-      return;
+    const isCdnTransform =
+      clean.includes("/cdn-cgi/image/") ||
+      clean.includes("/_next/image") ||
+      clean.includes("imgix.net") ||
+      clean.includes("cloudinary.com");
+
+    // Ignore raw static asset files unless they are dynamic CDN image transform APIs
+    if (!isCdnTransform) {
+      if (
+        !clean ||
+        clean.length < 2 ||
+        clean.length > 300 ||
+        clean.endsWith(".png") ||
+        clean.endsWith(".jpg") ||
+        clean.endsWith(".jpeg") ||
+        clean.endsWith(".gif") ||
+        clean.endsWith(".svg") ||
+        clean.endsWith(".webp") ||
+        clean.endsWith(".avif") ||
+        clean.endsWith(".ico") ||
+        clean.endsWith(".css") ||
+        clean.endsWith(".woff") ||
+        clean.endsWith(".woff2") ||
+        clean.endsWith(".ttf") ||
+        clean.endsWith(".eot") ||
+        clean.endsWith(".mp4") ||
+        clean.endsWith(".webm") ||
+        clean.startsWith("#") ||
+        clean.startsWith("javascript:") ||
+        clean.startsWith("mailto:") ||
+        clean.startsWith("tel:")
+      ) {
+        return;
+      }
     }
 
     // Normalize path vs full URL
@@ -77,13 +85,13 @@ export function discoverApis(html: string, scriptsContent: string, targetHostnam
       fullUrl = `https://${targetHostname}${clean}`;
     }
 
-    // Filter out common UI anchor links that are not API endpoints (e.g., pure static html pages)
+    // Filter out pure static html document links
     if (path.endsWith(".html") || path.endsWith(".htm")) {
       return;
     }
 
-    // De-duplicate by method + host + path
-    const key = `${method}:${host}:${path}`;
+    // De-duplicate by method + host + clean path
+    const key = `${method}:${host}:${path.slice(0, 120)}`;
     if (seenKeys.has(key)) return;
     seenKeys.add(key);
 
@@ -138,23 +146,76 @@ export function discoverApis(html: string, scriptsContent: string, targetHostnam
     }
   }
 
-  // 2. Absolute API & Backend Subdomains (e.g., https://api.domain.com/..., https://cms.domain.com/...)
-  const absoluteApiRegex = /https?:\/\/(?:[a-zA-Z0-9_-]+\.)*(?:api|backend|services|data|gateway|cms|auth|search|gql|cdn-api)\.[a-zA-Z0-9.-]+(?:\/[a-zA-Z0-9_\-/\.?=&%+]+)?/gi;
-  let absMatch: RegExpExecArray | null;
-  while ((absMatch = absoluteApiRegex.exec(combinedContent)) !== null) {
-    const url = absMatch[0];
-    const type: ObservedApi["resourceType"] = url.toLowerCase().includes("graphql") ? "graphql" : "rest";
-    addApi(url, type, "GET", "script-analysis", "Backend Host Subdomain");
+  // 2. CDN Image Transformation & Processing APIs (e.g. Cloudflare Image Resizing / Next.js Image Optimization)
+  const cdnImageRegex = /https?:\/\/[a-zA-Z0-9_\-\.]+(?:\/cdn-cgi\/image\/[^"'\s>]+|\/_next\/image\?[^"'\s>]+)/gi;
+  let cdnMatch: RegExpExecArray | null;
+  while ((cdnMatch = cdnImageRegex.exec(combinedContent)) !== null) {
+    const ep = cdnMatch[0];
+    addApi(ep, "cdn-transform", "GET", "html-discovery", "CDN Dynamic Image Transform & Optimization API");
     if (apis.length >= 80) break;
   }
 
-  // 3. Client HTTP calls: fetch(), axios, $.ajax, XMLHttpRequest
+  // 3. Dynamic Comparison, Calculation, Specs & Filtering Routes
+  const dynamicQueryRegex = /(?:['"`])(\/(?:compare-cars|variant-explained|which-variant|engine-specifications|price-in-[a-zA-Z0-9_\-]+|search|filter|compare|variant|pricing|calculate|query|autocomplete|suggest|lookup|find|feed|catalog|api-v[1-9])(?:[/?][a-zA-Z0-9_\-\/\.\[\]\?\=\&\%\+]+)?)(?:['"`])/gi;
+  let dynamicMatch: RegExpExecArray | null;
+  while ((dynamicMatch = dynamicQueryRegex.exec(combinedContent)) !== null) {
+    const ep = dynamicMatch[1];
+    addApi(ep, "discovered-endpoint", "GET", "html-discovery", "Dynamic Comparison / Calculation / Search Route");
+    if (apis.length >= 80) break;
+  }
+
+  // 4. Absolute API & Backend Subdomains (e.g., https://api.domain.com/..., https://assets.domain.com/...)
+  const absoluteApiRegex = /https?:\/\/(?:[a-zA-Z0-9_-]+\.)*(?:api|backend|services|data|gateway|cms|auth|search|gql|cdn-api|assets)\.[a-zA-Z0-9.-]+(?:\/[a-zA-Z0-9_\-/\.?=&%+]+)?/gi;
+  let absMatch: RegExpExecArray | null;
+  while ((absMatch = absoluteApiRegex.exec(combinedContent)) !== null) {
+    const url = absMatch[0];
+    const isAsset = url.includes("assets.") || url.includes("cdn.");
+    const type: ObservedApi["resourceType"] = url.toLowerCase().includes("graphql")
+      ? "graphql"
+      : isAsset
+      ? "microservice"
+      : "rest";
+    addApi(url, type, "GET", "script-analysis", "Backend / Microservice Subdomain");
+    if (apis.length >= 80) break;
+  }
+
+  // 5. Next.js App Router Client Chunks & Static Bundles
+  const nextChunksRegex = /(?:['"`])(\/_next\/static\/(?:chunks|css)\/[a-zA-Z0-9_\-/\.?=&%+]+)(?:['"`])/gi;
+  let chunkMatch: RegExpExecArray | null;
+  let chunkCount = 0;
+  while ((chunkMatch = nextChunksRegex.exec(combinedContent)) !== null) {
+    if (chunkCount < 8) {
+      addApi(chunkMatch[1], "next-data", "GET", "html-discovery", "Next.js App Router Client Chunk");
+      chunkCount++;
+    }
+  }
+
+  // 6. Structured Data JSON-LD Schemas (Schema.org API Data Feeds)
+  const jsonLdRegex = /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  let ldMatch: RegExpExecArray | null;
+  while ((ldMatch = jsonLdRegex.exec(html)) !== null) {
+    try {
+      const parsed = JSON.parse(ldMatch[1]);
+      const schemaType = parsed["@type"] || "Schema";
+      addApi(
+        `/@json-ld/${schemaType.toString().toLowerCase()}`,
+        "structured-data",
+        "GET",
+        "html-discovery",
+        `JSON-LD Structured Data Schema (${schemaType})`
+      );
+    } catch {
+      // Ignore malformed JSON-LD
+    }
+  }
+
+  // 7. Client HTTP calls: fetch(), axios, $.ajax, XMLHttpRequest
   const fetchRegex = /fetch\(\s*["'`]?([a-zA-Z0-9_\-/\.?=&%+:/]+)["'`]?/gi;
   let fetchMatch: RegExpExecArray | null;
   while ((fetchMatch = fetchRegex.exec(combinedContent)) !== null) {
     const ep = fetchMatch[1];
     if (ep.startsWith("/") || ep.startsWith("http")) {
-      addApi(ep, "fetch", "GET", "script-analysis", "JavaScript fetch() call");
+      addApi(ep, "fetch", "GET", "script-analysis", "JavaScript fetch() invocation");
     }
     if (apis.length >= 80) break;
   }
@@ -169,17 +230,7 @@ export function discoverApis(html: string, scriptsContent: string, targetHostnam
     if (apis.length >= 80) break;
   }
 
-  const jqueryAjaxRegex = /\$\.(?:ajax|get|post|getJSON)\(\s*["'`]?([a-zA-Z0-9_\-/\.?=&%+:/]+)["'`]?/gi;
-  let jqMatch: RegExpExecArray | null;
-  while ((jqMatch = jqueryAjaxRegex.exec(combinedContent)) !== null) {
-    const ep = jqMatch[1];
-    if (ep.startsWith("/") || ep.startsWith("http")) {
-      addApi(ep, "xhr", "GET", "script-analysis", "jQuery AJAX invocation");
-    }
-    if (apis.length >= 80) break;
-  }
-
-  // 4. API Configuration Constants & Environment Variables
+  // 8. Client Configuration Constants & Environment Variables
   const configVarRegex = /(?:apiUrl|baseURL|API_URL|API_ENDPOINT|NEXT_PUBLIC_API_URL|REACT_APP_API_URL|VITE_API_URL|base_url)\s*[:=]\s*["'`]?([^"'`\s;,>]+)["'`]?/gi;
   let configMatch: RegExpExecArray | null;
   while ((configMatch = configVarRegex.exec(combinedContent)) !== null) {
@@ -190,25 +241,7 @@ export function discoverApis(html: string, scriptsContent: string, targetHostnam
     if (apis.length >= 80) break;
   }
 
-  // 5. Dynamic Search, Auto-Suggest, Filter, Variant & Pricing Endpoints
-  const dynamicQueryRegex = /(?:['"`])(\/(?:search|filter|compare|variant|pricing|calculate|query|autocomplete|suggest|lookup|find|feed|catalog|api-v[1-9])(?:[/?][a-zA-Z0-9_\-/\.?=&%+]+)?)(?:['"`])/gi;
-  let dynamicMatch: RegExpExecArray | null;
-  while ((dynamicMatch = dynamicQueryRegex.exec(combinedContent)) !== null) {
-    const ep = dynamicMatch[1];
-    addApi(ep, "discovered-endpoint", "GET", "html-discovery", "Dynamic Filter / Search / Suggest Endpoint");
-    if (apis.length >= 80) break;
-  }
-
-  // 6. OpenAPI / Swagger & Schema Feeds
-  const swaggerRegex = /(?:['"`])(\/(?:swagger|openapi|api-docs|schema)[a-zA-Z0-9_\-/\.?=&%+]*(?:\.json|\.yaml|\.yml)?)(?:['"`])/gi;
-  let swMatch: RegExpExecArray | null;
-  while ((swMatch = swaggerRegex.exec(combinedContent)) !== null) {
-    const ep = swMatch[1];
-    addApi(ep, "static-json", "GET", "html-discovery", "OpenAPI / Swagger Schema Spec");
-    if (apis.length >= 80) break;
-  }
-
-  // 7. Form POST / Action endpoints
+  // 9. Form POST / Action endpoints
   const formActionRegex = /<form[^>]+action=["']([^"']+)["']/gi;
   let formMatch: RegExpExecArray | null;
   while ((formMatch = formActionRegex.exec(html)) !== null) {

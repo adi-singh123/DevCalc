@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { ObservedApi } from "@/src/lib/website-xray/types";
-import { Network, Search, Copy, Check, Filter, ExternalLink, ShieldCheck, Globe } from "lucide-react";
+import { Network, Search, Copy, Check, ShieldCheck, Globe, Database, Sparkles, Layers, Image as ImageIcon } from "lucide-react";
 
 interface XRayApiSectionProps {
   apis: ObservedApi[];
@@ -47,10 +47,13 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
 
       if (selectedType === "all") return true;
       if (selectedType === "rest") return api.resourceType === "rest";
+      if (selectedType === "cdn-transform") return api.resourceType === "cdn-transform";
+      if (selectedType === "query") return api.resourceType === "discovered-endpoint";
+      if (selectedType === "next-data") return api.resourceType === "next-data";
+      if (selectedType === "structured-data") return api.resourceType === "structured-data";
+      if (selectedType === "microservice") return api.resourceType === "microservice";
       if (selectedType === "graphql") return api.resourceType === "graphql";
       if (selectedType === "fetch") return api.resourceType === "fetch" || api.resourceType === "xhr";
-      if (selectedType === "query") return api.resourceType === "discovered-endpoint";
-      if (selectedType === "static-json") return api.resourceType === "static-json";
       return true;
     });
   }, [apis, searchQuery, selectedType]);
@@ -59,10 +62,13 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
     return {
       all: apis.length,
       rest: apis.filter((a) => a.resourceType === "rest").length,
+      "cdn-transform": apis.filter((a) => a.resourceType === "cdn-transform").length,
+      query: apis.filter((a) => a.resourceType === "discovered-endpoint").length,
+      "next-data": apis.filter((a) => a.resourceType === "next-data").length,
+      "structured-data": apis.filter((a) => a.resourceType === "structured-data").length,
+      microservice: apis.filter((a) => a.resourceType === "microservice").length,
       graphql: apis.filter((a) => a.resourceType === "graphql").length,
       fetch: apis.filter((a) => a.resourceType === "fetch" || a.resourceType === "xhr").length,
-      query: apis.filter((a) => a.resourceType === "discovered-endpoint").length,
-      "static-json": apis.filter((a) => a.resourceType === "static-json").length,
     };
   }, [apis]);
 
@@ -75,15 +81,15 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
         <div className="space-y-1">
           <h3 className="text-base font-semibold text-[#26364a] dark:text-slate-200">No Observable Public API Endpoints</h3>
           <p className="text-xs text-stone-500 dark:text-slate-400 max-w-lg mx-auto">
-            Our deep scanner parsed the full DOM HTML, script bundles, and fetch/AJAX patterns. This target either renders strictly server-side (zero client fetches), obscures route strings inside compiled wasm/minified bytecode, or requires authenticated state.
+            Our deep scanner analyzed the full DOM, script bundles, and fetch patterns. This page is either statically rendered server-side without exposed public APIs or operates behind private microservice proxies.
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-2 pt-2 text-[11px] text-stone-400 dark:text-slate-500">
           <span className="flex items-center gap-1 bg-stone-50 dark:bg-slate-950 px-2.5 py-1 rounded-md border border-stone-200 dark:border-slate-800">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> HTML & Bundle Scanned
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> HTML & Bundles Scanned
           </span>
           <span className="flex items-center gap-1 bg-stone-50 dark:bg-slate-950 px-2.5 py-1 rounded-md border border-stone-200 dark:border-slate-800">
-            <Globe className="w-3.5 h-3.5 text-blue-500" /> Subdomains Verified
+            <Globe className="w-3.5 h-3.5 text-blue-500" /> Subdomains Checked
           </span>
         </div>
       </div>
@@ -100,13 +106,13 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
           </div>
           <div>
             <h3 className="text-lg font-bold text-[#26364a] dark:text-white flex items-center gap-2">
-              Discovered API Endpoints
+              Discovered APIs & Dynamic Endpoints
               <span className="px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-950/80 dark:text-indigo-300 dark:border-indigo-500/30 text-xs font-semibold">
                 {apis.length} Found
               </span>
             </h3>
             <p className="text-xs text-stone-500 dark:text-slate-400">
-              Discovered REST routes, GraphQL endpoints, dynamic queries, and backend microservices
+              Discovered REST APIs, CDN transformation endpoints, dynamic comparison routes, and structured data feeds
             </p>
           </div>
         </div>
@@ -116,7 +122,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
           <Search className="w-3.5 h-3.5 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Filter endpoints, path..."
+            placeholder="Filter endpoint or path..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg bg-stone-50 dark:bg-slate-950 border border-stone-200 dark:border-slate-800 text-stone-800 dark:text-slate-200 placeholder:text-stone-400 focus:outline-none focus:ring-1 focus:ring-[#26364a] dark:focus:ring-indigo-500 transition-all"
@@ -130,7 +136,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
           onClick={() => setSelectedType("all")}
           className={`px-3 py-1 rounded-lg font-medium transition-all ${
             selectedType === "all"
-              ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+              ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
               : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
           }`}
         >
@@ -141,11 +147,71 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
             onClick={() => setSelectedType("rest")}
             className={`px-3 py-1 rounded-lg font-medium transition-all ${
               selectedType === "rest"
-                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
                 : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
             }`}
           >
             REST ({typeCounts.rest})
+          </button>
+        )}
+        {typeCounts["cdn-transform"] > 0 && (
+          <button
+            onClick={() => setSelectedType("cdn-transform")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all flex items-center gap-1 ${
+              selectedType === "cdn-transform"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            <ImageIcon className="w-3 h-3" /> CDN Transforms ({typeCounts["cdn-transform"]})
+          </button>
+        )}
+        {typeCounts.query > 0 && (
+          <button
+            onClick={() => setSelectedType("query")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all flex items-center gap-1 ${
+              selectedType === "query"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            <Sparkles className="w-3 h-3" /> Dynamic Routes ({typeCounts.query})
+          </button>
+        )}
+        {typeCounts["structured-data"] > 0 && (
+          <button
+            onClick={() => setSelectedType("structured-data")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all flex items-center gap-1 ${
+              selectedType === "structured-data"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            <Database className="w-3 h-3" /> Schema Feeds ({typeCounts["structured-data"]})
+          </button>
+        )}
+        {typeCounts["next-data"] > 0 && (
+          <button
+            onClick={() => setSelectedType("next-data")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all flex items-center gap-1 ${
+              selectedType === "next-data"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            <Layers className="w-3 h-3" /> Next.js Data ({typeCounts["next-data"]})
+          </button>
+        )}
+        {typeCounts.microservice > 0 && (
+          <button
+            onClick={() => setSelectedType("microservice")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+              selectedType === "microservice"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            Microservices ({typeCounts.microservice})
           </button>
         )}
         {typeCounts.graphql > 0 && (
@@ -153,7 +219,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
             onClick={() => setSelectedType("graphql")}
             className={`px-3 py-1 rounded-lg font-medium transition-all ${
               selectedType === "graphql"
-                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
                 : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
             }`}
           >
@@ -165,35 +231,11 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
             onClick={() => setSelectedType("fetch")}
             className={`px-3 py-1 rounded-lg font-medium transition-all ${
               selectedType === "fetch"
-                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
                 : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
             }`}
           >
             Fetch / AJAX ({typeCounts.fetch})
-          </button>
-        )}
-        {typeCounts.query > 0 && (
-          <button
-            onClick={() => setSelectedType("query")}
-            className={`px-3 py-1 rounded-lg font-medium transition-all ${
-              selectedType === "query"
-                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
-                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
-            }`}
-          >
-            Dynamic Queries ({typeCounts.query})
-          </button>
-        )}
-        {typeCounts["static-json"] > 0 && (
-          <button
-            onClick={() => setSelectedType("static-json")}
-            className={`px-3 py-1 rounded-lg font-medium transition-all ${
-              selectedType === "static-json"
-                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white"
-                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
-            }`}
-          >
-            Feeds / Schemas ({typeCounts["static-json"]})
           </button>
         )}
       </div>
@@ -202,7 +244,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
       <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
         {filteredApis.length === 0 ? (
           <div className="p-6 text-center text-xs text-stone-500 dark:text-slate-400 bg-stone-50 dark:bg-slate-950/60 rounded-xl border border-stone-200 dark:border-slate-800">
-            No endpoints match your active search or filter.
+            No endpoints match your active search or filter tab.
           </div>
         ) : (
           filteredApis.map((api) => (
@@ -253,9 +295,9 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
                   <span className="font-mono text-stone-600 dark:text-slate-400">{api.host}</span>
                 </div>
                 {api.details?.initiator && (
-                  <div className="flex items-center gap-1.5 text-stone-500 dark:text-slate-400">
+                  <div className="flex items-center gap-1.5 text-stone-500 dark:text-slate-400 truncate">
                     <span className="font-medium text-stone-600 dark:text-slate-300">Source:</span>
-                    <span>{api.details.initiator}</span>
+                    <span className="truncate">{api.details.initiator}</span>
                   </div>
                 )}
               </div>
