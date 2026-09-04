@@ -15,6 +15,7 @@ import { detectThirdPartyServices } from "./detectors/third-party";
 import { discoverApis } from "./detectors/api-discovery";
 import { auditSecurity } from "./detectors/security";
 import { auditSeo, auditPerformance } from "./detectors/seo-performance";
+import { captureLiveApis } from "./live-api-scanner";
 
 export async function runXRayScan(rawUrl: string, forceFresh = false): Promise<XRayScanResult> {
   const startTime = performance.now();
@@ -39,9 +40,10 @@ export async function runXRayScan(rawUrl: string, forceFresh = false): Promise<X
   const hostname = parsedUrl.hostname;
 
   // Execute HTTP fetch and DNS lookup in parallel
-  const [httpResult, dnsResult] = await Promise.all([
+  const [httpResult, dnsResult, liveApiResult] = await Promise.all([
     fetchTargetSafely(parsedUrl.toString()),
     scanDns(hostname),
+    captureLiveApis(parsedUrl.toString()),
   ]);
 
   // Execute TLS scan
@@ -52,7 +54,17 @@ export async function runXRayScan(rawUrl: string, forceFresh = false): Promise<X
   const technologies = detectTechnologies(httpResult.html, httpResult.rawHeaders, httpResult.headers);
   const infrastructure = detectInfrastructure(httpResult.rawHeaders, dnsResult, tlsResult);
   const thirdPartyServices = detectThirdPartyServices(httpResult.html);
-  const apis = discoverApis(httpResult.html, httpResult.scriptsContent || "", finalParsed.toString());
+  const discoveredApis = discoverApis(httpResult.html, httpResult.scriptsContent || "", finalParsed.toString());
+  const apiKeys = new Set(liveApiResult.apis.map((api) => `${api.method}:${api.host}:${api.path}`));
+  const apis = [...liveApiResult.apis];
+  for (const api of discoveredApis) {
+    const key = `${api.method}:${api.host}:${api.path}`;
+    if (!apiKeys.has(key)) {
+      apiKeys.add(key);
+      apis.push(api);
+    }
+  }
+  apis.forEach((api, index) => { api.id = `api-${index + 1}`; });
   const security = auditSecurity(httpResult.rawHeaders, finalParsed.protocol === "https:");
   const seo = auditSeo(httpResult.html);
 
@@ -137,6 +149,7 @@ export async function runXRayScan(rawUrl: string, forceFresh = false): Promise<X
       scannerVersion: "1.0.0",
       cached: false,
       partial: false,
+      warnings: liveApiResult.warning ? [liveApiResult.warning] : undefined,
     },
   };
 

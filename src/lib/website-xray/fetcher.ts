@@ -29,10 +29,11 @@ export interface HttpResponseData {
 
 const MAX_REDIRECTS = 5;
 const TIMEOUT_MS = 12000;
-const SCRIPT_TIMEOUT_MS = 3500;
+const SCRIPT_TIMEOUT_MS = 8000;
 const MAX_BODY_BYTES = 2 * 1024 * 1024; // 2 MB
 const MAX_SCRIPT_BYTES = 600 * 1024; // 600 KB per script
-const MAX_SCRIPT_COUNT = 15;
+const MAX_SCRIPT_COUNT = 35;
+const SCRIPT_FETCH_CONCURRENCY = 8;
 
 const BROWSER_HEADERS = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 (compatible; DevCalc-XRayBot/1.0; +https://devcalc.in/website-x-ray)",
@@ -90,7 +91,7 @@ async function fetchFirstPartyScripts(html: string, baseUrl: string): Promise<st
 
     if (scriptUrls.length === 0) return "";
 
-    const scriptPromises = scriptUrls.map(async (url) => {
+    const fetchScript = async (url: string) => {
       try {
         const ssrfCheck = await validateTargetUrl(url);
         if (!ssrfCheck.safe) return "";
@@ -114,13 +115,19 @@ async function fetchFirstPartyScripts(html: string, baseUrl: string): Promise<st
       } catch {
         return "";
       }
-    });
+    };
 
-    const results = await Promise.allSettled(scriptPromises);
-    return results
-      .filter((r): r is PromiseFulfilledResult<string> => r.status === "fulfilled")
-      .map((r) => r.value)
-      .join("\n\n");
+    const scriptTexts: string[] = [];
+    for (let offset = 0; offset < scriptUrls.length; offset += SCRIPT_FETCH_CONCURRENCY) {
+      const batch = scriptUrls.slice(offset, offset + SCRIPT_FETCH_CONCURRENCY);
+      const results = await Promise.allSettled(batch.map(fetchScript));
+      scriptTexts.push(
+        ...results
+          .filter((result): result is PromiseFulfilledResult<string> => result.status === "fulfilled")
+          .map((result) => result.value)
+      );
+    }
+    return scriptTexts.join("\n\n");
   } catch {
     return "";
   }

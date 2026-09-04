@@ -8,6 +8,9 @@ import { runXRayScan } from "@/src/lib/website-xray/engine";
 import { checkRateLimit } from "@/src/lib/website-xray/cache";
 import { ScanRequestPayload, ScanResponsePayload } from "@/src/lib/website-xray/types";
 
+export const runtime = "nodejs";
+export const maxDuration = 60;
+
 export async function POST(req: NextRequest): Promise<NextResponse<ScanResponsePayload>> {
   try {
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "127.0.0.1";
@@ -58,4 +61,3 @@ export async function POST(req: NextRequest): Promise<NextResponse<ScanResponseP
     );
   }
 }
-

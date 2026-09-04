@@ -46,6 +46,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
       if (!matchesSearch) return false;
 
       if (selectedType === "all") return true;
+      if (selectedType === "live") return api.source === "live-request";
       if (selectedType === "write") return ["POST", "PUT", "PATCH", "DELETE"].includes(api.method);
       if (selectedType === "rest") return api.resourceType === "rest";
       if (selectedType === "cdn-transform") return api.resourceType === "cdn-transform";
@@ -62,6 +63,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
   const typeCounts = useMemo(() => {
     return {
       all: apis.length,
+      live: apis.filter((a) => a.source === "live-request").length,
       write: apis.filter((a) => ["POST", "PUT", "PATCH", "DELETE"].includes(a.method)).length,
       rest: apis.filter((a) => a.resourceType === "rest").length,
       "cdn-transform": apis.filter((a) => a.resourceType === "cdn-transform").length,
@@ -112,6 +114,11 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
               <span className="px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-950/80 dark:text-indigo-300 dark:border-indigo-500/30 text-xs font-semibold">
                 {apis.length} Found
               </span>
+              {typeCounts.live > 0 && (
+                <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/80 dark:text-emerald-300 dark:border-emerald-500/30 text-xs font-semibold">
+                  {typeCounts.live} Observed Live
+                </span>
+              )}
             </h3>
             <p className="text-xs text-stone-500 dark:text-slate-400">
               Request calls found in the page and its client bundles. Runtime-only requests may require browser interaction and cannot be confirmed by a static scan.
@@ -144,6 +151,18 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
         >
           All ({typeCounts.all})
         </button>
+        {typeCounts.live > 0 && (
+          <button
+            onClick={() => setSelectedType("live")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+              selectedType === "live"
+                ? "bg-emerald-600 text-white shadow-xs"
+                : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:text-emerald-300"
+            }`}
+          >
+            Observed Live ({typeCounts.live})
+          </button>
+        )}
         {typeCounts.write > 0 && (
           <button
             onClick={() => setSelectedType("write")}
@@ -285,6 +304,11 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
                 </div>
 
                 <div className="flex items-center gap-1.5">
+                  {api.status && (
+                    <span className="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 text-stone-600 dark:text-slate-400 text-[10px] font-sans font-semibold">
+                      {api.status}{api.durationMs ? ` · ${api.durationMs}ms` : ""}
+                    </span>
+                  )}
                   <span className="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 text-stone-600 dark:text-slate-400 text-[10px] uppercase font-sans font-medium">
                     {api.resourceType}
                   </span>

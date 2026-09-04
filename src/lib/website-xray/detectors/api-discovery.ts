@@ -6,7 +6,7 @@
 import { ObservedApi } from "@/src/lib/website-xray/types";
 
 const STATIC_ASSET_RE = /\.(?:avif|bmp|css|eot|gif|ico|jpe?g|m4a|map|mp3|mp4|ogg|otf|pdf|png|svg|ttf|webm|webp|woff2?)(?:[?#]|$)/i;
-const API_PATH_RE = /(?:^|\/)(?:api|_api|api-v\d+|v\d+|rest|ajax|graphql|gql|trpc|rpc|wp-json|services?|gateway|backend|data|feed|search|autocomplete|suggest|lookup)(?:\/|\?|$)/i;
+const API_PATH_RE = /(?:^|\/)(?:api|_api|api-v\d+|rest|ajax|graphql|gql|trpc|rpc|wp-json|services?|gateway|backend)(?:\/|\?|$)/i;
 const HTTP_METHODS = new Set<ObservedApi["method"]>([
   "GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS",
 ]);
@@ -20,6 +20,55 @@ function resourceTypeFor(endpoint: string, kind: "fetch" | "xhr" | "rest"): Obse
   if (/graphql|\/gql(?:\/|\?|$)/i.test(endpoint)) return "graphql";
   if (/\/_next\/data\/|\.json(?:[?#]|$)/i.test(endpoint)) return "static-json";
   return kind;
+}
+
+/** Turns minified string concatenation into a readable endpoint template. */
+function concatExpressionToTemplate(expression: string): string | null {
+  const stringParts = Array.from(expression.matchAll(/['"`]([^'"`]*)['"`]/g), (match) => match[1]);
+  if (stringParts.length === 0) return null;
+
+  const firstUrlPart = stringParts.findIndex((part) => part.startsWith("/") || /^https?:\/\//i.test(part));
+  if (firstUrlPart < 0) return null;
+
+  let result = stringParts[firstUrlPart];
+  for (let index = firstUrlPart + 1; index < stringParts.length; index++) {
+    result += `{value}${stringParts[index]}`;
+  }
+  return result || null;
+}
+
+function findFirstCallArguments(content: string, callStart: RegExp): Array<{ firstArgument: string; tail: string }> {
+  const calls: Array<{ firstArgument: string; tail: string }> = [];
+  let start: RegExpExecArray | null;
+
+  while ((start = callStart.exec(content)) !== null) {
+    const argumentStart = callStart.lastIndex;
+    let quote = "";
+    let escaped = false;
+    let depth = 0;
+    let end = argumentStart;
+
+    for (; end < content.length; end++) {
+      const character = content[end];
+      if (quote) {
+        if (escaped) escaped = false;
+        else if (character === "\\") escaped = true;
+        else if (character === quote) quote = "";
+        continue;
+      }
+      if (character === '"' || character === "'" || character === "`") quote = character;
+      else if (character === "(") depth++;
+      else if (character === ")") {
+        if (depth === 0) break;
+        depth--;
+      } else if (character === "," && depth === 0) break;
+    }
+
+    const firstArgument = content.slice(argumentStart, end).trim();
+    if (firstArgument) calls.push({ firstArgument, tail: content.slice(end, end + 700) });
+    callStart.lastIndex = Math.max(callStart.lastIndex, end);
+  }
+  return calls;
 }
 
 export function discoverApis(html: string, scriptsContent: string, targetUrl: string): ObservedApi[] {
@@ -49,7 +98,7 @@ export function discoverApis(html: string, scriptsContent: string, targetUrl: st
       .replace(/\\\//g, "/")
       .replace(/\\u0026/gi, "&")
       .replace(/&amp;/gi, "&")
-      .replace(/[;,)}]+$/, "");
+      .replace(/[;,)+]+$/, "");
 
     if (
       !clean || clean.length > 600 || clean.startsWith("#") ||
@@ -66,9 +115,13 @@ export function discoverApis(html: string, scriptsContent: string, targetUrl: st
       return;
     }
     if (!/^https?:$/.test(resolved.protocol)) return;
+    const baseIsLocal = /^(?:localhost|127\.0\.0\.1|\[::1\])$/i.test(baseUrl.hostname);
+    const resultIsLocal = /^(?:localhost|127\.0\.0\.1|\[::1\])$/i.test(resolved.hostname);
+    if (!baseIsLocal && resultIsLocal) return;
     if (requireApiShape && !API_PATH_RE.test(resolved.pathname) && !/\.json$/i.test(resolved.pathname)) return;
+    if (requireApiShape && /^\/v\d+\/?$/i.test(resolved.pathname)) return;
 
-    const path = `${resolved.pathname}${resolved.search}`;
+    const path = `${resolved.pathname}${resolved.search}`.replace(/%7Bvalue%7D/gi, "{value}");
     const key = `${method}:${resolved.host}:${path}`;
     if (seenKeys.has(key)) return;
     seenKeys.add(key);
@@ -137,6 +190,29 @@ export function discoverApis(html: string, scriptsContent: string, targetUrl: st
   const eventSourceRegex = /\bnew\s+EventSource\s*\(\s*['"`]([^'"`]{1,600})['"`]/gi;
   while ((match = eventSourceRegex.exec(combinedContent)) !== null) {
     addApi(match[1], "fetch", "GET", "script-analysis", "EventSource stream");
+  }
+
+  // Minified API clients commonly hide endpoints behind a small wrapper:
+  // `return a("/cars/models/".concat(id, "/prices"), options)`.
+  const wrappedRequests = findFirstCallArguments(
+    scriptsContent,
+    /(?:return|await)\s+[$A-Z_a-z][$\w]{0,5}\s*\(\s*/g
+  );
+  for (const request of wrappedRequests) {
+    const endpoint = concatExpressionToTemplate(request.firstArgument);
+    if (!endpoint || !endpoint.startsWith("/")) continue;
+    const method = requestMethod(request.tail.match(/\bmethod\s*:\s*['"`]([A-Z]+)['"`]/i)?.[1], "GET");
+    addApi(endpoint, "fetch", method, "script-analysis", "Client API wrapper request");
+  }
+
+  // Reconstruct direct fetch calls whose URL is built with String.concat().
+  const concatenatedFetches = findFirstCallArguments(scriptsContent, /\bfetch\s*\(\s*/g);
+  for (const request of concatenatedFetches) {
+    if (!request.firstArgument.includes(".concat(")) continue;
+    const endpoint = concatExpressionToTemplate(request.firstArgument);
+    if (!endpoint || (!endpoint.startsWith("/") && !endpoint.startsWith("http"))) continue;
+    const method = requestMethod(request.tail.match(/\bmethod\s*:\s*['"`]([A-Z]+)['"`]/i)?.[1], "GET");
+    addApi(endpoint, "fetch", method, "script-analysis", "fetch() concatenated request");
   }
 
   // Explicit API-looking URL literals that may be passed through a wrapper.
