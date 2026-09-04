@@ -6,7 +6,7 @@
 import { ObservedApi } from "@/src/lib/website-xray/types";
 
 const STATIC_ASSET_RE = /\.(?:avif|bmp|css|eot|gif|ico|jpe?g|m4a|map|mp3|mp4|ogg|otf|pdf|png|svg|ttf|webm|webp|woff2?)(?:[?#]|$)/i;
-const API_PATH_RE = /(?:^|\/)(?:api|_api|api-v\d+|rest|ajax|graphql|gql|trpc|rpc|wp-json|services?|gateway|backend)(?:\/|\?|$)/i;
+const API_PATH_RE = /^\/(?:api|_api|api-v\d+|rest|ajax|graphql|gql|trpc|rpc|wp-json|services?|gateway|backend)(?:\/|\?|$)/i;
 const HTTP_METHODS = new Set<ObservedApi["method"]>([
   "GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS",
 ]);
@@ -118,7 +118,9 @@ export function discoverApis(html: string, scriptsContent: string, targetUrl: st
     const baseIsLocal = /^(?:localhost|127\.0\.0\.1|\[::1\])$/i.test(baseUrl.hostname);
     const resultIsLocal = /^(?:localhost|127\.0\.0\.1|\[::1\])$/i.test(resolved.hostname);
     if (!baseIsLocal && resultIsLocal) return;
-    if (requireApiShape && !API_PATH_RE.test(resolved.pathname) && !/\.json$/i.test(resolved.pathname)) return;
+    const apiHost = /^(?:api|backend|gateway|graphql|gql|services?)\./i.test(resolved.hostname);
+    const knownDataFile = /\.json$/i.test(resolved.pathname) && !/(?:^|\/)manifest\.json$/i.test(resolved.pathname);
+    if (requireApiShape && !apiHost && !API_PATH_RE.test(resolved.pathname) && !knownDataFile) return;
     if (requireApiShape && /^\/v\d+\/?$/i.test(resolved.pathname)) return;
 
     const path = `${resolved.pathname}${resolved.search}`.replace(/%7Bvalue%7D/gi, "{value}");

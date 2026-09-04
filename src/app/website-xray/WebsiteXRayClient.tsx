@@ -174,7 +174,9 @@ export const WebsiteXRayClient: React.FC = () => {
               <XRayInfrastructureSection infrastructure={result.infrastructure} />
             )}
 
-            {activeTab === "apis" && <XRayApiSection apis={result.apis} />}
+            {activeTab === "apis" && (
+              <XRayApiSection apis={result.apis} targetHostname={result.target.hostname} />
+            )}
 
             {activeTab === "third-party" && (
               <XRayThirdPartySection services={result.thirdPartyServices} />

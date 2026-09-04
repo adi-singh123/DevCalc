@@ -6,11 +6,12 @@ import { Network, Search, Copy, Check, ShieldCheck, Globe, Database, Sparkles, L
 
 interface XRayApiSectionProps {
   apis: ObservedApi[];
+  targetHostname: string;
 }
 
-export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
+export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis, targetHostname }) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedType, setSelectedType] = useState<string>("all");
+  const [selectedType, setSelectedType] = useState<string>("page-data");
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const handleCopy = (id: string, text: string) => {
@@ -35,6 +36,18 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
     }
   };
 
+  const isFirstParty = (api: ObservedApi) => {
+    const targetRoot = targetHostname.toLowerCase().replace(/^www\./, "");
+    const apiHost = api.host.toLowerCase().split(":")[0];
+    return apiHost === targetRoot || apiHost === `www.${targetRoot}` || apiHost.endsWith(`.${targetRoot}`);
+  };
+
+  const isPageDataApi = (api: ObservedApi) =>
+    api.source === "live-request" &&
+    isFirstParty(api) &&
+    !/^(?:\/_next\/|\/manifest\.json$)/i.test(api.path) &&
+    !/[?&]_rsc=/i.test(api.path);
+
   const filteredApis = useMemo(() => {
     return apis.filter((api) => {
       const matchesSearch =
@@ -45,8 +58,10 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
 
       if (!matchesSearch) return false;
 
+      if (selectedType === "page-data") return isPageDataApi(api);
       if (selectedType === "all") return true;
       if (selectedType === "live") return api.source === "live-request";
+      if (selectedType === "code") return api.source !== "live-request";
       if (selectedType === "write") return ["POST", "PUT", "PATCH", "DELETE"].includes(api.method);
       if (selectedType === "rest") return api.resourceType === "rest";
       if (selectedType === "cdn-transform") return api.resourceType === "cdn-transform";
@@ -58,12 +73,14 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
       if (selectedType === "fetch") return api.resourceType === "fetch" || api.resourceType === "xhr";
       return true;
     });
-  }, [apis, searchQuery, selectedType]);
+  }, [apis, searchQuery, selectedType, targetHostname]);
 
   const typeCounts = useMemo(() => {
     return {
       all: apis.length,
+      "page-data": apis.filter(isPageDataApi).length,
       live: apis.filter((a) => a.source === "live-request").length,
+      code: apis.filter((a) => a.source !== "live-request").length,
       write: apis.filter((a) => ["POST", "PUT", "PATCH", "DELETE"].includes(a.method)).length,
       rest: apis.filter((a) => a.resourceType === "rest").length,
       "cdn-transform": apis.filter((a) => a.resourceType === "cdn-transform").length,
@@ -74,7 +91,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
       graphql: apis.filter((a) => a.resourceType === "graphql").length,
       fetch: apis.filter((a) => a.resourceType === "fetch" || a.resourceType === "xhr").length,
     };
-  }, [apis]);
+  }, [apis, targetHostname]);
 
   if (apis.length === 0) {
     return (
@@ -110,9 +127,9 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
           </div>
           <div>
             <h3 className="text-lg font-bold text-[#26364a] dark:text-white flex items-center gap-2">
-              Discovered APIs & Dynamic Endpoints
+              APIs Used by This Page
               <span className="px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-950/80 dark:text-indigo-300 dark:border-indigo-500/30 text-xs font-semibold">
-                {apis.length} Found
+                {typeCounts["page-data"]} Page Data
               </span>
               {typeCounts.live > 0 && (
                 <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/80 dark:text-emerald-300 dark:border-emerald-500/30 text-xs font-semibold">
@@ -121,7 +138,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
               )}
             </h3>
             <p className="text-xs text-stone-500 dark:text-slate-400">
-              Request calls found in the page and its client bundles. Runtime-only requests may require browser interaction and cannot be confirmed by a static scan.
+              First-party XHR and fetch requests observed while loading this page. Tracking calls and URL strings found only in code are separated below.
             </p>
           </div>
         </div>
@@ -142,14 +159,14 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
       {/* Category Tabs */}
       <div className="flex flex-wrap items-center gap-1.5 border-b border-stone-200 dark:border-slate-800/80 pb-3 text-xs">
         <button
-          onClick={() => setSelectedType("all")}
+          onClick={() => setSelectedType("page-data")}
           className={`px-3 py-1 rounded-lg font-medium transition-all ${
-            selectedType === "all"
+            selectedType === "page-data"
               ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
               : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
           }`}
         >
-          All ({typeCounts.all})
+          Page Data ({typeCounts["page-data"]})
         </button>
         {typeCounts.live > 0 && (
           <button
@@ -163,6 +180,28 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
             Observed Live ({typeCounts.live})
           </button>
         )}
+        {typeCounts.code > 0 && (
+          <button
+            onClick={() => setSelectedType("code")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+              selectedType === "code"
+                ? "bg-amber-600 text-white shadow-xs"
+                : "bg-amber-50 text-amber-700 hover:bg-amber-100 dark:bg-amber-950/60 dark:text-amber-300"
+            }`}
+          >
+            Found in Code ({typeCounts.code})
+          </button>
+        )}
+        <button
+          onClick={() => setSelectedType("all")}
+          className={`px-3 py-1 rounded-lg font-medium transition-all ${
+            selectedType === "all"
+              ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
+              : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+          }`}
+        >
+          All Evidence ({typeCounts.all})
+        </button>
         {typeCounts.write > 0 && (
           <button
             onClick={() => setSelectedType("write")}
@@ -277,7 +316,9 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
       <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
         {filteredApis.length === 0 ? (
           <div className="p-6 text-center text-xs text-stone-500 dark:text-slate-400 bg-stone-50 dark:bg-slate-950/60 rounded-xl border border-stone-200 dark:border-slate-800">
-            No endpoints match your active search or filter tab.
+            {selectedType === "page-data"
+              ? "No first-party data API was observed during page load. The visible content may be server-rendered or require interaction."
+              : "No endpoints match your active search or filter tab."}
           </div>
         ) : (
           filteredApis.map((api) => (
@@ -304,6 +345,13 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
                 </div>
 
                 <div className="flex items-center gap-1.5">
+                  <span className={`px-2 py-0.5 rounded border text-[10px] font-sans font-semibold ${
+                    api.source === "live-request"
+                      ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800"
+                      : "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800"
+                  }`}>
+                    {api.source === "live-request" ? "Observed" : "Code reference"}
+                  </span>
                   {api.status && (
                     <span className="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 text-stone-600 dark:text-slate-400 text-[10px] font-sans font-semibold">
                       {api.status}{api.durationMs ? ` · ${api.durationMs}ms` : ""}
