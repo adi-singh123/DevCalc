@@ -32,6 +32,7 @@ const TIMEOUT_MS = 12000;
 const SCRIPT_TIMEOUT_MS = 3500;
 const MAX_BODY_BYTES = 2 * 1024 * 1024; // 2 MB
 const MAX_SCRIPT_BYTES = 600 * 1024; // 600 KB per script
+const MAX_SCRIPT_COUNT = 15;
 
 const BROWSER_HEADERS = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 (compatible; DevCalc-XRayBot/1.0; +https://devcalc.in/website-x-ray)",
@@ -63,15 +64,19 @@ async function fetchFirstPartyScripts(html: string, baseUrl: string): Promise<st
 
       try {
         const resolved = new URL(src, base);
-        // Only fetch first-party or CDN assets on the same root domain or relative paths
-        const isSameDomain = resolved.hostname === base.hostname || resolved.hostname.endsWith(`.${base.hostname}`);
+        // Include sibling asset hosts (for example, www.example.com -> static.example.com).
+        const rootDomain = base.hostname.replace(/^www\./i, "");
+        const isSameDomain =
+          resolved.hostname === base.hostname ||
+          resolved.hostname === rootDomain ||
+          resolved.hostname.endsWith(`.${rootDomain}`);
         const isAppBundle = resolved.pathname.includes("/_next/") || 
                             resolved.pathname.includes("/static/") || 
                             resolved.pathname.includes("/assets/") || 
                             resolved.pathname.includes("/js/") ||
                             resolved.pathname.includes("/build/");
 
-        if ((isSameDomain || isAppBundle) && resolved.pathname.endsWith(".js")) {
+        if (isSameDomain && isAppBundle && resolved.pathname.endsWith(".js")) {
           if (!scriptUrls.includes(resolved.toString())) {
             scriptUrls.push(resolved.toString());
           }
@@ -80,7 +85,7 @@ async function fetchFirstPartyScripts(html: string, baseUrl: string): Promise<st
         continue;
       }
 
-      if (scriptUrls.length >= 5) break;
+      if (scriptUrls.length >= MAX_SCRIPT_COUNT) break;
     }
 
     if (scriptUrls.length === 0) return "";

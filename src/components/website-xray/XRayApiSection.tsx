@@ -46,6 +46,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
       if (!matchesSearch) return false;
 
       if (selectedType === "all") return true;
+      if (selectedType === "write") return ["POST", "PUT", "PATCH", "DELETE"].includes(api.method);
       if (selectedType === "rest") return api.resourceType === "rest";
       if (selectedType === "cdn-transform") return api.resourceType === "cdn-transform";
       if (selectedType === "query") return api.resourceType === "discovered-endpoint";
@@ -61,6 +62,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
   const typeCounts = useMemo(() => {
     return {
       all: apis.length,
+      write: apis.filter((a) => ["POST", "PUT", "PATCH", "DELETE"].includes(a.method)).length,
       rest: apis.filter((a) => a.resourceType === "rest").length,
       "cdn-transform": apis.filter((a) => a.resourceType === "cdn-transform").length,
       query: apis.filter((a) => a.resourceType === "discovered-endpoint").length,
@@ -112,7 +114,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
               </span>
             </h3>
             <p className="text-xs text-stone-500 dark:text-slate-400">
-              Discovered REST APIs, CDN transformation endpoints, dynamic comparison routes, and structured data feeds
+              Request calls found in the page and its client bundles. Runtime-only requests may require browser interaction and cannot be confirmed by a static scan.
             </p>
           </div>
         </div>
@@ -142,6 +144,18 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis }) => {
         >
           All ({typeCounts.all})
         </button>
+        {typeCounts.write > 0 && (
+          <button
+            onClick={() => setSelectedType("write")}
+            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+              selectedType === "write"
+                ? "bg-[#26364a] text-white dark:bg-indigo-600 dark:text-white shadow-xs"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200/70 dark:bg-slate-800 dark:text-slate-400"
+            }`}
+          >
+            Write APIs ({typeCounts.write})
+          </button>
+        )}
         {typeCounts.rest > 0 && (
           <button
             onClick={() => setSelectedType("rest")}

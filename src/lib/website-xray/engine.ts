@@ -52,7 +52,7 @@ export async function runXRayScan(rawUrl: string, forceFresh = false): Promise<X
   const technologies = detectTechnologies(httpResult.html, httpResult.rawHeaders, httpResult.headers);
   const infrastructure = detectInfrastructure(httpResult.rawHeaders, dnsResult, tlsResult);
   const thirdPartyServices = detectThirdPartyServices(httpResult.html);
-  const apis = discoverApis(httpResult.html, httpResult.scriptsContent || "", finalParsed.hostname);
+  const apis = discoverApis(httpResult.html, httpResult.scriptsContent || "", finalParsed.toString());
   const security = auditSecurity(httpResult.rawHeaders, finalParsed.protocol === "https:");
   const seo = auditSeo(httpResult.html);
 
