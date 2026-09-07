@@ -46,7 +46,7 @@ export const TopicProgress: React.FC<Props> = memo(({ progress }) => {
 
       {/* Stage list */}
       <div className="space-y-2.5">
-        {STAGE_ORDER.map((stage, idx) => {
+        {STAGE_ORDER.map((stage) => {
           const stageData = progress.stages[stage];
           const isCompleted = stageData?.isCompleted ?? false;
           const isCurrent = progress.currentStage === stage;

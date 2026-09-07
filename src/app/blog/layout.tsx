@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   ),
 
   title: {
-    default: "DevCalc Blog",
+    default: "Calculator Guides & Tutorials",
     template: "%s | DevCalc",
   },
 

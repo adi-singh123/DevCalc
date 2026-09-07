@@ -3,33 +3,23 @@
 import { useMemo, useState } from "react";
 import ResultsSection from "../ResultsSection";
 
+function gcd(a: number, b: number): number {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
+  }
+  return Math.abs(a);
+}
+
+function lcm(a: number, b: number): number {
+  return Math.abs(a * b) / gcd(a, b);
+}
+
 export default function LCMCalculator() {
   const [numbers, setNumbers] =
     useState("");
 
   const [submitted, setSubmitted] =
     useState(false);
-
-  const gcd = (
-    a: number,
-    b: number,
-  ): number => {
-    while (b !== 0) {
-      [a, b] = [b, a % b];
-    }
-
-    return Math.abs(a);
-  };
-
-  const lcm = (
-    a: number,
-    b: number,
-  ): number => {
-    return (
-      Math.abs(a * b) /
-      gcd(a, b)
-    );
-  };
 
   const result = useMemo(() => {
     if (!submitted || !numbers) {

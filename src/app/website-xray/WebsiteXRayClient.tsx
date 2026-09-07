@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { XRayScanResult, ScanResponsePayload } from "@/src/lib/website-xray/types";
 import { XRayScannerForm } from "@/src/components/website-xray/XRayScannerForm";
@@ -44,16 +44,11 @@ export const WebsiteXRayClient: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<XRayScanResult | null>(null);
   const [activeTab, setActiveTab] = useState<ActiveTab>("overview");
+  const autoScannedUrl = useRef<string | null>(null);
 
   const queryUrl = searchParams.get("url");
 
-  useEffect(() => {
-    if (queryUrl && !result && !isLoading) {
-      handleScan(queryUrl);
-    }
-  }, [queryUrl]);
-
-  const handleScan = async (targetUrl: string, forceFresh = false) => {
+  const handleScan = useCallback(async (targetUrl: string, forceFresh = false) => {
     setIsLoading(true);
     setError(null);
 
@@ -81,7 +76,19 @@ export const WebsiteXRayClient: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    if (
+      queryUrl &&
+      autoScannedUrl.current !== queryUrl &&
+      !result &&
+      !isLoading
+    ) {
+      autoScannedUrl.current = queryUrl;
+      void handleScan(queryUrl);
+    }
+  }, [handleScan, isLoading, queryUrl, result]);
 
   const tabs: Array<{ id: ActiveTab; label: string; icon: React.ReactNode; count?: number }> = [
     { id: "overview", label: "Overview", icon: <LayoutGrid className="w-3.5 h-3.5" /> },
@@ -114,6 +121,7 @@ export const WebsiteXRayClient: React.FC = () => {
     <div className="space-y-8">
       {/* Scanner Input Form */}
       <XRayScannerForm
+        key={queryUrl || "empty"}
         onScan={handleScan}
         isLoading={isLoading}
         initialUrl={queryUrl || ""}

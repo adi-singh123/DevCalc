@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Sparkles, Bot, Building2, Car, ArrowRight, Code2, CheckCircle2 } from "lucide-react";
+import { Sparkles, Bot, Building2, Car, ArrowRight, Code2 } from "lucide-react";
 
 export default function ServicesAndFeaturedSection() {
   return (

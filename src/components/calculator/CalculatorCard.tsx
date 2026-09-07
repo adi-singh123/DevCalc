@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getCalcIcon } from "./categoryMeta";
+import { CalculatorIcon } from "./categoryMeta";
 
 type Props = {
   calculator: {
@@ -12,8 +12,6 @@ type Props = {
 };
 
 export default function CalculatorCard({ calculator }: Props) {
-  const Icon = getCalcIcon(calculator.slug, calculator.category);
-
   return (
     <Link
       href={`/${calculator.slug}`}
@@ -48,7 +46,12 @@ export default function CalculatorCard({ calculator }: Props) {
       {/* Icon + category label */}
       <div className="flex items-center justify-between">
         <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#1f3a5c]/15 bg-white text-[#1f3a5c] shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-blue-400">
-          <Icon size={22} strokeWidth={1.75} />
+          <CalculatorIcon
+            slug={calculator.slug}
+            category={calculator.category}
+            size={22}
+            strokeWidth={1.75}
+          />
         </div>
         <span className="text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-stone-500 dark:text-slate-400">
           {calculator.category}

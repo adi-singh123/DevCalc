@@ -6,7 +6,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { InterviewQuiz } from "@/src/components/interview/InterviewQuiz";
 import { StageLocked } from "@/src/components/interview/StageLocked";
 import { QuizResult } from "@/src/components/interview/QuizResult";
@@ -19,38 +19,11 @@ import {
   getNextStage,
   saveStageCompletion,
 } from "@/src/lib/interview/interview-progress";
-import {
+import type {
   InterviewStage,
   InterviewQuestion,
   InterviewProgress,
 } from "@/src/types/interview";
-
-import { javascriptQuestions } from "@/src/data/interview/javascript/javascript";
-import { reactQuestions } from "@/src/data/interview/react/react";
-import { nodeQuestions } from "@/src/data/interview/nodeJS/node";
-import { sqlQuestions } from "@/src/data/interview/sql/sql";
-import { typescriptQuestions } from "@/src/data/interview/typescript/typescript";
-import { cppQuestions } from "@/src/data/interview/C++/c++";
-import { htmlQuestions } from "@/src/data/interview/html/html";
-import { javaQuestions } from "@/src/data/interview/java/java";
-import { phpQuestions } from "@/src/data/interview/php/php";
-import { nextjsQuestions } from "@/src/data/interview/nextjs/next";
-import { goQuestions} from "@/src/data/interview/go/golang";
-import { pythonQuestions } from "@/src/data/interview/python/python";
-const MOCK_DB: Record<string, InterviewQuestion[]> = {
-  javascript: javascriptQuestions,
-  react: reactQuestions,
-  node: nodeQuestions,
-  sql: sqlQuestions,
-  typescript: typescriptQuestions,
-  cpp: cppQuestions,
-  html:htmlQuestions,
-  java:javaQuestions,
-  php:phpQuestions,
-  nextjs:nextjsQuestions,
-  go:goQuestions,
-  python:pythonQuestions,
-};
 
 const STAGE_ORDER: InterviewStage[] = [
   "Beginner",
@@ -68,9 +41,16 @@ interface QuizResultData {
 interface Props {
   slug: string;
   stage: string;
+  topicTitle: string;
+  questions: InterviewQuestion[];
 }
 
-export default function StageQuizClient({ slug, stage }: Props) {
+export default function StageQuizClient({
+  slug,
+  stage,
+  topicTitle,
+  questions,
+}: Props) {
   const router = useRouter();
 
   const normalizedStage = (
@@ -94,12 +74,6 @@ export default function StageQuizClient({ slug, stage }: Props) {
 
   const isLocked = !checkStageAccess(normalizedStage, userProgress);
 
-  const questions = (MOCK_DB[slug] ?? []).filter(
-    (q) => q.stage.toLowerCase() === stage.toLowerCase(),
-  );
-
-  const topicTitle = slug.charAt(0).toUpperCase() + slug.slice(1);
-
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950">
@@ -112,8 +86,6 @@ export default function StageQuizClient({ slug, stage }: Props) {
       </div>
     );
   }
-
-  if (questions.length === 0) return notFound();
 
   // ── Handlers ────────────────────────────────────────────────────────────
 
@@ -197,9 +169,9 @@ export default function StageQuizClient({ slug, stage }: Props) {
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-1">
               {topicTitle}
             </p>
-            <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white capitalize">
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white capitalize">
               {normalizedStage} Interview Quiz
-            </h1>
+            </h2>
           </header>
         )}
 

@@ -10,17 +10,11 @@ import InteractiveFaq from "@/src/components/common/InteractiveFaq";
 import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
 import Breadcrumbs from "@/src/components/seo/Breadcrumb";
 import {
-  Building2,
   Calendar,
   CheckCircle2,
   ExternalLink,
-  FileText,
-  Info,
   MapPin,
-  Percent,
   ShieldAlert,
-  Sparkles,
-  ArrowRight,
 } from "lucide-react";
 
 export async function generateStaticParams() {
@@ -105,11 +99,6 @@ export default async function StampDutyStatePage({
   if (!state) {
     notFound();
   }
-
-  // Related states
-  const relatedStates = STAMP_DUTY_STATES.filter((s) =>
-    state.relatedStateSlugs.includes(s.slug)
-  );
 
   // Structured Data (JSON-LD)
   const faqSchema = {

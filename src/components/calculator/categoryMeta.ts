@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import {
   Calculator,
   Calendar,
@@ -30,6 +31,7 @@ import {
   Hash,
   Gift,
   Heart,
+  type LucideProps,
   type LucideIcon,
 } from "lucide-react";
 
@@ -83,6 +85,15 @@ export function getCalcIcon(slug: string, category: string): LucideIcon {
     CATEGORY_ICONS[category?.toLowerCase()] ??
     Calculator
   );
+}
+
+export function CalculatorIcon({
+  slug,
+  category,
+  ...props
+}: LucideProps & { slug: string; category: string }) {
+  const Icon = SLUG_ICONS[slug] ?? CATEGORY_ICONS[category.toLowerCase()] ?? Calculator;
+  return createElement(Icon, props);
 }
 
 // Icon for a category tile (keyed by category slug or name).

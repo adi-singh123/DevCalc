@@ -3,7 +3,7 @@
  * Helper functions for interview logic, scoring, and formatting.
  */
 
-import { InterviewStage, InterviewResult } from '@/src/types/interview';
+import type { InterviewQuestion, InterviewStage } from '@/src/types/interview';
 import { STAGES, PASSING_PERCENTAGE } from './constants';
 
 export const getNextStage = (current: InterviewStage): InterviewStage | null => {
@@ -24,7 +24,7 @@ export const calculatePass = (score: number, total: number): boolean => {
   return calculatePercentage(score, total) >= PASSING_PERCENTAGE;
 };
 
-export const calculateScore = (userAnswers: Record<string, string>, questions: any[]): number => {
+export const calculateScore = (userAnswers: Record<string, string>, questions: InterviewQuestion[]): number => {
   return questions.reduce((acc, q) => {
     return userAnswers[q.id] === q.correctAnswer ? acc + 1 : acc;
   }, 0);

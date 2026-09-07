@@ -11,7 +11,6 @@ import React, {
   useEffect,
   useCallback,
   useMemo,
-  useRef,
 } from 'react';
 import { InterviewQuestion, InterviewStage } from '@/src/types/interview';
 import { QuestionCard } from './QuestionCard';
@@ -20,7 +19,7 @@ import { ProgressBar } from './ProgressBar';
 import { Timer } from './Timer';
 import { WrongAnswers } from './WrongAnswers';
 import { saveStageCompletion } from '@/src/lib/interview/interview-progress';
-import { ChevronLeft, ChevronRight, Flag, X, AlertCircle, Clock } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Flag, X, AlertCircle } from 'lucide-react';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -415,9 +414,11 @@ export const InterviewQuiz: React.FC<Props> = ({
     if (!currentQuestion) return;
     setFlagged((prev) => {
       const next = new Set(prev);
-      next.has(currentQuestion.id)
-        ? next.delete(currentQuestion.id)
-        : next.add(currentQuestion.id);
+      if (next.has(currentQuestion.id)) {
+        next.delete(currentQuestion.id);
+      } else {
+        next.add(currentQuestion.id);
+      }
       return next;
     });
   }, [currentQuestion]);

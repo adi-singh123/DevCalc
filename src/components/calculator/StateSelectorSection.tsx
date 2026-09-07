@@ -1,5 +1,5 @@
 ﻿import Link from "next/link";
-import { ArrowRight, MapPin, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import { STAMP_DUTY_STATES } from "@/src/data/states/stamp-duty-states";
 import { ROAD_TAX_STATES } from "@/src/data/states/road-tax-states";
 
@@ -60,6 +60,14 @@ export default function StateSelectorSection({
         {states.map((state) => {
           const isCurrent = state.slug === currentStateSlug;
           const href = `${baseUrl}/${state.slug}`;
+          const primaryRate =
+            "stampDutyMale" in state
+              ? state.stampDutyMale.split(",")[0]
+              : state.petrolCarRate.split("(")[0];
+          const secondaryRate =
+            "registrationCharge" in state
+              ? state.registrationCharge.split("(")[0]
+              : state.evStatus.split("under")[0];
 
           return (
             <Link
@@ -94,22 +102,22 @@ export default function StateSelectorSection({
                     <>
                       <p>
                         <strong className="text-slate-800 dark:text-slate-200">Rate:</strong>{" "}
-                        {(state as any).stampDutyMale.split(",")[0]}
+                        {primaryRate}
                       </p>
                       <p>
                         <strong className="text-slate-800 dark:text-slate-200">Reg. Fee:</strong>{" "}
-                        {(state as any).registrationCharge.split("(")[0]}
+                        {secondaryRate}
                       </p>
                     </>
                   ) : (
                     <>
                       <p>
                         <strong className="text-slate-800 dark:text-slate-200">Petrol Car:</strong>{" "}
-                        {(state as any).petrolCarRate.split("(")[0]}
+                        {primaryRate}
                       </p>
                       <p>
                         <strong className="text-slate-800 dark:text-slate-200">EV Status:</strong>{" "}
-                        {(state as any).evStatus.split("under")[0]}
+                        {secondaryRate}
                       </p>
                     </>
                   )}

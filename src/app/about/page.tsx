@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About DevCalc – Free Calculators Built by Aditya Singh",
+  title: "About Us – Free Calculators Built by Aditya Singh",
   keywords: [
   "About DevCalc",
   "DevCalc platform",

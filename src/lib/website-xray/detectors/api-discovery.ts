@@ -39,9 +39,7 @@ function concatExpressionToTemplate(expression: string): string | null {
 
 function findFirstCallArguments(content: string, callStart: RegExp): Array<{ firstArgument: string; tail: string }> {
   const calls: Array<{ firstArgument: string; tail: string }> = [];
-  let start: RegExpExecArray | null;
-
-  while ((start = callStart.exec(content)) !== null) {
+  while (callStart.exec(content) !== null) {
     const argumentStart = callStart.lastIndex;
     let quote = "";
     let escaped = false;
@@ -92,7 +90,7 @@ export function discoverApis(html: string, scriptsContent: string, targetUrl: st
     initiator: string,
     requireApiShape = false
   ) => {
-    let clean = endpoint
+    const clean = endpoint
       .trim()
       .replace(/^['"`]|['"`]$/g, "")
       .replace(/\\\//g, "/")

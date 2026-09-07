@@ -51,7 +51,7 @@ export async function runXRayScan(rawUrl: string, forceFresh = false): Promise<X
   const tlsResult = await scanTls(finalParsed.hostname, finalParsed.port ? parseInt(finalParsed.port) : 443);
 
   // Run all detectors with combined HTML and bundled script texts
-  const technologies = detectTechnologies(httpResult.html, httpResult.rawHeaders, httpResult.headers);
+  const technologies = detectTechnologies(httpResult.html, httpResult.rawHeaders);
   const infrastructure = detectInfrastructure(httpResult.rawHeaders, dnsResult, tlsResult);
   const thirdPartyServices = detectThirdPartyServices(httpResult.html);
   const discoveredApis = discoverApis(httpResult.html, httpResult.scriptsContent || "", finalParsed.toString());

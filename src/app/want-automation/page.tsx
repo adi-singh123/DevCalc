@@ -4,23 +4,16 @@ import InteractiveFaq from "@/src/components/common/InteractiveFaq";
 import {
   Bot,
   Terminal,
-  Cpu,
-  Layers,
   PhoneCall,
   MessageSquare,
   Sparkles,
-  CheckCircle2,
   FileSpreadsheet,
   Globe,
-  Database,
   ShieldCheck,
   Zap,
   Clock,
   Code2,
   Workflow,
-  HelpCircle,
-  BarChart3,
-  Search,
 } from "lucide-react";
 
 export const metadata: Metadata = {

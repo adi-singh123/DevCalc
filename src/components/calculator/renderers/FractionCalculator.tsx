@@ -9,6 +9,10 @@ type Operation =
   | "multiply"
   | "divide";
 
+function gcd(a: number, b: number): number {
+  return b === 0 ? Math.abs(a) : gcd(b, a % b);
+}
+
 export default function FractionCalculator() {
   const [numerator1, setNumerator1] =
     useState("");
@@ -27,15 +31,6 @@ export default function FractionCalculator() {
 
   const [submitted, setSubmitted] =
     useState(false);
-
-  const gcd = (
-    a: number,
-    b: number,
-  ): number => {
-    return b === 0
-      ? Math.abs(a)
-      : gcd(b, a % b);
-  };
 
   const result = useMemo(() => {
     if (

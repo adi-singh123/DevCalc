@@ -29,7 +29,7 @@ export default function NotFound() {
         Page Not Found
       </h2>
       <p className="mt-4 max-w-xl text-lg text-slate-600 dark:text-slate-400">
-        The page you're looking for doesn't exist, may have been moved, or the
+        The page you&apos;re looking for doesn&apos;t exist, may have been moved, or the
         URL might be incorrect.
       </p>
       <div className="mt-10 flex flex-wrap justify-center gap-4">

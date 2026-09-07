@@ -4,6 +4,19 @@ import type { calculators } from "@/src/data/calculators";
 // one place (calculators.ts) that defines the shape.
 type Calculator = (typeof calculators)[number];
 
+function getRelatedCalculatorName(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (
+    typeof value === "object" &&
+    value !== null &&
+    "name" in value &&
+    typeof value.name === "string"
+  ) {
+    return value.name;
+  }
+  return "related calculator";
+}
+
 /**
  * Builds a calculator-specific intro from use cases and related
  * calculators already in the data. Deliberately does NOT repeat
@@ -44,13 +57,12 @@ export function getCalculatorIntro(calculator: Calculator): string {
 
   // 2. Related calculators
   if (compareWith.length === 1) {
-    const name =
-      typeof compareWith[0] === "string" ? compareWith[0] : (compareWith[0] as any).name;
+    const name = getRelatedCalculatorName(compareWith[0]);
     parts.push(
       `If you need complementary estimates, explore our ${name}.`
     );
   } else if (compareWith.length > 1) {
-    const names = compareWith.map((c) => (typeof c === "string" ? c : (c as any).name));
+    const names = compareWith.map(getRelatedCalculatorName);
     const last = names[names.length - 1];
     const rest = names.slice(0, -1);
     parts.push(

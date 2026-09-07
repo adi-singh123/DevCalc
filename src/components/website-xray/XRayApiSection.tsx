@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { ObservedApi } from "@/src/lib/website-xray/types";
 import { Network, Search, Copy, Check, ShieldCheck, Globe, Database, Sparkles, Layers, Image as ImageIcon } from "lucide-react";
 
@@ -36,17 +36,17 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis, targetHost
     }
   };
 
-  const isFirstParty = (api: ObservedApi) => {
+  const isFirstParty = useCallback((api: ObservedApi) => {
     const targetRoot = targetHostname.toLowerCase().replace(/^www\./, "");
     const apiHost = api.host.toLowerCase().split(":")[0];
     return apiHost === targetRoot || apiHost === `www.${targetRoot}` || apiHost.endsWith(`.${targetRoot}`);
-  };
+  }, [targetHostname]);
 
-  const isPageDataApi = (api: ObservedApi) =>
+  const isPageDataApi = useCallback((api: ObservedApi) =>
     api.source === "live-request" &&
     isFirstParty(api) &&
     !/^(?:\/_next\/|\/manifest\.json$)/i.test(api.path) &&
-    !/[?&]_rsc=/i.test(api.path);
+    !/[?&]_rsc=/i.test(api.path), [isFirstParty]);
 
   const filteredApis = useMemo(() => {
     return apis.filter((api) => {
@@ -73,7 +73,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis, targetHost
       if (selectedType === "fetch") return api.resourceType === "fetch" || api.resourceType === "xhr";
       return true;
     });
-  }, [apis, searchQuery, selectedType, targetHostname]);
+  }, [apis, searchQuery, selectedType, isPageDataApi]);
 
   const typeCounts = useMemo(() => {
     return {
@@ -91,7 +91,7 @@ export const XRayApiSection: React.FC<XRayApiSectionProps> = ({ apis, targetHost
       graphql: apis.filter((a) => a.resourceType === "graphql").length,
       fetch: apis.filter((a) => a.resourceType === "fetch" || a.resourceType === "xhr").length,
     };
-  }, [apis, targetHostname]);
+  }, [apis, isPageDataApi]);
 
   if (apis.length === 0) {
     return (

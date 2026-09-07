@@ -130,7 +130,7 @@ export default function LoveCalculator() {
       </div>
 
       <div className="mt-4">
-        <label className="mb-2 block font-medium">Partner's Name</label>
+        <label className="mb-2 block font-medium">Partner&apos;s Name</label>
 
         <input
           type="text"

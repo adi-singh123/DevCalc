@@ -13,7 +13,7 @@ import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import WhyChooseDevCalc from '@/src/components/interview/WhyChooseDevCalc';
 import TopCompanies from '@/src/components/interview/TopCompanies';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 // --- Metadata ---
 export const metadata: Metadata = {

@@ -8,7 +8,6 @@ import {
   MessageSquare,
   ShieldCheck,
   Sparkles,
-  Layers,
   Cpu,
   Database,
   Globe,

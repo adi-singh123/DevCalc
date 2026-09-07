@@ -11,14 +11,10 @@ import StateSelectorSection from "@/src/components/calculator/StateSelectorSecti
 import Breadcrumbs from "@/src/components/seo/Breadcrumb";
 import {
   Calendar,
-  Car,
   CheckCircle2,
   ExternalLink,
-  Fuel,
-  Info,
   MapPin,
   ShieldAlert,
-  Zap,
 } from "lucide-react";
 
 export async function generateStaticParams() {

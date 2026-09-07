@@ -126,16 +126,14 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true }, { status: 200 });
 
-} catch (error: any) {
+} catch (error: unknown) {
+  const message = error instanceof Error ? error.message : "Failed to send message.";
   console.error("Contact form error:");
   console.error(error);
-  console.error(error?.message);
-  console.error(error?.response);
-  console.error(error?.code);
 
   return NextResponse.json(
     {
-      error: error?.message || "Failed to send message.",
+      error: message,
     },
     { status: 500 }
   );

@@ -3,6 +3,10 @@
 import { useMemo, useState } from "react";
 import ResultsSection from "../ResultsSection";
 
+function gcd(a: number, b: number): number {
+  return b === 0 ? Math.abs(a) : gcd(b, a % b);
+}
+
 export default function RatioCalculator() {
   const [firstValue, setFirstValue] =
     useState("");
@@ -12,15 +16,6 @@ export default function RatioCalculator() {
 
   const [submitted, setSubmitted] =
     useState(false);
-
-  const gcd = (
-    a: number,
-    b: number,
-  ): number => {
-    return b === 0
-      ? Math.abs(a)
-      : gcd(b, a % b);
-  };
 
   const result = useMemo(() => {
     if (

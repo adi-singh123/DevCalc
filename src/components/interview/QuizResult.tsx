@@ -36,12 +36,6 @@ interface Props {
   slug?: string;
 }
 
-function formatDuration(seconds: number): string {
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return m > 0 ? `${m}m ${s}s` : `${s}s`;
-}
-
 // ── Review Modal ────────────────────────────────────────────────────────────
 
 const ReviewModal: React.FC<{

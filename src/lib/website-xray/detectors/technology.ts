@@ -5,10 +5,9 @@
 
 import { TechnologyDetection } from "../types";
 
-export function detectTechnologies(html: string, headers: Headers, headerMap: Record<string, string>): TechnologyDetection[] {
+export function detectTechnologies(html: string, headers: Headers): TechnologyDetection[] {
   const detections: TechnologyDetection[] = [];
   const lowerHtml = html.toLowerCase();
-  const serverHeader = (headers.get("server") || "").toLowerCase();
   const poweredBy = (headers.get("x-powered-by") || "").toLowerCase();
 
   const add = (tech: TechnologyDetection) => {
@@ -254,4 +253,3 @@ export function detectTechnologies(html: string, headers: Headers, headerMap: Re
 
   return detections;
 }
-

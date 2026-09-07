@@ -4,14 +4,10 @@ import { useState, useMemo } from "react";
 import {
   ArrowLeftRight,
   Check,
-  Clipboard,
   Columns,
   Copy,
   FileCode,
   FileDiff,
-  Minus,
-  Plus,
-  RefreshCw,
   Sparkles,
   Trash2,
 } from "lucide-react";
@@ -588,4 +584,3 @@ export default function DiffChecker() {
     </div>
   );
 }
-

@@ -30,15 +30,8 @@ export const XRayScannerForm: React.FC<XRayScannerFormProps> = ({
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   useEffect(() => {
-    if (initialUrl) {
-      setInputUrl(initialUrl);
-    }
-  }, [initialUrl]);
-
-  useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isLoading) {
-      setCurrentStepIndex(0);
       interval = setInterval(() => {
         setCurrentStepIndex((prev) => (prev < SCAN_STEPS.length - 1 ? prev + 1 : prev));
       }, 750);
@@ -49,6 +42,7 @@ export const XRayScannerForm: React.FC<XRayScannerFormProps> = ({
   const handleSubmit = (e: React.FormEvent, force = false) => {
     e.preventDefault();
     if (!inputUrl.trim()) return;
+    setCurrentStepIndex(0);
     onScan(inputUrl.trim(), force);
   };
 
@@ -149,6 +143,7 @@ export const XRayScannerForm: React.FC<XRayScannerFormProps> = ({
             type="button"
             onClick={() => {
               setInputUrl(target);
+              setCurrentStepIndex(0);
               onScan(target);
             }}
             disabled={isLoading}
