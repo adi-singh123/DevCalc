@@ -17,6 +17,7 @@ import { getCalculatorIntro } from "@/src/lib/seo/generation";
 import CalculatorListByCategory from "@/src/components/calculator/Calculatorlistbycategory";
 import AuthorBio from "@/src/components/common/AuthorBio";
 import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
+import { getCategorySlug } from "@/src/data/categories/Category";
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -88,7 +89,7 @@ export default async function CalculatorPage({ params }: Props) {
           },
           {
             name: calculator.category,
-            url: `/category/${calculator.category.toLowerCase()}`,
+            url: `/category/${getCategorySlug(calculator.category)}`,
           },
           {
             name: calculator.name,
@@ -105,7 +106,7 @@ export default async function CalculatorPage({ params }: Props) {
           },
           {
             label: calculator.category,
-            href: `/category/${calculator.category.toLowerCase()}`,
+            href: `/category/${getCategorySlug(calculator.category)}`,
           },
           {
             label: calculator.name,

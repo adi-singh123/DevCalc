@@ -8,6 +8,7 @@ import { calculators } from "@/src/data/calculators";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import AuthorBio from "@/src/components/common/AuthorBio";
+import { getCategorySlug } from "@/src/data/categories/Category";
 
 type Props = {
   params: Promise<{
@@ -113,7 +114,7 @@ export default async function BlogDetailsPage({ params }: Props) {
           },
           {
             name: blog.category,
-            url: `/category/${blog.category.toLowerCase()}`,
+            url: `/category/${getCategorySlug(blog.category)}`,
           },
           {
             name: blog.title,
@@ -130,7 +131,7 @@ export default async function BlogDetailsPage({ params }: Props) {
           },
           {
             label: blog.category,
-            href: `/category/${blog.category.toLowerCase()}`,
+            href: `/category/${getCategorySlug(blog.category)}`,
           },
           {
             label: blog.title,

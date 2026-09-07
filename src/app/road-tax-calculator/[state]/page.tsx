@@ -42,7 +42,7 @@ export async function generateMetadata({
   const url = `https://www.devcalc.in/road-tax-calculator/${state.slug}`;
 
   return {
-    title: state.metaTitle,
+    title: state.metaTitle.replace(/\s*\|\s*DevCalc\s*$/i, ""),
     description: state.metaDescription,
     keywords: [
       `${state.stateName} road tax calculator`,

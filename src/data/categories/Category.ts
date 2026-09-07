@@ -29,7 +29,7 @@ export const categories = [
   },
   {
     name:"Developer Tools",
-    slug:"developertool"
+    slug:"developer-tools"
   },
   {
   name: "Other",
@@ -40,3 +40,12 @@ export const categories = [
   slug:"vehicle"
 }
 ];
+
+export function getCategorySlug(categoryName: string): string {
+  return (
+    categories.find(
+      (category) =>
+        category.name.toLowerCase() === categoryName.trim().toLowerCase(),
+    )?.slug ?? categoryName.trim().toLowerCase().replace(/\s+/g, "-")
+  );
+}

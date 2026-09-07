@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Custom Software Builds for Students — Web, AI/ML, Mobile & Cloud | DevCalc",
+  title: "Custom Software Builds for Students — Web, AI/ML, Mobile & Cloud",
   description:
     "Custom software development service for students. Web applications, AI/ML models, mobile apps, and cloud systems with a working prototype delivered within 24 hours. Call/WhatsApp: 8081158775.",
   keywords: [
@@ -37,21 +37,24 @@ export const metadata: Metadata = {
     "custom software engineering for students",
   ],
   alternates: {
-    canonical: "https://www.devcalc.in/collegeProject",
+    canonical: "https://www.devcalc.in/college-project",
   },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   openGraph: {
     title: "Custom Software Builds for Students — Web, AI/ML, Mobile & Cloud",
     description:
       "Custom software development service for students across Web, AI/ML, Mobile, and Cloud. Review a working prototype within 24 hours. Call/WhatsApp: 8081158775.",
-    url: "https://www.devcalc.in/collegeProject",
+    url: "https://www.devcalc.in/college-project",
     siteName: "DevCalc",
     locale: "en_IN",
     type: "website",
@@ -224,7 +227,7 @@ export default function CollegeProjectPage() {
     name: "DevCalc Custom Software Development for Students",
     description:
       "Custom software development service for students across Web, AI/ML, Mobile Apps, and Cloud with 24-hour prototype delivery, clean source code, and remote environment setup.",
-    url: "https://www.devcalc.in/collegeProject",
+    url: "https://www.devcalc.in/college-project",
     telephone: "+918081158775",
     priceRange: "₹₹",
     image: "https://www.devcalc.in/logo.png",
@@ -308,7 +311,7 @@ export default function CollegeProjectPage() {
         "@type": "ListItem",
         position: 2,
         name: "Software Builds for Students",
-        item: "https://www.devcalc.in/collegeProject",
+        item: "https://www.devcalc.in/college-project",
       },
     ],
   };

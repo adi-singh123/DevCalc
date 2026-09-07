@@ -12,11 +12,10 @@ export function generateCalculatorMetadata(
   seo: SeoInput,
 ): Metadata {
   const url = `${siteConfig.url}/${seo.slug}`;
-
-  const ogImage = `${siteConfig.url}/og-image.png`; // public/og-image.png
+  const title = seo.title.replace(/\s*\|\s*DevCalc\s*$/i, "");
 
   return {
-    title: seo.title,
+    title,
 
     description: seo.description,
 

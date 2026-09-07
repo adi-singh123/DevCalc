@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Custom Automation & Web Scraping Services | DevCalc",
+  title: "Custom Automation & Web Scraping Services",
   description:
     "Automate any repetitive workflow, web scraping, or testing task with custom Selenium, Playwright, Puppeteer, and Python scripts. Fast 24-48h delivery for businesses & students. Call/WhatsApp: 8081158775.",
   keywords: [

@@ -1,10 +1,12 @@
+import { siteConfig } from "@/src/config/site";
+
 export default function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "DevCalc",
-    url: "https://devcalc.in",
-    logo: "https://devcalc.in/logo.png",
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/logo.png`,
     description:
       "Free online calculators for finance, health, vehicle, education, and everyday calculations.",
   };

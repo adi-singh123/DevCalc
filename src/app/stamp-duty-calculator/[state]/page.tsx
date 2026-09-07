@@ -44,7 +44,7 @@ export async function generateMetadata({
   const url = `https://www.devcalc.in/stamp-duty-calculator/${state.slug}`;
 
   return {
-    title: state.metaTitle,
+    title: state.metaTitle.replace(/\s*\|\s*DevCalc\s*$/i, ""),
     description: state.metaDescription,
     keywords: [
       `${state.stateName} stamp duty calculator`,

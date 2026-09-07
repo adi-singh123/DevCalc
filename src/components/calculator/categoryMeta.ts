@@ -73,7 +73,7 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
   fun: Gift,
   construction: Hammer,
   "developer tools": Code2,
-  developertool: Code2,
+  "developer-tools": Code2,
   other: Building2,
 };
 

@@ -218,7 +218,7 @@ export const CATEGORY_GUIDES: Record<string, CategoryGuide> = {
     ],
   },
 
-  developertool: {
+  "developer-tools": {
     overview:
       "Client-side developer utilities designed for web developers, DevOps engineers, and system architects adhering strictly to IETF (RFC 8259, RFC 4122, RFC 4648, RFC 3986) standards with zero data transmission.",
     subgroups: [
@@ -429,4 +429,3 @@ export const CATEGORY_GUIDES: Record<string, CategoryGuide> = {
     ],
   },
 };
-

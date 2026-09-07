@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Website X-Ray — Technology Stack, CMS, API & Hosting Detector | DevCalc",
+  title: "Website X-Ray — Technology Stack, CMS, API & Hosting Detector",
   description:
     "Free online Website X-Ray scanner. Discover frontend frameworks, CMS, CDN, DNS records, public APIs, SSL certificates, passive security headers, and SEO metrics instantly.",
   keywords: [
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     "devcalc website xray",
   ],
   alternates: {
-    canonical: "https://devcalc.in/website-x-ray",
+    canonical: "https://www.devcalc.in/website-x-ray",
   },
   openGraph: {
     title: "Website X-Ray — Technology Stack, CMS, API & Hosting Detector | DevCalc",
     description:
       "Deep technical intelligence tool to scan observable frontend frameworks, infrastructure, APIs, and passive security headers on any public website.",
-    url: "https://devcalc.in/website-x-ray",
+    url: "https://www.devcalc.in/website-x-ray",
     siteName: "DevCalc",
     type: "website",
   },
@@ -73,7 +73,7 @@ export default function WebsiteXRayPage() {
         operatingSystem: "Web",
         description:
           "Analyze website tech stacks, frameworks, CMS, DNS records, SSL certificates, APIs, and security headers.",
-        url: "https://devcalc.in/website-x-ray",
+        url: "https://www.devcalc.in/website-x-ray",
         author: {
           "@type": "Organization",
           name: "DevCalc",

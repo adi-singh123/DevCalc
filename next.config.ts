@@ -4,6 +4,26 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/website-xray",
+        destination: "https://www.devcalc.in/website-x-ray",
+        permanent: true,
+      },
+      {
+        source: "/category/developer-tool",
+        destination: "https://www.devcalc.in/category/developer-tools",
+        permanent: true,
+      },
+      {
+        source: "/category/developertool",
+        destination: "https://www.devcalc.in/category/developer-tools",
+        permanent: true,
+      },
+      {
+        source: "/collegeProject",
+        destination: "https://www.devcalc.in/college-project",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [
           {
@@ -12,17 +32,6 @@ const nextConfig: NextConfig = {
           },
         ],
         destination: "https://www.devcalc.in/:path*",
-        permanent: true,
-      },
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "devcalc.in",
-          },
-        ],
-        destination: "https://www.devcalc.in/",
         permanent: true,
       },
     ];

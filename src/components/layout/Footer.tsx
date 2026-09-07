@@ -47,7 +47,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link
-                  href="/collegeProject"
+                  href="/college-project"
                   className="font-medium text-emerald-700 transition hover:underline dark:text-emerald-400"
                 >
                   Student Software Builds (24h Prototype)
@@ -172,7 +172,7 @@ export default function Footer() {
             <Link href="/calculators" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Calculators
             </Link>
-            <Link href="/collegeProject" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
+            <Link href="/college-project" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Student Projects
             </Link>
             <Link href="/want-automation" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">

@@ -30,7 +30,7 @@ const NAV_LINKS: NavLink[] = [
     children: [
       {
         label: "Software Builds for Students",
-        href: "/collegeProject",
+        href: "/college-project",
         desc: "Web, AI/ML & Mobile apps with a 24-hour prototype",
       },
       {
@@ -354,7 +354,7 @@ export default function Header() {
                   Explore All Calculators
                 </Link>
                 <Link
-                  href="/collegeProject"
+                  href="/college-project"
                   onClick={closeDrawer}
                   className="block rounded-xl border border-emerald-600 bg-emerald-50 px-4 py-2.5 text-center text-xs font-semibold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-500/50 dark:bg-emerald-950/40 dark:text-emerald-300"
                 >

@@ -27,7 +27,7 @@ export const crushCalculator: Calculator = {
   compareWith: ["love-calculator", "friendship-calculator"],
 
   seo: {
-    title: "Crush Calculator - Check Crush Compatibility by Name",
+    title: "Crush Calculator by Name – Check Compatibility & Match %",
 
     description:
       "Check your compatibility with your crush instantly with our Crush Calculator. Just enter two names to discover your crush percentage, match score, and relationship potential in seconds.",

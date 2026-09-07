@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { calculators } from "@/src/data/calculators";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
+import { getCategorySlug } from "@/src/data/categories/Category";
 
 // SEO-optimized category copy map to dynamically populate descriptions based on context
 const CATEGORY_SEO_DESCRIPTIONS: Record<string, string> = {
@@ -76,7 +77,7 @@ export default function CalculatorCategories() {
             {categoryCalculators.length > 6 && (
               <div className="mt-8 text-center">
                 <Link
-                  href={`/category/${category.toLowerCase()}`}
+                  href={`/category/${getCategorySlug(category)}`}
                   className="
                     inline-flex
                     items-center
