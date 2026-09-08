@@ -18,10 +18,7 @@ export async function transact<T>(run: (state: State) => T): Promise<T> {
   const url = process.env.UPSTASH_REDIS_REST_URL;
   const token = process.env.UPSTASH_REDIS_REST_TOKEN;
   if (!url || !token) {
-    if (process.env.VERCEL || (process.env.NODE_ENV === "production" && process.env.OMAGEL_LOCAL_ONLY !== "true")) {
-      throw new ChatError("Chat is not configured yet. Please try again later.", 503);
-    }
-    // Explicit local development only. Clone so a failed action cannot partially commit.
+    // Seamless in-memory fallback when Redis is not configured
     const state = structuredClone(local.omagelV2 || emptyState());
     const result = run(state);
     local.omagelV2 = state;

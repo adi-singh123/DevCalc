@@ -6,8 +6,23 @@ const url = "https://www.devcalc.in/omagel-mini";
 const title = "Omagel Mini â€“ Random Text & Video Chat for Adults";
 const description = "Start a guest text or video conversation with another adult. Learn how matching, camera permissions, privacy, and reporting work on Omagel Mini by DevCalc.";
 export const metadata: Metadata = {
-  title, description, alternates: { canonical: url },
-  openGraph: { title, description, url, siteName: "DevCalc", type: "website", images: [{ url: "/omagel-mini/opengraph-image", width: 1200, height: 630, alt: "Omagel Mini â€” text and video chat by DevCalc" }] },
+  title,
+  description,
+  alternates: { canonical: url },
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "none",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: { title, description, url, siteName: "DevCalc", type: "website", images: [{ url: "/omagel-mini/opengraph-image", width: 1200, height: 630, alt: "Omagel Mini — text and video chat by DevCalc" }] },
   twitter: { card: "summary_large_image", title, description, images: ["/omagel-mini/opengraph-image"] },
 };
 const faqs = [

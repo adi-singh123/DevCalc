@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/api/",
+        disallow: ["/api/", "/omagel-mini", "/omagel-mini/"],
       },
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
