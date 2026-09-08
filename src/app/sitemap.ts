@@ -58,7 +58,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   return [
-    { url: `${baseUrl}/omagel-mini`, changeFrequency: "monthly", priority: 0.6 },
     {
       url: baseUrl,
       changeFrequency: "daily",

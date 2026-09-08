@@ -1,11 +1,12 @@
 import { randomUUID } from "node:crypto";
+import { defaultProfile, parseProfile, type GuestProfile } from "./profile";
 
 export type Mode = "text" | "video";
 export type SignalKind = "chat-message" | "typing" | "offer" | "answer" | "ice-candidate" | "leave";
 export type Payload = { text?: string; isTyping?: boolean; type?: RTCSdpType; sdp?: string; candidate?: string; sdpMid?: string | null; sdpMLineIndex?: number | null; usernameFragment?: string | null; reason?: string };
 export interface Signal { id: string; sessionId: string; type: SignalKind; payload: Payload; timestamp: number }
 export interface Session { id: string; a: string; b: string; mode: Mode; ended?: number }
-interface Guest { active: number; mode: Mode; interests: string[]; queued: boolean; session?: string; previous?: string }
+interface Guest { active: number; mode: Mode; interests: string[]; queued: boolean; session?: string; previous?: string; profile?: GuestProfile }
 export interface State {
   guests: Record<string, Guest>;
   sessions: Record<string, Session>;
@@ -63,7 +64,7 @@ export function view(s: State, user: string) {
   const session = s.sessions[guest?.session || ""];
   return {
     status: session && !session.ended ? "matched" : guest?.queued ? "queued" : "idle",
-    session: session && !session.ended ? { id: session.id, mode: session.mode, initiator: session.a === user } : null,
+    session: session && !session.ended ? { id: session.id, mode: session.mode, initiator: session.a === user, peerProfile: { ...(s.guests[session.a === user ? session.b : session.a]?.profile || defaultProfile) } } : null,
     onlineUsers: Object.values(s.guests).filter(g => g.queued || g.session).length,
   };
 }
@@ -93,11 +94,14 @@ export function queueAction(s: State, user: string, body: Record<string, unknown
   if (body.acceptedAge !== true) throw new ChatError("You must confirm that you are at least 18.", 403);
   if (body.mode !== "text" && body.mode !== "video") throw new ChatError("Choose text or video chat.");
   const interests = normalizeInterests(body.interests ?? []);
+  let profile: GuestProfile;
+  try { profile = parseProfile(body.profile); }
+  catch (error) { throw new ChatError(error instanceof Error ? error.message : "Invalid chat profile."); }
   const existing = s.guests[user];
   if (existing?.session || existing?.queued) { existing.active = now; return { success: true, ...view(s, user) }; }
   limit(s, "join:" + user, 15, now);
   if (Object.keys(s.guests).length >= 100 && !existing) throw new ChatError("Chat is at capacity. Please try again shortly.", 503);
-  const guest: Guest = { active: now, mode: body.mode, interests, queued: true, previous: existing?.previous };
+  const guest: Guest = { active: now, mode: body.mode, interests, queued: true, previous: existing?.previous, profile };
   s.guests[user] = guest;
   s.inboxes[user] = [];
   const candidates = Object.entries(s.guests).filter(([id, g]) => id !== user && g.queued && g.mode === guest.mode &&

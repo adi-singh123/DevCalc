@@ -10,8 +10,6 @@ export function iceConfiguration(user: string): RTCConfiguration {
     // coturn REST authentication: the shared signing secret never reaches a browser.
     const username = `${Math.floor(Date.now() / 1000) + 3600}:${user.slice(0, 16)}`;
     iceServers.push({ urls, username, credential: createHmac("sha1", secret).update(username).digest("base64") });
-  } else if (process.env.VERCEL || (process.env.NODE_ENV === "production" && process.env.OMAGEL_LOCAL_ONLY !== "true")) {
-    throw new ChatError("Video chat is unavailable right now. Please use Text Chat.", 503);
   }
   return { iceServers };
 }

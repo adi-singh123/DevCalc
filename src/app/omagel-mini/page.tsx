@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import OmagelClient from "@/src/components/omagel-mini/OmagelClient";
 
 const url = "https://www.devcalc.in/omagel-mini";
-const title = "Omagel Mini â€“ Random Text & Video Chat for Adults";
+const title = "Omagel Mini – Random Text & Video Chat for Adults";
 const description = "Start a guest text or video conversation with another adult. Learn how matching, camera permissions, privacy, and reporting work on Omagel Mini by DevCalc.";
 export const metadata: Metadata = {
-  title,
+  title: { absolute: `${title} | DevCalc` },
   description,
   alternates: { canonical: url },
   robots: {
@@ -43,19 +43,21 @@ export default function OmagelPage() {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
     <div className="mx-auto max-w-4xl px-4 pt-8 text-center">
       <nav aria-label="Breadcrumb" className="mb-5 text-sm"><Link href="/" className="underline">DevCalc</Link> / Omagel Mini</nav>
-      <h1 className="text-3xl font-extrabold sm:text-4xl">Omagel Mini â€“ Random Text &amp; Video Chat</h1>
+      <h1 className="text-3xl font-extrabold sm:text-4xl">Omagel Mini – Random Text &amp; Video Chat</h1>
       <p className="mx-auto mt-4 max-w-2xl text-stone-600">Meet another adult for a one-to-one conversation. Choose text or video, add a few interests if you like, and leave whenever you want. For people aged 18 and over.</p>
     </div>
     <OmagelClient />
     <article className="prose mx-auto max-w-4xl px-4 py-10 prose-headings:text-slate-900">
       <h2>How to use Omagel Mini</h2>
       <ol><li>Choose Text Chat for messages, or Video Chat for camera and audio.</li><li>Optionally enter up to five interests, separated by commas.</li><li>Confirm you are at least 18 and accept the rules. For video, grant camera and microphone permission.</li><li>Wait for someone in the same mode. Your interests help prioritize available matches.</li><li>Use Next to find another person, Leave to stop, or Report &amp; Block if someone breaks the rules.</li></ol>
+      <h2>Choose what your match sees</h2>
+      <p>Before starting text or video chat, the popup asks for an optional nickname and gender. These appear in the other person’s chat panel. Use a nickname rather than your full name; leave it blank to appear as Stranger, and choose Prefer not to say to keep your gender undisclosed. These details are self-reported, not verified. Next keeps your current profile; leaving and starting again lets you change it.</p>
       <h2>Text chat or video chat?</h2>
-      <p>Text chat works without camera access and is a useful choice on slower connections. Messages travel through our chat server. Video chat uses your browserâ€™s WebRTC connection and includes microphone and camera controls. Both modes include a message box and a way to end the conversation.</p>
+      <p>Text chat works without camera access and is a useful choice on slower connections. Messages travel through our chat server. Video chat uses your browser’s WebRTC connection and includes microphone and camera controls. Both modes include a message box and a way to end the conversation.</p>
       <p>Matching depends on who is online. There are no simulated strangers or guaranteed instant matches. If nobody is waiting, try again later or switch modes.</p>
       <h2 id="rules">Chat rules and reporting</h2>
       <p>This service is for adults aged 18 and over. Nudity, sexual content, harassment, hateful abuse, threats, spam and scams are prohibited. Do not ask people for money, passwords, identifying documents or private images.</p>
-      <p>Conversations are not monitored live. If you feel uncomfortable, leave immediately. Report &amp; Block records a report and prevents matching with that guest identity for up to 24 hours. It does not verify someoneâ€™s identity or permanently ban their device. For concerns that need a response, <Link href="/contact">contact DevCalc</Link>; avoid sending private conversation content unless necessary.</p>
+      <p>Conversations are not monitored live. If you feel uncomfortable, leave immediately. Report &amp; Block records a report and prevents matching with that guest identity for up to 24 hours. It does not verify someone’s identity or permanently ban their device. For concerns that need a response, <Link href="/contact">contact DevCalc</Link>; avoid sending private conversation content unless necessary.</p>
       <h2>Privacy before you connect</h2>
       <p>No account is required, but this is not a promise of anonymity. Text and connection signals pass through our server. WebRTC may expose network information to the other participant, and another person can record what you share. Keep your address, financial details and contact information private.</p>
       <p>Chat messages wait in a delivery buffer until acknowledged or the session is cleaned up; the interface keeps only the latest 200 messages. Reports older than seven days are removed during cleanup, subject to storage limits. Guest blocks last up to 24 hours and depend on keeping the same browser identity. Read our <Link href="/privacy-policy#omagel-mini">privacy policy</Link> for details. This chat section does not load Google ads or analytics.</p>

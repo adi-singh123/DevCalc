@@ -3,8 +3,11 @@
 import React, { useRef, useEffect } from "react";
 import { Mic, MicOff, Video, VideoOff, SkipForward, PhoneOff, Flag, Loader2 } from "lucide-react";
 import { ChatMessage } from "@/src/lib/omagel/types";
+import type { GuestProfile } from "@/src/lib/omagel/profile";
+import { PeerProfile } from "./PeerProfile";
 
 interface OmagelVideoChatProps {
+  peerProfile?: GuestProfile;
   localStream: MediaStream | null;
   remoteStream: MediaStream | null;
   isConnecting: boolean;
@@ -23,6 +26,7 @@ interface OmagelVideoChatProps {
 }
 
 export const OmagelVideoChat: React.FC<OmagelVideoChatProps> = ({
+  peerProfile,
   localStream,
   remoteStream,
   isConnecting,
@@ -111,7 +115,7 @@ export const OmagelVideoChat: React.FC<OmagelVideoChatProps> = ({
           {/* Stranger Status Badge */}
           <div className="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-xs px-3 py-1 rounded-lg border border-stone-700 text-[11px] text-stone-300 flex items-center gap-1.5">
             <span className={`w-2 h-2 rounded-full ${remoteStream && !strangerDisconnected ? "bg-emerald-500" : "bg-amber-500 animate-pulse"}`} />
-            <span>Stranger</span>
+            <PeerProfile profile={peerProfile} />
           </div>
 
           {/* Local User Self-Preview PiP */}
@@ -232,7 +236,7 @@ export const OmagelVideoChat: React.FC<OmagelVideoChatProps> = ({
             placeholder="Type a message..."
             value={inputText}
             onChange={(e) => { setInputText(e.target.value); onTyping(!!e.target.value.trim()); }}
-            className="flex-1 px-3 py-2 rounded-xl bg-stone-50 dark:bg-slate-950 border border-stone-200 dark:border-slate-800 text-xs text-stone-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-[#26364a] dark:focus:ring-indigo-500"
+            className="min-w-0 flex-1 px-3 py-2 rounded-xl bg-stone-50 dark:bg-slate-950 border border-stone-200 dark:border-slate-800 text-xs text-stone-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-[#26364a] dark:focus:ring-indigo-500"
           />
           <button
             type="submit"

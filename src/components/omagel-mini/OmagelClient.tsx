@@ -9,8 +9,9 @@ import { ReportDialog } from "./ReportDialog";
 import { OmagelLobby } from "./OmagelLobby";
 import { OmagelTextChat } from "./OmagelTextChat";
 import { OmagelVideoChat } from "./OmagelVideoChat";
+import { defaultProfile, type GuestProfile } from "@/src/lib/omagel/profile";
 
-type Match = { id: string; mode: Mode; initiator: boolean };
+type Match = { id: string; mode: Mode; initiator: boolean; peerProfile?: GuestProfile };
 type Reply = { success: boolean; error?: string; status?: string; session?: Match | null; signals?: Signal[]; ended?: boolean; onlineUsers?: number; message?: string; rtcConfiguration?: RTCConfiguration };
 
 export default function OmagelClient() {
@@ -31,6 +32,9 @@ export default function OmagelClient() {
   const [videoMuted, setVideoMuted] = useState(false);
   const token = useRef("");
   const accepted = useRef(false);
+  const profile = useRef<GuestProfile>(defaultProfile);
+  const [savedProfile, setSavedProfile] = useState<GuestProfile>(defaultProfile);
+  const [peerProfile, setPeerProfile] = useState<GuestProfile>(defaultProfile);
   const session = useRef<Match | null>(null);
   const stream = useRef<MediaStream | null>(null);
   const peer = useRef<RTCPeerConnection | null>(null);
@@ -84,6 +88,7 @@ export default function OmagelClient() {
 
   const connect = useCallback(async (match: Match) => {
     session.current = match;
+    setPeerProfile(match.peerProfile || defaultProfile);
     stopped.current = false;
     seen.current.clear(); ack.current = []; candidates.current = [];
     setDisconnected(false); setMessages([]); setTyping(false);
@@ -235,7 +240,7 @@ export default function OmagelClient() {
         if (current !== generation.current) { stopMediaStream(media); return; }
         stream.current = media; setLocal(media); setAudioMuted(false); setVideoMuted(false);
       }
-      pendingJoin.current = api("queue", { action: "join", mode, interests: tags, acceptedAge: true });
+      pendingJoin.current = api("queue", { action: "join", mode, interests: tags, acceptedAge: true, profile: profile.current });
       const data = await pendingJoin.current;
       if (current !== generation.current) return;
       setOnline(data.onlineUsers || 0);
@@ -290,17 +295,17 @@ export default function OmagelClient() {
     markDisconnected(); setReportOpen(false); setNotice(data.message || "Report saved.");
   }
   return <section aria-label="Chat controls" className="mx-auto max-w-6xl px-4 py-6">
-    {ageOpen && <AgeGateModal onClose={() => setAgeOpen(false)} onAccept={() => { accepted.current = true; setAgeOpen(false); void start(); }} />}
+    {ageOpen && <AgeGateModal initialProfile={savedProfile} onClose={() => setAgeOpen(false)} onAccept={value => { profile.current = value; setSavedProfile(value); accepted.current = true; setAgeOpen(false); void start(); }} />}
     <ReportDialog isOpen={reportOpen} onClose={() => setReportOpen(false)} onSubmit={report} />
     {error && <p role="alert" className="mx-auto mb-4 max-w-3xl rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">{error}</p>}
     {notice && <p role="status" className="mx-auto mb-4 max-w-3xl rounded-xl bg-emerald-50 p-4 text-sm">{notice}</p>}
-    {status === "idle" && <OmagelLobby mode={mode} onSelectMode={setMode} interests={interests} onInterestsChange={setInterests} onStartChat={() => void start()} onlineCount={online} />}
+    {status === "idle" && <OmagelLobby mode={mode} onSelectMode={setMode} interests={interests} onInterestsChange={setInterests} onStartChat={() => { if (!busy.current) setAgeOpen(true); }} onlineCount={online} />}
     {(status === "starting" || status === "queued") && <div className="mx-auto max-w-md rounded-2xl border bg-white p-8 text-center">
       <h2 className="text-xl font-bold" role="status">{status === "starting" ? "Preparing your chat…" : "Looking for a stranger…"}</h2>
       <p className="my-4">{status === "starting" ? "For video, allow camera and microphone access when prompted." : "Another person must be waiting in the same chat mode. You can cancel at any time."}</p>
       <button onClick={() => void end()} className="rounded-lg border px-6 py-3">Cancel Queue</button>
     </div>}
-    {status === "connected" && mode === "text" && <OmagelTextChat messages={messages} onSendMessage={sendMessage} onTyping={typingChanged} onNext={() => void next()} onEnd={() => void end()} onReport={() => setReportOpen(true)} isStrangerTyping={typing} strangerDisconnected={disconnected} />}
-    {status === "connected" && mode === "video" && <OmagelVideoChat localStream={local} remoteStream={remote} isConnecting={!remote && !disconnected} strangerDisconnected={disconnected} isAudioMuted={audioMuted} isVideoMuted={videoMuted} onToggleAudio={() => toggle("audio")} onToggleVideo={() => toggle("video")} onNext={() => void next()} onEnd={() => void end()} onReport={() => setReportOpen(true)} messages={messages} onSendMessage={sendMessage} onTyping={typingChanged} isStrangerTyping={typing} />}
+    {status === "connected" && mode === "text" && <OmagelTextChat peerProfile={peerProfile} messages={messages} onSendMessage={sendMessage} onTyping={typingChanged} onNext={() => void next()} onEnd={() => void end()} onReport={() => setReportOpen(true)} isStrangerTyping={typing} strangerDisconnected={disconnected} />}
+    {status === "connected" && mode === "video" && <OmagelVideoChat peerProfile={peerProfile} localStream={local} remoteStream={remote} isConnecting={!remote && !disconnected} strangerDisconnected={disconnected} isAudioMuted={audioMuted} isVideoMuted={videoMuted} onToggleAudio={() => toggle("audio")} onToggleVideo={() => toggle("video")} onNext={() => void next()} onEnd={() => void end()} onReport={() => setReportOpen(true)} messages={messages} onSendMessage={sendMessage} onTyping={typingChanged} isStrangerTyping={typing} />}
   </section>;
 }

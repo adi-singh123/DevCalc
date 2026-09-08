@@ -223,7 +223,10 @@ const SECTIONS = [
         <p className="mt-3">
           A random guest token is stored in this tab’s session storage. The
           server uses a derived identifier for matchmaking, rate limits and
-          guest blocks. Interest tags, text messages and connection signals
+          guest blocks. The optional nickname and gender you choose are shown
+          to your matched participant and kept with your active guest record.
+          They are self-reported, not verified. You can leave either undisclosed
+          by using Stranger and Prefer not to say. Interest tags, text messages and connection signals
           pass through our server and configured Redis storage provider.
           Messages remain buffered until acknowledged or the guest session is
           cleaned up. Inactive guests are removed during cleanup after 45 seconds

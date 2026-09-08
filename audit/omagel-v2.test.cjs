@@ -3,11 +3,29 @@ const assert = require('node:assert/strict');
 const ts = require('typescript');
 const fs = require('node:fs');
 const vm = require('node:vm');
-const sandbox = { exports: {}, require, Date, structuredClone };
+const profileSandbox = { exports: {} };
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('src/lib/omagel/profile.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText, profileSandbox);
+const sandbox = { exports: {}, require: name => name === './profile' ? profileSandbox.exports : require(name), Date, structuredClone };
 vm.runInNewContext(ts.transpileModule(fs.readFileSync('src/lib/omagel/engine.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText, sandbox);
 const e = sandbox.exports;
 const join = (s, id, mode = 'text', interests = []) => e.queueAction(s, id, { action: 'join', mode, interests, acceptedAge: true });
 const pair = s => { join(s, 'alice'); return join(s, 'bob').session.id; };
+
+test('matched profiles contain only chosen public fields and stay out of unrelated status', () => {
+  const s = e.emptyState();
+  e.queueAction(s, 'alice', { action: 'join', mode: 'text', acceptedAge: true, profile: { displayName: ' Alice ', gender: 'Woman', secret: 'never-return' } });
+  e.queueAction(s, 'bob', { action: 'join', mode: 'text', acceptedAge: true, profile: { displayName: 'Bob', gender: 'Man' } });
+  assert.equal(e.view(s, 'alice').session.peerProfile.displayName, 'Bob');
+  assert.equal(e.view(s, 'bob').session.peerProfile.displayName, 'Alice');
+  assert.equal(e.view(s, 'bob').session.peerProfile.gender, 'Woman');
+  assert.equal(e.view(s, 'bob').session.peerProfile.secret, undefined);
+  assert.equal(e.view(s, 'outsider').session, null);
+});
+test('profile validation accepts undisclosed fields and rejects invalid input', () => {
+  const parse = profileSandbox.exports.parseProfile;
+  assert.equal(parse({ displayName: '', gender: 'Prefer not to say' }).displayName, 'Stranger');
+  for (const p of [{ displayName: 'x'.repeat(31), gender: 'Man' }, { displayName: '<script>', gender: 'Man' }, { displayName: 'Name', gender: 'invalid' }, { displayName: 45, gender: 'Man' }]) assert.throws(() => parse(p));
+});
 
 test('queue matches same mode and repeated join preserves session', () => {
   const s = e.emptyState(); join(s, 'video', 'video');

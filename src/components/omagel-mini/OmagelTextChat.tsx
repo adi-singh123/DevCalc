@@ -2,9 +2,12 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { ChatMessage } from "@/src/lib/omagel/types";
+import type { GuestProfile } from "@/src/lib/omagel/profile";
+import { PeerProfile } from "./PeerProfile";
 import { SkipForward, PhoneOff, Flag, Send } from "lucide-react";
 
 interface OmagelTextChatProps {
+  peerProfile?: GuestProfile;
   messages: ChatMessage[];
   onSendMessage: (text: string) => Promise<void>;
   onTyping: (typing: boolean) => void;
@@ -16,6 +19,7 @@ interface OmagelTextChatProps {
 }
 
 export const OmagelTextChat: React.FC<OmagelTextChatProps> = ({
+  peerProfile,
   messages,
   onSendMessage,
   onTyping,
@@ -54,7 +58,7 @@ export const OmagelTextChat: React.FC<OmagelTextChatProps> = ({
             <h3 className="text-sm font-bold text-[#26364a] dark:text-white">
               {strangerDisconnected ? "Stranger Disconnected" : "Stranger Connected"}
             </h3>
-            <p className="text-[11px] text-stone-500 dark:text-slate-400">Random text conversation</p>
+            <p className="text-sm text-stone-600 dark:text-slate-300"><PeerProfile profile={peerProfile} /></p>
           </div>
         </div>
 
@@ -139,7 +143,7 @@ export const OmagelTextChat: React.FC<OmagelTextChatProps> = ({
           value={inputText}
           onChange={(e) => { setInputText(e.target.value); onTyping(!!e.target.value.trim()); }}
           maxLength={500}
-          className="flex-1 px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 text-xs sm:text-sm text-stone-900 dark:text-slate-100 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#26364a] dark:focus:ring-indigo-500 disabled:opacity-50"
+          className="min-w-0 flex-1 px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 text-xs sm:text-sm text-stone-900 dark:text-slate-100 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-[#26364a] dark:focus:ring-indigo-500 disabled:opacity-50"
         />
         <button
           type="submit"

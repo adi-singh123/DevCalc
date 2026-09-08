@@ -1,0 +1,46 @@
+[
+  {
+    "name": "SEO/content: one H1, canonical, schema, reference, preview, no ads",
+    "pass": true
+  },
+  {
+    "name": "Promo markup absent from initial source but visible in UI and dismissible",
+    "pass": true
+  },
+  {
+    "name": "Ad-bearing page to chat navigation creates a fresh ad-free document",
+    "pass": true
+  },
+  {
+    "name": "18+ gate can be cancelled; queue cancellation removes server presence",
+    "pass": true
+  },
+  {
+    "name": "Text messages deliver both directions and typing appears",
+    "pass": true
+  },
+  {
+    "name": "Next notifies peer and re-enters matchmaking",
+    "pass": true
+  },
+  {
+    "name": "Leave notifies peer",
+    "pass": true
+  },
+  {
+    "name": "Video negotiates offer/answer and both remote feeds play",
+    "pass": true
+  },
+  {
+    "name": "Report derives peer, disconnects, and prevents rematch",
+    "pass": true
+  },
+  {
+    "name": "API rejects missing auth, invalid input and outsider session access",
+    "pass": true
+  },
+  {
+    "name": "Chat omitted from sitemap and blocked in robots; ordinary pages respond",
+    "pass": true
+  }
+]

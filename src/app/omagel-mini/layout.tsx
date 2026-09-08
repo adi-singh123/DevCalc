@@ -17,6 +17,6 @@ export default function ChatLayout({ children }: { children: React.ReactNode }) 
       <Link href="/privacy-policy" className="underline">Privacy</Link>
     </nav></header>
     {children}
-    <footer className="border-t p-6 text-center text-sm">Omagel Mini by DevCalc Â· <Link className="underline" href="/contact">Contact</Link> Â· <Link className="underline" href="/terms">Terms</Link></footer>
+    <footer className="border-t p-6 text-center text-sm">Omagel Mini by DevCalc · <Link className="underline" href="/contact">Contact</Link> · <Link className="underline" href="/terms">Terms</Link></footer>
   </body></html>;
 }
