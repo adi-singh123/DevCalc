@@ -13,7 +13,6 @@ import SEOContent from "@/src/components/home/SEOContent";
 import CompareCalculatorSection from "@/src/components/calculator/CompareCalculatorSection";
 import CalculatorSchema from "@/src/components/seo/CalculatorSchema";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
-import { getCalculatorIntro } from "@/src/lib/seo/generation";
 import CalculatorListByCategory from "@/src/components/calculator/Calculatorlistbycategory";
 import AuthorBio from "@/src/components/common/AuthorBio";
 import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
@@ -127,9 +126,11 @@ export default async function CalculatorPage({ params }: Props) {
           {calculator.description}
         </p>
 
-        <p className="mt-4 leading-7 text-stone-600 dark:text-slate-400">
-          {getCalculatorIntro(calculator)}
-        </p>
+        {calculator.editorialIntro && (
+          <p className="mt-4 leading-7 text-stone-600 dark:text-slate-400">
+            {calculator.editorialIntro}
+          </p>
+        )}
 
         <div className="mt-6 flex flex-wrap gap-3">
           {[

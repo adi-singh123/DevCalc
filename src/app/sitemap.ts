@@ -58,60 +58,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   return [
+    { url: `${baseUrl}/omagel-mini`, changeFrequency: "monthly", priority: 0.6 },
     {
       url: baseUrl,
       changeFrequency: "daily",
       priority: 1,
     },
-
     {
       url: `${baseUrl}/calculators`,
       changeFrequency: "daily",
       priority: 0.9,
     },
-
     {
       url: `${baseUrl}/blog`,
       changeFrequency: "daily",
       priority: 0.8,
     },
-
     {
       url: `${baseUrl}/want-automation`,
       changeFrequency: "weekly",
       priority: 0.8,
     },
-
     {
       url: `${baseUrl}/tug-of-war-calculator`,
       changeFrequency: "weekly",
       priority: 0.8,
     },
-
     {
       url: `${baseUrl}/website-x-ray`,
       changeFrequency: "daily",
       priority: 0.9,
     },
-
     {
       url: `${baseUrl}/about`,
       changeFrequency: "monthly",
       priority: 0.5,
     },
-
     {
       url: `${baseUrl}/contact`,
       changeFrequency: "monthly",
       priority: 0.5,
     },
-
     {
       url: `${baseUrl}/privacy-policy`,
       changeFrequency: "monthly",
       priority: 0.3,
     },
-
     {
       url: `${baseUrl}/terms`,
       changeFrequency: "monthly",
@@ -127,7 +119,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 0.8,
     },
-
     ...categoryUrls,
     ...calculatorUrls,
     ...stampDutyStateUrls,

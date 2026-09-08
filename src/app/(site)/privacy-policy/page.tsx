@@ -98,7 +98,8 @@ const SECTIONS = [
         </ul>
         <p className="mt-3">
           We use this only to respond to your enquiry. We do not add you to any
-          mailing list or share your contact details with third parties.
+          mailing list. Our email service provider processes the message to
+          deliver your enquiry and our reply.
         </p>
       </>
     ),
@@ -185,8 +186,15 @@ const SECTIONS = [
     content: (
       <p>
         DevCalc may display advertisements served by{" "}
-        <strong>Google AdSense</strong>. Google uses cookies to show ads based
-        on your previous visits to this and other websites. You can opt out of
+        <strong>Google AdSense</strong>. Google and other advertising providers
+        may place and read cookies in your browser, use web beacons, and process
+        IP addresses when serving ads. Google uses advertising cookies to show
+        ads based on your previous visits to this and other websites. Learn how
+        Google uses information from partner sites in its{" "}
+        <a href="https://policies.google.com/technologies/partner-sites" className="text-blue-600 underline hover:text-blue-800">
+          partner-site privacy information
+        </a>
+        . You can opt out of
         personalized advertising by visiting{" "}
         <a
           href="https://www.google.com/settings/ads"
@@ -199,6 +207,42 @@ const SECTIONS = [
         . Opting out means you may still see ads, but they will not be
         personalized based on your interests.
       </p>
+    ),
+  },
+  {
+    id: "omagel-mini",
+    title: "Omagel Mini Chat Privacy",
+    content: (
+      <>
+        <p>
+          Omagel Mini is a guest text and video chat service for adults aged 18
+          and over. This section of the site does not load Google advertising
+          or analytics scripts. Camera and microphone access is requested only
+          when you choose to start video chat.
+        </p>
+        <p className="mt-3">
+          A random guest token is stored in this tab’s session storage. The
+          server uses a derived identifier for matchmaking, rate limits and
+          guest blocks. Interest tags, text messages and connection signals
+          pass through our server and configured Redis storage provider.
+          Messages remain buffered until acknowledged or the guest session is
+          cleaned up. Inactive guests are removed during cleanup after 45 seconds
+          without a heartbeat. The browser shows up to 200 recent messages.
+          Video and audio use WebRTC between participants or a TURN relay.
+          Network information may be visible to the other participant, and
+          another person can record what you share.
+        </p>
+        <p className="mt-3">
+          Reports contain guest identifiers, a conversation ID, the selected
+          category, optional details and a timestamp. Reports older than seven
+          days are removed during cleanup, and only the latest 1,000 are kept.
+          Blocks expire after 24 hours. Shared chat storage also expires after
+          seven days without activity. Reports are not monitored live; contact
+          us using the details below if you need a response. Clearing site data
+          or changing browser identities can bypass guest blocks. Clearing site
+          data also removes any preferences stored by an earlier preview.
+        </p>
+      </>
     ),
   },
   {
@@ -342,7 +386,7 @@ export default function PrivacyPolicyPage() {
         </h1>
 
         <p className="mt-3 text-slate-500">
-          Last Updated: <strong>June 2026</strong> &nbsp;·&nbsp; Applies to:{" "}
+          Last Updated: <strong>September 8, 2026</strong> &nbsp;·&nbsp; Applies to:{" "}
           <strong>devcalc.in</strong>
         </p>
 

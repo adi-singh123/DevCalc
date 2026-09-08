@@ -8,6 +8,7 @@ import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { interviewTopics } from "@/src/data/interview";
+import { getInterviewQuestions } from "@/src/data/interview/questions";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import { Lock, Unlock, ChevronRight } from "lucide-react";
@@ -19,6 +20,10 @@ import { InterviewTopicCard } from '@/src/components/interview/InterviewTopicCar
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+export function generateStaticParams() {
+  return interviewTopics.map((topic) => ({ slug: topic.slug }));
 }
 
 const STAGES = [
@@ -171,58 +176,9 @@ const TOPIC_SPECIFIC_FAQS: Record<
   ],
 };
 
-function buildFaqs(topicTitle: string, slug: string) {
-  const specific = TOPIC_SPECIFIC_FAQS[slug.toLowerCase()];
-  if (specific && specific.length > 0) {
-    return [
-      ...specific,
-      {
-        question: `How should I prepare for a ${topicTitle} technical interview?`,
-        answer:
-          "Master core language primitives, practice timed MCQ assessments to test edge cases, and build working projects. When answering coding questions, always discuss time/space complexity (Big O) and explain edge case handling upfront.",
-      },
-      {
-        question: `Can I practice all ${topicTitle} stages (Beginner to MNC) for free?`,
-        answer:
-          "Yes, all DevCalc interview stages are completely free and open. You can attempt Beginner, Intermediate, Advanced, and MNC stages directly with detailed explanations for every question.",
-      },
-      {
-        question: "How many attempts do I get per stage?",
-        answer:
-          "Unlimited. You can retake any stage as many times as needed. On each attempt, questions and options are shuffled to reinforce conceptual learning rather than rote memorization.",
-      },
-    ];
-  }
-
-  return [
-    {
-      question: `What are the core ${topicTitle} concepts evaluated in technical interviews?`,
-      answer:
-        `Interviewers assess syntax precision, memory lifecycle management, algorithmic efficiency, error handling, and production debugging patterns in ${topicTitle}.`,
-    },
-    {
-      question: `What is the difference between fresher and senior ${topicTitle} interview questions?`,
-      answer:
-        `Fresher interviews emphasize syntax, foundational algorithms, and core language structures. Senior interviews delve into concurrency, performance optimization, architectural trade-offs, and distributed systems integration.`,
-    },
-    {
-      question: `Are these ${topicTitle} questions aligned with top MNC hiring assessments?`,
-      answer:
-        `Yes. Questions are curated from real technical screening patterns used at global tech companies, service-based MNCs, and high-growth product startups.`,
-    },
-    {
-      question: `Can I attempt all ${topicTitle} interview stages for free?`,
-      answer:
-        `Yes. DevCalc provides completely free access to Beginner, Intermediate, Advanced, and MNC level interview quizzes with comprehensive answer explanations.`,
-    },
-    {
-      question: "How does practicing MCQs help in technical interview preparation?",
-      answer:
-        "MCQs with realistic distractors test edge cases, operator precedence, type coercion, and execution lifecycles that verbal questions often overlook, sharpening your technical precision.",
-    },
-  ];
+function getTopicFaqs(slug: string) {
+  return TOPIC_SPECIFIC_FAQS[slug.toLowerCase()] ?? [];
 }
-
 export default async function TopicOverviewPage({ params }: Props) {
   const { slug } = await params;
   const topic = interviewTopics.find((t) => t.slug === slug);
@@ -232,13 +188,25 @@ export default async function TopicOverviewPage({ params }: Props) {
     .filter((item) => item.slug !== topic.slug)
     .slice(0, 4);
 
-  const faqs = buildFaqs(topic.title, slug);
+  const faqs = getTopicFaqs(slug);
+  const questionsByStage = STAGES.map((stage) => ({
+    ...stage,
+    questions: getInterviewQuestions(slug, stage.id),
+  }));
+  const allQuestions = questionsByStage.flatMap((stage) => stage.questions);
+  const topicTags = [...new Set(allQuestions.flatMap((question) => question.tags))].slice(0, 16);
+  const sampleQuestions = questionsByStage.flatMap((stage) =>
+    stage.questions.slice(0, 2).map((question) => ({
+      ...question,
+      stageTitle: stage.title,
+    })),
+  );
 
 
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
       <div className="max-w-7xl mx-auto px-6 pt-8">
-        <FAQSchema faqs={faqs} />
+        {faqs.length > 0 && <FAQSchema faqs={faqs} />}
         <BreadcrumbSchema
           items={[
             { name: "Home", url: "/" },
@@ -290,6 +258,43 @@ export default async function TopicOverviewPage({ params }: Props) {
         </header>
 
         {/* Stages */}
+        <section className="mx-auto mt-10 max-w-5xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 md:p-10">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+            What is covered in this {topic.title} question bank
+          </h2>
+          <p className="mt-3 leading-7 text-slate-600 dark:text-slate-300">
+            The collection currently contains {allQuestions.length} questions across four difficulty stages. The coverage below is derived from the questions themselves, rather than a generic interview syllabus.
+          </p>
+
+          <dl className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {questionsByStage.map((stage) => (
+              <div key={stage.id} className="rounded-xl bg-slate-50 p-4 dark:bg-slate-800/60">
+                <dt className="font-semibold text-slate-900 dark:text-white">{stage.title}</dt>
+                <dd className="mt-1 text-sm text-slate-600 dark:text-slate-300">{stage.questions.length} questions</dd>
+              </div>
+            ))}
+          </dl>
+
+          <h3 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Concepts represented</h3>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {topicTags.map((tag) => (
+              <li key={tag} className="rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-800 dark:bg-blue-950 dark:text-blue-300">{tag}</li>
+            ))}
+          </ul>
+
+          <h3 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Sample questions</h3>
+          <ol className="mt-4 grid gap-4 md:grid-cols-2">
+            {sampleQuestions.map((question) => (
+              <li key={question.id} className="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
+                <span className="text-xs font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400">
+                  {question.stageTitle} · {question.category}
+                </span>
+                <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-300">{question.question}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
         <section className="mt-20">
           <h2 className="text-3xl font-bold mb-3 text-center text-slate-900 dark:text-white">
             Structured Interview Roadmap
@@ -345,159 +350,6 @@ export default async function TopicOverviewPage({ params }: Props) {
         </section>
 
         {/* SEO Article */}
-        <article className="max-w-4xl mx-auto mt-10 p-6 md:p-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl prose dark:prose-invert prose-blue max-w-none">
-          <header className="mb-10 text-center">
-            <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">
-              Ultimate Guide
-            </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold mt-3 mb-6">
-              {topic.title} Interview Questions, MCQs & Complete Preparation
-              Roadmap
-            </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400">
-              Mastering <strong>{topic.title}</strong> is the key to landing
-              high-paying software engineering roles. This comprehensive guide
-              covers everything you need to ace your next technical interview at
-              top product-based companies.
-            </p>
-          </header>
-
-          <section className="bg-slate-50 dark:bg-slate-800/50 p-8 rounded-2xl border border-slate-200 dark:border-slate-700">
-            <h2 className="!mt-0">
-              Why {topic.title} Matters in Tech Interviews
-            </h2>
-            <p>
-              Interviewers Don&apos;t just test your knowledge of{" "}
-              <strong>{topic.title}</strong>; they evaluate your
-              <strong>
-                {" "}
-                problem-solving architecture, code optimization skills, and
-                debugging capability
-              </strong>
-              . In modern technical interviews at companies like Google, Meta,
-              and Amazon, the ability to explain
-              <em> why</em> you chose a specific approach is just as important
-              as the code itself.
-            </p>
-          </section>
-
-          <h2 className="mt-2 mb-2 bg-gray-50 flex justify-center text-1xl border-rose-100  dark:bg-slate-800 shadow-sm rounded-r-lg ">
-            4-Week {topic.title} Preparation Roadmap
-          </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            {[
-              { week: "Week 1", focus: "Core Fundamentals & Syntax" },
-              {
-                week: "Week 2",
-                focus: "Data Structures & Algorithmic Patterns",
-              },
-              { week: "Week 3", focus: "Advanced Concepts & Optimization" },
-              { week: "Week 4", focus: "Mock Interviews & System Design" },
-            ].map((item) => (
-              <div
-                key={item.week}
-                className="p-4 border-l-4 border-blue-500 bg-white dark:bg-slate-800 shadow-sm rounded-r-lg"
-              >
-                <h4 className="m-0 text-blue-600">{item.week}</h4>
-                <p className="m-0 text-sm font-medium">{item.focus}</p>
-              </div>
-            ))}
-          </div>
-
-          <h2 className="mt-2 mb-2 bg-gray-50 flex justify-center text-1xl border-rose-100  dark:bg-slate-800 shadow-sm rounded-r-lg">
-            Key Topics You Must Master
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {[
-              "Fundamentals",
-              "Advanced Concepts",
-              "MCQs",
-              "Memory Mgmt",
-              "Optimization",
-              "Security",
-              "Debugging",
-              "Design Patterns",
-            ].map((t) => (
-              <span
-                key={t}
-                className="flex items-center gap-2 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-semibold border border-blue-100 dark:border-blue-800"
-              >
-                🚀 {t}
-              </span>
-            ))}
-          </div>
-
-          <h2>Freshers vs. Experienced: What’s Expected?</h2>
-          <table className="w-full text-left border-collapse border border-slate-300 dark:border-slate-700">
-            <thead>
-              <tr className="bg-slate-100 dark:bg-slate-800">
-                <th className="border border-slate-300 dark:border-slate-700 p-3">
-                  Focus Area
-                </th>
-                <th className="border border-slate-300 dark:border-slate-700 p-3">
-                  For Freshers
-                </th>
-                <th className="border border-slate-300 dark:border-slate-700 p-3">
-                  For Experienced
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-slate-300 dark:border-slate-700 p-3">
-                  Concepts
-                </td>
-                <td className="border border-slate-300 dark:border-slate-700 p-3">
-                  Strong Fundamental Base
-                </td>
-                <td className="border border-slate-300 dark:border-slate-700 p-3">
-                  System Design & Scaling
-                </td>
-              </tr>
-              <tr>
-                <td className="border border-slate-300 dark:border-slate-700 p-3">
-                  Coding
-                </td>
-                <td className="border border-slate-300 dark:border-slate-700 p-3">
-                  Clean, Logical Syntax
-                </td>
-                <td className="border border-slate-300 dark:border-slate-700 p-3">
-                  Production-Ready Performance
-                </td>
-              </tr>
-              <tr>
-                <td className="border border-slate-300 dark:border-slate-700 p-3">
-                  Problem Solving
-                </td>
-                <td className="border border-slate-300 dark:border-slate-700 p-3">
-                  Analytical Thinking
-                </td>
-                <td className="border border-slate-300 dark:border-slate-700 p-3">
-                  Trade-offs & Architecture
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <ul className="mt-2">
-            <li>
-              <strong>Skipping the Why:</strong> Never start coding without
-              discussing your approach first.
-            </li>
-            <li>
-              <strong>Ignoring Edge Cases:</strong> Always ask about null
-              pointers, memory limits, or empty inputs.
-            </li>
-            <li>
-              <strong>Over-Engineering:</strong> Don&apos;t write complex code
-              when a simple, readable solution works.
-            </li>
-            <li>
-              <strong>Lack of Communication:</strong> Treat the interview as a
-              pair-programming session.
-            </li>
-          </ul>
-        </article>
 
         <section className="mt-20">
   <div className="mb-8 text-center">
@@ -523,12 +375,11 @@ export default async function TopicOverviewPage({ params }: Props) {
         <TopCompanies />
 
         {/* FAQ */}
-        <section className="mt-20 mb-2">
-          <FAQSection
-            faqs={faqs.map((f) => ({ question: f.question, answer: f.answer }))}
-          />
-          
-        </section>
+        {faqs.length > 0 && (
+          <section className="mt-20 mb-2">
+            <FAQSection faqs={faqs} />
+          </section>
+        )}
       </div>
     </main>
   );
@@ -537,79 +388,22 @@ export default async function TopicOverviewPage({ params }: Props) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const topic = interviewTopics.find((t) => t.slug === slug);
+  if (!topic) {
+    return { robots: { index: false, follow: false } };
+  }
   return {
-    title: `${topic?.title} Interview Questions & Coding Guide`,
-   description:
-  `New to ${topic?.title} or brushing up for an MNC interview? Practice 1500+ curated questions and MCQs — structured from beginner basics to advanced system design. Free and no sign-up.`,
-    keywords: [
-      `${topic?.title} interview questions`,
-      `${topic?.title} interview questions and answers`,
-      `${topic?.title} interview questions for freshers`,
-      `${topic?.title} interview questions for experienced`,
-      `${topic?.title} interview preparation`,
-      `${topic?.title} interview guide`,
-      `${topic?.title} interview tips`,
-      `${topic?.title} interview cheatsheet`,
-      `${topic?.title} MCQ`,
-      `${topic?.title} MCQs with answers`,
-      `${topic?.title} quiz`,
-      `${topic?.title} coding interview`,
-      `${topic?.title} coding questions`,
-      `${topic?.title} coding problems`,
-      `${topic?.title} coding challenges`,
-      `${topic?.title} practical interview questions`,
-      `${topic?.title} viva questions`,
-      `${topic?.title} online test`,
-      `${topic?.title} aptitude questions`,
-      `${topic?.title} multiple choice questions`,
-      `${topic?.title} programming questions`,
-      `${topic?.title} examples`,
-      `${topic?.title} tutorial`,
-      `${topic?.title} notes`,
-      `${topic?.title} explained`,
-      `${topic?.title} roadmap`,
-      `${topic?.title} concepts`,
-      `${topic?.title} fundamentals`,
-      `${topic?.title} advanced interview questions`,
-      `${topic?.title} real interview questions`,
-      `${topic?.title} top interview questions`,
-      `${topic?.title} most asked interview questions`,
-      `${topic?.title} latest interview questions`,
-      `${topic?.title} placement questions`,
-      `${topic?.title} campus placement questions`,
-      `${topic?.title} Google interview questions`,
-      `${topic?.title} Amazon interview questions`,
-      `${topic?.title} Microsoft interview questions`,
-      `${topic?.title} TCS interview questions`,
-      `${topic?.title} Infosys interview questions`,
-      `${topic?.title} Accenture interview questions`,
-      `${topic?.title} Capgemini interview questions`,
-      `${topic?.title} Wipro interview questions`,
-      "technical interview preparation",
-      "software developer interview questions",
-      "coding interview preparation",
-      "coding interview practice",
-      "programming interview questions",
-      "system design interview",
-      "data structures interview questions",
-      "algorithms interview questions",
-      "frontend interview questions",
-      "backend interview questions",
-      "full stack interview questions",
-      "computer science interview questions",
-      "IT interview questions",
-      "job interview preparation",
-      "placement interview questions",
-      "software engineering interview",
-      "developer interview questions",
-      "MNC interview questions",
-    ],
+    title: `${topic.title} Interview Questions & Coding Guide`,
+    description: topic
+      ? `Practice ${topic.totalQuestions} ${topic.title} interview questions across beginner, intermediate, advanced, and MNC stages, with explanations and topic-specific coverage.`
+      : "Technical interview questions and explanations.",
     alternates: {
       canonical: `https://www.devcalc.in/interview-questions/${slug}`,
     },
     openGraph: {
-      title: `${topic?.title} Interview Prep | DevCalc`,
-      description: `Structured ${topic?.title} roadmap from Beginner to MNC level. 1500+ questions with full explanations.`,
+      title: `${topic.title} Interview Prep | DevCalc`,
+      description: topic
+        ? `${topic.totalQuestions} ${topic.title} questions organized from beginner through MNC level, with answer explanations.`
+        : "Technical interview questions and explanations.",
       url: `https://www.devcalc.in/interview-questions/${slug}`,
       siteName: "DevCalc",
       type: "website",

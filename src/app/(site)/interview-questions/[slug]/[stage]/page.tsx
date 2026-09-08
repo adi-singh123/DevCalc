@@ -38,10 +38,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const stageTitle = stage === "mnc" ? "MNC" : `${stage[0].toUpperCase()}${stage.slice(1)}`;
   const canonical = `https://www.devcalc.in/interview-questions/${slug}/${stage}`;
+  const questions = getInterviewQuestions(slug, stage);
+  const focusAreas = [...new Set(questions.flatMap((question) => question.tags))].slice(0, 4);
+  const focusSummary = focusAreas.length > 0
+    ? ` Topics include ${focusAreas.join(", ")}.`
+    : "";
+  const description = `${questions.length} ${stageTitle} ${topic.title} interview questions based on this quiz's actual question set.${focusSummary} Practice with answer explanations.`;
 
   return {
     title: `${topic.title} ${stageTitle} Interview Questions & MCQ Practice`,
-    description: `Practice ${stageTitle} ${topic.title} interview questions covering real development scenarios, coding concepts, and detailed answer explanations. ${topic.totalQuestions / STAGES.length} questions, free.`,
+    description,
     alternates: { canonical },
     robots: {
       index: true,
@@ -56,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       title: `${topic.title} ${stageTitle} Interview Questions & MCQ Practice | DevCalc`,
-      description: `Practice ${stageTitle} ${topic.title} questions with detailed explanations and unlimited retries.`,
+      description,
       url: canonical,
       siteName: "DevCalc",
       type: "website",
@@ -65,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: `${topic.title} ${stageTitle} Interview Questions | DevCalc`,
-      description: `Practice ${stageTitle} ${topic.title} MCQs with detailed explanations.`,
+      description,
     },
   };
 }
@@ -111,6 +117,11 @@ export default async function StageQuizPage({ params }: Props) {
           <p className="mt-5 max-w-4xl text-base leading-7 text-stone-700 dark:text-slate-300">
             {topic.description}
           </p>
+          <p className="mt-3 max-w-4xl text-base leading-7 text-stone-700 dark:text-slate-300">
+            This exact set contains {questions.length} {stageTitle.toLowerCase()} questions.
+            {topics.length > 0 && ` Its main areas are ${topics.slice(0, 5).join(", ")}.`}
+            {` Each answer includes an explanation so you can review the reasoning after submitting the quiz.`}
+          </p>
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <div className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
@@ -134,6 +145,22 @@ export default async function StageQuizPage({ params }: Props) {
               </ul>
             </div>
           </div>
+
+          <section className="mt-6 rounded-2xl border border-stone-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+            <h2 className="font-semibold text-slate-900 dark:text-white">
+              Sample questions from this {stageTitle} set
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-slate-300">
+              These prompts come directly from this quiz. Start the assessment below to answer them and review the explanations.
+            </p>
+            <ol className="mt-4 grid gap-3 pl-5 text-sm leading-6 text-stone-700 md:grid-cols-2 dark:text-slate-300">
+              {questions.slice(0, 8).map((question) => (
+                <li key={question.id} className="list-decimal pl-1">
+                  {question.question}
+                </li>
+              ))}
+            </ol>
+          </section>
 
           <div className="mt-6 flex flex-wrap gap-4 text-sm font-medium text-blue-700 dark:text-blue-400">
             {previousStage && (

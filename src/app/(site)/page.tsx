@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Hero from "../components/home/Hero";
-import Features from "../components/home/Features";
-import PopularCalculators from "../components/home/PopularCalculators";
-import CalculatorCategories from "../components/home/Categories";
-import ServicesAndFeaturedSection from "../components/home/ServicesAndFeaturedSection";
-import Container from "../components/layout/Container";
+import Hero from "@/src/components/home/Hero";
+import Features from "@/src/components/home/Features";
+import PopularCalculators from "@/src/components/home/PopularCalculators";
+import CalculatorCategories from "@/src/components/home/Categories";
+import ServicesAndFeaturedSection from "@/src/components/home/ServicesAndFeaturedSection";
+import Container from "@/src/components/layout/Container";
 import WebsiteSchema from "@/src/components/seo/WebsiteSchema";
 
 export const metadata: Metadata = {

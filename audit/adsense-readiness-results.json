@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Withdrawn chat is 410, noindex and script-free: ",
+    "pass": true
+  },
+  {
+    "name": "Withdrawn chat is 410, noindex and script-free: ?source=old-link",
+    "pass": true
+  },
+  {
+    "name": "HEAD preserves withdrawal and indexing status",
+    "pass": true
+  },
+  {
+    "name": "Old Next client navigation cannot fetch a chat UI",
+    "pass": true
+  },
+  {
+    "name": "API disabled: GET queue ",
+    "pass": true
+  },
+  {
+    "name": "API disabled: POST queue join",
+    "pass": true
+  },
+  {
+    "name": "API disabled: POST queue status",
+    "pass": true
+  },
+  {
+    "name": "API disabled: POST signal poll",
+    "pass": true
+  },
+  {
+    "name": "API disabled: POST signal send",
+    "pass": true
+  },
+  {
+    "name": "API disabled: POST report ",
+    "pass": true
+  },
+  {
+    "name": "Sitemap removes Omagel and keeps calculators",
+    "pass": true
+  },
+  {
+    "name": "Public page works without chat navigation: /",
+    "pass": true
+  },
+  {
+    "name": "Public page works without chat navigation: /calculators",
+    "pass": true
+  },
+  {
+    "name": "Public page works without chat navigation: /age-calculator",
+    "pass": true
+  },
+  {
+    "name": "Public page works without chat navigation: /contact",
+    "pass": true
+  },
+  {
+    "name": "Public page works without chat navigation: /privacy-policy",
+    "pass": true
+  },
+  {
+    "name": "AdSense ownership file is preserved",
+    "pass": true
+  }
+]

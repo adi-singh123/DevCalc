@@ -75,6 +75,7 @@ const NAV_LINKS: NavLink[] = [
         href: "/blog",
         desc: "Articles on coding, calculations & technology",
       },
+      { label: "Omagel Mini (18+)", href: "/omagel-mini", desc: "Guest text and video conversations for adults" },
     ],
   },
   { label: "Contact", href: "/contact" },

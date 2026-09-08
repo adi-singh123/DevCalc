@@ -1,0 +1,196 @@
+{
+  "seo": {
+    "title": "Omagel Mini – Random Stranger Text & Video Chat | DevCalc | DevCalc",
+    "canonical": null,
+    "headings": [
+      {
+        "tag": "H2",
+        "text": "Age & Safety Verification"
+      },
+      {
+        "tag": "H1",
+        "text": "Omagel Mini"
+      },
+      {
+        "tag": "H3",
+        "text": "Random Video ChatSelected"
+      },
+      {
+        "tag": "H3",
+        "text": "Random Text Chat"
+      },
+      {
+        "tag": "H4",
+        "text": "100% Anonymous"
+      },
+      {
+        "tag": "H4",
+        "text": "Instant Peer Connection"
+      },
+      {
+        "tag": "H4",
+        "text": "Next Stranger at 1 Click"
+      },
+      {
+        "tag": "H4",
+        "text": "Services & Resources"
+      },
+      {
+        "tag": "H4",
+        "text": "State Tax Calculators"
+      },
+      {
+        "tag": "H4",
+        "text": "Calculator Categories"
+      }
+    ],
+    "meta": [
+      {
+        "key": "viewport",
+        "value": "width=device-width, initial-scale=1"
+      },
+      {
+        "key": "description",
+        "value": "Meet new people with Omagel Mini. Start instant random text or WebRTC video chats with strangers safely and anonymously."
+      },
+      {
+        "key": "author",
+        "value": "Aditya Singh"
+      },
+      {
+        "key": "keywords",
+        "value": "Omagel Mini,random video chat,random text chat,stranger chat,talk to strangers,WebRTC video chat,anonymous chat online"
+      },
+      {
+        "key": "creator",
+        "value": "Aditya Singh"
+      },
+      {
+        "key": "publisher",
+        "value": "DevCalc"
+      },
+      {
+        "key": "robots",
+        "value": "index, follow"
+      },
+      {
+        "key": "google-site-verification",
+        "value": "hJr9mhDCoby0tp4SxBFxZsl1cWymDuQEprknv-TWvNk"
+      },
+      {
+        "key": "og:title",
+        "value": "Omagel Mini – Random Stranger Text & Video Chat"
+      },
+      {
+        "key": "og:description",
+        "value": "Start instant random text or WebRTC video chats with strangers safely and anonymously."
+      },
+      {
+        "key": "og:url",
+        "value": "https://devcalc.in/omagel-mini"
+      },
+      {
+        "key": "og:site_name",
+        "value": "DevCalc"
+      },
+      {
+        "key": "og:type",
+        "value": "website"
+      },
+      {
+        "key": "twitter:card",
+        "value": "summary_large_image"
+      },
+      {
+        "key": "twitter:title",
+        "value": "Omagel Mini – Random Stranger Text & Video Chat"
+      },
+      {
+        "key": "twitter:description",
+        "value": "Start instant random text or WebRTC video chats with strangers safely and anonymously."
+      }
+    ],
+    "schema": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "DevCalc",
+        "url": "https://www.devcalc.in",
+        "logo": "https://www.devcalc.in/logo.png",
+        "description": "Free online calculators for finance, health, vehicle, education, and everyday calculations."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "DevCalc Assistant",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web",
+        "url": "https://www.devcalc.in",
+        "description": "DevCalc Assistant helps users discover calculators, understand formulas, find relevant tools, and get answers to calculator-related questions across finance, health, education, construction, utility, and developer categories.",
+        "creator": {
+          "@type": "Organization",
+          "name": "DevCalc",
+          "url": "https://www.devcalc.in"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        },
+        "featureList": [
+          "Calculator Discovery",
+          "FAQ Assistance",
+          "Finance Calculator Search",
+          "Health Calculator Search",
+          "Construction Calculator Search",
+          "Developer Tool Search",
+          "Instant Tool Recommendations"
+        ]
+      }
+    ],
+    "mainCount": 2,
+    "omegleLinks": []
+  },
+  "mobileOverflow": false,
+  "cancelQueue": {
+    "success": true,
+    "status": "queued",
+    "stats": {
+      "videoQueue": 0,
+      "textQueue": 1,
+      "activeSessions": 0,
+      "onlineUsers": 3
+    }
+  },
+  "textDelivery": {
+    "senderShowsMessage": true,
+    "recipientShowsMessage": false
+  },
+  "peerSeesDisconnect": false,
+  "video": {
+    "signalsSent": [
+      "leave",
+      "leave"
+    ],
+    "a": [
+      {
+        "muted": true,
+        "hasStream": true,
+        "readyState": 4
+      }
+    ],
+    "b": [
+      {
+        "muted": true,
+        "hasStream": true,
+        "readyState": 4
+      }
+    ]
+  },
+  "serverHtml": {
+    "h1Count": 1,
+    "hasOmagel": true
+  },
+  "sitemapIncludesPage": true,
+  "robots": "User-Agent: *\nAllow: /\nDisallow: /api/\n\nHost: https://www.devcalc.in\nSitemap: https://www.devcalc.in/sitemap.xml\n"
+}
