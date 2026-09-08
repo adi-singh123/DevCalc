@@ -180,6 +180,24 @@ export default function OmagelClient() {
     return () => { disposed = true; clearTimeout(timer); };
   }, [status, disconnected, api, connect, incoming, markDisconnected, cleanup]);
 
+  // Poll live online users in real-time when in the lobby (idle)
+  useEffect(() => {
+    if (status !== "idle") return;
+    let disposed = false;
+    const fetchLiveUsers = async () => {
+      try {
+        const res = await fetch("/api/omagel/queue");
+        const data = await res.json();
+        if (!disposed && typeof data?.onlineUsers === "number") {
+          setOnline(data.onlineUsers);
+        }
+      } catch {}
+    };
+    fetchLiveUsers();
+    const interval = setInterval(fetchLiveUsers, 4000);
+    return () => { disposed = true; clearInterval(interval); };
+  }, [status]);
+
   useEffect(() => {
     const exit = () => {
       generation.current++;

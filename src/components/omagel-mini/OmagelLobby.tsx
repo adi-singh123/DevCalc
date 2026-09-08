@@ -27,7 +27,7 @@ export const OmagelLobby: React.FC<OmagelLobbyProps> = ({
       <div className="space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 dark:bg-emerald-950/70 dark:border-emerald-500/30 dark:text-emerald-400 text-xs font-semibold shadow-2xs">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>{onlineCount > 0 ? `${onlineCount} active chat participants` : "Choose text or video · 18+"}</span>
+          <span>{onlineCount > 0 ? `${onlineCount} Live ${onlineCount === 1 ? 'Stranger' : 'Strangers'} Online` : "Live Matchmaking Active · 18+"}</span>
         </div>
         <h2 className="text-2xl font-bold">Start a conversation</h2>
         <p className="text-sm sm:text-base text-stone-600 dark:text-slate-400 max-w-lg mx-auto">

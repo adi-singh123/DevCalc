@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { interviewTopics } from "@/src/data/interview";
 import { getInterviewQuestions } from "@/src/data/interview/questions";
 import StageQuizClient from "./StageQuizClient";
+import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 
 interface Props {
   params: Promise<{ slug: string; stage: string }>;
@@ -107,6 +108,8 @@ export default async function StageQuizPage({ params }: Props) {
             <Link href={`/interview-questions/${slug}`} className="hover:underline">{topic.title}</Link>
             <span aria-hidden="true"> / {stageTitle}</span>
           </nav>
+
+          <OmagelPromoBanner />
 
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700 dark:text-blue-400">
             {stageTitle} practice · {questions.length} questions

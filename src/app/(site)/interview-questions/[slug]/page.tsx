@@ -15,6 +15,7 @@ import { Lock, Unlock, ChevronRight } from "lucide-react";
 import TopCompanies from "@/src/components/interview/TopCompanies";
 import FAQSection from "@/src/components/calculator/FAQSection";
 import FAQSchema from "@/src/components/seo/FAQSchema";
+import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 
 import { InterviewTopicCard } from '@/src/components/interview/InterviewTopicCard';
 
@@ -203,6 +204,7 @@ export default async function TopicOverviewPage({ params }: Props) {
   );
 
 
+
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
       <div className="max-w-7xl mx-auto px-6 pt-8">
@@ -220,6 +222,8 @@ export default async function TopicOverviewPage({ params }: Props) {
             { label: topic.title },
           ]}
         />
+
+        <OmagelPromoBanner />
 
         {/* Hero */}
         <header className="relative mt-12 py-20 px-8 bg-gradient-to-r from-blue-700 to-indigo-800 rounded-3xl text-white shadow-2xl overflow-hidden">

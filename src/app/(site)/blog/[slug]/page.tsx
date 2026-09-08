@@ -8,6 +8,7 @@ import { calculators } from "@/src/data/calculators";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import AuthorBio from "@/src/components/common/AuthorBio";
+import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import { getCategorySlug } from "@/src/data/categories/Category";
 
 type Props = {
@@ -138,6 +139,10 @@ export default async function BlogDetailsPage({ params }: Props) {
           },
         ]}
       />
+
+      <div className="mx-auto max-w-7xl px-4">
+        <OmagelPromoBanner />
+      </div>
 
       <Script
         id="faq-schema"

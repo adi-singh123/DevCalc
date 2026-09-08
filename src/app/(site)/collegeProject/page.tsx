@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import InteractiveFaq from "@/src/components/common/InteractiveFaq";
+import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import {
   Code2,
   Clock,
@@ -343,6 +344,8 @@ export default function CollegeProjectPage() {
               Software Builds for Students
             </span>
           </nav>
+
+          <OmagelPromoBanner />
         </div>
 
         {/* ── Hero Section ── */}

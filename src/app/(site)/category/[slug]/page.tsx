@@ -8,6 +8,7 @@ import { CATEGORY_GUIDES } from "@/src/data/categories/categoryGuides";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
+import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 
 type Props = {
   params: Promise<{
@@ -119,6 +120,7 @@ export default async function CategoryPage({
     <main className="mx-auto max-w-7xl px-4 py-12">
       <BreadcrumbSchema items={breadcrumbSchema} />
       <Breadcrumb items={breadcrumbItems} />
+      <OmagelPromoBanner />
 
       {/* Header */}
       <section className="max-w-4xl">

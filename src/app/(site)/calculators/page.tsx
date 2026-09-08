@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
 import CalculatorSearch from "@/src/components/calculator/CalculatorSearch";
+import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import { calculators } from "@/src/data/calculators";
 import { siteConfig } from "@/src/config/site";
 
@@ -46,6 +47,8 @@ export default function CalculatorsPage() {
           <CalculatorSearch />
         </div>
       </section>
+
+      <OmagelPromoBanner />
 
       {/* Popular Calculators */}
       {popularCalculators.length > 0 && (

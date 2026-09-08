@@ -11,6 +11,7 @@ import { interviewTopics } from '@/src/data/interview';
 import { InterviewTopicCard } from '@/src/components/interview/InterviewTopicCard';
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
+import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import WhyChooseDevCalc from '@/src/components/interview/WhyChooseDevCalc';
 import TopCompanies from '@/src/components/interview/TopCompanies';
 import { ChevronDown } from 'lucide-react';
@@ -345,6 +346,8 @@ export default function InterviewHomePage() {
           <Breadcrumb items={[{ label: "Interview Questions" }]} />
         </div>
 
+        <OmagelPromoBanner />
+
         {/* Hero Section */}
         <header className="text-center py-16 lg:py-24">
           <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/30 px-4 py-1.5 text-sm font-medium text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
@@ -356,6 +359,8 @@ export default function InterviewHomePage() {
           <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             Scale your career with curated interview questions, interactive MCQs, and deep-dive explanations for top-tier tech roles — from freshers targeting campus placements to senior engineers aiming for FAANG.
           </p>
+
+
 
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[ { val: "1500+", label: "Questions" }, { val: "4", label: "Difficulty Levels" }, { val: "100%", label: "Free" }, { val: "MNC", label: "Ready" } ].map((stat) => (

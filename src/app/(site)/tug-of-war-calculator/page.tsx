@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TugOfWarGame from "@/src/components/games/TugOfWarGame";
+import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import { siteConfig } from "@/src/config/site";
 
 export const metadata: Metadata = {
@@ -25,6 +26,10 @@ export default function TugOfWarCalculatorPage() {
           Solve arithmetic questions before the bot pulls the rope away. Every
           correct answer moves you closer to victory.
         </p>
+      </div>
+
+      <div className="mx-auto max-w-3xl mb-8">
+        <OmagelPromoBanner />
       </div>
 
       <TugOfWarGame />

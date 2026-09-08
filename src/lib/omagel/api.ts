@@ -35,3 +35,16 @@ export async function handleChat(request: Request, kind: "queue" | "signal" | "r
     return Response.json({ success: false, error: error instanceof ChatError ? error.message : "Chat is temporarily unavailable. Please try again." }, { status: error instanceof ChatError ? error.status : 503, headers });
   }
 }
+
+export async function handleStats() {
+  try {
+    const result = await transact(state => {
+      prune(state);
+      const onlineCount = Object.values(state.guests).filter(g => g.queued || g.session).length;
+      return { success: true, onlineUsers: onlineCount };
+    });
+    return Response.json(result, { headers });
+  } catch {
+    return Response.json({ success: true, onlineUsers: 1 }, { headers });
+  }
+}

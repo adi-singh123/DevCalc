@@ -5,6 +5,7 @@ import Link from "next/link";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import BlogCard from "@/src/components/blog/BlogCard";
+import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import { blogs } from "@/src/data/blogs/blog";
 
 const categories = [
@@ -69,6 +70,8 @@ export default function BlogPage() {
       },
     ]}
   />
+
+  <OmagelPromoBanner />
       {/* Hero */}
       <section className="mb-12 overflow-hidden rounded-3xl bg-gradient-to-br from-[#1f3a5c] to-[#2b4a6f] px-8 py-16 text-white">
         <div className="max-w-4xl">
