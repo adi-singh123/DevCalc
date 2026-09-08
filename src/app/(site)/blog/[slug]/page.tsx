@@ -19,7 +19,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-
   const blog = blogs.find((item) => item.slug === slug);
 
   if (!blog) {
@@ -30,24 +29,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: blog.seoTitle,
-
     description: blog.seoDescription,
-
     keywords: [blog.title, blog.category, "DevCalc Blog"],
-
     alternates: {
       canonical: `https://www.devcalc.in/blog/${blog.slug}`,
     },
-
     openGraph: {
       title: blog.seoTitle,
-
       description: blog.seoDescription,
-
       url: `https://www.devcalc.in/blog/${blog.slug}`,
-
       siteName: "DevCalc",
-
       type: "article",
     },
   };
@@ -70,17 +61,12 @@ export default async function BlogDetailsPage({ params }: Props) {
 
   const faqSchema = {
     "@context": "https://schema.org",
-
     "@type": "FAQPage",
-
     mainEntity: blog.faqs.map((faq) => ({
       "@type": "Question",
-
       name: faq.question,
-
       acceptedAnswer: {
         "@type": "Answer",
-
         text: faq.answer,
       },
     })),
@@ -170,9 +156,7 @@ export default async function BlogDetailsPage({ params }: Props) {
 
             <div className="mt-6 flex flex-wrap gap-4 border-b border-stone-200 pb-6 text-sm text-stone-500 dark:border-slate-700 dark:text-slate-400">
               <span>{blog.author}</span>
-
               <span>{blog.publishedDate}</span>
-
               <span>{blog.readingTime}</span>
             </div>
 

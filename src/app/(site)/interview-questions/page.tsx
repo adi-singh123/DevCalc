@@ -15,8 +15,6 @@ import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import WhyChooseDevCalc from '@/src/components/interview/WhyChooseDevCalc';
 import TopCompanies from '@/src/components/interview/TopCompanies';
 import { ChevronDown } from 'lucide-react';
-
-// --- Metadata ---
 export const metadata: Metadata = {
   title: 'Technical Interview Questions 2026 | JavaScript, React, DSA, System Design',
   description:
@@ -325,12 +323,7 @@ const faqSchema = {
   })),
 };
 
-
-
 export default function InterviewHomePage() {
-
-
-
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
       {/* FAQ JSON-LD Structured Data */}

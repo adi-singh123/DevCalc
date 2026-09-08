@@ -59,7 +59,6 @@ const FAQ_ITEMS = [
   },
   {
     q: "Why are some API headers marked [REDACTED]?",
-    a: "For user and server privacy, any observed authorization tokens, Bearer keys, sensitive cookies, or password fields in discovered endpoints are automatically sanitized and redacted before presentation.",
     a: "To prevent unintentional credential or authorization token leakages in public scans, known sensitive header values (including Authorization, Cookie, Set-Cookie, and custom token keys) are masked before client serialization.",
   },
 ];
@@ -69,21 +68,12 @@ export default function WebsiteXRayPage() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "SoftwareApplication",
-        name: "Website X-Ray",
         "@type": "WebApplication",
         name: "DevCalc Website X-Ray",
         url: "https://www.devcalc.in/website-x-ray",
         description:
           "Deep technical intelligence tool to scan observable frontend frameworks, infrastructure, APIs, and passive security headers on any public website.",
         applicationCategory: "DeveloperApplication",
-        operatingSystem: "Web",
-        description:
-          "Analyze website tech stacks, frameworks, CMS, DNS records, SSL certificates, APIs, and security headers.",
-        url: "https://www.devcalc.in/website-x-ray",
-        author: {
-          "@type": "Organization",
-          name: "DevCalc",
         operatingSystem: "All",
         offers: {
           "@type": "Offer",
@@ -201,36 +191,24 @@ export default function WebsiteXRayPage() {
                 Modern web applications are distributed across multiple layers—from DNS edge routing and Content Delivery Networks (CDNs) to frontend Single Page Application (SPA) client hydrators and backend microservices.
               </p>
               <p>
-                <strong>How Detection Works:</strong> When you input a URL into Website X-Ray, the engine initiates a multi-stage passive scan. First, DNS lookups resolve authoritative nameservers and routing endpoints. Concurrently, a secure HTTP client establishes a TLS socket, recording cipher negotiation and certificate validity. The engine then parses response headers (such as <code className="text-indigo-700 dark:text-indigo-300 bg-stone-100 dark:bg-slate-950 px-1.5 py-0.5 rounded font-mono text-xs border border-stone-200 dark:border-slate-800">cf-ray</code>, <code className="text-indigo-700 dark:text-indigo-300 bg-stone-100 dark:bg-slate-950 px-1.5 py-0.5 rounded font-mono text-xs border border-stone-200 dark:border-slate-800">x-vercel-id</code>, and security policies) and inspects DOM bundle signatures to construct a detailed architectural profile.
                 Website X-Ray combines multi-factor heuristic fingerprinting with HTTP header telemetry to deliver clean, transparent, and non-destructive technical insights into any public domain.
-              </p>
-              <p>
-                <strong>Security and Privacy Assurance:</strong> All scans conducted via Website X-Ray are strictly passive and read-only. Authentication headers and user cookies are automatically redacted to ensure absolute security for audited domains.
               </p>
             </div>
           </div>
 
-          {/* FAQ Section */}
           {/* Interactive FAQ Section */}
           <div className="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800/90 rounded-2xl p-7 sm:p-8 space-y-6 shadow-xs">
-            <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 dark:bg-indigo-950 dark:border-indigo-500/40 dark:text-indigo-400">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 dark:bg-amber-950/80 dark:border-amber-500/30 dark:text-amber-400">
                 <HelpCircle className="w-4 h-4" />
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#26364a] dark:text-white">Frequently Asked Questions</h2>
               <h2 className="text-xl sm:text-2xl font-bold text-[#26364a] dark:text-white">
                 Frequently Asked Questions
               </h2>
             </div>
 
-            <div className="space-y-3.5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {FAQ_ITEMS.map((item, idx) => (
-                <div key={idx} className="bg-stone-50 dark:bg-slate-950/70 border border-stone-200 dark:border-slate-800/90 rounded-xl p-5 space-y-2">
-                  <h3 className="text-sm sm:text-base font-semibold text-[#26364a] dark:text-slate-100">{item.q}</h3>
-                  <p className="text-xs sm:text-sm text-stone-600 dark:text-slate-400 leading-relaxed">{item.a}</p>
                 <div
                   key={idx}
                   className="p-4 rounded-xl border border-stone-200/80 dark:border-slate-800 bg-stone-50/50 dark:bg-slate-950/50 space-y-1.5"
