@@ -94,6 +94,11 @@ export default async function StageQuizPage({ params }: Props) {
   const stageTitle = stage === "mnc" ? "MNC" : `${stage[0].toUpperCase()}${stage.slice(1)}`;
   const categories = [...new Set(questions.map((question) => question.category))];
   const topics = [...new Set(questions.flatMap((question) => question.tags))].slice(0, 12);
+  const categoryBreakdown = categories.map((category) => ({
+    category,
+    count: questions.filter((question) => question.category === category).length,
+  }));
+  const studyNotes = questions.slice(2, 10);
   const currentIndex = STAGES.indexOf(normalizedStage);
   const previousStage = currentIndex > 0 ? STAGES[currentIndex - 1] : null;
   const nextStage = currentIndex < STAGES.length - 1 ? STAGES[currentIndex + 1] : null;
@@ -157,7 +162,7 @@ export default async function StageQuizPage({ params }: Props) {
               These prompts come directly from this quiz. Start the assessment below to answer them and review the explanations.
             </p>
             <ol className="mt-4 grid gap-3 pl-5 text-sm leading-6 text-stone-700 md:grid-cols-2 dark:text-slate-300">
-              {questions.slice(0, 8).map((question) => (
+              {questions.slice(0, 2).map((question) => (
                 <li key={question.id} className="list-decimal pl-1">
                   {question.question}
                 </li>
@@ -183,6 +188,64 @@ export default async function StageQuizPage({ params }: Props) {
         topicTitle={topic.title}
         questions={questions}
       />
+
+      <section className="border-t border-stone-200 bg-white px-4 py-12 dark:border-slate-800 dark:bg-slate-950">
+        <div className="mx-auto max-w-5xl">
+          <header className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700 dark:text-blue-400">
+              Study reference · Updated {topic.lastUpdated}
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-semibold text-[#26364a] dark:text-white">
+              {topic.title} {stageTitle} answer notes
+            </h2>
+            <p className="mt-4 leading-7 text-stone-700 dark:text-slate-300">
+              The notes below come from questions numbered 3–10 in this specific {stageTitle.toLowerCase()} set. They do not appear in the sample list above, and every explanation belongs to the displayed {topic.title} question.
+            </p>
+          </header>
+
+          <section className="mt-8 rounded-2xl border border-stone-200 bg-[#faf7f0] p-5 dark:border-slate-800 dark:bg-slate-900">
+            <h3 className="font-semibold text-slate-900 dark:text-white">Question-format breakdown</h3>
+            <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {categoryBreakdown.map(({ category, count }) => (
+                <div key={category} className="rounded-xl bg-white p-4 dark:bg-slate-950">
+                  <dt className="text-sm font-medium text-stone-600 dark:text-slate-400">{category}</dt>
+                  <dd className="mt-1 text-2xl font-semibold text-slate-900 dark:text-white">{count}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <div className="mt-8 space-y-6">
+            {studyNotes.map((question, index) => (
+              <article key={question.id} className="rounded-2xl border border-stone-200 p-5 dark:border-slate-800 dark:bg-slate-900 sm:p-6">
+                <p className="text-xs font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400">
+                  Note {index + 1} · {question.category} · {question.tags.join(" · ")}
+                </p>
+                <h3 className="mt-3 text-lg font-semibold leading-7 text-slate-900 dark:text-white">
+                  {question.question}
+                </h3>
+                {question.code && (
+                  <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm text-slate-100">
+                    <code>{question.code}</code>
+                  </pre>
+                )}
+                <p className="mt-4 text-sm leading-7 text-stone-700 dark:text-slate-300">
+                  <strong className="text-slate-900 dark:text-white">Correct answer:</strong>{" "}
+                  {question.correctAnswer}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-stone-700 dark:text-slate-300">
+                  <strong className="text-slate-900 dark:text-white">Why:</strong>{" "}
+                  {question.explanation}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <p className="mt-8 rounded-xl bg-blue-50 p-4 text-sm leading-6 text-blue-950 dark:bg-blue-950/50 dark:text-blue-100">
+            Use these explanations as revision notes, then retake the quiz without referring to them. The complete set contains {questions.length} questions, so the assessment still covers additional {topic.title} concepts and scenarios.
+          </p>
+        </div>
+      </section>
     </>
   );
 }

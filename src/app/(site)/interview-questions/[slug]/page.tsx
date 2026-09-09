@@ -9,10 +9,10 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { interviewTopics } from "@/src/data/interview";
 import { getInterviewQuestions } from "@/src/data/interview/questions";
+import { interviewTopicGuides } from "@/src/data/interview/guides";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
-import { Lock, Unlock, ChevronRight } from "lucide-react";
-import TopCompanies from "@/src/components/interview/TopCompanies";
+import { Unlock, ChevronRight } from "lucide-react";
 import FAQSection from "@/src/components/calculator/FAQSection";
 import FAQSchema from "@/src/components/seo/FAQSchema";
 import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
@@ -31,26 +31,18 @@ const STAGES = [
   {
     id: "beginner",
     title: "Beginner",
-    desc: "Core fundamentals, syntax, data types, and primary language building blocks.",
-    unlocked: true,
   },
   {
     id: "intermediate",
     title: "Intermediate",
-    desc: "Asynchronous workflows, memory behavior, standard libraries, and common design patterns.",
-    unlocked: true,
   },
   {
     id: "advanced",
     title: "Advanced",
-    desc: "Internal runtime mechanics, performance profiling, concurrency, and architecture.",
-    unlocked: true,
   },
   {
     id: "mnc",
     title: "MNC Level",
-    desc: "Large-scale system design, distributed constraints, resilience, and FAANG-style trade-offs.",
-    unlocked: true,
   },
 ];
 
@@ -184,23 +176,29 @@ export default async function TopicOverviewPage({ params }: Props) {
   const { slug } = await params;
   const topic = interviewTopics.find((t) => t.slug === slug);
   if (!topic) return notFound();
+  const guide = interviewTopicGuides[slug];
+  if (!guide) return notFound();
 
   const relatedTopics = interviewTopics
     .filter((item) => item.slug !== topic.slug)
     .slice(0, 4);
 
   const faqs = getTopicFaqs(slug);
-  const questionsByStage = STAGES.map((stage) => ({
-    ...stage,
-    questions: getInterviewQuestions(slug, stage.id),
-  }));
+  const questionsByStage = STAGES.map((stage) => {
+    const stageQuestions = getInterviewQuestions(slug, stage.id);
+    return {
+      ...stage,
+      questions: stageQuestions,
+      focusTags: [...new Set(stageQuestions.flatMap((question) => question.tags))].slice(0, 5),
+    };
+  });
   const allQuestions = questionsByStage.flatMap((stage) => stage.questions);
   const topicTags = [...new Set(allQuestions.flatMap((question) => question.tags))].slice(0, 16);
-  const sampleQuestions = questionsByStage.flatMap((stage) =>
-    stage.questions.slice(0, 2).map((question) => ({
-      ...question,
-      stageTitle: stage.title,
-    })),
+  const categoryBreakdown = [...new Set(allQuestions.map((question) => question.category))].map(
+    (category) => ({
+      category,
+      count: allQuestions.filter((question) => question.category === category).length,
+    }),
   );
 
 
@@ -239,7 +237,7 @@ export default async function TopicOverviewPage({ params }: Props) {
 
           <div className="relative">
             <span className="inline-block mb-4 rounded-full bg-white/20 px-4 py-1.5 text-sm font-semibold">
-              {topic.totalQuestions}+ Questions
+              {allQuestions.length} Questions
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-5 tracking-tight leading-tight">
               {topic.title} Interview Questions:
@@ -247,10 +245,7 @@ export default async function TopicOverviewPage({ params }: Props) {
               Preparation &amp; Coding Guide
             </h1>
             <p className="text-blue-100 text-lg mb-8 max-w-3xl leading-relaxed">
-              Master <strong>{topic.title} technical coding</strong> with our
-              structured roadmap. From <strong>MCQ interview practice</strong>{" "}
-              to <strong>advanced system design</strong>, succeed in your next
-              developer assessment.
+              {topic.description}
             </p>
             <a
               href={`/interview-questions/${slug}/beginner`}
@@ -286,17 +281,44 @@ export default async function TopicOverviewPage({ params }: Props) {
             ))}
           </ul>
 
-          <h3 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Sample questions</h3>
-          <ol className="mt-4 grid gap-4 md:grid-cols-2">
-            {sampleQuestions.map((question) => (
-              <li key={question.id} className="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
-                <span className="text-xs font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400">
-                  {question.stageTitle} · {question.category}
-                </span>
-                <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-300">{question.question}</p>
-              </li>
+          <h3 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">Question types in this collection</h3>
+          <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {categoryBreakdown.map(({ category, count }) => (
+              <div key={category} className="rounded-xl bg-slate-50 p-4 dark:bg-slate-800/60">
+                <dt className="text-sm text-slate-600 dark:text-slate-300">{category}</dt>
+                <dd className="mt-1 text-2xl font-bold text-slate-900 dark:text-white">{count}</dd>
+              </div>
             ))}
-          </ol>
+          </dl>
+
+          <h3 className="mt-10 text-xl font-bold text-slate-900 dark:text-white">
+            How to build practical {topic.title} interview depth
+          </h3>
+          <p className="mt-3 leading-7 text-slate-700 dark:text-slate-300">{guide.overview}</p>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {guide.skills.map((skill) => (
+              <article key={skill.title} className="rounded-xl border border-slate-200 p-5 dark:border-slate-700">
+                <h4 className="font-semibold text-slate-900 dark:text-white">{skill.title}</h4>
+                <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-300">{skill.description}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <section className="rounded-xl bg-emerald-50 p-5 dark:bg-emerald-950/30">
+              <h3 className="font-semibold text-emerald-950 dark:text-emerald-100">Hands-on exercises</h3>
+              <ol className="mt-3 list-decimal space-y-3 pl-5 text-sm leading-6 text-emerald-950 dark:text-emerald-100">
+                {guide.exercises.map((exercise) => <li key={exercise}>{exercise}</li>)}
+              </ol>
+            </section>
+            <section className="rounded-xl bg-amber-50 p-5 dark:bg-amber-950/30">
+              <h3 className="font-semibold text-amber-950 dark:text-amber-100">Mistakes to avoid</h3>
+              <ul className="mt-3 list-disc space-y-3 pl-5 text-sm leading-6 text-amber-950 dark:text-amber-100">
+                {guide.pitfalls.map((pitfall) => <li key={pitfall}>{pitfall}</li>)}
+              </ul>
+            </section>
+          </div>
         </section>
 
         <section className="mt-20">
@@ -304,56 +326,37 @@ export default async function TopicOverviewPage({ params }: Props) {
             Structured Interview Roadmap
           </h2>
           <p className="text-center text-slate-500 dark:text-slate-400 mb-10">
-            Complete each stage to unlock the next level.
+            Choose a stage based on its question count and concepts from that exact set.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {STAGES.map((stage, idx) => (
+            {questionsByStage.map((stage, idx) => (
               <div
                 key={stage.id}
-                className={`relative p-6 rounded-3xl border transition-all ${
-                  !stage.unlocked
-                    ? "bg-slate-100 dark:bg-slate-900 border-slate-200 dark:border-slate-800"
-                    : "bg-white dark:bg-slate-900 border-blue-400 shadow-xl shadow-blue-500/10"
-                }`}
+                className="relative rounded-3xl border border-blue-400 bg-white p-6 shadow-xl shadow-blue-500/10 transition-all dark:bg-slate-900"
               >
                 {/* Step number */}
                 <span className="absolute top-4 right-4 text-xs font-bold text-slate-300 dark:text-slate-700">
                   0{idx + 1}
                 </span>
 
-                {stage.unlocked ? (
-                  <Unlock className="mb-4 text-blue-600" size={22} />
-                ) : (
-                  <Lock className="mb-4 text-slate-400" size={22} />
-                )}
+                <Unlock className="mb-4 text-blue-600" size={22} />
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1.5">
                   {stage.title}
                 </h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
-                  {stage.desc}
+                  {stage.questions.length} questions covering {stage.focusTags.join(", ")}.
                 </p>
 
-                {stage.unlocked ? (
-                  <a
-                    href={`/interview-questions/${slug}/${stage.id}`}
-                    className="block w-full py-3 bg-blue-600 text-white rounded-2xl font-bold text-center text-sm hover:bg-blue-700 transition-colors"
-                  >
-                    Start Quiz
-                  </a>
-                ) : (
-                  <button
-                    disabled
-                    className="w-full py-3 bg-slate-200 dark:bg-slate-800 text-slate-400 rounded-2xl font-bold text-sm cursor-not-allowed"
-                  >
-                    🔒 Locked
-                  </button>
-                )}
+                <a
+                  href={`/interview-questions/${slug}/${stage.id}`}
+                  className="block w-full rounded-2xl bg-blue-600 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-blue-700"
+                >
+                  Start Quiz
+                </a>
               </div>
             ))}
           </div>
         </section>
-
-        {/* SEO Article */}
 
         <section className="mt-20">
   <div className="mb-8 text-center">
@@ -376,8 +379,6 @@ export default async function TopicOverviewPage({ params }: Props) {
   </div>
 </section>
 
-        <TopCompanies />
-
         {/* FAQ */}
         {faqs.length > 0 && (
           <section className="mt-20 mb-2">
@@ -395,19 +396,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!topic) {
     return { robots: { index: false, follow: false } };
   }
+  const questions = STAGES.flatMap((stage) => getInterviewQuestions(slug, stage.id));
+  const focusAreas = [...new Set(questions.flatMap((question) => question.tags))].slice(0, 5);
+  const description = `Practice ${questions.length} ${topic.title} interview questions from beginner through MNC level. Review explained answers covering ${focusAreas.join(", ")}.`;
   return {
     title: `${topic.title} Interview Questions & Coding Guide`,
-    description: topic
-      ? `Practice ${topic.totalQuestions} ${topic.title} interview questions across beginner, intermediate, advanced, and MNC stages, with explanations and topic-specific coverage.`
-      : "Technical interview questions and explanations.",
+    description,
     alternates: {
       canonical: `https://www.devcalc.in/interview-questions/${slug}`,
     },
     openGraph: {
       title: `${topic.title} Interview Prep | DevCalc`,
-      description: topic
-        ? `${topic.totalQuestions} ${topic.title} questions organized from beginner through MNC level, with answer explanations.`
-        : "Technical interview questions and explanations.",
+      description,
       url: `https://www.devcalc.in/interview-questions/${slug}`,
       siteName: "DevCalc",
       type: "website",
