@@ -6,7 +6,7 @@ export const houseConstructionCostCalculator: Calculator = {
   name: "House Construction Cost Calculator",
 
   description:
-    "Plan your home construction budget in minutes. Enter your built-up area, preferred construction quality, city, number of floors, and interior needs — and get a detailed cost breakdown covering materials, labour, and total budget, tailored to Indian construction rates.",
+    "Estimate house construction cost in India from built-up area, city tier, quality, and floors. Review per-square-foot rates plus material and labour shares.",
 
   category: "Construction",
 
@@ -35,10 +35,9 @@ export const houseConstructionCostCalculator: Calculator = {
   ],
 
   seo: {
-    title:
-    "House Construction Cost Calculator India – Per Sq Ft + Material & Labour Breakdown",
+    title: "House Construction Cost Calculator India: Per Sq Ft",
     description:
-      "Know your real construction budget before you start. Get an instant per sq ft estimate with a full materials + labour breakdown, based on your city, floors, and quality tier",
+      "Estimate house construction cost per sq ft in India by built-up area, city, floors, and finish quality. See material, labour, and total budget breakdowns.",
     keywords: [
       "house construction cost calculator",
       "building cost estimator",
@@ -49,6 +48,11 @@ export const houseConstructionCostCalculator: Calculator = {
       "turnkey construction cost calculator",
       "duplex house construction cost",
       "civil construction cost breakdown",
+      "1000 sq ft house construction cost in India",
+      "1500 sq ft home building cost calculator",
+      "house construction material and labour estimate",
+      "ground floor and duplex construction cost",
+      "home building cost by city and quality",
     ],
   },
 
@@ -193,7 +197,7 @@ export const houseConstructionCostCalculator: Calculator = {
   ],
 
   seoContent: `
-<h2>What Is a House Construction Cost Calculator?</h2>
+<h2>Estimate House Construction Cost per Square Foot in India</h2>
 <p>
   A House Construction Cost Calculator helps you estimate the budget needed to build a residential property before you break ground. It takes your built-up area, desired construction quality, city, and number of floors, and converts them into a per-square-foot rate and a total project estimate — covering structural work, materials, and labour. This is useful at two very different points in the planning process: early on, to figure out roughly what you can afford and how large a house that budget realistically allows; and later, once you're collecting contractor quotations, to sanity-check whether a specific bid falls within a reasonable market range or looks unusually high or suspiciously low.
 </p>
@@ -326,6 +330,11 @@ export const houseConstructionCostCalculator: Calculator = {
 <h2>Limitations of This Calculator</h2>
 <p>
   This calculator provides a planning-stage estimate based on typical rates for built-up area, quality tier, city category, and number of floors. It cannot account for site-specific factors that materially affect actual cost — soil condition and foundation requirements, architectural complexity beyond a standard rectangular layout, the specific contractor and contract structure you choose, local material price fluctuations at the time of your project, or unique site access and logistics challenges. Use the result as a starting reference for budgeting and loan planning, and always confirm your actual project cost through a detailed quotation from a licensed contractor and, where structural work is involved, a certified structural engineer, before committing financially to a construction project.
+</p>
+
+<h2>Turn the Estimate into a Contractor-Ready Budget</h2>
+<p>
+  Ask each contractor for a comparable bill of quantities covering earthwork, foundation, RCC, masonry, plaster, waterproofing, flooring, doors and windows, electrical, plumbing, sanitaryware, painting, and external works. Record the brand or specification, unit, quantity, rate, tax treatment, and inclusion status for every item. Keep land cost, finance interest, movable furniture, appliances, and major interior packages outside the core construction figure unless the quotation explicitly includes them.
 </p>
 `,
 };

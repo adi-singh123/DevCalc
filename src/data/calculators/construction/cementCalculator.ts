@@ -6,7 +6,7 @@ export const cementCalculator: Calculator = {
   name: "Cement Calculator",
 
   description:
-    "Calculate cement bags required for slabs, foundations, columns, beams, floors, and construction projects. Estimate cement quantity, weight, and cost instantly.",
+    "Estimate 50 kg cement bags, cement weight, volume, and cost for slabs, foundations, beams, columns, and floors using project dimensions and concrete grade.",
 
   category: "Construction",
 
@@ -32,11 +32,10 @@ export const cementCalculator: Calculator = {
   ],
 
   seo: {
-    title:
-      "Cement Calculator - Calculate Cement Bags Required Online",
+    title: "Cement Calculator: Bags for Slab, RCC and Concrete",
 
     description:
-      "Calculate cement bags needed for slab, foundation, column, or beam. Get instant quantity, weight, and cost estimates for your construction project.",
+      "Calculate 50 kg cement bags for a slab, footing, beam, column, or floor. Enter dimensions and concrete grade to estimate cement quantity, weight, and cost.",
     keywords: [
       "cement calculator",
       "cement bag quantity calculator",
@@ -47,6 +46,11 @@ export const cementCalculator: Calculator = {
       "cement volume calculator",
       "cement bags for foundation",
       "construction cement cost estimator",
+      "how many cement bags for concrete slab",
+      "50 kg cement bag calculator for RCC",
+      "M20 concrete cement bags per cubic metre",
+      "cement bags for footing and column calculator",
+      "cement quantity from length width thickness",
     ],
   },
 
@@ -169,7 +173,7 @@ export const cementCalculator: Calculator = {
   ],
 
   seoContent: `
-<h2>What Is a Cement Calculator?</h2>
+<h2>Calculate Cement Bags for Slabs, Footings, Beams and Columns</h2>
 
 <p>
 A Cement Calculator helps estimate the number of cement bags required for construction projects. Whether you are building a house, slab, foundation, column, or floor, accurate cement estimation helps reduce material waste and improve budgeting.
@@ -267,5 +271,18 @@ The cement requirement depends on house size, slab thickness, foundation design,
 <p>
 Always add a small allowance for wastage and handling losses when purchasing cement for construction projects. This helps avoid delays caused by material shortages.
 </p>
+
+<h2>Nominal Mix Estimate vs. Structural Mix Design</h2>
+<p>
+This calculator is useful for preliminary quantities based on common nominal mix proportions. Structural RCC work may require a project-specific design mix based on target strength, exposure conditions, aggregate grading, water-cement ratio, admixtures, and site quality control. Use approved structural drawings and the engineer's mix specification for final procurement and concrete placement.
+</p>
+
+<h2>Cement Ordering Checklist</h2>
+<ul>
+<li>Confirm whether dimensions are entered in feet or metres and convert slab thickness correctly.</li>
+<li>Calculate slabs, beams, columns, and footings separately before combining quantities.</li>
+<li>Check the selected grade and whether ready-mix concrete or site mixing will be used.</li>
+<li>Store bags off the floor in a dry, covered area and order in stages when the programme allows.</li>
+</ul>
 `,
 };

@@ -6,7 +6,7 @@ export const loveCalculator: Calculator = {
   name: "Love Calculator",
 
   description:
-    "Check love compatibility between two people using their names. Discover your love percentage, relationship match score, and compatibility level instantly with our fun and shareable Love Calculator.",
+    "Enter two names to generate a repeatable love percentage and playful compatibility message. This private, name-based love test is free and intended for entertainment.",
 
   category: "Fun",
 
@@ -28,10 +28,10 @@ export const loveCalculator: Calculator = {
   compareWith: ["friendship-calculator", "crush-calculator"],
 
   seo: {
-    title: "Love Calculator by Name – Check Love Percentage & Compatibility",
+    title: "Love Calculator by Name: Love Percentage Test",
 
     description:
-      "Curious if you and your crush are meant to be? Enter two names and get your love compatibility score instantly — free, fun, and shareable.",
+      "Enter your name and your partner's or crush's name to get a repeatable love percentage and compatibility message. Free, private, and just for fun.",
     keywords: [
       "love calculator",
       "love calculator by name",
@@ -43,6 +43,10 @@ export const loveCalculator: Calculator = {
       "love meter",
       "relationship compatibility calculator",
       "true love test",
+      "love percentage calculator by two names",
+      "check love compatibility with crush name",
+      "free couple name matching test",
+      "partner name compatibility percentage",
     ],
   },
 
@@ -131,7 +135,7 @@ export const loveCalculator: Calculator = {
   ],
 
   seoContent: `
-<h2>The Fun and Chemistry of Testing Your Relationship Name Compatibility</h2>
+<h2>Love Calculator by Name: What Your Percentage Means</h2>
 <p>
   Throughout history, humans have looked for patterns, alignments, and signs to help understand relationship dynamics. Long before the internet era, people used traditional practices like astrology charts, numerological breakdowns, and palm readings to explore romantic potential. Today, an online <strong>Love Calculator</strong> updates those classic customs into a quick, lighthearted digital experience that lets you check name compatibility instantly.
 </p>
@@ -232,6 +236,11 @@ export const loveCalculator: Calculator = {
 <h2>Important Disclaimer</h2>
 <p>
   This Love Calculator is intended strictly for entertainment purposes only. The percentage score is generated through character-mapping algorithms and numerology-inspired formulas, not psychological evaluations or scientific relationship analysis. Real romantic compatibility depends on open communication, mutual trust, respect, and shared values.
+</p>
+
+<h2>What the Love Percentage Can and Cannot Tell You</h2>
+<p>
+  The result can give two people a playful conversation starter, and the same spelling pair produces a repeatable score. It cannot measure attraction, consent, trust, emotional safety, shared goals, or the future of a relationship. Try the names you actually use, remember that a nickname changes the input, and treat every score as entertainment rather than advice.
 </p>
 `,
 };

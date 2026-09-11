@@ -6,7 +6,7 @@ export const kundliMilanCalculator: Calculator = {
   name: "Kundli Milan Calculator (Guna Milan Score)",
 
   description:
-    "Check your Kundli Milan score instantly with our free Guna Milan Calculator — just select the Rashi (moon sign) or Nakshatra of the bride and groom to discover your Ashtakoot Guna score out of 36, marriage compatibility level, and dosha indicators. Fun, fast, and free to use anytime, anywhere, with no sign-up required!",
+    "Compare the bride's and groom's Rashi or Nakshatra to estimate an Ashtakoot Guna Milan score out of 36. Includes the eight-koota breakdown and clear limitations.",
   category: "Fun",
 
   isPopular: true,
@@ -14,10 +14,10 @@ export const kundliMilanCalculator: Calculator = {
   compareWith: ["zodiac-compatibility-calculator", "love-calculator"],
 
   seo: {
-    title: "Kundli Milan Calculator - Guna Milan Score by Rashi & Nakshatra",
+    title: "Kundli Milan: 36 Guna by Rashi and Nakshatra",
 
     description:
-      "Check your Kundli Milan and Guna Milan score instantly with our free calculator. Select the Rashi or Nakshatra of the bride and groom to discover your Ashtakoot score out of 36, marriage compatibility level, and dosha indicators in seconds.",
+      "Estimate Kundli Milan by Rashi or Nakshatra. Check the bride and groom's Ashtakoot Guna score out of 36, koota breakdown, and traditional match range.",
     keywords: [
       "kundli milan calculator",
       "guna milan calculator",
@@ -29,6 +29,10 @@ export const kundliMilanCalculator: Calculator = {
       "marriage compatibility calculator kundli",
       "36 guna milan calculator",
       "vedic astrology matching calculator",
+      "bride groom kundli matching by nakshatra",
+      "ashtakoot compatibility score out of 36",
+      "online horoscope matching for marriage India",
+      "check guna milan without birth time",
     ],
   },
 
@@ -142,7 +146,7 @@ export const kundliMilanCalculator: Calculator = {
   ],
 
   seoContent: `
-<h2>What Is Kundli Milan?</h2>
+<h2>Kundli Milan by Rashi or Nakshatra: What This Calculator Checks</h2>
 <p>
 <strong>Kundli Milan</strong>, also widely known as <strong>Guna Milan</strong> or horoscope matching, is a centuries-old tradition within Vedic astrology used across India to evaluate the compatibility of a prospective bride and groom before marriage. The word "Kundli" refers to a person's birth chart — a map of where the moon, sun, and planets sat in the sky at the exact moment of their birth — while "Milan" simply means union or matching. Before many arranged and even love marriages in Indian culture, families traditionally consult an astrologer to compare the birth charts of both individuals, seeking reassurance, guidance, and cultural blessing before moving forward.
 </p>
@@ -237,6 +241,11 @@ Whatever a Guna Milan score suggests, lasting marital compatibility is ultimatel
 <h2>Limitations and an Honest Disclaimer</h2>
 <p>
 This Kundli Milan Calculator is a simplified, educational, and entertainment-oriented tool. It uses Rashi or Nakshatra selection rather than complete, precisely calculated birth charts based on exact birth time and location, meaning the score should be treated as a rough estimate rather than a professionally verified Kundli Milan report. For any real decision involving marriage, it's strongly recommended to consult a qualified, experienced astrologer who can generate and interpret complete, accurate birth charts for both individuals, including a detailed examination of Nadi Dosha, Mangal Dosha, and each individual koota.
+</p>
+
+<h2>Information Needed for a Full Kundli Matching Report</h2>
+<p>
+A traditional full-chart comparison normally starts with each person's exact date, local time, and place of birth. Those details are used to calculate the Moon's precise Nakshatra and pada, planetary houses, ascendant, and separate dosha considerations. If you only know a broad Rashi, use this result as an initial cultural reference; do not treat it as equivalent to a birth-chart calculation or use it alone for a marriage decision.
 </p>
 
 <h2>A Brief History of Kundli Matching in Indian Astrology</h2>

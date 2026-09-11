@@ -6,7 +6,7 @@ export const mileageCalculator: Calculator = {
   name: "Mileage Calculator",
 
   description:
-    "Free Mileage Calculator to calculate car mileage, bike mileage, fuel cost per km, trip fuel expense, fuel consumption, and running cost. Supports petrol, diesel, CNG, hybrid, and EV vehicles with accurate results.",
+    "Calculate your car or bike's real mileage in km/L, fuel cost per kilometre, and total trip expense from distance travelled, fuel used, and fuel price.",
 
   category: "Vehicle",
 
@@ -26,10 +26,10 @@ export const mileageCalculator: Calculator = {
   },
 
   seo: {
-    title: "Mileage Calculator – Check Car & Bike Fuel Cost Per Km",
+    title: "Mileage Calculator: Car & Bike km/L and Fuel Cost",
 
     description:
-      "Easy mileage calculator for car and bike. Just enter distance and fuel used to check your mileage, fuel cost per km, and trip expense — free and simple.",
+      "Calculate car or bike mileage in km/L, litres per 100 km, fuel cost per km, and trip expense using distance, fuel consumed, and current fuel price.",
 
     keywords: [
       "mileage calculator",
@@ -41,13 +41,17 @@ export const mileageCalculator: Calculator = {
       "vehicle running cost estimator",
       "ev vs petrol running cost",
       "monthly fuel budget calculator",
+      "calculate car mileage from odometer reading",
+      "petrol cost per kilometre calculator India",
+      "tank to tank mileage calculator",
+      "litres per 100 km calculator",
     ],
   },
 
   compareWith: [
     "fuel-cost-calculator",
     "distance-calculator",
-    "ev-vs-petrol-cost-calculator",
+    "ev-vs-petrol-calculator",
   ],
 
   steps: [
@@ -139,7 +143,7 @@ export const mileageCalculator: Calculator = {
   ],
 
   seoContent: `
-<h2>The Ultimate Technical Guide to Vehicle Mileage and Fuel Efficiency</h2>
+<h2>How to Calculate Car or Bike Mileage and Fuel Cost Accurately</h2>
 <p>
   In an era of fluctuating retail fuel tariffs and evolving environmental regulations, understanding your vehicle's actual fuel consumption profile is essential. Whether you manage a massive commercial logistics fleet or navigate a daily personal commute, monitoring your real-world <strong>vehicle mileage</strong> is the single most effective way to optimize operational running costs, minimize localized emissions, and diagnose underlying mechanical issues before they turn into costly breakdowns.
 </p>
@@ -286,6 +290,18 @@ export const mileageCalculator: Calculator = {
 </ul>
 <p>
   Using this baseline, improving your mileage from 15 km/L to 18 km/L reduces your monthly fuel need to 100 liters, saving you ₹2,000 per month—or ₹24,000 in direct savings every year. Use our online interactive mileage calculator to track your efficiency, lower your vehicle running costs, and optimize your driving habits today.
+</p>
+
+<h2>Checklist for a Reliable Tank-to-Tank Mileage Result</h2>
+<ul>
+  <li>Use the same fuel pump and stop at the first automatic nozzle cut-off on both fills.</li>
+  <li>Reset the trip meter after the first fill, or record both odometer readings.</li>
+  <li>Enter only the fuel added on the second fill, not the vehicle's full tank capacity.</li>
+  <li>Measure over several hundred kilometres and repeat the test across multiple tanks.</li>
+  <li>Compare city and highway trips separately because traffic, speed, AC use, load, and tyre pressure change mileage.</li>
+</ul>
+<p>
+  The displayed cost per kilometre covers fuel only. For a complete vehicle running-cost estimate, add servicing, tyres, insurance, tolls, parking, finance charges, and depreciation separately.
 </p>
 `,
 };

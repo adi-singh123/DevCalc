@@ -6,7 +6,7 @@ export const brickCalculator: Calculator = {
   name: "Brick Calculator",
 
   description:
-"Get precise brick, mortar, cement, and sand quantities for your walls, rooms, or multi-floor construction. Just pick your block type — red clay, fly ash, or AAC — and receive an instant, accurate material estimate.",
+    "Estimate bricks or blocks for a wall from its length, height, and thickness. Include mortar, wastage, unit price, and openings to plan quantity and cost.",
   category: "Construction",
 
   isPopular: true,
@@ -31,10 +31,10 @@ export const brickCalculator: Calculator = {
   ],
 
   seo: {
-    title: "Brick Calculator - Estimate Brick Quantity & Mortar Cost Online",
+    title: "Brick Calculator: Wall Quantity, Mortar and Cost",
 
     description:
-      "Building a wall and unsure how many bricks to order? Enter your wall dimensions and get the exact brick count, mortar quantity, and total material cost — with wastage factored in automatically.",
+      "Estimate bricks for a 4.5-inch or 9-inch wall, including mortar, wastage, and cost. Supports red clay, fly ash, AAC blocks, and custom dimensions.",
     keywords: [
       "brick calculator",
       "brick quantity estimator",
@@ -45,6 +45,11 @@ export const brickCalculator: Calculator = {
       "fly ash brick calculator",
       "aac block quantity calculator",
       "masonry material calculator",
+      "how many bricks for 100 sq ft wall",
+      "4.5 inch wall brick quantity calculator",
+      "9 inch wall brick quantity calculator",
+      "brick calculation with door and window openings",
+      "brick quantity calculator with wastage",
     ],
   },
 
@@ -139,7 +144,7 @@ export const brickCalculator: Calculator = {
   ],
 
   seoContent: `
-<h2>Comprehensive Guide to Construction Brick Estimation and Masonry Mathematics</h2>
+<h2>How to Calculate Bricks for a Wall, Including Mortar and Wastage</h2>
 <p>
   Whether you are breaking ground on a personal residential building, projecting material logistics for a commercial real estate development, or constructing a basic external property boundary boundary wall, accurate material estimation is a core foundation of effective project management. In structural engineering, missing your procurement targets can lead to budget overruns, unnecessary transport charges, or extended on-site delays. 
 </p>
@@ -262,6 +267,15 @@ export const brickCalculator: Calculator = {
   <li><strong>Neglecting Mortar Displacement Volumes:</strong> Calculating brick counts using raw dimensions without factoring in the surrounding 10mm mortar bed can result in ordering 20% to 25% more bricks than the project actually requires.</li>
   <li><strong>Using Fixed Generic Estimations blindly:</strong> Relying on generic shorthand estimates (like assuming a flat 500 bricks per cubic meter) across different regions can lead to ordering errors due to variations in local brick sizes. Always verify your brick's physical dimensions before placing a final order.</li>
   <li><strong>Forgetting to Deduct Plinth Beams and Columns:</strong> Concrete columns and beams embedded directly within brickwork walls take up significant physical volume. Omitting these structures from your deductions list will cause an overestimation of required masonry units.</li>
+</ul>
+
+<h2>Before You Place a Brick or Block Order</h2>
+<ul>
+  <li>Measure every wall section separately and subtract doors, windows, RCC columns, beams, and other openings.</li>
+  <li>Measure a sample unit from the actual supplier; regional brick and AAC block sizes vary.</li>
+  <li>Do not use a standard-brick result for AAC blocks, which use different dimensions and thin-joint adhesive.</li>
+  <li>Keep transport breakage and cutting waste separate from the calculated net wall quantity.</li>
+  <li>Confirm wall thickness, bond pattern, mortar specification, and structural requirements with the project drawings.</li>
 </ul>
 `,
 };

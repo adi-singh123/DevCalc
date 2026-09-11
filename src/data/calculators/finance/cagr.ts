@@ -6,7 +6,7 @@ export const cagrCalculator: Calculator = {
   name: "CAGR Calculator",
 
   description:
-    "Calculate Compound Annual Growth Rate (CAGR) to accurately measure the average geometric annual growth of an investment over a specified time horizon.",
+    "Calculate the compound annual growth rate of a lump-sum investment from its beginning value, ending value, and holding period. Also see profit and absolute return.",
 
   category: "Finance",
 
@@ -26,10 +26,10 @@ export const cagrCalculator: Calculator = {
   },
 
   seo: {
-    title: "CAGR Calculator - Compound Annual Growth Rate Online",
+    title: "CAGR Calculator: Annualized Investment Return",
 
     description:
-      "Enter your start value, end value, and duration to instantly calculate CAGR, absolute return, and total profit on your investment.",
+      "Calculate CAGR, absolute return, and profit from beginning value, ending value, and years. Compare annualized growth for stocks, funds, business, or property.",
     keywords: [
       "cagr calculator",
       "compound annual growth rate calculator",
@@ -40,6 +40,11 @@ export const cagrCalculator: Calculator = {
       "stock cagr calculator",
       "cagr formula",
       "cagr vs roi",
+      "calculate CAGR from start and end value",
+      "lump sum investment annual return calculator",
+      "5 year stock CAGR calculator",
+      "business revenue growth CAGR calculator",
+      "property price annual appreciation calculator",
     ],
   },
 
@@ -133,7 +138,7 @@ export const cagrCalculator: Calculator = {
   ],
 
   seoContent: `
-<h2>Understanding Compound Annual Growth Rate (CAGR) in Modern Wealth Management</h2>
+<h2>Calculate CAGR from Beginning Value, Ending Value and Years</h2>
 <p>
   When evaluating the historic performance of financial instruments like equity shares, multi-cap mutual funds, or real estate assets, everyday investors often fall into the trap of using misleading metrics. Relying on simple averages or absolute percentage gains can paint an inaccurate picture of your wealth creation. To get an accurate reading, you need to look at the <strong>Compound Annual Growth Rate (CAGR)</strong>.
 </p>
@@ -273,5 +278,13 @@ export const cagrCalculator: Calculator = {
   <li><strong>Extrapolating Past Performance:</strong> A high historical CAGR is a record of past performance, not a guarantee of future returns. Market cycles, shifting interest rates, and broader economic changes can alter an asset's growth trajectory moving forward.</li>
   <li><strong>Overlooking the Impact of Inflation:</strong> A nominal CAGR of 10% might look strong on paper, but if headline inflation is running at 6%, your real purchasing power is only growing at a net rate of roughly 4%. Always factor inflation into your long-term wealth calculations.</li>
 </ul>
+
+<h2>Nominal CAGR, Real CAGR and Investor Return</h2>
+<p>
+  A calculator result based on market values is a nominal CAGR. Your personal outcome can be lower after fund expenses, brokerage, taxes, property transaction costs, or other fees. Purchasing-power growth is lower again after inflation. When comparing two investments, use values measured on the same basis—both before costs or both after costs—and compare similar holding periods and risk levels.
+</p>
+<p>
+  CAGR is appropriate for one beginning value and one ending value with no intermediate cash flows. Use XIRR when money was added or withdrawn on different dates, including SIP instalments, dividends taken as cash, partial redemptions, or staggered business investment.
+</p>
 `,
 };

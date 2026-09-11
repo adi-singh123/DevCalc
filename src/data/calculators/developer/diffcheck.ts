@@ -6,22 +6,22 @@ export const diffcheckCalculator: Calculator = {
   name: "Diff Checker",
 
   description:
-    "Compare two text documents, code snippets, or configuration files side-by-side or inline. Instantly identify added lines (+), removed lines (-), and character-level edits with zero server logging.",
+    "Compare two versions of text, code, JSON, or configuration side by side or inline. Highlight added and removed lines locally, with options to ignore case or whitespace.",
 
   category: "Developer Tools",
 
   isPopular: true,
 
   editorialIntro:
-    "Text difference algorithms compute the minimal edit distance between an original string and a modified version using the Longest Common Subsequence (LCS) and Eugene W. Myers diff algorithms. This client-side diff tool allows programmers, copywriters, and legal editors to highlight additions, deletions, and whitespace modifications instantly without sending sensitive text to remote servers.",
+    "This client-side diff tool treats each line as a comparison unit and uses a Longest Common Subsequence (LCS) matrix to align two versions. It helps programmers, editors, and reviewers spot additions, deletions, case changes, and whitespace differences without uploading the pasted text for processing.",
 
   benchmarkContext: {
-    title: "Myers Diff Algorithm & Longest Common Subsequence (LCS)",
+    title: "LCS Line Comparison and Change Alignment",
     badge: "Computer Science Standard",
-    stat: "O((N + M) × D) Time Complexity (Minimal Edit Distance)",
+    stat: "O(N × M) Dynamic-Programming Comparison",
     description:
-      "Myers diff algorithm computes the shortest edit script (SES) in graph theory to transform string A into string B with optimal additions (+) and deletions (-). Operates 100% in-browser with zero server logging.",
-    source: "Myers, Eugene W. (1986) 'An O(ND) Difference Algorithm and Its Variations', Algorithmica",
+      "The tool uses a Longest Common Subsequence comparison to align matching lines and mark additions and deletions. It operates in the browser without uploading the pasted content for comparison.",
+    source: "Longest Common Subsequence (LCS) dynamic programming method",
     lastUpdated: "January 2026",
   },
 
@@ -34,9 +34,9 @@ export const diffcheckCalculator: Calculator = {
   ],
 
   seo: {
-    title: "Diff Checker Online – Compare Text & Code Differences (Side-by-Side & Inline)",
+    title: "Diff Checker Online: Compare Text and Code Privately",
     description:
-      "Free online diff checker to compare two text files or code snippets. Spot added, removed, and modified lines instantly with side-by-side split view, inline diff, and character-level highlights. 100% private in-browser tool.",
+      "Compare two texts or code snippets online. Find added and removed lines in split or inline view, ignore case or whitespace, and process content in your browser.",
     keywords: [
       "diff checker",
       "diff check online",
@@ -50,6 +50,11 @@ export const diffcheckCalculator: Calculator = {
       "inline diff tool",
       "find text differences",
       "free diff tool",
+      "compare original and revised text online",
+      "private browser based code comparison tool",
+      "compare JSON configuration changes online",
+      "line by line document comparison online",
+      "ignore whitespace diff checker",
     ],
   },
 
@@ -72,7 +77,7 @@ export const diffcheckCalculator: Calculator = {
       step: 3,
       title: "Select Diff Mode",
       description:
-        "Choose between Split (Side-by-Side) or Unified (Inline) view, and select Line, Word, or Character comparison.",
+        "Choose a side-by-side split view or a unified inline view, then decide whether the comparison should ignore case or whitespace differences.",
       icon: "target",
     },
     {
@@ -85,17 +90,17 @@ export const diffcheckCalculator: Calculator = {
   ],
 
   formula: {
-    title: "Longest Common Subsequence (LCS) & Edit Distance Formula",
+    title: "Longest Common Subsequence (LCS) Comparison Method",
 
-    formula: "Edit Distance D = (Deletions + Insertions) to transform Text A → Text B",
+    formula: "Changed Lines = Added Lines + Removed Lines",
 
     explanation:
-      "The diff algorithm searches for the Longest Common Subsequence (LCS) between two sequences of tokens (lines, words, or characters). Unmatched tokens from the original text are classified as deletions (highlighted in red), while unmatched tokens from the changed text are classified as insertions (highlighted in green). The Myers algorithm traverses an edit graph to construct the shortest path with the minimum number of modifications.",
+      "The diff algorithm searches for the Longest Common Subsequence (LCS) between the two sequences of lines. Unmatched original lines are classified as deletions and unmatched revised lines as additions. Optional normalization can ignore case or repeated whitespace before the sequences are compared.",
 
     example: {
       input: "Original: 'DevCalc is fast.' | Changed: 'DevCalc is fast and free.'",
 
-      output: "Diff: 'DevCalc is fast [added: and free].' (1 Insertion, 0 Deletions)",
+      output: "The original line is marked removed and the revised line is marked added.",
     },
 
     useCases: [
@@ -124,10 +129,34 @@ export const diffcheckCalculator: Calculator = {
         "Yes. You can toggle the 'Ignore Whitespace' option to focus strictly on semantic text changes rather than formatting differences (such as tabs vs spaces or trailing spaces).",
     },
     {
-      question: "What comparison levels are supported?",
+      question: "What comparison options are supported?",
       answer:
-        "You can compare text Line-by-Line (best for source code and paragraphs), Word-by-Word (best for prose and essay revisions), or Character-by-Character (best for checking single-digit numbers, hashes, and typo corrections).",
+        "The tool compares content line by line and offers Side-by-Side and Unified result views. You can also ignore letter case or normalize whitespace. For small wording edits, review the highlighted changed lines to locate the exact revision.",
     },
   ],
-};
 
+  seoContent: `
+<h2>Compare Two Texts or Code Snippets Online</h2>
+<p>
+  Paste the original version on the left and the revised version on the right to create a clear <strong>line-by-line diff</strong>. Added lines appear in green, removed lines appear in red, and unchanged lines remain aligned for context. Use the split view when you want both versions beside each other, or the unified view when you want a compact, Git-style change list.
+</p>
+
+<h2>When to Ignore Whitespace or Letter Case</h2>
+<p>
+  Enable <strong>Ignore Whitespace</strong> when tabs, repeated spaces, or leading and trailing spaces are not meaningful to the review. Enable <strong>Ignore Case</strong> when capitalization should not count as a change. Leave both options off when comparing source code, YAML, environment files, or other formats where spacing or capitalization may alter behaviour.
+</p>
+
+<h2>Useful Diff Checker Workflows</h2>
+<ul>
+  <li><strong>Code review:</strong> compare a function before and after refactoring without opening a repository.</li>
+  <li><strong>Configuration checks:</strong> find changed values in JSON, SQL, INI, or environment templates.</li>
+  <li><strong>Editorial review:</strong> compare two drafts of an article, email, policy, or assignment.</li>
+  <li><strong>Debugging:</strong> isolate a missing line, renamed key, or unexpected generated output.</li>
+</ul>
+
+<h2>Privacy and Comparison Limits</h2>
+<p>
+  The comparison runs in your browser and does not require an account. This is a text comparison tool, not a parser: it does not validate whether pasted code compiles or whether JSON and YAML are syntactically valid. Avoid pasting production secrets into any webpage, and rotate a credential immediately if it has already been exposed elsewhere.
+</p>
+`,
+};
