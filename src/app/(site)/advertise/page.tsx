@@ -8,10 +8,10 @@ import {
   Calculator,
   Check,
   Handshake,
+  Mail,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import AdvertiseForm from "./AdvertiseForm";
 
 export const metadata: Metadata = {
   title: "Advertise With DevCalc | Sponsorships & Partnerships",
@@ -219,19 +219,28 @@ export default function AdvertisePage() {
       </section>
 
       <section id="partnership-enquiry" className="mt-20 scroll-mt-24">
-        <div className="mb-8 max-w-2xl">
-          <span className="text-sm font-bold uppercase tracking-[0.18em] text-blue-700 dark:text-blue-400">
+        <div className="rounded-3xl border border-stone-200 bg-white p-7 shadow-lg sm:p-10 dark:border-slate-700 dark:bg-slate-900">
+          <span className="inline-flex rounded-xl bg-blue-50 p-3 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+            <Mail size={24} aria-hidden="true" />
+          </span>
+          <span className="mt-6 block text-sm font-bold uppercase tracking-[0.18em] text-blue-700 dark:text-blue-400">
             Partnership enquiry
           </span>
           <h2 className="mt-3 font-serif text-3xl font-semibold text-[#26364a] dark:text-white sm:text-4xl">
-            Tell us what you have in mind
+            Email your advertising proposal
           </h2>
-          <p className="mt-4 leading-7 text-stone-600 dark:text-slate-300">
-            Share enough context for an initial review. We will reply with availability,
-            suitable options, and next steps—there is no obligation to proceed.
+          <p className="mt-4 max-w-3xl leading-7 text-stone-600 dark:text-slate-300">
+            Include your brand name, website, campaign objective, preferred calculator
+            or category, proposed dates, creative format, and indicative budget. We will
+            review the details and reply with availability and suitable options.
           </p>
+          <a
+            href="mailto:devcalc35052@gmail.com?subject=Advertising%20enquiry%20for%20DevCalc"
+            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#1f3a5c] px-6 py-3.5 font-bold text-white transition hover:bg-[#294d77]"
+          >
+            Email devcalc35052@gmail.com <ArrowRight size={18} aria-hidden="true" />
+          </a>
         </div>
-        <AdvertiseForm />
       </section>
 
       <section className="mx-auto mt-20 max-w-3xl text-center">
