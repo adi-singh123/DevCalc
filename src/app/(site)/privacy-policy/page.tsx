@@ -94,6 +94,7 @@ const SECTIONS = [
         <ul className="mt-3 list-disc space-y-1.5 pl-5">
           <li>Your name</li>
           <li>Your email address</li>
+          <li>Your company, website, campaign preferences, and indicative budget when you submit an advertising enquiry</li>
           <li>The content of your message</li>
         </ul>
         <p className="mt-3">
@@ -116,6 +117,7 @@ const SECTIONS = [
           <li>Fix bugs and incorrect calculation results reported by users</li>
           <li>Detect and prevent spam, abuse, or security threats</li>
           <li>Reply to messages sent through our contact form</li>
+          <li>Evaluate and respond to advertising or brand partnership enquiries</li>
           <li>Monitor traffic patterns to plan future calculator additions</li>
         </ul>
         <p className="mt-3">

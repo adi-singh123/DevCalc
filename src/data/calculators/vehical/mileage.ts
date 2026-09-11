@@ -51,7 +51,7 @@ export const mileageCalculator: Calculator = {
   compareWith: [
     "fuel-cost-calculator",
     "distance-calculator",
-    "ev-vs-petrol-calculator",
+    "ev-vs-petrol-cost-calculator",
   ],
 
   steps: [

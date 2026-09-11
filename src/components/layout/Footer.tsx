@@ -196,6 +196,9 @@ export default function Footer() {
             <Link href="/contact" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Contact
             </Link>
+            <Link href="/advertise" className="font-medium text-blue-700 hover:underline dark:text-blue-400">
+              Advertise
+            </Link>
             <Link href="/sitemap.xml" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Sitemap
             </Link>
