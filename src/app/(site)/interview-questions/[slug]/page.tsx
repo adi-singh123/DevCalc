@@ -15,7 +15,6 @@ import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import { Unlock, ChevronRight } from "lucide-react";
 import FAQSection from "@/src/components/calculator/FAQSection";
 import FAQSchema from "@/src/components/seo/FAQSchema";
-import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 
 import { InterviewTopicCard } from '@/src/components/interview/InterviewTopicCard';
 
@@ -221,7 +220,6 @@ export default async function TopicOverviewPage({ params }: Props) {
           ]}
         />
 
-        <OmagelPromoBanner />
 
         {/* Hero */}
         <header className="relative mt-12 py-20 px-8 bg-gradient-to-r from-blue-700 to-indigo-800 rounded-3xl text-white shadow-2xl overflow-hidden">

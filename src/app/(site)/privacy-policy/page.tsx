@@ -212,45 +212,6 @@ const SECTIONS = [
     ),
   },
   {
-    id: "omagel-mini",
-    title: "Omagel Mini Chat Privacy",
-    content: (
-      <>
-        <p>
-          Omagel Mini is a guest text and video chat service for adults aged 18
-          and over. This section of the site does not load Google advertising
-          or analytics scripts. Camera and microphone access is requested only
-          when you choose to start video chat.
-        </p>
-        <p className="mt-3">
-          A random guest token is stored in this tab’s session storage. The
-          server uses a derived identifier for matchmaking, rate limits and
-          guest blocks. The optional nickname and gender you choose are shown
-          to your matched participant and kept with your active guest record.
-          They are self-reported, not verified. You can leave either undisclosed
-          by using Stranger and Prefer not to say. Interest tags, text messages and connection signals
-          pass through our server and configured Redis storage provider.
-          Messages remain buffered until acknowledged or the guest session is
-          cleaned up. Inactive guests are removed during cleanup after 45 seconds
-          without a heartbeat. The browser shows up to 200 recent messages.
-          Video and audio use WebRTC between participants or a TURN relay.
-          Network information may be visible to the other participant, and
-          another person can record what you share.
-        </p>
-        <p className="mt-3">
-          Reports contain guest identifiers, a conversation ID, the selected
-          category, optional details and a timestamp. Reports older than seven
-          days are removed during cleanup, and only the latest 1,000 are kept.
-          Blocks expire after 24 hours. Shared chat storage also expires after
-          seven days without activity. Reports are not monitored live; contact
-          us using the details below if you need a response. Clearing site data
-          or changing browser identities can bypass guest blocks. Clearing site
-          data also removes any preferences stored by an earlier preview.
-        </p>
-      </>
-    ),
-  },
-  {
     id:    "third-party-links",
     title: "Third-Party Links",
     content: (

@@ -4,7 +4,6 @@ import { calculators } from "@/src/data/calculators";
 import type { Metadata } from "next";
 import { generateCalculatorMetadata } from "@/src/lib/seo/generateMetadata";
 import Breadcrumbs from "@/src/components/seo/Breadcrumb";
-import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import CalculatorRenderer from "@/src/components/calculator/CalculatorRenderer";
 import StepsSection from "@/src/components/calculator/StepsSection";
 import FormulaSection from "@/src/components/calculator/FormulaSection";
@@ -114,7 +113,6 @@ export default async function CalculatorPage({ params }: Props) {
         ]}
       />
 
-      <OmagelPromoBanner />
 
       <div className="max-w-4xl">
         <span className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-slate-400">

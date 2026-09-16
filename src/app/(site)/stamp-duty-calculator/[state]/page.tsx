@@ -9,7 +9,6 @@ import StampDutyCalculator from "@/src/components/calculator/renderers/StampDuty
 import InteractiveFaq from "@/src/components/common/InteractiveFaq";
 import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
 import Breadcrumbs from "@/src/components/seo/Breadcrumb";
-import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import {
   Calendar,
   CheckCircle2,
@@ -167,7 +166,6 @@ export default async function StampDutyStatePage({
           ]}
         />
 
-        <OmagelPromoBanner />
 
         {/* Page Header */}
         <div className="mt-6 border-b border-stone-200 pb-8 dark:border-slate-800">

@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { WebsiteXRayClient } from "./WebsiteXRayClient";
-import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import {
   ShieldCheck,
   Server,
@@ -133,7 +132,6 @@ export default function WebsiteXRayPage() {
           <span className="text-[#26364a] dark:text-slate-200 font-semibold">Website X-Ray</span>
         </nav>
 
-        <OmagelPromoBanner />
 
         {/* Hero Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">

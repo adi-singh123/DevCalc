@@ -11,7 +11,6 @@ import { interviewTopics } from '@/src/data/interview';
 import { InterviewTopicCard } from '@/src/components/interview/InterviewTopicCard';
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
-import OmagelPromoBanner from "@/src/components/common/OmagelPromoBanner";
 import WhyChooseDevCalc from '@/src/components/interview/WhyChooseDevCalc';
 import TopCompanies from '@/src/components/interview/TopCompanies';
 import { ChevronDown } from 'lucide-react';
@@ -339,7 +338,6 @@ export default function InterviewHomePage() {
           <Breadcrumb items={[{ label: "Interview Questions" }]} />
         </div>
 
-        <OmagelPromoBanner />
 
         {/* Hero Section */}
         <header className="text-center py-16 lg:py-24">
