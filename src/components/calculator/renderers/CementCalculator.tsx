@@ -53,23 +53,19 @@ export default function CementCalculator() {
     const dryVolume =
       volume * 1.54;
 
-    const cementFactors = {
-      m10: 4.4,
-      m15: 5.5,
-      m20: 6.4,
-      m25: 7.2,
+    const mixPartTotals = {
+      m10: 10, // 1:3:6
+      m15: 7, // 1:2:4
+      m20: 5.5, // 1:1.5:3
     };
 
-    const factor =
-      cementFactors[
-        grade as keyof typeof cementFactors
+    const totalParts =
+      mixPartTotals[
+        grade as keyof typeof mixPartTotals
       ];
 
-    const bagsRequired =
-      Math.ceil(
-        (dryVolume * factor) /
-          35,
-      );
+    const cementVolume = dryVolume / totalParts;
+    const bagsRequired = Math.ceil(cementVolume / 1.226);
 
     const cementWeight =
       bagsRequired * 50;
@@ -81,6 +77,7 @@ export default function CementCalculator() {
     return {
       volume,
       dryVolume,
+      cementVolume,
       bagsRequired,
       cementWeight,
       totalCost,
@@ -221,9 +218,6 @@ export default function CementCalculator() {
               M20
             </option>
 
-            <option value="m25">
-              M25
-            </option>
           </select>
         </div>
 

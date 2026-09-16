@@ -5,42 +5,71 @@
 
 import { SeoAudit, PerformanceAudit } from "../types";
 
+function decodeHtml(value: string): string {
+  const entities: Record<string, string> = { amp: "&", quot: '"', apos: "'", lt: "<", gt: ">", nbsp: " " };
+  return value.replace(/&(#x[\da-f]+|#\d+|\w+);/gi, (_, entity: string) => {
+    if (entity[0] === "#") {
+      const hex = entity[1]?.toLowerCase() === "x";
+      const code = Number.parseInt(entity.slice(hex ? 2 : 1), hex ? 16 : 10);
+      return Number.isFinite(code) ? String.fromCodePoint(code) : _;
+    }
+    return entities[entity.toLowerCase()] ?? _;
+  });
+}
+
+function attributes(tag: string): Record<string, string> {
+  const result: Record<string, string> = {};
+  for (const match of tag.matchAll(/([^\s=/>]+)\s*=\s*(?:["']([^"']*)["']|([^\s>]+))/g)) {
+    result[match[1].toLowerCase()] = decodeHtml(match[2] ?? match[3] ?? "");
+  }
+  return result;
+}
+
+function findTag(html: string, tagName: string, predicate: (attrs: Record<string, string>) => boolean) {
+  for (const match of html.matchAll(new RegExp(`<${tagName}\\b[^>]*>`, "gi"))) {
+    const attrs = attributes(match[0]);
+    if (predicate(attrs)) return attrs;
+  }
+}
+
+function metaContent(html: string, attribute: "name" | "property", value: string) {
+  return findTag(html, "meta", (attrs) => attrs[attribute]?.toLowerCase() === value.toLowerCase())?.content;
+}
+
 export function auditSeo(html: string): SeoAudit {
   const titleMatch = html.match(/<title[^>]*>([^<]*)<\/title>/i);
-  const title = titleMatch ? titleMatch[1].trim() : undefined;
+  const title = titleMatch ? decodeHtml(titleMatch[1].trim()) : undefined;
   const titleLength = title ? title.length : 0;
 
-  const descMatch =
-    html.match(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i) ||
-    html.match(/<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i);
-  const description = descMatch ? descMatch[1].trim() : undefined;
+  const description = metaContent(html, "name", "description")?.trim();
   const descriptionLength = description ? description.length : 0;
 
-  const canonMatch = html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']*)["']/i);
-  const canonical = canonMatch ? canonMatch[1].trim() : undefined;
+  const canonical = findTag(html, "link", (attrs) => attrs.rel?.toLowerCase().split(/\s+/).includes("canonical"))?.href?.trim();
 
-  const robotsMatch = html.match(/<meta\s+name=["']robots["']\s+content=["']([^"']*)["']/i);
-  const robotsDirectives = robotsMatch ? robotsMatch[1].trim() : undefined;
+  const robotsDirectives = metaContent(html, "name", "robots")?.trim();
 
-  const h1Matches = Array.from(html.matchAll(/<h1[^>]*>([^<]*)<\/h1>/gi));
-  const h1Texts = h1Matches.map((m) => m[1].trim()).filter(Boolean);
+  const h1Matches = Array.from(html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi));
+  const h1Texts = h1Matches
+    .map((m) => decodeHtml(m[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()))
+    .filter(Boolean);
   const h1Count = h1Texts.length;
 
-  const ogTitleMatch = html.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']*)["']/i);
-  const ogDescMatch = html.match(/<meta\s+property=["']og:description["']\s+content=["']([^"']*)["']/i);
-  const ogImgMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']*)["']/i);
-  const hasOpenGraph = Boolean(ogTitleMatch || ogDescMatch || ogImgMatch);
+  const ogTitle = metaContent(html, "property", "og:title");
+  const ogDescription = metaContent(html, "property", "og:description");
+  const ogImage = metaContent(html, "property", "og:image");
+  const hasOpenGraph = Boolean(ogTitle || ogDescription || ogImage);
 
-  const twitterMatch = html.match(/<meta\s+name=["']twitter:card["']/i);
-  const hasTwitterCard = Boolean(twitterMatch);
+  const hasTwitterCard = Boolean(metaContent(html, "name", "twitter:card"));
 
   const jsonLdMatches = Array.from(
     html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)
   );
   const structuredDataTypes: string[] = [];
+  let validStructuredDataCount = 0;
   for (const m of jsonLdMatches) {
     try {
       const parsed = JSON.parse(m[1]);
+      validStructuredDataCount++;
       if (parsed["@type"]) {
         structuredDataTypes.push(String(parsed["@type"]));
       } else if (Array.isArray(parsed["@graph"])) {
@@ -50,13 +79,12 @@ export function auditSeo(html: string): SeoAudit {
       }
     } catch {}
   }
-  const hasStructuredData = jsonLdMatches.length > 0;
+  const hasStructuredData = validStructuredDataCount > 0;
 
-  const hasViewport = /<meta\s+name=["']viewport["']/i.test(html);
-  const hasFavicon = /<link\s+[^>]*rel=["'](?:shortcut icon|icon|apple-touch-icon)["']/i.test(html);
+  const hasViewport = Boolean(metaContent(html, "name", "viewport"));
+  const hasFavicon = Boolean(findTag(html, "link", (attrs) => /(?:^|\s)(?:shortcut icon|icon|apple-touch-icon)(?:\s|$)/i.test(attrs.rel || "")));
 
-  const langMatch = html.match(/<html[^>]*\slang=["']([^"']+)["']/i);
-  const htmlLang = langMatch ? langMatch[1] : undefined;
+  const htmlLang = findTag(html, "html", (attrs) => Boolean(attrs.lang))?.lang;
 
   const hasSitemapIndicator = html.includes("sitemap.xml");
 
@@ -71,11 +99,13 @@ export function auditSeo(html: string): SeoAudit {
   if (h1Count === 1) score += 15;
   else if (h1Count > 1) score += 8;
 
-  if (hasOpenGraph) score += 10;
+  if (ogTitle && ogDescription && ogImage) score += 10;
+  else if (hasOpenGraph) score += 5;
   if (hasTwitterCard) score += 5;
   if (hasStructuredData) score += 10;
   if (hasViewport) score += 5;
   if (htmlLang) score += 5;
+  if (/\bnoindex\b/i.test(robotsDirectives || "")) score -= 15;
 
   return {
     score: Math.min(100, Math.max(0, score)),
@@ -88,9 +118,9 @@ export function auditSeo(html: string): SeoAudit {
     h1Count,
     h1Texts,
     hasOpenGraph,
-    ogTitle: ogTitleMatch ? ogTitleMatch[1] : undefined,
-    ogDescription: ogDescMatch ? ogDescMatch[1] : undefined,
-    ogImage: ogImgMatch ? ogImgMatch[1] : undefined,
+    ogTitle,
+    ogDescription,
+    ogImage,
     hasTwitterCard,
     hasStructuredData,
     structuredDataTypes: Array.from(new Set(structuredDataTypes)),
@@ -132,4 +162,3 @@ export function auditPerformance(
     },
   };
 }
-

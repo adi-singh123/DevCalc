@@ -150,7 +150,7 @@ export const XRaySummaryCard: React.FC<XRaySummaryCardProps> = ({ result }) => {
               Grade {scoreGrade}
             </div>
             <div className="text-[11px] text-stone-500 dark:text-slate-500">
-              {scoreTotal >= 85 ? "Production Ready" : "Optimization Recommended"}
+              {scoreTotal >= 85 ? "Strong observed signals" : "Review detected issues"}
             </div>
           </div>
         </div>

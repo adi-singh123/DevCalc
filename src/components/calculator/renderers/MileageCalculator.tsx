@@ -6,8 +6,11 @@ import ResultsSection from "../ResultsSection";
 export default function MileageCalculator() {
   const [vehicleType, setVehicleType] =
     useState("petrol");
+  const [method, setMethod] = useState("distance");
 
   const [distance, setDistance] = useState("");
+  const [startOdometer, setStartOdometer] = useState("");
+  const [endOdometer, setEndOdometer] = useState("");
   const [fuelUsed, setFuelUsed] = useState("");
   const [fuelPrice, setFuelPrice] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -15,13 +18,15 @@ export default function MileageCalculator() {
   const mileageData = useMemo(() => {
     if (
       !submitted ||
-      !distance ||
+      (method === "distance" ? !distance : !startOdometer || !endOdometer) ||
       !fuelUsed
     ) {
       return null;
     }
 
-    const km = Number(distance);
+    const km = method === "distance"
+      ? Number(distance)
+      : Number(endOdometer) - Number(startOdometer);
     const consumed = Number(fuelUsed);
     const price = Number(fuelPrice || 0);
 
@@ -53,6 +58,9 @@ export default function MileageCalculator() {
     };
   }, [
     distance,
+    startOdometer,
+    endOdometer,
+    method,
     fuelUsed,
     fuelPrice,
     submitted,
@@ -160,22 +168,32 @@ export default function MileageCalculator() {
         </select>
       </div>
 
-      {/* Distance */}
       <div className="mt-4">
-        <label className="mb-2 block font-medium">
-          Distance Travelled (km)
-        </label>
-
-        <input
-          type="number"
-          value={distance}
-          onChange={(e) =>
-            setDistance(e.target.value)
-          }
-          placeholder="500"
-          className="w-full rounded-xl border p-3"
-        />
+        <label className="mb-2 block font-medium">Calculation Method</label>
+        <select value={method} onChange={(e) => setMethod(e.target.value)} className="w-full rounded-xl border p-3">
+          <option value="distance">Distance travelled</option>
+          <option value="odometer">Odometer readings</option>
+        </select>
       </div>
+
+      {/* Distance */}
+      {method === "distance" ? (
+        <div className="mt-4">
+          <label className="mb-2 block font-medium">Distance Travelled (km)</label>
+          <input type="number" min="0" value={distance} onChange={(e) => setDistance(e.target.value)} placeholder="500" className="w-full rounded-xl border p-3" />
+        </div>
+      ) : (
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div>
+            <label className="mb-2 block font-medium">Previous Odometer (km)</label>
+            <input type="number" min="0" value={startOdometer} onChange={(e) => setStartOdometer(e.target.value)} placeholder="12500" className="w-full rounded-xl border p-3" />
+          </div>
+          <div>
+            <label className="mb-2 block font-medium">Current Odometer (km)</label>
+            <input type="number" min="0" value={endOdometer} onChange={(e) => setEndOdometer(e.target.value)} placeholder="13000" className="w-full rounded-xl border p-3" />
+          </div>
+        </div>
+      )}
 
       {/* Consumption */}
       <div className="mt-4">
@@ -233,7 +251,10 @@ export default function MileageCalculator() {
         <button
           onClick={() => {
             setVehicleType("petrol");
+            setMethod("distance");
             setDistance("");
+            setStartOdometer("");
+            setEndOdometer("");
             setFuelUsed("");
             setFuelPrice("");
             setSubmitted(false);

@@ -123,6 +123,7 @@ export default function FertilizerCalculator() {
 
     // --- Step 2: Remaining nitrogen to be met by the N source ---
     const remainingN = Math.max(totalN - nFromPFert, 0);
+    const excessN = Math.max(nFromPFert - totalN, 0);
     const nSourceInfo = N_SOURCES[nSource];
     const nFertQty = remainingN / (nSourceInfo.n / 100);
 
@@ -149,6 +150,7 @@ export default function FertilizerCalculator() {
       totalK,
       nFromPFert,
       remainingN,
+      excessN,
       nFertQty,
       pFertQty,
       kFertQty,
@@ -212,6 +214,9 @@ export default function FertilizerCalculator() {
           label: `Nitrogen already supplied by ${pSource}`,
           value: `${fmt(fertilizerData.nFromPFert)} kg`,
         },
+        ...(fertilizerData.excessN > 0
+          ? [{ label: "Nitrogen above target from phosphorus source", value: `${fmt(fertilizerData.excessN)} kg` }]
+          : []),
         {
           label: `${nSource} Required (covers remaining N)`,
           value: `${fmt(fertilizerData.nFertQty)} kg`,
@@ -260,9 +265,8 @@ export default function FertilizerCalculator() {
       </h2>
 
       <p className="mt-2 text-slate-600">
-        Calculate the exact quantity of Urea, DAP/SSP, and MOP/SOP needed for
-        your field, along with total cost, based on standard crop nutrient
-        recommendations.
+        Convert a crop nutrient target into estimated quantities of Urea,
+        DAP/SSP, and MOP/SOP. Use a current soil-test recommendation whenever available.
       </p>
 
       <div className="mt-6">

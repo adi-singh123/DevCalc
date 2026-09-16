@@ -61,27 +61,15 @@ export default function BrickCalculator() {
       wallHeight *
       wallThickness;
 
-    let brickVolume = 0.069;
-
-    switch (brickType) {
-      case "standard":
-        brickVolume = 0.069;
-        break;
-
-      case "flyash":
-        brickVolume = 0.072;
-        break;
-
-      case "aac":
-        brickVolume = 0.45;
-        break;
-
-      default:
-        brickVolume = 0.069;
-    }
+    const brickSizes = {
+      standard: { raw: 0.0544, nominal: 0.0706 }, // 190 × 90 × 90 mm; 200 × 100 × 100 mm nominal
+      flyash: { raw: 0.067, nominal: 0.0865 }, // 230 × 110 × 75 mm; 10 mm joint
+      aac: { raw: 0.8476, nominal: 0.8733 }, // 600 × 200 × 200 mm; 3 mm joint
+    };
+    const brickSize = brickSizes[brickType as keyof typeof brickSizes] ?? brickSizes.standard;
 
     const rawBricks =
-      wallVolume / brickVolume;
+      wallVolume / brickSize.nominal;
 
     const totalBricks =
       Math.ceil(
@@ -90,8 +78,7 @@ export default function BrickCalculator() {
             waste / 100),
       );
 
-    const mortarVolume =
-      wallVolume * 0.25;
+    const mortarVolume = Math.max(0, wallVolume - rawBricks * brickSize.raw);
 
     const totalCost =
       totalBricks *

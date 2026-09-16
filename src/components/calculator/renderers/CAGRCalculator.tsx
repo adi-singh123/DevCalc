@@ -34,7 +34,7 @@ export default function CAGRCalculator() {
 
     if (
       beginning <= 0 ||
-      ending <= 0 ||
+      ending < 0 ||
       period <= 0
     ) {
       return null;
@@ -122,7 +122,7 @@ export default function CAGRCalculator() {
 
         <input
           type="number"
-          min="1"
+          min="0"
           value={beginningValue}
           onChange={(e) =>
             setBeginningValue(

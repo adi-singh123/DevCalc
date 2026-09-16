@@ -13,16 +13,16 @@ export const fuelCostCalculator: Calculator = {
   isPopular: true,
 
   editorialIntro:
-    "Fuel cost modeling calculates trip expenses, monthly transit outlays, and true cost-per-kilometer across Petrol, Diesel, CNG, and Hybrid powertrains. Dividing fuel price per unit by real-world operating fuel efficiency $(\\text{Cost/km} = \\frac{\\text{Price/L}}{\\text{Efficiency (km/L)}})$ provides an exact metric to evaluate daily office commutes, highway road trips, and passenger expense sharing.",
+    "Estimate fuel-only running cost from your daily distance, real-world mileage, and local fuel price. Cost per kilometre equals fuel price per litre or kilogram divided by mileage in km/L or km/kg.",
 
   benchmarkContext: {
-    title: "Automotive Running Cost & Fuel Economics",
-    badge: "Automotive Fleet Economics",
-    stat: "₹4.50–₹7.50/km (Petrol) | ₹3.50–₹5.50/km (Diesel) | ₹2.20–₹3.20/km (CNG)",
+    title: "Fuel Cost Formula and Planning Assumptions",
+    badge: "Fuel-Only Cost Estimate",
+    stat: "Monthly = Daily Cost × 30",
     description:
-      "Calculated on real-world Indian city-highway mixed transit averages. Daily fuel expense $= \\left(\\frac{\\text{Daily km}}{\\text{Mileage}}\\right) \\times \\text{Fuel Price/L}$. Highway cruising typically yields 15%–20% higher mileage than stop-and-go urban traffic with AC active.",
-    source: "Petroleum Planning & Analysis Cell (PPAC), Ministry of Petroleum and Natural Gas",
-    lastUpdated: "January 2026",
+      "Daily fuel cost = (daily distance ÷ mileage) × fuel price. Monthly and yearly figures assume the same distance, mileage, and price every day, so use them as budget estimates rather than actual bills.",
+    source: "Distance, efficiency, and unit-price calculation",
+    lastUpdated: "September 2026",
   },
 
   compareWith: [
@@ -33,11 +33,10 @@ export const fuelCostCalculator: Calculator = {
   ],
 
   seo: {
-    title:
-      "Fuel Cost Calculator India - Petrol, Diesel & CNG Running Cost",
+    title: "Fuel Cost Calculator – Petrol, Diesel and CNG",
 
     description:
-      "Wondering how much your vehicle actually costs to run every month? Enter your fuel type, price, and daily distance to get a clear daily, monthly, and yearly fuel expense breakdown.",
+      "Calculate petrol, diesel or CNG cost per km plus daily, monthly and yearly fuel expenses from your distance, mileage and local fuel price.",
     keywords: [
       "fuel cost calculator",
       "petrol cost per km calculator",
@@ -268,7 +267,7 @@ export const fuelCostCalculator: Calculator = {
   Nearly every inaccuracy in a fuel cost estimate traces back to the same root cause: entering a mileage figure that doesn't reflect how the vehicle actually performs in daily use. Manufacturer-claimed mileage, printed on brochures and window stickers, is measured under standardized test conditions — a controlled laboratory environment, a specific test cycle with predefined acceleration and speed patterns, no traffic, no air conditioning load, and a lightly loaded vehicle. These conditions exist to allow fair, consistent comparison between different vehicle models tested the same way, but they rarely resemble how most people actually drive day to day, particularly in dense Indian cities where stop-and-go traffic, frequent short trips, and near-constant air conditioner use are the norm rather than the exception.
 </p>
 <p>
-  The gap between claimed and real-world mileage varies by vehicle and driving conditions, but it's common for real-world city mileage to fall noticeably short of the claimed figure — sometimes by 15-25% or more for vehicles driven primarily in heavy urban traffic. This matters enormously for fuel cost estimation, because a fuel cost calculation is only as accurate as the mileage figure fed into it: entering a claimed mileage of 20 km/L when your actual city mileage is closer to 15 km/L will meaningfully understate your true fuel cost, potentially by a large enough margin to throw off a household budget. The most reliable way to get an accurate mileage figure for cost estimation is to measure it yourself using the tank-to-tank method — filling your tank completely, resetting your trip odometer, driving normally until you need to refuel, and then dividing the distance covered by the exact quantity of fuel used to fill the tank back up. Doing this once gives you a single data point; doing it across a few consecutive refuelling cycles and averaging the results gives you a genuinely reliable personal mileage figure that reflects your actual driving pattern, vehicle condition, and typical routes — and this measured figure, not the number on the brochure, is what should go into a fuel cost calculation you actually intend to rely on for budgeting.
+  Real-world mileage varies with traffic, driving style, load, weather, tyre pressure, and vehicle condition, so a brochure figure can misstate your fuel budget. For a more useful input, use the tank-to-tank method: fill the tank, reset the trip meter, drive normally, refill to the same level, and divide the distance covered by litres added. Averaging several refuelling cycles gives a stronger estimate for your own routes.
 </p>
 
 <h2>Limitations of This Calculator</h2>

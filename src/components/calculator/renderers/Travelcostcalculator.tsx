@@ -4,9 +4,9 @@ import { useMemo, useRef, useState } from "react";
 import ResultsSection from "../ResultsSection";
 
 const FUEL_OPTIONS = [
-  { label: "Petrol (₹106/litre)", value: "petrol", defaultPrice: 106, defaultMileage: 16, unit: "litre" },
-  { label: "Diesel (₹93/litre)", value: "diesel", defaultPrice: 93, defaultMileage: 15, unit: "litre" },
-  { label: "CNG (₹76/kg)", value: "cng", defaultPrice: 76, defaultMileage: 25, unit: "kg" },
+  { label: "Petrol (editable example)", value: "petrol", defaultPrice: 106, defaultMileage: 16, unit: "litre" },
+  { label: "Diesel (editable example)", value: "diesel", defaultPrice: 93, defaultMileage: 15, unit: "litre" },
+  { label: "CNG (editable example)", value: "cng", defaultPrice: 76, defaultMileage: 25, unit: "kg" },
 ] as const;
 
 const TRIP_TYPE_OPTIONS = [
@@ -15,9 +15,9 @@ const TRIP_TYPE_OPTIONS = [
 ] as const;
 
 const HOTEL_TIER_OPTIONS = [
-  { label: "Budget (₹1,500/night)", value: "budget", rate: 1500 },
-  { label: "Mid-range (₹3,200/night)", value: "midrange", rate: 3200 },
-  { label: "Luxury (₹7,000/night)", value: "luxury", rate: 7000 },
+  { label: "Budget example (₹1,500/night)", value: "budget", rate: 1500 },
+  { label: "Mid-range example (₹3,200/night)", value: "midrange", rate: 3200 },
+  { label: "Luxury example (₹7,000/night)", value: "luxury", rate: 7000 },
 ] as const;
 
 type FuelValue = (typeof FUEL_OPTIONS)[number]["value"];
@@ -274,9 +274,9 @@ export default function TravelCostCalculator() {
 
       {result && (
         <div className="mt-6 overflow-hidden rounded-2xl bg-teal-50 p-5">
-          <p className="overflow-x-autoautoautoautoautoautoautoautoauto text-sm text-gray-600">Estimated Total Trip Cost</p>
-          <p className="overflow-x-autoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoauto text-3xl font-bold text-teal-700">{formatINR(result.total)}</p>
-          <p className="mt-1 overflow-x-autoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoautoauto text-sm text-gray-600">
+          <p className="text-sm text-gray-600">Estimated Total Trip Cost</p>
+          <p className="text-3xl font-bold text-teal-700">{formatINR(result.total)}</p>
+          <p className="mt-1 text-sm text-gray-600">
             {formatINR(result.perTraveler)} per traveler
           </p>
         </div>

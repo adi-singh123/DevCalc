@@ -84,7 +84,9 @@ export async function runXRayScan(rawUrl: string, forceFresh = false): Promise<X
   );
 
   // Calculate weighted overall score
-  const modernTechScore = Math.min(100, technologies.length * 20 + (infrastructure.cdn ? 20 : 0));
+  const modernTechScore = technologies.length
+    ? Math.round(technologies.reduce((sum, technology) => sum + technology.confidence, 0) / technologies.length)
+    : 0;
   let perfScore = 100;
   if (timing.ttfbMs > 800) perfScore -= 20;
   else if (timing.ttfbMs > 400) perfScore -= 10;

@@ -6,13 +6,13 @@ export const brickCalculator: Calculator = {
   name: "Brick Calculator",
 
   description:
-    "Estimate bricks or blocks for a wall from its length, height, and thickness. Include mortar, wastage, unit price, and openings to plan quantity and cost.",
+    "Estimate bricks or blocks for a wall from its length, height, and thickness, including joint volume, wastage, unit price, and material cost.",
   category: "Construction",
 
   isPopular: true,
 
   editorialIntro:
-    "Accurately estimating brickwork volume prevents expensive job-site shortages and mortar wastage. In Indian masonry, 1 cubic meter of standard brickwork requires approximately 500 traditional bricks (with 10mm mortar joints) and 0.25 to 0.30 cubic meters of 1:6 cement-sand mortar.",
+    "Estimate masonry from net wall volume and the selected unit's nominal size, including its mortar joint. Measure actual supplier dimensions before ordering because modular bricks, regional bricks, fly-ash bricks, and AAC blocks differ substantially.",
 
   benchmarkContext: {
     title: "Bureau of Indian Standards (IS 1077 & IS 2212) Masonry Rules",
@@ -98,7 +98,7 @@ export const brickCalculator: Calculator = {
         "Wall Length: 20 ft, Height: 10 ft, Thickness: 9 inch, Standard 10% Wastage",
 
       output:
-        "Estimated Bricks Required: 2,475 Bricks (including structural bonding adjustments)",
+        "Estimated Modular Bricks: 2,338, rounded up after adding 10% wastage",
     },
 
     useCases: [
@@ -146,17 +146,17 @@ export const brickCalculator: Calculator = {
   seoContent: `
 <h2>How to Calculate Bricks for a Wall, Including Mortar and Wastage</h2>
 <p>
-  Whether you are breaking ground on a personal residential building, projecting material logistics for a commercial real estate development, or constructing a basic external property boundary boundary wall, accurate material estimation is a core foundation of effective project management. In structural engineering, missing your procurement targets can lead to budget overruns, unnecessary transport charges, or extended on-site delays. 
+  Enter the wall length and height in feet, choose its thickness, then select the masonry unit. The calculator divides net wall volume by the selected unit's nominal volume, which includes the assumed joint, and adds the chosen wastage percentage.
 </p>
 <p>
-  A digital <strong>Brick Calculator</strong> removes the guesswork from this process by automating the underlying volumetric calculations. By factoring in varying structural block formats, structural mortar joint thicknesses, and architectural layout parameters, this calculation tool provides an accurate, reliable material blueprint for your construction project.
+  Results are planning estimates. Measure units from the intended supplier and deduct doors, windows, RCC columns and beams before placing an order.
 </p>
 
 ---
 
 <h2>The Underlying Mathematics: How Brick Quantities are Computed</h2>
 <p>
-  To understand how the calculator works, it helps to break down the geometric steps used to determine physical block counts. The calculation avoids simple surface area approximations in favor of a precise volumetric breakdown:
+  Brick quantity is based on volume, so wall thickness matters. Use the same unit system throughout the calculation:
 </p>
 <p>
   <strong>Step 1: Calculate Gross Wall Volume</strong><br>
@@ -250,15 +250,11 @@ export const brickCalculator: Calculator = {
 
 <h2>Estimating Your Mortar Requirements: Cement and Sand Ratios</h2>
 <p>
-  A complete masonry estimation requires calculating both the brick count and the wet mortar binding paste required to secure the structure. Mortar generally accounts for 25% to 30% of a finished wall's total structural cubic volume.
+  The displayed mortar figure is the estimated wet joint volume: net wall volume minus the combined raw volume of the calculated units before wastage. It changes with the unit dimensions and assumed joint thickness.
 </p>
 <p>
-  Once the calculator determines the wet volume of mortar required, it converts that figure to a dry volume by applying a standard density expansion factor of 1.33. From there, the material breakdown is determined by your chosen cement-to-sand mix ratio:
+  It does not convert wet mortar into cement and sand quantities because the specified mortar ratio, bulking, site mixing losses and unit absorption must be confirmed for the project. AAC blocks generally use a thin-bed adhesive rather than conventional thick-joint mortar.
 </p>
-<ul>
-  <li><strong>1:4 Rich Structural Mix:</strong> Comprising 1 part Portland cement to 4 parts processed river or M-sand. This configuration is widely specified for high-load structural brickwork, foundations, and heavy parapet walls.</li>
-  <li><strong>1:6 Standard Utility Mix:</strong> Comprising 1 part Portland cement to 6 parts clean sand. This is the industry standard for single-story internal partition walls, lightweight brick infills, and basic boundary projects.</li>
-</ul>
 
 ---
 

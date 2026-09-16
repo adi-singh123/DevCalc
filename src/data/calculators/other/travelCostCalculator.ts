@@ -16,9 +16,9 @@ export const travelCostCalculator: Calculator = {
   ],
 
   seo: {
-    title: "Travel Cost Calculator India (2026) - Trip Budget Estimator",
+    title: "Travel Cost Calculator – Road Trip Budget per Person",
     description:
-      "Calculate your India road trip or vacation cost instantly — fuel, tolls, hotels, and food. Get a per-person and total trip budget breakdown for 2026.",
+      "Estimate road-trip cost for fuel, tolls, hotel rooms, food and a 5% buffer. Compare one-way or return totals and cost per traveler.",
     keywords: [
       "travel cost calculator",
       "road trip budget calculator",
@@ -66,23 +66,23 @@ export const travelCostCalculator: Calculator = {
   formula: {
     title: "Travel Cost Calculation Formula",
     formula:
-      "Total Cost = Fuel Cost (Distance ÷ Mileage × Fuel Price) + Toll Estimate + (Travelers × Days × Hotel Rate) + (Travelers × Days × Food Rate) + Misc Buffer",
-    explanation: `A road trip or vacation budget is really the sum of one transport cost and several recurring daily costs. Fuel is the clearest transport cost and follows a simple, well-established formula: distance in kilometres divided by your vehicle's mileage in km per litre, multiplied by the current fuel price per litre. As of mid-2026, national average petrol prices sit around ₹104-₹108 per litre and diesel around ₹92-₹94 per litre, though both vary by state due to differing VAT rates — Rajasthan, for instance, charges some of the highest fuel VAT in the country, while other states run lower. This calculator uses representative national averages that you should adjust to your specific state or city pump price for precision.
+      "Total = Fuel + Estimated Tolls + (Nights × Rooms × Room Rate) + (Travelers × Days × Food/Day) + 5% Buffer",
+    explanation: `A travel budget combines distance-based costs with daily costs. Fuel equals total trip distance divided by vehicle mileage, multiplied by the fuel price you enter. The preset fuel prices and mileage figures are editable examples, not live local rates.
 
-Vehicle type and fuel choice change the fuel bill more than almost any other single input. Small hatchbacks typically deliver 15-25 km/l, sedans 12-18 km/l, and SUVs 8-15 km/l, while CNG vehicles run roughly 60% cheaper per kilometre than an equivalent petrol vehicle, albeit with a smaller refuelling network along some highway stretches. For a 1,000 km one-way trip, a petrol hatchback at 16 km/l costs roughly ₹6,500-₹6,800 in fuel, a diesel SUV at 14 km/l costs a comparable ₹6,500-₹6,900, and a CNG sedan at 25-28 km/kg can bring the same trip down to around ₹2,900-₹3,600 — a saving that becomes significant on longer journeys.
+Vehicle type and fuel choice matter because mileage and price per unit change the cost per kilometre. Use the actual mileage observed for your vehicle and a recent local pump price instead of relying on the example defaults.
 
 Toll charges are frequently underestimated because they don't scale as predictably as fuel does — they depend on which specific highways you use rather than raw distance alone. As a planning reference, NHAI tolls on a long highway trip typically add ₹800-₹2,500 for a one-way journey of several hundred kilometres, and this calculator applies a simple per-kilometre toll estimate that you should refine using an actual toll calculator or FASTag app for your exact route before finalizing your fuel budget.
 
-Accommodation and food are the two costs that scale with both traveler count and trip duration, which is why they usually end up being the largest share of a multi-day trip's total rather than fuel. Budget-conscious mid-range hotels in India often run ₹1,500-₹4,000 per room per night depending on city and season, and this calculator applies a per-traveler-per-day hotel rate assuming shared rooms, alongside a separate food allowance — budget travelers typically spend ₹500-₹800 per person per day on food, while mid-range travelers spend closer to ₹1,000-₹1,500, according to aggregated 2026 traveler spending data.
+Accommodation uses nights (days minus one), rooms (two travelers per room, rounded up), and the selected example room rate. Food uses travelers multiplied by trip days and your entered daily food allowance.
 
-Trip duration compounds accommodation and food costs directly, which is why a same-distance trip stretched from 3 days to 7 days can nearly double your total even though fuel and tolls barely change. This calculator multiplies hotel and food rates by both traveler count and number of days, since these categories are the ones that grow with time spent traveling rather than distance covered.
+The toll figure is a rough distance-based allowance of ₹1.20 per kilometre, not a route-specific toll quote. Check the actual route and replace this planning assumption outside the calculator before booking.
 
 What this calculator does not include: flight or train tickets (which this tool assumes you're not using if you've entered a driving distance), sightseeing and entry fees, travel insurance, vehicle rental charges if you don't own the car, and any car servicing or emergency repair costs that can arise on a long drive. It also assumes standard, non-peak-season pricing — expect accommodation costs to rise 20-40% during major holiday periods and festival season, so add a buffer if you're traveling during Diwali, Christmas, or major long weekends.`,
     example: {
       input:
-        "1,000 km one-way (round trip), petrol car at 16 km/l, ₹106/litre, 4 travelers, 5 days, ₹2,000/day hotel per traveler-share, ₹700/day food per traveler",
+        "500 km one-way round trip, 16 km/L, ₹106/L, 4 travelers, 3 days, mid-range room at ₹3,200/night, ₹800 food per person/day",
       output:
-        "Fuel: (2,000 km ÷ 16 km/l) × ₹106 = ₹13,250. Tolls: ₹3,000 (round trip estimate). Accommodation: 4 × 5 × ₹2,000 = ₹40,000. Food: 4 × 5 × ₹700 = ₹14,000. Misc buffer (5%): ₹3,513. Estimated Total: ₹73,763 — roughly ₹18,441 per traveler for the full 5-day trip.",
+        "Fuel: ₹6,625; toll allowance: ₹1,200; accommodation: 2 nights × 2 rooms × ₹3,200 = ₹12,800; food: ₹9,600; 5% buffer: ₹1,511; total: about ₹31,736 or ₹7,934 per traveler.",
     },
     useCases: [
       "Planning a multi-day road trip and comparing petrol versus CNG running costs",
@@ -97,7 +97,7 @@ What this calculator does not include: flight or train tickets (which this tool 
     {
       question: "How much does a 1,000 km road trip cost in India?",
       answer:
-        "For a 1,000 km one-way trip at current 2026 fuel prices, a petrol hatchback averaging 16 km/l costs roughly ₹6,500-₹6,800 in fuel, a diesel SUV at 14 km/l costs a similar ₹6,500-₹6,900, and a CNG sedan at 25-28 km/kg costs approximately ₹2,900-₹3,600. Add NHAI tolls of roughly ₹800-₹2,500 depending on the highways used, plus accommodation and food if it's a multi-day trip, to get your complete road trip budget.",
+        "There is no reliable fixed total. For a 1,000 km journey, divide 1,000 by your vehicle's real mileage and multiply by the current local fuel price. Then add route-specific tolls, room cost for the required nights, food for each traveler and any activities or parking.",
     },
     {
       question: "Is it cheaper to drive, fly, or take a train for a long-distance trip?",
@@ -107,7 +107,7 @@ What this calculator does not include: flight or train tickets (which this tool 
     {
       question: "How much cheaper is CNG compared to petrol for a road trip?",
       answer:
-        "CNG is roughly 60% cheaper per kilometre than an equivalent petrol vehicle, making it one of the most effective ways to cut trip costs if your vehicle supports it. The trade-off is a smaller refuelling network along some highway stretches and slightly lower boot space due to the CNG cylinder, so it's worth checking CNG station availability along your specific route before relying on it for a long-distance trip.",
+        "Calculate both cases with the same trip distance using the vehicle's real mileage and the local price per unit. CNG may cost less per kilometre, but the difference is not a fixed percentage and route availability should be checked before departure.",
     },
     {
       question: "What's a realistic daily food budget while traveling in India?",
@@ -117,7 +117,7 @@ What this calculator does not include: flight or train tickets (which this tool 
     {
       question: "How much should I budget for hotels on a road trip?",
       answer:
-        "Budget hotels and guesthouses in India typically run ₹1,000-₹2,500 per room per night, mid-range hotels ₹2,500-₹5,000, and higher-end properties ₹5,000-₹12,000 or more depending on the city and season. Sharing rooms among travelers significantly reduces the per-person cost, which is why this calculator applies the hotel rate per traveler assuming shared accommodation rather than one room per person.",
+        "Enter the current room rate for your destination and dates. The calculator assumes two travelers per room, rounds up the required room count, and applies the selected rate per room for each overnight stay.",
     },
     {
       question: "Does this calculator account for toll charges accurately?",
@@ -147,21 +147,14 @@ What this calculator does not include: flight or train tickets (which this tool 
   ],
 
   seoContent: `
-    <h2>How Much Does a Road Trip Cost in India in 2026?</h2>
-    <p>A road trip's total cost depends on four things: distance, your vehicle's fuel efficiency, how many days you're traveling, and how many people are sharing the costs. As a broad reference, a typical traveler spends roughly ₹1,000-₹6,000 per day in India covering food, local transport, and modest sightseeing, before accounting for the fuel and accommodation costs this calculator handles separately. A weekend 2-3 day trip for a family of four might total ₹15,000-₹35,000 depending on distance and hotel tier, while a week-long multi-city trip can range from ₹40,000 to well over ₹1,00,000 depending on travel style.</p>
+    <h2>How to Estimate the Cost of a Road Trip</h2>
+    <p>A road-trip estimate combines shared transport costs with expenses that change by traveler and day. Start with the exact one-way distance and select one-way or return. Use your vehicle's measured mileage and a recent local fuel price rather than relying on a generic vehicle average.</p>
 
-    <h2>Fuel Cost Reference by Vehicle Type (2026)</h2>
-    <table>
-      <tr><th>Vehicle Type</th><th>Typical Mileage</th><th>Fuel Cost for 1,000 km (one-way)</th></tr>
-      <tr><td>Petrol hatchback</td><td>15-25 km/l</td><td>₹4,300-₹7,200</td></tr>
-      <tr><td>Petrol sedan</td><td>12-18 km/l</td><td>₹6,000-₹9,000</td></tr>
-      <tr><td>Diesel SUV</td><td>8-15 km/l</td><td>₹6,300-₹11,800</td></tr>
-      <tr><td>CNG sedan</td><td>22-28 km/kg</td><td>₹2,700-₹3,500</td></tr>
-    </table>
-    <p>These figures use a national average petrol price of roughly ₹104-₹108/litre, diesel at ₹92-₹94/litre, and CNG at roughly ₹76/kg. Prices vary meaningfully by state due to differing VAT rates, so adjust for your specific starting city before locking in a number.</p>
+    <h2>Travel Cost Formula</h2>
+    <p><strong>Fuel cost = (total trip distance ÷ mileage) × fuel price.</strong> Accommodation equals nights × rooms × selected room rate, where nights are trip days minus one and the calculator assumes two travelers per room. Food equals travelers × days × food allowance. The tool adds an estimated toll allowance and then a 5% miscellaneous buffer.</p>
 
-    <h2>Toll and Highway Cost Reference</h2>
-    <p>NHAI tolls on a long one-way highway trip typically add ₹800-₹2,500 depending on the number of toll plazas and the specific expressways used. High-traffic corridors with premium expressway sections — such as Mumbai-Pune or the Delhi-Agra route — tend to sit at the higher end of that range, while routes on older national highways with fewer toll plazas cost less. Always keep your FASTag topped up, since cash payments at toll booths are far slower and, on some stretches, no longer accepted.</p>
+    <h2>How the Toll Estimate Works</h2>
+    <p>The calculator uses ₹1.20 per kilometre as a rough planning allowance. Actual tolls depend on the chosen highways, vehicle class, toll plazas and route, so confirm the route-specific amount before travel. Treat the displayed toll value as an estimate, not a live FASTag quote.</p>
 
     <h2>Daily Accommodation and Food Budget by Travel Style</h2>
     <table>
@@ -170,19 +163,11 @@ What this calculator does not include: flight or train tickets (which this tool 
       <tr><td>Mid-range</td><td>₹2,500-₹5,000</td><td>₹1,000-₹1,500</td></tr>
       <tr><td>Luxury</td><td>₹5,000-₹12,000+</td><td>₹2,000+</td></tr>
     </table>
-    <p>Sharing rooms is the single most effective way to bring down the per-person accommodation cost on a group trip, since hotel rates are charged per room rather than per guest in most standard bookings.</p>
-
-    <h2>Sample Trip Cost Breakdown</h2>
-    <table>
-      <tr><th>Trip Type</th><th>Distance</th><th>Duration</th><th>Estimated Total (4 travelers, mid-range)</th></tr>
-      <tr><td>Weekend getaway</td><td>250 km round trip</td><td>2 days</td><td>₹18,000-₹28,000</td></tr>
-      <tr><td>Regional road trip</td><td>800 km round trip</td><td>4 days</td><td>₹45,000-₹65,000</td></tr>
-      <tr><td>Long-distance vacation</td><td>2,000 km round trip</td><td>7 days</td><td>₹90,000-₹1,40,000</td></tr>
-    </table>
+    <p>The displayed hotel tiers are editable planning assumptions expressed per room per night. Rates can change by property, city, season, taxes and occupancy rules; replace the selected tier mentally with a real booking quote when finalizing the budget.</p>
 
     <h2>Ways to Reduce Your Travel Budget</h2>
     <ul>
-      <li>Switch to a CNG vehicle where available — roughly 60% cheaper per km than petrol</li>
+      <li>Compare fuels using your vehicle's actual mileage and current local fuel price</li>
       <li>Share rooms among travelers rather than booking one room per person</li>
       <li>Travel outside major holiday periods, when hotel rates can rise 20-40%</li>
       <li>Use a FASTag with a rewards credit card to earn cashback on toll payments</li>
@@ -208,7 +193,7 @@ What this calculator does not include: flight or train tickets (which this tool 
       <tr><td>Delhi - Jaipur</td><td>280 km</td><td>₹1,850-₹2,100</td></tr>
       <tr><td>Mumbai - Pune (expressway)</td><td>150 km</td><td>₹1,000-₹1,200</td></tr>
     </table>
-    <p>These figures cover fuel only and assume a petrol hatchback or sedan averaging 15-16 km/l at national average 2026 pricing. Toll charges are not included here since they vary by exact route and vehicle category — the Mumbai-Pune expressway, for instance, carries meaningfully higher per-kilometre tolls than an equivalent-distance stretch on an older national highway, despite being one of the shorter routes on this list.</p>
+    <p>These are illustrative fuel-only estimates, not current route quotations. Enter your vehicle's measured mileage and local fuel price, then verify route-specific tolls because charges vary by road and vehicle category.</p>
 
     <h2>How Group Size Changes Your Per-Person Cost</h2>
     <p>One of the more counterintuitive aspects of road trip budgeting is how sharply per-person cost drops as your group grows, at least up to the capacity of a single vehicle. A solo traveler driving 1,000 km bears the full fuel and toll cost alone, while the same trip split four ways cuts that portion of the bill to roughly a quarter per person. Accommodation follows a similar pattern when rooms are shared, since hotels charge per room rather than per guest — a family of four sharing two rooms pays the same total room cost as two couples traveling separately who each book their own room, but splits it across twice as many people. Food is the one major category that doesn't benefit from this effect, since each traveler eats a full portion regardless of group size, which is worth remembering when a larger group trip still feels expensive despite the fuel and hotel savings.</p>

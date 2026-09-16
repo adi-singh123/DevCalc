@@ -13,16 +13,16 @@ export const cagrCalculator: Calculator = {
   isPopular: true,
 
   editorialIntro:
-    "Unlike absolute returns or simple arithmetic averages which distort multi-year performance due to volatility, Compound Annual Growth Rate (CAGR) computes the exact smoothed geometric annual growth of an investment, making it the industry standard for benchmarking equity portfolios, real estate appreciation, and revenue expansion.",
+    "CAGR converts point-to-point growth into a constant annual compound rate, making investments or business values with different holding periods easier to compare. It does not show volatility or cash flows between the start and end dates.",
 
   benchmarkContext: {
-    title: "Asset Class CAGR Benchmarks (10-Year Indian Market Context)",
-    badge: "NSE & RBI Capital Market Data",
-    stat: "13.8% Nifty 50 10-Yr CAGR",
+    title: "CAGR Measures Smoothed Point-to-Point Growth",
+    badge: "Annualized Return Formula",
+    stat: "₹1 lakh → ₹2 lakh in 5 years = 14.87%",
     description:
-      "Historical 10-year rolling CAGRs in India: Nifty 50 Index (12%–14%), Gold INR (10%–12%), Commercial Bank FDs (6.5%–7.5%), and Residential Real Estate Tier-1 metros (7%–9%).",
-    source: "National Stock Exchange (NSE) & RBI Historical Indices",
-    lastUpdated: "January 2026",
+      "CAGR assumes a steady compound path between the entered beginning and ending values. It is not an average of yearly returns and does not reveal drawdowns, fees, taxes, inflation, or intermediate deposits and withdrawals.",
+    source: "Compound annual growth rate equation",
+    lastUpdated: "September 2026",
   },
 
   seo: {
@@ -146,9 +146,7 @@ export const cagrCalculator: Calculator = {
   CAGR provides a mathematically smoothed representation of an asset's annualized growth pathway over a defined multi-year timeline. It strips away the unpredictable spikes and drops of volatile markets, showing you the steady annual return that would have been required to take your initial investment from its starting value to its final maturity amount. 
 </p>
 
----
-
-<h2>CAGR vs. Absolute Return: A Comprehensive Structural Comparison</h2>
+<h2>CAGR vs. Absolute Return</h2>
 <p>
   To build an effective portfolio, it is essential to understand the difference between absolute returns and compound annualized returns. While absolute returns highlight the raw, total percentage shift from start to finish, CAGR introduces the critical element of time. The table below outlines how these two metrics function across different market scenarios:
 </p>
@@ -166,14 +164,14 @@ export const cagrCalculator: Calculator = {
   <tbody>
     <tr>
       <td><strong>Absolute Return</strong></td>
-      <td>\frac{\text{Ending Value} - \text{Beginning Value}}{\text{Beginning Value}} \times 100</td>
+      <td>((Ending Value − Beginning Value) ÷ Beginning Value) × 100</td>
       <td>No</td>
       <td>Evaluating short-term tactical trades under 12 months.</td>
       <td>Distorts performance on long-term assets by ignoring duration.</td>
     </tr>
     <tr>
       <td><strong>CAGR (Annualized)</strong></td>
-      <td>\left[\left(\frac{\text{Ending Value}}{\text{Beginning Value}}\right)^{\frac{1}{\text{Years}}}\right] - 1</td>
+      <td>((Ending Value ÷ Beginning Value)^(1 ÷ Years) − 1) × 100</td>
       <td>Yes</td>
       <td>Comparing asset performance across different time horizons.</td>
       <td>Hides intermediate volatility, drawdowns, and market risk.</td>
@@ -181,14 +179,12 @@ export const cagrCalculator: Calculator = {
   </tbody>
 </table>
 
----
-
-<h2>The Mathematics of Compounding: Breaking Down the Formula</h2>
+<h2>How the CAGR Formula Works</h2>
 <p>
   The formula for CAGR relies on geometric progression rather than standard linear arithmetic averages. This design allows it to factor in the compounding effect—the process of earning returns on top of previous returns. The formula is structured as follows:
 </p>
 <p align="center">
-  CAGR = \left[ \left( \frac{\text{Ending Value}}{\text{Beginning Value}} \right)^{\frac{1}{n}} - 1 \right] \times 100
+  <strong>CAGR = ((Ending Value ÷ Beginning Value)^(1 ÷ Years) − 1) × 100</strong>
 </p>
 <p>
   Where:
@@ -198,8 +194,6 @@ export const cagrCalculator: Calculator = {
   <li><strong>Beginning Value (BV):</strong> The starting principal or initial capital allocation.</li>
   <li><strong>n:</strong> The exact number of compounding periods, typically calculated in whole or fractional years.</li>
 </ul>
-
----
 
 <h2>Historical Multi-Year Matrix: How Performance Shapes Capital Growth</h2>
 <p>
@@ -255,8 +249,6 @@ export const cagrCalculator: Calculator = {
   </tbody>
 </table>
 
----
-
 <h2>CAGR vs. XIRR: Choosing the Right Metric for Your Portfolio</h2>
 <p>
   A common mistake among retail investors is misapplying CAGR to portfolios built through recurring contributions. Selecting the wrong metric can result in a skewed understanding of your actual performance:
@@ -269,8 +261,6 @@ export const cagrCalculator: Calculator = {
 <p>
   If you invest through a Systematic Investment Plan (SIP)—such as contributing ₹10,000 on the first day of every month—CAGR falls short. It cannot account for the fact that your first contribution was invested for a full year, while your twelfth contribution was only exposed to market movements for a single month. In this scenario, you must use <strong>XIRR (Extended Internal Rate of Return)</strong>, which applies a time-weighted mechanism to track irregular cash inflows and outflows accurately.
 </p>
-
----
 
 <h2>Critical Pitfalls to Avoid When Using CAGR</h2>
 <ul>

@@ -10,27 +10,29 @@ export function auditSecurity(headers: Headers, isHttps: boolean): SecurityAudit
 
   // 1. Strict-Transport-Security (HSTS)
   const hsts = headers.get("strict-transport-security");
-  if (hsts) {
+  const hstsMaxAge = Number(hsts?.match(/(?:^|;)\s*max-age\s*=\s*(\d+)/i)?.[1] ?? 0);
+  if (isHttps && hsts && hstsMaxAge > 0) {
     checks.push({
       header: "Strict-Transport-Security",
       present: true,
       value: hsts,
       status: "pass",
-      description: "Enforces HTTPS connections to prevent man-in-the-middle attacks.",
+      description: `Directs supporting browsers to use HTTPS for ${hstsMaxAge.toLocaleString()} seconds.`,
     });
   } else {
     checks.push({
       header: "Strict-Transport-Security",
-      present: false,
+      present: Boolean(hsts),
       status: isHttps ? "warn" : "fail",
-      description: "HSTS header is missing.",
+      description: hsts ? "HSTS is present but does not contain a positive max-age." : "HSTS header is missing.",
       recommendation: "Add 'Strict-Transport-Security: max-age=31536000; includeSubDomains; preload' to enforce secure connections.",
     });
   }
 
   // 2. Content-Security-Policy (CSP)
   const csp = headers.get("content-security-policy");
-  if (csp) {
+  const hasCspFetchDirective = /(?:^|;)\s*(?:default-src|script-src|object-src)\b/i.test(csp || "");
+  if (csp && hasCspFetchDirective) {
     checks.push({
       header: "Content-Security-Policy",
       present: true,
@@ -41,29 +43,31 @@ export function auditSecurity(headers: Headers, isHttps: boolean): SecurityAudit
   } else {
     checks.push({
       header: "Content-Security-Policy",
-      present: false,
+      present: Boolean(csp),
       status: "warn",
-      description: "Content Security Policy header is not configured.",
+      description: csp ? "CSP is present but no default-src, script-src, or object-src directive was found." : "Content Security Policy header is not configured.",
       recommendation: "Define a CSP to restrict authorized script and asset sources.",
     });
   }
 
   // 3. X-Frame-Options
   const xfo = headers.get("x-frame-options");
-  if (xfo) {
+  const validXfo = /^(?:deny|sameorigin)$/i.test(xfo?.trim() || "");
+  const cspFrameAncestors = /(?:^|;)\s*frame-ancestors\b/i.test(csp || "");
+  if (validXfo || cspFrameAncestors) {
     checks.push({
       header: "X-Frame-Options",
-      present: true,
-      value: xfo,
+      present: Boolean(xfo),
+      value: validXfo ? xfo! : "Protected by CSP frame-ancestors",
       status: "pass",
       description: "Defends against Clickjacking by forbidding iframe framing.",
     });
   } else {
     checks.push({
       header: "X-Frame-Options",
-      present: false,
-      status: csp && csp.includes("frame-ancestors") ? "pass" : "warn",
-      description: "X-Frame-Options header is absent.",
+      present: Boolean(xfo),
+      status: "warn",
+      description: xfo ? "X-Frame-Options has an unrecognized value." : "No X-Frame-Options or CSP frame-ancestors protection was found.",
       recommendation: "Set 'X-Frame-Options: SAMEORIGIN' or 'frame-ancestors \'self\'' in CSP.",
     });
   }
@@ -138,7 +142,7 @@ export function auditSecurity(headers: Headers, isHttps: boolean): SecurityAudit
   return {
     score: Math.min(100, Math.max(0, score)),
     https: isHttps,
-    hsts: Boolean(hsts),
+    hsts: Boolean(isHttps && hsts && hstsMaxAge > 0),
     headers: checks,
     summary: {
       passed,
@@ -147,4 +151,3 @@ export function auditSecurity(headers: Headers, isHttps: boolean): SecurityAudit
     },
   };
 }
-

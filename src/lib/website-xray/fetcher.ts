@@ -217,7 +217,7 @@ export async function fetchTargetSafely(initialUrl: string): Promise<HttpRespons
           totalMs,
         },
         redirectChain,
-        httpVersion: "HTTP/1.1",
+        httpVersion: undefined,
       };
     } catch (err: unknown) {
       clearTimeout(timeoutId);

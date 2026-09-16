@@ -6,7 +6,7 @@ export const fertilizerRequirementCalculator: Calculator = {
   name: "Fertilizer Requirement Calculator",
 
   description:
-    "Calculate exactly how much urea, DAP, and MOP (or your preferred fertilizer sources) your field needs. Enter your crop, field area, and recommended NPK dose — get the precise fertilizer quantity required, broken down by nutrient, so you apply the right amount instead of guessing.",
+    "Convert an N, P₂O₅, and K₂O recommendation into estimated quantities of urea, DAP or SSP, and MOP or SOP for an area in acres or hectares.",
 
   category: "Other",
 
@@ -23,10 +23,10 @@ export const fertilizerRequirementCalculator: Calculator = {
 
   seo: {
     title:
-      "Fertilizer Requirement Calculator (2026) - NPK Dose to Urea, DAP, MOP",
+      "Fertilizer Calculator – NPK to Urea, DAP and MOP",
 
     description:
-      "Enter your crop, field area, and NPK dose to instantly calculate how much urea, DAP, and MOP you need. Free fertilizer calculator for Indian farmers — accurate, per-acre and per-hectare.",
+      "Convert a crop or soil-test NPK dose into estimated urea, DAP or SSP, and MOP or SOP quantities per acre or hectare, including DAP nitrogen.",
 
     keywords: [
       "fertilizer requirement calculator",
@@ -53,7 +53,7 @@ export const fertilizerRequirementCalculator: Calculator = {
       step: 2,
       title: "Enter Your Field Area",
       description:
-        "Enter your field size in acres, hectares, bigha, or guntha — whichever unit you think in. The calculator converts everything to hectares internally since standard nutrient doses are expressed in kg per hectare.",
+        "Enter your field size in acres or hectares. The calculator converts acres to hectares because the nutrient targets are expressed in kg per hectare.",
       icon: "location",
     },
     {
@@ -67,7 +67,7 @@ export const fertilizerRequirementCalculator: Calculator = {
       step: 4,
       title: "View Your Fertilizer Quantity",
       description:
-        "Get the exact quantity of each fertilizer required in kilograms, plus the total weight and — if you enter a rate — the estimated cost, so you know exactly how many bags to buy before you head to the fertilizer dealer.",
+        "See the calculated quantity of each fertilizer in kilograms, total product weight, and optional estimated cost. Confirm the nutrient target and bag sizes before purchasing.",
       icon: "clock",
     },
   ],
@@ -103,7 +103,7 @@ export const fertilizerRequirementCalculator: Calculator = {
       question:
         "How do I convert an NPK recommendation like 120:60:40 into actual bags of fertilizer?",
       answer:
-        "A recommendation written as 120:60:40 kg NPK per hectare means your crop needs 120 kg of actual nitrogen, 60 kg of actual phosphorus (expressed as P₂O₅), and 40 kg of actual potassium (expressed as K₂O) spread across each hectare of your field. The number on a fertilizer bag — like Urea's '46-0-0' or DAP's '18-46-0' — tells you what percentage of that bag's total weight is each nutrient, not the nutrient content of a fixed bag size. To convert a nutrient target into a fertilizer quantity, divide the nutrient amount you need by the fertilizer's nutrient percentage (expressed as a decimal). For nitrogen using urea (46% N), you'd divide your nitrogen requirement by 0.46. For 120 kg of nitrogen, that's 120 ÷ 0.46, which comes out to roughly 261 kg of urea, or a little over five standard 50 kg bags (or about 5.8 bags if your urea comes in 45 kg bags, which is the standard subsidized bag size in India as of 2026). The same math applies to phosphorus and potassium with their respective source fertilizers. One detail that trips people up: DAP (Di-Ammonium Phosphate) supplies both phosphorus and a meaningful amount of nitrogen as a side effect, since it's labelled 18-46-0 — 18% nitrogen and 46% P₂O₅. If you're using DAP to meet your phosphorus target, the nitrogen it delivers should be subtracted from your remaining urea requirement, or you'll end up applying more total nitrogen than your recommendation actually calls for. This calculator handles that adjustment automatically and shows you the bonus nitrogen figure so you can see exactly where it's coming from, rather than hiding the calculation inside a black box. If your recommendation comes from a Soil Health Card, the back of the card usually already gives you a crop-wise, per-hectare or per-acre dose specific to your tested field — that's a better starting number to plug into this calculator than a generic crop average, since it reflects your actual soil's existing nutrient status rather than a state-wide or national average.",
+        "A recommendation such as 120:60:40 kg N:P₂O₅:K₂O per hectare specifies nutrient amounts, not fertilizer product weight. Divide each nutrient target by the selected product's nutrient fraction: for example, 120 kg N from 46% urea is 120 ÷ 0.46, or about 261 kg. DAP is 18-46-0, so DAP used for phosphorus also supplies nitrogen; the calculator subtracts that contribution from the remaining nitrogen target and flags any excess. Convert the final kilograms into bags using the actual pack weight printed on your product.",
     },
     {
       question: "What is the ideal NPK ratio, and why does it matter?",
@@ -130,9 +130,9 @@ export const fertilizerRequirementCalculator: Calculator = {
     },
     {
       question:
-        "How much does fertilizer cost per acre in India in 2026, and are these prices government-controlled?",
+        "How do I estimate fertilizer cost per acre?",
       answer:
-        "Fertilizer pricing in India works differently depending on the product, and understanding this distinction helps explain why urea feels so much cheaper per bag than DAP or MOP even though all three are subsidized. Urea is fully price-controlled by the central government under a statutorily notified Maximum Retail Price, which has been held at roughly ₹242 to ₹276 for a standard 45 kg bag for several years running, regardless of the government's actual cost of producing or importing it — the difference between that cost and the fixed retail price is paid directly to manufacturers and importers as subsidy, and this urea subsidy alone accounts for well over a lakh crore rupees in the union budget annually. Phosphatic and potassic fertilizers — DAP, MOP, SSP, and various NPK complex grades — are managed differently, under the Nutrient Based Subsidy (NBS) scheme introduced in 2010, which fixes a per-kilogram subsidy amount for each nutrient (nitrogen, phosphorus, potassium, and sulphur) rather than controlling the final retail price directly. Under this mechanism, DAP has been held stable at approximately ₹1,350 per 50 kg bag and MOP at roughly ₹1,670 per 50 kg bag through recent subsidy cycles, even as international fertilizer prices have moved considerably, since the government periodically revises the NBS subsidy rate specifically to absorb global price increases and protect the price farmers actually pay. For a rough cost estimate: applying a typical wheat dose of around 120:60:40 kg NPK per hectare, using DAP for phosphorus, urea for the balance of nitrogen, and MOP for potassium, generally works out to a fertilizer cost in the broad range of ₹4,000 to ₹6,000 per hectare (roughly ₹1,600 to ₹2,400 per acre) at current subsidized rates, though this varies with your specific dose, chosen fertilizer sources, and local dealer pricing. It's worth noting that subsidized prices are reviewed and can be revised each cropping season (Kharif and Rabi cycles are announced separately), so treat any specific rupee figure — including the ones in this answer — as indicative rather than fixed, and check current rates with your local dealer or your state agriculture department's advisory before finalizing a season's input budget. This calculator lets you enter your own current local rate per kilogram to get a cost estimate specific to your actual purchase price rather than relying on a potentially outdated fixed figure.",
+        "First calculate the required kilograms for your field. Multiply each product quantity by its current local price per kilogram, then add the product costs. If your dealer quotes a bag price, divide it by the bag's printed net weight before multiplying. Prices, subsidies, grades, and pack sizes can change, so verify them locally rather than relying on a fixed online price.",
     },
     {
       question:
@@ -148,9 +148,9 @@ export const fertilizerRequirementCalculator: Calculator = {
     },
     {
       question:
-        "How is field area measured, and why do units like bigha and guntha vary so much?",
+        "How does the acre-to-hectare conversion work?",
       answer:
-        "Field area in India is measured in a genuinely confusing mix of units because, alongside the standardized metric units of acre and hectare used in official government records and most modern agricultural advisories, a range of traditional regional land units remain in everyday use, and — critically — several of these traditional units don't have a single fixed conversion factor across the whole country. A bigha, for example, is one of the most commonly used traditional units in North India, but its actual size varies by state and sometimes even by district: a bigha in Rajasthan, Uttar Pradesh, Bihar, and West Bengal can each represent a different area in acres or hectares, since these units evolved from local historical land revenue systems rather than a single standardized measure. Guntha, common in Maharashtra, Karnataka, and parts of South India, is more consistently defined (typically 1/40th of an acre) but still requires care when converting, since it's sometimes confused with similarly named but differently sized regional units elsewhere. This regional variation matters directly for fertilizer calculation because the entire formula depends on getting your field's area in hectares correct — an error in area conversion translates directly into a proportional error in your fertilizer quantity, whether that means under-applying (risking yield loss) or over-applying (wasting money and potentially harming soil health or nearby water bodies). This calculator uses a general approximation for bigha (based on the commonly cited North Indian standard of roughly a quarter hectare) since a single universal conversion factor doesn't exist, but if you know your specific state's official bigha-to-acre conversion — available from your state's land revenue department or a local agriculture extension office — it's worth converting your area to acres or hectares directly using that locally accurate figure and entering it in the acre or hectare option instead of relying on the built-in bigha approximation, particularly for larger fields where even a small percentage error in area compounds into a meaningfully wrong fertilizer quantity.",
+        "The calculator uses 1 hectare = 2.47105 acres. Choose the same unit used by your nutrient recommendation. If your land record uses a regional unit such as bigha, obtain the official local conversion first because that unit can vary by state or district, then enter the converted area in acres or hectares.",
     },
     {
       question:
@@ -181,10 +181,10 @@ export const fertilizerRequirementCalculator: Calculator = {
   seoContent: `
 <h2>What Is a Fertilizer Requirement Calculator?</h2>
 <p>
-  A Fertilizer Requirement Calculator converts a crop's recommended nutrient dose — usually expressed as kilograms of Nitrogen (N), Phosphorus (P₂O₅), and Potassium (K₂O) per hectare — into the actual quantity of fertilizer product you need to buy and apply. This conversion step matters because no fertilizer bag is 100% pure nutrient. Urea, the most common nitrogen source in India, is only 46% nitrogen by weight; the rest is filler. DAP is 46% phosphorus but also carries 18% nitrogen as a side effect of its chemical composition. MOP delivers 60% potassium. Without converting a nutrient target into a fertilizer quantity through each product's specific nutrient percentage, it's genuinely easy to under-buy, over-buy, or apply the wrong ratio of nitrogen to phosphorus to potassium — all of which have real consequences for yield, input cost, and soil health.
+  A Fertilizer Requirement Calculator converts a recommended nutrient dose—kilograms of nitrogen (N), phosphate (P₂O₅), and potash (K₂O) per hectare—into fertilizer product weight. Urea contains 46% N, DAP contains 18% N and 46% P₂O₅, and MOP contains 60% K₂O, so product weight is greater than the nutrient weight it supplies.
 </p>
 <p>
-  This calculator takes your crop (or a custom nutrient target from a Soil Health Card or state advisory), your field area in whichever unit you think in, and your chosen fertilizer sources, and returns the precise kilogram quantity of each fertilizer required — along with the total weight and, if you enter a current local rate, an estimated cost. It's designed to remove the manual arithmetic and the DAP-nitrogen adjustment step that trips up even experienced farmers doing this calculation by hand.
+  Use the Custom option with a current Soil Health Card or local agronomy recommendation whenever possible. Built-in crop values are general examples and cannot account for soil test results, variety, target yield, irrigation, season, previous crop, or local guidance.
 </p>
 
 <h2>Why Getting the Fertilizer Quantity Right Actually Matters</h2>
@@ -210,12 +210,12 @@ export const fertilizerRequirementCalculator: Calculator = {
 <table>
   <tr><th>Crop</th><th>Nitrogen (N)</th><th>Phosphorus (P₂O₅)</th><th>Potassium (K₂O)</th></tr>
   <tr><td>Wheat</td><td>120 kg/ha</td><td>60 kg/ha</td><td>40 kg/ha</td></tr>
-  <tr><td>Rice (Paddy)</td><td>120 kg/ha</td><td>60 kg/ha</td><td>40 kg/ha</td></tr>
+  <tr><td>Rice (Paddy)</td><td>120 kg/ha</td><td>60 kg/ha</td><td>60 kg/ha</td></tr>
   <tr><td>Maize</td><td>120 kg/ha</td><td>60 kg/ha</td><td>40 kg/ha</td></tr>
-  <tr><td>Cotton</td><td>100 kg/ha</td><td>50 kg/ha</td><td>50 kg/ha</td></tr>
+  <tr><td>Cotton</td><td>80 kg/ha</td><td>40 kg/ha</td><td>40 kg/ha</td></tr>
   <tr><td>Sugarcane</td><td>250 kg/ha</td><td>100 kg/ha</td><td>100 kg/ha</td></tr>
-  <tr><td>Potato</td><td>150 kg/ha</td><td>80 kg/ha</td><td>100 kg/ha</td></tr>
-  <tr><td>Soybean</td><td>20 kg/ha</td><td>60 kg/ha</td><td>40 kg/ha</td></tr>
+  <tr><td>Potato</td><td>150 kg/ha</td><td>100 kg/ha</td><td>100 kg/ha</td></tr>
+  <tr><td>Soybean</td><td>20 kg/ha</td><td>40 kg/ha</td><td>20 kg/ha</td></tr>
   <tr><td>Groundnut</td><td>20 kg/ha</td><td>40 kg/ha</td><td>40 kg/ha</td></tr>
   <tr><td>Mustard</td><td>80 kg/ha</td><td>40 kg/ha</td><td>40 kg/ha</td></tr>
 </table>
@@ -228,7 +228,7 @@ export const fertilizerRequirementCalculator: Calculator = {
   <tr><th>Fertilizer</th><th>N</th><th>P₂O₅</th><th>K₂O</th><th>Notes</th></tr>
   <tr><td>Urea</td><td>46%</td><td>—</td><td>—</td><td>Cheapest, most subsidized nitrogen source</td></tr>
   <tr><td>Ammonium Sulphate</td><td>21%</td><td>—</td><td>—</td><td>Also supplies sulphur, useful on deficient soils</td></tr>
-  <tr><td>CAN (Calcium Ammonium Nitrate)</td><td>25%</td><td>—</td><td>—</td><td>Faster-acting nitrate form alongside ammonium</td></tr>
+  <tr><td>CAN (Calcium Ammonium Nitrate)</td><td>26%</td><td>—</td><td>—</td><td>Verify the nutrient grade printed on the bag</td></tr>
   <tr><td>DAP (Di-Ammonium Phosphate)</td><td>18%</td><td>46%</td><td>—</td><td>Also supplies significant bonus nitrogen</td></tr>
   <tr><td>SSP (Single Super Phosphate)</td><td>—</td><td>16%</td><td>—</td><td>Lower P concentration but supplies sulphur, calcium</td></tr>
   <tr><td>MOP (Muriate of Potash)</td><td>—</td><td>—</td><td>60%</td><td>Standard, most economical potassium source</td></tr>
@@ -237,10 +237,10 @@ export const fertilizerRequirementCalculator: Calculator = {
 
 <h2>How This Calculator Works, Step by Step</h2>
 <p>
-  Start by selecting your crop from the dropdown, which auto-fills a typical recommended NPK dose in kg/ha — or, if you have a Soil Health Card or a specific state advisory figure, select 'Custom' and enter your own N, P₂O₅, and K₂O numbers directly, since this will always be more accurate than a generic average. Next, enter your field area in whichever unit you think in most naturally — acre, hectare, or one of the common regional units — the calculator converts internally to hectares, since standard nutrient doses are universally expressed on a per-hectare basis. Then choose which fertilizer product you'll use to supply each of the three nutrients: your nitrogen source (Urea, Ammonium Sulphate, or CAN), your phosphorus source (DAP, SSP, or TSP), and your potassium source (MOP or SOP). Each carries a different nutrient percentage, which directly changes how many kilograms of that product you need to buy to hit your target nutrient dose.
+  Select a crop example or choose Custom and enter N, P₂O₅, and K₂O from your Soil Health Card or local advisory. Enter area in acres or hectares; acres are converted to hectares. Then select the fertilizer source used for each nutrient.
 </p>
 <p>
-  The calculator then applies the core formula separately to each nutrient: fertilizer quantity in kilograms equals your nutrient dose in kg/ha, multiplied by your field area in hectares, divided by the fertilizer's nutrient percentage expressed as a decimal. If you've selected DAP as your phosphorus source, the calculator also computes the bonus nitrogen DAP delivers as a side effect of meeting your phosphorus target, and subtracts that from your remaining urea requirement — so your final total nitrogen applied matches your actual recommended dose rather than silently exceeding it. The result shows each fertilizer's required quantity individually, your total combined fertilizer weight, and, if you've entered a current rate per kilogram, an estimated total cost for your field.
+  Fertilizer quantity equals nutrient dose × area ÷ nutrient fraction. When DAP supplies phosphorus, its nitrogen contribution is subtracted before calculating the separate nitrogen source. If DAP alone supplies more nitrogen than the target, the nitrogen-source result becomes zero but the selected combination still exceeds the N target; choose another phosphorus source or consult an agronomist.
 </p>
 
 <h2>A Worked Example: One Hectare of Wheat</h2>

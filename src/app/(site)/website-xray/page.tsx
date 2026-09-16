@@ -13,9 +13,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Website X-Ray — Technology Stack, CMS, API & Hosting Detector",
+  title: "Website X-Ray: Tech Stack, Security and SEO Scanner",
   description:
-    "Free online Website X-Ray scanner. Discover frontend frameworks, CMS, CDN, DNS records, public APIs, SSL certificates, passive security headers, and SEO metrics instantly.",
+    "Scan a public website for technology signals, CMS, CDN, DNS, TLS, observable APIs, security headers, metadata and on-page SEO checks.",
   keywords: [
     "website xray",
     "website tech stack detector",
@@ -24,6 +24,8 @@ export const metadata: Metadata = {
     "framework detector",
     "dns lookup tool",
     "security headers checker",
+    "website seo checker",
+    "http header checker",
     "api discovery tool",
     "devcalc website xray",
   ],
@@ -31,19 +33,26 @@ export const metadata: Metadata = {
     canonical: "https://www.devcalc.in/website-x-ray",
   },
   openGraph: {
-    title: "Website X-Ray — Technology Stack, CMS, API & Hosting Detector | DevCalc",
+    title: "Website X-Ray: Tech Stack, Security and SEO Scanner",
     description:
-      "Deep technical intelligence tool to scan observable frontend frameworks, infrastructure, APIs, and passive security headers on any public website.",
+      "Inspect public technology signals, infrastructure, observable APIs, security headers and on-page SEO metadata.",
     url: "https://www.devcalc.in/website-x-ray",
     siteName: "DevCalc",
     type: "website",
+    images: [{ url: "/logo.png", width: 1200, height: 630, alt: "DevCalc Website X-Ray" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Website X-Ray: Tech Stack, Security and SEO Scanner",
+    description: "Inspect public website technology, infrastructure, security-header and SEO signals.",
+    images: ["/logo.png"],
   },
 };
 
 const FAQ_ITEMS = [
   {
     q: "How does Website X-Ray detect frameworks and technologies?",
-    a: "Website X-Ray performs non-invasive, passive DOM inspection, script AST signature analysis, and HTTP header auditing. It inspects HTML root attributes (e.g. data-reactroot, __NEXT_DATA__, __NUXT__, ng-version), script bundle patterns, atomic CSS class styles (e.g. Tailwind), and response headers to identify technologies with deterministic confidence scores.",
+    a: "Website X-Ray uses passive HTML, public script-path, bundle-string, and HTTP-header signatures. It reports confidence and evidence for each match because hidden server-side technology and deliberately removed headers cannot be confirmed from a public response.",
   },
   {
     q: "Does Website X-Ray perform active security penetration testing?",
@@ -51,7 +60,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How does the DevCalc X-Ray Score get calculated?",
-    a: "The score (0-100 and grade A+ to F) is a deterministic weighted composite of four key pillars: Security Posture (30%), Modern Tech Architecture (25%), SEO & Meta Readiness (25%), and Response Latency/TTFB (20%).",
+    a: "The indicative score combines security headers (30%), detected technology signals (25%), on-page SEO signals (25%), and response timing (20%). It is a comparison aid, not proof of security, search ranking, code quality, or production readiness.",
   },
   {
     q: "Are private IPs and localhost addresses supported?",
@@ -92,6 +101,13 @@ export default function WebsiteXRayPage() {
           },
         })),
       },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.devcalc.in/" },
+          { "@type": "ListItem", position: 2, name: "Website X-Ray", item: "https://www.devcalc.in/website-x-ray" },
+        ],
+      },
     ],
   };
 
@@ -100,7 +116,7 @@ export default function WebsiteXRayPage() {
       {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <div className="max-w-6xl mx-auto space-y-10">
@@ -131,7 +147,7 @@ export default function WebsiteXRayPage() {
           </h1>
 
           <p className="text-sm sm:text-base text-stone-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-            Inspect the complete anatomy of any website. Instantly detect frontend frameworks, CMS, CDN routing, TLS certificate health, observable API endpoints, and passive security headers.
+            Inspect public signals from any reachable website: frontend frameworks, CMS, CDN and DNS, TLS certificate details, observable API requests, security headers, and on-page SEO metadata.
           </p>
         </div>
 
@@ -156,7 +172,7 @@ export default function WebsiteXRayPage() {
               </div>
               <h2 className="text-base font-bold text-[#26364a] dark:text-white">Full-Stack Tech Fingerprinting</h2>
               <p className="text-xs text-stone-600 dark:text-slate-400 leading-relaxed">
-                Identifies Next.js, React, Vue, Svelte, Angular, Astro, Tailwind CSS, Bootstrap, WordPress, Shopify, Express, and runtime libraries with explicit confidence ratings and DOM evidence trails.
+                Looks for public HTML, asset-path, bundle and response-header signatures for common frameworks, CMS platforms and libraries. Every match includes confidence and supporting evidence.
               </p>
             </div>
 
@@ -176,7 +192,7 @@ export default function WebsiteXRayPage() {
               </div>
               <h2 className="text-base font-bold text-[#26364a] dark:text-white">Edge CDN & DNS Infrastructure</h2>
               <p className="text-xs text-stone-600 dark:text-slate-400 leading-relaxed">
-                Traces authoritative nameservers, IPv4/IPv6 addresses, cloud hosts (Vercel, AWS, GCP, Netlify), and edge CDNs (Cloudflare, CloudFront, Fastly) with TTFB latency measurements.
+                Resolves public DNS records and checks response headers for hosting and CDN signatures. Timing reflects this scanner&apos;s network location and is not a Core Web Vitals measurement.
               </p>
             </div>
           </div>
@@ -184,15 +200,32 @@ export default function WebsiteXRayPage() {
           {/* Technical Guide Section */}
           <div className="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800/90 rounded-2xl p-7 sm:p-8 space-y-4 shadow-xs">
             <h2 className="text-xl sm:text-2xl font-bold text-[#26364a] dark:text-white">
-              Understanding Web Architecture Detection
+              How the Website Technology Scanner Works
             </h2>
             <div className="space-y-3.5 text-xs sm:text-sm text-stone-600 dark:text-slate-300 leading-relaxed">
               <p>
-                Modern web applications are distributed across multiple layers—from DNS edge routing and Content Delivery Networks (CDNs) to frontend Single Page Application (SPA) client hydrators and backend microservices.
+                The scan fetches the requested public page, follows a limited redirect chain, validates every destination against SSRF protections, reads response headers, resolves DNS, inspects the TLS certificate, and checks first-party script bundles within size and count limits.
               </p>
               <p>
-                Website X-Ray combines multi-factor heuristic fingerprinting with HTTP header telemetry to deliver clean, transparent, and non-destructive technical insights into any public domain.
+                A short browser observation records fetch and XHR requests made during initial page load. Static analysis can also find API-shaped URLs referenced in public code; these inferred endpoints are labelled separately from requests observed on the network.
               </p>
+              <p>
+                Results are evidence-based but not exhaustive. Consent screens, bot protection, authentication, regional routing, client interactions, hidden backend services and removed headers can all limit what a passive public scan can detect.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800/90 rounded-2xl p-7 sm:p-8 space-y-5 shadow-xs">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#26364a] dark:text-white">What the SEO and Security Results Mean</h2>
+            <div className="grid gap-5 md:grid-cols-2 text-xs sm:text-sm text-stone-600 dark:text-slate-300 leading-relaxed">
+              <div>
+                <h3 className="font-bold text-[#26364a] dark:text-white mb-2">On-page SEO checks</h3>
+                <p>The report checks the returned HTML for a title, meta description, canonical link, one primary H1, robots directives, Open Graph, Twitter Card, JSON-LD, viewport, favicon and document language. These checks improve technical readiness but do not predict rankings or replace content, link and crawl analysis.</p>
+              </div>
+              <div>
+                <h3 className="font-bold text-[#26364a] dark:text-white mb-2">Passive security checks</h3>
+                <p>The report evaluates HTTPS, TLS certificate status and public response headers such as HSTS, CSP, X-Content-Type-Options, frame protections, Referrer-Policy and Permissions-Policy. A high score is not a penetration test or vulnerability guarantee.</p>
+              </div>
             </div>
           </div>
 

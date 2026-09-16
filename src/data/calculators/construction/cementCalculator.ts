@@ -13,14 +13,14 @@ export const cementCalculator: Calculator = {
   isPopular: true,
 
   editorialIntro:
-    "Calculating cement requirements for RCC slabs, columns, and foundations requires converting wet concrete volume to dry volume by multiplying by the statutory factor of 1.54 (accounting for 54% void reduction when water is added to dry cement, sand, and coarse aggregates).",
+    "Estimate cement for nominal concrete mixes by converting wet concrete volume to dry material volume, applying the selected cement:sand:aggregate ratio, and dividing the cement volume by 1.226 cubic feet per 50 kg bag.",
 
   benchmarkContext: {
-    title: "IS 456:2000 Concrete Mix & Cement Bag Standards",
-    badge: "Bureau of Indian Standards Code",
+    title: "Nominal Concrete Mix and Cement Bag Reference",
+    badge: "Preliminary Quantity Estimate",
     stat: "1 Bag = 50 kg (Volume: 0.0347 m³ / 1.226 cu.ft)",
     description:
-      "Standard mix ratios: M15 1:2:4 (~6.6 bags/m³), M20 1:1.5:3 (~8.0 bags/m³ for residential slabs), M25 1:1:2 (~10.5 bags/m³ for heavy load columns). Cement density is standardized at 1,440 kg/m³.",
+      "The calculator supports nominal M10 (1:3:6), M15 (1:2:4), and M20 (1:1.5:3) volume ratios. Structural concrete must follow the approved mix design and drawings; grade alone does not define a universal site mix.",
     source: "Bureau of Indian Standards (IS 456:2000 Plain and Reinforced Concrete)",
     lastUpdated: "January 2026",
   },
@@ -67,7 +67,7 @@ export const cementCalculator: Calculator = {
       step: 2,
       title: "Select Concrete Grade",
       description:
-        "Choose M10, M15, M20, or M25 concrete mix ratio.",
+        "Choose an M10, M15, or M20 nominal concrete mix ratio.",
       icon: "list",
     },
 
@@ -92,17 +92,17 @@ export const cementCalculator: Calculator = {
     title: "Cement Calculation Formula",
 
     formula:
-      "Cement Bags = Concrete Volume × Cement Factor",
+      "Bags = [Wet Volume × 1.54 ÷ Total Mix Parts] ÷ 1.226 cu ft per 50 kg Bag",
 
     explanation:
-      "The calculator estimates cement requirements using standard concrete mix ratios. The total concrete volume is multiplied by the cement factor for the selected grade to determine the required cement quantity.",
+      "First convert slab dimensions to wet concrete volume. Multiply by 1.54 for an estimating dry-volume allowance, divide by the total parts in the nominal mix to isolate cement volume, then divide by the approximate volume of one 50 kg cement bag.",
 
     example: {
       input:
         "Length: 20 ft, Width: 15 ft, Thickness: 0.5 ft, Grade: M20",
 
       output:
-        "Concrete Volume: 150 cu ft, Cement Required: 35 Bags",
+        "Wet Volume: 150 cu ft; Dry Volume: 231 cu ft; Cement: 231 ÷ 5.5 ÷ 1.226 = 34.3, rounded up to 35 bags",
     },
 
     useCases: [
@@ -140,7 +140,7 @@ export const cementCalculator: Calculator = {
       question:
         "Which concrete grade is best for house construction?",
       answer:
-        "M20 grade concrete is commonly used for residential construction because it provides a good balance between strength and cost. Higher grades such as M25 and M30 are used where additional strength is required."
+        "The required grade and mix must come from the structural design. IS 456 permits nominal mixes for M20 or lower; higher grades should use a designed mix rather than an assumed fixed ratio."
     },
 
     {
@@ -168,7 +168,7 @@ export const cementCalculator: Calculator = {
       question:
         "How accurate is this Cement Calculator?",
       answer:
-        "The calculator provides reliable estimates based on standard engineering practices and concrete mix ratios. Actual site requirements may vary slightly due to wastage, workmanship, and local construction methods."
+        "It is a preliminary material estimate for the listed nominal mixes. Actual batching depends on the approved mix design, aggregate moisture and grading, water-cement ratio, admixtures, placement losses, and site quality control."
     },
   ],
 
@@ -176,13 +176,18 @@ export const cementCalculator: Calculator = {
 <h2>Calculate Cement Bags for Slabs, Footings, Beams and Columns</h2>
 
 <p>
-A Cement Calculator helps estimate the number of cement bags required for construction projects. Whether you are building a house, slab, foundation, column, or floor, accurate cement estimation helps reduce material waste and improve budgeting.
+Enter length and width in feet and thickness in inches. The calculator converts those dimensions to wet concrete volume, estimates dry material volume, applies the selected nominal mix, and rounds cement up to complete 50 kg bags. Calculate slabs, beams, columns and footings separately when their dimensions or specified mixes differ.
 </p>
 
-<h2>Why Cement Estimation Is Important</h2>
-
+<h2>Cement Bag Calculation Formula</h2>
 <p>
-Incorrect cement calculations can increase construction costs, delay projects, and result in unnecessary material purchases. Proper planning ensures that sufficient cement is available throughout the project.
+For dimensions entered in feet and inches, use <strong>wet volume = length × width × (thickness ÷ 12)</strong>. For a preliminary nominal-mix estimate, this calculator uses a dry-volume factor of 1.54. Cement volume equals dry volume divided by the sum of the mix parts. Finally, divide cement volume by 1.226 cubic feet, the approximate volume of a 50 kg bag at 1,440 kg/m³ bulk density.
+</p>
+<p><strong>Cement bags = [L × W × (T ÷ 12) × 1.54 ÷ total mix parts] ÷ 1.226</strong></p>
+
+<h2>Worked Example: Cement Bags for an M20 Slab</h2>
+<p>
+A 20 ft × 15 ft slab with a 6-inch thickness has a wet volume of 150 cu ft. Estimated dry volume is 150 × 1.54 = 231 cu ft. For nominal M20 (1:1.5:3), total parts are 5.5, so cement volume is 231 ÷ 5.5 = 42 cu ft. Dividing by 1.226 gives 34.26 bags; round up to <strong>35 bags</strong> before any project-specific allowance.
 </p>
 
 <h2>Standard Cement Bag Weight in India</h2>
@@ -220,11 +225,6 @@ Incorrect cement calculations can increase construction costs, delay projects, a
 <td>M20</td>
 <td>1:1.5:3</td>
 <td>Residential Construction</td>
-</tr>
-<tr>
-<td>M25</td>
-<td>Design Mix</td>
-<td>High Strength Structures</td>
 </tr>
 </table>
 
@@ -269,7 +269,7 @@ The cement requirement depends on house size, slab thickness, foundation design,
 <h2>Pro Tip</h2>
 
 <p>
-Always add a small allowance for wastage and handling losses when purchasing cement for construction projects. This helps avoid delays caused by material shortages.
+Do not add an arbitrary allowance before checking the project specification and batching method. Ready-mix concrete is normally ordered by volume, while site-mixed work may need a controlled allowance for handling and placement losses.
 </p>
 
 <h2>Nominal Mix Estimate vs. Structural Mix Design</h2>

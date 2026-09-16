@@ -13,23 +13,23 @@ export const mileageCalculator: Calculator = {
   isPopular: true,
 
   editorialIntro:
-    "Official ARAI (Automotive Research Association of India) test figures represent idealized laboratory chassis dynamometer conditions. Real-world Indian city driving typically yields 20%–35% lower fuel economy due to bumper-to-bumper traffic idling, air conditioning compressor load, and E20 ethanol-blended fuel characteristics.",
+    "Use either trip distance or two odometer readings to measure real-world mileage. For the most consistent result, compare several full-tank readings taken at the same pump and automatic cut-off point.",
 
   benchmarkContext: {
-    title: "ARAI vs Real-World Fuel Economy & The Full-Tank Method",
-    badge: "Automotive Engineering Benchmark",
-    stat: "Tank-to-Tank Method: ±1% Precision",
+    title: "A More Reliable Tank-to-Tank Reading",
+    badge: "Practical Measurement Guide",
+    stat: "Repeat across 2–3 refills",
     description:
-      "Onboard Multi-Information Displays (MID) routinely overestimate fuel economy by 5%–12%. The only scientifically verified real-world measurement is the Tank-to-Tank auto-cut method: dividing exact odometer distance by exact litres to second auto-cut.",
-    source: "Automotive Research Association of India (ARAI) & Society of Indian Automobile Manufacturers (SIAM)",
-    lastUpdated: "January 2026",
+      "Fill to the first automatic cut-off, record the odometer, drive normally, then refill to the same cut-off. Subtract the two odometer readings and divide that distance by the fuel added on the second fill.",
+    source: "Standard full-tank mileage calculation",
+    lastUpdated: "September 2026",
   },
 
   seo: {
-    title: "Mileage Calculator: Car & Bike km/L and Fuel Cost",
+    title: "Mileage Calculator – Car, Bike, Odometer and Fuel Cost",
 
     description:
-      "Calculate car or bike mileage in km/L, litres per 100 km, fuel cost per km, and trip expense using distance, fuel consumed, and current fuel price.",
+      "Calculate car or bike mileage from distance or odometer readings. See km/L, fuel cost per km and total trip cost for petrol, diesel, CNG or EV.",
 
     keywords: [
       "mileage calculator",
@@ -44,6 +44,7 @@ export const mileageCalculator: Calculator = {
       "calculate car mileage from odometer reading",
       "petrol cost per kilometre calculator India",
       "tank to tank mileage calculator",
+      "odometer mileage calculator",
       "litres per 100 km calculator",
     ],
   },
@@ -57,9 +58,9 @@ export const mileageCalculator: Calculator = {
   steps: [
     {
       step: 1,
-      title: "Enter Distance Travelled",
+      title: "Choose Distance or Odometer",
       description:
-        "Input the exact odometer reading difference or the total trip distance covered by your car, bike, scooter, or commercial vehicle in kilometers.",
+        "Enter the total distance travelled, or use your previous and current odometer readings so the calculator can find the distance.",
       icon: "calculator",
     },
     {
@@ -87,7 +88,7 @@ export const mileageCalculator: Calculator = {
   formula: {
     title: "Mileage Calculator Formula",
 
-    formula: "Mileage (km/L) = Distance Travelled ÷ Fuel Consumed",
+    formula: "Mileage (km/L) = (Current Odometer − Previous Odometer) ÷ Fuel Added",
 
     explanation:
       "Mileage, also known as fuel efficiency or fuel economy, measures how far a vehicle can travel using one litre of fuel. Higher mileage means lower fuel consumption and reduced running costs. This calculator is useful for cars, motorcycles, scooters, SUVs, trucks, and commercial vehicles. Understanding your vehicle's mileage helps estimate fuel expenses, compare vehicle performance, and plan long-distance trips more effectively.",
@@ -143,35 +144,34 @@ export const mileageCalculator: Calculator = {
   ],
 
   seoContent: `
-<h2>How to Calculate Car or Bike Mileage and Fuel Cost Accurately</h2>
+<h2>How to Calculate Car or Bike Mileage</h2>
 <p>
-  In an era of fluctuating retail fuel tariffs and evolving environmental regulations, understanding your vehicle's actual fuel consumption profile is essential. Whether you manage a massive commercial logistics fleet or navigate a daily personal commute, monitoring your real-world <strong>vehicle mileage</strong> is the single most effective way to optimize operational running costs, minimize localized emissions, and diagnose underlying mechanical issues before they turn into costly breakdowns.
+  Vehicle mileage tells you how far your car, bike or scooter travels on one unit of fuel. For petrol and diesel, it is normally shown in <strong>kilometres per litre (km/L)</strong>; CNG is measured in <strong>km/kg</strong>, while an electric vehicle can be compared in <strong>km/kWh</strong>.
 </p>
 <p>
-  Mileage is simply a mathematical ratio representing the distance a vehicle can cover relative to a finite volume of fuel consumed. In India, this metric is universally expressed as <strong>kilometers per litre (km/L)</strong> for liquid fuels like petrol and diesel, or <strong>kilometers per kilogram (km/kg)</strong> for gaseous alternatives like Compressed Natural Gas (CNG). 
+  The basic formula is <strong>mileage = distance travelled ÷ fuel consumed</strong>. If you travelled 420 km and added 28 litres at the next full tank, your mileage is 15 km/L. Add the local fuel price to calculate total fuel cost and cost per kilometre.
 </p>
 
----
-
-<h2>Decoding the Official Baseline: How Certified Mileage Tests are Conducted</h2>
+<h2>Calculate Mileage from Odometer Readings</h2>
 <p>
-  Many vehicle owners notice a frustrating gap between the fuel efficiency numbers stamped on a new car window sticker and the numbers they see on their dashboard. To understand why this gap exists, it helps to understand how official baseline figures are calculated. In India, new vehicle models undergo mandatory fuel consumption validation testing conducted under laboratory conditions by centralized entities such as the <strong>Automotive Research Association of India (ARAI)</strong>.
-</p>
-<p>
-  These tests rely on standardized drive cycles performed on chassis dynamometers within a climate-controlled laboratory. These tests are useful for comparing different vehicles under identical conditions, but they do not capture the unpredictable variables of daily driving:
+  Choose “Odometer readings” in the calculator when you have readings from two fill-ups. Subtract the previous reading from the current reading to get the distance, then divide by the fuel added during the second fill.
 </p>
 <ul>
-  <li><strong>Zero Traffic Gridlock:</strong> Laboratory tests simulate continuous driving without the prolonged, fuel-wasting idles common in city traffic.</li>
-  <li><strong>No Aerodynamic Drag or Wind:</strong> Testing indoors removes real-world wind resistance, which increases exponentially at highway speeds.</li>
-  <li><strong>Strictly Managed Payloads:</strong> Test vehicles are stripped of non-essential weight and carry only basic passenger loads.</li>
-  <li><strong>Perfect Pavement:</strong> Smooth laboratory rollers generate minimal rolling resistance compared to uneven public roads, potholes, or unpaved terrain.</li>
+  <li>Previous odometer: 12,500 km</li>
+  <li>Current odometer: 12,920 km</li>
+  <li>Fuel added: 28 litres</li>
+  <li>Distance: 12,920 − 12,500 = 420 km</li>
+  <li>Mileage: 420 ÷ 28 = <strong>15 km/L</strong></li>
 </ul>
 
----
-
-<h2>The Definitive Real-World Fuel Economy Benchmark Guide</h2>
+<h2>Claimed Mileage vs Real-World Mileage</h2>
 <p>
-  Actual fuel economy varies widely depending on engine displacement, transmission type, chassis weight, and fuel delivery systems. The table below outlines realistic target ranges across common vehicle segments in normal driving conditions:
+  Certified mileage is useful for comparing vehicles under a standard test. Your measured result can differ because traffic, trip length, speed, air-conditioning, payload, tyre pressure, road conditions and driving style are not constant. Compare like-for-like trips and track several refills before deciding that your vehicle's efficiency has changed.
+</p>
+
+<h2>Typical Mileage Ranges by Vehicle Type</h2>
+<p>
+  The ranges below are broad reference points, not guaranteed figures. Engine size, transmission, vehicle weight and driving conditions can produce a result outside these ranges.
 </p>
 
 <table>
@@ -237,59 +237,38 @@ export const mileageCalculator: Calculator = {
   </tbody>
 </table>
 
----
-
-<h2>Mechanical Variables That Determine Your Fuel Consumption</h2>
+<h2>Why Vehicle Mileage Changes</h2>
 <p>
-  If your fuel efficiency drops suddenly, it is often tied to specific driving habits or mechanical components that increase rolling, internal, or aerodynamic resistance:
+  A lower reading does not always indicate a fault. First compare similar routes, traffic and weather. If the drop continues across several tanks, check these common causes:
 </p>
 
-<h3>1. Driving Style and Throttle Input</h3>
+<h3>Driving style and traffic</h3>
 <p>
-  Abrupt acceleration forces the engine control unit (ECU) to flood the combustion chambers with rich fuel mixtures to maximize immediate power output. Maintaining a smooth, progressive throttle input helps keep your engine running at its most efficient thermal sweet spot.
+  Repeated acceleration, hard braking, idling and short journeys usually consume more fuel than steady driving over a clear route.
 </p>
 
-<h3>2. Correct Inflation Pressure and Contact Patch</h3>
+<h3>Tyre pressure and vehicle load</h3>
 <p>
-  Under-inflated tyres flex more, which increases their overall footprint on the pavement. This added friction creates <strong>rolling resistance</strong>, forcing the engine to burn more fuel just to maintain a steady speed. Keeping your tyres inflated to the manufacturer’s recommended PSI can improve fuel efficiency by up to 3%.
+  Incorrect tyre pressure increases rolling resistance. Extra passengers, luggage and roof carriers also make the engine work harder. Follow the pressure listed by the vehicle manufacturer.
 </p>
 
-<h3>3. Preventive Maintenance and Lubrication</h3>
+<h3>Maintenance and mechanical condition</h3>
 <p>
-  Old, degraded engine oil loses its lubricating properties, increasing internal friction between moving parts like pistons and cylinder walls. Similarly, a clogged air filter chokes off airflow, upsetting the ideal air-fuel ratio and forcing the engine to consume more fuel to compensate for the drop in power.
+  A clogged air filter, unsuitable or overdue engine oil, wheel-alignment problems, dragging brakes or an engine-sensor fault can reduce efficiency. Follow the service schedule and investigate a persistent, unexplained drop.
 </p>
 
----
-
-<h2>How to Calculate Your Exact Monthly Fuel and Travel Budget</h2>
+<h2>How to Calculate Fuel Cost per Kilometre</h2>
 <p>
-  By tracking your actual mileage, you can calculate your ongoing operational expenses with high precision. This is particularly helpful for budgeting long-distance road trips or estimating predictable monthly commuting costs.
+  Divide the fuel price by your measured mileage. At ₹100 per litre and 15 km/L, the fuel-only running cost is <strong>₹6.67 per km</strong>. A 300 km trip would use about 20 litres and cost about ₹2,000 at that price.
 </p>
-<p>
-  To estimate your monthly fuel costs, use the following multi-step formula:
-</p>
-
 <blockquote>
-  <strong>Step 1: Required Fuel Volume</strong><br>
-  \text{Total Fuel Needed (Litres)} = \frac{\text{Total Monthly Distance (km)}}{\text{Real Vehicle Mileage (km/L)}}
+  <strong>Cost per km = Fuel price per unit ÷ Mileage</strong>
 </blockquote>
-
 <blockquote>
-  <strong>Step 2: Total Financial Cost</strong><br>
-  \text{Monthly Fuel Expense} = \text{Total Fuel Needed (Litres)} \times \text{Local Unit Fuel Price}
+  <strong>Trip cost = (Trip distance ÷ Mileage) × Fuel price per unit</strong>
 </blockquote>
-
-<h3>A Practical Budgeting Scenario</h3>
 <p>
-  Let's look at an example using these formulas. Suppose your monthly commute covers exactly <strong>1,800 kilometers</strong>, your car has a steady city mileage of <strong>15 km/L</strong>, and local petrol costs <strong>₹100 per litre</strong>:
-</p>
-<ul>
-  <li><strong>Fuel Volume Required:</strong> 1,800 \div 15 = 120 \text{ Litres of Petrol}</li>
-  <li><strong>Total Financial Outlay:</strong> 120 \times ₹100 = ₹12,000\text{ Per Month}</li>
-  <li><strong>Net Cost Per Kilometer:</strong> ₹12,000 \div 1,800 = ₹6.66\text{ Per Kilometer}</li>
-</ul>
-<p>
-  Using this baseline, improving your mileage from 15 km/L to 18 km/L reduces your monthly fuel need to 100 liters, saving you ₹2,000 per month—or ₹24,000 in direct savings every year. Use our online interactive mileage calculator to track your efficiency, lower your vehicle running costs, and optimize your driving habits today.
+  These figures include fuel or electricity only. Servicing, tyres, insurance, tolls, parking, finance costs and depreciation are separate ownership expenses.
 </p>
 
 <h2>Checklist for a Reliable Tank-to-Tank Mileage Result</h2>
