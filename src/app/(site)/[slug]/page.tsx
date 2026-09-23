@@ -17,6 +17,7 @@ import CalculatorListByCategory from "@/src/components/calculator/Calculatorlist
 import AuthorBio from "@/src/components/common/AuthorBio";
 import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
 import { getCategorySlug } from "@/src/data/categories/Category";
+import EmbedCalculatorSection from "@/src/components/calculator/EmbedCalculatorSection";
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -225,6 +226,8 @@ export default async function CalculatorPage({ params }: Props) {
           <FAQSection faqs={calculator.faqs} />
 
           <SEOContent content={calculator.seoContent} />
+
+          <EmbedCalculatorSection slug={calculator.slug} name={calculator.name} />
 
           <AuthorBio disclaimer={getDisclaimer(calculator.category)} category={calculator.category} />
         </div>
