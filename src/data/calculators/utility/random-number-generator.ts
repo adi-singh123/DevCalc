@@ -122,7 +122,7 @@ export const randomNumberGenerator: Calculator = {
       question:
         "Can I use it for giveaways and contests?",
       answer:
-        "Yes. It is commonly used for random selections and winner picking.",
+        "It can be used for casual selections, but independently documented and auditable methods are better for regulated, high-value, or public prize draws.",
     },
 
     {
@@ -132,4 +132,14 @@ export const randomNumberGenerator: Calculator = {
         "Pseudo-random number generators use deterministic mathematical algorithms starting from a seed value to produce sequences that appear random, whereas true random number generators capture unpredictable physical phenomena like atmospheric noise or radioactive decay.",
     },
   ],
+  seoContent: `
+    <h2>Generate an integer inside a range</h2>
+    <p>Enter the smallest and largest permitted values, then select Generate. Both endpoints are included, so a range from 1 to 10 can return 1, 10, or any whole number between them. The minimum must not be greater than the maximum.</p>
+    <h2>How the result is selected</h2>
+    <p>The tool scales JavaScript's pseudo-random value to the size of your range, rounds down to a whole number, and adds the minimum. For a 1–6 range, this produces one of six possible integers and is useful for casual games, practice questions, sample choices, and everyday decisions.</p>
+    <h2>Important limitation</h2>
+    <p>This generator uses Math.random(). It is not a cryptographically secure source and should not be used for passwords, security tokens, encryption keys, gambling systems, or any draw that requires independently auditable randomness. It also generates one integer at a time rather than a unique shuffled list.</p>
+    <h2>Example</h2>
+    <p>With a minimum of 25 and a maximum of 30, the possible results are 25, 26, 27, 28, 29, and 30. That is six possible values because the range includes both endpoints.</p>
+  `,
 };

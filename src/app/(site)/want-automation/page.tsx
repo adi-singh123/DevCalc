@@ -78,7 +78,7 @@ const AUTOMATION_TYPES = [
     icon: Globe,
     title: "Web Scraping & Data Extraction",
     tools: "Python, BeautifulSoup4, Scrapy, Selenium, Playwright, Puppeteer",
-    desc: "Extract large-scale structured data from e-commerce sites, real estate portals, job boards, business directories, and social platforms with anti-bot bypass & proxy rotation.",
+    desc: "Extract permitted structured data from public pages and authorized business systems using rate limits, documented APIs, and site-compliant collection workflows.",
   },
   {
     icon: Bot,
@@ -136,8 +136,8 @@ const WHY_US = [
   },
   {
     icon: ShieldCheck,
-    title: "Built-in Anti-Bot & Error Resilience",
-    desc: "Automatic retry mechanics, CAPTCHA integration, user-agent randomization, and robust error logging to ensure continuous reliability.",
+    title: "Reliable, Responsible Automation",
+    desc: "Automatic retries, rate limiting, audit logs, and documented API integrations keep authorized workflows reliable without bypassing access controls.",
   },
   {
     icon: Code2,
@@ -156,8 +156,8 @@ const FAQS = [
     a: "We build custom scripts using Playwright, Selenium WebDriver, Puppeteer, BeautifulSoup4 (bs4), Scrapy, Python, Node.js, TypeScript, Pandas, Docker, and Chrome DevTools Protocol. We select the fastest, most reliable engine for your specific target site.",
   },
   {
-    q: "Can you handle complex websites with logins, Cloudflare, or CAPTCHA?",
-    a: "Yes! We implement stealth browser headers, browser fingerprint masking, rotating residential/datacenter proxies, persistent session cookies/local storage, and third-party CAPTCHA solver integrations to bypass anti-bot shields reliably.",
+    q: "Can you automate websites with logins or protected areas?",
+    a: "Yes, when you own the system or have explicit permission to automate it. We use official APIs, customer-provided test accounts, documented authentication, sensible rate limits, and human approval for CAPTCHA or other access-control steps. We do not bypass security controls or automate unauthorized access.",
   },
   {
     q: "How will I run the automation script if I don't have coding experience?",
@@ -351,7 +351,7 @@ export default function WantAutomationPage() {
                 "Python Automation",
                 "Scrapy",
                 "Excel/Sheets API",
-                "Cloudflare Bypass",
+                "Authorized API Access",
                 "Automated QA",
               ].map((tool) => (
                 <span

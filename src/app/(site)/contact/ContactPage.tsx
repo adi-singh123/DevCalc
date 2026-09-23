@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 type Category = "general" | "request" | "bug" | "";
@@ -125,6 +126,12 @@ export default function ContactPage() {
   // ── Render ──────────────────────────────────────────────────────────────────
   return (
     <main className="mx-auto max-w-5xl px-4 py-12">
+      <StaticPageSeo
+        name="Contact DevCalc"
+        path="/contact"
+        type="ContactPage"
+        description="Contact DevCalc about calculator feedback, corrections, partnerships, advertising, or technical support."
+      />
 
       {/* Hero */}
       <section className="text-center">

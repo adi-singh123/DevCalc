@@ -40,6 +40,10 @@ export default function CalculatorSchema({
       "UtilitiesApplication",
     Vehicle:
       "UtilitiesApplication",
+    Construction:
+      "DesignApplication",
+    Other:
+      "UtilitiesApplication",
     Math:
       "EducationalApplication",
       Fun:
@@ -65,6 +69,12 @@ export default function CalculatorSchema({
         description:
           calculator.description,
 
+        inLanguage: "en-IN",
+
+        mainEntity: {
+          "@id": `${url}#application`,
+        },
+
         isPartOf: {
           "@id":
             "https://www.devcalc.in/#website",
@@ -77,8 +87,10 @@ export default function CalculatorSchema({
       },
 
       {
-        "@type":
+        "@type": [
           "SoftwareApplication",
+          "WebApplication",
+        ],
 
         "@id":
           `${url}#application`,
@@ -102,6 +114,16 @@ export default function CalculatorSchema({
           calculator.description,
 
         url,
+
+        isAccessibleForFree: true,
+
+        publisher: {
+          "@id": "https://www.devcalc.in/#organization",
+        },
+
+        featureList: calculator.steps.map(
+          (step) => step.title,
+        ),
 
         offers: {
           "@type":

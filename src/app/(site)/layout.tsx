@@ -30,6 +30,12 @@ export const metadata: Metadata = {
 
   publisher: "DevCalc",
 
+  referrer: "origin-when-cross-origin",
+
+  other: {
+    "google-adsense-account": "ca-pub-3757135541422436",
+  },
+
   description: siteConfig.description,
 
   keywords: [
@@ -132,6 +138,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 
   openGraph: {
@@ -167,9 +180,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-       <head>
-  
-      </head>
       <body className="flex min-h-screen flex-col">
         <Script
           async

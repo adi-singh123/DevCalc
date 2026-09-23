@@ -123,4 +123,14 @@ export const averageCalculator: Calculator = {
         "Yes. The calculator supports both whole numbers and decimal values.",
     },
   ],
+  seoContent: `
+    <h2>How to calculate an arithmetic average</h2>
+    <p>Enter numbers separated by commas, spaces, or line breaks. The calculator adds every valid number and divides the sum by the count. It also shows the sum, number of values, minimum, and maximum so you can check the dataset.</p>
+    <h2>Average formula and example</h2>
+    <p>Arithmetic mean = sum of values ÷ number of values. For 12, 15, 18, and 25, the sum is 70 and the count is 4, so the average is 70 ÷ 4 = 17.5.</p>
+    <h2>When the average can mislead</h2>
+    <p>A very high or low outlier can pull the arithmetic mean away from a typical value. For strongly skewed data such as house prices or response times, compare the mean with the median. This tool calculates the unweighted arithmetic mean; if different scores carry different percentages, use a weighted-average or grade calculator instead.</p>
+    <h2>Input tips</h2>
+    <ul><li>Decimals and negative numbers are accepted.</li><li>Do not include units or currency symbols in the input.</li><li>Review the displayed count to confirm that every intended value was recognised.</li></ul>
+  `,
 };

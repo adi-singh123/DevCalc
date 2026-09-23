@@ -104,7 +104,7 @@ export const unitConverter: Calculator = {
       question:
         "What units are supported?",
       answer:
-        "Length, weight, temperature, area, volume, speed, time, and data storage units are supported.",
+        "The current converter supports length, weight, and temperature conversions. Length includes metres, kilometres, centimetres, and millimetres; weight includes kilograms, grams, and pounds; temperature includes Celsius, Fahrenheit, and Kelvin.",
     },
     {
       question:
@@ -119,4 +119,14 @@ export const unitConverter: Calculator = {
         "Yes, students, teachers, engineers, and professionals can use it.",
     },
   ],
+  seoContent: `
+    <h2>How to use the unit converter</h2>
+    <p>Select Length, Weight, or Temperature, enter a value, and choose the units to convert from and to. The result is calculated immediately after you select Convert. Use Swap Units when you want to reverse the direction without re-entering the value.</p>
+    <h2>Conversions available in this tool</h2>
+    <p>For length, the calculator converts metres, kilometres, centimetres, and millimetres. For weight, it converts kilograms, grams, and pounds. Temperature conversions are available between Celsius, Fahrenheit, and Kelvin. The labels shown in the calculator are the complete list of currently supported units.</p>
+    <h2>How unit conversion works</h2>
+    <p>Length and weight values are first converted to a base unit and then divided by the target unit's conversion factor. For example, 2 kilometres becomes 2,000 metres because one kilometre equals 1,000 metres. Temperature needs a different formula because its scales have different zero points: Celsius to Fahrenheit uses (C × 9/5) + 32.</p>
+    <h2>Tips for reliable results</h2>
+    <ul><li>Check that the selected category matches the measurement you entered.</li><li>Keep extra decimal places during intermediate work and round only the final answer.</li><li>Remember that mass and weight are often used interchangeably in everyday conversions, although they are different physical concepts.</li></ul>
+  `,
 };

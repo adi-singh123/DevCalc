@@ -38,6 +38,13 @@ export function generateCalculatorMetadata(
     robots: {
       index: true,
       follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
 
     openGraph: {
@@ -45,7 +52,7 @@ export function generateCalculatorMetadata(
       description: seo.description,
       url,
       siteName: siteConfig.name,
-      locale: "en_US",
+      locale: "en_IN",
       type: "website",
       images: [
         {
@@ -61,7 +68,7 @@ export function generateCalculatorMetadata(
       card: "summary_large_image",
       title: seo.title,
       description: seo.description,
-      images: [`logo.png`],
+      images: [`/logo.png`],
     },
   };
 }

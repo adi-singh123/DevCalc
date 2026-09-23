@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
+import WebPageSchema from "@/src/components/seo/WebPageSchema";
 import {
   ArrowRight,
   BadgeCheck,
@@ -92,6 +94,12 @@ const restricted = [
 export default function AdvertisePage() {
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <WebPageSchema
+        title="Advertise With DevCalc"
+        path="/advertise"
+        description="Transparent advertising, sponsorship, and content partnership opportunities on DevCalc."
+      />
+      <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Advertise" }]} />
       <nav aria-label="Breadcrumb" className="text-sm text-stone-500 dark:text-slate-400">
         <Link href="/" className="transition hover:text-blue-700 dark:hover:text-blue-400">
           Home

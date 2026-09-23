@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
 
 export const metadata: Metadata = {
   title: "About Us – Free Calculators Built by Aditya Singh",
@@ -9,8 +10,6 @@ export const metadata: Metadata = {
   "Online calculator platform",
   "Free online calculators",
   "Developer tools",
-  "Interview preparation platform",
-  "Developer interview questions",
   "Educational tools",
   "Student tools",
   "Engineering tools",
@@ -91,7 +90,7 @@ const WHY = [
   {
     icon: "✅",
     title: "Accurate Results",
-    desc: "Every calculator uses standard, verified formulas — the same ones used by banks, hospitals, and institutions.",
+    desc: "Each calculator documents the formula or method it uses, with examples, limitations, and appropriate professional-use disclaimers.",
   },
   {
     icon: "📱",
@@ -101,7 +100,7 @@ const WHY = [
   {
     icon: "🔒",
     title: "No Sign-up Required",
-    desc: "No account, no email, no tracking. Open a calculator, get your answer, and you're done.",
+    desc: "No account or email is required. Calculator inputs stay in your browser; analytics and advertising data are handled as explained in our Privacy Policy.",
   },
   {
     icon: "🆓",
@@ -137,6 +136,12 @@ const STATS = [
 export default function AboutPage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-12">
+      <StaticPageSeo
+        name="About DevCalc"
+        path="/about"
+        type="AboutPage"
+        description="Learn who builds DevCalc, how its calculators are maintained, and how to contact the publisher."
+      />
 
       {/* ── Hero ── */}
       <section className="text-center">

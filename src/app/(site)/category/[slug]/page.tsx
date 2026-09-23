@@ -38,7 +38,7 @@ export async function generateMetadata({
 
   return {
     title: `${category.name} Calculators - Free Online Calculation Tools`,
-    description: `Explore free online ${category.name.toLowerCase()} calculators on DevCalc. Verified formulas, step-by-step worked examples, and instant precision results.`,
+    description: `Explore free online ${category.name.toLowerCase()} calculators on DevCalc with documented formulas, worked examples, and instant results.`,
 
     keywords: [
       `${category.name.toLowerCase()} calculators`,
@@ -54,7 +54,7 @@ export async function generateMetadata({
 
     openGraph: {
       title: `${category.name} Calculators | DevCalc`,
-      description: `Explore free online ${category.name.toLowerCase()} calculators on DevCalc with verified formulas and step-by-step guides.`,
+      description: `Explore free online ${category.name.toLowerCase()} calculators on DevCalc with documented formulas and step-by-step guides.`,
       url: `https://www.devcalc.in/category/${slug}`,
       siteName: "DevCalc",
       locale: "en_IN",

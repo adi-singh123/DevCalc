@@ -73,7 +73,7 @@ export default async function CalculatorPage({ params }: Props) {
   }
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-12">
+    <div className="mx-auto max-w-7xl px-4 py-12">
       <FAQSchema faqs={calculator.faqs} />
       <CalculatorSchema calculator={calculator} />
       <BreadcrumbSchema
@@ -266,6 +266,6 @@ export default async function CalculatorPage({ params }: Props) {
           </div>
         </aside>
       </div>
-    </main>
+    </div>
   );
 }

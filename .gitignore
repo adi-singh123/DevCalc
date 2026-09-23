@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
+/.nyc_output/
 
 # next.js
 /.next/
@@ -22,7 +25,22 @@
 
 # misc
 .DS_Store
+Thumbs.db
+Desktop.ini
 *.pem
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+/.cache/
+/.turbo/
+
+# editor and local workspace settings
+/.idea/
+/.vscode/
+*.code-workspace
 
 # debug
 npm-debug.log*
@@ -32,6 +50,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!.env.*.example
 
 # vercel
 .vercel
@@ -39,3 +59,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python caches and local environments
+__pycache__/
+*.py[cod]
+/.pytest_cache/
+/.mypy_cache/
+/.ruff_cache/
+/.venv/
+/venv/
+/env/
+
+# generated local reports and browser artifacts
+/audit/*-results.json
+/audit/*.png
+/screenshots/
+/artifacts/
+
+# one-off local write test
+/test_write.txt

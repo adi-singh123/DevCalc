@@ -3,6 +3,7 @@ import CalculatorCard from "@/src/components/calculator/CalculatorCard";
 import CalculatorSearch from "@/src/components/calculator/CalculatorSearch";
 import { calculators } from "@/src/data/calculators";
 import { siteConfig } from "@/src/config/site";
+import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
 
 export const metadata: Metadata = {
   title: "All Calculators - Free Online Calculator Collection",
@@ -28,6 +29,12 @@ export default function CalculatorsPage() {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-12">
+      <StaticPageSeo
+        name="All Calculators"
+        path="/calculators"
+        type="CollectionPage"
+        description="Browse DevCalc calculators by topic, including finance, health, education, vehicle, construction, math, and everyday tools."
+      />
       {/* Hero Section */}
       <section className="text-center">
         <h1 className="text-4xl font-bold md:text-5xl">All Calculators</h1>

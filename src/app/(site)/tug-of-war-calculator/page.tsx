@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import TugOfWarGame from "@/src/components/games/TugOfWarGame";
 import { siteConfig } from "@/src/config/site";
+import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
 
 export const metadata: Metadata = {
   title: "Calculator Tug of War - Mental Math Game",
@@ -14,6 +15,13 @@ export const metadata: Metadata = {
 export default function TugOfWarCalculatorPage() {
   return (
     <main className="bg-slate-50 px-4 py-12 dark:bg-slate-950 sm:py-16">
+      <div className="mx-auto max-w-3xl">
+        <StaticPageSeo
+          name="Calculator Tug of War"
+          path="/tug-of-war-calculator"
+          description="Play a free mental-math tug-of-war game and practice quick arithmetic against a computer opponent."
+        />
+      </div>
       <div className="mx-auto mb-10 max-w-3xl text-center">
         <p className="mb-3 text-sm font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
           Interactive speed math game

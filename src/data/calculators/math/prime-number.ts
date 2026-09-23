@@ -137,4 +137,14 @@ export const primeNumberCalculator: Calculator = {
         "Modern encryption algorithms like RSA rely on the fact that multiplying two large prime numbers together is computationally easy, but factoring their large product back into its prime components is extremely difficult and time-consuming.",
     },
   ],
+  seoContent: `
+    <h2>Check whether a number is prime</h2>
+    <p>Enter a positive whole number. The calculator lists its positive factors and classifies numbers greater than 1 as prime when they have exactly two factors: 1 and the number itself. A composite number has more than two positive factors.</p>
+    <h2>Examples</h2>
+    <p>29 is prime because its only positive factors are 1 and 29. The number 30 is composite because it has factors 1, 2, 3, 5, 6, 10, 15, and 30. The number 1 is neither prime nor composite because it has only one positive factor.</p>
+    <h2>How the test works</h2>
+    <p>To find factor pairs, the tool checks possible divisors up to the square root of the input. When it finds one divisor, it also records the matching quotient. This is sufficient because any factor larger than the square root must be paired with a factor smaller than it.</p>
+    <h2>Input and precision limits</h2>
+    <p>The calculator accepts positive integers. JavaScript numbers cannot represent every integer exactly beyond 9,007,199,254,740,991, and trial division can become slow for very large values. Use specialist big-integer software for cryptographic or research-scale primality testing.</p>
+  `,
 };

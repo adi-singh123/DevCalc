@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -340,6 +341,11 @@ const TOC = SECTIONS.map((s) => ({ id: s.id, title: s.title }));
 export default function PrivacyPolicyPage() {
   return (
     <main className="mx-auto max-w-5xl px-4 py-12">
+      <StaticPageSeo
+        name="Privacy Policy"
+        path="/privacy-policy"
+        description="How DevCalc handles calculator inputs, contact information, analytics, advertising cookies, and privacy choices."
+      />
 
       {/* ── Hero ── */}
       <div className="border-b border-slate-200 pb-8">

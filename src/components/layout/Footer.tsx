@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -37,6 +38,22 @@ export default function Footer() {
                 Email: devcalc35052@gmail.com | Phone: 8081158775
               </p>
             </div>
+
+            <div className="mt-4">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-slate-300">
+                Connect with the founder
+              </p>
+              <a
+                href="https://www.linkedin.com/in/aditya-singh-03bb48257/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect with Aditya Singh on LinkedIn"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#0a66c2]/25 bg-white px-3 py-2 text-sm font-semibold text-[#0a66c2] transition hover:border-[#0a66c2] hover:bg-[#0a66c2] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0a66c2] dark:bg-slate-900"
+              >
+                <FaLinkedinIn aria-hidden="true" className="h-4 w-4" />
+                <span>Aditya Singh on LinkedIn</span>
+              </a>
+            </div>
           </div>
 
           {/* Services & Developer Tools */}
@@ -67,14 +84,6 @@ export default function Footer() {
                   className="font-medium text-rose-700 transition hover:underline dark:text-rose-400"
                 >
                 Calculator Tug of War (Math Game)
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/interview-questions"
-                  className="text-slate-600 transition hover:text-[#1f3a5c] dark:text-slate-400 dark:hover:text-blue-400"
-                >
-                  Technical Interview Questions
                 </Link>
               </li>
               <li>
@@ -177,9 +186,6 @@ export default function Footer() {
             </Link>
             <Link href="/want-automation" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Automation
-            </Link>
-            <Link href="/interview-questions" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
-              Interview Questions
             </Link>
             <Link href="/blog" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Blog

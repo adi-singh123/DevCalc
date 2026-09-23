@@ -26,7 +26,7 @@ export const mileageCalculator: Calculator = {
   },
 
   seo: {
-    title: "Mileage Calculator – Car, Bike, Odometer and Fuel Cost",
+    title: "Mileage Calculator – Car & Bike km/L and Fuel Cost",
 
     description:
       "Calculate car or bike mileage from distance or odometer readings. See km/L, fuel cost per km and total trip cost for petrol, diesel, CNG or EV.",

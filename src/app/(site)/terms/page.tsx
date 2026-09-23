@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
@@ -300,6 +301,11 @@ const TOC = SECTIONS.map((s) => ({ id: s.id, title: s.title }));
 export default function TermsPage() {
   return (
     <main className="mx-auto max-w-5xl px-4 py-12">
+      <StaticPageSeo
+        name="Terms of Use"
+        path="/terms"
+        description="The conditions, limitations, and acceptable-use terms for DevCalc calculators, content, and services."
+      />
 
       {/* ── Hero ── */}
       <div className="border-b border-slate-200 pb-8">

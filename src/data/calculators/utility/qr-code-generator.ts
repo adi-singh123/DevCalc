@@ -134,4 +134,14 @@ keywords: [
         "A standard Version 40 QR code can store up to 7,089 numeric characters, 4,296 alphanumeric characters, or 2,953 bytes of binary data, depending on the error correction level applied.",
     },
   ],
+  seoContent: `
+    <h2>Create a QR code from text or a URL</h2>
+    <p>Enter the exact text you want to encode and select Generate QR Code. The preview can then be downloaded as a 512 × 512 PNG. A QR code stores the text itself, so a web address should include the full https:// prefix.</p>
+    <h2>Check before publishing</h2>
+    <p>Scan the finished code with at least one phone before printing or sharing it. Confirm that links open the intended secure domain and that phone numbers, email addresses, and other text are correct. QR codes do not automatically verify whether a destination is trustworthy.</p>
+    <h2>Tips for dependable scanning</h2>
+    <ul><li>Keep strong contrast between the dark code and its light background.</li><li>Do not crop the clear margin around the code.</li><li>Avoid stretching, blurring, or placing the image on a visually busy background.</li><li>Test at the same approximate size and distance your audience will use.</li></ul>
+    <h2>Static QR code limitation</h2>
+    <p>The downloaded code contains the value entered at generation time. If you later change a website address, the existing image will still point to the old address and must be regenerated. Avoid encoding private information because anyone who scans the image can read its contents.</p>
+  `,
 };

@@ -38,7 +38,7 @@ export default function AuthorBio({ disclaimer, updated, category }: Props) {
             Aditya Singh is a software engineer and the founder of DevCalc,
             based in Uttar Pradesh, India. He builds and maintains every
             {useInstitutionalClaim
-              ? " calculator on this site, using standard, verified formulas — the same ones used by banks, institutions, and educators — with careful attention to accuracy."
+              ? " calculator on this site using documented formulas, worked examples, and clearly stated limitations, with careful attention to accuracy."
               : " tool on this site with careful attention to accuracy and user experience."}{" "}
             <Link
               href="/about"

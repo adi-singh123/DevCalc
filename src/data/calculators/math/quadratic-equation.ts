@@ -140,4 +140,14 @@ keywords: [
         "The x-coordinate of the vertex is given by x = -b / (2a). Substituting this x-value back into the quadratic function y = ax² + bx + c gives the corresponding y-coordinate.",
     },
   ],
+  seoContent: `
+    <h2>Solve ax² + bx + c = 0</h2>
+    <p>Enter the three coefficients a, b, and c, where a must not be zero. The calculator returns both roots, the discriminant, the root type, and the vertex of the related parabola y = ax² + bx + c.</p>
+    <h2>Quadratic formula and discriminant</h2>
+    <p>The roots are x = (-b ± √(b² - 4ac)) / (2a). The expression D = b² - 4ac is the discriminant. D &gt; 0 gives two distinct real roots, D = 0 gives one repeated real root, and D &lt; 0 gives a complex-conjugate pair.</p>
+    <h2>Worked example</h2>
+    <p>For x² - 5x + 6 = 0, a = 1, b = -5, and c = 6. The discriminant is 25 - 24 = 1. Substitution in the quadratic formula gives roots (5 + 1)/2 = 3 and (5 - 1)/2 = 2.</p>
+    <h2>Vertex and common mistakes</h2>
+    <p>The vertex x-coordinate is -b/(2a), and its y-coordinate is found by substituting that value into the polynomial. Keep the sign of each coefficient when entering it: in x² - 5x + 6, b is -5, not 5. If a is zero, the expression is linear rather than quadratic and this calculator will not solve it.</p>
+  `,
 };

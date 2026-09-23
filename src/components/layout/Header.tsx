@@ -66,11 +66,6 @@ const NAV_LINKS: NavLink[] = [
         desc: "Interactive speed math duel against our AI bot",
       },
       {
-        label: "Interview Questions",
-        href: "/interview-questions",
-        desc: "Curated technical interview quizzes by topic",
-      },
-      {
         label: "Blog & Guides",
         href: "/blog",
         desc: "Articles on coding, calculations & technology",

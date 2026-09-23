@@ -123,4 +123,14 @@ keywords: [
         "They are widely used in probability, statistics, mathematics, exams, and data science.",
     },
   ],
+  seoContent: `
+    <h2>Permutation or combination: which one should you use?</h2>
+    <p>Use a permutation when the order of the selected items matters. Use a combination when only the group matters. Choosing a president and secretary from a class is a permutation because the roles are different; choosing two class representatives without roles is a combination.</p>
+    <h2>Formulas used</h2>
+    <p>For non-negative whole numbers where r is not greater than n, the calculator uses nPr = n! / (n-r)! and nCr = n! / (r!(n-r)!). The factorial n! means multiplying every positive integer from n down to 1, while 0! equals 1.</p>
+    <h2>Worked example</h2>
+    <p>If n = 5 and r = 2, there are 5P2 = 5! / 3! = 20 ordered arrangements. There are 5C2 = 5! / (2! × 3!) = 10 unordered selections. Each pair appears twice among the permutations because its two members can switch order.</p>
+    <h2>Input limits and interpretation</h2>
+    <p>Enter whole-number values with 0 ≤ r ≤ n. Factorials grow extremely quickly, so very large inputs can exceed JavaScript's precise numeric range. For classroom, exam, and everyday probability questions, verify whether repeated items are allowed because these formulas assume selection without replacement.</p>
+  `,
 };

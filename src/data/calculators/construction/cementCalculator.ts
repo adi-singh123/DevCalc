@@ -32,7 +32,7 @@ export const cementCalculator: Calculator = {
   ],
 
   seo: {
-    title: "Cement Calculator: Bags for Slab, RCC and Concrete",
+    title: "Cement Calculator – Bags for Slab, RCC & Concrete",
 
     description:
       "Calculate 50 kg cement bags for a slab, footing, beam, column, or floor. Enter dimensions and concrete grade to estimate cement quantity, weight, and cost.",

@@ -116,4 +116,14 @@ export const discountCalculator: Calculator = {
         "Yes, it works for all types of discounts and promotional offers.",
     },
   ],
+  seoContent: `
+    <h2>Calculate a sale price</h2>
+    <p>Enter the original listed price and the advertised discount percentage. The calculator shows the amount saved and the price after that single percentage discount. The currency symbol is for display; the same arithmetic works with any currency when all amounts use one currency.</p>
+    <h2>Discount formulas</h2>
+    <p>Discount amount = original price × discount rate ÷ 100. Final price = original price - discount amount. For an item priced at ₹2,000 with a 15% discount, the saving is ₹300 and the final price is ₹1,700.</p>
+    <h2>Successive discounts are not added</h2>
+    <p>If a shop applies 20% off and then another 10% off, calculate the second discount on the already reduced price. A ₹1,000 item becomes ₹800, then ₹720. The effective discount is 28%, not 30%.</p>
+    <h2>Taxes, fees, and coupons</h2>
+    <p>The result covers one percentage reduction only. Delivery charges, GST or sales tax, fixed-value coupons, cashback, and minimum-order conditions are not included. Check whether tax is calculated before or after the discount when comparing the result with a bill.</p>
+  `,
 };

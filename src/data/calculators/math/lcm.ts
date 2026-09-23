@@ -135,4 +135,14 @@ export const lcmCalculator: Calculator = {
         "For any two positive integers a and b, the product of their LCM and HCF is always equal to the product of the two numbers themselves (LCM × HCF = a × b).",
     },
   ],
+  seoContent: `
+    <h2>Find the LCM of two or more numbers</h2>
+    <p>Enter at least two positive numbers separated by commas. The least common multiple is the smallest positive value divisible by every entered number, making it useful for common denominators, repeating schedules, and cycle problems.</p>
+    <h2>How this calculator finds the LCM</h2>
+    <p>For two values a and b, LCM(a,b) = |a × b| / GCD(a,b). For more than two values, the calculator applies that relationship repeatedly to the running result. The greatest common divisor is found with the Euclidean algorithm.</p>
+    <h2>Worked example</h2>
+    <p>For 12 and 18, the greatest common divisor is 6. Therefore LCM = (12 × 18) ÷ 6 = 36. For 12, 18, and 30, combining the next number gives an LCM of 180.</p>
+    <h2>Input guidance</h2>
+    <p>Use comma-separated positive integers for standard LCM questions. Although the interface parses positive numeric values, LCM is normally defined here for whole numbers; decimal inputs can produce results that are not meaningful in the usual number-theory sense. Very large products may also exceed JavaScript's exact integer range.</p>
+  `,
 };

@@ -38,7 +38,7 @@ export default function BreadcrumbSchema({
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html:
-          JSON.stringify(schema),
+          JSON.stringify(schema).replace(/</g, "\\u003c"),
       }}
     />
   );

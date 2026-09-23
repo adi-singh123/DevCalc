@@ -137,4 +137,14 @@ export const distanceCalculator: Calculator = {
         "No, distance is always non-negative because it represents a physical length, and the squared differences under the square root always yield a positive value or zero.",
     },
   ],
+  seoContent: `
+    <h2>Distance between two coordinate points</h2>
+    <p>This calculator measures the straight-line distance between A(x₁, y₁) and B(x₂, y₂) on a two-dimensional Cartesian plane. Enter all four coordinates; negative values and decimals are valid.</p>
+    <h2>Distance formula</h2>
+    <p>The calculation uses d = √((x₂ - x₁)² + (y₂ - y₁)²). The horizontal change is Δx = x₂ - x₁ and the vertical change is Δy = y₂ - y₁. Squaring these changes makes their direction irrelevant, so distance can never be negative.</p>
+    <h2>Worked example</h2>
+    <p>For A(1, 2) and B(4, 6), Δx is 3 and Δy is 4. The squared distance is 3² + 4² = 25, so the distance is √25 = 5 units. The result has the same unit as the coordinate axes.</p>
+    <h2>What this result does not measure</h2>
+    <p>This is Euclidean distance on a flat coordinate plane. It does not calculate driving distance, travel time, or distance over the curved surface of Earth. For maps, use a geographic distance method that works with latitude and longitude.</p>
+  `,
 };

@@ -27,10 +27,10 @@ export const armyCalculator: Calculator = {
 
   seo: {
     title:
-      "Indian Army Agniveer Eligibility Calculator – Height, Weight, BMI, 1.6km Run 2026",
+      "Army Agniveer Eligibility Calculator – Age, Height & Run",
 
     description:
-      "Free Agniveer & Army Bharti eligibility check — height, weight, BMI, running time, chest, push-ups. Get instant pass/fail results by zone and category",
+      "Check indicative Agniveer age, height, BMI, chest and 1.6 km run standards by category and zone. Verify every result with the current official notice.",
 
     keywords: [
       "indian army physical eligibility calculator",
