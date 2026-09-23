@@ -107,6 +107,7 @@ import FlatBuyCalculator from "./renderers/FlatClaculator";
 import PaintCalculator from "./renderers/Paint";
 import ChickenCoopCalculator from "./renderers/ChickenCoop";
 import StampDutyCalculator from "./renderers/StampDutyCalculator";
+import IRCTCRefundCalculator from "./renderers/IRCTCRefundCalculator";
 
 type Props = {
   slug: string;
@@ -114,6 +115,8 @@ type Props = {
 
 export default function CalculatorRenderer({ slug }: Props) {
   switch (slug) {
+    case "irctc-ticket-cancellation-refund-calculator":
+      return <IRCTCRefundCalculator />;
     case "age-calculator":
       return <AgeCalculator />;
     case "bmi-calculator":

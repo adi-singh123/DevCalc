@@ -107,8 +107,10 @@ import { flatBuyCalculator } from "./construction/flat";
 import { chickenCoopCalculator } from "./other/chickenCoop";
 import { paintCalculator } from "./construction/paint";
 import { stampDutyCalculator } from "./construction/stampDutyCalculator";
+import { irctcRefundCalculator } from "./vehical/irctcRefundCalculator";
 
 export const calculators = [
+  irctcRefundCalculator,
   ageCalculator,
   bmiCalculator,
   percentageCalculator,
