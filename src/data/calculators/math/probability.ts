@@ -154,4 +154,12 @@ export const probabilityCalculator: Calculator = {
         "Probability compares the number of favorable outcomes to the total number of all possible outcomes, whereas odds compare the number of favorable outcomes directly against the number of unfavorable outcomes.",
     },
   ],
+  seoContent: `
+    <h2>Probability for equally likely outcomes</h2>
+    <p>The basic formula P(event) = favourable outcomes ÷ total outcomes applies when each outcome is equally likely. The result can be shown as a decimal, fraction, percentage, or odds.</p>
+    <h2>Example</h2>
+    <p>A fair six-sided die has six equally likely outcomes. Two outcomes, 5 and 6, satisfy “greater than 4,” so the probability is 2/6 = 1/3, or approximately 33.33%.</p>
+    <h2>Know the model's limits</h2>
+    <p>Real-world outcomes are not always equally likely or independent. Historical frequency does not guarantee a future event, and this simple calculator does not handle conditional probability, dependent events, distributions, or uncertainty in the input assumptions.</p>
+  `,
 };

@@ -140,4 +140,12 @@ export const attendanceCalculator: Calculator = {
         "Yes. It can be used by students in schools, colleges, universities, coaching institutes, and training programs.",
     },
   ],
+  seoContent: `
+    <h2>Plan toward an attendance target</h2>
+    <p>Enter classes held, classes attended, and the percentage you need. The calculator reports your current attendance and estimates either how many consecutive classes you must attend or how many future classes you may miss while staying at the target.</p>
+    <h2>Example</h2>
+    <p>Attending 72 of 100 classes gives 72%. If your target is 75%, attending the next 12 classes without an absence produces 84 attended out of 112, which is exactly 75%.</p>
+    <h2>Institution rules still apply</h2>
+    <p>This is a planning estimate. Colleges may calculate attendance subject-wise, exclude approved leave, round percentages differently, or impose separate laboratory requirements. Always compare the result with the official attendance portal and academic policy.</p>
+  `,
 };

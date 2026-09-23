@@ -128,4 +128,12 @@ export const fractionCalculator: Calculator = {
         "Yes. Mixed numbers and improper fractions can be converted automatically.",
     },
   ],
+  seoContent: `
+    <h2>Add, subtract, multiply, or divide fractions</h2>
+    <p>Enter a numerator and denominator for each fraction, then choose the operation. The result is reduced using the greatest common divisor and may also be displayed as a decimal.</p>
+    <h2>Operation rules</h2>
+    <p>Addition and subtraction require a common denominator: a/b + c/d = (ad + bc)/bd. Multiplication uses ac/bd. Division multiplies by the reciprocal, so a/b ÷ c/d = ad/bc.</p>
+    <h2>Common errors</h2>
+    <p>A denominator cannot be zero, and the second fraction cannot be zero when dividing. Keep negative signs consistent and reduce only after completing the operation. Decimal output may be rounded when the fraction has a repeating decimal expansion.</p>
+  `,
 };

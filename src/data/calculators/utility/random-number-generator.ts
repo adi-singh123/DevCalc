@@ -6,7 +6,7 @@ export const randomNumberGenerator: Calculator = {
   name: "Random Number Generator",
 
   description:
-    "Generate random numbers instantly between any minimum and maximum range. Perfect for games, giveaways, lotteries, statistics, and decision making.",
+    "Generate a pseudo-random integer between an inclusive minimum and maximum for casual games, samples, and everyday decisions.",
 
   category: "Utility",
 
@@ -17,7 +17,7 @@ export const randomNumberGenerator: Calculator = {
       "Random Number Generator - Generate Random Numbers Online",
 
     description:
-      "Generate random numbers between any range instantly. Free Random Number Generator for contests, games, lotteries, statistics, and everyday use.",
+      "Generate a pseudo-random integer within an inclusive custom range for casual games, samples, classroom activities, and everyday decisions.",
 
     keywords: [
       "random number generator",
@@ -26,8 +26,6 @@ export const randomNumberGenerator: Calculator = {
       "random integer generator",
       "generate random number",
       "random selection generator",
-      "lottery number generator",
-      "random draw generator",
       "randomizer tool",
     ],
   },

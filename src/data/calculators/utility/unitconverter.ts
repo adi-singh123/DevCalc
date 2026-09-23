@@ -6,7 +6,7 @@ export const unitConverter: Calculator = {
   name: "Unit Converter",
 
   description:
-    "Convert length, weight, temperature, area, volume, speed, time, and data storage units instantly.",
+    "Convert common length, weight, and temperature units with clear, instant results.",
 
   category: "Utility",
 
@@ -14,21 +14,16 @@ export const unitConverter: Calculator = {
 
   seo: {
     title:
-      "Unit Converter - Convert Length, Weight, Temperature & More",
+      "Unit Converter - Length, Weight and Temperature",
 
     description:
-      "Free online unit converter for length, weight, temperature, area, volume, speed, time, and data storage conversions.",
+      "Convert length, weight, and temperature values online, including metres, kilometres, kilograms, pounds, Celsius, Fahrenheit, and Kelvin.",
 
     keywords: [
       "unit converter",
       "length converter",
       "weight converter",
       "temperature converter",
-      "area converter",
-      "volume converter",
-      "speed converter",
-      "time converter",
-      "data storage converter",
       "measurement converter",
       "online unit converter",
       "metric converter",

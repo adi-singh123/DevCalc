@@ -140,4 +140,12 @@ export const leanBodyMassCalculator: Calculator = {
         "Athletes and active individuals often calculate daily protein targets using lean mass rather than total body weight. This approach ensures accurate amino acid delivery for muscle repair without overestimating requirements in individuals carrying higher fat mass.",
     },
   ],
+  seoContent: `
+    <h2>What lean body mass includes</h2>
+    <p>Lean body mass is total body weight minus estimated fat mass. It includes muscle, bone, organs, body water, and other non-fat tissue, so it should not be interpreted as muscle mass alone.</p>
+    <h2>Why the result is an estimate</h2>
+    <p>Formula-based methods use height, weight, and sex to estimate an average body composition. Hydration, age, training status, pregnancy, and unusually high or low muscularity can make an individual's true value differ substantially.</p>
+    <h2>Using the number safely</h2>
+    <p>Use the estimate for general education and broad trend tracking under consistent measurement conditions. Clinical decisions and medication dosing may require professional assessment or validated measurements such as DEXA or other methods selected by a healthcare provider.</p>
+  `,
 };

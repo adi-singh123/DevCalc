@@ -138,4 +138,12 @@ export const waistToHipRatioCalculator: Calculator = {
         "Visceral fat deposits deep within the abdominal cavity around vital organs, secreting inflammatory cytokines and fatty acids into circulation. This significantly increases insulin resistance and cardiovascular strain compared to subcutaneous fat stored beneath the skin.",
     },
   ],
+  seoContent: `
+    <h2>How to measure waist-to-hip ratio</h2>
+    <p>Measure the waist and hips with the same tape and unit. Keep the tape level and snug without compressing the skin. Measure the waist at the location specified by the health guidance you follow and the hips around their widest point.</p>
+    <h2>Formula and example</h2>
+    <p>WHR = waist circumference ÷ hip circumference. A waist of 80 cm and hips of 100 cm gives 0.80. Because the units cancel, the same ratio results when both measurements are entered in inches.</p>
+    <h2>Do not use the ratio as a diagnosis</h2>
+    <p>Risk thresholds vary by sex, population, age, and clinical guideline. Measurement technique, pregnancy, body shape, and medical conditions can also affect interpretation. Discuss health concerns with a qualified healthcare professional rather than relying on this ratio alone.</p>
+  `,
 };

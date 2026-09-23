@@ -172,4 +172,12 @@ export const standardDeviationCalculator: Calculator = {
         "Population standard deviation divides by N (total population size), while sample standard deviation divides by n - 1 (Bessel's correction) to correct for bias when estimating population variability from a sample.",
     },
   ],
+  seoContent: `
+    <h2>What standard deviation tells you</h2>
+    <p>Standard deviation measures how far values typically spread from their mean. A smaller result indicates values clustered near the average; a larger result indicates greater dispersion. It uses the same unit as the original data.</p>
+    <h2>Population and sample formulas</h2>
+    <p>Population variance divides the sum of squared deviations by N. Sample variance divides by N - 1 to estimate variability in a larger population. Choose the version that matches whether your entries are the complete population or a sample.</p>
+    <h2>Interpretation cautions</h2>
+    <p>Standard deviation is sensitive to outliers and does not describe distribution shape by itself. The 68–95–99.7 guideline applies approximately to normally distributed data, not automatically to every dataset.</p>
+  `,
 };

@@ -138,4 +138,12 @@ export const cgpaCalculator: Calculator = {
         "Yes, as long as your institution uses a credit-based grading system. However, percentage conversion rules may differ between universities.",
     },
   ],
+  seoContent: `
+    <h2>How credit-weighted CGPA works</h2>
+    <p>Each subject's grade point is multiplied by its credit value. The calculator adds those quality points and divides by the total credits, so a high-credit subject affects the result more than a low-credit subject.</p>
+    <h2>CGPA example</h2>
+    <p>If two courses have grade points 8 and 9 with 4 and 2 credits, the CGPA is ((8 × 4) + (9 × 2)) ÷ 6 = 8.33. Enter the grade point shown by your institution rather than a letter grade unless you have converted it using the official scale.</p>
+    <h2>Percentage conversion warning</h2>
+    <p>Universities use different CGPA scales and percentage-conversion rules. A general conversion is not an official transcript result. Check your university handbook, marksheet, or examination office before using a converted percentage in an application.</p>
+  `,
 };

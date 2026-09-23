@@ -173,4 +173,12 @@ export const idealBodyWeightCalculator: Calculator = {
         "Standard IBW equations assume an average body frame. Individuals with a smaller skeletal frame may thrive with a target weight roughly 10% below the formula baseline, whereas larger-framed individuals naturally carry more structural weight without excess body fat.",
     },
   ],
+  seoContent: `
+    <h2>Why ideal-weight formulas give different answers</h2>
+    <p>The Devine, Robinson, Miller, and Hamwi equations use different baseline weights and adjustments for height. They were developed as screening or clinical reference formulas, not as personalised targets, so a range is often more informative than one exact number.</p>
+    <h2>Information these formulas do not use</h2>
+    <p>Most traditional ideal-body-weight equations do not consider age, muscle mass, body-fat distribution, frame size, pregnancy, disability, or athletic training. Two people of the same height can therefore have very different healthy weights.</p>
+    <h2>Use the estimate appropriately</h2>
+    <p>Treat the result as general educational context, not a diagnosis or treatment goal. A clinician or registered dietitian can interpret weight together with medical history, waist measurement, body composition, laboratory results, and individual wellbeing.</p>
+  `,
 };

@@ -139,4 +139,12 @@ export const finalGradeCalculator: Calculator = {
         "If the final exam has no weight (0%), your current grade is already your permanent final grade, and exam performance will not alter your overall course standing.",
     },
   ],
+  seoContent: `
+    <h2>Find the exam score you need</h2>
+    <p>The calculator combines your current course grade with the final exam's percentage weight to find the score required for a desired overall grade. Enter percentages as numbers from 0 to 100.</p>
+    <h2>Worked example</h2>
+    <p>Suppose your current grade is 80%, the final is worth 30%, and you want 85% overall. Coursework contributes 80 × 0.70 = 56 points. You need 29 more points from the final, so the required exam score is 29 ÷ 0.30 = 96.67%.</p>
+    <h2>Interpret impossible results carefully</h2>
+    <p>A requirement above 100% means the target cannot normally be reached from the final alone. A result at or below zero means the target is already secured mathematically, although you may still need to sit the exam or meet a minimum-exam rule.</p>
+  `,
 };

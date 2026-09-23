@@ -151,4 +151,12 @@ export const ratioCalculator: Calculator = {
         "To solve a proportion such as a/b = c/x, cross-multiply to get a · x = b · c, then divide both sides by a to solve for the missing term x = (b · c) / a.",
     },
   ],
+  seoContent: `
+    <h2>Simplify a ratio</h2>
+    <p>A ratio compares quantities in the same order they are entered. To simplify a:b, divide both values by their greatest common divisor. For 20:30, the greatest common divisor is 10, giving 2:3.</p>
+    <h2>Equivalent ratios</h2>
+    <p>Multiplying or dividing every term by the same non-zero value creates an equivalent ratio. The ratio 2:3 is equivalent to 4:6 and 10:15. Keep units consistent before comparing quantities, such as converting metres and centimetres to one unit.</p>
+    <h2>Ratio is not always a fraction of the whole</h2>
+    <p>In a 2:3 mixture there are five total parts, so the first quantity represents 2/5 of the total and the second represents 3/5. A ratio with a zero term requires care, and 0:0 cannot be simplified into a meaningful comparison.</p>
+  `,
 };

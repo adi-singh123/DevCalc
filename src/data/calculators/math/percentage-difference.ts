@@ -140,4 +140,12 @@ export const percentageDifferenceCalculator: Calculator = {
         "Percentage difference is used when comparing two observed values where neither is considered a standard or true benchmark. Percentage error is used when comparing an experimental result against a known theoretical or accepted true value.",
     },
   ],
+  seoContent: `
+    <h2>Percentage difference compares two peer values</h2>
+    <p>Use percentage difference when neither value is a designated starting value or reference. The absolute difference is divided by the average of the two values, making the result symmetric: swapping the first and second values does not change it.</p>
+    <h2>Example</h2>
+    <p>For 80 and 100, the absolute difference is 20 and the average is 90. The percentage difference is 20 ÷ 90 × 100 = 22.22%.</p>
+    <h2>Difference versus percentage change</h2>
+    <p>Percentage change measures movement from an old value to a new one and divides by the old value. Percentage difference instead compares two measurements without choosing a baseline. If both values are zero, the percentage form is undefined because their average is zero.</p>
+  `,
 };

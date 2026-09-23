@@ -72,6 +72,10 @@ export default async function CalculatorPage({ params }: Props) {
     notFound();
   }
 
+  const relatedCategories = Array.from(
+    new Set([calculator.category, "Math", "Utility", "Finance"]),
+  ).slice(0, 3);
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12">
       <FAQSchema faqs={calculator.faqs} />
@@ -134,8 +138,8 @@ export default async function CalculatorPage({ params }: Props) {
 
         <div className="mt-6 flex flex-wrap gap-3">
           {[
-            { icon: CheckCircle2, label: "Accurate Results" },
-            { icon: BadgeCheck, label: "Free to Use" },
+            { icon: CheckCircle2, label: "Formula Explained" },
+            { icon: BadgeCheck, label: "No Sign-up" },
             { icon: Zap, label: "Instant Calculation" },
           ].map(({ icon: Icon, label }) => (
             <span
@@ -198,17 +202,11 @@ export default async function CalculatorPage({ params }: Props) {
             />
           )}
           <div className="mt-8 space-y-6 lg:hidden">
-            
-           <CalculatorListByCategory
-              title="Construction Calculators"
-              category="Construction"
+            <CalculatorListByCategory
+              title={`More ${calculator.category} Calculators`}
+              category={calculator.category}
               currentSlug={calculator.slug}
             />
-            <CalculatorListByCategory
-              title="Other Calculators"
-              category="Other"
-              currentSlug={calculator.slug}
-             />
           </div>
 
           <StepsSection
@@ -233,36 +231,18 @@ export default async function CalculatorPage({ params }: Props) {
 
         <aside className="hidden lg:block">
           <div className="space-y-6">
-            <CalculatorListByCategory
-              title="Other Calculators"
-              category="Other"
-              currentSlug={calculator.slug}
-            />
-            <CalculatorListByCategory
-              title="Fun Calculators"
-              category="Fun"
-              currentSlug={calculator.slug}
-            />
-            <CalculatorListByCategory
-              title="Health Calculators"
-              category="Health"
-              currentSlug={calculator.slug}
-            />
-            <CalculatorListByCategory
-              title="Vehicle Calculators"
-              category="Vehicle"
-              currentSlug={calculator.slug}
-            />
-            <CalculatorListByCategory
-              title="Finance Calculators"
-              category="Finance"
-              currentSlug={calculator.slug}
-            />
-            <CalculatorListByCategory
-              title="Construction Calculators"
-              category="Construction"
-              currentSlug={calculator.slug}
-            />
+            {relatedCategories.map((category) => (
+              <CalculatorListByCategory
+                key={category}
+                title={
+                  category === calculator.category
+                    ? `More ${category} Calculators`
+                    : `${category} Calculators`
+                }
+                category={category}
+                currentSlug={calculator.slug}
+              />
+            ))}
           </div>
         </aside>
       </div>

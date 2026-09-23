@@ -160,4 +160,12 @@ export const scientificCalculator: Calculator = {
         "Yes. Scientific calculators are widely used for mathematics, physics, chemistry, engineering, and competitive exam preparation.",
     },
   ],
+  seoContent: `
+    <h2>Using scientific functions correctly</h2>
+    <p>This calculator supports common arithmetic, powers, roots, logarithms, factorials, and trigonometric operations. Check whether an angle is being interpreted in degrees or radians before evaluating sine, cosine, or tangent.</p>
+    <h2>Order of operations</h2>
+    <p>Parentheses help make an expression unambiguous. For example, √(9 + 16) equals 5, while √9 + 16 equals 19. Use the displayed expression and calculation history to check that operations were entered in the intended order.</p>
+    <h2>Precision and domain limits</h2>
+    <p>Results use JavaScript floating-point arithmetic, so very large values and some decimals can have rounding differences. Logarithms of non-positive values, square roots of negative real numbers, division by zero, and tangent at undefined angles do not produce ordinary real-number results.</p>
+  `,
 };

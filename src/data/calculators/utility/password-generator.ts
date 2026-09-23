@@ -6,7 +6,7 @@ export const passwordGenerator: Calculator = {
   name: "Password Generator",
 
   description:
-    "Generate strong, secure, and random passwords instantly. Create passwords with uppercase letters, lowercase letters, numbers, and special characters for better online security.",
+    "Create customizable example passwords with uppercase letters, lowercase letters, numbers, and symbols directly in your browser.",
 
   category: "Utility",
 
@@ -14,21 +14,18 @@ export const passwordGenerator: Calculator = {
 
   seo: {
     title:
-      "Password Generator - Create Strong & Secure Random Passwords",
+      "Password Generator - Create Custom Random Passwords",
 
     description:
-      "Generate secure random passwords online. Create strong passwords with letters, numbers, and symbols to improve account security and protect your online data.",
+      "Create customizable random passwords with letters, numbers, and symbols. Includes clear guidance about using a password manager for sensitive accounts.",
 
     keywords: [
       "password generator",
       "random password generator",
-      "secure password generator",
       "strong password generator",
       "complex password generator",
       "custom password generator",
-      "password security tool",
       "create strong password",
-      "generate secure password",
     ],
   },
 

@@ -133,4 +133,12 @@ export const simpleInterestCalculator: Calculator = {
         "Yes, it can estimate interest payable on loans that use simple interest calculations.",
     },
   ],
+  seoContent: `
+    <h2>When simple interest is appropriate</h2>
+    <p>Simple interest applies the rate only to the original principal, so the interest amount does not itself earn interest. It is commonly used for short-term estimates, certain loans, promissory notes, and classroom problems. Confirm the lender's actual calculation method before relying on an estimate.</p>
+    <h2>Keep the time and rate consistent</h2>
+    <p>The formula SI = P × R × T / 100 assumes an annual percentage rate and time measured in years. Convert months to years by dividing by 12. For ₹20,000 at 8% per year for 18 months, T is 1.5 and the interest is ₹2,400.</p>
+    <h2>What is not included</h2>
+    <p>The result does not include compounding, processing fees, late charges, taxes, changing rates, or repayment schedules. Use an EMI or compound-interest calculator when those features apply.</p>
+  `,
 };

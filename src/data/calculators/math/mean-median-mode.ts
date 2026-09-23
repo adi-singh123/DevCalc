@@ -186,4 +186,12 @@ export const meanMedianModeCalculator: Calculator = {
         "The median is preferred over the mean when dealing with skewed distributions or datasets containing significant outliers (such as income or housing prices), because extreme values disproportionately pull the mean while leaving the median unaffected.",
     },
   ],
+  seoContent: `
+    <h2>Choose the right measure of centre</h2>
+    <p>The mean uses every value, the median is the middle of the sorted dataset, and the mode is the most frequent value. Comparing all three helps reveal whether outliers or repeated values are shaping the data.</p>
+    <h2>Example</h2>
+    <p>For 2, 3, 3, 4, and 18, the mean is 6, the median is 3, and the mode is 3. The unusually large value 18 pulls the mean upward, while the median remains representative of the middle observation.</p>
+    <h2>Input guidance</h2>
+    <p>Enter numbers separated by commas or spaces and verify the reported count. A dataset may have no mode or multiple modes. These descriptive measures summarize the entered sample but do not by themselves explain causation or statistical significance.</p>
+  `,
 };

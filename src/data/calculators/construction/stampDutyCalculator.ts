@@ -122,4 +122,12 @@ export const stampDutyCalculator: Calculator = {
         "As per Reserve Bank of India (RBI) guidelines, commercial banks and housing finance companies (HFCs) cannot include statutory stamp duty and registration charges within the sanctioned loan-to-value (LTV) ratio for properties costing above ₹30 Lakhs. Buyers must arrange these statutory costs from their own personal savings/cash funds.",
     },
   ],
+  seoContent: `
+    <h2>Estimate property registration costs</h2>
+    <p>Stamp duty is generally calculated on the value recognised by the applicable state rules, which may be the transaction value or a government valuation such as a circle, guidance, or ready-reckoner value. Registration fees, cess, surcharges, and concessions may be added separately.</p>
+    <h2>Why the payable amount can differ</h2>
+    <p>Rates can depend on state, city, property type, ownership structure, buyer category, transaction date, and local notifications. Caps and concessions may have eligibility conditions, and authorities can revise rates during the year.</p>
+    <h2>Verify before completing a transaction</h2>
+    <p>This calculator provides a planning estimate based on its stated assumptions. Confirm the current valuation, rate, concession eligibility, and registration charge with the relevant state registration portal, sub-registrar, or qualified property professional before payment.</p>
+  `,
 };
