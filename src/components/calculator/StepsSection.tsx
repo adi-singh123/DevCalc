@@ -83,14 +83,10 @@ export default function StepsSection({
 }: Props) {
   return (
     <section className="mt-16">
-      <div className="text-center">
+      <div>
         <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
           {title}
         </h2>
-
-        <p className="mt-3 text-slate-600 dark:text-slate-400">
-          Follow these simple steps to get accurate results instantly.
-        </p>
       </div>
 
       <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -145,7 +141,7 @@ export default function StepsSection({
               </div>
 
               {/* Icon */}
-              <div className="flex justify-center">
+              <div>
                 <div
                   className="
                     rounded-2xl
@@ -167,7 +163,6 @@ export default function StepsSection({
               <h3
                 className="
                   mt-5
-                  text-center
                   text-lg
                   font-bold
                   text-slate-900
@@ -181,7 +176,6 @@ export default function StepsSection({
               <p
                 className="
                   mt-3
-                  text-center
                   text-sm
                   leading-6
                   text-slate-600

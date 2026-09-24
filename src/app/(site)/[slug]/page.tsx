@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { CheckCircle2, BadgeCheck, Zap } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 import { calculators } from "@/src/data/calculators";
 import type { Metadata } from "next";
 import { generateCalculatorMetadata } from "@/src/lib/seo/generateMetadata";
@@ -137,21 +137,6 @@ export default async function CalculatorPage({ params }: Props) {
           </p>
         )}
 
-        <div className="mt-6 flex flex-wrap gap-3">
-          {[
-            { icon: CheckCircle2, label: "Formula Explained" },
-            { icon: BadgeCheck, label: "No Sign-up" },
-            { icon: Zap, label: "Instant Calculation" },
-          ].map(({ icon: Icon, label }) => (
-            <span
-              key={label}
-              className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-[#faf7f0] px-4 py-2 text-sm font-medium text-[#1f3a5c] dark:border-slate-700 dark:bg-slate-900 dark:text-blue-400"
-            >
-              <Icon size={16} strokeWidth={1.75} />
-              {label}
-            </span>
-          ))}
-        </div>
       </div>
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
         <div className="min-w-0">
@@ -165,7 +150,7 @@ export default async function CalculatorPage({ params }: Props) {
                   <BadgeCheck size={14} /> {calculator.benchmarkContext.badge}
                 </span>
                 <span className="text-xs text-stone-500 dark:text-slate-400">
-                  Verified: {calculator.benchmarkContext.lastUpdated}
+                  Reviewed: {calculator.benchmarkContext.lastUpdated}
                 </span>
               </div>
               <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
@@ -180,7 +165,7 @@ export default async function CalculatorPage({ params }: Props) {
                 {calculator.benchmarkContext.description}
               </p>
               <div className="mt-3 pt-2 border-t border-stone-100 dark:border-slate-800 text-[11px] text-stone-500 dark:text-slate-400">
-                Source Reference: <span className="font-medium text-slate-700 dark:text-slate-300">{calculator.benchmarkContext.source}</span>
+                Reference: <span className="font-medium text-slate-700 dark:text-slate-300">{calculator.benchmarkContext.source}</span>
               </div>
             </div>
           )}

@@ -43,11 +43,8 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between mb-8">
         <div>
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-            Frequently Asked Questions
+            Questions about this calculator
           </h2>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-            Verified answers to essential calculation and diagnostic questions.
-          </p>
         </div>
 
         <button

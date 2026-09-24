@@ -134,8 +134,10 @@ const SECTIONS = [
     content: (
       <>
         <p>
-          DevCalc uses cookies — small text files stored in your browser — for
-          the following purposes:
+          DevCalc uses optional cookies — small text files stored in your
+          browser — only after you select <strong>Accept optional cookies</strong>.
+          The calculators work if you reject them. Your consent choice is kept
+          in browser local storage and is not used for cross-site tracking.
         </p>
         <ul className="mt-3 list-disc space-y-1.5 pl-5">
           <li>
@@ -152,10 +154,10 @@ const SECTIONS = [
           </li>
         </ul>
         <p className="mt-3">
-          You can control or disable cookies through your browser settings.
-          Note that disabling cookies may affect how some parts of the website
-          behave. Most modern browsers allow you to block third-party cookies
-          without affecting first-party functionality.
+          Use the <strong>Cookie settings</strong> button on the site to change
+          or withdraw your choice. You can also remove cookies through your
+          browser settings. Rejecting optional cookies does not affect the
+          calculator functionality.
         </p>
       </>
     ),
@@ -165,12 +167,12 @@ const SECTIONS = [
     title: "Analytics — Google Analytics",
     content: (
       <p>
-        We use <strong>Google Analytics</strong> to collect anonymized data
+        With your consent, we use <strong>Google Analytics</strong> to collect aggregated data
         about how visitors interact with DevCalc. This includes page views,
         session duration, bounce rate, and traffic sources. Google Analytics
-        uses cookies to gather this data. The information is aggregated and
-        anonymous — we cannot identify individual users from it. You can
-        opt out of Google Analytics tracking by installing the{" "}
+        uses cookies to gather this data. Google Analytics is not loaded before
+        you accept optional cookies. You can withdraw consent with the Cookie
+        settings button or use the{" "}
         <a
           href="https://tools.google.com/dlpage/gaoptout"
           target="_blank"
@@ -188,11 +190,12 @@ const SECTIONS = [
     title: "Advertising — Google AdSense",
     content: (
       <p>
-        DevCalc may display advertisements served by{" "}
+        With your consent, DevCalc may display advertisements served by{" "}
         <strong>Google AdSense</strong>. Google and other advertising providers
         may place and read cookies in your browser, use web beacons, and process
         IP addresses when serving ads. Google uses advertising cookies to show
-        ads based on your previous visits to this and other websites. Learn how
+        ads based on your previous visits to this and other websites. The
+        AdSense script is not loaded before you accept optional cookies. Learn how
         Google uses information from partner sites in its{" "}
         <a href="https://policies.google.com/technologies/partner-sites" className="text-blue-600 underline hover:text-blue-800">
           partner-site privacy information

@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import "@/src/app/globals.css";
 import { siteConfig } from "@/src/config/site";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import OrganizationSchema from "@/src/components/seo/OrganizationSchema";
 import ChatWidget from "@/src/components/chatbot/ChatWidget";
 import AssistantSchema from "@/src/components/seo/AssistantSchema";
-import Script from "next/script";
+import CookieConsent from "@/src/components/privacy/CookieConsent";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -181,19 +180,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="flex min-h-screen flex-col">
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3757135541422436"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
         <OrganizationSchema />
         <AssistantSchema />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
         <ChatWidget />
-        <GoogleAnalytics gaId="G-RXYYY7TG81" />
+        <CookieConsent />
       </body>
     </html>
   );
