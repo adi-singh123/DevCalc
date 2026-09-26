@@ -1,155 +1,100 @@
 import Link from "next/link";
-import { Sparkles, Bot, Building2, Car, ArrowRight, Code2 } from "lucide-react";
+
+const FEATURE_CARDS = [
+  {
+    eyebrow: "24-hour prototype",
+    title: "Student Software Builds",
+    description: "Custom full-stack web, AI/ML and mobile applications with clean code, remote setup and a prototype demonstration before payment.",
+    href: "/college-project",
+    cta: "Learn more",
+  },
+  {
+    eyebrow: "Playwright and Python",
+    title: "Automation & Scraping",
+    description: "Automate browser tasks, business workflows, data extraction and repetitive pipelines with maintainable custom scripts.",
+    href: "/want-automation",
+    cta: "Explore automation",
+  },
+  {
+    eyebrow: "Ready Reckoner 2026",
+    title: "Stamp Duty Calculator",
+    description: "Calculate property registration costs, circle rates and applicable women rebates across supported Indian states.",
+    href: "/stamp-duty-calculator",
+    cta: "Calculate stamp duty",
+  },
+  {
+    eyebrow: "MH, KA, DL, UP and TN",
+    title: "RTO Road Tax Calculator",
+    description: "Check vehicle tax slabs, fuel-specific rates, EV policy waivers and BH Series registration guidance.",
+    href: "/road-tax-calculator",
+    cta: "Calculate road tax",
+  },
+];
 
 export default function ServicesAndFeaturedSection() {
   return (
-    <section className="border-t border-stone-200 bg-[#f4eee2] px-4 py-16 sm:px-6 lg:px-8 dark:border-slate-800 dark:bg-slate-900/50">
+    <section className="border-t border-stone-200 bg-[#f4eee2] px-4 py-16 dark:border-slate-800 dark:bg-slate-900/50 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="text-center">
-          <span className="rounded-full bg-blue-100 px-3.5 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-900/50 dark:text-blue-300">
-            Specialized Solutions &amp; Tools
-          </span>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-            Explore Custom Development &amp; State-Wise Calculators
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#1f3a5c] dark:text-blue-300">
+            Services and featured tools
+          </p>
+          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-[#26364a] dark:text-white sm:text-4xl">
+            Practical tools and development services
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-slate-600 dark:text-slate-400 text-sm sm:text-base">
-            From verified state-wise tax estimation to custom software prototyping and automated web scraping services.
+          <p className="mt-4 text-sm leading-7 text-stone-600 dark:text-slate-400 sm:text-base">
+            Explore state-wise calculators, custom software prototyping and browser automation services from DevCalc.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Card 1: Student Software Projects */}
-          <div className="flex flex-col justify-between rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
-            <div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400">
-                <Code2 className="h-6 w-6" />
-              </div>
-              <div className="mt-4 inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-0.5 text-xs font-bold text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-300">
-                <Sparkles className="h-3 w-3" /> 24h Prototype
-              </div>
-              <h3 className="mt-2 text-lg font-bold text-slate-900 dark:text-white">
-                Student Software Builds
-              </h3>
-              <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                Custom full-stack web, AI/ML, and mobile apps with clean code, remote setup, and 24-hour prototype demo before payment.
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {FEATURE_CARDS.map((card) => (
+            <article
+              key={card.href}
+              className="flex min-h-64 flex-col rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[#1f3a5c]/40 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 sm:p-7"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500 dark:text-slate-400">
+                {card.eyebrow}
               </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-stone-100 dark:border-slate-800">
-              <Link
-                href="/college-project"
-                className="inline-flex items-center gap-1 text-sm font-bold text-emerald-600 hover:text-emerald-700 dark:text-emerald-400"
-              >
-                Learn More <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Card 2: Automation & Web Scraping */}
-          <div className="flex flex-col justify-between rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
-            <div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/60 dark:text-blue-400">
-                <Bot className="h-6 w-6" />
-              </div>
-              <div className="mt-4 inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-0.5 text-xs font-bold text-blue-700 dark:bg-blue-950/80 dark:text-blue-300">
-                Playwright &amp; Python
-              </div>
-              <h3 className="mt-2 text-lg font-bold text-slate-900 dark:text-white">
-                Automation &amp; Scraping
+              <h3 className="mt-4 font-serif text-2xl font-semibold text-[#26364a] dark:text-white">
+                {card.title}
               </h3>
-              <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                Automate browser tasks, business workflows, data extraction, bots, and repetitive pipelines with custom test scripts.
+              <p className="mt-3 flex-1 text-sm leading-7 text-stone-600 dark:text-slate-400">
+                {card.description}
               </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-stone-100 dark:border-slate-800">
-              <Link
-                href="/want-automation"
-                className="inline-flex items-center gap-1 text-sm font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400"
-              >
-                Explore Automation <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Card 3: State Stamp Duty Calculators */}
-          <div className="flex flex-col justify-between rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
-            <div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400">
-                <Building2 className="h-6 w-6" />
+              <div className="mt-6 border-t border-stone-200 pt-5 dark:border-slate-800">
+                <Link
+                  href={card.href}
+                  className="font-semibold text-[#1f3a5c] underline-offset-4 hover:underline dark:text-blue-300"
+                >
+                  {card.cta}
+                </Link>
               </div>
-              <div className="mt-4 inline-flex items-center gap-1 rounded-md bg-amber-50 px-2 py-0.5 text-xs font-bold text-amber-700 dark:bg-amber-950/80 dark:text-amber-300">
-                Ready Reckoner 2026
-              </div>
-              <h3 className="mt-2 text-lg font-bold text-slate-900 dark:text-white">
-                Stamp Duty Calculator
-              </h3>
-              <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                Calculate property registration costs, Ready Reckoner / Circle Rates &amp; women rebates in MH, KA, DL, UP &amp; TN.
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-stone-100 dark:border-slate-800">
-              <Link
-                href="/stamp-duty-calculator"
-                className="inline-flex items-center gap-1 text-sm font-bold text-amber-600 hover:text-amber-700 dark:text-amber-400"
-              >
-                Calculate Stamp Duty <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Card 4: State Road Tax Calculators */}
-          <div className="flex flex-col justify-between rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
-            <div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 dark:bg-purple-950/60 dark:text-purple-400">
-                <Car className="h-6 w-6" />
-              </div>
-              <div className="mt-4 inline-flex items-center gap-1 rounded-md bg-purple-50 px-2 py-0.5 text-xs font-bold text-purple-700 dark:bg-purple-950/80 dark:text-purple-300">
-                MH, KA, DL, UP &amp; TN
-              </div>
-              <h3 className="mt-2 text-lg font-bold text-slate-900 dark:text-white">
-                RTO Road Tax Calculator
-              </h3>
-              <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                Check official vehicle RTO tax slabs, petrol vs diesel rates, EV policy waivers, and BH Series registration rules.
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-stone-100 dark:border-slate-800">
-              <Link
-                href="/road-tax-calculator"
-                className="inline-flex items-center gap-1 text-sm font-bold text-purple-600 hover:text-purple-700 dark:text-purple-400"
-              >
-                Calculate Road Tax <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Card 5: Calculator Tug of War Game */}
-          <div className="flex flex-col justify-between rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900 sm:col-span-2 lg:col-span-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400">
-                  <Sparkles className="h-6 w-6" />
-                </div>
-                <div>
-                  <div className="inline-flex items-center gap-1 rounded-md bg-rose-50 px-2 py-0.5 text-xs font-bold text-rose-700 dark:bg-rose-950/80 dark:text-rose-300">
-                    🎮 Interactive Speed Math Game
-                  </div>
-                  <h3 className="mt-1 text-lg font-bold text-slate-900 dark:text-white">
-                    Calculator Tug of War — Beat the Bot
-                  </h3>
-                  <p className="mt-0.5 text-xs text-slate-600 dark:text-slate-400">
-                    Test your mental arithmetic speed in a head-to-head tug of war against our AI bot.
-                  </p>
-                </div>
-              </div>
-              <Link
-                href="/tug-of-war-calculator"
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2.5 text-xs font-bold text-white shadow-md hover:from-blue-700 hover:to-indigo-700"
-              >
-                Play Match Now <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
+
+        <article className="mt-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-7">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500 dark:text-slate-400">
+                Interactive speed-math game
+              </p>
+              <h3 className="mt-2 font-serif text-2xl font-semibold text-[#26364a] dark:text-white">
+                Calculator Tug of War — Beat the Bot
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-slate-400">
+                Test your mental arithmetic speed in a head-to-head tug of war against the DevCalc bot.
+              </p>
+            </div>
+            <Link
+              href="/tug-of-war-calculator"
+              className="shrink-0 rounded-xl bg-[#1f3a5c] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#172d48]"
+            >
+              Play match now
+            </Link>
+          </div>
+        </article>
       </div>
     </section>
   );

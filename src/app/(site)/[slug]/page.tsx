@@ -170,7 +170,11 @@ export default async function CalculatorPage({ params }: Props) {
             </div>
           )}
 
-          <CompareCalculatorSection compareWith={calculator.compareWith} />
+          <CompareCalculatorSection
+            currentSlug={calculator.slug}
+            category={calculator.category}
+            compareWith={calculator.compareWith}
+          />
 
           {calculator.slug === "road-tax-calculator" && (
             <StateSelectorSection

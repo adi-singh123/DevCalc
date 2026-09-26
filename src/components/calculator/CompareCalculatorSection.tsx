@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { calculators } from "@/src/data/calculators";
+import { getComparisonCalculators } from "@/src/lib/calculators/getComparisonCalculators";
 
 type Props = {
+  currentSlug: string;
+  category: string;
   compareWith?: string[];
 };
 
-export default function CompareCalculatorTable({ compareWith = [] }: Props) {
-  const items = calculators.filter((calculator) =>
-    compareWith.includes(calculator.slug)
-  );
+export default function CompareCalculatorTable({ currentSlug, category, compareWith }: Props) {
+  const items = getComparisonCalculators({ currentSlug, category, compareWith });
 
   if (!items.length) return null;
 

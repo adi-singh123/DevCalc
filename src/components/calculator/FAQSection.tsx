@@ -65,28 +65,31 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
               key={index}
               className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all hover:border-blue-200 dark:border-slate-800 dark:bg-slate-900"
             >
-              <button
-                type="button"
-                onClick={() => toggleFAQ(index)}
-                aria-expanded={isOpen}
-                className="flex w-full items-center justify-between gap-4 p-5 text-left transition hover:bg-slate-50/60 dark:hover:bg-slate-800/50"
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-950/60 dark:text-blue-400">
-                    <HelpCircle size={17} />
-                  </div>
+              <h3>
+                <button
+                  type="button"
+                  onClick={() => toggleFAQ(index)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-4 p-5 text-left transition hover:bg-slate-50/60 dark:hover:bg-slate-800/50"
+                >
+                  <span className="flex items-center gap-3.5">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-950/60 dark:text-blue-400">
+                      <HelpCircle aria-hidden="true" size={17} />
+                    </span>
 
-                  <h3 className="font-semibold text-base text-slate-900 dark:text-white">
-                    {faq.question}
-                  </h3>
-                </div>
+                    <span className="text-base font-semibold text-slate-900 dark:text-white">
+                      {faq.question}
+                    </span>
+                  </span>
 
-                <ChevronDown
-                  className={`h-5 w-5 shrink-0 text-slate-400 transition-transform duration-200 ${
-                    isOpen ? "rotate-180 text-blue-600 dark:text-blue-400" : ""
-                  }`}
-                />
-              </button>
+                  <ChevronDown
+                    aria-hidden="true"
+                    className={`h-5 w-5 shrink-0 text-slate-400 transition-transform duration-200 ${
+                      isOpen ? "rotate-180 text-blue-600 dark:text-blue-400" : ""
+                    }`}
+                  />
+                </button>
+              </h3>
 
               {isOpen && (
                 <div className="border-t border-slate-100 bg-slate-50/40 px-5 py-4 dark:border-slate-800 dark:bg-slate-900/40">

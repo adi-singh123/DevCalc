@@ -1,3 +1,5 @@
+import { getComparisonCalculators } from "@/src/lib/calculators/getComparisonCalculators";
+
 type Step = {
   step: number;
   title: string;
@@ -25,6 +27,11 @@ export default function CalculatorSchema({
   calculator,
 }: CalculatorSchemaProps) {
   const url = `https://www.devcalc.in/${calculator.slug}`;
+  const comparisonCalculators = getComparisonCalculators({
+    currentSlug: calculator.slug,
+    category: calculator.category,
+    compareWith: calculator.compareWith,
+  });
 
   const categoryMap: Record<
     string,
@@ -165,7 +172,7 @@ export default function CalculatorSchema({
           ),
       },
 
-      ...(calculator.compareWith?.length
+      ...(comparisonCalculators.length
         ? [
             {
               "@type":
@@ -178,18 +185,17 @@ export default function CalculatorSchema({
                 "Compare Calculators",
 
               itemListElement:
-                calculator.compareWith.map(
-                  (
-                    slug,
-                    index,
-                  ) => ({
+                comparisonCalculators.map(
+                  (item, index) => ({
                     "@type":
                       "ListItem",
 
                     position:
                       index + 1,
 
-                    url: `https://www.devcalc.in/${slug}`,
+                    name: item.name,
+
+                    url: `https://www.devcalc.in/${item.slug}`,
                   }),
                 ),
             },

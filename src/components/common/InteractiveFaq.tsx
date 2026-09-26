@@ -20,24 +20,27 @@ export default function InteractiveFaq({ faqs }: { faqs: FAQItem[] }) {
             key={index}
             className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition hover:border-blue-200 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
           >
-            <button
-              type="button"
-              onClick={() => setOpenIndex(isOpen ? null : index)}
-              aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-slate-900 dark:text-white transition"
-            >
-              <div className="flex items-center gap-3.5">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-50 text-xs font-bold text-blue-600 dark:bg-blue-950/60 dark:text-blue-400">
-                  Q{index + 1}
-                </div>
-                <span className="text-base sm:text-lg">{faq.q}</span>
-              </div>
-              <ChevronDown
-                className={`h-5 w-5 shrink-0 text-slate-500 transition-transform duration-200 ${
-                  isOpen ? "rotate-180 text-blue-600 dark:text-blue-400" : ""
-                }`}
-              />
-            </button>
+            <h3>
+              <button
+                type="button"
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                aria-expanded={isOpen}
+                className="flex w-full items-center justify-between gap-4 p-5 text-left font-semibold text-slate-900 transition dark:text-white"
+              >
+                <span className="flex items-center gap-3.5">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-50 text-xs font-bold text-blue-600 dark:bg-blue-950/60 dark:text-blue-400">
+                    Q{index + 1}
+                  </span>
+                  <span className="text-base sm:text-lg">{faq.q}</span>
+                </span>
+                <ChevronDown
+                  aria-hidden="true"
+                  className={`h-5 w-5 shrink-0 text-slate-500 transition-transform duration-200 ${
+                    isOpen ? "rotate-180 text-blue-600 dark:text-blue-400" : ""
+                  }`}
+                />
+              </button>
+            </h3>
 
             {/* Always rendered in DOM with CSS toggle for Google SEO crawling */}
             <div

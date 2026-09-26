@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaLinkedinIn } from "react-icons/fa";
+import { Sparkles } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -62,6 +63,15 @@ export default function Footer() {
               Services &amp; Resources
             </h4>
             <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link
+                  href="/improve-life"
+                  className="inline-flex items-center gap-2 font-medium text-violet-700 transition hover:underline dark:text-violet-400"
+                >
+                  <Sparkles aria-hidden="true" className="h-4 w-4" />
+                  Vedic Birth Chart Life Guide
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/college-project"
@@ -180,6 +190,9 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs sm:text-sm">
             <Link href="/calculators" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Calculators
+            </Link>
+            <Link href="/improve-life" className="hover:text-violet-700 dark:hover:text-violet-400">
+              Life Guide
             </Link>
             <Link href="/college-project" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Student Projects

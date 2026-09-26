@@ -145,15 +145,50 @@ export default async function RoadTaxStatePage({
     ],
   };
 
+  const pageUrl = `https://www.devcalc.in/road-tax-calculator/${state.slug}`;
+  const calculatorSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: state.metaTitle,
+        description: state.metaDescription,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": "https://www.devcalc.in/#website" },
+        mainEntity: { "@id": `${pageUrl}#application` },
+      },
+      {
+        "@type": ["SoftwareApplication", "WebApplication"],
+        "@id": `${pageUrl}#application`,
+        name: `${state.stateName} Road Tax Calculator`,
+        url: pageUrl,
+        description: state.metaDescription,
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "Any",
+        browserRequirements: "Requires JavaScript",
+        inLanguage: "en-IN",
+        isAccessibleForFree: true,
+        publisher: { "@id": "https://www.devcalc.in/#organization" },
+        offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c") }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(calculatorSchema).replace(/</g, "\\u003c") }}
       />
 
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
