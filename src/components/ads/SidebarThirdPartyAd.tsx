@@ -4,7 +4,7 @@ import { useSyncExternalStore } from "react";
 
 const CONSENT_KEY = "devcalc_cookie_consent_v1";
 const AD_KEY = "b1c414725f762305671e153b1e65d10c";
-const AD_SCRIPT_URL = `https://www.highperformanceformat.com/${AD_KEY}/invoke.js`;
+const AD_SCRIPT_URL = `https://www.highrevenueformat.com/${AD_KEY}/invoke.js`;
 const AD_DOCUMENT = `<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body style="margin:0;overflow:hidden;width:300px;height:250px"><script>atOptions={key:'${AD_KEY}',format:'iframe',height:250,width:300,params:{}};<\/script><script src="${AD_SCRIPT_URL}"><\/script></body></html>`;
 
 function subscribe(onStoreChange: () => void) {
