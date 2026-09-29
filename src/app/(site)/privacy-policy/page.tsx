@@ -145,8 +145,8 @@ const SECTIONS = [
             the site (via Google Analytics)
           </li>
           <li>
-            <strong>Advertising cookies</strong> — to show relevant ads (via
-            Google AdSense)
+            <strong>Advertising cookies</strong> — to show ads via Google AdSense
+            and our third-party display-ad provider
           </li>
           <li>
             <strong>Preference cookies</strong> — to remember any settings you
@@ -187,15 +187,16 @@ const SECTIONS = [
   },
   {
     id:    "advertising",
-    title: "Advertising — Google AdSense",
+    title: "Advertising",
     content: (
       <p>
         With your consent, DevCalc may display advertisements served by{" "}
-        <strong>Google AdSense</strong>. Google and other advertising providers
+        <strong>Google AdSense</strong> and a third-party display-ad provider.
+        Google and other advertising providers
         may place and read cookies in your browser, use web beacons, and process
         IP addresses when serving ads. Google uses advertising cookies to show
         ads based on your previous visits to this and other websites. The
-        AdSense script is not loaded before you accept optional cookies. Learn how
+        Advertising scripts are not loaded before you accept optional cookies. Learn how
         Google uses information from partner sites in its{" "}
         <a href="https://policies.google.com/technologies/partner-sites" className="text-blue-600 underline hover:text-blue-800">
           partner-site privacy information

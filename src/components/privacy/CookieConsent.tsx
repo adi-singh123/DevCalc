@@ -76,7 +76,7 @@ export default function CookieConsent() {
         >
           <h2 className="font-semibold text-slate-950 dark:text-white">Your privacy choices</h2>
           <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
-            DevCalc uses optional Google Analytics and advertising cookies only when you accept them. The calculators work without optional cookies. Read our{" "}
+            DevCalc uses optional Google Analytics and third-party advertising only when you accept them. The calculators work without optional cookies. Read our{" "}
             <Link href="/privacy-policy#cookies" className="font-medium text-blue-700 underline dark:text-blue-400">
               Cookie and Privacy Policy
             </Link>
