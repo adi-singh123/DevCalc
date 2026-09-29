@@ -64,6 +64,11 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
+                <Link href="/what-is-rashi" className="font-medium text-slate-800 transition hover:text-[#1f3a5c] dark:text-slate-200 dark:hover:text-blue-400">
+                  What Is My Rashi?
+                </Link>
+              </li>
+              <li>
                 <Link
                   href="/improve-life"
                   className="inline-flex items-center gap-2 font-medium text-violet-700 transition hover:underline dark:text-violet-400"
@@ -193,6 +198,9 @@ export default function Footer() {
             </Link>
             <Link href="/improve-life" className="hover:text-violet-700 dark:hover:text-violet-400">
               Life Guide
+            </Link>
+            <Link href="/what-is-rashi" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
+              Rashi Calculator
             </Link>
             <Link href="/college-project" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Student Projects

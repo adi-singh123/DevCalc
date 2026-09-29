@@ -9,7 +9,7 @@ const DASHA_YEARS: Record<string, number> = { Ketu: 7, Venus: 20, Sun: 6, Moon: 
 const normalize = (value: number) => ((value % 360) + 360) % 360;
 
 // A documented mean Lahiri approximation. It is intentionally not represented as Swiss Ephemeris output.
-function lahiriAyanamsha(date: Date) {
+export function lahiriAyanamsha(date: Date) {
   const year = date.getUTCFullYear() + (date.getUTCMonth() + 0.5) / 12;
   return 23.853055 + (year - 2000) * (50.290966 / 3600);
 }
@@ -21,7 +21,7 @@ function zonedParts(date: Date, timeZone: string) {
   return Object.fromEntries(parts.map((part) => [part.type, part.value]));
 }
 
-function localToUtc(date: string, time: string, timeZone: string) {
+export function localToUtc(date: string, time: string, timeZone: string) {
   const [year, month, day] = date.split("-").map(Number);
   const [hour, minute] = time.split(":").map(Number);
   const target = Date.UTC(year, month - 1, day, hour, minute, 0);

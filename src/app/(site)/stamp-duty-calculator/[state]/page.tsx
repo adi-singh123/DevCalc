@@ -211,7 +211,7 @@ export default async function StampDutyStatePage({
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
               <Calendar className="h-3.5 w-3.5" />
-              <span>Rates Verified: {state.lastVerifiedDate}</span>
+              <span>Content reviewed: {state.lastVerifiedDate}</span>
             </span>
           </div>
 
@@ -220,7 +220,7 @@ export default async function StampDutyStatePage({
           </h1>
 
           <p className="mt-3 max-w-4xl text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            Calculate accurate property stamp duty and registration fees for buying a flat, house, or plot in {state.stateName}. Accounts for local circle rates, gender concessions, and statutory caps.
+            Estimate property stamp duty and registration fees for buying a flat, house, or plot in {state.stateName}. Accounts for configured circle-rate rules, gender concessions, and statutory caps.
           </p>
         </div>
 

@@ -82,34 +82,34 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
     stateName: "Karnataka",
     stateCode: "KA",
     petrolCarRate: "13% (< ₹5L), 14% (₹5L–₹10L), 17% (₹10L–₹20L), 18% (> ₹20L)",
-    dieselCarRate: "13% (< ₹5L), 14% (₹5L–₹10L), 17% (₹10L–₹20L), 18% (> ₹20L)",
-    cngCarRate: "13% (< ₹5L), 14% (₹5L–₹10L), 17% (₹10L–₹20L), 18% (> ₹20L)",
+    dieselCarRate: "14% (< ₹5L), 15% (₹5L–₹10L), 18% (₹10L–₹20L), 20% (> ₹20L)",
+    cngCarRate: "11% (< ₹10L), 14% (₹10L and above)",
     twoWheelerRate: "10% (< ₹50,000), 12% – 18% (> ₹50,000) of invoice value",
-    evStatus: "5% Motor Vehicle Tax (Karnataka transitioned from 0% to a tiered 5% EV tax for electric cars)",
+    evStatus: "Tiered estimate: 4% below ₹25L and 8% from ₹25L; verify the current notification before purchase",
     calculationBasis: "post-gst",
     specialNotes: [
       "Karnataka levies some of the highest motor vehicle road taxes in India, reaching 18% for cars above ₹20 Lakhs and up to 18% for standard two-wheelers.",
-      "An additional 11% Infrastructure Cess is levied on the calculated Motor Vehicle Tax amount (10% Infrastructure Cess + 1% Urban Transport Cess).",
-      "EV Taxation Shift: Karnataka has moved away from full EV exemption and charges a 5% road tax on electric cars.",
+      "The estimator applies separate petrol, diesel and CNG bands rather than treating every fuel type as identical.",
+      "EV taxation is represented as a reduced tiered estimate; confirm the current rate for the exact vehicle with the registering RTO.",
       "Lifetime Tax (LTT) is payable for 15 years at initial vehicle registration across all KA RTOs (KA-01 to KA-55).",
     ],
     lastVerifiedDate: "August 2026",
     sourceNote: "Transport Department, Government of Karnataka (transport.karnataka.gov.in)",
-    sourcePortalUrl: "https://karnataka.gov.in",
+    sourcePortalUrl: "https://transport.karnataka.gov.in",
     metaTitle: "Karnataka Road Tax Calculator 2026 — KA RTO Bangalore Vehicle Tax Slabs | DevCalc",
     metaDescription:
-      "Calculate 2026 Karnataka Road Tax (KA RTO) for cars & bikes in Bangalore. Check 13-18% slabs, 11% Infrastructure Cess, and the 5% EV tax rate.",
+      "Estimate 2026 Karnataka road tax for cars, bikes and EVs using separate petrol, diesel, CNG and price-based slabs, with an official-source verification reminder.",
     uniqueIntro:
-      "Registering a new vehicle in Karnataka — particularly in high-volume transport circles across Bengaluru (KA-01 Koramangala, KA-03 Indiranagar, KA-05 Jayanagar, KA-51 Electronic City) — entails some of the highest motor vehicle tax slabs in India under the Karnataka Motor Vehicles Taxation Act. Cars priced above ₹20 Lakhs attract an 18% base road tax, which is then augmented by an 11% Infrastructure and Urban Transport Cess on the calculated tax amount.\n\nCrucially, Karnataka has transitioned from a full EV exemption to a **5% road tax on electric cars**. Two-wheelers priced over ₹50,000 face a 12% to 18% lifetime tax schedule.",
+      "Registering a new vehicle in Karnataka — particularly in high-volume transport circles across Bengaluru (KA-01 Koramangala, KA-03 Indiranagar, KA-05 Jayanagar, KA-51 Electronic City) — involves price-based lifetime-tax bands under the Karnataka Motor Vehicles Taxation Act. The estimator distinguishes petrol, diesel and CNG cars because the applicable percentages are not identical.\n\nFor petrol cars, the configured bands rise from 13% below ₹5 Lakhs to 18% above ₹20 Lakhs; diesel estimates range from 14% to 20%. EV rules change more frequently, so the reduced EV estimate should be confirmed for the exact model and registration date before purchase.",
     rateExplanation:
-      "Karnataka's road tax structure for private cars: 13% for vehicles under ₹5 Lakhs, 14% for ₹5L to ₹10L, 17% for ₹10L to ₹20L, and 18% for vehicles above ₹20 Lakhs. Crucially, a mandatory 11% cess is added on top of the calculated road tax. For electric vehicles, a 5% road tax rate applies.",
+      "For petrol cars, this estimator applies 13% below ₹5 Lakhs, 14% from ₹5L to ₹10L, 17% from ₹10L to ₹20L, and 18% above ₹20L. Diesel uses 14%, 15%, 18% and 20% across the same bands; CNG uses 11% below ₹10L and 14% thereafter. EV estimates use reduced bands and require current RTO confirmation.",
     rtoProcessGuide:
       "Vehicle tax payments and hypothecation endorsements are executed digitally through Karnataka Transport's integrated Vahan portal, with automated validation of vehicle insurance and chassis verification.",
     faqs: [
       {
         question: "Why is road tax significantly higher in Bangalore and Karnataka?",
         answer:
-          "Karnataka has high statutory tax brackets (up to 18%) plus a mandatory 11% Infrastructure & Urban Transport Cess levied on top of the calculated tax, designed to fund state highway and urban transit infrastructure.",
+          "Karnataka uses high price-based tax brackets and separate fuel schedules. This estimator displays the configured effective percentage directly; verify the payable breakdown with the registering RTO.",
       },
       {
         question: "What is the Electric Vehicle (EV) road tax rate in Karnataka?",
@@ -117,9 +117,9 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
           "Karnataka has moved from full exemption to a tiered 5% motor vehicle road tax on electric cars, making it one of the few states in India with a dedicated EV tax rate.",
       },
       {
-        question: "How is the 11% Infrastructure Cess calculated in Karnataka?",
+        question: "Why can Karnataka estimates differ by fuel type?",
         answer:
-          "The 11% cess is calculated on the Motor Vehicle Tax amount (not on the car price). For instance, if your road tax comes to ₹1,00,000, the 11% cess adds ₹11,000, making the total payable RTO tax ₹1,11,000.",
+          "The calculator uses separate price bands for petrol, diesel and CNG vehicles. Select the actual fuel type instead of applying the petrol percentage to every car, and verify dealer or RTO quotations before payment.",
       },
       {
         question: "Can vehicles from other states drive in Karnataka without paying KA road tax?",
@@ -137,12 +137,12 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
     dieselCarRate: "5% (< ₹6L), 8.75% (₹6L–₹15L), 12.5% (> ₹15L)",
     cngCarRate: "3.5% (< ₹6L), 6% (₹6L–₹15L), 9% (> ₹15L) — cleaner fuel concession",
     twoWheelerRate: "4% (< ₹1L), 6% (> ₹1L)",
-    evStatus: "100% Full Exemption for Electric Vehicles up to ₹20 Lakhs under Delhi EV Policy",
+    evStatus: "100% exemption up to ₹30L under Delhi EV Policy 2026; normal tax applies above ₹30L",
     calculationBasis: "post-gst",
     specialNotes: [
       "Delhi has some of the lowest road tax slabs in North India for budget and mid-range petrol and CNG vehicles.",
       "CNG vehicles receive a 0.5% to 1% tax concession compared to petrol models.",
-      "Complete road tax and registration fee waiver for Electric Vehicles (EVs) up to ₹20 Lakhs.",
+      "Delhi EV Policy 2026 provides road-tax and registration-fee exemption for electric cars priced up to ₹30 Lakhs; cars above that limit do not receive the exemption.",
       "10-year diesel and 15-year petrol vehicle age restriction strictly enforced per NGT and CAQM directives.",
     ],
     lastVerifiedDate: "August 2026",
@@ -152,7 +152,7 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
     metaDescription:
       "Calculate 2026 Delhi Road Tax (DL RTO) for cars, bikes & EVs. Check Petrol 4-10%, Diesel 5-12.5%, CNG discounts, and 100% EV exemption.",
     uniqueIntro:
-      "Registering a motor vehicle in the National Capital Territory of Delhi (DL-01 to DL-13 RTO zones) features competitive tax rates under the Delhi Motor Vehicles Taxation Act. Petrol cars under ₹6 Lakhs attract just 4% road tax, cars between ₹6L and ₹15L pay 7%, and premium cars above ₹15L pay 10% to 12.5%.\n\nFactory-fitted CNG passenger cars enjoy discounted slabs (3.5% to 9%), while battery electric vehicles (EVs) up to ₹20 Lakhs are completely exempted from road tax and registration fees. Note that all diesel vehicles registered in Delhi have a maximum legal operational validity of 10 years (versus 15 years for petrol) under NGT mandates.",
+      "Registering a motor vehicle in the National Capital Territory of Delhi (DL-01 to DL-13 RTO zones) features fuel-specific tax rates under the Delhi Motor Vehicles Taxation Act. Petrol cars under ₹6 Lakhs attract 4% road tax, cars between ₹6L and ₹15L pay 7%, and higher-priced petrol cars use the 10% estimator band.\n\nFactory-fitted CNG passenger cars use lower configured bands, while Delhi EV Policy 2026 grants a complete road-tax and registration-fee exemption to electric cars priced up to ₹30 Lakhs. Electric cars above ₹30 Lakhs do not receive that exemption. Delhi also enforces separate end-of-life limits for diesel and petrol vehicles.",
     rateExplanation:
       "Delhi's road tax for petrol cars is 4% (< ₹6L), 7% (₹6L–₹15L), and 10-12.5% (> ₹15L). For diesel cars, rates are 5% (< ₹6L), 8.75% (₹6L–₹15L), and 12.5% (> ₹15L). Two-wheelers attract 4% for bikes under ₹1 Lakh and 6% for premium motorcycles. Fixed fees include ₹600 registration charge, HSRP plates, and ₹1,500 hypothecation fee if financed.",
     rtoProcessGuide:
@@ -166,7 +166,7 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
       {
         question: "Are Electric Vehicles 100% exempt from road tax in Delhi?",
         answer:
-          "Yes. Under the comprehensive Delhi EV Policy, battery electric vehicles priced up to ₹20 Lakhs have zero road tax and zero registration charges.",
+          "Delhi EV Policy 2026 grants 100% road-tax and registration-fee exemption to electric cars with an ex-showroom price up to ₹30 Lakhs, through 31 March 2030. Electric cars priced above ₹30 Lakhs are not eligible for that exemption.",
       },
       {
         question: "What is the 10-year diesel vehicle rule in Delhi?",
@@ -185,9 +185,9 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
     slug: "uttar-pradesh",
     stateName: "Uttar Pradesh",
     stateCode: "UP",
-    petrolCarRate: "Flat 8% (< ₹10L), 10% (> ₹10L)",
-    dieselCarRate: "Flat 8% (< ₹10L), 10% (> ₹10L)",
-    cngCarRate: "Flat 8% (< ₹10L), 10% (> ₹10L)",
+    petrolCarRate: "8% (< ₹10L), 10% (₹10L and above)",
+    dieselCarRate: "9% (< ₹10L), 11% (₹10L and above)",
+    cngCarRate: "6% (< ₹10L), 8% (₹10L and above)",
     twoWheelerRate: "6% – 8% based on price category",
     evStatus: "100% Full Tax Exemption for Electric Vehicles under UP Electric Vehicle Policy",
     calculationBasis: "post-gst",
@@ -199,14 +199,14 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
     ],
     lastVerifiedDate: "August 2026",
     sourceNote: "Transport Department, Government of Uttar Pradesh (uptransport.upsdc.gov.in)",
-    sourcePortalUrl: "https://igrsup.gov.in",
+    sourcePortalUrl: "https://vapt-transport.mstpl.org/Index",
     metaTitle: "UP Road Tax Calculator 2026 — Uttar Pradesh RTO Vehicle Tax Slabs | DevCalc",
     metaDescription:
       "Calculate 2026 Uttar Pradesh Road Tax (UP RTO) for cars & bikes. Check flat 8% and 10% slabs for Noida, Ghaziabad, Lucknow, and 100% EV exemption.",
     uniqueIntro:
       "Vehicle registration across Uttar Pradesh — spanning major NCR hubs like Noida (UP-16) and Ghaziabad (UP-14) to Lucknow (UP-32) and Kanpur (UP-78) — is regulated under the Uttar Pradesh Motor Vehicles Taxation Act. The state provides a simple, predictable two-tier percentage model for personal motor cars: an 8% road tax on vehicles priced up to ₹10 Lakhs, and 10% on vehicles exceeding ₹10 Lakhs.\n\nTwo-wheelers are taxed at 6% to 8%. Electric vehicles (EVs) registered in Uttar Pradesh enjoy a 100% road tax and registration fee waiver under the Uttar Pradesh Electric Vehicle Manufacturing and Mobility Policy.",
     rateExplanation:
-      "For individual vehicle owners in UP, road tax is a 15-year lifetime levy. A car costing ₹8 Lakhs pays 8% = ₹64,000, while a car costing ₹14 Lakhs pays 10% = ₹1,40,000. Unlike Delhi or Maharashtra, UP maintains uniform percentage slabs across petrol, diesel, and CNG personal cars.",
+      "For individual vehicle owners in UP, road tax is estimated as a lifetime levy with fuel-specific bands. A ₹8 Lakh petrol car at 8% gives ₹64,000, while a ₹14 Lakh petrol car at 10% gives ₹1,40,000. Diesel and CNG use their own configured percentages, so the fuel selection materially changes the result.",
     rtoProcessGuide:
       "Dealers across UP issue registration numbers digitally through the centralized Vahan 4.0 portal upon online tax collection and insurance verification.",
     faqs: [
@@ -218,7 +218,7 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
       {
         question: "Does Uttar Pradesh charge extra road tax on diesel vehicles?",
         answer:
-          "No. Unlike Maharashtra or Delhi, Uttar Pradesh charges the same baseline percentage (8% under ₹10L, 10% above ₹10L) regardless of whether the car is petrol, diesel, or CNG.",
+          "This estimator does not treat them identically: diesel uses 9% below ₹10L and 11% thereafter, compared with petrol at 8% and 10%. Confirm the final amount shown by the registering RTO because notifications can change.",
       },
       {
         question: "What are the road tax benefits for Electric Vehicles in Uttar Pradesh?",
@@ -237,10 +237,10 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
     slug: "tamil-nadu",
     stateName: "Tamil Nadu",
     stateCode: "TN",
-    petrolCarRate: "10% (< ₹10L), 15% (> ₹10L) [or 12% / 15% / 18% progressive slabs]",
-    dieselCarRate: "10% (< ₹10L), 15% (> ₹10L) [or 12% / 15% / 18% progressive slabs]",
-    cngCarRate: "10% (< ₹10L), 15% (> ₹10L)",
-    twoWheelerRate: "8% flat (< ₹1L), 10% – 12% (> ₹1L)",
+    petrolCarRate: "12% (≤ ₹5L), 13% (₹5L–₹10L), 18% (₹10L–₹20L), 20% (> ₹20L)",
+    dieselCarRate: "12% (≤ ₹5L), 13% (₹5L–₹10L), 18% (₹10L–₹20L), 20% (> ₹20L)",
+    cngCarRate: "12% (≤ ₹5L), 13% (₹5L–₹10L), 18% (₹10L–₹20L), 20% (> ₹20L)",
+    twoWheelerRate: "10% (≤ ₹1L), 12% (> ₹1L)",
     evStatus: "100% Tax Exemption policy window active for electric vehicles registered through 31 Dec 2027 (standard standing rate is 5% <10L / 7.5% >10L)",
     calculationBasis: "post-gst",
     specialNotes: [
@@ -251,14 +251,14 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
     ],
     lastVerifiedDate: "August 2026",
     sourceNote: "Transport Department, Government of Tamil Nadu (tn.gov.in/transport)",
-    sourcePortalUrl: "https://tnreginet.gov.in",
+    sourcePortalUrl: "https://tnsta.gov.in/Indexes/vehicle_reg_newvehicle",
     metaTitle: "Tamil Nadu Road Tax Calculator 2026 — TN RTO Chennai Vehicle Tax Slabs | DevCalc",
     metaDescription:
-      "Calculate 2026 Tamil Nadu Road Tax (TN RTO) for cars & bikes in Chennai. Check 10-15% slabs, Green Tax, and the 100% EV exemption window through Dec 2027.",
+      "Calculate 2026 Tamil Nadu road tax using the official 12%, 13%, 18% and 20% car bands, 10%/12% bike bands, and the current EV exemption window.",
     uniqueIntro:
-      "Vehicle owners across Tamil Nadu (Chennai TN-01 to TN-22, Coimbatore TN-37/38, Madurai TN-58/59, and regional transport offices) pay road tax under the Tamil Nadu Motor Vehicles Taxation Act. Private cars are taxed on progressive slabs of 10% for vehicles priced up to ₹10 Lakhs, and 15% for vehicles exceeding ₹10 Lakhs.\n\nTwo-wheelers attract an 8% flat lifetime tax (or 10-12% for premium bikes). For electric vehicles, Tamil Nadu offers a **100% road tax exemption window for all EVs registered between 1 January 2026 and 31 December 2027**, after which standard reduced rates (5% to 7.5%) apply. Vehicles older than 15 years pay a mandatory Green Tax (₹2,000 for private vehicles) at renewal.",
+      "Vehicle owners across Tamil Nadu (Chennai TN-01 to TN-22, Coimbatore TN-37/38, Madurai TN-58/59, and regional transport offices) pay lifetime tax under the Tamil Nadu Motor Vehicles Taxation Act. The official new-vehicle page lists four car bands: 12% up to ₹5 Lakhs, 13% above ₹5L and up to ₹10L, 18% above ₹10L and up to ₹20L, and 20% above ₹20L.\n\nTwo-wheelers use 10% up to ₹1 Lakh and 12% above ₹1 Lakh. Tamil Nadu has also notified a 100% motor-vehicle-tax exemption for battery-operated vehicles during the applicable policy period; buyers should confirm eligibility for the registration date.",
     rateExplanation:
-      "Road tax in Tamil Nadu is calculated as a 15-year One-Time Tax on the vehicle's ex-showroom price. For a ₹9 Lakh car, the 10% tax equals ₹90,000. For an ₹18 Lakh SUV, the 15% tax equals ₹2,70,000. Fixed fees include ₹600 registration charge, smart card, and HSRP plates.",
+      "Road tax in Tamil Nadu is calculated as lifetime tax on vehicle cost. Under the current estimator, a ₹9 Lakh car uses 13% (₹1,17,000), while an ₹18 Lakh car uses 18% (₹3,24,000). Registration, road-safety and service charges are shown separately where applicable and should be confirmed on the official portal.",
     rtoProcessGuide:
       "The Tamil Nadu Transport Department processes all private vehicle registrations via the centralized Vahan system, enabling automated tax receipt generation and digital RC issuance.",
     faqs: [
@@ -270,7 +270,7 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
       {
         question: "What are the car road tax slabs in Chennai and Tamil Nadu?",
         answer:
-          "Tamil Nadu levies 10% for non-transport cars priced up to ₹10 Lakhs, and 15% for cars priced above ₹10 Lakhs on the ex-showroom value.",
+          "The official Tamil Nadu transport page lists 12% up to ₹5 Lakhs, 13% above ₹5L and up to ₹10L, 18% above ₹10L and up to ₹20L, and 20% above ₹20L for new non-transport four-wheelers.",
       },
       {
         question: "What is the Green Tax on older vehicles in Tamil Nadu?",
@@ -280,7 +280,7 @@ export const ROAD_TAX_STATES: RoadTaxStateData[] = [
       {
         question: "What are the road tax charges for two-wheelers in Tamil Nadu?",
         answer:
-          "Two-wheelers with an invoice price under ₹1 Lakh pay 8% flat road tax, while high-capacity premium motorcycles pay 10% to 12% road tax.",
+          "The official Tamil Nadu transport page lists lifetime tax of 10% of vehicle cost up to ₹1 Lakh and 12% when the vehicle cost exceeds ₹1 Lakh.",
       },
     ],
     relatedStateSlugs: ["karnataka", "maharashtra"],

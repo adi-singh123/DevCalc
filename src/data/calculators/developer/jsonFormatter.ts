@@ -26,6 +26,7 @@ export const jsonFormatter: Calculator = {
   },
 
   compareWith: [
+    "website-carbon-footprint-calculator",
     "base64-encoder-decoder",
     "url-encoder-decoder",
     "jwt-decoder",

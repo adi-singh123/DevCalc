@@ -211,7 +211,7 @@ export default async function RoadTaxStatePage({
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
               <Calendar className="h-3.5 w-3.5" />
-              <span>Rates Verified: {state.lastVerifiedDate}</span>
+              <span>Content reviewed: {state.lastVerifiedDate}</span>
             </span>
           </div>
 
@@ -220,7 +220,7 @@ export default async function RoadTaxStatePage({
           </h1>
 
           <p className="mt-3 max-w-4xl text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            Calculate exact motor vehicle road tax, RTO registration charges, and total on-road price addition for cars and two-wheelers in {state.stateName}.
+            Estimate motor vehicle road tax, RTO registration charges, and total on-road price addition for cars and two-wheelers in {state.stateName}.
           </p>
         </div>
 

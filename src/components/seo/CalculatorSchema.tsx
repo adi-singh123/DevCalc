@@ -53,6 +53,8 @@ export default function CalculatorSchema({
       "UtilitiesApplication",
     Math:
       "EducationalApplication",
+    "Developer Tools":
+      "DeveloperApplication",
       Fun:
     "GameApplication",
   };

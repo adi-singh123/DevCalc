@@ -62,6 +62,11 @@ const NAV_LINKS: NavLink[] = [
     id: "resources",
     children: [
       {
+        label: "What Is My Rashi?",
+        href: "/what-is-rashi",
+        desc: "Find your Janma Rashi from birth date, time and place",
+      },
+      {
         label: "Calculator Tug of War (Game)",
         href: "/tug-of-war-calculator",
         desc: "Interactive speed math duel against our AI bot",

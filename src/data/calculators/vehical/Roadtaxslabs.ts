@@ -58,7 +58,7 @@ export const ROAD_TAX_SLABS: StateTaxConfig[] = [
     stateCode: "DL",
     stateName: "Delhi",
     usesPreGstBase: false,
-    evFullyExempt: true,
+    evFullyExempt: false,
     car: {
       petrol: [
         { minPrice: 0, maxPrice: 600000, ratePercent: 4 },
@@ -75,7 +75,10 @@ export const ROAD_TAX_SLABS: StateTaxConfig[] = [
         { minPrice: 600000, maxPrice: 1500000, ratePercent: 6 },
         { minPrice: 1500000, maxPrice: null, ratePercent: 9 },
       ],
-      ev: [{ minPrice: 0, maxPrice: null, ratePercent: 0 }],
+      ev: [
+        { minPrice: 0, maxPrice: 3000000, ratePercent: 0 },
+        { minPrice: 3000000, maxPrice: null, ratePercent: 10 },
+      ],
     },
     bike: {
       petrol: [
@@ -220,22 +223,28 @@ export const ROAD_TAX_SLABS: StateTaxConfig[] = [
     evFullyExempt: true, // 100% exemption active Jan 2026 – Dec 2027
     car: {
       petrol: [
-        { minPrice: 0, maxPrice: 1000000, ratePercent: 10 },
-        { minPrice: 1000000, maxPrice: null, ratePercent: 15 },
+        { minPrice: 0, maxPrice: 500000, ratePercent: 12 },
+        { minPrice: 500000, maxPrice: 1000000, ratePercent: 13 },
+        { minPrice: 1000000, maxPrice: 2000000, ratePercent: 18 },
+        { minPrice: 2000000, maxPrice: null, ratePercent: 20 },
       ],
       diesel: [
-        { minPrice: 0, maxPrice: 1000000, ratePercent: 10 },
-        { minPrice: 1000000, maxPrice: null, ratePercent: 15 },
+        { minPrice: 0, maxPrice: 500000, ratePercent: 12 },
+        { minPrice: 500000, maxPrice: 1000000, ratePercent: 13 },
+        { minPrice: 1000000, maxPrice: 2000000, ratePercent: 18 },
+        { minPrice: 2000000, maxPrice: null, ratePercent: 20 },
       ],
       cng: [
-        { minPrice: 0, maxPrice: 1000000, ratePercent: 10 },
-        { minPrice: 1000000, maxPrice: null, ratePercent: 15 },
+        { minPrice: 0, maxPrice: 500000, ratePercent: 12 },
+        { minPrice: 500000, maxPrice: 1000000, ratePercent: 13 },
+        { minPrice: 1000000, maxPrice: 2000000, ratePercent: 18 },
+        { minPrice: 2000000, maxPrice: null, ratePercent: 20 },
       ],
       ev: [{ minPrice: 0, maxPrice: null, ratePercent: 0 }],
     },
     bike: {
       petrol: [
-        { minPrice: 0, maxPrice: 100000, ratePercent: 8 },
+        { minPrice: 0, maxPrice: 100000, ratePercent: 10 },
         { minPrice: 100000, maxPrice: null, ratePercent: 12 },
       ],
       ev: [{ minPrice: 0, maxPrice: null, ratePercent: 0 }],

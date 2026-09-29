@@ -76,6 +76,7 @@ import { brickCalculator } from "./construction/brickCalculator";
 import { cementCalculator } from "./construction/cementCalculator";
 import { concreteCalculator } from "./construction/concreteCalculator";
 import { jsonFormatter } from "./developer/jsonFormatter";
+import { websiteCarbonFootprintCalculator } from "./developer/website-carbon-footprint-calculator";
 import { uuidGenerator } from "./developer/uuid-generator";
 import { base64EncoderDecoder } from "./developer/base64-encoder-decoder";
 import { urlEncoderDecoder } from "./developer/url-encoder-decoder";
@@ -108,8 +109,10 @@ import { chickenCoopCalculator } from "./other/chickenCoop";
 import { paintCalculator } from "./construction/paint";
 import { stampDutyCalculator } from "./construction/stampDutyCalculator";
 import { irctcRefundCalculator } from "./vehical/irctcRefundCalculator";
+import { staircaseCalculator } from "./construction/staircaseCalculator";
 
 export const calculators = [
+  staircaseCalculator,
   irctcRefundCalculator,
   ageCalculator,
   bmiCalculator,
@@ -189,6 +192,7 @@ export const calculators = [
   cementCalculator,
   concreteCalculator,
   jsonFormatter,
+  websiteCarbonFootprintCalculator,
   uuidGenerator,
   base64EncoderDecoder,
   urlEncoderDecoder,

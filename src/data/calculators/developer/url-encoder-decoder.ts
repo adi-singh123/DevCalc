@@ -26,6 +26,7 @@ export const urlEncoderDecoder: Calculator = {
   },
 
   compareWith: [
+    "website-carbon-footprint-calculator",
     "base64-encoder-decoder",
     "json-formatter",
     "uuid-generator",

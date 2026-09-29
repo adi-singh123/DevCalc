@@ -28,6 +28,9 @@ function getDisclaimer(category: string): string | undefined {
   if (key === "health") {
     return "This calculator is for general informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. Consult a qualified healthcare provider for health decisions.";
   }
+  if (key === "developer tools") {
+    return "Website carbon values are estimates based on observed public transfers and published model constants. Browser requests, caching, devices and electricity sources can change actual emissions; this is not a certified environmental assessment.";
+  }
   return undefined;
 }
 

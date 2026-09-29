@@ -76,6 +76,7 @@ import HouseConstructionCostCalculator from "./renderers/HouseConstruction";
 import BrickCalculator from "./renderers/BrickCalculator";
 import ConcreteCalculator from "./renderers/ConcreateCalculator";
 import JsonFormatter from "./renderers/JsonFormatter";
+import WebsiteCarbonCalculator from "./renderers/WebsiteCarbonCalculator";
 import UuidGenerator from "./renderers/UuidGenerator";
 import Base64EncoderDecoder from "./renderers/Base64EncoderDecoder";
 import UrlEncoderDecoder from "./renderers/UrlEncoderDecoder";
@@ -109,6 +110,7 @@ import ChickenCoopCalculator from "./renderers/ChickenCoop";
 import StampDutyCalculator from "./renderers/StampDutyCalculator";
 import IRCTCRefundCalculator from "./renderers/IRCTCRefundCalculator";
 import LumpsumCalculator from "./renderers/LumpsumCalculator";
+import StaircaseCalculator from "./renderers/StaircaseCalculator";
 
 type Props = {
   slug: string;
@@ -116,6 +118,8 @@ type Props = {
 
 export default function CalculatorRenderer({ slug }: Props) {
   switch (slug) {
+    case "staircase-calculator":
+      return <StaircaseCalculator />;
     case "irctc-ticket-cancellation-refund-calculator":
       return <IRCTCRefundCalculator />;
     case "lumpsum-calculator":
@@ -276,6 +280,8 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <ConcreteCalculator/>;
     case "json-formatter":
       return <JsonFormatter/>;
+    case "website-carbon-footprint-calculator":
+      return <WebsiteCarbonCalculator/>;
     case "uuid-generator":
       return <UuidGenerator/>
     case "base64-encoder-decoder":

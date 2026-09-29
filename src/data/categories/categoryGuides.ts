@@ -220,8 +220,13 @@ export const CATEGORY_GUIDES: Record<string, CategoryGuide> = {
 
   "developer-tools": {
     overview:
-      "Client-side developer utilities designed for web developers, DevOps engineers, and system architects adhering strictly to IETF (RFC 8259, RFC 4122, RFC 4648, RFC 3986) standards with zero data transmission.",
+      "Developer utilities for formatting data, inspecting URLs, generating identifiers, and estimating website transfer emissions. Most text tools run in your browser; website carbon checks request public pages through DevCalc's server.",
     subgroups: [
+      {
+        title: "Website Performance & Sustainability",
+        description: "Measure public page weight, discovered requests, estimated CO2e and recognised green hosting.",
+        recommendedSlugs: ["website-carbon-footprint-calculator"],
+      },
       {
         title: "Data Formatting & Decoding",
         description: "Pretty-print JSON payloads, decode JWT tokens, find text differences, and translate Base64/URL streams.",
@@ -251,7 +256,7 @@ export const CATEGORY_GUIDES: Record<string, CategoryGuide> = {
       {
         question: "Are API keys or sensitive JSON payloads stored on your server?",
         answer:
-          "No. All developer utilities operate entirely within your browser runtime using the Web Cryptography API and client-side JavaScript.",
+          "JSON, URL and other text utilities run in your browser. The website carbon calculator sends the public website URL to DevCalc's server to measure the page and caches the result by domain for 24 hours. Do not enter private URLs or secrets.",
       },
     ],
   },

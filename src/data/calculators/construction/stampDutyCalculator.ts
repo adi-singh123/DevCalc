@@ -114,7 +114,7 @@ export const stampDutyCalculator: Calculator = {
     {
       question: "Which Indian states offer stamp duty discounts for female home buyers?",
       answer:
-        "States like Delhi (2% concession: 4% vs 6%), Maharashtra (1% concession: 5% vs 6% in urban areas), and Uttar Pradesh (₹10,000 flat rebate) provide stamp duty concessions for properties registered solely in a woman's name. States like Karnataka and Tamil Nadu currently charge uniform rates without gender-based concessions.",
+        "The form of relief differs by state. Delhi and Maharashtra use lower percentage rates for qualifying female ownership, while this calculator applies Uttar Pradesh's configured female and joint-owner rates. Karnataka has no gender-based rate in this estimator, and Tamil Nadu's targeted registration-fee concession is limited by property value. Always confirm eligibility on the state registration portal.",
     },
     {
       question: "Can stamp duty and registration fees be included in my Home Loan amount?",

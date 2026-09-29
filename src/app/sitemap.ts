@@ -19,6 +19,7 @@ const STATIC_ROUTE_SETTINGS: Record<
   "/blog": { changeFrequency: "weekly", priority: 0.8 },
   "/website-x-ray": { changeFrequency: "weekly", priority: 0.9 },
   "/improve-life": { changeFrequency: "weekly", priority: 0.9 },
+  "/what-is-rashi": { changeFrequency: "weekly", priority: 0.9 },
   "/want-automation": { changeFrequency: "weekly", priority: 0.8 },
   "/tug-of-war-calculator": { changeFrequency: "weekly", priority: 0.8 },
   "/college-project": { changeFrequency: "weekly", priority: 0.6 },
