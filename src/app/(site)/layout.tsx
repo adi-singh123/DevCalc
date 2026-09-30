@@ -33,6 +33,8 @@ export const metadata: Metadata = {
 
   other: {
     "google-adsense-account": "ca-pub-3757135541422436",
+    dd347746bf5000e900f2aef3b655ed7f57c14ddf:
+      "dd347746bf5000e900f2aef3b655ed7f57c14ddf",
   },
 
   description: siteConfig.description,
