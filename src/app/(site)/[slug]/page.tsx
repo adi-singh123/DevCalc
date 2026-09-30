@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { BadgeCheck } from "lucide-react";
 import { calculators } from "@/src/data/calculators";
@@ -18,6 +19,7 @@ import AuthorBio from "@/src/components/common/AuthorBio";
 import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
 import { getCategorySlug } from "@/src/data/categories/Category";
 import EmbedCalculatorSection from "@/src/components/calculator/EmbedCalculatorSection";
+import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -226,17 +228,19 @@ export default async function CalculatorPage({ params }: Props) {
 
         <aside className="hidden lg:block">
           <div className="space-y-6">
-            {relatedCategories.map((category) => (
-              <CalculatorListByCategory
-                key={category}
-                title={
-                  category === calculator.category
-                    ? `More ${category} Calculators`
-                    : `${category} Calculators`
-                }
-                category={category}
-                currentSlug={calculator.slug}
-              />
+            {relatedCategories.map((category, index) => (
+              <Fragment key={category}>
+                <CalculatorListByCategory
+                  title={
+                    category === calculator.category
+                      ? `More ${category} Calculators`
+                      : `${category} Calculators`
+                  }
+                  category={category}
+                  currentSlug={calculator.slug}
+                />
+                {index === 0 && relatedCategories.length > 1 && <SidebarThirdPartyAd />}
+              </Fragment>
             ))}
           </div>
         </aside>

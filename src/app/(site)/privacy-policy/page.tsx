@@ -189,30 +189,37 @@ const SECTIONS = [
     id:    "advertising",
     title: "Advertising — Google AdSense",
     content: (
-      <p>
-        With your consent, DevCalc may display advertisements served by{" "}
-        <strong>Google AdSense</strong>. Google and its advertising partners
-        may place and read cookies in your browser, use web beacons, and process
-        IP addresses when serving ads. Google uses advertising cookies to show
-        ads based on your previous visits to this and other websites. The
-        AdSense script is not loaded before you accept optional cookies. Learn how
-        Google uses information from partner sites in its{" "}
-        <a href="https://policies.google.com/technologies/partner-sites" className="text-blue-600 underline hover:text-blue-800">
-          partner-site privacy information
-        </a>
-        . You can opt out of
-        personalized advertising by visiting{" "}
-        <a
-          href="https://www.google.com/settings/ads"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 underline hover:text-blue-800"
-        >
-          Google&apos;s Ads Settings
-        </a>
-        . Opting out means you may still see ads, but they will not be
-        personalized based on your interests.
-      </p>
+      <div className="space-y-3">
+        <p>
+          With your consent, DevCalc may display advertisements served by{" "}
+          <strong>Google AdSense</strong>. Google and its advertising partners
+          may place and read cookies in your browser, use web beacons, and process
+          IP addresses when serving ads. Google uses advertising cookies to show
+          ads based on your previous visits to this and other websites. The
+          AdSense script is not loaded before you accept optional cookies. Learn how
+          Google uses information from partner sites in its{" "}
+          <a href="https://policies.google.com/technologies/partner-sites" className="text-blue-600 underline hover:text-blue-800">
+            partner-site privacy information
+          </a>
+          . You can opt out of personalized advertising through{" "}
+          <a
+            href="https://www.google.com/settings/ads"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline hover:text-blue-800"
+          >
+            Google&apos;s Ads Settings
+          </a>
+          .
+        </p>
+        <p>
+          After you accept optional cookies, DevCalc may also load a separate
+          third-party sidebar advertising placement. Its provider may process
+          technical request information, such as your IP address, browser details,
+          and referring page, when delivering the advertisement. This placement is
+          not requested before consent.
+        </p>
+      </div>
     ),
   },
   {

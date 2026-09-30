@@ -2,10 +2,11 @@
 
 import Script from "next/script";
 import Link from "next/link";
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 const CONSENT_KEY = "devcalc_cookie_consent_v1";
 type Consent = "accepted" | "rejected" | null;
+type ConsentSnapshot = Consent | "loading";
 
 function subscribe(onStoreChange: () => void) {
   window.addEventListener("storage", onStoreChange);
@@ -21,8 +22,29 @@ function getConsentSnapshot(): Consent {
   return saved === "accepted" || saved === "rejected" ? saved : null;
 }
 
+function AdSenseScript() {
+  useEffect(() => {
+    if (document.getElementById("devcalc-adsense")) {
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = "devcalc-adsense";
+    script.async = true;
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3757135541422436";
+    script.crossOrigin = "anonymous";
+    document.head.appendChild(script);
+  }, []);
+
+  return null;
+}
+
 export default function CookieConsent() {
-  const consent = useSyncExternalStore(subscribe, getConsentSnapshot, () => null);
+  const consent = useSyncExternalStore<ConsentSnapshot>(
+    subscribe,
+    getConsentSnapshot,
+    () => "loading",
+  );
   const [isEditing, setIsEditing] = useState(false);
 
   function choose(next: Exclude<Consent, null>) {
@@ -51,13 +73,7 @@ export default function CookieConsent() {
     <>
       {consent === "accepted" && (
         <>
-          <Script
-            id="devcalc-adsense"
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3757135541422436"
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
+          <AdSenseScript />
           <Script
             id="devcalc-google-analytics"
             src="https://www.googletagmanager.com/gtag/js?id=G-RXYYY7TG81"
@@ -76,7 +92,7 @@ export default function CookieConsent() {
         >
           <h2 className="font-semibold text-slate-950 dark:text-white">Your privacy choices</h2>
           <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
-            DevCalc uses optional Google Analytics and Google AdSense only when you accept them. The calculators work without optional cookies. Read our{" "}
+            DevCalc uses optional analytics and advertising services only when you accept them. The calculators work without optional cookies. Read our{" "}
             <Link href="/privacy-policy#cookies" className="font-medium text-blue-700 underline dark:text-blue-400">
               Cookie and Privacy Policy
             </Link>
