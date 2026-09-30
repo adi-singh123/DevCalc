@@ -21,6 +21,7 @@ import { getCategorySlug } from "@/src/data/categories/Category";
 import EmbedCalculatorSection from "@/src/components/calculator/EmbedCalculatorSection";
 import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
 import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
+import AdSlot from "@/src/components/ads/AdSlot";
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -150,6 +151,7 @@ export default async function CalculatorPage({ params }: Props) {
           <div className="calculator-shell w-full min-w-0 overflow-x-hidden">
             <CalculatorRenderer slug={calculator.slug} />
           </div>
+      
           {calculator.benchmarkContext && (
             <div className="mt-8 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50/80 via-white to-amber-50/40 p-5 shadow-sm dark:border-blue-900/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950">
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-stone-200/70 pb-3 dark:border-slate-800">
@@ -182,7 +184,7 @@ export default async function CalculatorPage({ params }: Props) {
             category={calculator.category}
             compareWith={calculator.compareWith}
           />
-
+          <AdSlot />
           {calculator.slug === "road-tax-calculator" && (
             <StateSelectorSection
               type="road-tax"
@@ -205,7 +207,7 @@ export default async function CalculatorPage({ params }: Props) {
               currentSlug={calculator.slug}
             />
           </div>
-
+         
           <StepsSection
             title={`How the ${calculator.name} Works`}
             steps={calculator.steps}
