@@ -20,6 +20,7 @@ import StateSelectorSection from "@/src/components/calculator/StateSelectorSecti
 import { getCategorySlug } from "@/src/data/categories/Category";
 import EmbedCalculatorSection from "@/src/components/calculator/EmbedCalculatorSection";
 import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
+import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -123,6 +124,7 @@ export default async function CalculatorPage({ params }: Props) {
         ]}
       />
 
+      <LeaderboardThirdPartyAd />
 
       <div className="max-w-4xl">
         <span className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-slate-400">

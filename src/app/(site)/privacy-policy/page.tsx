@@ -213,11 +213,10 @@ const SECTIONS = [
           .
         </p>
         <p>
-          After you accept optional cookies, DevCalc may also load a separate
-          third-party sidebar advertising placement. Its provider may process
-          technical request information, such as your IP address, browser details,
-          and referring page, when delivering the advertisement. This placement is
-          not requested before consent.
+          DevCalc also uses a separate third-party sidebar advertising placement
+          that loads independently of your optional-cookie choice. Its provider may
+          process technical request information, such as your IP address, browser
+          details, and referring page, when delivering the advertisement.
         </p>
       </div>
     ),
