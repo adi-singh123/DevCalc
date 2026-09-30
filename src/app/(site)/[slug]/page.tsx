@@ -21,6 +21,7 @@ import { getCategorySlug } from "@/src/data/categories/Category";
 import EmbedCalculatorSection from "@/src/components/calculator/EmbedCalculatorSection";
 import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 import AdSlot from "@/src/components/ads/AdSlot";
+import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -219,7 +220,6 @@ export default async function CalculatorPage({ params }: Props) {
             useCases={calculator.formula.useCases}
           />
           <FAQSection faqs={calculator.faqs} />
-          <AdSlot type="300x100" />
           <SEOContent content={calculator.seoContent} />
 
           <EmbedCalculatorSection slug={calculator.slug} name={calculator.name} />
@@ -240,7 +240,9 @@ export default async function CalculatorPage({ params }: Props) {
                   category={category}
                   currentSlug={calculator.slug}
                 />
-                {index < relatedCategories.length - 1 && <AdSlot type="300x250" />}
+                {index < relatedCategories.length - 1 && (
+                  index % 2 === 0 ? <SidebarThirdPartyAd /> : <AdSlot />
+                )}
               </Fragment>
             ))}
           </div>

@@ -38,15 +38,16 @@ export default function HomePage() {
       <main>
         <Hero />
 
+
         <Features />
 
         <ServicesAndFeaturedSection />
-
         <section className="py-5">
           <Container>
             <PopularCalculators />
           </Container>
         </section>
+
 
         <CalculatorCategories />
       </main>

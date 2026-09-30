@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import BlogCard from "@/src/components/blog/BlogCard";
 import { blogs } from "@/src/data/blogs/blog";
+import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 
 const categories = [
   "All",
@@ -189,8 +190,15 @@ export default function BlogPage() {
 
         {filteredBlogs.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredBlogs.map((blog) => (
-              <BlogCard key={blog.slug} blog={blog} />
+            {filteredBlogs.map((blog, index) => (
+              <Fragment key={blog.slug}>
+                <BlogCard blog={blog} />
+                {(index + 1) % 6 === 0 && index < filteredBlogs.length - 1 && (
+                  <div className="md:col-span-2 lg:col-span-3">
+                    <LeaderboardThirdPartyAd />
+                  </div>
+                )}
+              </Fragment>
             ))}
           </div>
         ) : (

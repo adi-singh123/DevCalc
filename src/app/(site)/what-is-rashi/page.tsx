@@ -7,6 +7,7 @@ import RashiCalculator from "@/src/components/rashi/RashiCalculator";
 import RashiIllustration from "@/src/components/rashi/RashiIllustration";
 import { RASHIS } from "@/src/lib/rashi/calculateRashi";
 import { rashiFaqs } from "@/src/lib/rashi/content";
+import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 
 const canonical = "https://www.devcalc.in/what-is-rashi";
 
@@ -52,6 +53,8 @@ export default function WhatIsRashiPage() {
       </header>
 
       <RashiCalculator />
+
+      <LeaderboardThirdPartyAd />
 
       <section className="mt-14 grid gap-6 lg:grid-cols-2">
         <article className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900 sm:p-8">

@@ -1,8 +1,10 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { calculators } from "@/src/data/calculators";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
 import { getCategorySlug } from "@/src/data/categories/Category";
+import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 
 // SEO-optimized category copy map to dynamically populate descriptions based on context
 const CATEGORY_SEO_DESCRIPTIONS: Record<string, string> = {
@@ -29,7 +31,7 @@ export default function CalculatorCategories() {
 
   return (
     <section className="mt-16 space-y-20">
-      {categories.map((category) => {
+      {categories.map((category, index) => {
         const categoryCalculators = calculators.filter(
           (calculator) => calculator.category === category,
         );
@@ -44,60 +46,63 @@ export default function CalculatorCategories() {
           `Access free, high-precision ${category.toLowerCase()} calculation tools engineered to streamline your daily workflows, computations, and analytical planning rules.`;
 
         return (
-          <div key={category}>
-            {/* Header */}
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
-                  {category} Calculators
-                  <span className="ml-2 text-lg font-medium text-slate-500">
-                    ({categoryCalculators.length})
-                  </span>
-                </h2>
+          <Fragment key={category}>
+            <div>
+              {/* Header */}
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+                    {category} Calculators
+                    <span className="ml-2 text-lg font-medium text-slate-500">
+                      ({categoryCalculators.length})
+                    </span>
+                  </h2>
 
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400">
-                  {seoDescription}
-                </p>
+                  <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400">
+                    {seoDescription}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Cards */}
-            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {categoryCalculators
-                .slice(0, 6)
-                .map((calculator) => (
-                  <CalculatorCard
-                    key={calculator.slug}
-                    calculator={calculator}
-                  />
-                ))}
-            </div>
-
-            {/* Show View All below cards too */}
-            {categoryCalculators.length > 6 && (
-              <div className="mt-8 text-center">
-                <Link
-                  href={`/category/${getCategorySlug(category)}`}
-                  className="
-                    inline-flex
-                    items-center
-                    gap-2
-                    rounded-xl
-                    bg-[#1f3a5c]
-                    px-6
-                    py-3
-                    font-semibold
-                    text-white
-                    transition-all
-                    hover:bg-[#162a43]
-                  "
-                >
-                  View All {categoryCalculators.length} {category} Calculators
-                  <ArrowUpRight size={18} />
-                </Link>
+              {/* Cards */}
+              <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {categoryCalculators
+                  .slice(0, 6)
+                  .map((calculator) => (
+                    <CalculatorCard
+                      key={calculator.slug}
+                      calculator={calculator}
+                    />
+                  ))}
               </div>
-            )}
-          </div>
+
+              {/* Show View All below cards too */}
+              {categoryCalculators.length > 6 && (
+                <div className="mt-8 text-center">
+                  <Link
+                    href={`/category/${getCategorySlug(category)}`}
+                    className="
+                      inline-flex
+                      items-center
+                      gap-2
+                      rounded-xl
+                      bg-[#1f3a5c]
+                      px-6
+                      py-3
+                      font-semibold
+                      text-white
+                      transition-all
+                      hover:bg-[#162a43]
+                    "
+                  >
+                    View All {categoryCalculators.length} {category} Calculators
+                    <ArrowUpRight size={18} />
+                  </Link>
+                </div>
+              )}
+            </div>
+            {index < categories.length - 1 && <LeaderboardThirdPartyAd />}
+          </Fragment>
         );
       })}
     </section>

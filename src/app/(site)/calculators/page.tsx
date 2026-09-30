@@ -1,9 +1,11 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
 import CalculatorSearch from "@/src/components/calculator/CalculatorSearch";
 import { calculators } from "@/src/data/calculators";
 import { siteConfig } from "@/src/config/site";
 import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
+import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 
 export const metadata: Metadata = {
   title: "All Calculators - Free Online Calculator Collection",
@@ -65,8 +67,15 @@ export default function CalculatorsPage() {
           </p>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {popularCalculators.map((calculator) => (
-              <CalculatorCard key={calculator.slug} calculator={calculator} />
+            {popularCalculators.map((calculator, index) => (
+              <Fragment key={calculator.slug}>
+                <CalculatorCard calculator={calculator} />
+                {(index + 1) % 6 === 0 && index < popularCalculators.length - 1 && (
+                  <div className="sm:col-span-2 lg:col-span-3">
+                    <LeaderboardThirdPartyAd />
+                  </div>
+                )}
+              </Fragment>
             ))}
           </div>
         </section>
@@ -81,8 +90,15 @@ export default function CalculatorsPage() {
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {calculators.map((calculator) => (
-            <CalculatorCard key={calculator.slug} calculator={calculator} />
+          {calculators.map((calculator, index) => (
+            <Fragment key={calculator.slug}>
+              <CalculatorCard calculator={calculator} />
+              {(index + 1) % 6 === 0 && index < calculators.length - 1 && (
+                <div className="sm:col-span-2 lg:col-span-3">
+                  <LeaderboardThirdPartyAd />
+                </div>
+              )}
+            </Fragment>
           ))}
         </div>
       </section>

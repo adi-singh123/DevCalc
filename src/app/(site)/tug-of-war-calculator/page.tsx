@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import TugOfWarGame from "@/src/components/games/TugOfWarGame";
 import { siteConfig } from "@/src/config/site";
 import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
+import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 
 export const metadata: Metadata = {
   title: "Calculator Tug of War - Mental Math Game",
@@ -39,6 +40,8 @@ export default function TugOfWarCalculatorPage() {
       </div>
 
       <TugOfWarGame />
+
+      <LeaderboardThirdPartyAd />
 
       <section className="mx-auto mt-12 max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white">

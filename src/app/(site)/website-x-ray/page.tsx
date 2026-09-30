@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { WebsiteXRayClient } from "./WebsiteXRayClient";
+import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 import {
   ShieldCheck,
   Server,
@@ -159,6 +160,8 @@ export default function WebsiteXRayPage() {
         >
           <WebsiteXRayClient />
         </Suspense>
+
+        <LeaderboardThirdPartyAd />
 
         {/* Educational Content & Architecture Guide */}
         <div className="space-y-10 pt-6 border-t border-stone-200 dark:border-slate-800/80 text-stone-700 dark:text-slate-300">

@@ -9,6 +9,9 @@ import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import AuthorBio from "@/src/components/common/AuthorBio";
 import { getCategorySlug } from "@/src/data/categories/Category";
+import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
+import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
+import AdSlot from "@/src/components/ads/AdSlot";
 
 type Props = {
   params: Promise<{
@@ -180,6 +183,8 @@ export default async function BlogDetailsPage({ params }: Props) {
               </ul>
             </section>
 
+            <LeaderboardThirdPartyAd />
+
             {/* Content */}
             <div className="mt-12 space-y-12">
               {blog.content.map((section, index) => (
@@ -331,6 +336,8 @@ export default async function BlogDetailsPage({ params }: Props) {
                 </div>
               </div>
 
+              <SidebarThirdPartyAd />
+
               <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-slate-700 dark:bg-slate-900">
                 <div className="border-b border-stone-200 bg-[#faf7f0] p-4 font-serif text-lg font-semibold text-[#26364a] dark:border-slate-700 dark:bg-slate-900 dark:text-white">
                   Popular Calculators
@@ -348,6 +355,8 @@ export default async function BlogDetailsPage({ params }: Props) {
                   ))}
                 </div>
               </div>
+
+              <AdSlot />
             </div>
           </aside>
         </div>
