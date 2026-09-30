@@ -31,7 +31,8 @@ function AdSenseScript() {
     const script = document.createElement("script");
     script.id = "devcalc-adsense";
     script.async = true;
-    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3757135541422436";
+    script.src =
+      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3757135541422436";
     script.crossOrigin = "anonymous";
     document.head.appendChild(script);
   }, []);

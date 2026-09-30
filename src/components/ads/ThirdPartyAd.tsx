@@ -1,24 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
-const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
-let adLoadQueue = Promise.resolve();
-
-type AdOptions = {
-  key: string;
-  format: "iframe";
-  height: number;
-  width: number;
-  params: Record<string, never>;
-};
-
-declare global {
-  interface Window {
-    atOptions?: AdOptions;
-  }
-}
-
 type ThirdPartyAdProps = {
   adKey: string;
   width: number;
@@ -26,75 +7,50 @@ type ThirdPartyAdProps = {
   className?: string;
 };
 
+function createAdDocument(adKey: string, width: number, height: number) {
+  const options = JSON.stringify({
+    key: adKey,
+    format: "iframe",
+    height,
+    width,
+    params: {},
+  }).replaceAll("<", "\\u003c");
+  const scriptUrl = JSON.stringify(
+    `https://www.highrevenueformat.com/${adKey}/invoke.js`,
+  );
+
+  return `<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=${width}, initial-scale=1">
+    <style>html,body{width:${width}px;height:${height}px;margin:0;overflow:hidden;background:transparent}</style>
+  </head>
+  <body>
+    <script>window.atOptions=${options};<\/script>
+    <script src=${scriptUrl} async><\/script>
+  </body>
+</html>`;
+}
+
 export default function ThirdPartyAd({
   adKey,
   width,
   height,
   className = "",
 }: ThirdPartyAdProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    let cancelled = false;
-
-    if (!container) {
-      return;
-    }
-
-    const initializeAd = () =>
-      new Promise<void>((resolve) => {
-        if (cancelled) {
-          resolve();
-          return;
-        }
-
-        window.atOptions = {
-          key: adKey,
-          format: "iframe",
-          height,
-          width,
-          params: {},
-        };
-
-        if (IS_DEVELOPMENT) {
-          console.info(`[ThirdPartyAd] initializing ${width}x${height} ad`);
-        }
-
-        const script = document.createElement("script");
-        script.src = `https://www.highrevenueformat.com/${adKey}/invoke.js`;
-        script.async = true;
-        script.dataset.thirdPartyAdKey = adKey;
-        script.onload = () => {
-          if (IS_DEVELOPMENT) {
-            console.info(`[ThirdPartyAd] ${width}x${height} invoke.js loaded`);
-          }
-          resolve();
-        };
-        script.onerror = () => {
-          if (IS_DEVELOPMENT) {
-            console.error(`[ThirdPartyAd] ${width}x${height} invoke.js failed to load`);
-          }
-          resolve();
-        };
-
-        container.appendChild(script);
-      });
-
-    adLoadQueue = adLoadQueue.then(initializeAd, initializeAd);
-
-    return () => {
-      cancelled = true;
-      container.replaceChildren();
-    };
-  }, [adKey, height, width]);
-
   return (
-    <div
-      ref={containerRef}
-      className={`overflow-hidden ${className}`.trim()}
+    <iframe
+      className={`block overflow-hidden border-0 ${className}`.trim()}
       style={{ width, height }}
+      width={width}
+      height={height}
+      srcDoc={createAdDocument(adKey, width, height)}
+      title={`Advertisement ${width} by ${height}`}
       aria-label="Advertisement"
+      loading="lazy"
+      scrolling="no"
+      referrerPolicy="strict-origin-when-cross-origin"
     />
   );
 }

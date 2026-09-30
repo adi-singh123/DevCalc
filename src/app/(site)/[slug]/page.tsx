@@ -19,7 +19,6 @@ import AuthorBio from "@/src/components/common/AuthorBio";
 import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
 import { getCategorySlug } from "@/src/data/categories/Category";
 import EmbedCalculatorSection from "@/src/components/calculator/EmbedCalculatorSection";
-import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
 import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 import AdSlot from "@/src/components/ads/AdSlot";
 
@@ -184,7 +183,7 @@ export default async function CalculatorPage({ params }: Props) {
             category={calculator.category}
             compareWith={calculator.compareWith}
           />
-          <AdSlot />
+
           {calculator.slug === "road-tax-calculator" && (
             <StateSelectorSection
               type="road-tax"
@@ -212,7 +211,6 @@ export default async function CalculatorPage({ params }: Props) {
             title={`How the ${calculator.name} Works`}
             steps={calculator.steps}
           />
-
           <FormulaSection
             title={calculator.formula.title}
             formula={calculator.formula.formula}
@@ -220,9 +218,8 @@ export default async function CalculatorPage({ params }: Props) {
             example={calculator.formula.example}
             useCases={calculator.formula.useCases}
           />
-
           <FAQSection faqs={calculator.faqs} />
-
+          <AdSlot type="300x100" />
           <SEOContent content={calculator.seoContent} />
 
           <EmbedCalculatorSection slug={calculator.slug} name={calculator.name} />
@@ -243,7 +240,7 @@ export default async function CalculatorPage({ params }: Props) {
                   category={category}
                   currentSlug={calculator.slug}
                 />
-                {index === 0 && relatedCategories.length > 1 && <SidebarThirdPartyAd />}
+                {index < relatedCategories.length - 1 && <AdSlot type="300x250" />}
               </Fragment>
             ))}
           </div>
