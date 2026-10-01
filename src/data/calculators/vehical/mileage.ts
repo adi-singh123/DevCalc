@@ -26,11 +26,11 @@ export const mileageCalculator: Calculator = {
   },
 
   seo: {
-    title: "Mileage Calculator – Car & Bike km/L and Fuel Cost",
+    title: "Mileage Calculator: Car & Bike km/L, Fuel Cost per km",
 
     description:
-      "Calculate car or bike mileage from distance or odometer readings. See km/L, fuel cost per km and total trip cost for petrol, diesel, CNG or EV.",
-
+     "Free mileage calculator for car and bike. Enter distance and fuel used, or odometer readings, to get km/L, cost per km and trip cost. Petrol, diesel, CNG, EV.",
+     
     keywords: [
       "mileage calculator",
       "car mileage calculator km per liter",

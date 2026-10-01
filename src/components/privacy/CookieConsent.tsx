@@ -3,6 +3,7 @@
 import Script from "next/script";
 import Link from "next/link";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import GlobalThirdPartyAds from "@/src/components/ads/GlobalThirdPartyAds";
 
 const CONSENT_KEY = "devcalc_cookie_consent_v1";
 type Consent = "accepted" | "rejected" | null;
@@ -75,6 +76,7 @@ export default function CookieConsent() {
       {consent === "accepted" && (
         <>
           <AdSenseScript />
+          <GlobalThirdPartyAds />
           <Script
             id="devcalc-google-analytics"
             src="https://www.googletagmanager.com/gtag/js?id=G-RXYYY7TG81"
@@ -93,7 +95,7 @@ export default function CookieConsent() {
         >
           <h2 className="font-semibold text-slate-950 dark:text-white">Your privacy choices</h2>
           <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
-            DevCalc uses optional Google Analytics and Google AdSense only when you accept them. The calculators work without optional cookies. A separate sidebar advertisement may still appear. Read our{" "}
+            DevCalc uses optional analytics and advertising services, including Google AdSense and third-party social-bar or popunder ads, only when you accept them. The calculators work without optional cookies. A separate inline advertisement may still appear. Read our{" "}
             <Link href="/privacy-policy#cookies" className="font-medium text-blue-700 underline dark:text-blue-400">
               Cookie and Privacy Policy
             </Link>

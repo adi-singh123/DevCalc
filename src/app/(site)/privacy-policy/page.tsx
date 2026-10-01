@@ -145,8 +145,8 @@ const SECTIONS = [
             the site (via Google Analytics)
           </li>
           <li>
-            <strong>Advertising cookies</strong> — to show relevant ads via
-            Google AdSense
+            <strong>Advertising cookies and storage</strong> — to deliver ads
+            through Google AdSense and consent-gated third-party ad formats
           </li>
           <li>
             <strong>Preference cookies</strong> — to remember any settings you
@@ -187,7 +187,7 @@ const SECTIONS = [
   },
   {
     id:    "advertising",
-    title: "Advertising — Google AdSense",
+    title: "Advertising Services",
     content: (
       <div className="space-y-3">
         <p>
@@ -217,6 +217,14 @@ const SECTIONS = [
           that loads independently of your optional-cookie choice. Its provider may
           process technical request information, such as your IP address, browser
           details, and referring page, when delivering the advertisement.
+        </p>
+        <p>
+          If you accept optional cookies, DevCalc may also load third-party
+          social-bar and popunder advertising scripts supplied through the
+          profitableratecpmnetwork.com domain. These formats can open or display
+          advertising outside the normal page content and may process device,
+          browser, IP-address, referral, interaction, and campaign information.
+          These scripts are not loaded when optional cookies are rejected.
         </p>
       </div>
     ),
