@@ -111,6 +111,7 @@ import StampDutyCalculator from "./renderers/StampDutyCalculator";
 import IRCTCRefundCalculator from "./renderers/IRCTCRefundCalculator";
 import LumpsumCalculator from "./renderers/LumpsumCalculator";
 import StaircaseCalculator from "./renderers/StaircaseCalculator";
+import AndroidUiInspector from "./renderers/AndroidUiInspector";
 
 type Props = {
   slug: string;
@@ -282,6 +283,8 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <JsonFormatter/>;
     case "website-carbon-footprint-calculator":
       return <WebsiteCarbonCalculator/>;
+    case "android-ui-inspector":
+      return <AndroidUiInspector/>;
     case "uuid-generator":
       return <UuidGenerator/>
     case "base64-encoder-decoder":

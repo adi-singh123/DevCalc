@@ -29,6 +29,7 @@ import {
   Code2,
   Braces,
   Hash,
+  ScanSearch,
   Gift,
   Heart,
   type LucideProps,
@@ -60,6 +61,7 @@ const SLUG_ICONS: Record<string, LucideIcon> = {
   "cgpa-calculator": GraduationCap,
   "json-formatter": Braces,
   "hash-generator": Hash,
+  "android-ui-inspector": ScanSearch,
   "matrix-calculator": Grid3x3,
   "love-calculator": Heart,
 };
