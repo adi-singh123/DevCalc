@@ -73,10 +73,11 @@ export default function CookieConsent() {
 
   return (
     <>
+      <AdSenseScript />
+      <GlobalThirdPartyAds />
+
       {consent === "accepted" && (
         <>
-          <AdSenseScript />
-          <GlobalThirdPartyAds />
           <Script
             id="devcalc-google-analytics"
             src="https://www.googletagmanager.com/gtag/js?id=G-RXYYY7TG81"
@@ -95,7 +96,7 @@ export default function CookieConsent() {
         >
           <h2 className="font-semibold text-slate-950 dark:text-white">Your privacy choices</h2>
           <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
-            DevCalc uses optional analytics and advertising services, including Google AdSense and third-party social-bar or popunder ads, only when you accept them. The calculators work without optional cookies. A separate inline advertisement may still appear. Read our{" "}
+            DevCalc uses optional analytics only when you accept it. Advertisements, including Google AdSense and third-party social-bar or popunder ads, may still load without optional-cookie consent. The calculators work without optional cookies. Read our{" "}
             <Link href="/privacy-policy#cookies" className="font-medium text-blue-700 underline dark:text-blue-400">
               Cookie and Privacy Policy
             </Link>
