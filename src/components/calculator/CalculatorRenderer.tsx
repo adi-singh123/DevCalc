@@ -69,7 +69,7 @@ import LoveCalculator from "./renderers/LoveCalculator";
 import FriendshipCalculator from "./renderers/FriendshipCalculator";
 import CrushCalculator from "./renderers/CrushCalculator";
 import LuckyNumberCalculator from "./renderers/LuckyNumberCalculator";
-// import SafePeriodCalculator from "./renderers/SafePeriodCalculator";
+import SafePeriodCalculator from "./renderers/SafePeriodCalculator";
 // import CondomSizeCalculator from "./renderers/CondomSizeCalculator";
 import CementCalculator from "./renderers/CementCalculator";
 import HouseConstructionCostCalculator from "./renderers/HouseConstruction";
@@ -112,6 +112,13 @@ import IRCTCRefundCalculator from "./renderers/IRCTCRefundCalculator";
 import LumpsumCalculator from "./renderers/LumpsumCalculator";
 import StaircaseCalculator from "./renderers/StaircaseCalculator";
 import AndroidUiInspector from "./renderers/AndroidUiInspector";
+import WaterTankCapacityCalculator from "./renderers/WaterTankCapacityCalculator";
+import AacBlockCalculator from "./renderers/AacBlockCalculator";
+import HomeLoanPrepaymentCalculator from "./renderers/HomeLoanPrepaymentCalculator";
+import CarAffordabilityCalculator from "./renderers/CarAffordabilityCalculator";
+import TyreSizeCalculator from "./renderers/TyreSizeCalculator";
+import FlamesCalculator from "./renderers/FlamesCalculator";
+import PetAgeCalculator from "./renderers/PetAgeCalculator";
 
 type Props = {
   slug: string;
@@ -119,6 +126,20 @@ type Props = {
 
 export default function CalculatorRenderer({ slug }: Props) {
   switch (slug) {
+    case "car-affordability-calculator":
+      return <CarAffordabilityCalculator />;
+    case "tyre-size-calculator":
+      return <TyreSizeCalculator />;
+    case "flames-calculator":
+      return <FlamesCalculator />;
+    case "pet-age-calculator":
+      return <PetAgeCalculator />;
+    case "home-loan-prepayment-calculator":
+      return <HomeLoanPrepaymentCalculator />;
+    case "water-tank-capacity-calculator":
+      return <WaterTankCapacityCalculator />;
+    case "aac-block-calculator":
+      return <AacBlockCalculator />;
     case "staircase-calculator":
       return <StaircaseCalculator />;
     case "irctc-ticket-cancellation-refund-calculator":
@@ -267,8 +288,8 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <CrushCalculator/>;
     case "lucky-number-calculator":
       return <LuckyNumberCalculator/>;
-    // case "safe-period-calculator":
-    //   return <SafePeriodCalculator/>;
+    case "safe-period-calculator":
+      return <SafePeriodCalculator/>;
     // case "condom-size-calculator":
     //   return <CondomSizeCalculator/>;
     case "house-construction-cost-calculator":

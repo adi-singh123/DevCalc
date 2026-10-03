@@ -4,10 +4,10 @@ import { useMemo, useRef, useState } from "react";
 import ResultsSection from "../ResultsSection";
 
 const PURITY_OPTIONS = [
-  { label: "999 (Fine Silver)", value: "999", factor: 0.999 },
-  { label: "925 (Sterling)", value: "925", factor: 0.925 },
-  { label: "900 (Coin Silver)", value: "900", factor: 0.9 },
-  { label: "800", value: "800", factor: 0.8 },
+  { label: "999 (Fine Silver)", value: "999", rateFactor: 1, contentFactor: 0.999 },
+  { label: "925 (Sterling)", value: "925", rateFactor: 0.925, contentFactor: 0.925 },
+  { label: "900 (Coin Silver)", value: "900", rateFactor: 0.9, contentFactor: 0.9 },
+  { label: "800", value: "800", rateFactor: 0.8, contentFactor: 0.8 },
 ] as const;
 
 const UNIT_OPTIONS = [
@@ -57,11 +57,11 @@ export default function SilverPriceCalculator() {
     // and scale it down.
     const effectiveRatePerGram = rateIsForSelectedPurity
       ? rate
-      : rate * purityInfo.factor;
+      : rate * purityInfo.rateFactor;
 
     const totalValue = effectiveRatePerGram * weightInGrams;
 
-    const pureSilverGrams = weightInGrams * purityInfo.factor;
+    const pureSilverGrams = weightInGrams * purityInfo.contentFactor;
 
     return {
       weightInGrams,
@@ -125,7 +125,7 @@ export default function SilverPriceCalculator() {
             type="number"
             inputMode="decimal"
             min="0"
-            placeholder="e.g. 235"
+            placeholder="Enter current rate"
             value={silverRate}
             onChange={(e) => setSilverRate(e.target.value)}
             className="w-full min-w-0 rounded-xl border p-3"

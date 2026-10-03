@@ -40,6 +40,8 @@ export interface Blog {
 
   image: string;
 
+  relatedCalculatorSlugs?: string[];
+
   content: BlogSection[];
 
   faqs: BlogFaq[];

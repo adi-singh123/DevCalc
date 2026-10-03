@@ -16,20 +16,20 @@ export const ppfCalculator: Calculator = {
     "The Public Provident Fund (PPF) remains India's premier sovereign-guaranteed savings scheme, offering complete EEE (Exempt-Exempt-Exempt) tax treatment. To maximize compounding, always deposit before the 5th of the month, as PPF interest is calculated monthly on the lowest balance between the close of the 5th day and the end of the month.",
 
   benchmarkContext: {
-    title: "Government of India PPF Rates & Rules (Q4 FY 2025-26)",
+    title: "Government of India PPF Rates & Rules (Q3 FY 2026-27)",
     badge: "Ministry of Finance Gazette",
     stat: "7.10% Sovereign Interest (Annual Compounding)",
     description:
       "Backed by central government guarantee with complete exemption under Section 80C, tax-free interest accrual, and zero tax on maturity (EEE). Minimum deposit is ₹500/year and maximum is ₹1,50,000/year.",
     source: "Department of Economic Affairs, Ministry of Finance",
-    lastUpdated: "January 2026",
+    lastUpdated: "October 2026",
   },
 
   seo: {
     title: "PPF Calculator - Calculate PPF Interest & Maturity Amount Online",
 
     description:
-      "Calculate Public Provident Fund (PPF) maturity amount, interest earned, and 15-year wealth accumulation. Verified for current 7.1% government interest rate with extension options.",
+      "Calculate Public Provident Fund (PPF) maturity amount, interest earned, and 15-year accumulation using the 7.1% rate retained for Q3 FY 2026-27. Future quarterly rates can change.",
     keywords: [
       "ppf calculator",
       "public provident fund calculator",

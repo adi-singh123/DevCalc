@@ -81,14 +81,14 @@ export const goldMakingChargesCalculator: Calculator = {
       "Final Price = (Gold Rate per gram × Net Weight) + Making Charges + Wastage Charges + Hallmarking Fee, then + 3% GST on the subtotal",
 
     explanation:
-      "A gold jewellery bill looks complicated, but it's really just five components stacked on top of each other. The first and biggest is the gold value itself — the day's rate for your chosen purity multiplied by the net weight of gold in the piece. As of late June 2026, national average rates hover around ₹14,200 per gram for 24K, ₹13,000 per gram for 22K, and ₹10,650 per gram for 18K gold, though these move daily with international bullion prices and the rupee-dollar exchange rate, and shift slightly from city to city depending on local jewellers' association rates and taxes.\n\nOn top of the gold value sits the making charge — the labour cost of turning raw gold into a finished piece. Jewellers apply this in one of two ways: as a percentage of the gold value, typically somewhere between 6% and 25%, or as a flat per-gram rate, usually ₹300 to ₹1,000 per gram. Percentage-based charges tend to favour the buyer when gold prices are falling, since the rupee amount shrinks along with the rate, while flat charges are easier to compare across jewellers regardless of how the gold price moves that week. Machine-made pieces like plain chains and bangles sit at the lower end of this range, since they need less manual craftsmanship, while heavily worked bridal sets, filigree, and antique-finish jewellery sit at the higher end because of the skill and time involved.\n\nSome jewellers also add a separate wastage charge — typically 2% to 7% of the gold value — to cover the small amount of gold lost during cutting, melting, and polishing. Not every store itemises this separately; some fold it into the making charge instead, so it's worth asking specifically whether wastage is already included before comparing two quotes. A mandatory but small addition is the hallmarking fee, generally ₹35 to ₹50 per piece, which pays for the BIS purity certification and the HUID code stamped on the item.\n\nOnce gold value, making charges, wastage, and hallmarking are added together, a flat 3% GST is applied to that entire subtotal — this is a fixed government rate and doesn't vary by jeweller or city. If the piece has diamonds or other stones, their cost is added before GST is calculated, and the stone weight should never be billed at the gold rate; a proper invoice always separates gold weight from stone weight and value.",
+      "A gold jewellery bill starts with the quoted rate for the chosen purity multiplied by net gold weight. Because bullion prices change frequently, use the jeweller's current itemised per-gram rate instead of an old online snapshot.\n\nMaking charges may be quoted as a percentage of gold value or as a flat amount per gram. Wastage may be separate or already included, so confirm the billing basis before comparing stores. BIS guidance lists a ₹45-per-article hallmarking charge for gold jewellery or artefacts.\n\nFor an end-customer jewellery sale, CBIC guidance applies 3% GST to the total transaction value of the jewellery whether making charges are shown separately or not. Job-work treatment between businesses is a separate scenario. Stones and non-gold components should be itemised rather than billed as gold weight.",
 
     example: {
       input:
-        "22K gold chain, Weight: 10g, Gold rate: ₹13,000/g, Making charge: 12% of gold value, Hallmarking: ₹45",
+        "22K gold chain, Weight: 10g, illustrative rate: ₹10,000/g, making charge: 12% of gold value, hallmarking: ₹45",
 
       output:
-        "Gold value = 10 × ₹13,000 = ₹1,30,000. Making charge = 12% of ₹1,30,000 = ₹15,600. Subtotal = ₹1,30,000 + ₹15,600 + ₹45 = ₹1,45,645. GST (3%) = ₹4,369. Final price ≈ ₹1,50,014.",
+        "Gold value = ₹1,00,000. Making charge = ₹12,000. Subtotal including ₹45 hallmarking = ₹1,12,045. GST at 3% = ₹3,361.35. Illustrative final price = ₹1,15,406.35.",
     },
 
     useCases: [
@@ -104,7 +104,7 @@ export const goldMakingChargesCalculator: Calculator = {
     {
       question: "What is the current gold rate in India?",
       answer:
-        "Gold rates change every day based on international bullion prices, the rupee-dollar exchange rate, and local demand, so there's no single fixed number — but as a recent reference point, national average rates in late June 2026 stood at roughly ₹14,200 per gram for 24K gold, ₹13,000 per gram for 22K gold, and ₹10,650 per gram for 18K gold. Metro cities and smaller towns can differ by a small margin due to local jewellers' association rates, state taxes, and transport costs, so always check the live rate quoted by your specific jeweller — or on a jewellers' association website for your city — on the day you're buying, rather than relying on a rate you saw a few days earlier.",
+        "Gold rates change frequently and there is no permanent India-wide number. Check the jeweller's current rate, confirm its purity and whether it is quoted per gram or per 10 grams, and enter that exact basis. The calculator does not claim to fetch a live bullion rate.",
     },
 
     {
@@ -128,7 +128,7 @@ export const goldMakingChargesCalculator: Calculator = {
     {
       question: "How much is the hallmarking charge on gold jewellery?",
       answer:
-        "Hallmarking typically costs around ₹35 to ₹50 per piece, and it's a mandatory certification fee rather than something optional a buyer can decline. Since gold hallmarking with a HUID (Hallmark Unique Identification) code became compulsory for jewellers selling gold jewellery, every hallmarked piece carries a unique six-digit code that can be verified independently through the BIS Care mobile app, confirming both the purity of the gold and the registration of the jeweller who sold it. This fee is small in isolation, but on a purchase with multiple pieces — say, a full bridal set — it can add up to a few hundred rupees across the bill.",
+        "BIS jeweller guidance lists the hallmarking charge as ₹45 per gold jewellery or artefact. A hallmarked item carries the BIS mark, purity/fineness and a six-character alphanumeric HUID that consumers can check with Verify HUID in the BIS Care app. Confirm the number of separately hallmarked articles on the invoice.",
     },
 
     {
@@ -172,37 +172,37 @@ A Gold Making Charges Calculator breaks down the actual cost of a piece of gold 
 It's worth being clear about one thing upfront: this calculator estimates a price based on the numbers you enter — it doesn't set or verify the day's gold rate for you. Gold rates move daily and vary slightly by city, so always confirm the live rate with your jeweller or a trusted local source on the day of purchase, and use this tool to check the maths on top of that rate.
 </p>
 
-<h2>Current Gold Rates in India (Reference, Late June 2026)</h2>
+<h2>Gold Purity and Rate Basis</h2>
 
 <table>
 <tr>
 <th>Purity</th>
 <th>Composition</th>
-<th>Approx. Rate per Gram</th>
-<th>Approx. Rate per 10 Grams</th>
+<th>Purity Factor</th>
+<th>Rate Check</th>
 </tr>
 <tr>
 <td>24 Karat (24K)</td>
 <td>99.9% pure gold</td>
-<td>₹14,200</td>
-<td>₹1,42,000</td>
+<td>0.999</td>
+<td>Confirm the current 24K quote</td>
 </tr>
 <tr>
 <td>22 Karat (22K)</td>
 <td>91.6% pure gold</td>
-<td>₹13,000</td>
-<td>₹1,30,000</td>
+<td>0.916</td>
+<td>Confirm the current 22K quote</td>
 </tr>
 <tr>
 <td>18 Karat (18K)</td>
 <td>75% pure gold</td>
-<td>₹10,650</td>
-<td>₹1,06,500</td>
+<td>0.750</td>
+<td>Confirm the current 18K quote</td>
 </tr>
 </table>
 
 <p>
-These are national average reference rates and move daily with international bullion prices, the rupee-dollar exchange rate, and local demand. 24K gold is the purest but too soft for everyday jewellery, which is why 22K is the standard choice for most Indian gold ornaments, while 18K is common for diamond-studded and lightweight designer pieces where durability matters more than maximum gold content.
+Rates move frequently. Confirm that the quote and jewellery use the same purity and unit before entering it. Do not apply a purity factor again when the jeweller has already quoted a rate for that exact purity.
 </p>
 
 <h2>Making Charges by Jewellery Type</h2>
@@ -254,13 +254,13 @@ Some jewellers quote making charges as a flat per-gram rate instead of a percent
 </tr>
 <tr>
 <td>Gold value (22K, 10g)</td>
-<td>10g × ₹13,000/g</td>
-<td>₹1,30,000</td>
+<td>10g × illustrative ₹10,000/g</td>
+<td>₹1,00,000</td>
 </tr>
 <tr>
 <td>Making charge (12%)</td>
-<td>12% of ₹1,30,000</td>
-<td>₹15,600</td>
+<td>12% of ₹1,00,000</td>
+<td>₹12,000</td>
 </tr>
 <tr>
 <td>Hallmarking fee</td>
@@ -269,18 +269,18 @@ Some jewellers quote making charges as a flat per-gram rate instead of a percent
 </tr>
 <tr>
 <td>Subtotal</td>
-<td>₹1,30,000 + ₹15,600 + ₹45</td>
-<td>₹1,45,645</td>
+<td>₹1,00,000 + ₹12,000 + ₹45</td>
+<td>₹1,12,045</td>
 </tr>
 <tr>
 <td>GST (3%)</td>
-<td>3% of ₹1,45,645</td>
-<td>₹4,369</td>
+<td>3% of ₹1,12,045</td>
+<td>₹3,361.35</td>
 </tr>
 <tr>
 <td><strong>Final Price</strong></td>
 <td>Subtotal + GST</td>
-<td><strong>≈ ₹1,50,014</strong></td>
+<td><strong>≈ ₹1,15,406.35</strong></td>
 </tr>
 </table>
 
@@ -297,7 +297,7 @@ On a typical mid-range gold jewellery purchase, the gold value itself usually ac
 <h2>City-Wise Gold Rate Variation</h2>
 
 <p>
-Gold rates aren't perfectly uniform across India. They're influenced by each city's jewellers' association rate, state-level taxes, transport costs, and local demand levels. As a general pattern, cities with very high transaction volumes sometimes see marginally lower rates than smaller towns, since bulk purchasing further up the supply chain brings small discounts that get passed down. As an example, one large southern metro recently priced 22K gold at roughly ₹12,900 per gram against a national average closer to ₹13,000 — a difference of well under 1%. These gaps are usually too small to justify travelling between cities purely to chase a better rate, but they do mean the exact number you see on a national price page may not perfectly match what your local jeweller quotes that morning.
+Gold quotes can differ by city, seller, purity, time, and whether the quote is a retail or buy-back rate. Use the exact rate and unit written on the proposed itemised bill rather than a national snapshot from another date or seller.
 </p>
 
 <h2>Understanding Your Gold Bill: What to Check Before You Pay</h2>

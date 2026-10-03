@@ -19,11 +19,15 @@ import { ppfVsFdVsSip } from "./ppf-vs-fd-vs-sip";
 import { sipVsLumpsumInvestment } from "./sip-vs-lumpsum-investment";
 import { oldTaxRegimeVsNewTaxRegime } from "./old-tax-regime-vs-new-tax-regime";
 import { mutualFundVsEtf } from "./mutual-fund-vs-etf";
+import { howMuchCarCanIAffordIndiaBlog } from "./how-much-car-can-i-afford-india";
+import { tyreUpsizingGuideIndiaBlog } from "./tyre-upsizing-guide-india";
 
 
 
 
 export const blogs = [
+  howMuchCarCanIAffordIndiaBlog,
+  tyreUpsizingGuideIndiaBlog,
   howToCalculatePercentage,
   percentageIncreaseFormula,
   percentageDecreaseFormula,

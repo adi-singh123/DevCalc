@@ -70,7 +70,7 @@ import { loveCalculator } from "./fun/loveCalculator";
 import { friendshipCalculator } from "./fun/friendshipCalculator";
 import { crushCalculator } from "./fun/crush";
 import { luckyNumberCalculator } from "./fun/lucky";
-// import { safePeriodCalculator } from "./fun/safePeriodCalculator";
+import { safePeriodCalculator } from "./fun/safePeriodCalculator";
 import { houseConstructionCostCalculator } from "./construction/houseConstructionCost";
 import { brickCalculator } from "./construction/brickCalculator";
 import { cementCalculator } from "./construction/cementCalculator";
@@ -97,7 +97,7 @@ import { travelCostCalculator } from "./other/travelCostCalculator";
 import {tileCalculator } from "./construction/tileCalculator";
 import { zodiacCompatibilityCalculator } from "./fun/zodiacCompatibilityCalculator";
 import { kundliMilanCalculator } from "./fun/Kundli";
-// import { braSizeCalculator } from "./fun/braCalculator";
+import { braSizeCalculator } from "./fun/braCalculator";
 import { rebarCuttingLengthCalculator } from "./construction/rebarcuttinglengthcalculator";
 import { fertilizerRequirementCalculator } from "./other/fertilizerRequirementCalculator";
 import { roadTaxCalculator } from "./vehical/roadTaxCalculator";
@@ -111,8 +111,22 @@ import { paintCalculator } from "./construction/paint";
 import { stampDutyCalculator } from "./construction/stampDutyCalculator";
 import { irctcRefundCalculator } from "./vehical/irctcRefundCalculator";
 import { staircaseCalculator } from "./construction/staircaseCalculator";
+import { waterTankCapacityCalculator } from "./construction/waterTankCapacityCalculator";
+import { aacBlockCalculator } from "./construction/aacBlockCalculator";
+import { homeLoanPrepaymentCalculator } from "./finance/homeLoanPrepaymentCalculator";
+import { carAffordabilityCalculator } from "./vehical/carAffordabilityCalculator";
+import { tyreSizeCalculator } from "./vehical/tyreSizeCalculator";
+import { flamesCalculator } from "./fun/flamesCalculator";
+import { petAgeCalculator } from "./fun/petAgeCalculator";
 
 export const calculators = [
+  carAffordabilityCalculator,
+  tyreSizeCalculator,
+  flamesCalculator,
+  petAgeCalculator,
+  homeLoanPrepaymentCalculator,
+  waterTankCapacityCalculator,
+  aacBlockCalculator,
   staircaseCalculator,
   irctcRefundCalculator,
   ageCalculator,
@@ -187,7 +201,7 @@ export const calculators = [
   friendshipCalculator,
   crushCalculator,
   luckyNumberCalculator,
-  // safePeriodCalculator,
+  safePeriodCalculator,
   houseConstructionCostCalculator,
   brickCalculator,
   cementCalculator,
@@ -214,7 +228,7 @@ export const calculators = [
   tileCalculator,
   zodiacCompatibilityCalculator,
   kundliMilanCalculator,
-  // braSizeCalculator,
+  braSizeCalculator,
   rebarCuttingLengthCalculator,
   fertilizerRequirementCalculator,
   roadTaxCalculator,

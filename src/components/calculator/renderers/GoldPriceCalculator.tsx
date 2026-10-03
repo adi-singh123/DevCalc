@@ -4,10 +4,10 @@ import { useMemo, useRef, useState } from "react";
 import ResultsSection from "../ResultsSection";
 
 const PURITY_OPTIONS = [
-  { label: "24K (99.9% Pure)", value: "24K", factor: 0.999 },
-  { label: "22K (91.6% Pure)", value: "22K", factor: 0.916 },
-  { label: "18K (75% Pure)", value: "18K", factor: 0.75 },
-  { label: "14K (58.3% Pure)", value: "14K", factor: 0.583 },
+  { label: "24K (99.9% Pure)", value: "24K", rateFactor: 1, contentFactor: 0.999 },
+  { label: "22K (91.6% Pure)", value: "22K", rateFactor: 0.916, contentFactor: 0.916 },
+  { label: "18K (75% Pure)", value: "18K", rateFactor: 0.75, contentFactor: 0.75 },
+  { label: "14K (58.3% Pure)", value: "14K", rateFactor: 0.583, contentFactor: 0.583 },
 ] as const;
 
 const UNIT_OPTIONS = [
@@ -56,11 +56,11 @@ export default function GoldPriceCalculator() {
     // Otherwise, treat the entered rate as a 24K base rate and scale it down.
     const effectiveRatePerGram = rateIsForSelectedPurity
       ? rate
-      : rate * purityInfo.factor;
+      : rate * purityInfo.rateFactor;
 
     const totalValue = effectiveRatePerGram * weightInGrams;
 
-    const pureGoldGrams = weightInGrams * purityInfo.factor;
+    const pureGoldGrams = weightInGrams * purityInfo.contentFactor;
 
     return {
       weightInGrams,
@@ -124,7 +124,7 @@ export default function GoldPriceCalculator() {
             type="number"
             inputMode="decimal"
             min="0"
-            placeholder="e.g. 14200"
+            placeholder="Enter current rate"
             value={goldRate}
             onChange={(e) => setGoldRate(e.target.value)}
             className="w-full min-w-0 rounded-xl border p-3"

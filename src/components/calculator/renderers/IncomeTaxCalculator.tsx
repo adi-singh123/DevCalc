@@ -5,7 +5,7 @@ import ResultsSection from "../ResultsSection";
 
 type Slab = { limit: number; rate: number };
 
-// FY 2025-26 (AY 2026-27) slabs, per Union Budget 2025 (unchanged for FY 2026-27)
+// Tax Year 2026-27 slabs. Budget 2026 retained the personal-income-tax rates.
 const NEW_REGIME_SLABS: Slab[] = [
   { limit: 400000, rate: 0 },
   { limit: 800000, rate: 0.05 },
@@ -68,6 +68,9 @@ export default function IncomeTaxCalculator() {
     // Section 87A rebate: full tax liability is waived below the threshold
     if (income <= rebateLimit) {
       tax = 0;
+    } else if (taxRegime === "new") {
+      // Marginal relief limits tax to the income exceeding the rebate threshold.
+      tax = Math.min(tax, income - NEW_REGIME_REBATE_INCOME_LIMIT);
     }
 
     const cess = tax * CESS_RATE;
@@ -80,7 +83,7 @@ export default function IncomeTaxCalculator() {
   const results = taxData
     ? [
         {
-          label: "Annual Income",
+          label: "Taxable Income",
           value: `₹${taxData.income.toLocaleString("en-IN")}`,
         },
         {
@@ -114,13 +117,13 @@ export default function IncomeTaxCalculator() {
       <h2 className="text-2xl font-semibold">Income Tax Calculator</h2>
 
       <p className="mt-2 text-slate-600">
-        Calculate your estimated income tax liability under the Indian tax
-        regime for FY 2025-26 (AY 2026-27).
+        Calculate estimated tax on normal slab-rate income for Indian Tax Year
+        2026-27 under either the New or Old Regime.
       </p>
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <div>
-          <label className="mb-2 block font-medium">Annual Income (₹)</label>
+          <label className="mb-2 block font-medium">Taxable Income (₹)</label>
 
           <input
             type="number"
@@ -198,11 +201,11 @@ export default function IncomeTaxCalculator() {
       )}
 
       <p className="mt-6 text-xs text-slate-400">
-        This is an estimate for individuals below 60 years of age. It
-        includes the Section 87A rebate but does not account for surcharge
-        (applicable above ₹50 lakh income), marginal relief near the rebate
-        threshold, or deductions under the old regime. Consult a tax advisor
-        for exact filing figures.
+        Enter taxable income after deductions allowed under the selected
+        regime. This estimate is for individuals below 60 and includes Section
+        87A rebate, marginal relief near the New Regime threshold and 4% cess,
+        but excludes special-rate income and surcharge above ₹50 lakh. Confirm
+        filing figures with the Income Tax Department or a tax professional.
       </p>
     </div>
   );

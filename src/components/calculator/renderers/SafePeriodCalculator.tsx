@@ -32,19 +32,12 @@ export default function SafePeriodCalculator() {
     nextPeriod.setDate(nextPeriod.getDate() + cycleDays);
 
     const ovulationDay = cycleDays - 14;
+    const ovulationDate = new Date(periodStart);
+    ovulationDate.setDate(periodStart.getDate() + ovulationDay);
     const fertileStart = new Date(periodStart);
-    fertileStart.setDate(periodStart.getDate() + Math.max(ovulationDay - 4, 1));
+    fertileStart.setDate(periodStart.getDate() + Math.max(ovulationDay - 5, 0));
     const fertileEnd = new Date(periodStart);
-    fertileEnd.setDate(periodStart.getDate() + Math.min(ovulationDay + 2, cycleDays - 1));
-
-    const safeStart1 = new Date(periodStart);
-    const safeEnd1 = new Date(periodStart);
-    safeEnd1.setDate(periodStart.getDate() + Math.max(ovulationDay - 5, 1));
-
-    const safeStart2 = new Date(periodStart);
-    safeStart2.setDate(periodStart.getDate() + Math.min(ovulationDay + 3, cycleDays - 1));
-    const safeEnd2 = new Date(periodStart);
-    safeEnd2.setDate(periodStart.getDate() + cycleDays - 1);
+    fertileEnd.setDate(periodStart.getDate() + Math.min(ovulationDay + 1, cycleDays - 1));
 
     const formatDate = (date: Date) =>
       date.toLocaleDateString("en-IN", {
@@ -52,7 +45,6 @@ export default function SafePeriodCalculator() {
         month: "short",
       });
 
-    const safeWindow = `${formatDate(safeStart1)} — ${formatDate(safeEnd1)} and ${formatDate(safeStart2)} — ${formatDate(safeEnd2)}`;
     const fertileWindow = `${formatDate(fertileStart)} — ${formatDate(fertileEnd)}`;
     const nextPeriodDate = nextPeriod.toLocaleDateString("en-IN", {
       day: "numeric",
@@ -61,8 +53,8 @@ export default function SafePeriodCalculator() {
     });
 
     return {
-      safeWindow,
       fertileWindow,
+      ovulationDate: formatDate(ovulationDate),
       nextPeriodDate,
     };
   }, [startDate, cycleLength, submitted]);
@@ -70,13 +62,13 @@ export default function SafePeriodCalculator() {
   const results = safePeriodData && !("error" in safePeriodData)
     ? [
         {
-          label: "Estimated Safe Window",
-          value: safePeriodData.safeWindow,
+          label: "Estimated Fertile Window",
+          value: safePeriodData.fertileWindow,
           highlight: true,
         },
         {
-          label: "Likely Fertile Window",
-          value: safePeriodData.fertileWindow,
+          label: "Estimated Ovulation",
+          value: safePeriodData.ovulationDate,
         },
         {
           label: "Next Period Due",
@@ -115,7 +107,7 @@ export default function SafePeriodCalculator() {
           onClick={() => setSubmitted(true)}
           className="cursor-pointer rounded-xl bg-green-600 px-6 py-3 text-white transition-all duration-300 hover:scale-105 hover:bg-green-700 hover:shadow-lg"
         >
-          Estimate Safe Period
+          Estimate Fertile Window
         </button>
 
         <button
@@ -138,26 +130,28 @@ export default function SafePeriodCalculator() {
 
       {safePeriodData && !("error" in safePeriodData) && (
         <div className="mt-8 rounded-3xl border border-emerald-100 bg-gradient-to-r from-emerald-50 to-slate-50 p-8 text-center dark:border-slate-700 dark:from-slate-800 dark:to-slate-900">
-          <div className="text-6xl">🩸</div>
           <p className="mt-4 text-sm font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
-            Estimated Safe Period
+            Estimated Fertile Window
           </p>
           <h3 className="mt-3 text-4xl font-bold text-emerald-700 dark:text-emerald-300">
-            {safePeriodData.safeWindow}
+            {safePeriodData.fertileWindow}
           </h3>
           <p className="mt-4 text-slate-600 dark:text-slate-300">
-            This estimate shows the lower-risk days in your cycle based on the date you entered. It is meant for general awareness and should not replace medical advice.
+            There are no guaranteed “safe days.” This calendar-only estimate can be wrong when ovulation shifts and must not be used as the sole method to prevent pregnancy.
           </p>
         </div>
       )}
 
       {results.length > 0 && (
         <ResultsSection
-          title="Safe Period Results"
+          title="Cycle Timing Estimate"
           results={results}
           calculatorName="Safe Period Calculator"
         />
       )}
+      <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-100">
+        <strong>Important:</strong> A date calculation cannot confirm ovulation or prevent pregnancy. If avoiding pregnancy, use reliable contraception and seek advice from a qualified healthcare professional. Condoms also help protect against sexually transmitted infections.
+      </div>
     </div>
   );
 }

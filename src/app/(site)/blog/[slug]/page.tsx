@@ -19,6 +19,10 @@ type Props = {
   }>;
 };
 
+export function generateStaticParams() {
+  return blogs.map((blog) => ({ slug: blog.slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const blog = blogs.find((item) => item.slug === slug);
@@ -55,11 +59,30 @@ export default async function BlogDetailsPage({ params }: Props) {
     notFound();
   }
 
-  const relatedBlogs = blogs
-    .filter((item) => item.slug !== blog.slug)
-    .slice(0, 4);
+  const sameCategoryBlogs = blogs.filter(
+    (item) => item.slug !== blog.slug && item.category === blog.category,
+  );
+  const fallbackBlogs = blogs.filter(
+    (item) => item.slug !== blog.slug && item.category !== blog.category,
+  );
+  const relatedBlogs = [...sameCategoryBlogs, ...fallbackBlogs].slice(0, 4);
 
-  const popularCalculators = calculators.slice(0, 8);
+  const selectedCalculators = (blog.relatedCalculatorSlugs ?? [])
+    .map((calculatorSlug) =>
+      calculators.find((calculator) => calculator.slug === calculatorSlug),
+    )
+    .filter((calculator): calculator is (typeof calculators)[number] => Boolean(calculator));
+
+  const categoryCalculators = calculators.filter(
+    (calculator) => calculator.category === blog.category,
+  );
+
+  const relatedCalculators = [...selectedCalculators, ...categoryCalculators]
+    .filter(
+      (calculator, index, items) =>
+        items.findIndex((item) => item.slug === calculator.slug) === index,
+    )
+    .slice(0, 8);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -182,6 +205,31 @@ export default async function BlogDetailsPage({ params }: Props) {
                 ))}
               </ul>
             </section>
+
+            {selectedCalculators.length > 0 && (
+              <section className="mt-8 rounded-2xl border border-blue-100 bg-blue-50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-700 dark:text-blue-300">
+                  Free interactive tools
+                </p>
+                <h2 className="mt-2 font-serif text-2xl font-semibold text-[#26364a] dark:text-white">
+                  Calculate with your own numbers
+                </h2>
+                <p className="mt-2 text-stone-600 dark:text-slate-300">
+                  Use the calculators related to this guide to compare scenarios instead of relying only on the examples.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {selectedCalculators.map((calculator) => (
+                    <Link
+                      key={calculator.slug}
+                      href={`/${calculator.slug}`}
+                      className="rounded-full bg-[#1f3a5c] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#162a43]"
+                    >
+                      {calculator.name}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
 
             <LeaderboardThirdPartyAd />
 
@@ -340,11 +388,11 @@ export default async function BlogDetailsPage({ params }: Props) {
 
               <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-slate-700 dark:bg-slate-900">
                 <div className="border-b border-stone-200 bg-[#faf7f0] p-4 font-serif text-lg font-semibold text-[#26364a] dark:border-slate-700 dark:bg-slate-900 dark:text-white">
-                  Popular Calculators
+                  Related Calculators
                 </div>
 
                 <div className="divide-y divide-stone-100 dark:divide-slate-700">
-                  {popularCalculators.map((calculator) => (
+                  {relatedCalculators.map((calculator) => (
                     <Link
                       key={calculator.slug}
                       href={`/${calculator.slug}`}

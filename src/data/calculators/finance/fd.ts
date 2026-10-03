@@ -20,9 +20,9 @@ export const fdCalculator: Calculator = {
     badge: "RBI & DICGC Banking Framework",
     stat: "₹5,00,000 DICGC Insurance Cap",
     description:
-      "Interest earned on bank FDs is fully taxable per slab rates. TDS is deducted under Section 194A at 10% if annual interest exceeds ₹40,000 (₹50,000 for senior citizens). Senior citizens also enjoy Section 80TTB deduction up to ₹50,000 under the Old Regime.",
+      "Interest earned on bank FDs is generally taxable at applicable slab rates. From 1 April 2025, the Section 194A TDS threshold is ₹50,000 for most depositors and ₹1,00,000 for senior citizens; eligibility, PAN status and special cases can change treatment.",
     source: "Reserve Bank of India (RBI) & Income Tax Department",
-    lastUpdated: "January 2026",
+    lastUpdated: "October 2026",
   },
 
   seo: {

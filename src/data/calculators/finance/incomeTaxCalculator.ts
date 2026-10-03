@@ -6,30 +6,30 @@ export const incomeTaxCalculator: Calculator = {
   name: "Income Tax Calculator",
 
   description:
-    "Calculate your income tax for FY 2025-26 (AY 2026-27) under both the Old and New tax regimes. Compare your tax liability side-by-side, factor in deductions and the Section 87A rebate, and find out which regime saves you more.",
+    "Estimate Indian income tax for Tax Year 2026-27 under the Old or New Regime using taxable income, slab rates, Section 87A rebate, marginal relief, and 4% cess.",
 
   category: "Finance",
 
   isPopular: true,
 
   editorialIntro:
-    "Under the Finance Act (No. 2) 2024, the New Tax Regime (Section 115BAC) provides an increased ₹75,000 standard deduction for salaried employees and a Section 87A rebate that makes taxable income up to ₹7 Lakhs (₹7.75 Lakhs for salaried) effectively tax-free. Evaluating your Old vs. New regime breakeven point helps avoid overpaying advance tax.",
+    "Budget 2026 retained the personal income-tax slabs for Tax Year 2026-27. Under the New Regime, eligible normal slab-rate income up to ₹12 lakh can receive Section 87A relief; salaried taxpayers may separately account for the ₹75,000 standard deduction before entering taxable income.",
 
   benchmarkContext: {
-    title: "Income Tax Slabs & Regime Breakeven (FY 2025-26)",
-    badge: "CBDT & Finance Act 2024",
-    stat: "₹7.75L Tax-Free Threshold (New Regime)",
+    title: "Income Tax Slabs for Tax Year 2026-27",
+    badge: "Income Tax Act 2025 & Budget 2026",
+    stat: "Up to ₹12L Section 87A Threshold",
     description:
-      "For salaried individuals, the New Regime offers ₹75,000 standard deduction + ₹25,000 Section 87A rebate on taxable income up to ₹7 Lakhs. The Old Regime is advantageous only if your total Chapter VI-A deductions (80C, 80D, HRA, Sec 24b) exceed ₹3.75 Lakhs to ₹4.25 Lakhs.",
+      "The New Regime uses slabs from nil up to ₹4 lakh through 30% above ₹24 lakh. Eligible normal slab-rate income up to ₹12 lakh can receive a Section 87A rebate of up to ₹60,000, with marginal relief just above the threshold.",
     source: "Central Board of Direct Taxes (CBDT), Ministry of Finance",
-    lastUpdated: "January 2026",
+    lastUpdated: "October 2026",
   },
 
   seo: {
     title: "Income Tax Calculator 2026: Old vs New Regime – See Which Saves You More",
 
     description:
-      "Enter your income once and instantly compare Old vs New regime tax, including deductions and the Section 87A rebate. Free, accurate, updated for FY 2025-26",
+      "Estimate Old or New Regime income tax using Tax Year 2026-27 slabs, Section 87A rebate, marginal relief and 4% cess.",
     keywords: [
       "income tax calculator",
       "old vs new tax regime calculator",
@@ -47,23 +47,23 @@ export const incomeTaxCalculator: Calculator = {
   steps: [
     {
       step: 1,
-      title: "Enter Annual Gross Income",
+      title: "Enter Taxable Income",
       description:
-        "Input your total gross annual income — salary, business income, freelance earnings, or income from multiple sources combined. This is your income before any deductions are applied.",
+        "Enter normal slab-rate taxable income after applying only the deductions allowed under the regime you selected. Keep special-rate income such as certain capital gains outside this simplified estimate.",
       icon: "calculator",
     },
     {
       step: 2,
-      title: "Select Eligible Deductions",
+      title: "Choose the Tax Regime",
       description:
-        "If you're comparing the Old Regime, enter your eligible deductions — Section 80C investments, Section 80D health insurance, HRA, home loan interest under Section 24, and the standard deduction. The New Regime allows only the standard deduction and a few employer-side benefits, so this step matters less there.",
+        "Choose the New or Old Regime. Calculate taxable income separately because the deductions and exemptions allowed under each regime differ.",
       icon: "calculator",
     },
     {
       step: 3,
-      title: "Compare and View Results",
+      title: "Review the Estimate",
       description:
-        "See your tax liability calculated under both the Old and New regimes side by side, including applicable cess, so you can identify which regime results in lower tax for your specific income and deductions.",
+        "See slab tax, Section 87A relief where eligible, marginal relief near the New Regime threshold, 4% cess, and the effective rate for the selected regime.",
       icon: "result",
     },
   ],
@@ -128,17 +128,17 @@ export const incomeTaxCalculator: Calculator = {
   seoContent: `
 <h2>How Indian Income Tax Works: Old Regime vs New Regime</h2>
 <p>
-  Calculating your income tax in India starts with one decision that affects everything else: which tax regime to use. Since the <strong>New Tax Regime</strong> became the default option from FY 2023-24 onward, most taxpayers now need to actively compare both systems rather than simply filing under whichever applied last year. An <strong>Income Tax Calculator</strong> makes this comparison fast — enter your income and deductions once, and see your liability under both regimes side by side.
+  Calculating income tax starts with choosing a regime and determining taxable income under that regime. This calculator estimates one selected regime at a time. Enter taxable income after the deductions and exemptions permitted for that regime; it does not calculate those deductions from gross salary.
 </p>
 <p>
-  For FY 2025-26 (the year covered by ITRs filed in 2026), the government made the New Regime considerably more attractive by raising the Section 87A rebate and the standard deduction. As a result, income up to ₹12.75 lakh is effectively tax-free for most salaried taxpayers under the New Regime — a threshold that didn't exist in earlier years. The Old Regime remains unchanged and continues to reward taxpayers who actively invest in tax-saving instruments.
+  For Tax Year 2026-27, Budget 2026 retained the personal income-tax slabs. Eligible normal slab-rate taxable income up to ₹12 lakh can receive the New Regime Section 87A rebate. A salaried taxpayer may reach ₹12.75 lakh of gross salary after a ₹75,000 standard deduction, subject to eligibility and other income.
 </p>
 
 ---
 
 <h2>Old Regime vs New Regime: Side-by-Side Comparison</h2>
 <p>
-  The table below summarizes the core differences for FY 2025-26 (AY 2026-27):
+  The table below summarizes the core differences relevant to Tax Year 2026-27:
 </p>
 
 <table>
@@ -199,7 +199,7 @@ export const incomeTaxCalculator: Calculator = {
   A common misunderstanding is thinking that moving into a higher tax bracket means your <em>entire</em> income gets taxed at that higher rate. That's not how it works. Each slab rate applies only to the income that falls within that specific band — income below it is taxed at the lower rates that applied to those earlier slabs.
 </p>
 <p>
-  For example, under the New Regime, the slabs for FY 2025-26 are:
+  For Tax Year 2026-27, the New Regime slabs are:
 </p>
 <table>
   <thead>
@@ -287,7 +287,7 @@ export const incomeTaxCalculator: Calculator = {
 </p>
 <h3>3. Comparing Regimes Using Last Year's Numbers</h3>
 <p>
-  Because the New Regime's rebate and standard deduction changed for FY 2025-26, a regime comparison done with old figures can give the wrong answer. If you compared regimes before this change and stuck with the Old Regime, it's worth re-running the comparison — many taxpayers who previously found the Old Regime cheaper now come out ahead, or roughly even, under the revised New Regime.
+  Tax rules and personal circumstances can change. Use current Tax Year 2026-27 figures, calculate taxable income separately under each regime, and compare the two results instead of reusing a prior-year estimate.
 </p>
 `,
 };

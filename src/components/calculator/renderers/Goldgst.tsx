@@ -4,7 +4,7 @@ import { useMemo, useRef, useState } from "react";
 import ResultsSection from "../ResultsSection";
 
 const PURITY_OPTIONS = [
-  { label: "24K (99.9% Pure)", value: "24K", factor: 0.999 },
+  { label: "24K (99.9% Pure)", value: "24K", factor: 1 },
   { label: "22K (91.6% Pure)", value: "22K", factor: 0.916 },
   { label: "18K (75% Pure)", value: "18K", factor: 0.75 },
   { label: "14K (58.3% Pure)", value: "14K", factor: 0.583 },
@@ -12,8 +12,7 @@ const PURITY_OPTIONS = [
 
 type PurityValue = (typeof PURITY_OPTIONS)[number]["value"];
 
-const GST_ON_GOLD_RATE = 0.03; // 3% GST on gold value — same across every purity
-const GST_ON_MAKING_RATE = 0.05; // 5% GST on making charges, when itemised separately
+const JEWELLERY_GST_RATE = 0.03;
 
 export default function GoldGstCalculator() {
   // States
@@ -62,18 +61,15 @@ export default function GoldGstCalculator() {
     const makingAmount =
       makingType === "percentage" ? goldValue * (making / 100) : making * wt;
 
-    const gstOnGold = goldValue * GST_ON_GOLD_RATE;
-    const gstOnMaking = makingAmount * GST_ON_MAKING_RATE;
-    const totalGst = gstOnGold + gstOnMaking;
-
-    const total = goldValue + makingAmount + hallmark + totalGst;
+    const taxableValue = goldValue + makingAmount + hallmark;
+    const totalGst = taxableValue * JEWELLERY_GST_RATE;
+    const total = taxableValue + totalGst;
 
     return {
       goldValue,
       makingAmount,
       hallmark,
-      gstOnGold,
-      gstOnMaking,
+      taxableValue,
       totalGst,
       total,
       purityLabel: purityInfo.label,
@@ -105,19 +101,15 @@ export default function GoldGstCalculator() {
           value: formatINR(result.goldValue),
         },
         {
-          label: "GST on Gold (3%)",
-          value: formatINR(result.gstOnGold),
-        },
-        {
           label: "Making Charges",
           value: formatINR(result.makingAmount),
         },
         {
-          label: "GST on Making Charges (5%)",
-          value: formatINR(result.gstOnMaking),
+          label: "Taxable Transaction Value",
+          value: formatINR(result.taxableValue),
         },
         {
-          label: "Total GST",
+          label: "GST on Total Value (3%)",
           value: formatINR(result.totalGst),
         },
         ...(includeHallmark
@@ -177,7 +169,7 @@ export default function GoldGstCalculator() {
             type="number"
             inputMode="decimal"
             min="0"
-            placeholder="e.g. 13000"
+            placeholder="Enter current rate"
             value={goldRate}
             onChange={(e) => setGoldRate(e.target.value)}
             className="w-full min-w-0 rounded-xl border p-3"
@@ -255,8 +247,8 @@ export default function GoldGstCalculator() {
           className="w-full min-w-0 rounded-xl border p-3"
         />
         <p className="mt-1 text-sm text-slate-500">
-          Making charges are taxed separately at 5% GST — not the 3% rate
-          applied to gold value.
+          For a retail jewellery sale, 3% GST applies to the total transaction
+          value even when making charges are shown separately.
         </p>
       </div>
 
@@ -313,9 +305,8 @@ export default function GoldGstCalculator() {
           </h3>
 
           <p className="mt-2 text-slate-600">
-            {result.purityLabel} — 3% on gold value (
-            {formatINR(result.gstOnGold)}) + 5% on making charges (
-            {formatINR(result.gstOnMaking)}). Final price:{" "}
+            {result.purityLabel} jewellery — 3% of the taxable transaction
+            value ({formatINR(result.taxableValue)}). Final price:{" "}
             {formatINR(result.total)}.
           </p>
         </div>

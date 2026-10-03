@@ -152,7 +152,7 @@ export default function GoldMakingChargesCalculator() {
             type="number"
             inputMode="decimal"
             min="0"
-            placeholder="e.g. 13000"
+            placeholder="Enter current rate"
             value={goldRate}
             onChange={(e) => setGoldRate(e.target.value)}
             className="w-full rounded-xl border p-3"

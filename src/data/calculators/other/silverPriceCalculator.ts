@@ -81,14 +81,14 @@ export const silverPriceCalculator: Calculator = {
       "Silver Value = Silver Rate per Gram × Weight in Grams × Purity Factor",
 
     explanation:
-      "Valuing silver works on the same core logic as valuing gold: multiply the current rate by the weight, then adjust for how pure the metal actually is. The rate is the day's market price per gram for silver, the weight is whatever the item weighs converted into grams, and the purity factor scales the raw weight down to reflect how much of it is actually silver versus other alloyed metals.\n\nPure silver, marked 999 or 'fine silver', is 99.9% silver and carries a purity factor of essentially 1. In practice, fine silver is mainly used for investment bars and coins rather than everyday items, because like pure gold, it's too soft on its own to hold up well under daily handling. The purity most people actually own is 925, known as sterling silver, which is 92.5% silver alloyed with copper or other metals for strength — this is the standard for silver jewellery, cutlery, and decorative items worldwide, with a purity factor of 0.925. Slightly lower purities also show up occasionally: 900 (coin silver, used historically in some silver coins, factor 0.9) and 800 (used in some older European silverware and certain traditional Indian pieces, factor 0.8).\n\nAs of early July 2026, national average reference rates for silver in India stood at roughly ₹235 per gram, or about ₹2,35,000 per kilogram, for the standard traded rate. Applying the purity factors, this works out to approximately ₹217 per gram for 925 sterling silver, ₹211 per gram for 900 purity, and ₹188 per gram for 800 purity. Silver prices are historically more volatile than gold on a percentage basis, since the silver market is smaller and more sensitive to industrial demand swings — silver is heavily used in electronics, solar panels, and other industrial applications alongside its role as jewellery and an investment metal — so day-to-day and week-to-week price movements in silver tend to be sharper than those seen in gold.\n\nAs with gold, this formula gives you the raw metal value only. It doesn't include making charges for crafted silver items, GST, or any margin a jeweller or dealer might build into a buy-back offer. If you're pricing silverware or jewellery you're about to buy, treat this as the base cost before labour and tax are added; if you're valuing silver you already own for resale, treat it as a fair reference point to compare against actual buy-back quotes, which are often somewhat lower.",
+      "A quoted 999 fine-silver rate is kept unchanged; lower-purity rate factors are 0.925 for sterling silver, 0.9 for coin silver, and 0.8 for 800 silver. Physical fine-silver content is reported separately and treats 999 silver as 99.9% pure. If the quote already matches the selected purity, mark it accordingly so purity is not applied twice. Confirm whether a current quote is per gram or kilogram and whether it is a retail or buy-back rate. The result covers metal value only and excludes labour, GST and dealer deductions.",
 
     example: {
       input:
-        "Weight: 100 grams, Purity: 925 (Sterling), Silver rate: ₹235 per gram (999 base rate)",
+        "Weight: 100 grams, Purity: 925 (Sterling), example 999 reference rate: ₹100 per gram",
 
       output:
-        "Purity factor for 925 = 0.925. Silver Value = ₹235 × 100 × 0.925 = ₹21,738. This is the raw metal value only — making charges and GST would add to this if you're buying crafted silverware or jewellery, not just valuing existing silver.",
+        "Purity factor for 925 = 0.925. Silver Value = ₹100 × 100 × 0.925 = ₹9,250. The rate is illustrative; replace it with a current quote.",
     },
 
     useCases: [
@@ -110,7 +110,7 @@ export const silverPriceCalculator: Calculator = {
     {
       question: "What is the current silver rate in India?",
       answer:
-        "Silver rates move daily and can shift more sharply than gold in percentage terms, so there's no fixed number — but as a recent reference point, national average rates in early July 2026 stood at around ₹235 per gram, or roughly ₹2,35,000 per kilogram. These figures move with global silver prices, industrial demand trends, and the rupee-dollar exchange rate, so treat this as a ballpark and check the live rate from a trusted source or dealer on the day you need an accurate figure.",
+        "There is no single permanent India-wide silver rate. Confirm a current quote and whether it is per gram or kilogram, for 999 silver or another purity, and a retail or buy-back price. Divide a per-kilogram quote by 1,000 before entering a per-gram rate.",
     },
 
     {
@@ -128,7 +128,7 @@ export const silverPriceCalculator: Calculator = {
     {
       question: "How much is 1 gram of silver worth right now?",
       answer:
-        "At a recent reference rate of roughly ₹235 per gram for 999 fine silver (early July 2026 levels), 1 gram of 925 sterling silver would work out to about ₹217, once the 0.925 purity factor is applied. Because silver prices can move noticeably within even a single week, this figure should be treated as a snapshot — for an accurate current value, apply the day's live rate to the relevant purity factor rather than relying on a past number.",
+        "Multiply the current 999 fine-silver rate by 0.925 to estimate the metal value of 1 gram of sterling silver. For example, a purely illustrative ₹100-per-gram 999 rate gives ₹92.50 per gram at 925 purity.",
     },
 
     {
@@ -178,43 +178,43 @@ A Silver Price Calculator works out the market value of silver based on three in
 One important caveat: this calculator works with the rate you enter — it doesn't fetch or guarantee the live market rate itself. Silver prices move daily, and can move more sharply within a single day than gold prices typically do, so always confirm the current rate with a trusted dealer or price source before treating a calculated figure as final, particularly for any purchase or sale of meaningful value.
 </p>
 
-<h2>Current Silver Rates in India (Reference, Early July 2026)</h2>
+<h2>Silver Purity Reference</h2>
 
 <table>
 <tr>
 <th>Purity</th>
 <th>Composition</th>
-<th>Approx. Rate per Gram</th>
-<th>Approx. Rate per Kilogram</th>
+<th>Purity Factor</th>
+<th>Value from a 999 Base Rate</th>
 </tr>
 <tr>
 <td>999 (Fine Silver)</td>
 <td>99.9% pure silver</td>
-<td>₹235</td>
-<td>₹2,35,000</td>
+<td>0.999</td>
+<td>Base rate × 1.000</td>
 </tr>
 <tr>
 <td>925 (Sterling Silver)</td>
 <td>92.5% pure silver</td>
-<td>₹217</td>
-<td>₹2,17,375</td>
+<td>0.925</td>
+<td>Base rate × 0.925</td>
 </tr>
 <tr>
 <td>900 (Coin Silver)</td>
 <td>90% pure silver</td>
-<td>₹211</td>
-<td>₹2,11,500</td>
+<td>0.900</td>
+<td>Base rate × 0.900</td>
 </tr>
 <tr>
 <td>800</td>
 <td>80% pure silver</td>
-<td>₹188</td>
-<td>₹1,88,000</td>
+<td>0.800</td>
+<td>Base rate × 0.800</td>
 </tr>
 </table>
 
 <p>
-These are national average reference rates and can move noticeably within a single week, given how sensitive silver is to both investment demand and industrial usage. 999 is treated as the base rate for pure silver; rates for lower purities are the base rate scaled down by the actual silver content in the alloy.
+Use a current 999 fine-silver rate as the base only when the source clearly identifies the purity and unit. When a quote is per kilogram, divide it by 1,000 before entering a per-gram rate.
 </p>
 
 <h2>Silver Value by Weight Unit</h2>
@@ -223,27 +223,27 @@ These are national average reference rates and can move noticeably within a sing
 <tr>
 <th>Unit</th>
 <th>Equivalent in Grams</th>
-<th>Approx. Value at 925 Rate (₹217/g)</th>
+<th>Conversion</th>
 </tr>
 <tr>
 <td>1 Gram</td>
 <td>1 g</td>
-<td>₹217</td>
+<td>entered per-gram value</td>
 </tr>
 <tr>
 <td>1 Tola</td>
 <td>11.6638 g</td>
-<td>₹2,531</td>
+<td>per-gram value × 11.6638</td>
 </tr>
 <tr>
 <td>1 Ounce (Troy)</td>
 <td>31.1035 g</td>
-<td>₹6,750</td>
+<td>per-gram value × 31.1035</td>
 </tr>
 <tr>
 <td>1 Kilogram</td>
 <td>1,000 g</td>
-<td>₹2,17,000</td>
+<td>per-gram value × 1,000</td>
 </tr>
 </table>
 
@@ -258,31 +258,31 @@ The troy ounce is the standard unit used in international bullion and commoditie
 <th>Purity</th>
 <th>Silver Content %</th>
 <th>Purity Factor</th>
-<th>Value of 100g at ₹235/g (999 base)</th>
+<th>Value of 100g from a 999 Base Rate</th>
 </tr>
 <tr>
 <td>999</td>
 <td>99.9%</td>
 <td>0.999</td>
-<td>₹23,477</td>
+<td>base rate × 100</td>
 </tr>
 <tr>
 <td>925</td>
 <td>92.5%</td>
 <td>0.925</td>
-<td>₹21,738</td>
+<td>base rate × 92.5</td>
 </tr>
 <tr>
 <td>900</td>
 <td>90%</td>
 <td>0.900</td>
-<td>₹21,150</td>
+<td>base rate × 90</td>
 </tr>
 <tr>
 <td>800</td>
 <td>80%</td>
 <td>0.800</td>
-<td>₹18,800</td>
+<td>base rate × 80</td>
 </tr>
 </table>
 

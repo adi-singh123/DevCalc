@@ -22,11 +22,11 @@ const UK_CUP_SEQUENCE = [
   "AA", "A", "B", "C", "D", "DD", "E", "F", "FF", "G", "GG", "H",
 ];
 
-// EU cup sizing is numeric, increasing by 1 per inch of difference.
-const EU_CUP_START = 1;
+// EU labels commonly use single letters after D; exact brand charts vary.
+const EU_CUP_SEQUENCE = [
+  "AA", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+];
 
-// EU band numbers run ~15-16 higher than US/UK band inches (e.g. US 34 ≈ EU 75).
-const EU_BAND_OFFSET = 15;
 
 // Realistic human measurement bounds in inches, used to catch typos
 // like an accidental extra digit (e.g. "3200" instead of "32").
@@ -41,12 +41,10 @@ function toInches(value: number, unit: Unit): number {
   return unit === "cm" ? value * CM_TO_IN : value;
 }
 
-// Band size uses the standard "add-on" method: round the underbust
-// measurement to the nearest whole number, then add 4 if even or 5 if odd.
+// Use the snug underbust as the starting band and round to the nearest even
+// size. Brand-specific charts and individual fit can differ.
 function calculateBandSize(underbustIn: number): number {
-  const rounded = Math.round(underbustIn);
-  const isEven = rounded % 2 === 0;
-  return isEven ? rounded + 4 : rounded + 5;
+  return Math.max(26, Math.round(underbustIn / 2) * 2);
 }
 
 function getCupIndex(differenceIn: number): number {
@@ -93,13 +91,14 @@ function calculateSize(bandRaw: number, bustRaw: number, unit: Unit): SizeResult
 
   const cupLetterUS = US_CUP_SEQUENCE[cupIndex];
   const cupLetterUK = UK_CUP_SEQUENCE[cupIndex];
-  const cupLetterEU = EU_CUP_START + cupIndex;
+  const cupLetterEU = EU_CUP_SEQUENCE[cupIndex];
+  const euBand = Math.round(((bandSize - 4) * 2.5) / 5) * 5;
 
   return {
     bandSize,
     sizeLabelUS: `${bandSize}${cupLetterUS}`,
     sizeLabelUK: `${bandSize}${cupLetterUK}`,
-    sizeLabelEU: `${bandSize + EU_BAND_OFFSET}${cupLetterEU}`,
+    sizeLabelEU: `${euBand}${cupLetterEU}`,
     // India follows the same band-number + cup-letter convention as the UK
     // (32B, 34C, 36DD, etc.) rather than a separate numbering system.
     sizeLabelIN: `${bandSize}${cupLetterUK}`,
@@ -350,6 +349,7 @@ export default function BraSizeCalculator() {
             <option value="US">US</option>
             <option value="UK">UK</option>
             <option value="EU">EU</option>
+            <option value="IN">India / UK</option>
           </select>
         </div>
       </div>

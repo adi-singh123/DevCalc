@@ -18,11 +18,11 @@ export const sukanyaSamriddhiCalculator: Calculator = {
   benchmarkContext: {
     title: "Ministry of Finance Sukanya Samriddhi Scheme Rules",
     badge: "Government Sovereign Small Savings",
-    stat: "8.2% p.a. Compounded Annually (Q4 FY 2024-25)",
+    stat: "8.2% p.a. Compounded Annually (Q3 FY 2026-27)",
     description:
       "Statutory parameters: Minimum deposit ₹250/year, Maximum ₹1,50,000/year (Section 80C deductible). Mandatory 15-year deposit period; complete maturity at 21 years or upon marriage after age 18. Interest and maturity proceeds are 100% tax-free under Section 10(11A).",
     source: "Department of Economic Affairs, Ministry of Finance (Notification G.S.R. 323(E))",
-    lastUpdated: "January 2026",
+    lastUpdated: "October 2026",
   },
 
   compareWith: [
@@ -36,7 +36,7 @@ export const sukanyaSamriddhiCalculator: Calculator = {
     title: "Sukanya Samriddhi Yojana Calculator - SSY Maturity Calculator",
 
     description:
-      "Calculate Sukanya Samriddhi Yojana (SSY) maturity amount, investment, and tax-free interest earnings with latest official 8.2% government interest rates.",
+      "Calculate Sukanya Samriddhi Yojana (SSY) maturity using the 8.2% rate retained for Q3 FY 2026-27. Actual future returns change when the government revises quarterly rates.",
     keywords: [
       "sukanya samriddhi calculator",
       "ssy calculator",
@@ -67,7 +67,7 @@ export const sukanyaSamriddhiCalculator: Calculator = {
     {
       step: 3,
       title: "Enter Interest Rate",
-      description: "The calculation uses the officially declared government SSY interest rate per annum.",
+      description: "The calculation uses 8.2% as the current planning assumption; government-notified rates can change by quarter.",
       icon: "calculator",
     },
     {
