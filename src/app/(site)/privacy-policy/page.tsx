@@ -213,18 +213,10 @@ const SECTIONS = [
           .
         </p>
         <p>
-          DevCalc also uses a separate third-party sidebar advertising placement
-          that loads independently of your optional-cookie choice. Its provider may
+          DevCalc also uses third-party display advertising placements in page
+          content and sidebars. These placements may load independently of your optional-cookie choice. Their provider may
           process technical request information, such as your IP address, browser
           details, and referring page, when delivering the advertisement.
-        </p>
-        <p>
-          DevCalc may also load third-party
-          social-bar and popunder advertising scripts supplied through the
-          profitableratecpmnetwork.com domain. These formats can open or display
-          advertising outside the normal page content and may process device,
-          browser, IP-address, referral, interaction, and campaign information.
-          These scripts may load independently of your optional analytics choice.
         </p>
       </div>
     ),

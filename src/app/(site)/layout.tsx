@@ -8,6 +8,7 @@ import ChatWidget from "@/src/components/chatbot/ChatWidget";
 import AssistantSchema from "@/src/components/seo/AssistantSchema";
 import CookieConsent from "@/src/components/privacy/CookieConsent";
 import InContentAd from "@/src/components/ads/InContentAd";
+import StaticPageTopAd from "@/src/components/ads/StaticPageTopAd";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -186,6 +187,7 @@ export default function RootLayout({
         <OrganizationSchema />
         <AssistantSchema />
         <Header />
+        <StaticPageTopAd />
         <main className="flex-1">{children}</main>
         <InContentAd />
         <Footer />

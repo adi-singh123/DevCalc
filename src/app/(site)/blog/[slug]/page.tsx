@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
@@ -9,9 +10,8 @@ import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import AuthorBio from "@/src/components/common/AuthorBio";
 import { getCategorySlug } from "@/src/data/categories/Category";
-import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
+import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
-import AdSlot from "@/src/components/ads/AdSlot";
 
 type Props = {
   params: Promise<{
@@ -231,15 +231,15 @@ export default async function BlogDetailsPage({ params }: Props) {
               </section>
             )}
 
-            <LeaderboardThirdPartyAd />
+            <ResponsiveContentAd priority />
 
             {/* Content */}
             <div className="mt-12 space-y-12">
               {blog.content.map((section, index) => (
-                <section
-                  key={index}
-                  id={section.heading.toLowerCase().replace(/\s+/g, "-")}
-                >
+                <Fragment key={section.heading}>
+                  <section
+                    id={section.heading.toLowerCase().replace(/\s+/g, "-")}
+                  >
                   <h2 className="mb-5 font-serif text-3xl font-semibold tracking-tight text-[#26364a] dark:text-white">
                     {section.heading}
                   </h2>
@@ -307,7 +307,11 @@ export default async function BlogDetailsPage({ params }: Props) {
                       </div>
                     )}
                   </div>
-                </section>
+                  </section>
+                  {index === 2 && blog.content.length > 4 && (
+                    <ResponsiveContentAd />
+                  )}
+                </Fragment>
               ))}
             </div>
 
@@ -404,7 +408,7 @@ export default async function BlogDetailsPage({ params }: Props) {
                 </div>
               </div>
 
-              <AdSlot />
+              <SidebarThirdPartyAd />
             </div>
           </aside>
         </div>

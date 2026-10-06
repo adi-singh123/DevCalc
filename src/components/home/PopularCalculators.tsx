@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { calculators } from "@/src/data/calculators";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
 import { getCategorySlug } from "@/src/data/categories/Category";
-import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
+import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 
 // SEO-optimized category copy map to dynamically populate descriptions based on context
 const CATEGORY_SEO_DESCRIPTIONS: Record<string, string> = {
@@ -101,7 +101,9 @@ export default function CalculatorCategories() {
                 </div>
               )}
             </div>
-            {index < categories.length - 1 && <LeaderboardThirdPartyAd />}
+            {(index + 1) % 3 === 0 && index < categories.length - 1 && (
+              <ResponsiveContentAd />
+            )}
           </Fragment>
         );
       })}

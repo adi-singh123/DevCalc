@@ -15,7 +15,11 @@ function getIsDesktop() {
   return window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
 }
 
-export default function LeaderboardThirdPartyAd() {
+export default function LeaderboardThirdPartyAd({
+  priority = false,
+}: {
+  priority?: boolean;
+}) {
   const isDesktop = useSyncExternalStore<boolean | null>(
     subscribe,
     getIsDesktop,
@@ -30,6 +34,7 @@ export default function LeaderboardThirdPartyAd() {
             adKey="7da1fcc8bc2591c38404f2f0d38fbb3b"
             width={728}
             height={90}
+            priority={priority}
           />
         )}
       </div>
@@ -40,6 +45,7 @@ export default function LeaderboardThirdPartyAd() {
             adKey="851deb562af5a8a032b29f055d46b63b"
             width={320}
             height={50}
+            priority={priority}
           />
         )}
       </div>

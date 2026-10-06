@@ -9,7 +9,7 @@ import { CATEGORY_GUIDES } from "@/src/data/categories/categoryGuides";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
-import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
+import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 
 type Props = {
   params: Promise<{
@@ -242,7 +242,7 @@ export default async function CategoryPage({
               <CalculatorCard calculator={calculator} />
               {(index + 1) % 6 === 0 && index < categoryCalculators.length - 1 && (
                 <div className="sm:col-span-2 lg:col-span-3">
-                  <LeaderboardThirdPartyAd />
+                  <ResponsiveContentAd />
                 </div>
               )}
             </Fragment>

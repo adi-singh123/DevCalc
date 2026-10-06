@@ -5,6 +5,7 @@ type ThirdPartyAdProps = {
   width: number;
   height: number;
   className?: string;
+  priority?: boolean;
 };
 
 function createAdDocument(adKey: string, width: number, height: number) {
@@ -38,6 +39,7 @@ export default function ThirdPartyAd({
   width,
   height,
   className = "",
+  priority = false,
 }: ThirdPartyAdProps) {
   return (
     <iframe
@@ -48,7 +50,7 @@ export default function ThirdPartyAd({
       srcDoc={createAdDocument(adKey, width, height)}
       title={`Advertisement ${width} by ${height}`}
       aria-label="Advertisement"
-      loading="lazy"
+      loading={priority ? "eager" : "lazy"}
       scrolling="no"
       referrerPolicy="strict-origin-when-cross-origin"
     />

@@ -5,7 +5,7 @@ import CalculatorSearch from "@/src/components/calculator/CalculatorSearch";
 import { calculators } from "@/src/data/calculators";
 import { siteConfig } from "@/src/config/site";
 import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
-import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
+import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 
 export const metadata: Metadata = {
   title: "All Calculators - Free Online Calculator Collection",
@@ -72,7 +72,7 @@ export default function CalculatorsPage() {
                 <CalculatorCard calculator={calculator} />
                 {(index + 1) % 6 === 0 && index < popularCalculators.length - 1 && (
                   <div className="sm:col-span-2 lg:col-span-3">
-                    <LeaderboardThirdPartyAd />
+                    <ResponsiveContentAd />
                   </div>
                 )}
               </Fragment>
@@ -95,7 +95,7 @@ export default function CalculatorsPage() {
               <CalculatorCard calculator={calculator} />
               {(index + 1) % 6 === 0 && index < calculators.length - 1 && (
                 <div className="sm:col-span-2 lg:col-span-3">
-                  <LeaderboardThirdPartyAd />
+                  <ResponsiveContentAd />
                 </div>
               )}
             </Fragment>

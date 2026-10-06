@@ -6,7 +6,7 @@ import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import BlogCard from "@/src/components/blog/BlogCard";
 import { blogs } from "@/src/data/blogs/blog";
-import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
+import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 
 const categories = [
   "All",
@@ -151,6 +151,8 @@ export default function BlogPage() {
         </section>
       )}
 
+      <ResponsiveContentAd priority />
+
       {/* Categories */}
       <section className="mb-10">
         <div className="flex flex-wrap gap-3">
@@ -195,7 +197,7 @@ export default function BlogPage() {
                 <BlogCard blog={blog} />
                 {(index + 1) % 6 === 0 && index < filteredBlogs.length - 1 && (
                   <div className="md:col-span-2 lg:col-span-3">
-                    <LeaderboardThirdPartyAd />
+                    <ResponsiveContentAd />
                   </div>
                 )}
               </Fragment>
