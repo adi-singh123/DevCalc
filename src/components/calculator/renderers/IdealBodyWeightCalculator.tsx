@@ -30,7 +30,8 @@ export default function IdealBodyWeightCalculator() {
 
     if (
       isNaN(heightCm) ||
-      heightCm <= 0
+      heightCm < 120 ||
+      heightCm > 250
     ) {
       return null;
     }
@@ -38,33 +39,29 @@ export default function IdealBodyWeightCalculator() {
     const heightInches =
       heightCm / 2.54;
 
-    const inchesOverFiveFeet =
-      Math.max(
-        0,
-        heightInches - 60,
-      );
+    const inchesFromFiveFeet = heightInches - 60;
 
-    // Devine Formula
-    const idealWeight =
-      gender === "male"
-        ? 50 +
-          2.3 *
-            inchesOverFiveFeet
-        : 45.5 +
-          2.3 *
-            inchesOverFiveFeet;
-
-    const healthyMin =
-      idealWeight * 0.9;
-
-    const healthyMax =
-      idealWeight * 1.1;
+    const devine = gender === "male"
+      ? 50 + 2.3 * inchesFromFiveFeet
+      : 45.5 + 2.3 * inchesFromFiveFeet;
+    const hamwi = gender === "male"
+      ? 48 + 2.7 * inchesFromFiveFeet
+      : 45.5 + 2.2 * inchesFromFiveFeet;
+    const robinson = gender === "male"
+      ? 52 + 1.9 * inchesFromFiveFeet
+      : 49 + 1.7 * inchesFromFiveFeet;
+    const miller = gender === "male"
+      ? 56.2 + 1.41 * inchesFromFiveFeet
+      : 53.1 + 1.36 * inchesFromFiveFeet;
+    const average = (devine + hamwi + robinson + miller) / 4;
 
     return {
       heightCm,
-      idealWeight,
-      healthyMin,
-      healthyMax,
+      devine,
+      hamwi,
+      robinson,
+      miller,
+      average,
     };
   }, [
     height,
@@ -76,22 +73,27 @@ export default function IdealBodyWeightCalculator() {
     ? [
         {
           label:
-            "Ideal Body Weight",
-          value: `${result.idealWeight.toFixed(
+            "Average Reference",
+          value: `${result.average.toFixed(
             1,
           )} kg`,
           highlight: true,
         },
-
         {
-          label:
-            "Healthy Weight Range",
-          value: `${result.healthyMin.toFixed(
-            1,
-          )} kg - ${result.healthyMax.toFixed(
-            1,
-          )} kg`,
-          highlight: false,
+          label: "Devine Formula",
+          value: `${result.devine.toFixed(1)} kg`,
+        },
+        {
+          label: "Hamwi Formula",
+          value: `${result.hamwi.toFixed(1)} kg`,
+        },
+        {
+          label: "Robinson Formula",
+          value: `${result.robinson.toFixed(1)} kg`,
+        },
+        {
+          label: "Miller Formula",
+          value: `${result.miller.toFixed(1)} kg`,
         },
 
         {
@@ -122,14 +124,8 @@ export default function IdealBodyWeightCalculator() {
   
 
       <p className="mt-2 text-slate-600">
-        Calculate your ideal
-        body weight based on
-        height and gender using
-        the Devine Formula.
-        Estimate a healthy
-        target weight range for
-        fitness, nutrition, and
-        weight management.
+        Compare height-based reference estimates from the
+        Devine, Hamwi, Robinson, and Miller formulas.
       </p>
 
       <div className="mt-6 grid gap-6 md:grid-cols-2">
@@ -140,7 +136,8 @@ export default function IdealBodyWeightCalculator() {
 
           <input
             type="number"
-            min="1"
+            min="120"
+            max="250"
             value={height}
             onChange={(e) =>
               setHeight(
@@ -205,32 +202,19 @@ export default function IdealBodyWeightCalculator() {
           </h3>
 
           <p className="mt-3 text-4xl font-bold text-green-700">
-            {result.idealWeight.toFixed(
+            {result.average.toFixed(
               1,
             )}{" "}
             kg
           </p>
 
           <p className="mt-3 text-slate-600">
-            Recommended Healthy
-            Weight Range
-          </p>
-
-          <p className="mt-1 text-lg font-semibold">
-            {result.healthyMin.toFixed(
-              1,
-            )}{" "}
-            kg -{" "}
-            {result.healthyMax.toFixed(
-              1,
-            )}{" "}
-            kg
+            Average of four formula estimates
           </p>
 
           <p className="mt-3 text-sm text-slate-500">
-            Based on the Devine
-            Ideal Body Weight
-            Formula.
+            These height-based references are not a diagnosis
+            or a personalized healthy-weight prescription.
           </p>
         </div>
       )}

@@ -30,6 +30,9 @@ export default function BodyFatCalculator() {
     const waistNum = Number(waist);
 
     if (
+      !Number.isFinite(heightNum) ||
+      !Number.isFinite(neckNum) ||
+      !Number.isFinite(waistNum) ||
       heightNum <= 0 ||
       neckNum <= 0 ||
       waistNum <= 0
@@ -38,38 +41,51 @@ export default function BodyFatCalculator() {
     }
 
     let bodyFat = 0;
+    const heightInches = heightNum / 2.54;
+    const neckInches = neckNum / 2.54;
+    const waistInches = waistNum / 2.54;
 
     try {
       if (gender === "male") {
-        if (waistNum <= neckNum) {
+        if (waistInches <= neckInches) {
           return null;
         }
 
         bodyFat =
           86.01 *
-            Math.log10(waistNum - neckNum) -
-          70.041 * Math.log10(heightNum) +
+            Math.log10(waistInches - neckInches) -
+          70.041 * Math.log10(heightInches) +
           36.76;
       } else {
         const hipNum = Number(hip);
 
         if (
           !hip ||
-          hipNum <= 0 ||
-          waistNum + hipNum <= neckNum
+          !Number.isFinite(hipNum) ||
+          hipNum <= 0
         ) {
+          return null;
+        }
+
+        const hipInches = hipNum / 2.54;
+
+        if (waistInches + hipInches <= neckInches) {
           return null;
         }
 
         bodyFat =
           163.205 *
             Math.log10(
-              waistNum + hipNum - neckNum,
+              waistInches + hipInches - neckInches,
             ) -
-          97.684 * Math.log10(heightNum) -
+          97.684 * Math.log10(heightInches) -
           78.387;
       }
     } catch {
+      return null;
+    }
+
+    if (!Number.isFinite(bodyFat) || bodyFat <= 0 || bodyFat >= 75) {
       return null;
     }
 

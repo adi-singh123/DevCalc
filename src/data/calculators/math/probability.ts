@@ -6,18 +6,21 @@ export const probabilityCalculator: Calculator = {
   name: "Probability Calculator",
 
   description:
-    "Calculate probability, odds, event likelihood, and chance percentages instantly. Use our free Probability Calculator for statistics, mathematics, education, and exam preparation.",
+    "Calculate the probability of an event from favorable and total equally likely outcomes, then view the result as a fraction, decimal, percentage, and odds.",
 
   category: "Math",
 
   isPopular: false,
 
+  editorialIntro:
+    "Use this calculator for a single event with equally likely outcomes, such as drawing a particular card or rolling a number on a fair die. Enter favorable outcomes and total possible outcomes to convert the result into common probability formats.",
+
   seo: {
     title:
-      "Probability Calculator - Calculate Chance & Probability Online",
+      "Probability Calculator – Chance, Percentage and Odds",
 
     description:
-      "Use our Probability Calculator to calculate event probability, odds, likelihood, percentage chance, and statistical probabilities quickly and accurately.",
+      "Calculate a single-event probability from favorable and total outcomes. View the chance as a fraction, decimal, percentage and odds with an example.",
 
     keywords: [
       "probability calculator",
@@ -25,8 +28,6 @@ export const probabilityCalculator: Calculator = {
       "odds calculator",
       "event probability calculator",
       "statistics probability calculator",
-      "conditional probability calculator",
-      "probability distribution calculator",
       "probability of event calculator",
       "calculate probability online",
     ],
@@ -153,6 +154,21 @@ export const probabilityCalculator: Calculator = {
       answer:
         "Probability compares the number of favorable outcomes to the total number of all possible outcomes, whereas odds compare the number of favorable outcomes directly against the number of unfavorable outcomes.",
     },
+    {
+      question: "When can I divide favorable outcomes by total outcomes?",
+      answer:
+        "Use this formula when outcomes are mutually exclusive and equally likely. A fair die and a well-shuffled standard deck are common examples. If outcomes have different likelihoods, use their assigned probabilities instead of simply counting them.",
+    },
+    {
+      question: "How do I convert probability to odds in favor?",
+      answer:
+        "For probability p, odds in favor are p to (1 − p). A probability of 0.25 therefore gives odds of 0.25:0.75, which simplifies to 1:3.",
+    },
+    {
+      question: "Can this calculator predict a future result?",
+      answer:
+        "No. It calculates a theoretical chance from the values supplied. A probability describes long-run likelihood and does not guarantee the outcome of an individual trial.",
+    },
   ],
   seoContent: `
     <h2>Probability for equally likely outcomes</h2>
@@ -161,5 +177,11 @@ export const probabilityCalculator: Calculator = {
     <p>A fair six-sided die has six equally likely outcomes. Two outcomes, 5 and 6, satisfy “greater than 4,” so the probability is 2/6 = 1/3, or approximately 33.33%.</p>
     <h2>Know the model's limits</h2>
     <p>Real-world outcomes are not always equally likely or independent. Historical frequency does not guarantee a future event, and this simple calculator does not handle conditional probability, dependent events, distributions, or uncertainty in the input assumptions.</p>
+    <h2>Probability as a Fraction, Decimal and Percentage</h2>
+    <p>The same probability can be written in different forms. A fraction of 1/4 equals the decimal 0.25 and the percentage 25%. Convert a decimal to a percentage by multiplying by 100.</p>
+    <h2>Probability Compared with Odds</h2>
+    <p>Probability compares favorable outcomes with all outcomes. Odds in favor compare favorable outcomes with unfavorable outcomes. With one winning outcome among four equally likely outcomes, probability is 1/4 while odds in favor are 1:3.</p>
+    <h2>When the Basic Formula Does Not Apply</h2>
+    <p>Real-world outcomes are not always equally likely or independent. Historical frequency does not guarantee a future event. This calculator does not model conditional probability, dependent events, probability distributions, sampling bias, or uncertainty in the input assumptions.</p>
   `,
 };

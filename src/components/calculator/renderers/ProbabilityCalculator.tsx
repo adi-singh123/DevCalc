@@ -36,6 +36,9 @@ export default function ProbabilityCalculator() {
     if (
       isNaN(favorable) ||
       isNaN(total) ||
+      !Number.isInteger(favorable) ||
+      !Number.isInteger(total) ||
+      favorable < 0 ||
       total <= 0 ||
       favorable > total
     ) {
@@ -127,6 +130,8 @@ export default function ProbabilityCalculator() {
 
           <input
             type="number"
+            min="0"
+            step="1"
             value={
               favorableOutcomes
             }
@@ -147,6 +152,8 @@ export default function ProbabilityCalculator() {
 
           <input
             type="number"
+            min="1"
+            step="1"
             value={totalOutcomes}
             onChange={(e) =>
               setTotalOutcomes(

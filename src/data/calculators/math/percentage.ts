@@ -26,10 +26,10 @@ export const percentageCalculator: Calculator = {
   },
 
   seo: {
-    title: "Percentage Calculator - Calculate Percentages Online",
+    title: "Percentage Calculator – Increase, Decrease and Change",
 
     description:
-      "Free online Percentage Calculator. Calculate percentage values, percentage increases, percentage decreases, markups, and percentage differences with step-by-step math.",
+      "Find X% of Y, what percentage one number is of another, or the percentage increase or decrease. See the formula and a worked calculation.",
 
     keywords: [
       "percentage calculator",
@@ -86,6 +86,21 @@ export const percentageCalculator: Calculator = {
   },
 
   faqs: [
+    {
+      question: "How do I calculate a discount percentage from the original and sale price?",
+      answer:
+        "Subtract the sale price from the original price, divide the reduction by the original price, and multiply by 100. If an item falls from ₹2,000 to ₹1,500, the reduction is ₹500 and the discount is (500 ÷ 2,000) × 100 = 25%.",
+    },
+    {
+      question: "How do I reverse a percentage increase or decrease?",
+      answer:
+        "After an increase of r%, divide the final value by 1 + r/100 to recover the original. After a decrease of r%, divide by 1 − r/100. For example, ₹1,180 after an 18% increase started at ₹1,000.",
+    },
+    {
+      question: "What happens when the original value is zero?",
+      answer:
+        "Standard percentage change is undefined when the original value is zero because the formula divides by the original value. Report the absolute change instead and explain that no finite percentage change can be calculated from a zero baseline.",
+    },
     {
       question: "Why does a 50% price drop require a 100% price increase to break even?",
       answer:
@@ -153,5 +168,23 @@ export const percentageCalculator: Calculator = {
     </tr>
   </tbody>
 </table>
+
+<h2>Which Percentage Mode Should You Use?</h2>
+<p>
+  Use “X% of Y” when you know the rate and base value, such as 18% of ₹5,000. Use “X is what % of Y” when comparing a part with a total, such as 420 marks out of 500. Use percentage change when comparing an old value with a new value over time.
+</p>
+
+<h2>Percentage Increase and Decrease Examples</h2>
+<p>
+  If a salary rises from ₹40,000 to ₹46,000, the increase is ₹6,000. Dividing ₹6,000 by the original ₹40,000 and multiplying by 100 gives a 15% increase. If a price falls from ₹1,200 to ₹900, the ₹300 reduction divided by ₹1,200 gives a 25% decrease.
+</p>
+
+<h2>Common Percentage Mistakes</h2>
+<ul>
+  <li>Use the original value as the denominator when calculating percentage change.</li>
+  <li>Do not confuse a change in percentage points with a relative percentage change.</li>
+  <li>A decrease and an equal percentage increase do not cancel because their base values differ.</li>
+  <li>Keep sufficient decimal precision during the calculation and round only the final result.</li>
+</ul>
 `,
 };

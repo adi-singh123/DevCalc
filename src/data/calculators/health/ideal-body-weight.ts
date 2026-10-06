@@ -6,14 +6,14 @@ export const idealBodyWeightCalculator: Calculator = {
   name: "Ideal Body Weight Calculator",
 
   description:
-    "Calculate your ideal body weight (IBW) by height and gender using the Devine, Hamwi, Robinson, and Miller formulas. Get an instant healthy weight range to guide fitness, nutrition, and weight management goals.",
+    "Compare ideal body weight reference estimates by height and sex using the Devine, Hamwi, Robinson, and Miller formulas.",
 
   category: "Health",
 
   isPopular: true,
 
   editorialIntro:
-    "Ideal Body Weight (IBW) provides a clinical reference target originally developed by Dr. Ben J. Devine (1974) to standardize medication dosages for narrow therapeutic index pharmaceuticals (e.g. aminoglycosides, theophylline). Unlike raw BMI, IBW formulas estimate baseline mass strictly as a function of skeletal frame height above 5 feet.",
+    "Ideal body weight (IBW) formulas provide height-based reference estimates. The Devine equation was introduced for medication-dosing calculations, not as a universal definition of a healthy appearance or a personal target weight.",
 
   benchmarkContext: {
     title: "Clinical Pharmacokinetics & IBW Diagnostic Formulas",
@@ -35,10 +35,10 @@ export const idealBodyWeightCalculator: Calculator = {
 
   seo: {
     title:
-      "Ideal Body Weight Calculator - Calculate Healthy Weight (Devine & Hamwi)",
+      "Ideal Body Weight Calculator – Devine, Hamwi and More",
 
     description:
-      "Calculate your ideal body weight instantly with Devine, Hamwi, Robinson, and Miller formulas based on height and gender for clinical and nutritional targets.",
+      "Estimate ideal body weight from height and sex using Devine, Hamwi, Robinson and Miller formulas. Compare results and understand their limitations.",
     keywords: [
       "ideal body weight calculator",
       "ideal weight calculator",
@@ -72,7 +72,7 @@ export const idealBodyWeightCalculator: Calculator = {
       step: 3,
       title: "Calculate Ideal Weight",
       description:
-        "The calculator applies the Devine formula (and related methods) to your height and gender to estimate a clinically referenced ideal body weight in kilograms or pounds.",
+        "The calculator applies the Devine, Hamwi, Robinson, and Miller equations to estimate four height-based reference weights.",
       icon: "calculator",
     },
 
@@ -80,7 +80,7 @@ export const idealBodyWeightCalculator: Calculator = {
       step: 4,
       title: "View Results",
       description:
-        "Review your ideal body weight along with a healthy weight range, so you have a realistic target band rather than a single rigid number.",
+        "Compare each formula result and their average. Differences between formulas show why no single result should be treated as a precise personal target.",
       icon: "result",
     },
   ],
@@ -92,7 +92,7 @@ export const idealBodyWeightCalculator: Calculator = {
       "Male: 50 kg + 2.3 kg for each inch over 5 ft | Female: 45.5 kg + 2.3 kg for each inch over 5 ft",
 
     explanation:
-      "This calculator is built around the Devine formula, the most widely referenced method for estimating ideal body weight (IBW) from height and gender alone. Dr. B.J. Devine originally created it in 1974 to help clinicians calculate drug dosages more accurately, since many medications need to be dosed by lean body weight rather than total body weight. The formula starts from a baseline weight for someone 5 feet tall and adds 2.3 kg (about 5 lb) for every inch above that height. Men get a higher baseline (50 kg) than women (45.5 kg) to reflect average differences in muscle mass and skeletal frame.\n\nThree other formulas are commonly used alongside Devine, and you'll often see them quoted together:\n\n• Hamwi formula (1964): Male = 48 kg + 2.7 kg per inch over 5 ft; Female = 45.5 kg + 2.3 kg per inch over 5 ft. Developed for quick bedside estimates, it tends to run slightly higher than Devine for taller people.\n\n• Robinson formula (1983): A refinement of Devine using updated population data. Male = 52 kg + 2.3 kg per inch over 5 ft; Female = 49 kg + 2.3 kg per inch over 5 ft.\n\n• Miller formula (1983): Tends to produce the lowest estimates of the four. Male = 56.2 kg + 1.41 kg per inch over 5 ft; Female = 53.1 kg + 1.36 kg per inch over 5 ft.\n\nNone of these formulas account for muscle mass, bone density, body fat percentage, or frame size directly — they're estimates based on population averages, not a precise measurement of your individual healthy weight. For people under 5 feet tall, some clinicians instead subtract the per-inch adjustment from the baseline, though results become less reliable at shorter heights. That's why the result is best read as a reference point, not a strict target, and why pairing it with a healthy weight range gives a more realistic and usable answer.",
+      "The Devine formula starts at 50 kg for men and 45.5 kg for women at 5 feet, then adds 2.3 kg for each inch above 5 feet. Other equations use different constants: Hamwi uses 48 kg + 2.7 kg/in for men and 45.5 kg + 2.2 kg/in for women; Robinson uses 52 kg + 1.9 kg/in for men and 49 kg + 1.7 kg/in for women; Miller uses 56.2 kg + 1.41 kg/in for men and 53.1 kg + 1.36 kg/in for women. These are height-based reference equations. They do not measure muscle, bone density, body fat, pregnancy-related changes, or medical history, so their results should not be treated as a precise personal target.",
 
     example: {
       input:
@@ -170,7 +170,12 @@ export const idealBodyWeightCalculator: Calculator = {
       question:
         "How do different body frame sizes affect ideal body weight targets?",
       answer:
-        "Standard IBW equations assume an average body frame. Individuals with a smaller skeletal frame may thrive with a target weight roughly 10% below the formula baseline, whereas larger-framed individuals naturally carry more structural weight without excess body fat.",
+        "Standard IBW equations do not directly measure frame size, muscle mass, bone density, or fat distribution. A person with a larger frame or more muscle may be healthy above the estimate, while a smaller-framed person may fall below it. Avoid applying a fixed frame-size adjustment as a medical rule.",
+    },
+    {
+      question: "Can this ideal body weight result be used for medication dosing?",
+      answer:
+        "Do not select or change a medicine dose from this page. Clinical dosing may use actual, ideal, lean, or adjusted body weight depending on the medicine, kidney function, age, and clinical protocol. A qualified prescriber or pharmacist should choose the appropriate weight and dose.",
     },
   ],
   seoContent: `
@@ -180,5 +185,9 @@ export const idealBodyWeightCalculator: Calculator = {
     <p>Most traditional ideal-body-weight equations do not consider age, muscle mass, body-fat distribution, frame size, pregnancy, disability, or athletic training. Two people of the same height can therefore have very different healthy weights.</p>
     <h2>Use the estimate appropriately</h2>
     <p>Treat the result as general educational context, not a diagnosis or treatment goal. A clinician or registered dietitian can interpret weight together with medical history, waist measurement, body composition, laboratory results, and individual wellbeing.</p>
+    <h2>Worked comparison for a person who is 5 ft 10 in</h2>
+    <p>At 70 inches, the height is 10 inches above 5 feet. The Devine estimate for a man is 50 + (2.3 × 10) = 73 kg. Robinson gives 52 + (1.9 × 10) = 71 kg, while Miller gives 56.2 + (1.41 × 10) = 70.3 kg. The different results show why IBW is better interpreted as a reference range than as one exact target.</p>
+    <h2>When this calculator is not appropriate</h2>
+    <p>These adult formulas are not designed for children, pregnancy, or people whose growth, disability, fluid status, or medical treatment materially changes body composition. Seek individualized clinical guidance in those situations.</p>
   `,
 };

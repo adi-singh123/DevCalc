@@ -26,10 +26,10 @@ export const mileageCalculator: Calculator = {
   },
 
   seo: {
-    title: "Mileage Calculator: Car & Bike km/L, Fuel Cost per km",
+    title: "Mileage Calculator – Car & Bike km/L and Fuel Cost",
 
     description:
-     "Free mileage calculator for car and bike. Enter distance and fuel used, or odometer readings, to get km/L, cost per km and trip cost. Petrol, diesel, CNG, EV.",
+     "Calculate car or bike mileage from distance and fuel used or odometer readings. See km/L, cost per km, fuel consumption and estimated trip cost.",
      
     keywords: [
       "mileage calculator",
@@ -114,17 +114,17 @@ export const mileageCalculator: Calculator = {
     {
       question: "Why is my real-world bike or car mileage significantly lower than the mileage figures claimed by the manufacturer?",
       answer:
-        "Vehicle manufacturers publish mileage numbers based on standardized regulatory testing procedures conducted by bodies like the Automotive Research Association of India (ARAI). These baseline validation benchmarks are performed inside laboratory settings under strictly controlled environmental parameters—meaning perfectly smooth laboratory dynamometers, zero ambient traffic congestion, no aerodynamic wind resistance, ideal weather temperatures, light vehicle weights, and mathematically optimized shifting speeds. In real-world driving conditions, your vehicle faces frequent traffic gridlock, stop-and-go idles, braking cycles, poor structural road quality, continuous high-load air conditioning usage, aggressive throttle habits, under-inflated tyre pressures, and mixed fuel qualities. For instance, a vehicle officially certified at 20 km/L may only net around 13 to 16 km/L in tight city traffic. Tracking real-world mileage allows you to build a highly realistic financial operating budget.",
+        "Certified mileage comes from a standardized test designed to compare vehicles under repeatable conditions. Your result reflects traffic, idling, short trips, speed, gradients, air-conditioning, payload, tyre pressure, weather, fuel quality, and driving style. Compare several tank-to-tank readings on similar routes before deciding that a lower figure indicates a mechanical problem.",
     },
     {
       question: "How do I calculate real-world vehicle mileage accurately using the classic tank-to-tank method?",
       answer:
-        "The tank-to-tank method is widely considered the absolute gold standard for manual fuel economy calculation. To perform this test accurately, go to a fuel station and fill your tank completely up to the auto-cut click off point, then write down your exact current odometer reading (Odometer A). Proceed to drive your vehicle normally across your typical routes over several days until the tank drops. Return to the station, fill the tank back up to the exact same auto-cut point to maintain volume consistency, and record the precise number of liters filled (Fuel Consumed) alongside your new odometer figure (Odometer B). Calculate your distance by computing Odometer B minus Odometer A. Finally, divide that total trip distance by the liters added during your second stop. For example, logging 480 km and requiring 24 liters to top off yields an exact efficiency of 20 km/L.",
+        "Fill to the first automatic nozzle cut-off and record the odometer. Drive normally, then refill to the same cut-off—ideally at the same pump—and note the litres added and new odometer reading. Divide the distance between readings by the fuel added on the second fill. For example, 480 km divided by 24 litres equals 20 km/L. Average several fills to reduce pump and filling variation.",
     },
     {
       question: "What range is considered a 'good' mileage figure for petrol, diesel, and CNG cars under typical Indian conditions?",
       answer:
-        "What qualifies as efficient fuel economy depends fundamentally on the underlying vehicle segment, displacement size, and weight class. For small petrol hatchbacks, a real-world average between 15 and 21 km/L is considered highly efficient. Mid-size petrol sedans generally hover between 13 and 18 km/L, whereas bulkier petrol SUVs typically yield a much lower 10 to 15 km/L range due to heavier structural masses and wind drag. On the flip side, diesel variants usually yield higher thermal efficiency profiles, netting anywhere from 16 to 24 km/L across major segments. Dedicated CNG alternative fuel setups excel past liquid baselines, returning outstanding efficiency figures ranging from 22 to 33 km/kg. If your vehicle matches or exceeds these specific sweet spots during mixed commutes, your powertrain is operating in an ideal structural health bracket.",
+        "There is no universal good-mileage number. Compare your result with the same model, engine, transmission, fuel type, and similar city or highway conditions. A small hatchback, large SUV, motorcycle, diesel vehicle, and CNG vehicle use different units and operating assumptions, so a cross-segment comparison can be misleading.",
     },
     {
       question: "How drastically does continuous air conditioner (AC) usage impact fuel economy during hot weather conditions?",
@@ -140,6 +140,16 @@ export const mileageCalculator: Calculator = {
       question: "What core driving habits and technical factors cause a vehicle's mileage to suddenly drop or deteriorate?",
       answer:
         "A sudden, noticeable degradation in your vehicle's fuel economy is typically a clear diagnostic symptom of driving style imbalances or underlying mechanical wear. From a technical standpoint, the most common culprits include severely under-inflated tyre pressures (which drastically spikes rolling resistance), highly contaminated or clogged engine air filters, overdue engine oil changes, failing oxygen sensors, fouled spark plugs, or sticky brake calipers. On the operational side of the equation, aggressive driving styles characterized by abrupt, wide-open throttle acceleration, erratic high-speed lane shifting, and hard late braking waste immense kinetic energy. Consistently carrying heavy, non-essential storage loads inside the trunk or running with an aerodynamic roof rack attached also increases drag, pulling your overall mileage numbers down.",
+    },
+    {
+      question: "How do I convert km/L to litres per 100 km?",
+      answer:
+        "Divide 100 by the mileage in km/L. A vehicle returning 20 km/L consumes 5 L/100 km, while 12.5 km/L equals 8 L/100 km. In L/100 km, a lower result indicates lower fuel consumption.",
+    },
+    {
+      question: "Should I include idling fuel when calculating mileage?",
+      answer:
+        "Yes. Tank-to-tank mileage automatically includes fuel burned while idling because the fuel is consumed even though the odometer does not increase. Heavy idling therefore lowers the measured km/L result.",
     },
   ],
 
@@ -269,6 +279,11 @@ export const mileageCalculator: Calculator = {
 </blockquote>
 <p>
   These figures include fuel or electricity only. Servicing, tyres, insurance, tolls, parking, finance costs and depreciation are separate ownership expenses.
+</p>
+
+<h2>Convert km/L to Litres per 100 km</h2>
+<p>
+  Some vehicle specifications show fuel consumption rather than mileage. Convert km/L to L/100 km using <strong>100 ÷ km/L</strong>. For example, 16 km/L equals 6.25 L/100 km. Convert back using the same relationship: 100 ÷ 6.25 = 16 km/L.
 </p>
 
 <h2>Checklist for a Reliable Tank-to-Tank Mileage Result</h2>

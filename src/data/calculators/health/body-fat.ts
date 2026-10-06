@@ -13,7 +13,7 @@ export const bodyFatCalculator: Calculator = {
   isPopular: true,
 
   editorialIntro:
-    "Body fat percentage measures the proportion of adipose tissue relative to total body weight (including skeletal muscle, bone density, and water). Using the empirical U.S. Navy circumference method (neck, waist, and hip circumferences), it distinguishes between lean athletic muscle mass and visceral fat far more accurately than basic BMI.",
+    "Body fat percentage estimates how much of total body mass is fat rather than lean tissue. The U.S. Navy circumference method uses height and tape measurements to produce a practical estimate, but it does not directly measure fat or distinguish visceral from subcutaneous fat.",
 
   benchmarkContext: {
     title: "American Council on Exercise (ACE) Body Fat Classifications",
@@ -35,10 +35,10 @@ export const bodyFatCalculator: Calculator = {
 
   seo: {
     title:
-      "Body Fat Calculator - Calculate Body Fat Percentage Online",
+      "Body Fat Calculator – U.S. Navy Method and Categories",
 
     description:
-      "Calculate your body fat percentage using the U.S. Navy circumference method. Estimate fat mass, lean body mass, and fitness categories instantly.",
+      "Estimate body fat percentage with the U.S. Navy circumference method. See estimated fat mass, lean mass, category and measurement guidance.",
     keywords: [
       "body fat calculator",
       "body fat percentage calculator",
@@ -96,7 +96,7 @@ export const bodyFatCalculator: Calculator = {
         "Male, Height: 175 cm, Neck: 40 cm, Waist: 85 cm",
 
       output:
-        "Estimated Body Fat Percentage ≈ 18.5%",
+        "Estimated Body Fat Percentage ≈ 15.4%",
     },
 
     useCases: [
@@ -119,7 +119,7 @@ export const bodyFatCalculator: Calculator = {
   {
     question: "What is considered a healthy body fat percentage?",
     answer:
-      "Healthy body fat ranges vary based on age and gender. Generally, men with body fat between 10% and 20% and women with body fat between 18% and 28% are considered to have healthy levels. Athletes often maintain lower percentages, while higher percentages may increase the risk of conditions such as heart disease, diabetes, and obesity-related complications. Body fat should be evaluated alongside overall health, fitness, and lifestyle factors rather than viewed as the only measure of wellness."
+      "Reference categories vary by source, age, sex, and population. The category shown by this calculator is a general comparison, not a diagnosis or a universal target. Extremely low values can also be unhealthy, so interpret the estimate alongside medical history, waist circumference, fitness, and professional advice when needed."
   },
 
   {
@@ -143,7 +143,7 @@ export const bodyFatCalculator: Calculator = {
   {
     question: "How accurate are body fat calculators?",
     answer:
-      "Online body fat calculators provide estimates based on measurements such as waist circumference, neck circumference, height, weight, age, and gender. While these estimates can be useful for tracking trends over time, they are not as precise as methods such as DEXA scans, hydrostatic weighing, or professional body composition analysis. However, for most people, a body fat calculator offers a convenient and practical way to monitor progress."
+      "The Navy method is an estimate and can differ from a laboratory body-composition assessment. Tape placement, posture, breathing, hydration, and body shape can shift the result. It is most useful for tracking a trend when the same person measures at the same locations, under similar conditions, with the same tape technique."
   },
 
   {
@@ -156,6 +156,11 @@ export const bodyFatCalculator: Calculator = {
     question: "Why should I track body fat instead of only body weight?",
     answer:
       "Body weight alone does not reveal whether changes come from fat loss, muscle gain, or water fluctuations. Tracking body fat percentage provides a clearer understanding of body composition changes and overall fitness progress. For example, someone may gain muscle while losing fat and see little change in body weight, yet experience significant improvements in health and appearance."
+  },
+  {
+    question: "How should I take waist, neck, and hip measurements?",
+    answer:
+      "Use a flexible, non-stretch tape held level and snug without compressing the skin. Measure the neck below the larynx. Follow the calculator's sex-specific waist and hip instructions, stand relaxed, and measure after a normal exhale. Repeat each measurement and use consistent locations each time."
   }
 ],
 
@@ -223,6 +228,11 @@ Body fat percentage represents the proportion of fat mass in your body compared 
     <td>32%+</td>
   </tr>
 </table>
+
+<h2>How to Measure Consistently</h2>
+<p>
+Use a flexible tape that does not stretch. Keep it horizontal and snug without pulling it into the skin. Measure in the same locations and under similar conditions each time, preferably before a meal. Take each circumference twice; if the readings differ, repeat the measurement before entering it.
+</p>
 
 <h2>Body Fat vs BMI</h2>
 
@@ -294,10 +304,10 @@ Body fat percentage represents the proportion of fat mass in your body compared 
   <li>Expecting quick results.</li>
 </ul>
 
-<h2>Pro Tip</h2>
+<h2>How to Interpret the Result</h2>
 
 <p>
-Focus on reducing body fat rather than simply losing weight. Maintaining muscle mass while lowering body fat percentage leads to a healthier and more athletic physique.
+Treat the number as an estimate and focus on the trend rather than small day-to-day changes. Do not use one result to diagnose a health condition. If the estimate is unexpectedly high or low, confirm the tape measurements and discuss health concerns with a qualified healthcare professional.
 </p>
 `,
 };

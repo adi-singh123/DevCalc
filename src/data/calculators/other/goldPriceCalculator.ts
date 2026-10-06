@@ -22,10 +22,10 @@ export const goldPriceCalculator: Calculator = {
 
   seo: {
     title:
-      "Gold Price Calculator (2026) - Check Gold Value by Weight & Purity",
+      "Gold Price Calculator – Value by Weight and Purity",
 
     description:
-      "Calculate what your gold is worth using today's rate, weight, and purity. Works for 24K, 22K, 18K, and 14K gold across grams, kilograms, tola, and ounces.",
+      "Estimate gold value from the rate, weight and purity. Calculate 24K, 22K, 18K or 14K value in grams, kilograms, tola or troy ounces.",
 
     keywords: [
       "gold price calculator",
@@ -120,7 +120,7 @@ export const goldPriceCalculator: Calculator = {
     {
       question: "How do I convert gold weight from tola to grams?",
       answer:
-        "One tola equals 11.6638 grams, though most jewellers round this to 10 grams for convenience when quoting prices — so a 'tola rate' you hear quoted is often really a 10-gram rate, not a strict 11.6638-gram one. If you're converting an exact weight, multiply the number of tolas by 11.6638 to get grams. The tola is a traditional unit still commonly used for pricing gold in India, especially in older billing formats and in some northern and western states, even though modern billing increasingly uses grams directly.",
+        "One tola equals approximately 11.6638 grams. Multiply tolas by 11.6638 to convert to grams. Do not treat a quote per 10 grams as a quote per tola: these are different quantities, so confirm the quoted unit before entering the rate.",
     },
 
     {
@@ -144,13 +144,13 @@ export const goldPriceCalculator: Calculator = {
     {
       question: "Why does gold price vary between cities in India?",
       answer:
-        "City-level rate differences come from a mix of factors: each city's jewellers' association sets its own daily rate based on local supply and demand, state-level taxes and levies can differ, and transport and logistics costs vary depending on how far a city is from major import hubs. High-volume metro markets sometimes see marginally lower rates than smaller towns because bulk purchasing further up the supply chain brings small discounts that filter down to local pricing. These gaps are usually small — often well under 1% — so they're rarely worth factoring into a buying or selling decision on their own, but they do explain why a rate you see quoted nationally may not exactly match your local jeweller's board that morning.",
+        "Retail quotes can differ because sellers use different price feeds, update times, margins, logistics costs, and buy-versus-sell bases. Purity and unit differences can also make two displayed rates look inconsistent. Compare quotes only after matching the date and time, purity, unit, and whether the rate is a buying or selling rate.",
     },
 
     {
       question: "What is the difference between gold price per gram and per 10 grams?",
       answer:
-        "They represent the exact same rate, just expressed at different scales — multiplying the per-gram rate by 10 gives you the per-10-gram (or approximate per-tola) rate, and dividing the per-10-gram figure by 10 gives you the per-gram rate. Indian jewellers commonly quote rates per 10 grams because it aligns with the traditional tola unit and because most everyday jewellery purchases fall in a similar weight range, but the underlying pricing logic is identical regardless of which scale is used to display it.",
+        "They express the same price at different scales. Multiply a per-gram rate by 10 to get the per-10-gram rate, or divide a per-10-gram rate by 10 to get the per-gram rate. A tola is approximately 11.6638 grams, so it must not be substituted for 10 grams.",
     },
 
     {

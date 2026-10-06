@@ -33,10 +33,10 @@ export const fuelCostCalculator: Calculator = {
   ],
 
   seo: {
-    title: "Fuel Cost Calculator – Petrol, Diesel and CNG",
+    title: "Fuel Cost Calculator – Cost per km, Month and Year",
 
     description:
-      "Calculate petrol, diesel or CNG cost per km plus daily, monthly and yearly fuel expenses from your distance, mileage and local fuel price.",
+      "Estimate petrol, diesel or CNG cost per km and daily, monthly or yearly fuel expense using distance, real-world mileage and local fuel price.",
     keywords: [
       "fuel cost calculator",
       "petrol cost per km calculator",
@@ -105,6 +105,11 @@ export const fuelCostCalculator: Calculator = {
   },
 
   faqs: [
+    {
+      question: "How should I calculate fuel cost for a round trip?",
+      answer:
+        "Add the outward and return distances before calculating. If the route is 180 km each way, use 360 km as the trip distance. Add expected local driving or detours separately, and use the mileage you normally obtain under similar highway or city conditions.",
+    },
     {
       question: "How is fuel cost calculated?",
       answer:

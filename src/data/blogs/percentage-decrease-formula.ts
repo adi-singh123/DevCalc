@@ -3,13 +3,13 @@ import { Blog } from "@/src/types/blog";
 export const percentageDecreaseFormula: Blog = {
   slug: "percentage-decrease-formula",
 
-  title: "Percentage Decrease Formula",
+  title: "Percentage Decrease Formula: Steps and Examples",
 
   seoTitle:
-    "Percentage Decrease Formula – How to Calculate with Examples & Tricks (2026)",
+    "Percentage Decrease Formula: Steps, Examples and Calculator",
 
   seoDescription:
-    "Learn the percentage decrease formula with step-by-step examples. Calculate discount percentage, price drop, salary cut, marks decrease, and more. Includes shortcuts, common mistakes, and real-life uses.",
+    "Use the percentage decrease formula with worked examples for discounts, price drops, marks and salary changes. Learn the correct original-value method.",
 
   description:
     "Master the percentage decrease formula with simple steps, multiple real-life examples, shortcut tricks, and applications in discounts, salary, business, marks, and finance.",
@@ -150,6 +150,14 @@ export const percentageDecreaseFormula: Blog = {
         "Health & Fitness: Measuring weight loss, blood pressure reduction, or calorie deficit as a percentage.",
         "Economics: Reporting GDP contraction, inflation reduction, or unemployment decrease.",
         "Understanding percentage decrease helps you make sharper comparisons, spot problems earlier, and communicate changes clearly — whether in school, work, or personal finance.",
+      ],
+    },
+    {
+      heading: "How to Check a Percentage Decrease Result",
+      paragraphs: [
+        "First confirm that the original value is the denominator. Then multiply the original value by the calculated percentage to recover the absolute decrease. Subtract that amount from the original value; the answer should match the new value.",
+        "For a fall from ₹800 to ₹620, the decrease is ₹180 and the percentage decrease is 22.5%. Checking the result: 22.5% of ₹800 is ₹180, and ₹800 − ₹180 equals ₹620.",
+        "Percentage decrease is undefined when the original value is zero because division by zero is not valid. In that situation, report the absolute change and explain that a percentage decrease cannot be calculated from a zero baseline.",
       ],
     },
   ],
