@@ -22,6 +22,7 @@ import EmbedCalculatorSection from "@/src/components/calculator/EmbedCalculatorS
 import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
 import MobileRectangleThirdPartyAd from "@/src/components/ads/MobileRectangleThirdPartyAd";
+import CalculatorResultThirdPartyAd from "@/src/components/ads/CalculatorResultThirdPartyAd";
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -186,6 +187,8 @@ export default async function CalculatorPage({ params }: Props) {
             category={calculator.category}
             compareWith={calculator.compareWith}
           />
+
+          <CalculatorResultThirdPartyAd />
 
           {calculator.slug === "road-tax-calculator" && (
             <StateSelectorSection
