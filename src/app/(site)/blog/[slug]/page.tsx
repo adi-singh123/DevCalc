@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
@@ -305,6 +306,38 @@ export default async function BlogDetailsPage({ params }: Props) {
                           </tbody>
                         </table>
                       </div>
+                    )}
+
+                    {section.image && (
+                      <figure className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+                        <Image
+                          src={section.image.src}
+                          alt={section.image.alt}
+                          width={870}
+                          height={318}
+                          className="h-auto w-full object-contain"
+                        />
+                        {section.image.caption && (
+                          <figcaption className="border-t border-stone-200 px-4 py-3 text-sm leading-6 text-stone-600 dark:border-slate-700 dark:text-slate-400">
+                            {section.image.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    )}
+
+                    {section.code && (
+                      <figure className="overflow-hidden rounded-2xl border border-slate-700 bg-slate-950">
+                        {section.code.caption && (
+                          <figcaption className="border-b border-slate-700 px-4 py-3 text-sm text-slate-300">
+                            {section.code.caption}
+                          </figcaption>
+                        )}
+                        <pre className="overflow-x-auto p-5 text-sm leading-6 text-slate-100">
+                          <code data-language={section.code.language}>
+                            {section.code.content}
+                          </code>
+                        </pre>
+                      </figure>
                     )}
                   </div>
                   </section>

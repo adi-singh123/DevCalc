@@ -11,6 +11,18 @@ export interface BlogSection {
   points?: string[];
 
   table?: BlogTable;
+
+  image?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
+
+  code?: {
+    language: string;
+    content: string;
+    caption?: string;
+  };
 }
 
 export interface BlogFaq {

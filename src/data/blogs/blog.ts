@@ -21,11 +21,13 @@ import { oldTaxRegimeVsNewTaxRegime } from "./old-tax-regime-vs-new-tax-regime";
 import { mutualFundVsEtf } from "./mutual-fund-vs-etf";
 import { howMuchCarCanIAffordIndiaBlog } from "./how-much-car-can-i-afford-india";
 import { tyreUpsizingGuideIndiaBlog } from "./tyre-upsizing-guide-india";
+import { playwrightCheckboxWebdriverGuideBlog } from "./playwright-checkbox-webdriver-guide";
 
 
 
 
 export const blogs = [
+  playwrightCheckboxWebdriverGuideBlog,
   howMuchCarCanIAffordIndiaBlog,
   tyreUpsizingGuideIndiaBlog,
   howToCalculatePercentage,
