@@ -2,7 +2,7 @@ import type { Blog } from "@/src/types/blog";
 
 export const playwrightCheckboxWebdriverGuideBlog: Blog = {
 
-  slug: "playwright-checkbox-webdriver-captcha-guide",
+  slug: "checkbox-webdriver-captcha-guide",
   title: "Checkboxes, WebDriver and CAPTCHA: A Practical Automation Guide",
   seoTitle: "Playwright, Checkboxes, WebDriver & CAPTCHA Guide",
   seoDescription:
