@@ -13,6 +13,7 @@ import AuthorBio from "@/src/components/common/AuthorBio";
 import { getCategorySlug } from "@/src/data/categories/Category";
 import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
+import { formatBlogDate } from "@/src/utils/formatBlogDate";
 
 type Props = {
   params: Promise<{
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: blog.seoTitle,
     description: blog.seoDescription,
-    keywords: [blog.title, blog.category, "DevCalc Blog"],
+    keywords: blog.keywords ?? [blog.title, blog.category, "DevCalc Blog"],
     alternates: {
       canonical: `https://www.devcalc.in/blog/${blog.slug}`,
     },
@@ -47,6 +48,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://www.devcalc.in/blog/${blog.slug}`,
       siteName: "DevCalc",
       type: "article",
+      publishedTime: blog.publishedDate,
+      modifiedTime: blog.lastVerified ?? blog.publishedDate,
+      images: [{ url: blog.image, alt: blog.imageAlt ?? blog.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.seoTitle,
+      description: blog.seoDescription,
+      images: [blog.image],
     },
   };
 }
@@ -112,6 +122,7 @@ export default async function BlogDetailsPage({ params }: Props) {
         slug={blog.slug}
         image={blog.image}
         publishedDate={blog.publishedDate}
+        modifiedDate={blog.lastVerified}
         author={blog.author}
       />
 
@@ -179,11 +190,42 @@ export default async function BlogDetailsPage({ params }: Props) {
               {blog.description}
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-4 border-b border-stone-200 pb-6 text-sm text-stone-500 dark:border-slate-700 dark:text-slate-400">
-              <span>{blog.author}</span>
-              <span>{blog.publishedDate}</span>
-              <span>{blog.readingTime}</span>
+            <div className="mt-6 rounded-xl border border-stone-200 bg-[#faf7f0] px-5 py-4 text-sm text-stone-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                <span>By {blog.author}</span>
+                <time dateTime={blog.publishedDate} className="font-semibold text-[#26364a] dark:text-white">
+                  Published {formatBlogDate(blog.publishedDate)}
+                </time>
+                <span>{blog.readingTime}</span>
+                {blog.lastVerified && (
+                  <time dateTime={blog.lastVerified}>
+                    Last verified {formatBlogDate(blog.lastVerified)}
+                  </time>
+                )}
+              </div>
             </div>
+
+            {blog.image && (
+              <figure className="mt-8 overflow-hidden rounded-2xl border border-stone-200 bg-[#faf7f0] dark:border-slate-700 dark:bg-slate-900">
+                <Image
+                  src={blog.image}
+                  alt={blog.imageAlt ?? blog.title}
+                  width={1200}
+                  height={630}
+                  priority
+                  className="h-auto w-full object-cover"
+                />
+              </figure>
+            )}
+
+            {(blog.effectiveDate || blog.automationDisclosure) && (
+              <section className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-7 text-amber-950 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-100">
+                {blog.effectiveDate && (
+                  <p><strong>Effective date:</strong> {blog.effectiveDate}</p>
+                )}
+                {blog.automationDisclosure && <p>{blog.automationDisclosure}</p>}
+              </section>
+            )}
 
             {/* TOC */}
             <section className="mt-10 rounded-2xl border border-stone-200 bg-[#faf7f0] p-6 dark:border-slate-700 dark:bg-slate-900">
@@ -240,6 +282,7 @@ export default async function BlogDetailsPage({ params }: Props) {
                 <Fragment key={section.heading}>
                   <section
                     id={section.heading.toLowerCase().replace(/\s+/g, "-")}
+                    className="scroll-mt-24"
                   >
                   <h2 className="mb-5 font-serif text-3xl font-semibold tracking-tight text-[#26364a] dark:text-white">
                     {section.heading}
@@ -371,6 +414,34 @@ export default async function BlogDetailsPage({ params }: Props) {
                 ))}
               </div>
             </section>
+
+            {blog.sources && blog.sources.length > 0 && (
+              <section className="mt-16 rounded-2xl border border-stone-200 bg-[#faf7f0] p-6 dark:border-slate-700 dark:bg-slate-900">
+                <h2 className="font-serif text-3xl font-semibold text-[#26364a] dark:text-white">
+                  Official sources
+                </h2>
+                <p className="mt-3 leading-7 text-stone-600 dark:text-slate-400">
+                  Check these primary sources for the latest wording, eligibility rules, dates and exceptions.
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {blog.sources.map((source) => (
+                    <li key={source.url}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-[#1f3a5c] underline-offset-4 hover:underline dark:text-blue-400"
+                      >
+                        {source.title}
+                      </a>
+                      <p className="text-sm text-stone-500 dark:text-slate-400">
+                        {source.publisher}{source.publishedDate ? ` · ${source.publishedDate}` : ""}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
             {/* Related Blogs */}
             <section className="mt-16">

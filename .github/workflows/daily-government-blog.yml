@@ -1,0 +1,46 @@
+name: Daily verified government blog draft
+
+on:
+  schedule:
+    - cron: "30 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: daily-government-blog
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Generate one verified draft
+        run: npm run blog:government:generate
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          NVIDIA_CONTENT_MODEL: nvidia/nemotron-3.5-lightning-30b-a3b
+      - run: npx eslint src scripts
+      - run: npx tsc --noEmit
+      - run: npm run build
+      - name: Open review pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/government-blog-${{ github.run_id }}
+          delete-branch: true
+          commit-message: "content: add verified daily government guide"
+          title: "Daily government-rule guide for editorial review"
+          body: |
+            Automated draft based only on official sources.
+
+            Before merging, verify every claim, date, source link, example, image and internal link. Merging publishes the page and adds it to the sitemap.
+          labels: content-review,automated-draft

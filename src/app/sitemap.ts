@@ -74,9 +74,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogUrls = blogs.map((blog) => ({
     url: `${baseUrl}/blog/${blog.slug}`,
-    lastModified: blog.publishedDate,
+    lastModified: blog.lastVerified ?? blog.publishedDate,
     changeFrequency: "weekly" as const,
     priority: 0.7,
+    images: [`${baseUrl}${blog.image}`],
   }));
 
   const stampDutyStateUrls = STAMP_DUTY_STATES.map((state) => ({

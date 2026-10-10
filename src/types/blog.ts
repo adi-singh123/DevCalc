@@ -31,6 +31,13 @@ export interface BlogFaq {
   answer: string;
 }
 
+export interface BlogSource {
+  title: string;
+  url: string;
+  publisher: string;
+  publishedDate?: string;
+}
+
 export interface Blog {
   slug: string;
 
@@ -51,6 +58,18 @@ export interface Blog {
   readingTime: string;
 
   image: string;
+
+  imageAlt?: string;
+
+  keywords?: string[];
+
+  lastVerified?: string;
+
+  effectiveDate?: string;
+
+  automationDisclosure?: string;
+
+  sources?: BlogSource[];
 
   relatedCalculatorSlugs?: string[];
 

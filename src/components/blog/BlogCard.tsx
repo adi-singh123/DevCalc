@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 
 import { Blog } from "@/src/types/blog";
+import { formatBlogDate } from "@/src/utils/formatBlogDate";
 
 type Props = {
   blog: Blog;
@@ -55,15 +56,21 @@ export default function BlogCard({ blog }: Props) {
       </p>
 
       {/* Footer */}
-      <div className="mt-5 flex items-center justify-between border-t border-stone-200 pt-4 text-xs text-stone-500 dark:border-slate-800 dark:text-slate-400">
-        <span>{blog.author}</span>
-        <span className="flex items-center gap-2">
-          {blog.readingTime}
-          <ArrowRight
-            size={14}
-            className="text-[#1f3a5c] transition-transform duration-300 group-hover:translate-x-1 dark:text-blue-400"
-          />
-        </span>
+      <div className="mt-5 border-t border-stone-200 pt-4 text-xs text-stone-500 dark:border-slate-800 dark:text-slate-400">
+        <div className="flex items-center justify-between gap-3">
+          <time dateTime={blog.publishedDate} className="flex items-center gap-1.5">
+            <CalendarDays size={14} aria-hidden />
+            {formatBlogDate(blog.publishedDate)}
+          </time>
+          <span className="flex items-center gap-2">
+            {blog.readingTime}
+            <ArrowRight
+              size={14}
+              className="text-[#1f3a5c] transition-transform duration-300 group-hover:translate-x-1 dark:text-blue-400"
+            />
+          </span>
+        </div>
+        <span className="mt-2 block">By {blog.author}</span>
       </div>
     </Link>
   );

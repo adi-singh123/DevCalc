@@ -7,6 +7,7 @@ import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import BlogCard from "@/src/components/blog/BlogCard";
 import { blogs } from "@/src/data/blogs/blog";
 import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
+import { formatBlogDate } from "@/src/utils/formatBlogDate";
 
 const categories = [
   "All",
@@ -144,7 +145,10 @@ export default function BlogPage() {
             </p>
 
             <div className="mt-6 flex flex-wrap gap-4 text-sm text-stone-500 dark:text-slate-400">
-              <span>{featuredBlog.author}</span>
+              <time dateTime={featuredBlog.publishedDate}>
+                Published {formatBlogDate(featuredBlog.publishedDate)}
+              </time>
+              <span>By {featuredBlog.author}</span>
               <span>{featuredBlog.readingTime}</span>
             </div>
           </Link>
