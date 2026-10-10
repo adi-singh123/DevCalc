@@ -77,7 +77,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: blog.lastVerified ?? blog.publishedDate,
     changeFrequency: "weekly" as const,
     priority: 0.7,
-    images: [`${baseUrl}${blog.image}`],
+    ...(blog.image ? { images: [`${baseUrl}${blog.image}`] } : {}),
   }));
 
   const stampDutyStateUrls = STAMP_DUTY_STATES.map((state) => ({

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaLinkedinIn } from "react-icons/fa";
-import { Sparkles } from "lucide-react";
+import { Rss, Sparkles } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -228,6 +228,14 @@ export default function Footer() {
             </Link>
             <Link href="/sitemap.xml" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Sitemap
+            </Link>
+            <Link
+              href="/rss.xml"
+              type="application/rss+xml"
+              className="inline-flex items-center gap-1.5 font-medium text-orange-700 hover:underline dark:text-orange-400"
+            >
+              <Rss aria-hidden="true" className="h-3.5 w-3.5" />
+              RSS Feed
             </Link>
           </div>
         </div>

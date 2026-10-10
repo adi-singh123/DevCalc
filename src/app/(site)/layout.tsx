@@ -42,6 +42,12 @@ export const metadata: Metadata = {
 
   description: siteConfig.description,
 
+  alternates: {
+    types: {
+      "application/rss+xml": `${siteConfig.url}/rss.xml`,
+    },
+  },
+
   keywords: [
     // General
     "calculator",
