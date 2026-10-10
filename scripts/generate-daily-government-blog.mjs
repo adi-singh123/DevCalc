@@ -276,7 +276,7 @@ function normalizeMetadata(metadata, selection) {
 function validateArticle(article, existing, availableUrls, validCalculatorSlugs, today) {
   const errors = [];
   if (!article || typeof article !== "object") throw new Error("Generated article is not an object.");
-  for (const field of ["slug", "title", "seoTitle", "seoDescription", "description", "category", "effectiveDate", "imageAlt"]) {
+  for (const field of ["slug", "title", "seoTitle", "seoDescription", "description", "category", "effectiveDate"]) {
     if (typeof article[field] !== "string" || !article[field].trim()) errors.push(`${field} must be a non-empty string`);
   }
   if (errors.length) throw new Error(`Generated article rejected:\n- ${errors.join("\n- ")}`);
@@ -373,7 +373,7 @@ async function main() {
       },
       {
         role: "user",
-        content: `${factualBoundary}\nCreate article metadata. Return keys slug, title, seoTitle, seoDescription, description, category, keywords, effectiveDate, imageAlt, relatedCalculatorSlugs. SEO title must be 35-65 characters and description 120-165 characters. Slug must be lowercase hyphenated. imageAlt should describe DevCalc's neutral site artwork in the context of this guide. Only use calculator slugs from ${JSON.stringify(calculatorSlugs)}. Avoid existing topics ${JSON.stringify(existingSummary)}.`,
+        content: `${factualBoundary}\nCreate article metadata. Return keys slug, title, seoTitle, seoDescription, description, category, keywords, effectiveDate, relatedCalculatorSlugs. SEO title must be 35-65 characters and description 120-165 characters. Slug must be lowercase hyphenated. Only use calculator slugs from ${JSON.stringify(calculatorSlugs)}. Avoid existing topics ${JSON.stringify(existingSummary)}.`,
       },
     ],
     3_000,
@@ -498,12 +498,10 @@ async function main() {
     author: "DevCalc Editorial Desk",
     publishedDate: draft.publishedDate,
     readingTime: `${Math.ceil(wordCount(draft) / 220)} min read`,
-    image: "/icon.png",
-    imageAlt: draft.imageAlt,
+    image: "",
     keywords: draft.keywords,
     lastVerified: draft.lastVerified,
     effectiveDate: draft.effectiveDate,
-    automationDisclosure: "NVIDIA AI assisted the first draft using the linked official source material. A DevCalc editor must verify every claim before merging and publication. Rules can change; use the primary sources for current legal wording.",
     sources: draft.sources,
     relatedCalculatorSlugs: draft.relatedCalculatorSlugs,
     content: draft.content.map((section) => ({

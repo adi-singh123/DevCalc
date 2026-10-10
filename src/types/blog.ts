@@ -67,8 +67,6 @@ export interface Blog {
 
   effectiveDate?: string;
 
-  automationDisclosure?: string;
-
   sources?: BlogSource[];
 
   relatedCalculatorSlugs?: string[];

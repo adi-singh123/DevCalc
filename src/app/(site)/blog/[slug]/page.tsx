@@ -50,13 +50,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: blog.publishedDate,
       modifiedTime: blog.lastVerified ?? blog.publishedDate,
-      images: [{ url: blog.image, alt: blog.imageAlt ?? blog.title }],
+      ...(blog.image
+        ? { images: [{ url: blog.image, alt: blog.imageAlt ?? blog.title }] }
+        : {}),
     },
     twitter: {
-      card: "summary_large_image",
+      card: blog.image ? "summary_large_image" : "summary",
       title: blog.seoTitle,
       description: blog.seoDescription,
-      images: [blog.image],
+      ...(blog.image ? { images: [blog.image] } : {}),
     },
   };
 }
@@ -218,12 +220,9 @@ export default async function BlogDetailsPage({ params }: Props) {
               </figure>
             )}
 
-            {(blog.effectiveDate || blog.automationDisclosure) && (
+            {blog.effectiveDate && (
               <section className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-7 text-amber-950 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-100">
-                {blog.effectiveDate && (
-                  <p><strong>Effective date:</strong> {blog.effectiveDate}</p>
-                )}
-                {blog.automationDisclosure && <p>{blog.automationDisclosure}</p>}
+                <p><strong>Effective date:</strong> {blog.effectiveDate}</p>
               </section>
             )}
 
