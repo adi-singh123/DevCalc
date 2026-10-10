@@ -9,6 +9,7 @@ import AssistantSchema from "@/src/components/seo/AssistantSchema";
 import CookieConsent from "@/src/components/privacy/CookieConsent";
 import InContentAd from "@/src/components/ads/InContentAd";
 import StaticPageTopAd from "@/src/components/ads/StaticPageTopAd";
+import PwaManager from "@/src/components/pwa/PwaManager";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -193,6 +194,7 @@ export default function RootLayout({
         <Footer />
         <ChatWidget />
         <CookieConsent />
+        <PwaManager />
       </body>
     </html>
   );

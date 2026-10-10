@@ -18,7 +18,7 @@ export const irctcRefundCalculator: Calculator = {
   seo: {
     title: "IRCTC Ticket Cancellation Refund Calculator 2026",
     description:
-      "Estimate IRCTC train ticket refund, cancellation charge and GST for confirmed, RAC, waitlisted and confirmed Tatkal e-tickets by class and cancellation time.",
+      "Estimate IRCTC train ticket refund and cancellation charges for regular, Vande Bharat Sleeper, Amrit Bharat II, RAC, waitlisted and Tatkal e-tickets.",
     keywords: [
       "IRCTC refund calculator",
       "train ticket cancellation refund calculator",
@@ -28,6 +28,8 @@ export const irctcRefundCalculator: Calculator = {
       "RAC ticket cancellation charge",
       "waiting ticket refund",
       "IRCTC refund rules 2026",
+      "Vande Bharat Sleeper cancellation charges",
+      "Amrit Bharat II refund rules",
     ],
   },
   steps: [
@@ -61,7 +63,7 @@ export const irctcRefundCalculator: Calculator = {
     formula:
       "Estimated refund = eligible fare - cancellation charge - GST on cancellation charge (AC classes)",
     explanation:
-      "For a regular confirmed ticket, the charge is the applicable flat per-passenger minimum when cancelled more than 48 hours before departure; 25% of fare subject to that minimum from 48 to 12 hours; and 50% subject to that minimum from 12 to 4 hours. Confirmed tickets generally receive no refund after the four-hour deadline. RAC and waitlisted e-tickets use the published clerkage rule when cancelled within their deadline.",
+      "For a regular confirmed ticket, the charge is the applicable flat per-passenger minimum when cancelled more than 48 hours before departure; 25% of fare subject to that minimum from 48 to 12 hours; and 50% subject to that minimum from 12 to 4 hours. Vande Bharat Sleeper and Amrit Bharat II use a separate 72-hour and eight-hour schedule. Confirmed tickets generally receive no refund after their applicable deadline. RAC and waitlisted e-tickets use the published clerkage rule when cancelled within their deadline.",
     example: {
       input: "Two 3AC passengers, total eligible fare ₹4,000, cancelled 30 hours before departure",
       output: "Base charge = max(25% of ₹4,000, ₹180 × 2) = ₹1,000; AC GST estimate = ₹50; estimated refund = ₹2,950",
@@ -88,7 +90,15 @@ export const irctcRefundCalculator: Calculator = {
     },
     {
       question: "What happens when all passengers remain waitlisted after charting?",
-      answer: "For a fully waitlisted e-ticket after chart preparation, the passengers are dropped from the chart and the system processes an automatic refund. They are not permitted to board using that ticket.",
+      answer: "For a fully waitlisted e-ticket after chart preparation, the passengers are dropped from the chart and the system processes an automatic refund after deducting clerkage. They are not permitted to board using that ticket.",
+    },
+    {
+      question: "Are Vande Bharat Sleeper and Amrit Bharat II cancellation rules different?",
+      answer: "Yes. Under IRCTC's January 2026 published rules, a confirmed ticket attracts a 25% deduction when cancelled more than 72 hours before departure, a 50% deduction from 72 hours up to eight hours, and no refund less than eight hours before departure.",
+    },
+    {
+      question: "Can I cancel an e-ticket normally after chart preparation?",
+      answer: "No. After chart preparation, normal online cancellation is unavailable. An online TDR may be filed only for an applicable reason, and the concerned Zonal Railway decides eligibility and the refund amount.",
     },
     {
       question: "Do I need to cancel when the train itself is cancelled?",
@@ -103,14 +113,16 @@ export const irctcRefundCalculator: Calculator = {
     <h2>What this IRCTC refund calculator covers</h2>
     <p>The calculator handles the most common e-ticket cases: voluntary cancellation of a regular confirmed ticket, confirmed Tatkal cancellation, RAC or waitlisted cancellation, a fully cancelled train, and a train delayed by more than three hours when the passenger does not travel. It shows the calculation rather than presenting a refund number without context.</p>
     <h2>Confirmed ticket cancellation deadlines</h2>
-    <p>For ordinary confirmed tickets, timing changes the deduction. More than 48 hours before scheduled departure uses a class-based flat charge per passenger. From 48 hours to 12 hours, the charge is 25% of fare subject to the same minimum. From 12 hours to four hours, it becomes 50% subject to the minimum. A confirmed ticket generally has no refund if it is not cancelled or the appropriate TDR is not filed by the four-hour deadline.</p>
+    <p>For ordinary confirmed tickets, timing changes the deduction. More than 48 hours before scheduled departure uses a class-based flat charge per passenger. From 48 hours to 12 hours, the charge is 25% of fare subject to the same minimum. From 12 hours to four hours, it becomes 50% subject to the minimum. Ordinary online e-ticket cancellation is available only until chart preparation. After chart preparation, an eligible TDR claim may be required and its outcome is decided by the concerned Railway.</p>
+    <h2>Vande Bharat Sleeper and Amrit Bharat II rules</h2>
+    <p>IRCTC's January 2026 refund document publishes a separate confirmed-ticket schedule for Vande Bharat Sleeper Express, which also governs Amrit Bharat II Express. The deduction is 25% when cancelled more than 72 hours before departure and 50% between 72 hours and eight hours. No refund is granted when cancellation occurs less than eight hours before departure.</p>
     <h2>RAC, waitlist and chart preparation</h2>
-    <p>An unused RAC or waitlisted reservation can generally be cancelled up to 30 minutes before scheduled departure with clerkage deducted. If every passenger on an e-ticket remains waitlisted after chart preparation, IRCTC drops the names from the chart and processes the refund automatically. A ticket that becomes confirmed is treated under confirmed-ticket rules.</p>
+    <p>An unused RAC or waitlisted reservation can generally be cancelled up to 30 minutes before scheduled departure with clerkage deducted. If every passenger on an e-ticket remains waitlisted after chart preparation, IRCTC drops the names from the chart and processes the refund automatically after deducting clerkage. A ticket that becomes confirmed is treated under confirmed-ticket rules.</p>
     <h2>Fare, GST and convenience fee</h2>
-    <p>Enter the eligible railway fare for the passengers you are cancelling. The estimate applies 5% GST to the calculated cancellation charge for AC classes. Booking convenience fees, payment-provider charges, catering adjustments, insurance, rounding, split passenger status and special-train rules can make the credited amount differ from this estimate.</p>
+    <p>Enter only the eligible railway fare for the passengers you are cancelling—not the complete checkout payment. For standard rules, the estimate applies 5% GST to the calculated cancellation charge for AC classes. Non-AC First Class is kept separate from AC 2 Tier so GST is not added merely because both use the same ₹200 minimum charge. Booking convenience fees, payment-provider charges, catering adjustments, insurance, rounding and split passenger status can make the credited amount differ.</p>
     <h2>Cases that require TDR review</h2>
     <p>Train diversion, short termination, AC failure, travelling in a lower class, partial travel and mixed-status group tickets can require an online Ticket Deposit Receipt and supporting evidence. Those claims are decided by the concerned railway and should not be reduced to an automatic guaranteed figure. Always use the reason and deadline displayed by IRCTC for the actual booking.</p>
     <h2>Official references</h2>
-    <p>Rules used here are based on the Indian Railways revised refund rules and IRCTC's published e-ticket cancellation procedure. Last reviewed September 2026. DevCalc is an independent calculator and is not affiliated with IRCTC or Indian Railways.</p>
+    <p>Rules used here are based on IRCTC's Refund Rules and TDR Filing document updated in January 2026 and its published e-ticket cancellation procedure. Last reviewed October 2026. DevCalc is an independent calculator and is not affiliated with IRCTC or Indian Railways.</p>
   `,
 };

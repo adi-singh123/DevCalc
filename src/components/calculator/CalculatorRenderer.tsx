@@ -115,6 +115,7 @@ import AndroidUiInspector from "./renderers/AndroidUiInspector";
 import WaterTankCapacityCalculator from "./renderers/WaterTankCapacityCalculator";
 import AacBlockCalculator from "./renderers/AacBlockCalculator";
 import HomeLoanPrepaymentCalculator from "./renderers/HomeLoanPrepaymentCalculator";
+import AdRevenueCalculator from "./renderers/AdRevenueCalculator";
 import CarAffordabilityCalculator from "./renderers/CarAffordabilityCalculator";
 import TyreSizeCalculator from "./renderers/TyreSizeCalculator";
 import FlamesCalculator from "./renderers/FlamesCalculator";
@@ -126,6 +127,8 @@ type Props = {
 
 export default function CalculatorRenderer({ slug }: Props) {
   switch (slug) {
+    case "ad-revenue-calculator":
+      return <AdRevenueCalculator />;
     case "car-affordability-calculator":
       return <CarAffordabilityCalculator />;
     case "tyre-size-calculator":

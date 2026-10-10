@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import PwaInstallButton from "../pwa/PwaInstallButton";
 
 interface NavChild {
   label: string;
@@ -219,6 +220,7 @@ export default function Header() {
             </nav>
 
             <div className="ml-2 flex items-center gap-2 border-l border-stone-200 pl-4 dark:border-slate-700">
+              <PwaInstallButton />
               <ThemeToggle />
               <Link
                 href="/calculators"
@@ -231,6 +233,7 @@ export default function Header() {
 
           {/* Mobile Trigger */}
           <div className="flex items-center gap-3 lg:hidden">
+            <PwaInstallButton compact />
             <ThemeToggle />
 
             <button
@@ -347,6 +350,7 @@ export default function Header() {
               </ul>
 
               <div className="mt-6 space-y-2">
+                <div className="flex justify-center"><PwaInstallButton /></div>
                 <Link
                   href="/calculators"
                   onClick={closeDrawer}

@@ -114,12 +114,14 @@ import { staircaseCalculator } from "./construction/staircaseCalculator";
 import { waterTankCapacityCalculator } from "./construction/waterTankCapacityCalculator";
 import { aacBlockCalculator } from "./construction/aacBlockCalculator";
 import { homeLoanPrepaymentCalculator } from "./finance/homeLoanPrepaymentCalculator";
+import { adRevenueCalculator } from "./finance/adRevenueCalculator";
 import { carAffordabilityCalculator } from "./vehical/carAffordabilityCalculator";
 import { tyreSizeCalculator } from "./vehical/tyreSizeCalculator";
 import { flamesCalculator } from "./fun/flamesCalculator";
 import { petAgeCalculator } from "./fun/petAgeCalculator";
 
 export const calculators = [
+  adRevenueCalculator,
   carAffordabilityCalculator,
   tyreSizeCalculator,
   flamesCalculator,

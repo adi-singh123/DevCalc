@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import InteractiveFaq from "@/src/components/common/InteractiveFaq";
 import { calculateLifeReport } from "@/src/lib/improve-life/engine";
 import { calculationParameters, improveLifeFaqs } from "@/src/lib/improve-life/content";
@@ -14,6 +14,7 @@ const initialDetails: BirthDetails = {
 const inputClass = "mt-3 w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-base text-stone-900 outline-none transition focus:border-[#1f3a5c] focus:ring-2 focus:ring-[#1f3a5c]/15 dark:border-slate-700 dark:bg-slate-950 dark:text-white";
 const primaryButton = "rounded-xl bg-[#1f3a5c] px-5 py-3 font-semibold text-white transition hover:bg-[#172d48] disabled:cursor-not-allowed disabled:opacity-50";
 const secondaryButton = "rounded-xl border border-stone-300 bg-white px-5 py-3 font-semibold text-stone-700 transition hover:bg-stone-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200";
+const PROFILE_STORAGE_KEY = "devcalc.improve-life.profile.v1";
 
 type View = "landing" | "questions" | "report";
 
@@ -204,13 +205,55 @@ export default function ImproveLifeExperience() {
   const [details, setDetails] = useState(initialDetails);
   const [error, setError] = useState("");
   const [report, setReport] = useState<LifeReport | null>(null);
+  const [hasSavedProfile, setHasSavedProfile] = useState(false);
+  const [storageMessage, setStorageMessage] = useState("");
   const maxDate = new Date().toISOString().slice(0, 10);
   const stepValid = useMemo(() => [details.name.trim().length >= 2, Boolean(details.gender), Boolean(details.date) && details.date <= maxDate && details.date >= "1900-01-01", details.timeAccuracy === "unknown" || Boolean(details.time), Boolean(details.place.timezone), true][step], [details, maxDate, step]);
 
-  function next() { if (!stepValid) return setError("Please complete this step before continuing."); setError(""); setStep((value) => Math.min(5, value + 1)); }
-  function generate() { try { setReport(calculateLifeReport(details)); setView("report"); window.scrollTo({ top: 0, behavior: "smooth" }); } catch { setError("The report could not be calculated. Please review the birth details."); } }
+  useEffect(() => {
+    let active = true;
+    try {
+      const stored = window.localStorage.getItem(PROFILE_STORAGE_KEY);
+      if (!stored) return;
+      const parsed = JSON.parse(stored) as BirthDetails;
+      if (parsed?.name && parsed?.date && parsed?.place?.timezone) {
+        queueMicrotask(() => {
+          if (!active) return;
+          setDetails(parsed);
+          setHasSavedProfile(true);
+        });
+      }
+    } catch {
+      window.localStorage.removeItem(PROFILE_STORAGE_KEY);
+    }
+    return () => { active = false; };
+  }, []);
 
-  if (view === "report" && report) return <LifeReportView report={report} restart={() => { setReport(null); setDetails(initialDetails); setStep(0); setView("landing"); }} />;
+  function next() { if (!stepValid) return setError("Please complete this step before continuing."); setError(""); setStep((value) => Math.min(5, value + 1)); }
+  function generate() { try { const nextReport = calculateLifeReport(details); setReport(nextReport); window.localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(details)); setHasSavedProfile(true); setStorageMessage("Your birth profile is saved on this device."); setView("report"); window.scrollTo({ top: 0, behavior: "smooth" }); } catch { setError("The report could not be calculated. Please review the birth details."); } }
+
+  function openSavedReport() {
+    try {
+      setReport(calculateLifeReport(details));
+      setStorageMessage("Loaded from this device. Your saved details were not sent to a profile server.");
+      setView("report");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      setError("The saved profile could not be opened. Please create it again.");
+    }
+  }
+
+  function removeSavedProfile() {
+    window.localStorage.removeItem(PROFILE_STORAGE_KEY);
+    setHasSavedProfile(false);
+    setDetails(initialDetails);
+    setReport(null);
+    setStep(0);
+    setView("landing");
+    setStorageMessage("Saved birth details were removed from this device.");
+  }
+
+  if (view === "report" && report) return <><div className="mx-auto max-w-6xl px-4 pt-6"><div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200"><p>{storageMessage || "This report can be reopened from the profile saved on this device."}</p><button type="button" onClick={removeSavedProfile} className="font-semibold underline underline-offset-4">Remove saved profile</button></div></div><LifeReportView report={report} restart={() => { setReport(null); setStep(0); setView("landing"); }} /></>;
 
   if (view === "questions") return <main className="mx-auto flex min-h-[72vh] max-w-3xl items-center px-4 py-8 sm:py-12"><section className="w-full rounded-2xl border border-stone-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-9">
     <div className="flex items-center justify-between gap-4"><p className="text-sm font-semibold text-[#1f3a5c] dark:text-blue-300">Birth details</p><p className="text-sm text-stone-500">Step {step + 1} of 6</p></div>
@@ -234,6 +277,8 @@ export default function ImproveLifeExperience() {
         <h1 className="mt-4 max-w-4xl font-serif text-4xl font-semibold leading-tight text-[#26364a] dark:text-white sm:text-5xl lg:text-6xl">Know yourself better through a transparent birth-chart calculation</h1>
         <p className="mt-6 max-w-3xl text-base leading-7 text-stone-600 dark:text-slate-300 sm:text-lg sm:leading-8">Explore sidereal planetary positions, Nakshatra, whole-sign houses and Vimshottari life periods using your birth details and a documented, deterministic method.</p>
         <button type="button" onClick={() => { setView("questions"); setStep(0); }} className={`mt-8 w-full sm:w-auto ${primaryButton}`}>Create my report</button>
+        {hasSavedProfile && <div className="mt-4 flex flex-col gap-3 sm:flex-row"><button type="button" onClick={openSavedReport} className={secondaryButton}>Open my saved report</button><button type="button" onClick={removeSavedProfile} className="rounded-xl px-4 py-3 text-sm font-semibold text-red-700 underline underline-offset-4 dark:text-red-300">Forget my details</button></div>}
+        {storageMessage && <p aria-live="polite" className="mt-3 text-sm text-emerald-700 dark:text-emerald-300">{storageMessage}</p>}
         <p className="mt-4 max-w-2xl text-sm leading-6 text-stone-500">No random text or guaranteed predictions. Identical normalized inputs and the same rule version produce the same calculation.</p>
       </div>
       <aside className="rounded-2xl border border-stone-200 bg-[#faf7f0] p-5 dark:border-slate-700 dark:bg-slate-900 sm:p-7" aria-label="Report calculation summary">
