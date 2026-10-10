@@ -43,9 +43,6 @@ export function GET() {
 
   const items = sortedBlogs.map((blog) => {
     const url = `${siteConfig.url}/blog/${blog.slug}`;
-    const image = blog.image
-      ? `\n      <enclosure url="${escapeXml(new URL(blog.image, siteConfig.url).toString())}" type="image/${blog.image.endsWith(".png") ? "png" : "jpeg"}" />`
-      : "";
 
     return `
     <item>
@@ -55,7 +52,7 @@ export function GET() {
       <description>${escapeXml(blog.description)}</description>
       <pubDate>${toRfc822Date(blog.publishedDate)}</pubDate>
       <dc:creator>${escapeXml(blog.author)}</dc:creator>
-      <category>${escapeXml(blog.category)}</category>${image}
+      <category>${escapeXml(blog.category)}</category>
     </item>`;
   }).join("");
 
