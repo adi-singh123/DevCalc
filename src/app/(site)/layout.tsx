@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "@/src/app/globals.css";
 import { siteConfig } from "@/src/config/site";
 import Header from "@/src/components/layout/Header";
@@ -191,6 +192,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="flex min-h-screen flex-col">
+        <Script id="devcalc-service-worker" strategy="afterInteractive">
+          {`if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+              navigator.serviceWorker.register('/sw.js', {
+                scope: '/',
+                updateViaCache: 'none'
+              }).then(function (registration) {
+                registration.update();
+              }).catch(function (error) {
+                console.error('DevCalc service worker registration failed:', error);
+              });
+            });
+          }`}
+        </Script>
         <OrganizationSchema />
         <AssistantSchema />
         <Header />

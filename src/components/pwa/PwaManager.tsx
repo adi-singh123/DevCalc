@@ -16,10 +16,6 @@ export default function PwaManager() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").catch(() => undefined);
-    }
-
     const standalone = window.matchMedia("(display-mode: standalone)").matches;
     const dismissedAt = Number(window.localStorage.getItem(DISMISSED_KEY) || 0);
     const snoozed = dismissedAt > 0 && Date.now() - dismissedAt < INSTALL_SNOOZE_MS;

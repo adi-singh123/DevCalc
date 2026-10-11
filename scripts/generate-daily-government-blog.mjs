@@ -316,30 +316,41 @@ async function main() {
     sourceId: index + 1,
     ...source,
   }));
-  const selection = await nvidiaChat(
-    [
-      {
-        role: "system",
-        content: "You are a cautious Indian public-information editor. Return JSON only and never use facts outside the supplied official-source corpus.",
-      },
-      {
-        role: "user",
-        content: `Today is ${today} in India. Select one substantial, useful and genuinely current government rule, scheme change, compliance deadline, tax change, consumer update or citizen-service update from exactly one primary official source record in this corpus. Reject greetings, speeches without a concrete public update, ceremonies, awards, political promotion and topics too thin for a useful guide. Return {"publishable":boolean,"reason":string,"topic":string,"sourceIds":number[]} with exactly one source ID. Existing topics to avoid: ${JSON.stringify(existingSummary)}. Official corpus: ${JSON.stringify(numberedCorpus)}`,
-      },
-    ],
-    2_000,
-  );
+  let selection;
+  let selectedIds = [];
+  let isPublishable = false;
+  let previousInvalidSelection = "";
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    selection = await nvidiaChat(
+      [
+        {
+          role: "system",
+          content: "You are a cautious Indian public-information editor. Return valid JSON only, keep the decision fields internally consistent, and never use facts outside the supplied official-source corpus.",
+        },
+        {
+          role: "user",
+          content: `Today is ${today} in India. Select one substantial, useful and genuinely current government rule, scheme change, compliance deadline, tax change, consumer update or citizen-service update from exactly one primary official source record in this corpus. Reject greetings, speeches without a concrete public update, ceremonies, awards, political promotion and topics too thin for a useful guide. Return exactly {"publishable":boolean,"reason":string,"topic":string,"sourceIds":number[]}. When publishable is true, sourceIds must contain exactly one valid sourceId from the corpus. When publishable is false, sourceIds must be empty and the reason must explain why no source qualifies. Existing topics to avoid: ${JSON.stringify(existingSummary)}. Official corpus: ${JSON.stringify(numberedCorpus)}.${previousInvalidSelection}`,
+        },
+      ],
+      2_000,
+    );
 
-  const rawSourceIds = Array.isArray(selection.sourceIds)
-    ? selection.sourceIds
-    : selection.sourceId !== undefined
-      ? [selection.sourceId]
-      : [];
-  const selectedIds = [...new Set(rawSourceIds
-    .map((id) => Number(id))
-    .filter((id) => Number.isInteger(id) && id >= 1 && id <= sourceCorpus.length))];
-  const isPublishable = selection.publishable === true
-    || String(selection.publishable).toLowerCase() === "true";
+    const rawSourceIds = Array.isArray(selection.sourceIds)
+      ? selection.sourceIds
+      : selection.sourceId !== undefined
+        ? [selection.sourceId]
+        : [];
+    selectedIds = [...new Set(rawSourceIds
+      .map((id) => Number(id))
+      .filter((id) => Number.isInteger(id) && id >= 1 && id <= sourceCorpus.length))];
+    isPublishable = selection.publishable === true
+      || String(selection.publishable).toLowerCase() === "true";
+
+    if (isPublishable && selectedIds.length === 1) break;
+    if (!isPublishable && selectedIds.length === 0 && attempt === 3) break;
+
+    previousInvalidSelection = ` Your previous response was inconsistent and must not be repeated: ${JSON.stringify(selection)}`;
+  }
   if (!isPublishable || selectedIds.length !== 1) {
     throw new Error(`No safely publishable topic found: ${selection.reason || "insufficient related official sources"}`);
   }
