@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
+    id: "/",
     name: "DevCalc - Calculators and Daily Tools",
     short_name: "DevCalc",
     description: "Install DevCalc for quick access to calculators, saved reports, and daily tools.",
