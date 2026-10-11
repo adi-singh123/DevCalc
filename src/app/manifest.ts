@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "DevCalc - Calculators and Daily Tools",
     short_name: "DevCalc",
     description: "Install DevCalc for quick access to calculators, saved reports, and daily tools.",
-    start_url: "/improve-life?source=pwa",
+    start_url: "/blog?source=pwa",
     scope: "/",
     display: "standalone",
     background_color: "#faf7f0",
