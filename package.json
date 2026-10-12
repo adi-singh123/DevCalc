@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:test": "node scripts/test-turso-connection.mjs",
     "db:migrate": "node scripts/migrate-turso.mjs",
     "db:blogs:check": "node scripts/check-blog-database.mjs",
     "db:blogs:keywords": "node scripts/backfill-blog-keywords.mjs",
