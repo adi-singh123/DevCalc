@@ -1,7 +1,7 @@
-import { blogs } from "@/src/data/blogs/blog";
+import { getPublishedBlogs } from "@/src/lib/blogs/repository";
 import { siteConfig } from "@/src/config/site";
 
-export const dynamic = "force-static";
+export const revalidate = 60;
 
 function escapeXml(value: string): string {
   return value
@@ -29,8 +29,9 @@ function toRfc822Date(value: string): string {
     : parsed.toUTCString();
 }
 
-export function GET() {
+export async function GET() {
   const feedUrl = `${siteConfig.url}/rss.xml`;
+  const blogs = await getPublishedBlogs();
   const sortedBlogs = [...blogs]
     .sort(
       (left, right) =>

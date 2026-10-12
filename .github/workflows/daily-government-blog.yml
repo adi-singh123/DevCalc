@@ -1,4 +1,4 @@
-name: Daily verified government blog draft
+name: Publish verified government blog
 
 on:
   schedule:
@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 concurrency:
   group: daily-government-blog
@@ -24,23 +23,16 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Generate one verified draft
+      - name: Generate and publish one verified article
+        id: publish
         run: npm run blog:government:generate
         env:
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           NVIDIA_CONTENT_MODEL: nvidia/nemotron-3.5-lightning-30b-a3b
-      - run: npx eslint src scripts
-      - run: npx tsc --noEmit
-      - run: npm run build
-      - name: Open review pull request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          branch: automation/government-blog-${{ github.run_id }}
-          delete-branch: true
-          commit-message: "content: add verified daily government guide"
-          title: "Daily government-rule guide for editorial review"
-          body: |
-            Automated draft based only on official sources.
-
-            Before merging, verify every claim, date, source link, example, image and internal link. Merging publishes the page and adds it to the sitemap.
-          labels: content-review,automated-draft
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+      - name: Verify article, sitemap and RSS in production
+        run: npm run blog:government:verify
+        env:
+          BLOG_SLUG: ${{ steps.publish.outputs.slug }}
+          SITE_URL: https://www.devcalc.in

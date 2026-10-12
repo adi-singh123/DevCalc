@@ -5,7 +5,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import ArticleSchema from "@/src/components/seo/ArticleSchema";
-import { blogs } from "@/src/data/blogs/blog";
+import { getPublishedBlogBySlug, getPublishedBlogs } from "@/src/lib/blogs/repository";
 import { calculators } from "@/src/data/calculators";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
@@ -21,13 +21,17 @@ type Props = {
   }>;
 };
 
-export function generateStaticParams() {
+export const revalidate = 60;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const blogs = await getPublishedBlogs();
   return blogs.map((blog) => ({ slug: blog.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const blog = blogs.find((item) => item.slug === slug);
+  const blog = await getPublishedBlogBySlug(slug);
 
   if (!blog) {
     return {
@@ -38,7 +42,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: blog.seoTitle,
     description: blog.seoDescription,
-    keywords: blog.keywords ?? [blog.title, blog.category, "DevCalc Blog"],
+    keywords: blog.keywords?.length
+      ? blog.keywords
+      : [blog.title, blog.category, `${blog.category} guide`, "DevCalc Blog"],
     alternates: {
       canonical: `https://www.devcalc.in/blog/${blog.slug}`,
     },
@@ -66,7 +72,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogDetailsPage({ params }: Props) {
   const { slug } = await params;
 
-  const blog = blogs.find((item) => item.slug === slug);
+  const [blog, blogs] = await Promise.all([
+    getPublishedBlogBySlug(slug),
+    getPublishedBlogs(),
+  ]);
 
   if (!blog) {
     notFound();

@@ -3,7 +3,7 @@ import { readdirSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { calculators } from "@/src/data/calculators";
 import { categories } from "@/src/data/categories/Category";
-import { blogs } from "@/src/data/blogs/blog";
+import { getPublishedBlogs } from "@/src/lib/blogs/repository";
 import { STAMP_DUTY_STATES } from "@/src/data/states/stamp-duty-states";
 import { ROAD_TAX_STATES } from "@/src/data/states/road-tax-states";
 import { siteConfig } from "@/src/config/site";
@@ -57,8 +57,11 @@ function getStaticAppRoutes(directory = APP_DIRECTORY): string[] {
   });
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 60;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
+  const blogs = await getPublishedBlogs();
 
   const calculatorUrls = calculators.map((calculator) => ({
     url: `${baseUrl}/${calculator.slug}`,

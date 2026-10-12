@@ -1,31 +1,48 @@
-# Daily government-rule blog workflow
+# Automated government blog publishing
 
-This workflow creates one reviewable article draft each day. Every draft must contain at least 3,000 words across at least 14 main-body sections, excluding FAQs. It does not publish directly. A maintainer must check and merge the pull request before the page enters production.
+The workflow in `.github/workflows/daily-government-blog.yml` selects a current
+official source, generates and validates an article, and inserts it directly
+into Turso. It does not modify the repository, open a pull request, or require a
+site deployment.
 
-## Setup
+## Required GitHub Actions secrets
 
-1. Revoke any API key that was pasted into chat or source control.
-2. Create a restricted NVIDIA API key from NVIDIA Build.
-3. In GitHub, open **Settings > Secrets and variables > Actions** and add a repository secret named `NVIDIA_API_KEY`.
-4. Enable GitHub Actions and allow workflows to create pull requests under **Settings > Actions > General > Workflow permissions**.
-5. Run the workflow manually once from the Actions tab. The schedule runs at 08:00 IST each day.
+- `NVIDIA_API_KEY`
+- `TURSO_DATABASE_URL`
+- `TURSO_AUTH_TOKEN`
 
-For local testing, copy `.env.automation.example` to `.env.local`, insert the NVIDIA key, and run `npm run blog:government:generate`. Never commit `.env.local`.
+Add them under **Repository settings > Secrets and variables > Actions**. The
+workflow runs on its schedule and can also be started with **Run workflow**.
 
-The generator discovers current releases directly from the official Press Information Bureau RSS feed, downloads the official release pages, selects one substantial primary release, then sends only that bounded source material to NVIDIA NIM. It rejects greetings, awards, promotional ceremonies and thin topics. It uses `nvidia/nemotron-3.5-lightning-30b-a3b` for selection and chunked structured writing. It reuses the stable DevCalc site artwork and does not call an image-generation service or OpenAI.
+## Publication behavior
 
-## Editorial review required
+Only an article that passes the generator's source, SEO, structure, FAQ and content
+validation is inserted with `status = 'published'`. Generation uses a fact ledger,
+a corrective editorial pass, an adversarial fact-check pass and deterministic checks
+for repetition, malformed text and risky unsupported inference. Thin official updates
+remain concise instead of being padded to an arbitrary word count. The website, article route,
+metadata, RSS and sitemap read `blog_posts` from Turso. Their cache refreshes
+within 60 seconds, so no build or redeploy is required.
 
-- Open every official source and confirm the article accurately reflects it.
-- Confirm the notification/rule is recent and the effective date is explicit.
-- Check affected people, eligibility, deadlines, exceptions, amounts and examples.
-- Remove unsupported predictions or legal, tax, medical, investment or entitlement claims.
-- Confirm the title is not a duplicate or near-duplicate of an existing article.
-- Confirm the main body provides at least 3,000 useful words without repetition or filler.
-- Run the build and preview the page on mobile and desktop.
+The primary source feed is PIB RSS. If PIB blocks that endpoint, the generator falls
+back to PIB's official All Press Releases page; it does not substitute third-party news.
+If no article passes every check, the workflow fails without inserting a database row.
 
-## HTML source and indexing
+After insertion, the generator verifies the stored status, keyword count,
+section count and FAQ count. The workflow then retries the production article,
+`sitemap.xml` and `rss.xml` until the new canonical URL appears in all three.
+The workflow fails visibly if publication or discovery verification does not
+complete.
 
-Generated articles are stored in the repository and included by `generateStaticParams`. Next.js produces the title, description, headings, paragraphs, tables, FAQs, internal links and official source links as static server-rendered HTML during the production build. Search engines and users viewing page source can read the primary content without running client-side JavaScript. The same article record also creates its canonical metadata, Article and FAQ structured data, Open Graph image and image-sitemap entry.
+Submit `https://www.devcalc.in/sitemap.xml` to Google Search Console only once.
+New database articles are added to that sitemap automatically; Google will read
+the updated sitemap on its own schedule. Ordinary blog pages are not eligible
+for guaranteed instant submission through Google's Indexing API.
 
-The generator refuses to write a draft when it cannot obtain a substantial primary official source, 3,000 words of adequate original main content, or a new slug. Merging the pull request registers the page in the blog list and the Next.js sitemap automatically.
+```bash
+npm run db:migrate
+npm run db:blogs:check
+```
+
+Schema changes must be new numbered files under `database/migrations`. Never
+modify an already-applied migration.

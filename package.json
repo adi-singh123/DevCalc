@@ -1,17 +1,23 @@
 {
   "name": "devcalc",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "db:test": "node scripts/test-turso-connection.mjs",
+    "db:migrate": "node scripts/migrate-turso.mjs",
+    "db:blogs:check": "node scripts/check-blog-database.mjs",
+    "db:blogs:keywords": "node scripts/backfill-blog-keywords.mjs",
     "audit:adsense": "node scripts/audit-adsense-readiness.mjs",
-    "blog:government:generate": "node scripts/generate-daily-government-blog.mjs"
+    "blog:government:generate": "node scripts/generate-daily-government-blog.mjs",
+    "blog:government:verify": "node scripts/verify-published-blog.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@libsql/client": "^0.18.0",
     "@next/third-parties": "^16.3.6",
     "@sparticuz/chromium": "^149.0.0",
     "@tailwindcss/typography": "^0.5.20",
