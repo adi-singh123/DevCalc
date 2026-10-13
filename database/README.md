@@ -35,3 +35,17 @@ Never edit a migration after it has been applied; add a new numbered migration.
 JSON columns have `json_valid(...)` checks. Publication status and boolean
 values also have database-level checks, and common list/category queries are
 indexed.
+
+## `site_pages`
+
+`site_pages` stores the server-rendered HTML and metadata for `/about`,
+`/privacy-policy`, and `/terms`. Public routes read only published rows. The
+trusted database HTML is rendered on the server and remains visible in the
+initial document source.
+
+After migration `003`, import the existing published pages once:
+
+```bash
+npm run db:migrate
+npm run db:pages:import
+```

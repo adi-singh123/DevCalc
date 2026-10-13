@@ -23,6 +23,11 @@ import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyA
 import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
 import MobileRectangleThirdPartyAd from "@/src/components/ads/MobileRectangleThirdPartyAd";
 import CalculatorResultThirdPartyAd from "@/src/components/ads/CalculatorResultThirdPartyAd";
+import LatestArticlesForCalculator from "@/src/components/blog/LatestArticlesForCalculator";
+
+// Rebuild visited calculator pages periodically so newly published database
+// articles appear without requiring another deployment.
+export const revalidate = 300;
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -226,6 +231,11 @@ export default async function CalculatorPage({ params }: Props) {
           />
           <FAQSection faqs={calculator.faqs} />
           <SEOContent content={calculator.seoContent} />
+
+          <LatestArticlesForCalculator
+            calculatorSlug={calculator.slug}
+            calculatorCategory={calculator.category}
+          />
 
           <EmbedCalculatorSection slug={calculator.slug} name={calculator.name} />
 

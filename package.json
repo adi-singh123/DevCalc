@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "db:migrate": "node scripts/migrate-turso.mjs",
+    "db:pages:import": "node scripts/import-static-site-pages.mjs",
     "db:blogs:check": "node scripts/check-blog-database.mjs",
     "db:blogs:keywords": "node scripts/backfill-blog-keywords.mjs",
     "audit:adsense": "node scripts/audit-adsense-readiness.mjs",

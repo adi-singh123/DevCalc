@@ -1,7 +1,10 @@
-import { getPublishedBlogs } from "@/src/lib/blogs/repository";
+import { getPublishedBlogsFresh } from "@/src/lib/blogs/repository";
 import { siteConfig } from "@/src/config/site";
 
-export const revalidate = 60;
+// The publishing workflow writes directly to Turso, so always build the feed
+// from the current database state instead of an old deployment artifact.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 function escapeXml(value: string): string {
   return value
@@ -31,7 +34,7 @@ function toRfc822Date(value: string): string {
 
 export async function GET() {
   const feedUrl = `${siteConfig.url}/rss.xml`;
-  const blogs = await getPublishedBlogs();
+  const blogs = await getPublishedBlogsFresh();
   const sortedBlogs = [...blogs]
     .sort(
       (left, right) =>
@@ -73,7 +76,7 @@ export async function GET() {
   return new Response(xml, {
     headers: {
       "Content-Type": "application/rss+xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+      "Cache-Control": "no-store, max-age=0",
     },
   });
 }

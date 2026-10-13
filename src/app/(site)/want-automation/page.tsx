@@ -14,12 +14,15 @@ import {
   Clock,
   Code2,
   Workflow,
+  Check,
+  IndianRupee,
+  Server,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Custom Automation & Web Scraping Services",
+  title: "Website, Automation & Custom Software Development",
   description:
-    "Automate any repetitive workflow, web scraping, or testing task with custom Selenium, Playwright, Puppeteer, and Python scripts. Fast 24-48h delivery for businesses & students. Call/WhatsApp: 8081158775.",
+    "Production-ready websites, browser automation and custom business software in India. Transparent code-only pricing, SEO foundations and source-code delivery.",
   keywords: [
     "custom automation services",
     "web scraping services",
@@ -32,6 +35,9 @@ export const metadata: Metadata = {
     "qa automated testing",
     "whatsapp bot automation",
     "browser automation developer india",
+    "website development services India",
+    "custom software development India",
+    "business website developer",
   ],
   alternates: {
     canonical: "https://www.devcalc.in/want-automation",
@@ -48,9 +54,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Custom Automation & Web Scraping Services | Playwright & Selenium",
+    title: "Website, Automation & Custom Software Development | DevCalc",
     description:
-      "Automate repetitive tasks, web scraping, and QA testing with custom Python & Playwright scripts. 24-48h turnaround. Call/WhatsApp: 8081158775.",
+      "Get production-ready website code, workflow automation or custom business software with transparent starting prices and source-code delivery.",
     url: "https://www.devcalc.in/want-automation",
     siteName: "DevCalc",
     locale: "en_IN",
@@ -60,20 +66,38 @@ export const metadata: Metadata = {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "DevCalc Automation & Web Scraping Services",
+        alt: "DevCalc website, automation and software development services",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Custom Automation & Web Scraping Services | DevCalc",
+    title: "Website, Automation & Software Development | DevCalc",
     description:
-      "Automate any repetitive workflow with custom Playwright, Selenium & Python scripts. Call/WhatsApp: 8081158775.",
+      "Production-ready websites, automation and custom software with clear code-only pricing.",
     images: ["/logo.png"],
   },
 };
 
 const AUTOMATION_TYPES = [
+  {
+    icon: Globe,
+    title: "Business, Portfolio & Service Websites",
+    tools: "Next.js, React, TypeScript, Tailwind CSS, CMS",
+    desc: "Responsive websites for companies, professionals, agencies, restaurants, schools, clinics and local services, with clear navigation, enquiry forms, editable content and search-friendly HTML.",
+  },
+  {
+    icon: IndianRupee,
+    title: "E-commerce & Online Stores",
+    tools: "Product catalogue, cart, checkout, payment gateway, order management",
+    desc: "Custom storefronts for physical or digital products, including categories, search, cart, approved payment integration, order tracking and an admin workflow matched to your business.",
+  },
+  {
+    icon: Code2,
+    title: "Web Apps, Portals & Marketplaces",
+    tools: "Next.js, Node.js, APIs, Turso, PostgreSQL, role-based access",
+    desc: "Customer portals, booking systems, dashboards, directories, marketplaces, subscription products and internal tools built around your actual workflow and user roles.",
+  },
   {
     icon: Globe,
     title: "Web Scraping & Data Extraction",
@@ -146,7 +170,85 @@ const WHY_US = [
   },
 ];
 
+const PRICING = [
+  {
+    name: "Starter Website",
+    price: "₹4,999",
+    note: "starting price",
+    description: "For a professional local-business, portfolio or service website.",
+    delivery: "Usually 7-12 business days",
+    features: [
+      "Up to 5 responsive pages",
+      "Contact and WhatsApp actions",
+      "On-page SEO foundations",
+      "Performance and mobile checks",
+      "Production-ready source code",
+    ],
+  },
+  {
+    name: "Business Website",
+    price: "₹9,999",
+    note: "starting price",
+    description: "For a focused business website with editable content and standard integrations.",
+    delivery: "Usually 2-4 weeks",
+    featured: true,
+    features: [
+      "Up to 10 tailored pages",
+      "Basic CMS or database-backed content",
+      "Forms and approved API integration",
+      "Technical SEO and structured data",
+      "Deployment assistance and handover",
+    ],
+  },
+  {
+    name: "Workflow Automation",
+    price: "₹4,999",
+    note: "starting price",
+    description: "For one clearly defined browser, spreadsheet, reporting or API workflow.",
+    delivery: "Usually 5-12 business days",
+    features: [
+      "One scoped automated workflow",
+      "Retries, logs and error handling",
+      "CSV, Excel, JSON or database output",
+      "Run guide or one-click launcher",
+      "Authorized systems and public data only",
+    ],
+  },
+  {
+    name: "E-commerce Website",
+    price: "₹14,999",
+    note: "starting price",
+    description: "For a basic online store with catalogue, cart and one payment integration.",
+    delivery: "Usually 3-6 weeks",
+    features: [
+      "Responsive product catalogue",
+      "Search, cart and checkout flow",
+      "One approved payment gateway",
+      "Basic order-management workflow",
+      "Technical SEO and analytics setup",
+    ],
+  },
+  {
+    name: "Custom Software / Web App",
+    price: "₹24,999",
+    note: "starting price",
+    description: "For a focused first version of a dashboard, portal, internal tool or SaaS MVP.",
+    delivery: "Usually 4-10+ weeks",
+    features: [
+      "Responsive frontend and backend",
+      "Database and role-based access",
+      "Core API integrations",
+      "Testing and deployment documentation",
+      "Source code and technical handover",
+    ],
+  },
+];
+
 const FAQS = [
+  {
+    q: "What kinds of websites can you develop?",
+    a: "We can build business and service websites, portfolios, blogs, landing pages, restaurant and clinic sites, school websites, e-commerce stores, booking systems, directories, customer portals, dashboards, marketplaces and focused SaaS or custom web-application MVPs. The final scope depends on the required pages, user roles, data and integrations.",
+  },
   {
     q: "What types of automation tasks and web scraping can you build?",
     a: "We can automate virtually any manual or repetitive computer workflow: e-commerce product price monitoring, real estate lead generation, job directory scrapers, automated PDF/invoice generation, portal logins and automated form filling, bulk email/WhatsApp dispatching, Excel to database syncing, and automated regression testing suites.",
@@ -165,15 +267,15 @@ const FAQS = [
   },
   {
     q: "Can you deploy the automation to run 24/7 in the cloud?",
-    a: "Absolutely. We can deploy your script to cloud platforms such as AWS Lambda, Google Cloud Functions, Render, or a low-cost VPS with scheduled crons and automated notifications (Email, WhatsApp, Telegram, or Slack) upon task completion.",
+    a: "Yes. We can configure deployment to a suitable cloud or VPS account with scheduled jobs and notifications. Cloud hosting, messaging-provider fees and other third-party charges are paid separately by the client.",
   },
   {
     q: "Why should I choose custom code over Zapier, Make, or other no-code tools?",
-    a: "No-code platforms charge high recurring monthly subscriptions, impose harsh task limits, and run into paywalls for complex multi-step workflows. With our custom code, you pay once, own the script 100% forever, execute unlimited tasks at 10x faster speed, and pay zero monthly fees.",
+    a: "Custom code can be a better fit when a workflow needs specific logic, ownership or fewer platform limits. It can still have operating costs for servers, APIs, proxies, email, messaging or maintenance, so we explain those separately before work begins.",
   },
   {
     q: "What is the typical turnaround time for an automation project?",
-    a: "Standard web scraping and browser automation tasks are typically completed and delivered within 24 to 48 hours. Enterprise-scale data extraction pipelines and complex bots usually take 3 to 5 business days.",
+    a: "A small, clearly defined automation normally takes 5-12 business days. Integrations, dashboards, large data pipelines and workflows requiring extensive testing take longer. The written proposal confirms the schedule after requirements are reviewed.",
   },
   {
     q: "What output formats can you export extracted data into?",
@@ -185,26 +287,66 @@ const FAQS = [
   },
   {
     q: "Is my business data and scraping workflow kept confidential?",
-    a: "Yes, 100%. We adhere to strict client confidentiality standards and are happy to sign a Non-Disclosure Agreement (NDA) for sensitive business workflows and proprietary data extraction tasks.",
+    a: "Project information is handled confidentially and an NDA can be agreed before sensitive access is shared. Clients should provide least-privilege test credentials and rotate them after handover.",
+  },
+  {
+    q: "Are domain registration and hosting included in these prices?",
+    a: "No. The displayed prices cover agreed design and production-ready development code only. You purchase and own the domain, hosting, cloud account, email service and any paid third-party subscriptions. We can recommend suitable options and assist with deployment.",
+  },
+  {
+    q: "Are the displayed prices fixed quotations?",
+    a: "They are starting prices for clearly defined standard scopes. The final fixed quotation depends on pages, user roles, integrations, data migration, content, security requirements and delivery schedule. Work starts only after you approve the scope, price and milestones.",
+  },
+  {
+    q: "Will I receive the complete source code?",
+    a: "Yes. After final payment, you receive the source code created for the agreed project, setup instructions and relevant technical documentation. Licensed third-party packages, external services and client-owned assets remain subject to their own terms.",
+  },
+  {
+    q: "Does a website package include SEO?",
+    a: "Website packages include technical and on-page SEO foundations such as semantic HTML, one clear H1, metadata, canonical URLs, sitemap support, robots directives, structured data where appropriate, mobile usability and performance checks. Search rankings and traffic cannot be guaranteed.",
+  },
+  {
+    q: "Who provides the website text, logo, images and legal policies?",
+    a: "The client normally provides approved business facts, branding, images and legal text. We can structure and edit supplied content, but professional copywriting, photography, logo design and legal drafting are separate services unless included in the written proposal.",
+  },
+  {
+    q: "How do payments and project milestones work?",
+    a: "A typical fixed-scope project uses an advance to reserve development time, a review milestone and final payment before source-code handover or production launch. The exact percentage, deliverables and acceptance criteria are written in the proposal.",
+  },
+  {
+    q: "How many revisions are included?",
+    a: "Standard packages include two reasonable revision rounds within the approved scope. New pages, features, integrations or redesigns requested after approval are estimated separately before implementation.",
+  },
+  {
+    q: "What support is included after delivery?",
+    a: "A short defect-support period for the agreed features is included in the project proposal. New features, third-party changes, content updates and ongoing monitoring can be covered by a separate maintenance plan.",
+  },
+  {
+    q: "Can you improve or repair an existing website or software project?",
+    a: "Yes, after a code and infrastructure review. We first identify the framework, deployment setup, security risks and technical debt, then provide a scoped quotation. Access to the repository and a safe test environment may be required.",
+  },
+  {
+    q: "Can you guarantee Google rankings, uninterrupted automation or permanent compatibility?",
+    a: "No responsible provider can guarantee rankings or permanent compatibility with changing websites and third-party APIs. We build sound SEO foundations, monitoring, retries and maintainable code, then explain ongoing risks and maintenance options clearly.",
   },
 ];
 
 export default function WantAutomationPage() {
   const phoneNumber = "8081158775";
   const whatsappUrl = `https://wa.me/918081158775?text=${encodeURIComponent(
-    "Hi Aditya, I am looking for custom automation / web scraping services. Can we discuss my requirements?"
+    "Hi Aditya, I need help with a website, automation or custom software project. Please share pricing after reviewing my requirements."
   )}`;
 
   // JSON-LD Structured Data for Google Rich Snippets
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "DevCalc Custom Automation & Web Scraping Services",
+    name: "DevCalc Website, Automation and Custom Software Development",
     description:
-      "Custom browser automation, web scraping, and workflow automation services using Playwright, Selenium, BeautifulSoup, and Python.",
+      "Production-ready website development, authorized workflow automation and custom business software with source-code delivery in India.",
     url: "https://www.devcalc.in/want-automation",
     telephone: "+918081158775",
-    priceRange: "₹₹",
+    priceRange: "₹4,999-₹24,999+",
     image: "https://www.devcalc.in/logo.png",
     address: {
       "@type": "PostalAddress",
@@ -232,6 +374,17 @@ export default function WantAutomationPage() {
       ],
       opens: "08:00",
       closes: "23:00",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Development services",
+      itemListElement: PRICING.map((plan) => ({
+        "@type": "Offer",
+        priceCurrency: "INR",
+        price: plan.price.replace(/[^0-9]/g, ""),
+        description: `${plan.name}: ${plan.description} Domain, hosting and paid third-party services are excluded.`,
+        itemOffered: { "@type": "Service", name: plan.name },
+      })),
     },
   };
 
@@ -261,7 +414,7 @@ export default function WantAutomationPage() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Automation Services",
+        name: "Development Services",
         item: "https://www.devcalc.in/want-automation",
       },
     ],
@@ -292,7 +445,7 @@ export default function WantAutomationPage() {
             </Link>
             <span className="mx-2">/</span>
             <span className="text-slate-800 dark:text-slate-200 font-medium">
-              Automation &amp; Scraping
+              Development Services
             </span>
           </nav>
         </div>
@@ -302,22 +455,22 @@ export default function WantAutomationPage() {
           <div className="mx-auto max-w-5xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur dark:border-blue-900/50 dark:bg-blue-950/50 dark:text-blue-300">
               <Sparkles className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-              <span>Custom Automation · Web Scraping · Selenium · Playwright · Python</span>
+              <span>Websites · E-commerce · Automation · Custom Software</span>
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-slate-900 dark:text-white">
-              Automate Any Repetitive Task with{" "}
+              Build Your Website, Automation or{" "}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
-                Custom Scripts
+                Custom Software
               </span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              Stop wasting manual hours on repetitive browser clicks, copy-pasting, data entry, and manual scraping. We build rock-solid, automated scripts using{" "}
+              Get maintainable, production-ready code for business websites, e-commerce stores, web applications and authorized workflow automation. We design, develop, test and document solutions using{" "}
               <strong className="font-semibold text-slate-900 dark:text-white">
-                Playwright, Selenium, BeautifulSoup, and Python
+                Next.js, React, Node.js, Python and Playwright
               </strong>{" "}
-              for businesses, startups, and students.
+              for businesses, startups and independent professionals.
             </p>
 
             {/* CTA Buttons */}
@@ -344,6 +497,10 @@ export default function WantAutomationPage() {
             {/* Tech stack badges */}
             <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
               {[
+                "Next.js",
+                "React",
+                "E-commerce",
+                "Payment APIs",
                 "Selenium",
                 "Playwright",
                 "Puppeteer",
@@ -358,7 +515,7 @@ export default function WantAutomationPage() {
                   key={tool}
                   className="rounded-full border border-stone-200 bg-white/80 px-3.5 py-1 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
                 >
-                  ⚡ {tool}
+                  {tool}
                 </span>
               ))}
             </div>
@@ -369,13 +526,13 @@ export default function WantAutomationPage() {
         <section className="px-4 py-16 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <div className="text-center">
             <span className="rounded-full bg-blue-100 px-3.5 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-900/50 dark:text-blue-300">
-              What We Automate
+              What We Build
             </span>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              Custom Automation Services Tailored to Your Needs
+              Websites, E-commerce, Automation and Software
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-              From single-task desktop scripts to scalable enterprise scrapers, we handle every automation layer.
+              From a polished business website to a database-backed platform, we define the scope and deliver maintainable production code.
             </p>
           </div>
 
@@ -402,6 +559,67 @@ export default function WantAutomationPage() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        <section id="pricing" className="border-y border-stone-200 bg-white px-4 py-16 sm:px-6 lg:px-8 dark:border-slate-800 dark:bg-slate-950">
+          <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">
+                <IndianRupee className="h-3.5 w-3.5" /> Transparent starting prices
+              </span>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                Production-ready development packages
+              </h2>
+              <p className="mt-4 leading-relaxed text-slate-600 dark:text-slate-400">
+                These are realistic starting prices for a clearly defined scope—not misleading fixed prices for every project. Your written quotation will list the exact features, milestones, delivery time and total development cost.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {PRICING.map((plan) => (
+                <article
+                  key={plan.name}
+                  className={`relative flex h-full flex-col rounded-2xl border p-6 shadow-sm ${plan.featured ? "border-blue-500 bg-blue-50/50 ring-2 ring-blue-100 dark:bg-blue-950/20 dark:ring-blue-950" : "border-stone-200 bg-[#faf7f0] dark:border-slate-800 dark:bg-slate-900"}`}
+                >
+                  {plan.featured && (
+                    <span className="absolute right-4 top-4 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">Popular</span>
+                  )}
+                  <h3 className="pr-20 text-xl font-bold">{plan.name}</h3>
+                  <div className="mt-4 flex items-end gap-2">
+                    <span className="text-3xl font-extrabold text-[#1f3a5c] dark:text-blue-300">{plan.price}</span>
+                    <span className="pb-1 text-xs text-slate-500">{plan.note}</span>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{plan.description}</p>
+                  <p className="mt-3 text-sm font-semibold text-blue-700 dark:text-blue-300">{plan.delivery}</p>
+                  <ul className="mt-5 flex-1 space-y-3">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex gap-2 text-sm text-slate-700 dark:text-slate-300">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-6 rounded-xl bg-[#1f3a5c] px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#162a43] dark:bg-blue-600 dark:hover:bg-blue-500">
+                    Discuss this package
+                  </a>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-8 grid gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-6 md:grid-cols-[auto_1fr] dark:border-amber-900 dark:bg-amber-950/30">
+              <Server className="h-7 w-7 text-amber-700 dark:text-amber-400" />
+              <div>
+                <h3 className="font-bold text-amber-950 dark:text-amber-100">Domain, server and paid services are not included</h3>
+                <p className="mt-2 text-sm leading-relaxed text-amber-900/80 dark:text-amber-200/80">
+                  Package prices cover the agreed production-ready code. You must purchase and own the domain, hosting or cloud account, business email, payment-gateway account and any paid API, plugin, messaging, storage or third-party subscription. We can recommend options and help configure deployment.
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-6 text-center text-sm font-medium text-slate-700 dark:text-slate-300">
+              Need a detailed quotation, a custom feature or a project discount? Contact the team with your requirements for exact pricing.
+            </p>
           </div>
         </section>
 
@@ -454,7 +672,7 @@ export default function WantAutomationPage() {
               Core Automation Engines We Use
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-              We pick the exact tool that guarantees maximum speed and zero detection.
+                We select a maintainable stack based on your users, workflow, integrations, deployment needs and approved access constraints.
             </p>
           </div>
 
@@ -494,10 +712,10 @@ export default function WantAutomationPage() {
         <section className="px-4 py-16 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           <div className="rounded-3xl border border-blue-200 bg-gradient-to-r from-blue-900 to-indigo-950 p-8 text-center text-white shadow-xl sm:p-12 dark:border-slate-800">
             <h2 className="text-3xl font-bold sm:text-4xl">
-              Have a Workflow You Want to Automate?
+              Ready to Build Your Digital Product?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-blue-100 leading-relaxed">
-              Tell us about your manual task. We will provide a custom automation solution that runs seamlessly and saves you hours every week.
+              Tell us whether you need a website, e-commerce store, automation, portal or custom software. We will review the scope and provide an exact quotation, timeline and delivery plan.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -521,7 +739,7 @@ export default function WantAutomationPage() {
             </div>
 
             <p className="mt-6 text-xs text-blue-200">
-              Fast turnaround · Custom tailored code · Full execution documentation · 100% Confidential
+              Production-ready code · Clear project scope · Documentation · Domain and hosting purchased separately
             </p>
           </div>
         </section>

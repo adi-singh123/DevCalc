@@ -33,6 +33,21 @@ const SELECT_BLOG_COLUMNS = `
   related_calculator_slugs_json, content_json, faqs_json
 `;
 
+async function withDatabaseRetry<T>(operation: () => Promise<T>, label: string): Promise<T> {
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error;
+      if (attempt < 3) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 400));
+      }
+    }
+  }
+  throw new Error(`Turso query failed after retries: ${label}`, { cause: lastError });
+}
+
 function requiredText(value: unknown, column: string): string {
   if (typeof value !== "string" || !value.trim()) {
     throw new Error(`Invalid blog database value for ${column}.`);
@@ -82,25 +97,31 @@ function rowToBlog(row: BlogRow): Blog {
 }
 
 async function queryPublishedBlogs(): Promise<Blog[]> {
-  const result = await getTursoClient().execute(`
-    SELECT ${SELECT_BLOG_COLUMNS}
-    FROM blog_posts
-    WHERE status = 'published'
-    ORDER BY is_featured DESC, published_at DESC, id DESC
-  `);
+  const result = await withDatabaseRetry(
+    () => getTursoClient().execute(`
+      SELECT ${SELECT_BLOG_COLUMNS}
+      FROM blog_posts
+      WHERE status = 'published'
+      ORDER BY is_featured DESC, published_at DESC, id DESC
+    `),
+    "published blog collection",
+  );
   return result.rows.map((row) => rowToBlog(row as unknown as BlogRow));
 }
 
 async function queryPublishedBlogBySlug(slug: string): Promise<Blog | null> {
-  const result = await getTursoClient().execute({
-    sql: `
-      SELECT ${SELECT_BLOG_COLUMNS}
-      FROM blog_posts
-      WHERE slug = ? AND status = 'published'
-      LIMIT 1
-    `,
-    args: [slug],
-  });
+  const result = await withDatabaseRetry(
+    () => getTursoClient().execute({
+      sql: `
+        SELECT ${SELECT_BLOG_COLUMNS}
+        FROM blog_posts
+        WHERE slug = ? AND status = 'published'
+        LIMIT 1
+      `,
+      args: [slug],
+    }),
+    `published blog ${slug}`,
+  );
   const row = result.rows[0];
   return row ? rowToBlog(row as unknown as BlogRow) : null;
 }
@@ -112,7 +133,14 @@ const getPublishedBlogsCached = unstable_cache(
 );
 
 export function getPublishedBlogs(): Promise<Blog[]> {
+  // Shared page rendering can fan out across hundreds of calculator routes.
+  // Reuse one short-lived result instead of opening one Turso request per page.
   return getPublishedBlogsCached();
+}
+
+export function getPublishedBlogsFresh(): Promise<Blog[]> {
+  // Discovery endpoints must reflect direct database publications immediately.
+  return queryPublishedBlogs();
 }
 
 export async function getPublishedBlogBySlug(slug: string): Promise<Blog | null> {

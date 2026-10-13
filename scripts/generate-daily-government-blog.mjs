@@ -15,20 +15,20 @@ const reviewModel =
   process.env.NVIDIA_REVIEW_MODEL || "nvidia/nemotron-3-super-120b-a12b";
 
 const officialDomains = [
-  "pib.gov.in",
-  "egazette.nic.in",
+  "irctc.co.in",
+  "gst.gov.in",
+  "pib.gov.in",,
   "india.gov.in",
+  "indianrailways.gov.in",
   "incometax.gov.in",
   "cbic.gov.in",
-  "gst.gov.in",
   "labour.gov.in",
   "rbi.org.in",
   "sebi.gov.in",
   "uidai.gov.in",
   "epfindia.gov.in",
   "parivahan.gov.in",
-  "indianrailways.gov.in",
-  "irctc.co.in",
+  "egazette.nic.in",
   "mohfw.gov.in",
   "education.gov.in",
   "scholarships.gov.in",
@@ -370,6 +370,19 @@ function editorialShapeErrors(content, faqs) {
   return errors;
 }
 
+function normalizeEditorialShape(result) {
+  if (!Array.isArray(result?.content) || !Array.isArray(result?.faqs)) return result;
+  return {
+    ...result,
+    content: result.content.map((section) => ({
+      ...section,
+      // More than three bullets is a presentation issue, not a reason to
+      // discard an otherwise sound article. Keep the strongest first three.
+      points: Array.isArray(section?.points) ? section.points.slice(0, 3) : [],
+    })),
+  };
+}
+
 async function runFinalQualityGate(factResult, draft) {
   const result = await nvidiaChat(
     [
@@ -607,7 +620,8 @@ async function main() {
   if (!Array.isArray(reviewResult.content) || !Array.isArray(reviewResult.faqs)) {
     throw new Error(`Editorial review returned invalid content: ${JSON.stringify(reviewResult.issues ?? [])}`);
   }
-  for (let correctionAttempt = 1; correctionAttempt <= 2; correctionAttempt += 1) {
+  reviewResult = normalizeEditorialShape(reviewResult);
+  for (let correctionAttempt = 1; correctionAttempt <= 4; correctionAttempt += 1) {
     const shapeErrors = editorialShapeErrors(reviewResult.content, reviewResult.faqs);
     if (reviewResult.approved === true && shapeErrors.length === 0) break;
     reviewResult = await nvidiaChat(
@@ -618,12 +632,13 @@ async function main() {
         },
         {
           role: "user",
-          content: `Fact ledger: ${JSON.stringify(factResult)}. Current article: ${JSON.stringify(reviewResult)}. Problems to correct: ${JSON.stringify([...shapeErrors, ...(reviewResult.issues ?? [])])}. Return the complete corrected object as {"approved":true,"issues":[],"content":[...],"faqs":[...]}. Preserve only claims supported by the fact ledger. Use 5-10 specific sections, at least 500 useful body words without padding, zero or one table total, no more than 3 bullets in any section, and 5-7 distinct FAQs with question and answer strings. Do not claim approval unless every constraint is satisfied.`,
+          content: `Editorial correction attempt ${correctionAttempt} of 4. Fact ledger: ${JSON.stringify(factResult)}. Current article: ${JSON.stringify(reviewResult)}. Problems to correct: ${JSON.stringify([...shapeErrors, ...(reviewResult.issues ?? [])])}. Return the complete corrected object as {"approved":true,"issues":[],"content":[...],"faqs":[...]}. Preserve only claims supported by the fact ledger. Use 5-10 specific sections, at least 500 useful body words without padding, zero or one table total, no more than 3 bullets in any section, and 5-7 distinct FAQs with question and answer strings. Do not claim approval unless every constraint is satisfied.`,
         },
       ],
       14_000,
     );
     if (!Array.isArray(reviewResult.content) || !Array.isArray(reviewResult.faqs)) break;
+    reviewResult = normalizeEditorialShape(reviewResult);
   }
   const finalShapeErrors = editorialShapeErrors(reviewResult.content, reviewResult.faqs);
   if (reviewResult.approved !== true || finalShapeErrors.length > 0) {
@@ -686,9 +701,16 @@ async function main() {
       publishedDate: source.publishedDate,
     })),
   };
-  try {
-    validateArticle(draft, existing, selectedUrls, calculatorSlugs, today);
-  } catch (error) {
+  let validationError;
+  for (let validationAttempt = 1; validationAttempt <= 5; validationAttempt += 1) {
+    try {
+      validateArticle(draft, existing, selectedUrls, calculatorSlugs, today);
+      validationError = undefined;
+      break;
+    } catch (error) {
+      validationError = error;
+    }
+    if (validationAttempt === 5) break;
     const corrected = await nvidiaChat(
       [
         {
@@ -697,12 +719,12 @@ async function main() {
         },
         {
           role: "user",
-          content: `Fact ledger: ${JSON.stringify(factResult)}. Draft content and FAQs: ${JSON.stringify({ content, faqs })}. Deterministic validation errors: ${error.message}. Return {"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Correct every listed problem while preserving 5-10 specific sections, at least 500 useful words, no more than 3 bullets per section and 5-7 valid FAQs. Use direct factual wording only. Do not use untranslated quotations, HTML entities, repeated source-attribution boilerplate or claims about unstated purpose, scope, benefit, effect, outcome or future impact.`,
+          content: `Deterministic correction attempt ${validationAttempt} of 4. Fact ledger: ${JSON.stringify(factResult)}. Draft content and FAQs: ${JSON.stringify({ content, faqs })}. Validation errors to fix: ${validationError.message}. Return {"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Correct every listed problem while preserving 5-10 specific sections, at least 500 useful words, no more than 3 bullets per section and 5-7 valid FAQs. Use direct factual wording only. Do not use untranslated quotations, HTML entities, repeated source-attribution boilerplate or claims about unstated purpose, scope, benefit, effect, outcome or future impact.`,
         },
       ],
       14_000,
     );
-    if (!Array.isArray(corrected.content) || !Array.isArray(corrected.faqs)) throw error;
+    if (!Array.isArray(corrected.content) || !Array.isArray(corrected.faqs)) continue;
     content = corrected.content.map((section) => ({
       heading: String(section.heading || "").trim(),
       paragraphs: Array.isArray(section.paragraphs) ? section.paragraphs.map(removeRiskySentences).filter(Boolean) : [],
@@ -715,11 +737,11 @@ async function main() {
       .filter((faq) => faq.question && faq.answer);
     faqs = generatedFaqs;
     draft = { ...draft, content, faqs };
-    validateArticle(draft, existing, selectedUrls, calculatorSlugs, today);
   }
+  if (validationError) throw validationError;
 
   let { problems: qualityProblems } = await runFinalQualityGate(factResult, draft);
-  if (qualityProblems.length > 0) {
+  for (let qualityAttempt = 1; qualityProblems.length > 0 && qualityAttempt <= 4; qualityAttempt += 1) {
     const corrected = await nvidiaChat(
       [
         {
@@ -728,7 +750,7 @@ async function main() {
         },
         {
           role: "user",
-          content: `Fact ledger: ${JSON.stringify(factResult)}. Current draft: ${JSON.stringify(draft)}. Final-review findings: ${JSON.stringify(qualityProblems)}. Return {"title":string,"seoTitle":string,"seoDescription":string,"description":string,"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Resolve every finding using only ledger facts. Keep 5-10 non-repetitive sections, 450-2,200 useful words, no more than 3 bullets per section, and 5-7 useful FAQs. Remove questions whose answer is mainly that the source does not provide information.`,
+          content: `Correction attempt ${qualityAttempt} of 4. Fact ledger: ${JSON.stringify(factResult)}. Current draft: ${JSON.stringify(draft)}. Final-review findings: ${JSON.stringify(qualityProblems)}. Return {"title":string,"seoTitle":string,"seoDescription":string,"description":string,"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Resolve every finding using only ledger facts. Completely remove each flagged claim everywhere in the title, descriptions, body, bullets, table and FAQs unless the fact ledger explicitly contains that exact material fact. Do not merely rephrase a flagged unsupported claim. Keep 5-10 non-repetitive sections, 450-2,200 useful words, no more than 3 bullets per section, and 5-7 useful FAQs. Remove questions whose answer is mainly that the source does not provide information.`,
         },
       ],
       14_000,

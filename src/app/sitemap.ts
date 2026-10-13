@@ -3,7 +3,7 @@ import { readdirSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { calculators } from "@/src/data/calculators";
 import { categories } from "@/src/data/categories/Category";
-import { getPublishedBlogs } from "@/src/lib/blogs/repository";
+import { getPublishedBlogsFresh } from "@/src/lib/blogs/repository";
 import { STAMP_DUTY_STATES } from "@/src/data/states/stamp-duty-states";
 import { ROAD_TAX_STATES } from "@/src/data/states/road-tax-states";
 import { siteConfig } from "@/src/config/site";
@@ -57,11 +57,14 @@ function getStaticAppRoutes(directory = APP_DIRECTORY): string[] {
   });
 }
 
-export const revalidate = 60;
+// Blog posts are inserted directly into Turso by automation, without a
+// Next.js deployment that could invalidate an ISR artifact.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
-  const blogs = await getPublishedBlogs();
+  const blogs = await getPublishedBlogsFresh();
 
   const calculatorUrls = calculators.map((calculator) => ({
     url: `${baseUrl}/${calculator.slug}`,
