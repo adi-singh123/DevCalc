@@ -67,6 +67,7 @@ import NPSCalculator from "./renderers/NPSCalculator";
 import GratuityCalculator from "./renderers/Gratuity";
 import LoveCalculator from "./renderers/LoveCalculator";
 import FriendshipCalculator from "./renderers/FriendshipCalculator";
+import DushmanCalculator from "./renderers/DushmanCalculator";
 import CrushCalculator from "./renderers/CrushCalculator";
 import LuckyNumberCalculator from "./renderers/LuckyNumberCalculator";
 import SafePeriodCalculator from "./renderers/SafePeriodCalculator";
@@ -287,6 +288,8 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <LoveCalculator/>;
     case "friendship-calculator":
       return <FriendshipCalculator/>;
+    case "dushman-calculator":
+      return <DushmanCalculator />;
     case "crush-calculator":
       return <CrushCalculator/>;
     case "lucky-number-calculator":
