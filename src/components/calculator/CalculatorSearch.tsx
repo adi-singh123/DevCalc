@@ -2,9 +2,9 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { calculators } from "@/src/data/calculators";
+import type { CalculatorDirectoryItem } from "@/src/types/calculator";
 
-export default function CalculatorSearch() {
+export default function CalculatorSearch({ calculators }: { calculators: CalculatorDirectoryItem[] }) {
   const [query, setQuery] =
     useState("");
 
@@ -21,7 +21,7 @@ export default function CalculatorSearch() {
               query.toLowerCase(),
             ),
       );
-    }, [query]);
+    }, [calculators, query]);
 
   return (
     <div className="relative w-full">

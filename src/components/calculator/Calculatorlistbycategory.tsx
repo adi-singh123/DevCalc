@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { calculators } from "@/src/data/calculators";
+import { getCalculatorsByCategory } from "@/src/lib/calculators/repository";
 
 type CalculatorListByCategoryProps = {
   title: string;
@@ -12,19 +12,17 @@ type CalculatorListByCategoryProps = {
   maxHeightPx?: number;
 };
 
-export default function CalculatorListByCategory({
+export default async function CalculatorListByCategory({
   title,
   category,
   currentSlug,
   limit,
   maxHeightPx = 380,
 }: CalculatorListByCategoryProps) {
-  const allFiltered = calculators.filter(
-    (calculator) =>
-      calculator.category === category && calculator.slug !== currentSlug
-  );
-
-  const filteredCalculators = limit ? allFiltered.slice(0, limit) : allFiltered;
+  const filteredCalculators = await getCalculatorsByCategory(category, {
+    excludeSlug: currentSlug,
+    limit,
+  });
 
   if (filteredCalculators.length === 0) {
     return null;

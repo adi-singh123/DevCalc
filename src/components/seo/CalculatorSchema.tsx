@@ -23,11 +23,11 @@ type CalculatorSchemaProps = {
   };
 };
 
-export default function CalculatorSchema({
+export default async function CalculatorSchema({
   calculator,
 }: CalculatorSchemaProps) {
   const url = `https://www.devcalc.in/${calculator.slug}`;
-  const comparisonCalculators = getComparisonCalculators({
+  const comparisonCalculators = await getComparisonCalculators({
     currentSlug: calculator.slug,
     category: calculator.category,
     compareWith: calculator.compareWith,

@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { BadgeCheck } from "lucide-react";
-import { calculators } from "@/src/data/calculators";
+import { getCalculatorBySlug } from "@/src/lib/calculators/repository";
 import type { Metadata } from "next";
 import { generateCalculatorMetadata } from "@/src/lib/seo/generateMetadata";
 import Breadcrumbs from "@/src/components/seo/Breadcrumb";
@@ -25,9 +25,10 @@ import MobileRectangleThirdPartyAd from "@/src/components/ads/MobileRectangleThi
 import CalculatorResultThirdPartyAd from "@/src/components/ads/CalculatorResultThirdPartyAd";
 import LatestArticlesForCalculator from "@/src/components/blog/LatestArticlesForCalculator";
 
-// Rebuild visited calculator pages periodically so newly published database
-// articles appear without requiring another deployment.
-export const revalidate = 300;
+// Calculator content is database-backed and rendered on every request so
+// updates are reflected without a deployment and remain present in page HTML.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {
@@ -44,12 +45,6 @@ function getDisclaimer(category: string): string | undefined {
   return undefined;
 }
 
-export async function generateStaticParams() {
-  return calculators.map((calculator) => ({
-    slug: calculator.slug,
-  }));
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -57,7 +52,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
 
-  const calculator = calculators.find((item) => item.slug === slug);
+  const calculator = await getCalculatorBySlug(slug);
 
   if (!calculator) {
     return {};
@@ -80,7 +75,7 @@ type Props = {
 export default async function CalculatorPage({ params }: Props) {
   const { slug } = await params;
 
-  const calculator = calculators.find((item) => item.slug === slug);
+  const calculator = await getCalculatorBySlug(slug);
 
   if (!calculator) {
     notFound();

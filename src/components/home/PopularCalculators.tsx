@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { calculators } from "@/src/data/calculators";
+import { getCalculatorDirectory } from "@/src/lib/calculators/repository";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
 import { getCategorySlug } from "@/src/data/categories/Category";
 import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
@@ -20,7 +20,8 @@ const CATEGORY_SEO_DESCRIPTIONS: Record<string, string> = {
   "Other": "Handy everyday helpers that don't fit a single box. Generate passwords and QR codes, convert units and timestamps, and run quick one-off calculations in seconds.",
 };
 
-export default function CalculatorCategories() {
+export default async function CalculatorCategories() {
+  const calculators = await getCalculatorDirectory();
   const categories = [
     ...new Set(
       calculators.map(

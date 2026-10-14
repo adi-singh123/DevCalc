@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, HelpCircle } from "lucide-react";
-import { calculators } from "@/src/data/calculators";
+import { getCalculatorsByCategory } from "@/src/lib/calculators/repository";
 import { categories } from "@/src/data/categories/Category";
 import { CATEGORY_GUIDES } from "@/src/data/categories/categoryGuides";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
@@ -16,6 +16,9 @@ type Props = {
     slug: string;
   }>;
 };
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateStaticParams() {
   return categories.map((category) => ({
@@ -84,11 +87,7 @@ export default async function CategoryPage({
     notFound();
   }
 
-  const categoryCalculators = calculators.filter(
-    (calculator) =>
-      calculator.category.toLowerCase() ===
-      category.name.toLowerCase(),
-  );
+  const categoryCalculators = await getCalculatorsByCategory(category.name);
 
   const guide = CATEGORY_GUIDES[slug];
 
@@ -164,7 +163,7 @@ export default async function CategoryPage({
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {group.recommendedSlugs.map((calcSlug) => {
-                    const found = calculators.find((c) => c.slug === calcSlug);
+                    const found = categoryCalculators.find((c) => c.slug === calcSlug);
                     if (!found) return null;
                     return (
                       <Link

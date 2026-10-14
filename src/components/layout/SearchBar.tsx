@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { calculators } from "@/src/data/calculators";
+import type { CalculatorDirectoryItem } from "@/src/types/calculator";
 
-export default function SearchBar() {
+export default function SearchBar({ calculators }: { calculators: CalculatorDirectoryItem[] }) {
   const [query, setQuery] = useState("");
   const router = useRouter();
 

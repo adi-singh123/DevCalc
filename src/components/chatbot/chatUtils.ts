@@ -1,6 +1,4 @@
-import { calculators } from "@/src/data/calculators";
-
-type Calculator = (typeof calculators)[number];
+import type { Calculator } from "@/src/types/calculator";
 
 export type ChatMatch =
   | {
@@ -103,10 +101,12 @@ type IndexedCalculator = {
 };
 
 let calculatorIndexCache: IndexedCalculator[] | null = null;
+let calculatorIndexSource: Calculator[] | null = null;
 
-function getCalculatorIndex(): IndexedCalculator[] {
-  if (calculatorIndexCache) return calculatorIndexCache;
+function getCalculatorIndex(calculators: Calculator[]): IndexedCalculator[] {
+  if (calculatorIndexCache && calculatorIndexSource === calculators) return calculatorIndexCache;
 
+  calculatorIndexSource = calculators;
   calculatorIndexCache = calculators.map((calculator) => ({
     calculator,
     name: normalize(calculator.name),
@@ -272,13 +272,13 @@ function scoreFaqs(
  * Finds the single best match (calculator or FAQ) for a free-text chat message.
  * Returns null if nothing clears the minimum confidence threshold.
  */
-export function findBestMatch(message: string): ChatMatch {
+export function findBestMatch(calculators: Calculator[], message: string): ChatMatch {
   const query = normalize(message);
   const words = tokenize(message);
 
   if (query.length === 0) return null;
 
-  const index = getCalculatorIndex();
+  const index = getCalculatorIndex(calculators);
 
   let bestMatch: ChatMatch = null;
   let bestScore = 0;
@@ -321,13 +321,14 @@ export function findBestMatch(message: string): ChatMatch {
  * category name (matched by exact name OR fuzzy word overlap).
  */
 export function getCategoryCalculators(
+  calculators: Calculator[],
   message: string,
   limit = 6,
 ): Calculator[] | null {
   const query = normalize(message);
   if (query.length === 0) return null;
 
-  const index = getCalculatorIndex();
+  const index = getCalculatorIndex(calculators);
 
   // 1. Try exact category match first.
   let matchedCategory: string | null = null;
@@ -362,6 +363,7 @@ export function getCategoryCalculators(
  * with ties broken by calculator name for stable, deterministic ordering.
  */
 export function findTopMatches(
+  calculators: Calculator[],
   message: string,
   limit = 3,
 ): ScoredCalculator[] {
@@ -370,7 +372,7 @@ export function findTopMatches(
 
   if (query.length === 0) return [];
 
-  const index = getCalculatorIndex();
+  const index = getCalculatorIndex(calculators);
 
   return index
     .map((entry) => ({
@@ -391,4 +393,5 @@ export function findTopMatches(
  */
 export function clearCalculatorIndexCache(): void {
   calculatorIndexCache = null;
+  calculatorIndexSource = null;
 }

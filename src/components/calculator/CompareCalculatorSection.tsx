@@ -7,8 +7,8 @@ type Props = {
   compareWith?: string[];
 };
 
-export default function CompareCalculatorTable({ currentSlug, category, compareWith }: Props) {
-  const items = getComparisonCalculators({ currentSlug, category, compareWith });
+export default async function CompareCalculatorTable({ currentSlug, category, compareWith }: Props) {
+  const items = await getComparisonCalculators({ currentSlug, category, compareWith });
 
   if (!items.length) return null;
 

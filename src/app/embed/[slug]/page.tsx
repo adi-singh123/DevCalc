@@ -2,19 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CalculatorRenderer from "@/src/components/calculator/CalculatorRenderer";
-import { calculators } from "@/src/data/calculators";
+import { getCalculatorBySlug } from "@/src/lib/calculators/repository";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
 };
 
-export function generateStaticParams() {
-  return calculators.map(({ slug }) => ({ slug }));
-}
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function EmbeddedCalculatorPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const calculator = calculators.find((item) => item.slug === slug);
+  const calculator = await getCalculatorBySlug(slug);
   if (!calculator) notFound();
 
   return (

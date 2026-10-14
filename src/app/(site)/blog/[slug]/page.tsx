@@ -6,7 +6,8 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 import ArticleSchema from "@/src/components/seo/ArticleSchema";
 import { getPublishedBlogBySlug, getPublishedBlogs } from "@/src/lib/blogs/repository";
-import { calculators } from "@/src/data/calculators";
+import { getCalculators } from "@/src/lib/calculators/repository";
+import type { Calculator } from "@/src/types/calculator";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import AuthorBio from "@/src/components/common/AuthorBio";
@@ -72,9 +73,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogDetailsPage({ params }: Props) {
   const { slug } = await params;
 
-  const [blog, blogs] = await Promise.all([
+  const [blog, blogs, calculators] = await Promise.all([
     getPublishedBlogBySlug(slug),
     getPublishedBlogs(),
+    getCalculators(),
   ]);
 
   if (!blog) {
@@ -93,7 +95,7 @@ export default async function BlogDetailsPage({ params }: Props) {
     .map((calculatorSlug) =>
       calculators.find((calculator) => calculator.slug === calculatorSlug),
     )
-    .filter((calculator): calculator is (typeof calculators)[number] => Boolean(calculator));
+    .filter((calculator): calculator is Calculator => Boolean(calculator));
 
   const categoryCalculators = calculators.filter(
     (calculator) => calculator.category === blog.category,

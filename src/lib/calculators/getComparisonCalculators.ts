@@ -1,4 +1,4 @@
-import { calculators } from "@/src/data/calculators";
+import { getCalculatorDirectory } from "@/src/lib/calculators/repository";
 
 type ComparisonInput = {
   currentSlug: string;
@@ -7,12 +7,13 @@ type ComparisonInput = {
   limit?: number;
 };
 
-export function getComparisonCalculators({
+export async function getComparisonCalculators({
   currentSlug,
   category,
   compareWith = [],
   limit = 3,
 }: ComparisonInput) {
+  const calculators = await getCalculatorDirectory();
   const selected = [] as typeof calculators;
   const selectedSlugs = new Set([currentSlug]);
 

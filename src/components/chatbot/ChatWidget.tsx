@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MessageCircle, X, Send } from "lucide-react";
 import {
@@ -8,6 +8,7 @@ import {
   getCategoryCalculators,
   findTopMatches,
 } from "./chatUtils";
+import type { Calculator } from "@/src/types/calculator";
 
 type Message = {
   role: "user" | "bot";
@@ -22,6 +23,7 @@ type Message = {
 };
 
 export default function ChatWidget() {
+  const [calculators, setCalculators] = useState<Calculator[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const [input, setInput] = useState("");
@@ -32,6 +34,13 @@ export default function ChatWidget() {
       text: "Hi 👋 I'm DevCalc Assistant. Ask me about calculators or calculation topics.",
     },
   ]);
+
+  useEffect(() => {
+    fetch("/api/calculators")
+      .then((response) => response.ok ? response.json() as Promise<Calculator[]> : Promise.reject(new Error("Calculator directory request failed")))
+      .then(setCalculators)
+      .catch(() => setCalculators([]));
+  }, []);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -48,11 +57,17 @@ export default function ChatWidget() {
 
     setMessages(updatedMessages);
 
-    const match = findBestMatch(userMessage);
+    if (calculators.length === 0) {
+      setMessages([...updatedMessages, { role: "bot", text: "The calculator directory is still loading. Please try again in a moment." }]);
+      setInput("");
+      return;
+    }
 
-    const topMatches = findTopMatches(userMessage, 3);
+    const match = findBestMatch(calculators, userMessage);
 
-    const categoryResults = getCategoryCalculators(userMessage);
+    const topMatches = findTopMatches(calculators, userMessage, 3);
+
+    const categoryResults = getCategoryCalculators(calculators, userMessage);
 
     // Category Search
     if (categoryResults && categoryResults.length) {

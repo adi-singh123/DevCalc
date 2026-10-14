@@ -31,6 +31,9 @@ export const metadata: Metadata = {
       "100+ free calculators for EMI, BMI, mileage, GPA, and tax — with an AI assistant to help you find the right one.",
   },
 };
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 export default function HomePage() {
   return (
     <>

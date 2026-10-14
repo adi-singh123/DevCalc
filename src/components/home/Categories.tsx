@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { categories } from "@/src/data/categories/Category";
-import { calculators } from "@/src/data/calculators";
+import { getCalculatorCategoryCounts } from "@/src/lib/calculators/repository";
 import { getCategoryIcon } from "@/src/components/calculator/categoryMeta";
 
-export default function CalculatorCategories() {
+export default async function CalculatorCategories() {
+  const categoryCounts = await getCalculatorCategoryCounts();
   return (
     <section className="bg-[#f1ece3] py-16 dark:bg-slate-950">
       <div className="mx-auto max-w-7xl px-4">
@@ -20,11 +21,7 @@ export default function CalculatorCategories() {
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {categories.map((category) => {
-            const calculatorCount = calculators.filter(
-              (calculator) =>
-                calculator.category.toLowerCase() ===
-                category.name.toLowerCase(),
-            ).length;
+            const calculatorCount = categoryCounts.get(category.name) ?? 0;
 
             const Icon = getCategoryIcon(category.slug);
 

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { readdirSync } from "node:fs";
 import { join, relative, sep } from "node:path";
-import { calculators } from "@/src/data/calculators";
+import { getCalculatorsFresh } from "@/src/lib/calculators/repository";
 import { categories } from "@/src/data/categories/Category";
 import { getPublishedBlogsFresh } from "@/src/lib/blogs/repository";
 import { STAMP_DUTY_STATES } from "@/src/data/states/stamp-duty-states";
@@ -64,7 +64,10 @@ export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
-  const blogs = await getPublishedBlogsFresh();
+  const [blogs, calculators] = await Promise.all([
+    getPublishedBlogsFresh(),
+    getCalculatorsFresh(),
+  ]);
 
   const calculatorUrls = calculators.map((calculator) => ({
     url: `${baseUrl}/${calculator.slug}`,

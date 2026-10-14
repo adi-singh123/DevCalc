@@ -54,3 +54,8 @@ export interface Calculator {
     answer: string;
   }[];
 }
+
+export type CalculatorDirectoryItem = Pick<
+  Calculator,
+  "slug" | "name" | "description" | "category" | "isPopular" | "compareWith"
+>;

@@ -1,7 +1,9 @@
 import Image from "next/image";
 import CalculatorSearch from "@/src/components/calculator/CalculatorSearch";
+import { getCalculatorDirectory } from "@/src/lib/calculators/repository";
 
-export default function Hero() {
+export default async function Hero() {
+  const calculators = await getCalculatorDirectory();
   return (
     <section className="border-b border-stone-200 bg-gradient-to-b from-[#ece4d8] to-[#f7f4ee] dark:from-slate-900 dark:to-slate-950 dark:border-slate-700">
       <div className="mx-auto max-w-7xl px-4 py-16 lg:py-20">
@@ -18,7 +20,7 @@ export default function Hero() {
             </p>
 
             <div className="mx-auto mt-8 max-w-xl lg:mx-0">
-              <CalculatorSearch />
+              <CalculatorSearch calculators={calculators} />
             </div>
           
           </div>
