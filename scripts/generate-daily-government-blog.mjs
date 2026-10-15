@@ -533,23 +533,43 @@ async function main() {
     const numberedCorpus = sourceCorpus.map((source, index) => ({ sourceId: index + 1, ...source }));
     let selectedIds = [];
     let isPublishable = false;
-    let previousInvalidSelection = "";
+    let previousInvalidSelection = null;
     for (let attempt = 1; attempt <= 3; attempt += 1) {
+      const selectionInstruction = previousInvalidSelection
+        ? `Your previous response was structurally inconsistent and cannot be used: ${JSON.stringify(previousInvalidSelection)}. Re-evaluate the corpus and return a corrected decision. If the topic is publishable, set publishable to true and include exactly one matching sourceId. If it is not publishable, set publishable to false and return an empty sourceIds array.`
+        : `Select one substantial, useful and genuinely current government rule, scheme change, compliance deadline, tax change, consumer update or citizen-service update from exactly one primary official source record in this corpus.`;
       selection = await nvidiaChat(
         [
           { role: "system", content: "You are a cautious Indian public-information editor. Return valid JSON only, keep the decision fields internally consistent, and never use facts outside the supplied official-source corpus." },
-          { role: "user", content: `Today is ${today} in India. Select one substantial, useful and genuinely current government rule, scheme change, compliance deadline, tax change, consumer update or citizen-service update from exactly one primary official source record in this corpus. Reject greetings, speeches without a concrete public update, ceremonies, awards, political promotion and topics too thin for a useful guide. Return exactly {"publishable":boolean,"reason":string,"topic":string,"sourceIds":number[]}. When publishable is true, sourceIds must contain exactly one valid sourceId from the corpus. When publishable is false, sourceIds must be empty. Reject a source that cannot support at least 500 useful non-repetitive words. Existing topics to avoid: ${JSON.stringify(existingSummary)}. Official corpus: ${JSON.stringify(numberedCorpus)}.${previousInvalidSelection}` },
+          { role: "user", content: `Today is ${today} in India. ${selectionInstruction} Reject greetings, speeches without a concrete public update, ceremonies, awards, political promotion and topics too thin for a useful guide. Return exactly {"publishable":boolean,"reason":string,"topic":string,"sourceIds":number[]}. When publishable is true, sourceIds must contain exactly one valid sourceId from the corpus. When publishable is false, sourceIds must be empty. Reject a source that cannot support at least 500 useful non-repetitive words. Existing topics to avoid: ${JSON.stringify(existingSummary)}. Official corpus: ${JSON.stringify(numberedCorpus)}.` },
         ],
         2_000,
+        attempt === 1 ? contentModel : reviewModel,
       );
       const rawSourceIds = Array.isArray(selection.sourceIds) ? selection.sourceIds : selection.sourceId !== undefined ? [selection.sourceId] : [];
-      selectedIds = [...new Set(rawSourceIds.map(Number).filter((id) => Number.isInteger(id) && id >= 1 && id <= sourceCorpus.length))];
+      selectedIds = [...new Set(rawSourceIds.flatMap((rawId) => {
+        const id = Number(rawId);
+        if (!Number.isInteger(id)) return [];
+        if (id >= 1 && id <= sourceCorpus.length) return [id];
+        const corpusIndex = sourceCorpus.findIndex((source) => {
+          try {
+            return Number(new URL(source.url).searchParams.get("PRID")) === id;
+          } catch {
+            return false;
+          }
+        });
+        return corpusIndex >= 0 ? [corpusIndex + 1] : [];
+      }))];
       isPublishable = selection.publishable === true || String(selection.publishable).toLowerCase() === "true";
       if (isPublishable && selectedIds.length === 1) break;
       if (!isPublishable && selectedIds.length === 0 && attempt === 3) break;
-      previousInvalidSelection = ` Your previous response was inconsistent: ${JSON.stringify(selection)}`;
+      previousInvalidSelection = selection;
     }
-    if (!isPublishable || selectedIds.length !== 1) throw new Error(`No safely publishable topic found: ${selection.reason || "insufficient official evidence"}`);
+    if (!isPublishable || selectedIds.length !== 1) {
+      throw new Error(
+        `No safely publishable topic found: ${selection.reason || "insufficient official evidence"} (publishable=${JSON.stringify(selection.publishable)}, sourceIds=${JSON.stringify(selection.sourceIds ?? selection.sourceId ?? [])})`,
+      );
+    }
     selectedSources = selectedIds.map((id) => sourceCorpus[id - 1]);
   }
   const selectedUrls = selectedSources.map((source) => source.url);

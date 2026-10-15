@@ -121,6 +121,7 @@ import CarAffordabilityCalculator from "./renderers/CarAffordabilityCalculator";
 import TyreSizeCalculator from "./renderers/TyreSizeCalculator";
 import FlamesCalculator from "./renderers/FlamesCalculator";
 import PetAgeCalculator from "./renderers/PetAgeCalculator";
+import VehicleLuckyNumberCalculator from "./renderers/VehicleLuckyNumberCalculator";
 
 type Props = {
   slug: string;
@@ -294,6 +295,8 @@ export default function CalculatorRenderer({ slug }: Props) {
       return <CrushCalculator/>;
     case "lucky-number-calculator":
       return <LuckyNumberCalculator/>;
+    case "vehicle-lucky-number-calculator":
+      return <VehicleLuckyNumberCalculator />;
     case "safe-period-calculator":
       return <SafePeriodCalculator/>;
     // case "condom-size-calculator":
