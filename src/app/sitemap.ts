@@ -1,9 +1,9 @@
 import { MetadataRoute } from "next";
 import { readdirSync } from "node:fs";
 import { join, relative, sep } from "node:path";
-import { getCalculatorsFresh } from "@/src/lib/calculators/repository";
+import { getPublishedCalculatorSlugsFresh } from "@/src/lib/calculators/repository";
 import { categories } from "@/src/data/categories/Category";
-import { getPublishedBlogsFresh } from "@/src/lib/blogs/repository";
+import { getPublishedBlogSummariesFresh } from "@/src/lib/blogs/repository";
 import { STAMP_DUTY_STATES } from "@/src/data/states/stamp-duty-states";
 import { ROAD_TAX_STATES } from "@/src/data/states/road-tax-states";
 import { siteConfig } from "@/src/config/site";
@@ -65,12 +65,12 @@ export const revalidate = 0;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
   const [blogs, calculators] = await Promise.all([
-    getPublishedBlogsFresh(),
-    getCalculatorsFresh(),
+    getPublishedBlogSummariesFresh(),
+    getPublishedCalculatorSlugsFresh(),
   ]);
 
-  const calculatorUrls = calculators.map((calculator) => ({
-    url: `${baseUrl}/${calculator.slug}`,
+  const calculatorUrls = calculators.map((slug) => ({
+    url: `${baseUrl}/${slug}`,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));

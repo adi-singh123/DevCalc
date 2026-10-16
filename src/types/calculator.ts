@@ -59,3 +59,10 @@ export type CalculatorDirectoryItem = Pick<
   Calculator,
   "slug" | "name" | "description" | "category" | "isPopular" | "compareWith"
 >;
+
+export type ChatCalculator = Pick<
+  Calculator,
+  "slug" | "name" | "description" | "category" | "faqs"
+> & {
+  seo: Pick<Calculator["seo"], "keywords">;
+};

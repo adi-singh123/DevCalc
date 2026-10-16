@@ -27,8 +27,10 @@ import LatestArticlesForCalculator from "@/src/components/blog/LatestArticlesFor
 
 // Calculator content is database-backed and rendered on every request so
 // updates are reflected without a deployment and remain present in page HTML.
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Render complete HTML on the server, then reuse it briefly at the edge.
+// Database edits become visible without a deployment after this interval.
+export const revalidate = 300;
+export const dynamicParams = true;
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {

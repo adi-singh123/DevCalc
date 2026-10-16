@@ -1,14 +1,14 @@
-import type { Calculator } from "@/src/types/calculator";
+import type { ChatCalculator } from "@/src/types/calculator";
 
 export type ChatMatch =
   | {
       type: "calculator";
-      calculator: Calculator;
+      calculator: ChatCalculator;
       score: number;
     }
   | {
       type: "faq";
-      calculator: Calculator;
+      calculator: ChatCalculator;
       question: string;
       answer: string;
       score: number;
@@ -16,7 +16,7 @@ export type ChatMatch =
   | null;
 
 export type ScoredCalculator = {
-  calculator: Calculator;
+  calculator: ChatCalculator;
   score: number;
 };
 
@@ -92,7 +92,7 @@ function escapeRegExp(text: string): string {
 // ---------------------------------------------------------------------------
 
 type IndexedCalculator = {
-  calculator: Calculator;
+  calculator: ChatCalculator;
   name: string;
   description: string;
   keywords: string[];
@@ -101,9 +101,9 @@ type IndexedCalculator = {
 };
 
 let calculatorIndexCache: IndexedCalculator[] | null = null;
-let calculatorIndexSource: Calculator[] | null = null;
+let calculatorIndexSource: ChatCalculator[] | null = null;
 
-function getCalculatorIndex(calculators: Calculator[]): IndexedCalculator[] {
+function getCalculatorIndex(calculators: ChatCalculator[]): IndexedCalculator[] {
   if (calculatorIndexCache && calculatorIndexSource === calculators) return calculatorIndexCache;
 
   calculatorIndexSource = calculators;
@@ -272,7 +272,7 @@ function scoreFaqs(
  * Finds the single best match (calculator or FAQ) for a free-text chat message.
  * Returns null if nothing clears the minimum confidence threshold.
  */
-export function findBestMatch(calculators: Calculator[], message: string): ChatMatch {
+export function findBestMatch(calculators: ChatCalculator[], message: string): ChatMatch {
   const query = normalize(message);
   const words = tokenize(message);
 
@@ -321,10 +321,10 @@ export function findBestMatch(calculators: Calculator[], message: string): ChatM
  * category name (matched by exact name OR fuzzy word overlap).
  */
 export function getCategoryCalculators(
-  calculators: Calculator[],
+  calculators: ChatCalculator[],
   message: string,
   limit = 6,
-): Calculator[] | null {
+): ChatCalculator[] | null {
   const query = normalize(message);
   if (query.length === 0) return null;
 
@@ -363,7 +363,7 @@ export function getCategoryCalculators(
  * with ties broken by calculator name for stable, deterministic ordering.
  */
 export function findTopMatches(
-  calculators: Calculator[],
+  calculators: ChatCalculator[],
   message: string,
   limit = 3,
 ): ScoredCalculator[] {

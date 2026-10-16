@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, Clock3 } from "lucide-react";
 
-import { getPublishedBlogs } from "@/src/lib/blogs/repository";
-import type { Blog } from "@/src/types/blog";
+import { getPublishedBlogSummaries } from "@/src/lib/blogs/repository";
+import type { BlogSummary } from "@/src/types/blog";
 
 type Props = {
   calculatorSlug: string;
@@ -26,9 +26,9 @@ export default async function LatestArticlesForCalculator({
   calculatorCategory,
   limit = 3,
 }: Props) {
-  let blogs: Blog[];
+  let blogs: BlogSummary[];
   try {
-    blogs = await getPublishedBlogs();
+    blogs = await getPublishedBlogSummaries();
   } catch (error) {
     console.error("Could not load latest calculator articles", error);
     return null;

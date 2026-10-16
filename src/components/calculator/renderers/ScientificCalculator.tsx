@@ -1,31 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import ResultsSection from "../ResultsSection";
-import { evaluate } from "mathjs";
 
 export default function ScientificCalculator() {
   const [expression, setExpression] = useState("");
 
   const [mode, setMode] = useState<"deg" | "rad">("deg");
 
-  const [submitted, setSubmitted] = useState(false);
-
-  const result = useMemo(() => {
-    if (!submitted || !expression) return null;
-
-    try {
-      let exp = expression;
-
-      exp = exp.replace(/π/g, "pi");
-
-      const value = evaluate(exp);
-
-      return Number(value);
-    } catch {
-      return null;
-    }
-  }, [expression, submitted]);
+  const [result, setResult] = useState<number | null>(null);
 
   const results =
     result !== null
@@ -44,7 +27,23 @@ export default function ScientificCalculator() {
 
   const clear = () => {
     setExpression("");
-    setSubmitted(false);
+    setResult(null);
+  };
+
+  const calculate = async () => {
+    if (!expression) {
+      setResult(null);
+      return;
+    }
+
+    try {
+      // Load the large expression parser only when this calculator is used.
+      const { evaluate } = await import("mathjs");
+      const value = evaluate(expression.replace(/π/g, "pi"));
+      setResult(Number(value));
+    } catch {
+      setResult(null);
+    }
   };
 
   const scientificFunctions = {
@@ -241,7 +240,7 @@ export default function ScientificCalculator() {
 
       <div className="mt-6 flex gap-4">
         <button
-          onClick={() => setSubmitted(true)}
+          onClick={calculate}
           className="cursor-pointer rounded-xl bg-black px-6 py-3 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
         >
           Calculate

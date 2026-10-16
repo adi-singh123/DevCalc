@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Keep the homepage server-rendered while avoiding repeated database work.
+export const revalidate = 300;
 export default function HomePage() {
   return (
     <>

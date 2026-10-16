@@ -2,7 +2,7 @@ import "server-only";
 
 import { unstable_cache } from "next/cache";
 
-import type { Blog, BlogFaq, BlogSection, BlogSource } from "@/src/types/blog";
+import type { Blog, BlogFaq, BlogSection, BlogSource, BlogSummary } from "@/src/types/blog";
 import { getTursoClient } from "@/src/lib/db/turso";
 
 type BlogRow = {
@@ -31,6 +31,11 @@ const SELECT_BLOG_COLUMNS = `
   published_at, reading_time, image_url, image_alt, keywords_json,
   last_verified_at, effective_date, sources_json,
   related_calculator_slugs_json, content_json, faqs_json
+`;
+
+const SELECT_BLOG_SUMMARY_COLUMNS = `
+  slug, title, description, category, author, published_at, reading_time,
+  image_url, last_verified_at, related_calculator_slugs_json
 `;
 
 async function withDatabaseRetry<T>(operation: () => Promise<T>, label: string): Promise<T> {
@@ -96,17 +101,35 @@ function rowToBlog(row: BlogRow): Blog {
   };
 }
 
-async function queryPublishedBlogs(): Promise<Blog[]> {
+function rowToBlogSummary(row: BlogRow): BlogSummary {
+  return {
+    slug: requiredText(row.slug, "slug"),
+    title: requiredText(row.title, "title"),
+    description: requiredText(row.description, "description"),
+    category: requiredText(row.category, "category"),
+    author: requiredText(row.author, "author"),
+    publishedDate: requiredText(row.published_at, "published_at"),
+    readingTime: requiredText(row.reading_time, "reading_time"),
+    image: typeof row.image_url === "string" ? row.image_url : "",
+    lastVerified: optionalText(row.last_verified_at),
+    relatedCalculatorSlugs: parseJson<string[]>(
+      row.related_calculator_slugs_json,
+      "related_calculator_slugs_json",
+    ),
+  };
+}
+
+async function queryPublishedBlogSummaries(): Promise<BlogSummary[]> {
   const result = await withDatabaseRetry(
     () => getTursoClient().execute(`
-      SELECT ${SELECT_BLOG_COLUMNS}
+      SELECT ${SELECT_BLOG_SUMMARY_COLUMNS}
       FROM blog_posts
       WHERE status = 'published'
       ORDER BY is_featured DESC, published_at DESC, id DESC
     `),
-    "published blog collection",
+    "published blog summaries",
   );
-  return result.rows.map((row) => rowToBlog(row as unknown as BlogRow));
+  return result.rows.map((row) => rowToBlogSummary(row as unknown as BlogRow));
 }
 
 async function queryPublishedBlogBySlug(slug: string): Promise<Blog | null> {
@@ -126,21 +149,18 @@ async function queryPublishedBlogBySlug(slug: string): Promise<Blog | null> {
   return row ? rowToBlog(row as unknown as BlogRow) : null;
 }
 
-const getPublishedBlogsCached = unstable_cache(
-  queryPublishedBlogs,
-  ["published-blog-posts"],
+const getPublishedBlogSummariesCached = unstable_cache(
+  queryPublishedBlogSummaries,
+  ["published-blog-summaries"],
   { revalidate: 60, tags: ["blog-posts"] },
 );
 
-export function getPublishedBlogs(): Promise<Blog[]> {
-  // Shared page rendering can fan out across hundreds of calculator routes.
-  // Reuse one short-lived result instead of opening one Turso request per page.
-  return getPublishedBlogsCached();
+export function getPublishedBlogSummaries(): Promise<BlogSummary[]> {
+  return getPublishedBlogSummariesCached();
 }
 
-export function getPublishedBlogsFresh(): Promise<Blog[]> {
-  // Discovery endpoints must reflect direct database publications immediately.
-  return queryPublishedBlogs();
+export function getPublishedBlogSummariesFresh(): Promise<BlogSummary[]> {
+  return queryPublishedBlogSummaries();
 }
 
 export async function getPublishedBlogBySlug(slug: string): Promise<Blog | null> {

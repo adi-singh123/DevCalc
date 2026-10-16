@@ -5,9 +5,9 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import ArticleSchema from "@/src/components/seo/ArticleSchema";
-import { getPublishedBlogBySlug, getPublishedBlogs } from "@/src/lib/blogs/repository";
-import { getCalculators } from "@/src/lib/calculators/repository";
-import type { Calculator } from "@/src/types/calculator";
+import { getPublishedBlogBySlug, getPublishedBlogSummaries } from "@/src/lib/blogs/repository";
+import { getCalculatorDirectory } from "@/src/lib/calculators/repository";
+import type { CalculatorDirectoryItem } from "@/src/types/calculator";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import AuthorBio from "@/src/components/common/AuthorBio";
@@ -26,7 +26,7 @@ export const revalidate = 60;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const blogs = await getPublishedBlogs();
+  const blogs = await getPublishedBlogSummaries();
   return blogs.map((blog) => ({ slug: blog.slug }));
 }
 
@@ -75,8 +75,8 @@ export default async function BlogDetailsPage({ params }: Props) {
 
   const [blog, blogs, calculators] = await Promise.all([
     getPublishedBlogBySlug(slug),
-    getPublishedBlogs(),
-    getCalculators(),
+    getPublishedBlogSummaries(),
+    getCalculatorDirectory(),
   ]);
 
   if (!blog) {
@@ -95,7 +95,7 @@ export default async function BlogDetailsPage({ params }: Props) {
     .map((calculatorSlug) =>
       calculators.find((calculator) => calculator.slug === calculatorSlug),
     )
-    .filter((calculator): calculator is Calculator => Boolean(calculator));
+    .filter((calculator): calculator is CalculatorDirectoryItem => Boolean(calculator));
 
   const categoryCalculators = calculators.filter(
     (calculator) => calculator.category === blog.category,

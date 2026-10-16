@@ -1,4 +1,4 @@
-import { getPublishedBlogsFresh } from "@/src/lib/blogs/repository";
+import { getPublishedBlogSummariesFresh } from "@/src/lib/blogs/repository";
 import { siteConfig } from "@/src/config/site";
 
 // The publishing workflow writes directly to Turso, so always build the feed
@@ -34,7 +34,7 @@ function toRfc822Date(value: string): string {
 
 export async function GET() {
   const feedUrl = `${siteConfig.url}/rss.xml`;
-  const blogs = await getPublishedBlogsFresh();
+  const blogs = await getPublishedBlogSummariesFresh();
   const sortedBlogs = [...blogs]
     .sort(
       (left, right) =>

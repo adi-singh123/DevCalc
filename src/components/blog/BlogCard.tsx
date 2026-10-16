@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, CalendarDays } from "lucide-react";
 
-import { Blog } from "@/src/types/blog";
+import type { BlogSummary } from "@/src/types/blog";
 import { formatBlogDate } from "@/src/utils/formatBlogDate";
 
 type Props = {
-  blog: Blog;
+  blog: BlogSummary;
 };
 
 export default function BlogCard({ blog }: Props) {

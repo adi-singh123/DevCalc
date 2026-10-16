@@ -1,6 +1,6 @@
 // lib/calculator-stats.ts
 //
-import { getCalculators } from "@/src/lib/calculators/repository";
+import { getCalculatorCategoryCounts } from "@/src/lib/calculators/repository";
 
 export interface CategoryCount {
   category: string;
@@ -9,17 +9,13 @@ export interface CategoryCount {
 
 /** Total number of live calculators. Use this anywhere you currently show "100+". */
 export async function getTotalCalculatorCount(): Promise<number> {
-  const calculators = await getCalculators();
-  return calculators.length;
+  const counts = await getCalculatorCategoryCounts();
+  return [...counts.values()].reduce((total, count) => total + count, 0);
 }
 
 /** Count of calculators per category, e.g. for category cards or nav dropdown badges. */
 export async function getCategoryCounts(): Promise<CategoryCount[]> {
-  const calculators = await getCalculators();
-  const counts = new Map<string, number>();
-  for (const calc of calculators) {
-    counts.set(calc.category, (counts.get(calc.category) ?? 0) + 1);
-  }
+  const counts = await getCalculatorCategoryCounts();
   return Array.from(counts, ([category, count]) => ({ category, count })).sort(
     (a, b) => b.count - a.count
   );
@@ -27,12 +23,12 @@ export async function getCategoryCounts(): Promise<CategoryCount[]> {
 
 /** Count for a single category, e.g. on that category's landing page header. */
 export async function getCategoryCount(category: string): Promise<number> {
-  const calculators = await getCalculators();
-  return calculators.filter((c) => c.category === category).length;
+  const counts = await getCalculatorCategoryCounts();
+  return counts.get(category) ?? 0;
 }
 
 /** Total number of distinct categories, e.g. for the homepage stats strip. */
 export async function getTotalCategoryCount(): Promise<number> {
-  const calculators = await getCalculators();
-  return new Set(calculators.map((c) => c.category)).size;
+  const counts = await getCalculatorCategoryCounts();
+  return counts.size;
 }

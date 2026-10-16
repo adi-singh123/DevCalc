@@ -1,13 +1,13 @@
 import "server-only";
 
 import { unstable_cache } from "next/cache";
-import type { Calculator, CalculatorDirectoryItem } from "@/src/types/calculator";
+import type { Calculator, CalculatorDirectoryItem, ChatCalculator } from "@/src/types/calculator";
 import { getTursoClient } from "@/src/lib/db/turso";
 
 type CalculatorRow = Record<string, unknown>;
 
 export type CalculatorPage = {
-  calculators: Calculator[];
+  calculators: CalculatorDirectoryItem[];
   page: number;
   pageSize: number;
   total: number;
@@ -20,6 +20,8 @@ const SELECT_COLUMNS = `
   editorial_intro, benchmark_context_json, steps_json, formula_json,
   faqs_json, renderer_key
 `;
+
+const DIRECTORY_COLUMNS = "slug, name, description, category, is_popular, compare_with_json";
 
 async function withRetry<T>(operation: () => Promise<T>, label: string): Promise<T> {
   let lastError: unknown;
@@ -79,6 +81,17 @@ function rowToCalculator(row: CalculatorRow): Calculator {
   };
 }
 
+function rowToDirectoryItem(row: CalculatorRow): CalculatorDirectoryItem {
+  return {
+    slug: String(row.slug),
+    name: String(row.name),
+    description: String(row.description),
+    category: String(row.category),
+    isPopular: Number(row.is_popular) === 1,
+    compareWith: typeof row.compare_with_json === "string" ? JSON.parse(row.compare_with_json) as string[] : [],
+  };
+}
+
 async function queryCalculators(): Promise<Calculator[]> {
   const result = await withRetry(
     () => getTursoClient().execute(`SELECT ${SELECT_COLUMNS} FROM calculators WHERE status = 'published' ORDER BY sort_order, name`),
@@ -103,6 +116,39 @@ const getCalculatorsCached = unstable_cache(queryCalculators, ["published-calcul
   tags: ["calculators"],
 });
 
+const getCalculatorDirectoryCached = unstable_cache(async (): Promise<CalculatorDirectoryItem[]> => {
+  const result = await withRetry(
+    () => getTursoClient().execute(`
+      SELECT slug, name, description, category, is_popular, compare_with_json
+      FROM calculators
+      WHERE status = 'published'
+      ORDER BY sort_order, name
+    `),
+    "calculator directory",
+  );
+  return result.rows.map((row) => rowToDirectoryItem(row as CalculatorRow));
+}, ["calculator-directory"], { revalidate: 300, tags: ["calculators"] });
+
+const getCalculatorChatDirectoryCached = unstable_cache(async (): Promise<ChatCalculator[]> => {
+  const result = await withRetry(
+    () => getTursoClient().execute(`
+      SELECT slug, name, description, category, seo_keywords_json, faqs_json
+      FROM calculators
+      WHERE status = 'published'
+      ORDER BY sort_order, name
+    `),
+    "calculator chat directory",
+  );
+  return result.rows.map((row) => ({
+    slug: String(row.slug),
+    name: String(row.name),
+    description: String(row.description),
+    category: String(row.category),
+    seo: { keywords: typeof row.seo_keywords_json === "string" ? JSON.parse(row.seo_keywords_json) as string[] : [] },
+    faqs: typeof row.faqs_json === "string" ? JSON.parse(row.faqs_json) as Calculator["faqs"] : [],
+  }));
+}, ["calculator-chat-directory"], { revalidate: 3600, tags: ["calculators"] });
+
 export function getCalculators(): Promise<Calculator[]> {
   return getCalculatorsCached();
 }
@@ -120,23 +166,11 @@ export async function getCalculatorBySlug(slug: string): Promise<Calculator | nu
 }
 
 export async function getCalculatorDirectory(): Promise<CalculatorDirectoryItem[]> {
-  const result = await withRetry(
-    () => getTursoClient().execute(`
-      SELECT slug, name, description, category, is_popular, compare_with_json
-      FROM calculators
-      WHERE status = 'published'
-      ORDER BY sort_order, name
-    `),
-    "calculator directory",
-  );
-  return result.rows.map((row) => ({
-    slug: String(row.slug),
-    name: String(row.name),
-    description: String(row.description),
-    category: String(row.category),
-    isPopular: Number(row.is_popular) === 1,
-    compareWith: typeof row.compare_with_json === "string" ? JSON.parse(row.compare_with_json) as string[] : [],
-  }));
+  return getCalculatorDirectoryCached();
+}
+
+export function getCalculatorChatDirectory(): Promise<ChatCalculator[]> {
+  return getCalculatorChatDirectoryCached();
 }
 
 export async function getCalculatorPage({
@@ -155,50 +189,57 @@ export async function getCalculatorPage({
     : "status = 'published'";
   const searchArgs = search ? Array(4).fill(`%${search}%`) : [];
 
-  const countResult = await withRetry(
-    () => getTursoClient().execute({
-      sql: `SELECT COUNT(*) AS total FROM calculators WHERE ${where}`,
-      args: searchArgs,
-    }),
-    "calculator page count",
-  );
-  const total = Number(countResult.rows[0]?.total ?? 0);
-  const totalPages = Math.max(1, Math.ceil(total / safePageSize));
-  const safePage = Math.min(Math.max(Math.trunc(page) || 1, 1), totalPages);
+  const getCachedPage = unstable_cache(async (): Promise<CalculatorPage> => {
+    const countResult = await withRetry(
+      () => getTursoClient().execute({
+        sql: `SELECT COUNT(*) AS total FROM calculators WHERE ${where}`,
+        args: searchArgs,
+      }),
+      "calculator page count",
+    );
+    const total = Number(countResult.rows[0]?.total ?? 0);
+    const totalPages = Math.max(1, Math.ceil(total / safePageSize));
+    const safePage = Math.min(Math.max(Math.trunc(page) || 1, 1), totalPages);
 
-  const result = await withRetry(
-    () => getTursoClient().execute({
-      sql: `SELECT ${SELECT_COLUMNS} FROM calculators WHERE ${where} ORDER BY is_popular DESC, sort_order, name LIMIT ? OFFSET ?`,
-      args: [...searchArgs, safePageSize, (safePage - 1) * safePageSize],
-    }),
-    `calculator page ${safePage}`,
-  );
+    const result = await withRetry(
+      () => getTursoClient().execute({
+        sql: `SELECT ${DIRECTORY_COLUMNS} FROM calculators WHERE ${where} ORDER BY is_popular DESC, sort_order, name LIMIT ? OFFSET ?`,
+        args: [...searchArgs, safePageSize, (safePage - 1) * safePageSize],
+      }),
+      `calculator page ${safePage}`,
+    );
 
-  return {
-    calculators: result.rows.map((row) => rowToCalculator(row as CalculatorRow)),
-    page: safePage,
-    pageSize: safePageSize,
-    total,
-    totalPages,
-  };
+    return {
+      calculators: result.rows.map((row) => rowToDirectoryItem(row as CalculatorRow)),
+      page: safePage,
+      pageSize: safePageSize,
+      total,
+      totalPages,
+    };
+  }, ["calculator-page", String(page), String(safePageSize), search], { revalidate: 300, tags: ["calculators"] });
+
+  return getCachedPage();
 }
 
-export async function getPopularCalculators(limit = 6): Promise<Calculator[]> {
+export async function getPopularCalculators(limit = 6): Promise<CalculatorDirectoryItem[]> {
   const safeLimit = Math.min(Math.max(Math.trunc(limit), 1), 12);
-  const result = await withRetry(
-    () => getTursoClient().execute({
-      sql: `SELECT ${SELECT_COLUMNS} FROM calculators WHERE status = 'published' AND is_popular = 1 ORDER BY sort_order, name LIMIT ?`,
-      args: [safeLimit],
-    }),
-    "popular calculators",
-  );
-  return result.rows.map((row) => rowToCalculator(row as CalculatorRow));
+  const getCachedPopular = unstable_cache(async () => {
+    const result = await withRetry(
+      () => getTursoClient().execute({
+        sql: `SELECT ${DIRECTORY_COLUMNS} FROM calculators WHERE status = 'published' AND is_popular = 1 ORDER BY sort_order, name LIMIT ?`,
+        args: [safeLimit],
+      }),
+      "popular calculators",
+    );
+    return result.rows.map((row) => rowToDirectoryItem(row as CalculatorRow));
+  }, ["popular-calculators", String(safeLimit)], { revalidate: 300, tags: ["calculators"] });
+  return getCachedPopular();
 }
 
 export async function getCalculatorsByCategory(
   category: string,
   options: { excludeSlug?: string; limit?: number } = {},
-): Promise<Calculator[]> {
+): Promise<CalculatorDirectoryItem[]> {
   const limit = Math.min(Math.max(Math.trunc(options.limit ?? 120), 1), 120);
   const args: Array<string | number> = [category];
   let exclusion = "";
@@ -207,20 +248,34 @@ export async function getCalculatorsByCategory(
     args.push(options.excludeSlug);
   }
   args.push(limit);
+  const getCachedCategory = unstable_cache(async () => {
+    const result = await withRetry(
+      () => getTursoClient().execute({
+        sql: `SELECT ${DIRECTORY_COLUMNS} FROM calculators WHERE status = 'published' AND category = ? ${exclusion} ORDER BY sort_order, name LIMIT ?`,
+        args,
+      }),
+      `calculator category ${category}`,
+    );
+    return result.rows.map((row) => rowToDirectoryItem(row as CalculatorRow));
+  }, ["calculator-category", category, options.excludeSlug ?? "", String(limit)], { revalidate: 300, tags: ["calculators"] });
+  return getCachedCategory();
+}
+
+export async function getPublishedCalculatorSlugsFresh(): Promise<string[]> {
   const result = await withRetry(
-    () => getTursoClient().execute({
-      sql: `SELECT ${SELECT_COLUMNS} FROM calculators WHERE status = 'published' AND category = ? ${exclusion} ORDER BY sort_order, name LIMIT ?`,
-      args,
-    }),
-    `calculator category ${category}`,
+    () => getTursoClient().execute("SELECT slug FROM calculators WHERE status = 'published' ORDER BY sort_order, name"),
+    "published calculator slugs",
   );
-  return result.rows.map((row) => rowToCalculator(row as CalculatorRow));
+  return result.rows.map((row) => String(row.slug));
 }
 
 export async function getCalculatorCategoryCounts(): Promise<Map<string, number>> {
-  const result = await withRetry(
-    () => getTursoClient().execute("SELECT category, COUNT(*) AS total FROM calculators WHERE status = 'published' GROUP BY category"),
-    "calculator category counts",
-  );
-  return new Map(result.rows.map((row) => [String(row.category), Number(row.total)]));
+  const getCachedCounts = unstable_cache(async () => {
+    const result = await withRetry(
+      () => getTursoClient().execute("SELECT category, COUNT(*) AS total FROM calculators WHERE status = 'published' GROUP BY category"),
+      "calculator category counts",
+    );
+    return result.rows.map((row) => [String(row.category), Number(row.total)] as const);
+  }, ["calculator-category-counts"], { revalidate: 300, tags: ["calculators"] });
+  return new Map(await getCachedCounts());
 }

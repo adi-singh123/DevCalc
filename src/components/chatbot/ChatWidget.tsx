@@ -8,7 +8,7 @@ import {
   getCategoryCalculators,
   findTopMatches,
 } from "./chatUtils";
-import type { Calculator } from "@/src/types/calculator";
+import type { ChatCalculator } from "@/src/types/calculator";
 
 type Message = {
   role: "user" | "bot";
@@ -23,7 +23,7 @@ type Message = {
 };
 
 export default function ChatWidget() {
-  const [calculators, setCalculators] = useState<Calculator[]>([]);
+  const [calculators, setCalculators] = useState<ChatCalculator[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const [input, setInput] = useState("");
@@ -36,11 +36,13 @@ export default function ChatWidget() {
   ]);
 
   useEffect(() => {
+    if (!isOpen || calculators.length > 0) return;
+
     fetch("/api/calculators")
-      .then((response) => response.ok ? response.json() as Promise<Calculator[]> : Promise.reject(new Error("Calculator directory request failed")))
+      .then((response) => response.ok ? response.json() as Promise<ChatCalculator[]> : Promise.reject(new Error("Calculator directory request failed")))
       .then(setCalculators)
       .catch(() => setCalculators([]));
-  }, []);
+  }, [isOpen, calculators.length]);
 
   const handleSend = () => {
     if (!input.trim()) return;

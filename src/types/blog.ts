@@ -75,3 +75,17 @@ export interface Blog {
 
   faqs: BlogFaq[];
 }
+
+export type BlogSummary = Pick<
+  Blog,
+  | "slug"
+  | "title"
+  | "description"
+  | "category"
+  | "author"
+  | "publishedDate"
+  | "readingTime"
+  | "image"
+  | "lastVerified"
+  | "relatedCalculatorSlugs"
+>;

@@ -6,7 +6,7 @@ import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 import BlogCard from "@/src/components/blog/BlogCard";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
-import { getPublishedBlogs } from "@/src/lib/blogs/repository";
+import { getPublishedBlogSummaries } from "@/src/lib/blogs/repository";
 import { formatBlogDate } from "@/src/utils/formatBlogDate";
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ type Props = {
 const preferredCategories = ["Finance", "Health", "Education", "Vehicle", "Utility"];
 
 export default async function BlogPage({ searchParams }: Props) {
-  const [blogs, parameters] = await Promise.all([getPublishedBlogs(), searchParams]);
+  const [blogs, parameters] = await Promise.all([getPublishedBlogSummaries(), searchParams]);
   const requestedCategory = parameters.category?.trim() || "All";
   const searchTerm = parameters.q?.trim() || "";
   const normalizedSearch = searchTerm.toLowerCase();
