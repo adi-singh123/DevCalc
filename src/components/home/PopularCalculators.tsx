@@ -1,10 +1,8 @@
-import { Fragment } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { getCalculatorDirectory } from "@/src/lib/calculators/repository";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
 import { getCategorySlug } from "@/src/data/categories/Category";
-import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 
 // SEO-optimized category copy map to dynamically populate descriptions based on context
 const CATEGORY_SEO_DESCRIPTIONS: Record<string, string> = {
@@ -32,7 +30,7 @@ export default async function CalculatorCategories() {
 
   return (
     <section className="mt-16 space-y-20">
-      {categories.map((category, index) => {
+      {categories.map((category) => {
         const categoryCalculators = calculators.filter(
           (calculator) => calculator.category === category,
         );
@@ -47,8 +45,7 @@ export default async function CalculatorCategories() {
           `Access free, high-precision ${category.toLowerCase()} calculation tools engineered to streamline your daily workflows, computations, and analytical planning rules.`;
 
         return (
-          <Fragment key={category}>
-            <div>
+          <div key={category}>
               {/* Header */}
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
@@ -101,11 +98,7 @@ export default async function CalculatorCategories() {
                   </Link>
                 </div>
               )}
-            </div>
-            {(index + 1) % 3 === 0 && index < categories.length - 1 && (
-              <ResponsiveContentAd />
-            )}
-          </Fragment>
+          </div>
         );
       })}
     </section>

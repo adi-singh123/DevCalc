@@ -78,3 +78,11 @@ __pycache__/
 
 # one-off local write test
 /test_write.txt
+# Unfinished local-only Ludo control feature
+/database/migrations/008_add_ludo_control.sql
+/database/migrations/009_add_ludo_accounts.sql
+/public/ludo-control/
+/src/app/(site)/ludo-control/
+/src/app/api/ludo-control/
+/src/components/ludo-control/
+/src/lib/ludo-control/

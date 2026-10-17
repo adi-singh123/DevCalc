@@ -9,7 +9,6 @@ import StampDutyCalculator from "@/src/components/calculator/renderers/StampDuty
 import InteractiveFaq from "@/src/components/common/InteractiveFaq";
 import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
 import Breadcrumbs from "@/src/components/seo/Breadcrumb";
-import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
 import {
   Calendar,
   CheckCircle2,
@@ -229,8 +228,6 @@ export default async function StampDutyStatePage({
         <div className="mt-8">
           <StampDutyCalculator defaultStateKey={state.slug} />
         </div>
-
-        <LeaderboardThirdPartyAd />
 
         {/* State Rate Quick Summary Cards */}
         <section className="mt-12">

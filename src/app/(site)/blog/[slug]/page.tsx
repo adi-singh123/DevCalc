@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
@@ -12,8 +11,6 @@ import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import AuthorBio from "@/src/components/common/AuthorBio";
 import { getCategorySlug } from "@/src/data/categories/Category";
-import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
-import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
 import { formatBlogDate } from "@/src/utils/formatBlogDate";
 
 type Props = {
@@ -284,13 +281,11 @@ export default async function BlogDetailsPage({ params }: Props) {
               </section>
             )}
 
-            <ResponsiveContentAd priority />
-
             {/* Content */}
             <div className="mt-12 space-y-12">
-              {blog.content.map((section, index) => (
-                <Fragment key={section.heading}>
+              {blog.content.map((section) => (
                   <section
+                    key={section.heading}
                     id={section.heading.toLowerCase().replace(/\s+/g, "-")}
                     className="scroll-mt-24"
                   >
@@ -394,10 +389,6 @@ export default async function BlogDetailsPage({ params }: Props) {
                     )}
                   </div>
                   </section>
-                  {index === 2 && blog.content.length > 4 && (
-                    <ResponsiveContentAd />
-                  )}
-                </Fragment>
               ))}
             </div>
 
@@ -502,8 +493,6 @@ export default async function BlogDetailsPage({ params }: Props) {
                 </div>
               </div>
 
-              <SidebarThirdPartyAd />
-
               <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-slate-700 dark:bg-slate-900">
                 <div className="border-b border-stone-200 bg-[#faf7f0] p-4 font-serif text-lg font-semibold text-[#26364a] dark:border-slate-700 dark:bg-slate-900 dark:text-white">
                   Related Calculators
@@ -522,7 +511,6 @@ export default async function BlogDetailsPage({ params }: Props) {
                 </div>
               </div>
 
-              <SidebarThirdPartyAd />
             </div>
           </aside>
         </div>

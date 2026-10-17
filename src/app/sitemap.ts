@@ -24,6 +24,7 @@ const STATIC_ROUTE_SETTINGS: Record<
   "/tug-of-war-calculator": { changeFrequency: "weekly", priority: 0.8 },
   "/college-project": { changeFrequency: "weekly", priority: 0.6 },
   "/about": { changeFrequency: "weekly", priority: 0.5 },
+  "/editorial-policy": { changeFrequency: "monthly", priority: 0.5 },
   "/contact": { changeFrequency: "weekly", priority: 0.5 },
   "/advertise": { changeFrequency: "weekly", priority: 0.5 },
   "/privacy-policy": { changeFrequency: "weekly", priority: 0.3 },

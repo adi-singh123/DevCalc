@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Fragment } from "react";
 import Link from "next/link";
 
-import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 import BlogCard from "@/src/components/blog/BlogCard";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
@@ -75,8 +73,6 @@ export default async function BlogPage({ searchParams }: Props) {
         </section>
       )}
 
-      <ResponsiveContentAd priority />
-
       <nav aria-label="Blog categories" className="mb-10 flex flex-wrap gap-3">
         {categories.map((category) => {
           const query = new URLSearchParams();
@@ -89,7 +85,7 @@ export default async function BlogPage({ searchParams }: Props) {
 
       <section>
         <div className="mb-8 flex items-center justify-between"><h2 className="font-serif text-2xl font-semibold text-[#26364a] dark:text-white">Latest Articles</h2><span className="text-sm text-stone-500 dark:text-slate-400">{filteredBlogs.length} Articles</span></div>
-        {filteredBlogs.length ? <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{filteredBlogs.map((blog, index) => <Fragment key={blog.slug}><BlogCard blog={blog} />{(index + 1) % 6 === 0 && index < filteredBlogs.length - 1 && <div className="md:col-span-2 lg:col-span-3"><ResponsiveContentAd /></div>}</Fragment>)}</div> : <div className="rounded-2xl border border-dashed border-stone-300 py-16 text-center dark:border-slate-700"><h3 className="font-serif text-lg font-semibold text-[#26364a] dark:text-white">No Articles Found</h3><p className="mt-2 text-stone-500 dark:text-slate-400">Try another category or search keyword.</p></div>}
+        {filteredBlogs.length ? <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{filteredBlogs.map((blog) => <BlogCard key={blog.slug} blog={blog} />)}</div> : <div className="rounded-2xl border border-dashed border-stone-300 py-16 text-center dark:border-slate-700"><h3 className="font-serif text-lg font-semibold text-[#26364a] dark:text-white">No Articles Found</h3><p className="mt-2 text-stone-500 dark:text-slate-400">Try another category or search keyword.</p></div>}
       </section>
 
       <section className="mt-16 rounded-3xl border border-stone-200 bg-[#f1ece3] p-8 text-center dark:border-slate-700 dark:bg-slate-900"><h2 className="font-serif text-3xl font-semibold text-[#26364a] dark:text-white">Need a Calculator?</h2><p className="mt-3 text-stone-600 dark:text-slate-400">Explore hundreds of free online calculators for finance, health, education, taxes, investments, vehicle expenses and more.</p><Link href="/calculators" className="mt-6 inline-block rounded-full bg-[#1f3a5c] px-6 py-3 font-semibold text-white transition hover:bg-[#162a43]">Browse Calculators</Link></section>

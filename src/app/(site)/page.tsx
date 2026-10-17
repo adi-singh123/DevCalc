@@ -6,7 +6,6 @@ import CalculatorCategories from "@/src/components/home/Categories";
 import ServicesAndFeaturedSection from "@/src/components/home/ServicesAndFeaturedSection";
 import Container from "@/src/components/layout/Container";
 import WebsiteSchema from "@/src/components/seo/WebsiteSchema";
-import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 
 export const metadata: Metadata = {
   title: "DevCalc — Free Online Calculators for Finance, Health & More",
@@ -46,9 +45,6 @@ export default function HomePage() {
         <Features />
 
         <ServicesAndFeaturedSection />
-        <Container>
-          <ResponsiveContentAd priority />
-        </Container>
         <section className="py-5">
           <Container>
             <PopularCalculators />

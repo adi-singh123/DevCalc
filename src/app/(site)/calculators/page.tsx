@@ -1,11 +1,9 @@
-import { Fragment } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
 import { getCalculatorPage, getPopularCalculators } from "@/src/lib/calculators/repository";
 import { siteConfig } from "@/src/config/site";
 import StaticPageSeo from "@/src/components/seo/StaticPageSeo";
-import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -76,11 +74,8 @@ export default async function CalculatorsPage({ searchParams }: Props) {
         <p className="mb-6 text-slate-600 dark:text-slate-300">{query ? `Results for “${query}”.` : `Page ${page} of ${totalPages}`}</p>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {calculators.map((calculator, index) => (
-            <Fragment key={calculator.slug}>
-              <CalculatorCard calculator={calculator} />
-              {(index + 1) % 6 === 0 && index < calculators.length - 1 && <div className="sm:col-span-2 lg:col-span-3"><ResponsiveContentAd /></div>}
-            </Fragment>
+          {calculators.map((calculator) => (
+            <CalculatorCard key={calculator.slug} calculator={calculator} />
           ))}
         </div>
 

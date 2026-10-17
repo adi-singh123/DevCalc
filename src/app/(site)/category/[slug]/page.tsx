@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -9,7 +8,6 @@ import { CATEGORY_GUIDES } from "@/src/data/categories/categoryGuides";
 import Breadcrumb from "@/src/components/seo/Breadcrumb";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
 import CalculatorCard from "@/src/components/calculator/CalculatorCard";
-import ResponsiveContentAd from "@/src/components/ads/ResponsiveContentAd";
 
 type Props = {
   params: Promise<{
@@ -236,15 +234,8 @@ export default async function CategoryPage({
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {categoryCalculators.map((calculator, index) => (
-            <Fragment key={calculator.slug}>
-              <CalculatorCard calculator={calculator} />
-              {(index + 1) % 6 === 0 && index < categoryCalculators.length - 1 && (
-                <div className="sm:col-span-2 lg:col-span-3">
-                  <ResponsiveContentAd />
-                </div>
-              )}
-            </Fragment>
+          {categoryCalculators.map((calculator) => (
+            <CalculatorCard key={calculator.slug} calculator={calculator} />
           ))}
         </div>
       </section>

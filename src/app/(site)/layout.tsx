@@ -7,9 +7,7 @@ import Footer from "@/src/components/layout/Footer";
 import OrganizationSchema from "@/src/components/seo/OrganizationSchema";
 import ChatWidget from "@/src/components/chatbot/ChatWidget";
 import AssistantSchema from "@/src/components/seo/AssistantSchema";
-import CookieConsent from "@/src/components/privacy/CookieConsent";
-import InContentAd from "@/src/components/ads/InContentAd";
-import StaticPageTopAd from "@/src/components/ads/StaticPageTopAd";
+import AdSenseLoader from "@/src/components/ads/AdSenseLoader";
 import PwaManager from "@/src/components/pwa/PwaManager";
 
 export const metadata: Metadata = {
@@ -191,7 +189,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script id="google-tag-manager" strategy="beforeInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4GPT85Z');`}
+        </Script>
+      </head>
       <body className="flex min-h-screen flex-col">
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-K4GPT85Z"
+            height="0"
+            width="0"
+            title="Google Tag Manager"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <Script id="devcalc-service-worker" strategy="afterInteractive">
           {`if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
@@ -209,12 +225,10 @@ export default function RootLayout({
         <OrganizationSchema />
         <AssistantSchema />
         <Header />
-        <StaticPageTopAd />
         <main className="flex-1">{children}</main>
-        <InContentAd />
         <Footer />
         <ChatWidget />
-        <CookieConsent />
+        <AdSenseLoader />
         <PwaManager />
       </body>
     </html>

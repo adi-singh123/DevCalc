@@ -19,11 +19,8 @@ import AuthorBio from "@/src/components/common/AuthorBio";
 import StateSelectorSection from "@/src/components/calculator/StateSelectorSection";
 import { getCategorySlug } from "@/src/data/categories/Category";
 import EmbedCalculatorSection from "@/src/components/calculator/EmbedCalculatorSection";
-import LeaderboardThirdPartyAd from "@/src/components/ads/LeaderboardThirdPartyAd";
-import SidebarThirdPartyAd from "@/src/components/ads/SidebarThirdPartyAd";
-import MobileRectangleThirdPartyAd from "@/src/components/ads/MobileRectangleThirdPartyAd";
-import CalculatorResultThirdPartyAd from "@/src/components/ads/CalculatorResultThirdPartyAd";
 import LatestArticlesForCalculator from "@/src/components/blog/LatestArticlesForCalculator";
+import CalculatorEditorialGuide from "@/src/components/calculator/CalculatorEditorialGuide";
 
 // Calculator content is database-backed and rendered on every request so
 // updates are reflected without a deployment and remain present in page HTML.
@@ -128,8 +125,6 @@ export default async function CalculatorPage({ params }: Props) {
         ]}
       />
 
-      <LeaderboardThirdPartyAd priority />
-
       <div className="max-w-4xl">
         <span className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-slate-400">
           {calculator.category} Calculator
@@ -154,8 +149,6 @@ export default async function CalculatorPage({ params }: Props) {
           <div className="calculator-shell w-full min-w-0 overflow-x-hidden">
             <CalculatorRenderer slug={calculator.slug} />
           </div>
-
-          <MobileRectangleThirdPartyAd />
 
           {calculator.benchmarkContext && (
             <div className="mt-8 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50/80 via-white to-amber-50/40 p-5 shadow-sm dark:border-blue-900/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950">
@@ -190,8 +183,6 @@ export default async function CalculatorPage({ params }: Props) {
             compareWith={calculator.compareWith}
           />
 
-          <CalculatorResultThirdPartyAd />
-
           {calculator.slug === "road-tax-calculator" && (
             <StateSelectorSection
               type="road-tax"
@@ -215,17 +206,25 @@ export default async function CalculatorPage({ params }: Props) {
             />
           </div>
          
-          <StepsSection
-            title={`How the ${calculator.name} Works`}
-            steps={calculator.steps}
-          />
-          <FormulaSection
-            title={calculator.formula.title}
-            formula={calculator.formula.formula}
-            explanation={calculator.formula.explanation}
-            example={calculator.formula.example}
-            useCases={calculator.formula.useCases}
-          />
+          {["Finance", "Health", "Construction", "Vehicle"].includes(calculator.category) ? (
+            <>
+              <CalculatorEditorialGuide calculator={calculator} />
+              <StepsSection title={`How the ${calculator.name} Works`} steps={calculator.steps} />
+              <FormulaSection {...calculator.formula} />
+            </>
+          ) : ["Math", "Education", "Developer Tools"].includes(calculator.category) ? (
+            <>
+              <FormulaSection {...calculator.formula} />
+              <CalculatorEditorialGuide calculator={calculator} />
+              <StepsSection title={`How the ${calculator.name} Works`} steps={calculator.steps} />
+            </>
+          ) : (
+            <>
+              <StepsSection title={`How the ${calculator.name} Works`} steps={calculator.steps} />
+              <CalculatorEditorialGuide calculator={calculator} />
+              <FormulaSection {...calculator.formula} />
+            </>
+          )}
           <FAQSection faqs={calculator.faqs} />
           <SEOContent content={calculator.seoContent} />
 
@@ -241,7 +240,7 @@ export default async function CalculatorPage({ params }: Props) {
 
         <aside className="hidden lg:block">
           <div className="space-y-6">
-            {relatedCategories.map((category, index) => (
+            {relatedCategories.map((category) => (
               <Fragment key={category}>
                 <CalculatorListByCategory
                   title={
@@ -252,9 +251,6 @@ export default async function CalculatorPage({ params }: Props) {
                   category={category}
                   currentSlug={calculator.slug}
                 />
-                {index < relatedCategories.length - 1 && (
-                  <SidebarThirdPartyAd />
-                )}
               </Fragment>
             ))}
           </div>
