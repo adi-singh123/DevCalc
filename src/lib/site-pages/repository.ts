@@ -17,6 +17,23 @@ export type SitePage = {
 
 type SitePageRow = Record<string, unknown>;
 
+async function withRetry<T>(operation: () => Promise<T>, label: string): Promise<T> {
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error;
+      if (attempt < 3) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 400));
+      }
+    }
+  }
+
+  throw new Error(`Turso query failed after retries: ${label}`, { cause: lastError });
+}
+
 function requiredText(value: unknown, column: string): string {
   if (typeof value !== "string" || !value.trim()) throw new Error(`Invalid site_pages value for ${column}.`);
   return value;
@@ -41,12 +58,15 @@ function rowToSitePage(row: SitePageRow): SitePage {
 }
 
 async function queryPublishedSitePage(slug: string): Promise<SitePage | null> {
-  const result = await getTursoClient().execute({
-    sql: `SELECT slug, name, page_type, seo_title, seo_description, keywords_json,
-      canonical_path, body_html, updated_at FROM site_pages
-      WHERE slug = ? AND status = 'published' LIMIT 1`,
-    args: [slug],
-  });
+  const result = await withRetry(
+    () => getTursoClient().execute({
+      sql: `SELECT slug, name, page_type, seo_title, seo_description, keywords_json,
+        canonical_path, body_html, updated_at FROM site_pages
+        WHERE slug = ? AND status = 'published' LIMIT 1`,
+      args: [slug],
+    }),
+    `published site page ${slug}`,
+  );
   const row = result.rows[0];
   return row ? rowToSitePage(row as SitePageRow) : null;
 }

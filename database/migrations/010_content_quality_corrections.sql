@@ -90,3 +90,141 @@ SET body_html = replace(
   '<p>DevCalc currently publishes its Google AdSense publisher identifier as account-verification metadata, but it does not load the AdSense advertising script or third-party display-ad runtime. The metadata value alone does not display advertisements.</p><p class="mt-3"><strong>If Google advertising is enabled:</strong> third-party vendors, including Google, may use cookies to serve ads based on a user''s previous visits to DevCalc or other websites. Google''s use of advertising cookies enables Google and its partners to serve ads based on visits to this site and other sites on the internet. Users can manage or opt out of personalised advertising in <a class="font-semibold text-blue-700 underline hover:text-blue-800" href="https://adssettings.google.com/" rel="noopener noreferrer" target="_blank">Google Ads Settings</a>.</p><p class="mt-3">Learn more about information collected by Google and how it is used on Google''s <a class="font-semibold text-blue-700 underline hover:text-blue-800" href="https://policies.google.com/technologies/partner-sites" rel="noopener noreferrer" target="_blank">How Google uses information from sites or apps that use our services</a> page.</p><p class="mt-3">Before advertising is enabled for visitors in the European Economic Area, United Kingdom or Switzerland, DevCalc will activate a Google-certified consent-management platform that lets eligible visitors consent to, reject, or manage advertising choices. Ad-serving code will not be enabled for those visitors until that control is configured.</p>'
 )
 WHERE slug = 'privacy-policy';
+
+-- Replace the SIP FAQ set with answers that match the calculator's actual
+-- fixed-monthly-contribution model and avoid promises or generic fund advice.
+UPDATE calculators
+SET faqs_json = json('[
+  {
+    "question":"How does this SIP Calculator calculate the maturity value?",
+    "answer":"The calculator treats each monthly contribution as an instalment invested at the beginning of the month. It converts the annual expected return into a monthly rate and applies the future-value-of-an-annuity-due formula across the selected number of months. It then shows total contributions, estimated growth and estimated maturity value separately."
+  },
+  {
+    "question":"Why can my actual mutual fund SIP return differ from this estimate?",
+    "answer":"The calculator applies one constant expected annual return for illustration. A real mutual fund NAV changes from day to day, so every SIP instalment buys a different number of units and the investment may earn more or less than the estimate. Fund expenses, tracking difference, taxes, exit load and the exact transaction date can also change the realised result. Mutual fund returns are market-linked and are not guaranteed."
+  },
+  {
+    "question":"Does rupee-cost averaging prevent losses in a SIP?",
+    "answer":"No. A fixed SIP buys more units when NAV is lower and fewer units when NAV is higher, which can average the purchase cost over time. It does not guarantee a profit or protect against losses in a falling market. The final outcome still depends on the scheme, market performance, costs and the period for which the units remain invested."
+  },
+  {
+    "question":"What expected return should I enter in the SIP Calculator?",
+    "answer":"Use a reasonable planning assumption rather than the highest recent return. Review the scheme category, risk level and long-term rolling returns, then test more than one scenario such as a lower, base and higher return. The entered percentage is an assumption, not a promised CAGR, and it should not be used as the only reason to select a mutual fund."
+  },
+  {
+    "question":"Does this calculator support a yearly Step-Up SIP?",
+    "answer":"No. This version assumes the same monthly contribution for the complete investment period. If you plan to increase the SIP every year, the displayed result will not include those increases. You can use the fixed monthly amount as a baseline, but a proper step-up projection must calculate each contribution increase separately."
+  },
+  {
+    "question":"How are taxes handled in the SIP result?",
+    "answer":"Taxes are not deducted from the displayed maturity value. For an equity-oriented mutual fund, the holding period is checked separately for every monthly instalment when units are redeemed. Under the rules in force in October 2026, eligible long-term gains under section 112A are taxed at 12.5% above the applicable annual exemption and qualifying short-term gains under section 111A are taxed at 20%. Tax rules and personal circumstances can change, so verify the current position with the Income Tax Department or a qualified tax professional before redemption."
+  },
+  {
+    "question":"What happens if I miss, pause or cancel a SIP instalment?",
+    "answer":"Units already purchased normally remain invested when a later instalment is missed, paused or cancelled. The missed contribution will reduce the amount available to compound, so the actual corpus can be lower than this uninterrupted-SIP projection. The AMC may not levy a missed-SIP penalty, but a bank can charge for a failed NACH or auto-debit and scheme-specific mandate rules can differ."
+  },
+  {
+    "question":"Are expense ratio, exit load and inflation included?",
+    "answer":"Not as separate deductions. Enter an expected return that you consider realistic after recurring scheme expenses, and check the scheme documents for exit-load rules that may apply to particular instalments. The maturity value is shown in future rupees and is not adjusted for inflation, so its purchasing power may be lower than the headline amount."
+  },
+  {
+    "question":"What is the difference between total invested, estimated gains and maturity value?",
+    "answer":"Total invested is the monthly SIP amount multiplied by the number of contributions. Estimated gains are the projected maturity value minus those contributions. Maturity value is the combined total of contributions and projected growth at the assumed return. Estimated gains are not guaranteed profit and become actual only after the relevant units are redeemed at their prevailing NAV."
+  }
+]')
+WHERE slug = 'sip-calculator';
+
+-- Primary references for health articles whose guidance depends on recognised
+-- screening definitions or nutrition evidence.
+UPDATE blog_posts
+SET sources_json = json('[{"title":"Adult BMI Categories","url":"https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html","publisher":"Centers for Disease Control and Prevention","publishedDate":"2024-03-19"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug IN ('bmi-chart-men-women', 'ideal-weight-chart-by-height-and-age');
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"About Body Mass Index (BMI)","url":"https://www.cdc.gov/bmi/about/index.html","publisher":"Centers for Disease Control and Prevention","publishedDate":"2024-06-28"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'body-fat-percentage-chart-men-women';
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"About Water and Healthier Drinks","url":"https://www.cdc.gov/healthy-weight-growth/water-healthy-drinks/index.html","publisher":"Centers for Disease Control and Prevention"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'daily-water-intake-guide';
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"Body Weight Planner","url":"https://www.niddk.nih.gov/bwp","publisher":"National Institute of Diabetes and Digestive and Kidney Diseases"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug IN ('how-many-calories-should-i-eat-per-day', 'what-is-bmr-calculator-guide');
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"Dietary Supplements for Exercise and Athletic Performance","url":"https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/","publisher":"NIH Office of Dietary Supplements"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'how-much-protein-do-you-need-per-day';
+
+-- Primary investor references for market-linked and deposit comparisons.
+UPDATE blog_posts
+SET sources_json = json('[{"title":"SEBI Investor Education Programme: Investments in Mutual Funds","url":"https://www.sebi.gov.in/sebi_data/commondocs/siep_h.html","publisher":"Securities and Exchange Board of India"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug IN ('cagr-vs-absolute-return', 'ppf-vs-fd-vs-sip', 'sip-vs-fd', 'sip-vs-lumpsum-investment');
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"Understanding Exchange Traded Funds","url":"https://investor.sebi.gov.in/exchange_traded_fund.html","publisher":"SEBI Investor"},{"title":"Understanding Mutual Funds","url":"https://investor.sebi.gov.in/hindi/understanding_mf.html","publisher":"SEBI Investor"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'mutual-fund-vs-etf';
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"Guide to Deposit Insurance","url":"https://www.dicgc.org.in/guide-to-deposit-insurance","publisher":"Deposit Insurance and Credit Guarantee Corporation"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'fd-vs-rd';
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"Income Tax Department e-Filing Portal","url":"https://www.incometax.gov.in/iec/foportal/","publisher":"Income Tax Department, Government of India"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'old-tax-regime-vs-new-tax-regime';
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"SEBI Investor Education Programme","url":"https://www.sebi.gov.in/sebi_data/commondocs/siep_h.html","publisher":"Securities and Exchange Board of India"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'simple-interest-vs-compound-interest';
+
+-- Vehicle references support statutory fitment and fuel-cost claims.
+UPDATE blog_posts
+SET sources_json = json('[{"title":"Fuel Economy Norms","url":"https://beeindia.gov.in/en/programmesenergy-efficiency-in-transport-sector/fuel-economy-norms","publisher":"Bureau of Energy Efficiency"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'car-mileage-calculator-guide';
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"Master Circular on Loans and Advances","url":"https://www.rbi.org.in/commonperson/English/Scripts/Notification.aspx?Id=1572","publisher":"Reserve Bank of India"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'how-much-car-can-i-afford-india';
+
+UPDATE blog_posts
+SET sources_json = json('[{"title":"Central Motor Vehicles Rules","url":"https://morth.nic.in/central-motor-vehicles-rules-1989-1","publisher":"Ministry of Road Transport and Highways"}]'),
+    last_verified_at = '2026-10-19'
+WHERE slug = 'tyre-upsizing-guide-india';
+
+-- Add a distinct decision-focused section only to articles below the quality
+-- threshold. Each paragraph addresses the actual method and limitations of its topic.
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"How to Use Body-Fat Ranges Responsibly","paragraphs":["A body-fat chart is a broad comparison tool, not a diagnosis. Different measurement methods can produce different results for the same person because skinfold callipers, bioelectrical impedance and imaging techniques estimate tissue differently. Hydration, recent exercise, food intake and device settings can also move a reading without a real change in body fat. Use the same method under similar conditions when tracking a trend, and avoid comparing a reading from one device directly with a different method. Age, sex, pregnancy, athletic training and medical conditions affect interpretation. If a result will influence treatment, nutrition restriction or training intensity, discuss it with an appropriately qualified clinician or dietitian rather than selecting a target from a general chart alone."]}')) WHERE slug = 'body-fat-percentage-chart-men-women';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"Comparing Returns Without Distorting the Time Period","paragraphs":["Absolute return answers how much an investment changed over the complete holding period, while CAGR converts that change into a smoothed annual rate. They answer different questions. A 30% absolute gain over one year is not comparable with a 30% gain earned over five years until the periods are normalised. CAGR is useful for a beginning value, ending value and elapsed time, but it hides the path between those values and does not describe volatility or cash flows added during the period. For SIPs or portfolios with deposits and withdrawals, use a cash-flow-aware measure such as XIRR instead. Always compare returns over the same dates, after relevant costs and taxes, and alongside risk rather than selecting an investment from one percentage alone."]}')) WHERE slug = 'cagr-vs-absolute-return';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"A Repeatable Full-Tank Mileage Test","paragraphs":["For a useful real-world figure, fill the tank to the same automatic cut-off, reset the trip meter, drive normally, and refill at the same station or on similarly level ground. Divide trip kilometres by litres added at the second fill. Repeat the process over several tanks and use the combined distance divided by combined litres; averaging separate mileage readings can distort the result when fill quantities differ. Record air-conditioning use, traffic, tyre pressure and unusual idling so a sudden change has context. Dashboard efficiency is convenient but the tank-to-tank method measures fuel purchased. Do not overfill after the nozzle cuts off, and investigate a persistent drop alongside maintenance symptoms rather than assuming one short trip represents the vehicle."]}')) WHERE slug = 'car-mileage-calculator-guide';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"Define the Deadline Before Starting the Countdown","paragraphs":["A countdown is only reliable when the target includes a date, time and time zone. Counting calendar days to the start of an event differs from counting complete 24-hour periods, and an all-day event may be interpreted as beginning at midnight. Daylight-saving changes can make a local day contain 23 or 25 hours in some regions. For exams, applications or payments, use the time zone and closing time published by the responsible organisation rather than relying on the device location. Record whether the end date is included, keep the original deadline notice, and refresh the calculation if the organiser issues a correction. For legal or contractual deadlines, confirm the applicable rule and holiday treatment with the responsible authority."]}')) WHERE slug = 'countdown-calculator-guide';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"Compare FD and RD on the Same Cash-Flow Basis","paragraphs":["An FD usually starts with one lump sum, while an RD builds through monthly deposits, so comparing only the maturity amounts is misleading. Match the total cash available and deposit dates before comparing. Check whether the quoted rate compounds quarterly or at another interval, whether a senior-citizen rate applies, and what premature-closure rules reduce interest. Interest from both products can be taxable according to the depositor''s circumstances, while tax deducted by the bank is not necessarily the final tax liability. Deposit insurance eligibility and limits apply per depositor per bank under the relevant rules. Use the calculator for an estimate, then verify the current rate, tenure, nomination and closure terms in the bank''s official deposit document."]}')) WHERE slug = 'fd-vs-rd';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"Use Calorie Estimates as a Starting Range","paragraphs":["Daily calorie needs are estimates because energy expenditure changes with body size, age, activity, training, sleep, health and changes in body weight. A calculated maintenance value should be treated as a starting point, not a prescription. Track average body weight and relevant health indicators over several weeks under reasonably consistent conditions, then adjust gradually if the observed trend differs from the plan. Large restrictions can make a diet difficult to sustain and may be inappropriate for children, pregnancy, eating-disorder recovery or medical conditions. Food quality, protein, fibre and micronutrients still matter even when the calorie total is correct. A registered dietitian or clinician can help set an individual target when medication, symptoms or a therapeutic diet is involved."]}')) WHERE slug = 'how-many-calories-should-i-eat-per-day';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"Turn a Protein Target into Meals","paragraphs":["After estimating a daily target, divide it across meals in a way that fits appetite and the rest of the diet instead of treating one supplement as the solution. Count protein from all foods, including dairy, pulses, soy, eggs, fish, meat, grains and combinations of plant foods. The useful target depends on total energy intake, training, age and health, and more protein does not automatically produce more muscle without progressive resistance training and adequate recovery. Product labels can help quantify portions, but serving sizes differ. People with kidney disease or another condition requiring dietary management should not adopt a high-protein target from a general article without clinical advice. Reassess the plan when training volume, body weight or medical circumstances change."]}')) WHERE slug = 'how-much-protein-do-you-need-per-day';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"Create a Calendar That Matches the Real Rule","paragraphs":["Business-day calculations depend on the calendar selected. A Monday-to-Friday pattern does not automatically account for national, state, bank, exchange or organisation-specific holidays. First identify the governing location and whether the start date, end date or both are included. Then remove weekends and only the holiday list that actually applies. Cut-off times can move a transaction submitted late in the day to the next business day, while contracts may define a business day differently from ordinary office practice. Save the assumptions with the result so another person can reproduce it. For statutory, court, tax or payment deadlines, use the official calendar and wording instead of relying only on a general-purpose calculator."]}')) WHERE slug = 'how-to-calculate-business-days-between-dates';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"Verify the Official Wetland Record","paragraphs":["A Ramsar-site count can change when new designations are announced, boundaries are updated or the international list is refreshed. Readers should confirm the site name, designation date, area and information sheet through the Ramsar Sites Information Service and the responsible Indian ministry. A designation recognises a wetland of international importance, but it does not by itself explain every local access rule, conservation intervention or land-use restriction. Those details come from site documents and the relevant authorities. When comparing totals reported on different dates, state the cut-off date clearly rather than presenting the number as permanent. This makes the article useful after later additions and helps readers distinguish the official designation from proposals or press statements."]}')) WHERE slug = 'india-ramsar-site-tally-reaches-103';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"How to Verify Campaign Outcomes","paragraphs":["Campaign announcements describe targets and examples, while completed outcomes should be checked against the final report issued after the campaign period. Track the reporting dates, participating office, activity type and measurable result rather than combining planned and completed work. Disposal of a pending matter should mean it was resolved under the relevant procedure, not merely moved or counted. Cleanliness drives can be assessed through documented space reclaimed, records reviewed, waste handled and before-and-after evidence, but figures from different departments may use different scopes. Readers should use the cited government release as the dated source and look for subsequent completion data before treating interim totals as final national results."]}')) WHERE slug = 'special-campaign-6-cleanliness-drive-government-offices';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"Elapsed Time and Clock Time Are Not Always Identical","paragraphs":["For ordinary calculations, subtract the start instant from the end instant and express the elapsed duration in suitable units. Problems arise when users enter local clock times without a date or time zone. Crossing midnight requires the next date, and daylight-saving transitions can add or remove a clock hour in regions that observe them. Calendar months also have different lengths, so one month is not a fixed number of days. Decide whether the task needs exact elapsed seconds, calendar units, working hours or rounded billing intervals. Preserve the original timestamps and zone, especially for logs, travel and payroll. A clear result should state its inclusion, rounding and time-zone assumptions rather than displaying an unexplained number."]}')) WHERE slug = 'time-duration-calculator-guide';
+
+UPDATE blog_posts SET content_json = json_insert(content_json, '$[#]', json('{"heading":"What a BMR Estimate Can and Cannot Tell You","paragraphs":["BMR equations estimate energy used at rest from population-level relationships involving variables such as weight, height, age and sex. They do not directly measure an individual''s metabolism. Total daily energy expenditure is higher because it includes movement, exercise and the energy used to process food, so a BMR result should not be used as a daily intake target by itself. Illness, pregnancy, growth, body composition and some medications can make a general estimate less representative. Use the result as one input to a broader plan, monitor outcomes over time and avoid interpreting small calculated differences as measured physiological changes. Clinical nutrition or indirect calorimetry may be appropriate when an accurate individual assessment is important."]}')) WHERE slug = 'what-is-bmr-calculator-guide';

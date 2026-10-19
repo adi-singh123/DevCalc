@@ -64,7 +64,7 @@ try {
   }
 
   const blogResult = await client.execute(`
-    SELECT slug, content_json, faqs_json, keywords_json, sources_json
+    SELECT slug, category, content_json, faqs_json, keywords_json, sources_json
     FROM blog_posts WHERE status = 'published' ORDER BY slug
   `);
   const blogProblems = [];
@@ -82,7 +82,15 @@ try {
     if (sections.length < 5) problems.push("fewer than 5 article sections");
     if (faqs.length < 3) problems.push("fewer than 3 FAQs");
     if (keywords.length < 3) problems.push("fewer than 3 SEO keywords");
-    if (sources.length === 0) problems.push("no source records");
+    const category = String(row.category).toLowerCase();
+    const needsPrimarySources = [
+      "finance", "health", "vehicle", "environment", "government", "governance",
+      "transportation", "energy", "mining", "weather", "rural-development",
+    ].some((topic) => category.includes(topic));
+    if (needsPrimarySources && sources.length === 0) problems.push("no source records for factual or time-sensitive claims");
+    if (sources.some((source) => !source?.title || !source?.publisher || !/^https:\/\//.test(source?.url ?? ""))) {
+      problems.push("incomplete source record");
+    }
     if (problems.length) blogProblems.push({ slug: String(row.slug), problems });
   }
 
