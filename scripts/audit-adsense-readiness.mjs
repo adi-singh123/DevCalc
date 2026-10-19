@@ -62,7 +62,6 @@ if (adsText.charCodeAt(0) === 0xfeff) failures.push(`${baseUrl}/ads.txt: UTF-8 B
 const { text: homeHtml } = await request(baseUrl);
 if (!homeHtml.includes("ca-pub-3757135541422436")) failures.push(`${baseUrl}: AdSense publisher ID missing`);
 if (!homeHtml.includes("/privacy-policy")) notices.push("Privacy Policy is not linked from the homepage.");
-if (!homeHtml.includes("/editorial-policy")) notices.push("Editorial Policy is not linked from the homepage.");
 
 console.log(`\nAdSense readiness audit: ${urls.length} sitemap URLs checked`);
 console.log(`Failures: ${failures.length}`);

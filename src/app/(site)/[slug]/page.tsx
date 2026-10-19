@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { BadgeCheck } from "lucide-react";
 import { getCalculatorBySlug } from "@/src/lib/calculators/repository";
@@ -20,7 +19,7 @@ import StateSelectorSection from "@/src/components/calculator/StateSelectorSecti
 import { getCategorySlug } from "@/src/data/categories/Category";
 import EmbedCalculatorSection from "@/src/components/calculator/EmbedCalculatorSection";
 import LatestArticlesForCalculator from "@/src/components/blog/LatestArticlesForCalculator";
-import CalculatorEditorialGuide from "@/src/components/calculator/CalculatorEditorialGuide";
+import CalculatorPageHero from "@/src/components/calculator/CalculatorPageHero";
 
 // Calculator content is database-backed and rendered on every request so
 // updates are reflected without a deployment and remain present in page HTML.
@@ -80,9 +79,8 @@ export default async function CalculatorPage({ params }: Props) {
     notFound();
   }
 
-  const relatedCategories = Array.from(
-    new Set([calculator.category, "Math", "Utility", "Finance"]),
-  ).slice(0, 3);
+  const hasCuratedComparisons = Boolean(calculator.compareWith?.length);
+  const showEditorialAccountability = ["Finance", "Health", "Construction", "Vehicle"].includes(calculator.category);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12">
@@ -125,25 +123,7 @@ export default async function CalculatorPage({ params }: Props) {
         ]}
       />
 
-      <div className="max-w-4xl">
-        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 dark:text-slate-400">
-          {calculator.category} Calculator
-        </span>
-        <h1 className="mt-3 font-serif text-4xl font-semibold tracking-tight text-[#26364a] md:text-5xl dark:text-white">
-          {calculator.name}
-        </h1>
-
-        <p className="mt-5 text-lg leading-8 text-stone-600 dark:text-slate-300">
-          {calculator.description}
-        </p>
-
-        {calculator.editorialIntro && (
-          <p className="mt-4 leading-7 text-stone-600 dark:text-slate-400">
-            {calculator.editorialIntro}
-          </p>
-        )}
-
-      </div>
+      <CalculatorPageHero calculator={calculator} />
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
         <div className="min-w-0">
           <div className="calculator-shell w-full min-w-0 overflow-x-hidden">
@@ -177,11 +157,13 @@ export default async function CalculatorPage({ params }: Props) {
             </div>
           )}
 
-          <CompareCalculatorSection
-            currentSlug={calculator.slug}
-            category={calculator.category}
-            compareWith={calculator.compareWith}
-          />
+          {hasCuratedComparisons && (
+            <CompareCalculatorSection
+              currentSlug={calculator.slug}
+              category={calculator.category}
+              compareWith={calculator.compareWith}
+            />
+          )}
 
           {calculator.slug === "road-tax-calculator" && (
             <StateSelectorSection
@@ -203,25 +185,23 @@ export default async function CalculatorPage({ params }: Props) {
               title={`More ${calculator.category} Calculators`}
               category={calculator.category}
               currentSlug={calculator.slug}
+              limit={8}
             />
           </div>
          
           {["Finance", "Health", "Construction", "Vehicle"].includes(calculator.category) ? (
             <>
-              <CalculatorEditorialGuide calculator={calculator} />
               <StepsSection title={`How the ${calculator.name} Works`} steps={calculator.steps} />
               <FormulaSection {...calculator.formula} />
             </>
           ) : ["Math", "Education", "Developer Tools"].includes(calculator.category) ? (
             <>
               <FormulaSection {...calculator.formula} />
-              <CalculatorEditorialGuide calculator={calculator} />
               <StepsSection title={`How the ${calculator.name} Works`} steps={calculator.steps} />
             </>
           ) : (
             <>
               <StepsSection title={`How the ${calculator.name} Works`} steps={calculator.steps} />
-              <CalculatorEditorialGuide calculator={calculator} />
               <FormulaSection {...calculator.formula} />
             </>
           )}
@@ -233,26 +213,23 @@ export default async function CalculatorPage({ params }: Props) {
             calculatorCategory={calculator.category}
           />
 
-          <EmbedCalculatorSection slug={calculator.slug} name={calculator.name} />
+          {calculator.category === "Developer Tools" && (
+            <EmbedCalculatorSection slug={calculator.slug} name={calculator.name} />
+          )}
 
-          <AuthorBio disclaimer={getDisclaimer(calculator.category)} category={calculator.category} />
+          {showEditorialAccountability && (
+            <AuthorBio disclaimer={getDisclaimer(calculator.category)} category={calculator.category} />
+          )}
         </div>
 
         <aside className="hidden lg:block">
           <div className="space-y-6">
-            {relatedCategories.map((category) => (
-              <Fragment key={category}>
-                <CalculatorListByCategory
-                  title={
-                    category === calculator.category
-                      ? `More ${category} Calculators`
-                      : `${category} Calculators`
-                  }
-                  category={category}
-                  currentSlug={calculator.slug}
-                />
-              </Fragment>
-            ))}
+            <CalculatorListByCategory
+              title={`More ${calculator.category} Calculators`}
+              category={calculator.category}
+              currentSlug={calculator.slug}
+              limit={8}
+            />
           </div>
         </aside>
       </div>

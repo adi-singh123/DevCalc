@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { BadgeCheck, ClipboardCheck } from "lucide-react";
 
 type Props = {
@@ -38,10 +37,7 @@ export default function AuthorBio({ disclaimer, updated, category }: Props) {
           <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-slate-400">
             This page is maintained through a documented review of {reviewFocus}.
             DevCalc is founded and maintained by software engineer Aditya Singh. Important financial,
-            health, legal and government figures should still be confirmed with the relevant official source.{" "}
-            <Link href="/editorial-policy" className="font-semibold text-[#1f3a5c] hover:underline dark:text-blue-400">
-              Read our editorial approach →
-            </Link>
+            health, legal and government figures should still be confirmed with the relevant official source.
           </p>
 
           {updated && (

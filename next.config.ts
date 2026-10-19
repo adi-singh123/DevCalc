@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/collegeProject",
-        destination: "https://www.devcalc.in/college-project",
+        destination: "/college-project",
         permanent: true,
       },
       {

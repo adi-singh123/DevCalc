@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { CalculatorIcon } from "./categoryMeta";
 
 type Props = {
@@ -15,6 +14,8 @@ export default function CalculatorCard({ calculator }: Props) {
   return (
     <Link
       href={`/${calculator.slug}`}
+      prefetch
+      aria-label={`Open ${calculator.name}`}
       className="
         group
         relative
@@ -66,16 +67,6 @@ export default function CalculatorCard({ calculator }: Props) {
         {calculator.description}
       </p>
 
-      {/* Divider + CTA */}
-      <div className="mt-5 border-t border-stone-200 pt-4 dark:border-slate-800">
-        <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1f3a5c] dark:text-blue-400">
-          Calculate Now
-          <ArrowRight
-            size={16}
-            className="transition-transform duration-300 group-hover:translate-x-1"
-          />
-        </span>
-      </div>
     </Link>
   );
 }

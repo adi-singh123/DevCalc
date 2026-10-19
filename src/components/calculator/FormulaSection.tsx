@@ -11,7 +11,7 @@ type Props = {
 
 function formatMathFormula(formula: string): string {
   if (!formula) return "";
-  let clean = formula;
+  let clean = replaceLatexFractions(formula);
   // Handle \frac{numerator}{denominator} and double-escaped \\frac
   clean = clean.replace(/\\*frac\{([^{}]+)\}\{([^{}]+)\}/g, "$1 ÷ $2");
   // Handle \text{...} and double-escaped \\text
@@ -38,6 +38,37 @@ function formatMathFormula(formula: string): string {
   // Remove leftover backslashes and braces if any
   clean = clean.replace(/\\/g, "");
   return clean;
+}
+
+function replaceLatexFractions(value: string): string {
+  let output = value;
+
+  while (true) {
+    const match = /\\+frac\{/.exec(output);
+    if (!match) return output;
+
+    const numeratorStart = match.index + match[0].length - 1;
+    const numerator = readBraceGroup(output, numeratorStart);
+    if (!numerator) return output;
+
+    const denominator = readBraceGroup(output, numerator.end + 1);
+    if (!denominator) return output;
+
+    output = `${output.slice(0, match.index)}[${numerator.value}] ÷ [${denominator.value}]${output.slice(denominator.end + 1)}`;
+  }
+}
+
+function readBraceGroup(value: string, start: number): { value: string; end: number } | null {
+  if (value[start] !== "{") return null;
+
+  let depth = 0;
+  for (let index = start; index < value.length; index += 1) {
+    if (value[index] === "{") depth += 1;
+    if (value[index] === "}") depth -= 1;
+    if (depth === 0) return { value: value.slice(start + 1, index), end: index };
+  }
+
+  return null;
 }
 
 export default function FormulaSection({
