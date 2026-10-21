@@ -1,9 +1,9 @@
 import { MetadataRoute } from "next";
 import { readdirSync } from "node:fs";
 import { join, relative, sep } from "node:path";
-import { getPublishedCalculatorSlugsFresh } from "@/src/lib/calculators/repository";
+import { getPublishedCalculatorSlugs } from "@/src/lib/calculators/repository";
 import { categories } from "@/src/data/categories/Category";
-import { getPublishedBlogSummariesFresh } from "@/src/lib/blogs/repository";
+import { getPublishedBlogSummaries } from "@/src/lib/blogs/repository";
 import { STAMP_DUTY_STATES } from "@/src/data/states/stamp-duty-states";
 import { ROAD_TAX_STATES } from "@/src/data/states/road-tax-states";
 import { siteConfig } from "@/src/config/site";
@@ -57,16 +57,16 @@ function getStaticAppRoutes(directory = APP_DIRECTORY): string[] {
   });
 }
 
-// Blog posts are inserted directly into Turso by automation, without a
-// Next.js deployment that could invalidate an ISR artifact.
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Blog posts are inserted directly into Turso without a deployment. A short
+// ISR window keeps discovery timely without making every crawler request wait
+// for two database queries.
+export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
   const [blogs, calculators] = await Promise.all([
-    getPublishedBlogSummariesFresh(),
-    getPublishedCalculatorSlugsFresh(),
+    getPublishedBlogSummaries(),
+    getPublishedCalculatorSlugs(),
   ]);
 
   const calculatorUrls = calculators.map((slug) => ({

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { BadgeCheck } from "lucide-react";
-import { getCalculatorBySlug } from "@/src/lib/calculators/repository";
+import { getCalculatorBySlug, getPublishedCalculatorSlugs } from "@/src/lib/calculators/repository";
 import type { Metadata } from "next";
 import { generateCalculatorMetadata } from "@/src/lib/seo/generateMetadata";
 import Breadcrumbs from "@/src/components/seo/Breadcrumb";
@@ -27,6 +27,14 @@ import CalculatorPageHero from "@/src/components/calculator/CalculatorPageHero";
 // Database edits become visible without a deployment after this interval.
 export const revalidate = 300;
 export const dynamicParams = true;
+
+// Pre-render every published calculator during deployment. Existing pages are
+// then served as cached HTML and refreshed with ISR, while dynamicParams keeps
+// newly added database calculators available before the next deployment.
+export async function generateStaticParams() {
+  const slugs = await getPublishedCalculatorSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
 
 // Category-appropriate YMYL disclaimer for ad-bearing content.
 function getDisclaimer(category: string): string | undefined {

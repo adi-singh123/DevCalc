@@ -269,6 +269,16 @@ export async function getPublishedCalculatorSlugsFresh(): Promise<string[]> {
   return result.rows.map((row) => String(row.slug));
 }
 
+const getPublishedCalculatorSlugsCached = unstable_cache(
+  getPublishedCalculatorSlugsFresh,
+  ["published-calculator-slugs"],
+  { revalidate: 60, tags: ["calculators"] },
+);
+
+export function getPublishedCalculatorSlugs(): Promise<string[]> {
+  return getPublishedCalculatorSlugsCached();
+}
+
 export async function getCalculatorCategoryCounts(): Promise<Map<string, number>> {
   const getCachedCounts = unstable_cache(async () => {
     const result = await withRetry(
