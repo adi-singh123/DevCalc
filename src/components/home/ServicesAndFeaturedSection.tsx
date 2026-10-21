@@ -3,8 +3,8 @@ import Link from "next/link";
 const FEATURE_CARDS = [
   {
     eyebrow: "24-hour prototype",
-    title: "Student Software Builds",
-    description: "Custom full-stack web, AI/ML and mobile applications with clean code, remote setup and a prototype demonstration before payment.",
+    title: "Software Mentoring & Prototypes",
+    description: "Guided full-stack, AI/ML and mobile prototypes with code walkthroughs, remote setup and hands-on learning support.",
     href: "/college-project",
     cta: "Learn more",
   },

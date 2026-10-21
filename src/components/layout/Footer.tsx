@@ -82,7 +82,7 @@ export default function Footer() {
                   href="/college-project"
                   className="font-medium text-emerald-700 transition hover:underline dark:text-emerald-400"
                 >
-                  Student Software Builds (24h Prototype)
+                  Software Mentoring & Prototypes
                 </Link>
               </li>
               <li>
@@ -203,7 +203,7 @@ export default function Footer() {
               Rashi Calculator
             </Link>
             <Link href="/college-project" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
-              Student Projects
+              Learning Support
             </Link>
             <Link href="/want-automation" className="hover:text-[#1f3a5c] dark:hover:text-blue-400">
               Automation

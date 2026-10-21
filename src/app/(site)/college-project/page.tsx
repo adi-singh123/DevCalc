@@ -20,16 +20,16 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Custom Software Builds for Students — Web, AI/ML, Mobile & Cloud",
+  title: "Software Mentoring & Guided Prototypes — Web, AI/ML, Mobile & Cloud",
   description:
-    "Custom software development service for students. Web applications, AI/ML models, mobile apps, and cloud systems with a working prototype delivered within 24 hours. Call/WhatsApp: 8081158775.",
+    "Guided software mentoring and prototype support for learning Web, AI/ML, mobile, and cloud development. Includes code walkthroughs and setup help. We do not complete graded work. Call/WhatsApp: 8081158775.",
   keywords: [
-    "custom software builds for students",
-    "student software development service",
-    "web app development for students",
-    "ai ml student software projects",
-    "mobile app development student projects",
-    "full stack student software builds",
+    "software development mentoring",
+    "guided software prototype",
+    "web app learning support",
+    "ai ml code mentoring",
+    "mobile app development mentoring",
+    "full stack portfolio prototype",
     "custom software prototype in 24 hours",
     "python student software development",
     "react nextjs custom software builds",
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Custom Software Builds for Students — Web, AI/ML, Mobile & Cloud",
+    title: "Software Mentoring & Guided Prototypes — Web, AI/ML, Mobile & Cloud",
     description:
-      "Custom software development service for students across Web, AI/ML, Mobile, and Cloud. Review a working prototype within 24 hours. Call/WhatsApp: 8081158775.",
+      "Guided software mentoring and portfolio prototypes across Web, AI/ML, Mobile, and Cloud, with code walkthroughs and setup support.",
     url: "https://www.devcalc.in/college-project",
     siteName: "DevCalc",
     locale: "en_IN",
@@ -62,15 +62,15 @@ export const metadata: Metadata = {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "DevCalc Custom Software Builds for Students",
+        alt: "DevCalc Software Mentoring and Guided Prototypes",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Custom Software Builds for Students | 24h Prototype",
+    title: "Software Mentoring & Guided Prototypes | DevCalc",
     description:
-      "Get custom-built software across Web, AI/ML, Mobile, and Cloud with a working prototype delivered in 24 hours. Call/WhatsApp: 8081158775.",
+      "Learn Web, AI/ML, Mobile, and Cloud development through guided prototypes, code walkthroughs, and setup support.",
     images: ["/logo.png"],
   },
 };
@@ -209,23 +209,27 @@ const FAQS = [
   },
   {
     q: "How fast can you build a project if I have a tight timeline?",
-    a: "For urgent timelines, we provide fast-track development within 24 to 48 hours for standard applications, including live demonstration and environment setup. Contact us on 8081158775 to verify current availability.",
+    a: "For a small learning prototype, an initial architecture and demonstration may be available within 24 to 48 hours, depending on scope. Mentoring, review, and implementation remain collaborative so that you understand the work. Contact us on 8081158775 to verify current availability.",
+  },
+  {
+    q: "Will you complete an assignment, examination, or graded college submission for me?",
+    a: "No. We do not impersonate learners, complete examinations, write graded submissions for presentation as someone else's work, or help bypass academic rules. We provide mentoring, demonstrations, code review, debugging, setup assistance, and guided portfolio prototypes. You are responsible for understanding the work and following your institution's academic-integrity policy.",
   },
 ];
 
 export default function CollegeProjectPage() {
   const phoneNumber = "8081158775";
   const whatsappUrl = `https://wa.me/918081158775?text=${encodeURIComponent(
-    "Hi Aditya, I am looking for custom software development for my project. Can you help me with details and a 24-hour prototype?"
+    "Hi Aditya, I am looking for software mentoring and a guided learning prototype. Can you help me understand the options?"
   )}`;
 
   // JSON-LD Structured Data for Google Rich Snippets
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "DevCalc Custom Software Development for Students",
+    name: "DevCalc Software Mentoring and Guided Prototypes",
     description:
-      "Custom software development service for students across Web, AI/ML, Mobile Apps, and Cloud with 24-hour prototype delivery, clean source code, and remote environment setup.",
+      "Guided software mentoring, portfolio prototypes, code walkthroughs, and remote environment setup across Web, AI/ML, Mobile Apps, and Cloud. Graded work and academic impersonation are not offered.",
     url: "https://www.devcalc.in/college-project",
     telephone: "+918081158775",
     priceRange: "₹₹",
@@ -309,7 +313,7 @@ export default function CollegeProjectPage() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Software Builds for Students",
+        name: "Software Mentoring & Guided Prototypes",
         item: "https://www.devcalc.in/college-project",
       },
     ],
@@ -340,7 +344,7 @@ export default function CollegeProjectPage() {
             </Link>
             <span className="mx-2">/</span>
             <span className="text-slate-800 dark:text-slate-200 font-medium">
-              Software Builds for Students
+              Software Mentoring &amp; Guided Prototypes
             </span>
           </nav>
 
@@ -351,20 +355,20 @@ export default function CollegeProjectPage() {
           <div className="mx-auto max-w-5xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur dark:border-blue-900/50 dark:bg-blue-950/50 dark:text-blue-300">
               <Sparkles className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-              <span>24-Hour Working Prototype · Web, AI/ML, Mobile &amp; Cloud Software</span>
+              <span>Guided Learning · Web, AI/ML, Mobile &amp; Cloud Software</span>
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-slate-900 dark:text-white">
-              Custom Software Builds for Students —{" "}
+              Software Mentoring &amp; Guided Prototypes —{" "}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
                 Web, AI/ML, Mobile &amp; Cloud
               </span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-              Need custom software built for your project or technical portfolio? We build production-ready applications in Web, AI/ML, Mobile Apps, and Cloud backends.{" "}
+              Build practical skills through a guided project or technical portfolio prototype. We help you plan, implement, debug, and understand applications in Web, AI/ML, Mobile Apps, and Cloud backends.{" "}
               <strong className="font-semibold text-slate-900 dark:text-white">
-                Review a working prototype within 24 hours before finalizing scope and payment.
+                Every engagement includes explanation and code walkthroughs; we do not complete graded submissions or examinations.
               </strong>
             </p>
 
@@ -544,7 +548,7 @@ export default function CollegeProjectPage() {
                 Frequently Asked Questions
               </h2>
               <p className="mt-2 text-slate-600 dark:text-slate-400">
-                Answers to common questions about our custom software development service for students.
+                Answers about mentoring, guided prototypes, delivery, and academic integrity.
               </p>
             </div>
 
@@ -555,7 +559,7 @@ export default function CollegeProjectPage() {
         {/* ── Plainly Worded Service Disclaimer ── */}
         <div className="mx-auto max-w-4xl px-4 py-8 text-center">
           <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-            This is a custom software development service. The code is yours to learn from, extend, and reuse — we recommend fully understanding any code before presenting it as your own academic work.
+            This is a mentoring and guided-prototype service for learning and portfolio development. We do not complete examinations, assignments, dissertations, or graded submissions for presentation as someone else&apos;s work. You must understand your implementation and follow your institution&apos;s academic-integrity rules.
           </p>
         </div>
 
@@ -563,10 +567,10 @@ export default function CollegeProjectPage() {
         <section className="px-4 pb-16 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           <div className="rounded-3xl border border-blue-200 bg-gradient-to-r from-blue-900 to-indigo-950 p-8 text-center text-white shadow-xl sm:p-12 dark:border-slate-800">
             <h2 className="text-3xl font-bold sm:text-4xl">
-              Get Your 24-Hour Software Prototype Today
+              Start a Guided Software Prototype
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-blue-100 leading-relaxed">
-              Reach out directly on WhatsApp or phone to discuss your technical requirements and review your working prototype within 24 hours.
+              Reach out on WhatsApp or phone to discuss your learning goal, suitable architecture, mentoring plan, and prototype scope.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">

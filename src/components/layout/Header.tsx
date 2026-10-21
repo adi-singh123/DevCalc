@@ -31,9 +31,9 @@ const NAV_LINKS: NavLink[] = [
     id: "services",
     children: [
       {
-        label: "Software Builds for Students",
+        label: "Software Mentoring & Prototypes",
         href: "/college-project",
-        desc: "Web, AI/ML & Mobile apps with a 24-hour prototype",
+        desc: "Guided Web, AI/ML & Mobile learning prototypes",
       },
       {
         label: "Automation & Web Scraping",
@@ -363,7 +363,7 @@ export default function Header() {
                   onClick={closeDrawer}
                   className="block rounded-xl border border-emerald-600 bg-emerald-50 px-4 py-2.5 text-center text-xs font-semibold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-500/50 dark:bg-emerald-950/40 dark:text-emerald-300"
                 >
-                  ⚡ Student Projects (24h Prototype)
+                  ⚡ Software Mentoring & Prototypes
                 </Link>
               </div>
             </nav>
