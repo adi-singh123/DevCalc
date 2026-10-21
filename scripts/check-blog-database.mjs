@@ -14,8 +14,17 @@ try {
       SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END) AS published,
       SUM(CASE WHEN json_array_length(keywords_json) < 5 THEN 1 ELSE 0 END) AS insufficient_keywords,
       SUM(CASE WHEN NOT json_valid(content_json) THEN 1 ELSE 0 END) AS invalid_content,
-      SUM(CASE WHEN NOT json_valid(faqs_json) THEN 1 ELSE 0 END) AS invalid_faqs
+      SUM(CASE WHEN NOT json_valid(faqs_json) THEN 1 ELSE 0 END) AS invalid_faqs,
+      SUM(CASE WHEN status = 'published' AND TRIM(image_url) = '' THEN 1 ELSE 0 END) AS missing_images,
+      SUM(CASE WHEN status = 'published' AND (image_alt IS NULL OR TRIM(image_alt) = '') THEN 1 ELSE 0 END) AS missing_image_alt
     FROM blog_posts
+  `);
+  const missingImages = await client.execute(`
+    SELECT slug, title, image_url, image_alt
+    FROM blog_posts
+    WHERE status = 'published'
+      AND (TRIM(image_url) = '' OR image_alt IS NULL OR TRIM(image_alt) = '')
+    ORDER BY published_at DESC, id DESC
   `);
   const testTable = await client.execute("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'devcalc_connection_test'");
   const sitePages = await client.execute(`
@@ -40,6 +49,14 @@ try {
     columns: schema.rows.length,
     total: Number(summary.rows[0]?.total ?? 0),
     published: Number(summary.rows[0]?.published ?? 0),
+    missingImages: Number(summary.rows[0]?.missing_images ?? 0),
+    missingImageAlt: Number(summary.rows[0]?.missing_image_alt ?? 0),
+    imageProblems: missingImages.rows.map((row) => ({
+      slug: String(row.slug),
+      title: String(row.title),
+      imageUrl: String(row.image_url ?? ""),
+      imageAlt: String(row.image_alt ?? ""),
+    })),
     sitePages: sitePages.rows.map((page) => String(page.slug)),
     testTableRemoved: true,
   }, null, 2));
