@@ -60,19 +60,19 @@ export default function FriendshipCalculator() {
 
     if (score >= 95) {
       message =
-        "Best Friends Forever! Your friendship looks incredibly strong.";
+        "A top name-game score to share with your friend.";
     } else if (score >= 80) {
       message =
-        "Strong friendship with excellent compatibility and trust.";
+        "A high playful score from the letters in both names.";
     } else if (score >= 65) {
       message =
-        "Great friendship potential with a solid bond.";
+        "A strong entertainment result from the name formula.";
     } else if (score >= 50) {
       message =
-        "Good friendship with room to grow stronger over time.";
+        "A middle-range name score made for casual fun.";
     } else {
       message =
-        "A casual friendship that may develop with more interaction.";
+        "A lower playful score that does not judge your real friendship.";
     }
 
     let level = "";

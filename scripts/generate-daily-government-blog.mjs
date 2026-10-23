@@ -10,14 +10,22 @@ const PIB_RSS_URL = "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3"
 const PIB_ALL_RELEASES_URL = "https://pib.gov.in/allRel.aspx";
 const apiKey = process.env.NVIDIA_API_KEY || process.env.OPENAI_API_KEY;
 const contentModel =
-  process.env.NVIDIA_CONTENT_MODEL || "nvidia/nemotron-3.5-lightning-30b-a3b";
+  process.env.NVIDIA_CONTENT_MODEL || "nvidia/nemotron-3.5-super-vl-120b-a12b";
 const reviewModel =
-  process.env.NVIDIA_REVIEW_MODEL || "nvidia/nemotron-3-super-120b-a12b";
+  process.env.NVIDIA_REVIEW_MODEL || "nvidia/nemotron-3.5-super-vl-120b-a12b";
+
+const MIN_BODY_WORDS = 600;
+const MAX_BODY_WORDS = 2_200;
+const MIN_FACTS = 5;
+const MIN_SECTIONS = 6;
+const MAX_SECTIONS = 10;
+const MIN_FAQS = 5;
+const MAX_FAQS = 7;
 
 const officialDomains = [
   "irctc.co.in",
   "gst.gov.in",
-  "pib.gov.in",,
+  "pib.gov.in",
   "india.gov.in",
   "indianrailways.gov.in",
   "incometax.gov.in",
@@ -69,6 +77,20 @@ function isOfficialUrl(value) {
   } catch {
     return false;
   }
+}
+
+function isDevCalcCalculatorUrl(value) {
+  try {
+    const url = new URL(value);
+    const hostname = url.hostname.toLowerCase().replace(/^www\./, "");
+    return hostname === "devcalc.in" && /^\/[a-z0-9]+(?:-[a-z0-9]+)*\/?$/.test(url.pathname);
+  } catch {
+    return false;
+  }
+}
+
+function isTrustedEvidenceUrl(value) {
+  return isOfficialUrl(value) || isDevCalcCalculatorUrl(value);
 }
 
 function normalizeUrl(value) {
@@ -249,6 +271,14 @@ function normalizedWords(value) {
   return new Set(String(value).toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter((word) => word.length > 3));
 }
 
+function normalizedText(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function similarity(left, right) {
   const leftWords = normalizedWords(left);
   const rightWords = normalizedWords(right);
@@ -318,6 +348,12 @@ function fitSeoDescription(value, fallback) {
 
 function normalizeMetadata(metadata, selection) {
   const title = String(metadata.title || selection.topic || "Latest Government Update").trim();
+  const slug = String(metadata.slug || title)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 100)
+    .replace(/-+$/g, "");
   const suppliedKeywords = Array.isArray(metadata.keywords)
     ? metadata.keywords
     : String(metadata.keywords || "").split(/[,;|]/);
@@ -335,7 +371,11 @@ function normalizeMetadata(metadata, selection) {
 
   return {
     ...metadata,
+    slug,
     title,
+    description: String(metadata.description || metadata.seoDescription || title).trim(),
+    category: String(metadata.category || "Government Updates").trim(),
+    effectiveDate: String(metadata.effectiveDate || "Not specified in the official release").trim(),
     seoTitle: fitSeoTitle(metadata.seoTitle, title),
     seoDescription: fitSeoDescription(metadata.seoDescription, metadata.description),
     keywords,
@@ -347,15 +387,17 @@ function normalizeMetadata(metadata, selection) {
 
 function editorialShapeErrors(content, faqs) {
   const errors = [];
-  if (!Array.isArray(content) || content.length < 5 || content.length > 10) {
-    errors.push("return 5-10 content sections");
+  if (!Array.isArray(content) || content.length < MIN_SECTIONS || content.length > MAX_SECTIONS) {
+    errors.push(`return ${MIN_SECTIONS}-${MAX_SECTIONS} content sections`);
   }
-  if (!Array.isArray(faqs) || faqs.length < 5 || faqs.length > 7) {
-    errors.push("return 5-7 FAQs");
+  if (!Array.isArray(faqs) || faqs.length < MIN_FAQS || faqs.length > MAX_FAQS) {
+    errors.push(`return ${MIN_FAQS}-${MAX_FAQS} FAQs`);
   }
   if (!Array.isArray(content) || !Array.isArray(faqs)) return errors;
   const words = wordCount({ content });
-  if (words < 350 || words > 2_200) errors.push(`body word count is ${words}; it must be 350-2,200`);
+  if (words < MIN_BODY_WORDS || words > MAX_BODY_WORDS) {
+    errors.push(`body word count is ${words}; it must be ${MIN_BODY_WORDS}-${MAX_BODY_WORDS}`);
+  }
   const tables = content.filter((section) => section?.table).length;
   if (tables > 1) errors.push(`table count is ${tables}; maximum is 1`);
   for (const section of content) {
@@ -365,7 +407,11 @@ function editorialShapeErrors(content, faqs) {
     if (Array.isArray(section?.points) && section.points.length > 3) errors.push(`section "${section?.heading || "untitled"}" has ${section.points.length} bullets; maximum is 3`);
   }
   for (const faq of faqs) {
-    if (typeof faq?.question !== "string" || typeof faq?.answer !== "string") errors.push("every FAQ must have question and answer strings");
+    if (typeof faq?.question !== "string" || typeof faq?.answer !== "string") {
+      errors.push("every FAQ must have question and answer strings");
+    } else if (faq.answer.trim().length < 80) {
+      errors.push(`FAQ answer is too short: ${faq.question}`);
+    }
   }
   return errors;
 }
@@ -383,7 +429,7 @@ function normalizeEditorialShape(result) {
   };
 }
 
-async function runFinalQualityGate(factResult, draft) {
+async function runFinalQualityGate(factResult, draft, articleType, articleSpecificRequirements) {
   const result = await nvidiaChat(
     [
       {
@@ -392,7 +438,7 @@ async function runFinalQualityGate(factResult, draft) {
       },
       {
         role: "user",
-        content: `Fact ledger: ${JSON.stringify(factResult)}. Proposed metadata and article: ${JSON.stringify(draft)}. Return {"approved":boolean,"unsupportedClaims":string[],"contradictions":string[],"repetition":string[],"headingProblems":string[],"faqProblems":string[]}. Report only material problems. Faithful paraphrases are allowed when their meaning matches a ledger fact; do not demand identical wording. A concise FAQ may recap a body fact and should not be marked repetitive for that reason. Reject material unstated scope, benefit, target, cause, effect, prediction, recommendation or superlative; incorrect arithmetic; sections that substantially repeat one another; FAQs whose main answer is merely that information is unavailable; untranslated or malformed text; or SEO text that ends mid-thought. Do not contradict the supplied ledger in your own review. Approve only when every reported problem is material and all problem arrays are empty.`,
+        content: `Article type: ${articleType || "government-update"}. Type-specific requirements: ${articleSpecificRequirements}. Fact ledger: ${JSON.stringify(factResult)}. Proposed metadata and article: ${JSON.stringify(draft)}. Return {"approved":boolean,"usefulnessScore":number,"clarityScore":number,"specificityScore":number,"unsupportedClaims":string[],"contradictions":string[],"repetition":string[],"headingProblems":string[],"faqProblems":string[],"missingReaderNeeds":string[]}. Scores use a strict 1-5 scale; 4 means publication quality and 5 means exceptional. Report only material problems. Faithful paraphrases are allowed when their meaning matches a ledger fact; do not demand identical wording. Reject material unstated scope, benefit, target, cause, effect, prediction, recommendation or superlative; incorrect arithmetic; repeated or generic sections; missing type-specific requirements; FAQs whose answer is unavailable or merely redirects readers; untranslated text; unfinished SEO text; or an article that does not clearly answer the reader intent using the supplied evidence. Approve only when every problem array is empty, every type-specific requirement is met, and usefulness, clarity and specificity are each at least 4.`,
       },
     ],
     5_000,
@@ -404,17 +450,31 @@ async function runFinalQualityGate(factResult, draft) {
     ...(result.repetition ?? []),
     ...(result.headingProblems ?? []),
     ...(result.faqProblems ?? []),
+    ...(result.missingReaderNeeds ?? []),
   ];
+  for (const [label, score] of [
+    ["usefulness", result.usefulnessScore],
+    ["clarity", result.clarityScore],
+    ["specificity", result.specificityScore],
+  ]) {
+    if (!Number.isFinite(Number(score)) || Number(score) < 4) {
+      problems.push(`${label} score must be at least 4/5; received ${score ?? "missing"}`);
+    }
+  }
+  if (result.approved !== true && problems.length === 0) {
+    problems.push("final reviewer did not approve the article");
+  }
   return { result, problems: [...new Set(problems)] };
 }
 
-function validateArticle(article, existing, availableUrls, validCalculatorSlugs, today) {
+function validateArticle(article, existing, availableUrls, validCalculatorSlugs, today, articleType, requiredCalculatorSlugs = []) {
   const errors = [];
   if (!article || typeof article !== "object") throw new Error("Generated article is not an object.");
   for (const field of ["slug", "title", "seoTitle", "seoDescription", "description", "category", "effectiveDate"]) {
     if (typeof article[field] !== "string" || !article[field].trim()) errors.push(`${field} must be a non-empty string`);
   }
   if (errors.length) throw new Error(`Generated article rejected:\n- ${errors.join("\n- ")}`);
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug)) errors.push("slug must be lowercase and hyphenated");
   if (existing.some((item) => item.slug === article.slug)) errors.push("duplicate slug");
   if (article.publishedDate !== today || article.lastVerified !== today) {
     errors.push(`publishedDate and lastVerified must be ${today}`);
@@ -423,14 +483,17 @@ function validateArticle(article, existing, availableUrls, validCalculatorSlugs,
   if (article.seoDescription.length < 120 || article.seoDescription.length > 165) errors.push("SEO description must be 120-165 characters");
   if (!Array.isArray(article.keywords) || article.keywords.length < 5) errors.push("keywords must contain at least 5 items");
   if (!Array.isArray(article.relatedCalculatorSlugs)) errors.push("relatedCalculatorSlugs must be an array");
-  if (!Array.isArray(article.content) || article.content.length < 5 || article.content.length > 12) errors.push("5-12 focused content sections are required");
-  if (!Array.isArray(article.faqs) || article.faqs.length < 5 || article.faqs.length > 8) errors.push("5-8 FAQs are required");
+  if (!Array.isArray(article.content) || article.content.length < MIN_SECTIONS || article.content.length > MAX_SECTIONS) errors.push(`${MIN_SECTIONS}-${MAX_SECTIONS} focused content sections are required`);
+  if (!Array.isArray(article.faqs) || article.faqs.length < MIN_FAQS || article.faqs.length > MAX_FAQS) errors.push(`${MIN_FAQS}-${MAX_FAQS} FAQs are required`);
   if (!Array.isArray(article.sources)) errors.push("sources must be an array");
   if (errors.length) throw new Error(`Generated article rejected:\n- ${errors.join("\n- ")}`);
   const bodyWords = wordCount(article);
-  if (bodyWords < 350 || bodyWords > 2_400) errors.push(`main article body has ${bodyWords} words; 350-2,400 useful words are required`);
+  if (bodyWords < MIN_BODY_WORDS || bodyWords > MAX_BODY_WORDS) errors.push(`main article body has ${bodyWords} words; ${MIN_BODY_WORDS}-${MAX_BODY_WORDS} useful words are required`);
   const tableCount = article.content.filter((section) => section.table).length;
   if (tableCount > 1) errors.push("no more than one useful table is allowed");
+  if (["calculator-comparison", "calculator-category-guide"].includes(articleType) && tableCount !== 1) {
+    errors.push(`${articleType} requires exactly one evidence-backed comparison table`);
+  }
   const headings = new Set();
   const paragraphs = [];
   for (const section of article.content) {
@@ -442,7 +505,7 @@ function validateArticle(article, existing, availableUrls, validCalculatorSlugs,
       errors.push(`section ${section.heading} must contain 1-4 paragraphs`);
     }
     for (const paragraph of section.paragraphs ?? []) {
-      if (typeof paragraph !== "string" || paragraph.trim().length < 80) errors.push(`section ${section.heading} contains an invalid paragraph`);
+      if (typeof paragraph !== "string" || paragraph.trim().length < 90) errors.push(`section ${section.heading} contains a thin or invalid paragraph`);
       paragraphs.push(paragraph);
     }
     if (!Array.isArray(section.points)) errors.push(`section ${section.heading} points must be an array`);
@@ -459,10 +522,22 @@ function validateArticle(article, existing, availableUrls, validCalculatorSlugs,
   }
   for (const faq of article.faqs) {
     if (typeof faq?.question !== "string" || faq.question.trim().length < 12) errors.push("every FAQ needs a meaningful question");
-    if (typeof faq?.answer !== "string" || faq.answer.trim().length < 40) errors.push(`FAQ has no meaningful answer: ${faq?.question || "unknown question"}`);
+    if (typeof faq?.answer !== "string" || faq.answer.trim().length < 80) errors.push(`FAQ has no substantial answer: ${faq?.question || "unknown question"}`);
+    if (/\b(?:not (?:provided|available|specified)|does not (?:provide|specify|state)|refer to the (?:source|release))\b/i.test(faq?.answer ?? "")) {
+      errors.push(`FAQ mainly avoids answering the question: ${faq?.question || "unknown question"}`);
+    }
   }
-  const faqQuestions = article.faqs.map((faq) => normalizedWords(faq.question ?? ""));
+  const faqQuestions = article.faqs.map((faq) => normalizedText(faq.question ?? ""));
   if (new Set(faqQuestions).size !== faqQuestions.length) errors.push("FAQ questions must be unique");
+  for (let left = 0; left < article.faqs.length; left += 1) {
+    for (let right = left + 1; right < article.faqs.length; right += 1) {
+      if (similarity(article.faqs[left].question, article.faqs[right].question) > 0.72) {
+        errors.push("FAQ questions are substantially duplicated");
+        left = article.faqs.length;
+        break;
+      }
+    }
+  }
   const editorialText = article.content
     .flatMap((section) => [section.heading, ...(section.paragraphs ?? []), ...(section.points ?? [])])
     .join(" ");
@@ -473,15 +548,151 @@ function validateArticle(article, existing, availableUrls, validCalculatorSlugs,
   for (const pattern of unsupportedInferencePatterns) {
     if (pattern.test(editorialText)) errors.push(`article contains risky inference language: ${pattern.source}`);
   }
-  if (article.sources.length < 1) errors.push("at least 1 primary official source is required");
-  const cited = new Set([...availableUrls].filter(isOfficialUrl).map(normalizeUrl));
+  if (article.sources.length < 1) errors.push("at least 1 trusted evidence source is required");
+  const cited = new Set([...availableUrls].filter(isTrustedEvidenceUrl).map(normalizeUrl));
   for (const source of article.sources) {
-    if (!isOfficialUrl(source.url)) errors.push(`non-official source: ${source.url}`);
+    if (!isTrustedEvidenceUrl(source.url)) errors.push(`untrusted evidence source: ${source.url}`);
     else if (!cited.has(normalizeUrl(source.url))) errors.push(`source was not supplied in the official source corpus: ${source.url}`);
   }
   article.relatedCalculatorSlugs = article.relatedCalculatorSlugs.filter((slug) => validCalculatorSlugs.includes(slug));
+  for (const slug of requiredCalculatorSlugs) {
+    if (!article.relatedCalculatorSlugs.includes(slug)) {
+      errors.push(`required calculator link is missing: ${slug}`);
+    }
+  }
   if (/<\/?(?:script|iframe|object|embed|form)\b/i.test(JSON.stringify(article))) errors.push("unsafe HTML detected");
   if (errors.length) throw new Error(`Generated article rejected:\n- ${errors.join("\n- ")}`);
+}
+
+function parseDatabaseJson(value, fallback) {
+  try {
+    return typeof value === "string" ? JSON.parse(value) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+async function selectCalculatorTopic(database, existing, today) {
+  const result = await database.execute(`
+    SELECT slug, name, description, category, is_popular, compare_with_json,
+      seo_keywords_json, seo_content, editorial_intro, benchmark_context_json,
+      steps_json, formula_json, faqs_json, updated_at
+    FROM calculators
+    WHERE status = 'published'
+    ORDER BY is_popular DESC, updated_at DESC, name
+  `);
+  const coverage = new Map();
+  for (const blog of existing) {
+    for (const slug of blog.relatedCalculatorSlugs ?? []) {
+      coverage.set(slug, (coverage.get(slug) ?? 0) + 1);
+    }
+  }
+  const calculators = result.rows.map((row) => ({
+    slug: String(row.slug),
+    name: String(row.name),
+    description: String(row.description),
+    category: String(row.category),
+    isPopular: Number(row.is_popular) === 1,
+    compareWith: parseDatabaseJson(row.compare_with_json, []),
+    keywords: parseDatabaseJson(row.seo_keywords_json, []),
+    seoContent: String(row.seo_content || "").slice(0, 4_000),
+    editorialIntro: String(row.editorial_intro || ""),
+    benchmarkContext: parseDatabaseJson(row.benchmark_context_json, null),
+    steps: parseDatabaseJson(row.steps_json, []).slice(0, 8),
+    formula: parseDatabaseJson(row.formula_json, {}),
+    faqs: parseDatabaseJson(row.faqs_json, []).slice(0, 10),
+    updatedAt: String(row.updated_at || ""),
+  }));
+  const candidates = calculators
+    .sort((left, right) => {
+      const coverageDifference = (coverage.get(left.slug) ?? 0) - (coverage.get(right.slug) ?? 0);
+      if (coverageDifference) return coverageDifference;
+      if (left.isPopular !== right.isPopular) return left.isPopular ? -1 : 1;
+      return left.name.localeCompare(right.name);
+    })
+    .slice(0, 24)
+    .map((calculator, index) => ({
+      sourceId: index + 1,
+      slug: calculator.slug,
+      name: calculator.name,
+      description: calculator.description,
+      category: calculator.category,
+      compareWith: calculator.compareWith,
+      coverageCount: coverage.get(calculator.slug) ?? 0,
+      evidenceDepth: {
+        hasFormula: Boolean(calculator.formula?.formula),
+        steps: calculator.steps.length,
+        faqs: calculator.faqs.length,
+        seoContentCharacters: calculator.seoContent.length,
+      },
+    }));
+
+  let plan;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    plan = await nvidiaChat(
+      [
+        {
+          role: "system",
+          content: "You are a senior calculator-content strategist. Return valid JSON only. Select a topic only when the supplied DevCalc calculator records can support an original, accurate and useful article.",
+        },
+        {
+          role: "user",
+          content: `Today is ${today}. Choose one article type: calculator-guide (one calculator), calculator-comparison (two genuinely comparable calculators), or calculator-category-guide (two or three complementary calculators). Prefer calculators with low coverageCount and strong formula, steps, FAQ and explanatory evidence. Do not select a comparison merely because names are similar; the article must help a reader make a real choice or understand different outputs. Avoid existing article topics: ${JSON.stringify(existing.map(({ slug, title }) => ({ slug, title })))}. Candidate calculators: ${JSON.stringify(candidates)}. Return {"publishable":boolean,"reason":string,"articleType":string,"topic":string,"sourceIds":number[],"readerIntent":string,"readerValueScore":number,"sourceDepthScore":number}. Both scores must be 4 or 5. Use exactly one source for a guide, exactly two for a comparison, or two to three for a category guide.`,
+        },
+      ],
+      3_000,
+      reviewModel,
+    );
+    const ids = [...new Set((Array.isArray(plan.sourceIds) ? plan.sourceIds : [])
+      .map(Number)
+      .filter((id) => Number.isInteger(id) && id >= 1 && id <= candidates.length))];
+    const expectedCount = plan.articleType === "calculator-guide"
+      ? ids.length === 1
+      : plan.articleType === "calculator-comparison"
+        ? ids.length === 2
+        : plan.articleType === "calculator-category-guide"
+          ? ids.length >= 2 && ids.length <= 3
+          : false;
+    const strongPlan = plan.publishable === true
+      && expectedCount
+      && Number(plan.readerValueScore) >= 4
+      && Number(plan.sourceDepthScore) >= 4
+      && typeof plan.readerIntent === "string"
+      && plan.readerIntent.trim().length >= 20;
+    if (strongPlan) {
+      const selected = ids.map((id) => calculators.find((item) => item.slug === candidates[id - 1].slug));
+      if (selected.every(Boolean)) {
+        return {
+          selection: {
+            topic: String(plan.topic).trim(),
+            reason: String(plan.reason || plan.readerIntent).trim(),
+            articleType: plan.articleType,
+          },
+          selectedSources: selected.map((calculator) => ({
+            title: `${calculator.name} - DevCalc calculator and methodology`,
+            url: `https://www.devcalc.in/${calculator.slug}`,
+            publishedDate: calculator.updatedAt,
+            publisher: "DevCalc Editorial Desk",
+            summary: calculator.description,
+            text: JSON.stringify({
+              name: calculator.name,
+              description: calculator.description,
+              category: calculator.category,
+              keywords: calculator.keywords,
+              editorialIntro: calculator.editorialIntro,
+              benchmarkContext: calculator.benchmarkContext,
+              formula: calculator.formula,
+              steps: calculator.steps,
+              faqs: calculator.faqs,
+              seoContent: calculator.seoContent,
+            }),
+            calculatorSlug: calculator.slug,
+          })),
+        };
+      }
+    }
+  }
+  return null;
 }
 
 async function main() {
@@ -489,7 +700,7 @@ async function main() {
   const repairSlug = process.env.REPAIR_SLUG?.trim() || "";
   const database = createClient({ url: databaseUrl, authToken: databaseAuthToken });
   const existingResult = await database.execute(
-    "SELECT slug, title, sources_json FROM blog_posts WHERE status IN ('draft', 'published')",
+    "SELECT slug, title, sources_json, related_calculator_slugs_json FROM blog_posts WHERE status IN ('draft', 'published')",
   );
   const existing = existingResult.rows.map((row) => ({
     slug: String(row.slug),
@@ -502,8 +713,22 @@ async function main() {
         return [];
       }
     })(),
+    relatedCalculatorSlugs: (() => {
+      try {
+        const slugs = JSON.parse(String(row.related_calculator_slugs_json || "[]"));
+        return Array.isArray(slugs) ? slugs.map(String).filter(Boolean) : [];
+      } catch {
+        return [];
+      }
+    })(),
   })).filter((article) => article.slug !== repairSlug);
-  const calculatorSlugs = await findCalculatorSlugs();
+  const calculatorSlugResult = await database.execute(
+    "SELECT slug FROM calculators WHERE status = 'published' ORDER BY slug",
+  );
+  const calculatorSlugs = [...new Set([
+    ...await findCalculatorSlugs(),
+    ...calculatorSlugResult.rows.map((row) => String(row.slug)),
+  ])].sort();
   const existingSummary = existing.map(({ slug, title }) => ({ slug, title }));
   let selection;
   let selectedSources;
@@ -521,6 +746,7 @@ async function main() {
       title: source.title,
       url: source.url,
       publishedDate: source.publishedDate || "",
+      publisher: source.publisher || "Press Information Bureau, Government of India",
       summary: "",
       text: plainTextFromHtml(await fetchText(source.url)).slice(0, 12_000),
     })));
@@ -536,12 +762,12 @@ async function main() {
     let previousInvalidSelection = null;
     for (let attempt = 1; attempt <= 3; attempt += 1) {
       const selectionInstruction = previousInvalidSelection
-        ? `Your previous response was structurally inconsistent and cannot be used: ${JSON.stringify(previousInvalidSelection)}. Re-evaluate the corpus and return a corrected decision. If the topic is publishable, set publishable to true and include exactly one matching sourceId. If it is not publishable, set publishable to false and return an empty sourceIds array.`
+        ? `Your previous response was structurally inconsistent or too weak: ${JSON.stringify(previousInvalidSelection)}. Re-evaluate the corpus and return a corrected decision. If the topic is publishable, set publishable to true and include exactly one matching sourceId. If it is not publishable, set publishable to false and return an empty sourceIds array.`
         : `Select one substantial, useful and genuinely current government rule, scheme change, compliance deadline, tax change, consumer update or citizen-service update from exactly one primary official source record in this corpus.`;
       selection = await nvidiaChat(
         [
           { role: "system", content: "You are a cautious Indian public-information editor. Return valid JSON only, keep the decision fields internally consistent, and never use facts outside the supplied official-source corpus." },
-          { role: "user", content: `Today is ${today} in India. ${selectionInstruction} Reject greetings, speeches without a concrete public update, ceremonies, awards, political promotion and topics too thin for a useful guide. Return exactly {"publishable":boolean,"reason":string,"topic":string,"sourceIds":number[]}. When publishable is true, sourceIds must contain exactly one valid sourceId from the corpus. When publishable is false, sourceIds must be empty. Reject a source that cannot support at least 500 useful non-repetitive words. Existing topics to avoid: ${JSON.stringify(existingSummary)}. Official corpus: ${JSON.stringify(numberedCorpus)}.` },
+          { role: "user", content: `Today is ${today} in India. ${selectionInstruction} Reject greetings, speeches without a concrete public update, ceremonies, awards, political promotion, event recaps without a citizen consequence, routine MoUs without actionable details, and topics too thin for a useful guide. Prefer a source with confirmed dates, amounts, eligibility, deadlines, procedures, measurable changes or public actions. Return exactly {"publishable":boolean,"reason":string,"topic":string,"sourceIds":number[],"readerValueScore":number,"sourceDepthScore":number,"evidencePointCount":number,"publicActionOrDecision":string}. Scores use 1-5, where 4 is strong enough to publish. When publishable is true, sourceIds must contain exactly one valid sourceId, both scores must be at least 4, evidencePointCount must be at least ${MIN_FACTS}, and publicActionOrDecision must name the concrete reader value. When publishable is false, sourceIds must be empty. Reject a source that cannot support at least ${MIN_BODY_WORDS} useful non-repetitive words. Existing topics to avoid: ${JSON.stringify(existingSummary)}. Official corpus: ${JSON.stringify(numberedCorpus)}.` },
         ],
         2_000,
         attempt === 1 ? contentModel : reviewModel,
@@ -561,53 +787,120 @@ async function main() {
         return corpusIndex >= 0 ? [corpusIndex + 1] : [];
       }))];
       isPublishable = selection.publishable === true || String(selection.publishable).toLowerCase() === "true";
-      if (isPublishable && selectedIds.length === 1) break;
+      const strongReaderValue = Number(selection.readerValueScore) >= 4;
+      const strongSourceDepth = Number(selection.sourceDepthScore) >= 4;
+      const enoughEvidence = Number(selection.evidencePointCount) >= MIN_FACTS;
+      const concreteValue = typeof selection.publicActionOrDecision === "string"
+        && selection.publicActionOrDecision.trim().length >= 20;
+      if (isPublishable && selectedIds.length === 1 && strongReaderValue && strongSourceDepth && enoughEvidence && concreteValue) break;
+      if (isPublishable) isPublishable = false;
       if (!isPublishable && selectedIds.length === 0 && attempt === 3) break;
       previousInvalidSelection = selection;
     }
     if (!isPublishable || selectedIds.length !== 1) {
-      throw new Error(
-        `No safely publishable topic found: ${selection.reason || "insufficient official evidence"} (publishable=${JSON.stringify(selection.publishable)}, sourceIds=${JSON.stringify(selection.sourceIds ?? selection.sourceId ?? [])})`,
-      );
+      const governmentReason = selection.reason || "insufficient official evidence";
+      const calculatorPlan = await selectCalculatorTopic(database, existing, today);
+      if (calculatorPlan) {
+        selection = calculatorPlan.selection;
+        selectedSources = calculatorPlan.selectedSources;
+        console.log(`Government feed skipped: ${governmentReason}`);
+        console.log(`Selected ${selection.articleType}: ${selection.topic}`);
+      } else {
+        const reason = `${governmentReason}; no calculator topic passed the quality threshold`;
+        if (process.env.GITHUB_OUTPUT) {
+          const singleLineReason = String(reason).replace(/[\r\n]+/g, " ").trim();
+          await fs.appendFile(
+            process.env.GITHUB_OUTPUT,
+            `published=false\nslug=\nreason=${singleLineReason}\n`,
+            "utf8",
+          );
+        }
+        database.close();
+        console.log(`Skipped publication: ${reason}`);
+        return;
+      }
+    } else {
+      selectedSources = selectedIds.map((id) => ({
+        ...sourceCorpus[id - 1],
+        publisher: "Press Information Bureau, Government of India",
+      }));
     }
-    selectedSources = selectedIds.map((id) => sourceCorpus[id - 1]);
   }
   const selectedUrls = selectedSources.map((source) => source.url);
-  const factualBoundary = `Selected topic: ${selection.topic}. Today: ${today}. Use only these official sources and never add facts absent from them: ${JSON.stringify(selectedSources)}`;
+  const selectedCalculatorSlugs = selectedSources
+    .map((source) => source.calculatorSlug)
+    .filter(Boolean);
+  const factualBoundary = `Selected topic: ${selection.topic}. Article type: ${selection.articleType || "government-update"}. Today: ${today}. Use only these supplied evidence sources and never add facts absent from them: ${JSON.stringify(selectedSources)}`;
   const generatedMetadata = await nvidiaChat(
     [
       {
         role: "system",
-        content: "You plan evidence-bound, people-first DevCalc guides. Return valid JSON only and never add facts outside supplied official sources.",
+        content: "You plan evidence-bound, people-first DevCalc guides. Return valid JSON only and never add facts outside the supplied evidence sources.",
       },
       {
         role: "user",
-        content: `${factualBoundary}\nCreate article metadata. Return keys slug, title, seoTitle, seoDescription, description, category, keywords, effectiveDate, relatedCalculatorSlugs. SEO title must be 35-65 characters and description 120-165 characters. Slug must be lowercase hyphenated. Only use calculator slugs from ${JSON.stringify(calculatorSlugs)}. Avoid existing topics ${JSON.stringify(existingSummary)}.`,
+        content: `${factualBoundary}\nCreate article metadata. Return keys slug, title, seoTitle, seoDescription, description, category, keywords, effectiveDate, relatedCalculatorSlugs. SEO title must be 35-65 characters and description 120-165 characters. Slug must be lowercase hyphenated. Only use calculator slugs from ${JSON.stringify(calculatorSlugs)}. The article's primary calculator slugs ${JSON.stringify(selectedCalculatorSlugs)} must all be included in relatedCalculatorSlugs; add at most three other genuinely relevant calculators. Avoid existing topics ${JSON.stringify(existingSummary)}.`,
       },
     ],
     3_000,
   );
   const metadata = normalizeMetadata(generatedMetadata, selection);
+  metadata.relatedCalculatorSlugs = [...new Set([
+    ...selectedCalculatorSlugs,
+    ...metadata.relatedCalculatorSlugs,
+  ])].filter((slug) => calculatorSlugs.includes(slug)).slice(0, 6);
   if (repairSlug) metadata.slug = repairSlug;
 
-  const factResult = await nvidiaChat(
+  let factResult = await nvidiaChat(
     [
       {
         role: "system",
-        content: "You are a meticulous fact extractor. Return valid JSON only. Copy no long passages and never infer an unstated fact.",
+        content: "You are a meticulous fact extractor. Return valid JSON only. Copy no long passages and never infer an unstated fact. Calculator methodology records are first-party product evidence, not independent claims about market performance.",
       },
       {
         role: "user",
-        content: `${factualBoundary}\nBuild a factual ledger before writing. Return {"facts":[{"id":string,"claim":string,"evidence":string}],"unknowns":string[],"usefulReaderQuestions":string[]}. Include every material number with its date, unit and comparison period. Explicitly list anything the source does not establish. Do not label a threshold, risk, eligibility rule, trend, cause or impact unless the source explicitly does so.`,
+        content: `${factualBoundary}\nBuild a factual ledger before writing. Return {"facts":[{"id":string,"claim":string,"evidence":string,"readerUse":string}],"unknowns":string[],"usefulReaderQuestions":string[],"mustExplain":string[]}. Include every material number with its date, unit and comparison period. Each fact must identify why it matters to a reader without inventing an impact. usefulReaderQuestions must be answerable from the facts, not generic questions or prompts to visit another page. mustExplain must cover what changed, who or what is covered, key dates or numbers, and any action or verification path explicitly supported by the source. Explicitly list anything the source does not establish. Do not label a threshold, risk, eligibility rule, trend, cause or impact unless the source explicitly does so.`,
       },
     ],
     4_000,
   );
-  if (!Array.isArray(factResult.facts) || factResult.facts.length < 3) {
-    throw new Error("Official source did not produce a sufficient factual ledger.");
+  for (let factAttempt = 1; factAttempt <= 3; factAttempt += 1) {
+    const hasEnoughFacts = Array.isArray(factResult.facts) && factResult.facts.length >= MIN_FACTS;
+    const hasEnoughQuestions = Array.isArray(factResult.usefulReaderQuestions)
+      && factResult.usefulReaderQuestions.length >= MIN_FAQS;
+    const hasMustExplain = Array.isArray(factResult.mustExplain) && factResult.mustExplain.length >= 3;
+    if (hasEnoughFacts && hasEnoughQuestions && hasMustExplain) break;
+    factResult = await nvidiaChat(
+      [
+        {
+          role: "system",
+          content: "You are a corrective evidence editor. Return valid JSON only and never add information absent from the supplied official source.",
+        },
+        {
+          role: "user",
+          content: `Fact-ledger correction attempt ${factAttempt} of 3. Official-source boundary: ${factualBoundary}. Current ledger: ${JSON.stringify(factResult)}. Return {"facts":[{"id":string,"claim":string,"evidence":string,"readerUse":string}],"unknowns":string[],"usefulReaderQuestions":string[],"mustExplain":string[]}. Provide at least ${MIN_FACTS} distinct supported facts, ${MIN_FAQS} answerable reader questions and at least 3 mustExplain items. If the source cannot support these requirements, return empty facts and questions rather than inventing content.`,
+        },
+      ],
+      5_000,
+      reviewModel,
+    );
+  }
+  if (!Array.isArray(factResult.facts) || factResult.facts.length < MIN_FACTS) {
+    throw new Error(`Evidence sources did not produce the required ${MIN_FACTS} supported facts.`);
+  }
+  if (!Array.isArray(factResult.usefulReaderQuestions) || factResult.usefulReaderQuestions.length < MIN_FAQS) {
+    throw new Error(`Evidence sources did not support ${MIN_FAQS} useful reader questions.`);
   }
 
-  const generatedBody = await nvidiaChat(
+  const articleSpecificRequirements = selection.articleType === "calculator-guide"
+    ? "Explain what the calculator measures, its required inputs, the stored formula and every variable, a worked example only when supported by the evidence, how to interpret the output, and important assumptions or limitations. Do not repeat the calculator page introduction."
+    : selection.articleType === "calculator-comparison"
+      ? "Compare the calculators through one clear reader decision. Explain how their inputs, formulas, outputs, use cases and limitations differ. Include one evidence-backed comparison table. Do not declare a universal winner or repeat two standalone descriptions."
+      : selection.articleType === "calculator-category-guide"
+        ? "Build a practical decision framework showing which calculator answers which question, what inputs each needs, how their outputs connect and where they should not be substituted for one another. Include one evidence-backed comparison table."
+        : "Explain the confirmed public update, its supported dates and numbers, who or what it covers, and any action or verification path explicitly stated by the primary source.";
+
+  let generatedBody = await nvidiaChat(
     [
       {
         role: "system",
@@ -615,13 +908,30 @@ async function main() {
       },
       {
         role: "user",
-        content: `Topic: ${selection.topic}. Fact ledger: ${JSON.stringify(factResult)}. Return {"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Requirements: 5-10 topic-specific sections and enough words to explain all supported facts clearly without padding (normally 500-2,000), 1-3 paragraphs per section, at most 3 concise bullets where genuinely useful, zero or one small evidence-backed table, and 5-7 distinct FAQs that reflect likely reader questions. Do not use generic headings about families, employers, eligibility, documents, costs or participation unless the fact ledger specifically supports them. State each key number no more than twice across the article. Distinguish source facts from clearly labelled arithmetic. Do not invent implications, safety thresholds, regional effects, outage risk, advice, causes or future outcomes. If evidence is limited, keep the article concise rather than padding it. Every FAQ object must contain exactly a non-empty question and answer.`,
+        content: `Topic: ${selection.topic}. Article type: ${selection.articleType || "government-update"}. Fact ledger: ${JSON.stringify(factResult)}. Type-specific requirements: ${articleSpecificRequirements} Return {"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Requirements: ${MIN_SECTIONS}-${MAX_SECTIONS} topic-specific sections and ${MIN_BODY_WORDS}-${MAX_BODY_WORDS} useful words, 1-3 substantial paragraphs per section, at most 3 concise bullets where genuinely useful, zero or one small evidence-backed table, and ${MIN_FAQS}-${MAX_FAQS} distinct FAQs answered directly from the ledger. Lead with the reader's actual question and a concise evidence-based answer, then organize the evidence around the real reader questions and mustExplain items. Use concrete headings unique to this topic; do not repeat a stock template. Every paragraph must add a new supported detail, explanation, comparison or clearly labelled arithmetic. State each key number no more than twice. Do not invent implications, thresholds, market claims, advice, causes or future outcomes. Every FAQ answer must be useful on its own, at least 80 characters, and must not merely say that information is unavailable or tell the reader to visit the source.`,
       },
     ],
     14_000,
   );
+  for (let bodyAttempt = 1; bodyAttempt <= 3; bodyAttempt += 1) {
+    if (Array.isArray(generatedBody.content) && Array.isArray(generatedBody.faqs)) break;
+    generatedBody = await nvidiaChat(
+      [
+        {
+          role: "system",
+          content: "You are a corrective public-information editor. Return valid JSON only and preserve the evidence boundary.",
+        },
+        {
+          role: "user",
+          content: `Article-shape correction attempt ${bodyAttempt} of 3. Topic: ${selection.topic}. Fact ledger: ${JSON.stringify(factResult)}. Invalid response: ${JSON.stringify(generatedBody)}. Return exactly {"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}, with ${MIN_SECTIONS}-${MAX_SECTIONS} sections, ${MIN_BODY_WORDS}-${MAX_BODY_WORDS} useful words and ${MIN_FAQS}-${MAX_FAQS} substantial FAQs.`,
+        },
+      ],
+      14_000,
+      reviewModel,
+    );
+  }
   if (!Array.isArray(generatedBody.content) || !Array.isArray(generatedBody.faqs)) {
-    throw new Error("NVIDIA returned an invalid article body.");
+    throw new Error("NVIDIA did not return a valid article body after corrective retries.");
   }
 
   let reviewResult = await nvidiaChat(
@@ -632,7 +942,7 @@ async function main() {
       },
       {
         role: "user",
-        content: `Fact ledger: ${JSON.stringify(factResult)}. Candidate article: ${JSON.stringify(generatedBody)}. Audit every number, date, comparison, causal statement and FAQ. Remove repetition, unsupported inference, irrelevant boilerplate and contradictions. Fix malformed FAQ objects. Return {"approved":boolean,"issues":string[],"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. approved may be true only when the returned corrected content is fully supported by the ledger, coherent, useful and non-repetitive. Keep 5-10 sections, at least 500 useful body words without padding, zero or one factual table and 5-7 valid FAQs.`,
+        content: `Fact ledger: ${JSON.stringify(factResult)}. Candidate article: ${JSON.stringify(generatedBody)}. Audit every number, date, comparison, causal statement and FAQ. Remove repetition, unsupported inference, irrelevant boilerplate, stock-template prose and contradictions. Return {"approved":boolean,"issues":string[],"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. approved may be true only when the corrected article is supported, coherent, specific and genuinely useful. Keep ${MIN_SECTIONS}-${MAX_SECTIONS} sections, ${MIN_BODY_WORDS}-${MAX_BODY_WORDS} useful body words, zero or one factual table and ${MIN_FAQS}-${MAX_FAQS} substantial FAQs.`,
       },
     ],
     14_000,
@@ -652,7 +962,7 @@ async function main() {
         },
         {
           role: "user",
-          content: `Editorial correction attempt ${correctionAttempt} of 4. Fact ledger: ${JSON.stringify(factResult)}. Current article: ${JSON.stringify(reviewResult)}. Problems to correct: ${JSON.stringify([...shapeErrors, ...(reviewResult.issues ?? [])])}. Return the complete corrected object as {"approved":true,"issues":[],"content":[...],"faqs":[...]}. Preserve only claims supported by the fact ledger. Use 5-10 specific sections, at least 500 useful body words without padding, zero or one table total, no more than 3 bullets in any section, and 5-7 distinct FAQs with question and answer strings. Do not claim approval unless every constraint is satisfied.`,
+          content: `Editorial correction attempt ${correctionAttempt} of 4. Fact ledger: ${JSON.stringify(factResult)}. Current article: ${JSON.stringify(reviewResult)}. Problems to correct: ${JSON.stringify([...shapeErrors, ...(reviewResult.issues ?? [])])}. Return the complete corrected object as {"approved":true,"issues":[],"content":[...],"faqs":[...]}. Preserve only ledger-supported claims. Use ${MIN_SECTIONS}-${MAX_SECTIONS} specific sections, ${MIN_BODY_WORDS}-${MAX_BODY_WORDS} useful words without padding, zero or one table, no more than 3 bullets per section, and ${MIN_FAQS}-${MAX_FAQS} distinct FAQs with substantial direct answers. Do not claim approval unless every constraint is satisfied.`,
         },
       ],
       14_000,
@@ -717,14 +1027,14 @@ async function main() {
     sources: selectedSources.map((source) => ({
       title: source.title,
       url: source.url,
-      publisher: "Press Information Bureau, Government of India",
+      publisher: source.publisher || "Press Information Bureau, Government of India",
       publishedDate: source.publishedDate,
     })),
   };
   let validationError;
   for (let validationAttempt = 1; validationAttempt <= 5; validationAttempt += 1) {
     try {
-      validateArticle(draft, existing, selectedUrls, calculatorSlugs, today);
+      validateArticle(draft, existing, selectedUrls, calculatorSlugs, today, selection.articleType, selectedCalculatorSlugs);
       validationError = undefined;
       break;
     } catch (error) {
@@ -739,7 +1049,7 @@ async function main() {
         },
         {
           role: "user",
-          content: `Deterministic correction attempt ${validationAttempt} of 4. Fact ledger: ${JSON.stringify(factResult)}. Draft content and FAQs: ${JSON.stringify({ content, faqs })}. Validation errors to fix: ${validationError.message}. Return {"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Correct every listed problem while preserving 5-10 specific sections, at least 500 useful words, no more than 3 bullets per section and 5-7 valid FAQs. Use direct factual wording only. Do not use untranslated quotations, HTML entities, repeated source-attribution boilerplate or claims about unstated purpose, scope, benefit, effect, outcome or future impact.`,
+          content: `Deterministic correction attempt ${validationAttempt} of 4. Fact ledger: ${JSON.stringify(factResult)}. Draft content and FAQs: ${JSON.stringify({ content, faqs })}. Validation errors to fix: ${validationError.message}. Return {"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Correct every problem while preserving ${MIN_SECTIONS}-${MAX_SECTIONS} specific sections, ${MIN_BODY_WORDS}-${MAX_BODY_WORDS} useful words, no more than 3 bullets per section and ${MIN_FAQS}-${MAX_FAQS} substantial FAQs. Use direct factual wording only. Do not use untranslated quotations, HTML entities, repeated attribution boilerplate, generic filler or claims about unstated purpose, scope, benefit, effect, outcome or future impact.`,
         },
       ],
       14_000,
@@ -760,7 +1070,12 @@ async function main() {
   }
   if (validationError) throw validationError;
 
-  let { problems: qualityProblems } = await runFinalQualityGate(factResult, draft);
+  let { problems: qualityProblems } = await runFinalQualityGate(
+    factResult,
+    draft,
+    selection.articleType,
+    articleSpecificRequirements,
+  );
   for (let qualityAttempt = 1; qualityProblems.length > 0 && qualityAttempt <= 4; qualityAttempt += 1) {
     const corrected = await nvidiaChat(
       [
@@ -770,7 +1085,7 @@ async function main() {
         },
         {
           role: "user",
-          content: `Correction attempt ${qualityAttempt} of 4. Fact ledger: ${JSON.stringify(factResult)}. Current draft: ${JSON.stringify(draft)}. Final-review findings: ${JSON.stringify(qualityProblems)}. Return {"title":string,"seoTitle":string,"seoDescription":string,"description":string,"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Resolve every finding using only ledger facts. Completely remove each flagged claim everywhere in the title, descriptions, body, bullets, table and FAQs unless the fact ledger explicitly contains that exact material fact. Do not merely rephrase a flagged unsupported claim. Keep 5-10 non-repetitive sections, 450-2,200 useful words, no more than 3 bullets per section, and 5-7 useful FAQs. Remove questions whose answer is mainly that the source does not provide information.`,
+          content: `Correction attempt ${qualityAttempt} of 4. Fact ledger: ${JSON.stringify(factResult)}. Current draft: ${JSON.stringify(draft)}. Final-review findings: ${JSON.stringify(qualityProblems)}. Return {"title":string,"seoTitle":string,"seoDescription":string,"description":string,"content":[{"heading":string,"paragraphs":string[],"points":string[],"table":null or {"headers":string[],"rows":string[][]}}],"faqs":[{"question":string,"answer":string}]}. Resolve every finding using only ledger facts. Remove each unsupported claim everywhere rather than rephrasing it. Keep ${MIN_SECTIONS}-${MAX_SECTIONS} non-repetitive sections, ${MIN_BODY_WORDS}-${MAX_BODY_WORDS} useful words, no more than 3 bullets per section, and ${MIN_FAQS}-${MAX_FAQS} useful FAQs with direct answers of at least 80 characters. Remove questions that cannot be answered from the ledger.`,
         },
       ],
       14_000,
@@ -794,8 +1109,18 @@ async function main() {
       content,
       faqs,
     };
-    validateArticle(draft, existing, selectedUrls, calculatorSlugs, today);
-    ({ problems: qualityProblems } = await runFinalQualityGate(factResult, draft));
+    try {
+      validateArticle(draft, existing, selectedUrls, calculatorSlugs, today, selection.articleType, selectedCalculatorSlugs);
+    } catch (error) {
+      qualityProblems = [error instanceof Error ? error.message : String(error)];
+      continue;
+    }
+    ({ problems: qualityProblems } = await runFinalQualityGate(
+      factResult,
+      draft,
+      selection.articleType,
+      articleSpecificRequirements,
+    ));
   }
   if (qualityProblems.length > 0) {
     throw new Error(`Final quality gate rejected the corrected article: ${JSON.stringify(qualityProblems)}`);
@@ -885,7 +1210,8 @@ async function main() {
       sql: `
         SELECT slug, status, json_array_length(keywords_json) AS keyword_count,
           json_array_length(content_json) AS section_count,
-          json_array_length(faqs_json) AS faq_count
+          json_array_length(faqs_json) AS faq_count,
+          image_url, image_alt
         FROM blog_posts
         WHERE slug = ?
         LIMIT 1
@@ -897,16 +1223,18 @@ async function main() {
       !row ||
       row.status !== "published" ||
       Number(row.keyword_count) < 5 ||
-      Number(row.section_count) < 5 ||
-      Number(row.section_count) > 12 ||
-      Number(row.faq_count) < 5 ||
-      Number(row.faq_count) > 8
+      Number(row.section_count) < MIN_SECTIONS ||
+      Number(row.section_count) > MAX_SECTIONS ||
+      Number(row.faq_count) < MIN_FAQS ||
+      Number(row.faq_count) > MAX_FAQS ||
+      String(row.image_url || "") !== `/blog-image/${article.slug}` ||
+      !String(row.image_alt || "").trim()
     ) {
       throw new Error(`Database verification failed for generated article ${article.slug}.`);
     }
 
     if (process.env.GITHUB_OUTPUT) {
-      await fs.appendFile(process.env.GITHUB_OUTPUT, `slug=${article.slug}\n`, "utf8");
+      await fs.appendFile(process.env.GITHUB_OUTPUT, `published=true\nslug=${article.slug}\n`, "utf8");
     }
   } finally {
     database.close();

@@ -15,7 +15,7 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,11 +28,16 @@ jobs:
         run: npm run blog:government:generate
         env:
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
-          NVIDIA_CONTENT_MODEL: nvidia/nemotron-3.5-lightning-30b-a3b
+          NVIDIA_CONTENT_MODEL: nvidia/nemotron-3.5-super-vl-120b-a12b
+          NVIDIA_REVIEW_MODEL: nvidia/nemotron-3.5-super-vl-120b-a12b
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
       - name: Verify article, sitemap and RSS in production
+        if: steps.publish.outputs.published == 'true'
         run: npm run blog:government:verify
         env:
           BLOG_SLUG: ${{ steps.publish.outputs.slug }}
           SITE_URL: https://www.devcalc.in
+      - name: Record safe no-publication result
+        if: steps.publish.outputs.published != 'true'
+        run: echo "No sufficiently useful official update was available today; nothing was published."

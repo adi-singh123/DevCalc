@@ -419,10 +419,10 @@ export default async function BlogDetailsPage({ params }: Props) {
             {blog.sources && blog.sources.length > 0 && (
               <section className="mt-16 rounded-2xl border border-stone-200 bg-[#faf7f0] p-6 dark:border-slate-700 dark:bg-slate-900">
                 <h2 className="font-serif text-3xl font-semibold text-[#26364a] dark:text-white">
-                  Official sources
+                  Sources and related tools
                 </h2>
                 <p className="mt-3 leading-7 text-stone-600 dark:text-slate-400">
-                  Check these primary sources for the latest wording, eligibility rules, dates and exceptions.
+                  Review the linked primary source or calculator methodology for the details used in this guide.
                 </p>
                 <ul className="mt-5 space-y-4">
                   {blog.sources.map((source) => (

@@ -71,19 +71,19 @@ export default function LoveCalculator() {
 
     if (score >= 90) {
       message =
-        "A rare match! You two have exceptional compatibility and strong relationship potential.";
+        "A rare name-game score. Enjoy the result, but remember that names cannot measure a relationship.";
     } else if (score >= 80) {
       message =
-        "Excellent compatibility with strong chemistry and understanding.";
+        "A high playful match from the two spellings you entered.";
     } else if (score >= 65) {
       message =
-        "A strong match with good potential for a meaningful relationship.";
+        "A strong name-game result and a fun conversation starter.";
     } else if (score >= 50) {
       message =
-        "There is potential here. Communication and trust can strengthen your connection.";
+        "A middle-range entertainment score from the name formula.";
     } else {
       message =
-        "Opposites attract! Every relationship grows through understanding and effort.";
+        "A lower playful score that says nothing about real compatibility.";
     }
 
     return {

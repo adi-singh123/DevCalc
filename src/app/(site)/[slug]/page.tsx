@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { BadgeCheck } from "lucide-react";
-import { getCalculatorBySlug, getPublishedCalculatorSlugs } from "@/src/lib/calculators/repository";
+import { getCalculatorBySlug, getPublishedCalculatorSlugsFresh } from "@/src/lib/calculators/repository";
 import type { Metadata } from "next";
 import { generateCalculatorMetadata } from "@/src/lib/seo/generateMetadata";
 import Breadcrumbs from "@/src/components/seo/Breadcrumb";
@@ -32,7 +32,7 @@ export const dynamicParams = true;
 // then served as cached HTML and refreshed with ISR, while dynamicParams keeps
 // newly added database calculators available before the next deployment.
 export async function generateStaticParams() {
-  const slugs = await getPublishedCalculatorSlugs();
+  const slugs = await getPublishedCalculatorSlugsFresh();
   return slugs.map((slug) => ({ slug }));
 }
 
