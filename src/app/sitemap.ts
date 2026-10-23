@@ -3,7 +3,7 @@ import { readdirSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { getPublishedCalculatorSlugsFresh } from "@/src/lib/calculators/repository";
 import { categories } from "@/src/data/categories/Category";
-import { getPublishedBlogSummaries } from "@/src/lib/blogs/repository";
+import { getPublishedBlogSummariesFresh } from "@/src/lib/blogs/repository";
 import { STAMP_DUTY_STATES } from "@/src/data/states/stamp-duty-states";
 import { ROAD_TAX_STATES } from "@/src/data/states/road-tax-states";
 import { siteConfig } from "@/src/config/site";
@@ -65,7 +65,7 @@ export const revalidate = 60;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
   const [blogs, calculators] = await Promise.all([
-    getPublishedBlogSummaries(),
+    getPublishedBlogSummariesFresh(),
     getPublishedCalculatorSlugsFresh(),
   ]);
 
@@ -86,7 +86,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: blog.lastVerified ?? blog.publishedDate,
     changeFrequency: "weekly" as const,
     priority: 0.7,
-    ...(blog.image ? { images: [`${baseUrl}${blog.image}`] } : {}),
   }));
 
   const stampDutyStateUrls = STAMP_DUTY_STATES.map((state) => ({
