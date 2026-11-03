@@ -19,6 +19,11 @@ export default function SEOContent({
             [&_h2]:text-2xl
             [&_h2]:font-bold
 
+            [&_h3]:mt-6
+            [&_h3]:mb-3
+            [&_h3]:text-xl
+            [&_h3]:font-semibold
+
             [&_p]:mb-4
             [&_p]:leading-7
             [&_p]:text-slate-600
@@ -27,6 +32,17 @@ export default function SEOContent({
             [&_ul]:mb-4
             [&_ul]:list-disc
             [&_ul]:pl-6
+
+            [&_ol]:mb-4
+            [&_ol]:list-decimal
+            [&_ol]:pl-6
+
+            [&_a]:underline
+            [&_img]:h-auto
+            [&_img]:max-w-full
+            [&_blockquote]:border-l-4
+            [&_blockquote]:border-slate-300
+            [&_blockquote]:pl-4
 
             [&_li]:mb-2
 

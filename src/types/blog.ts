@@ -8,6 +8,8 @@ export interface BlogSection {
 
   paragraphs: string[];
 
+  bodyHtml?: string;
+
   points?: string[];
 
   table?: BlogTable;
@@ -55,6 +57,8 @@ export interface Blog {
 
   publishedDate: string;
 
+  updatedAt?: string;
+
   readingTime: string;
 
   image: string;
@@ -84,6 +88,7 @@ export type BlogSummary = Pick<
   | "category"
   | "author"
   | "publishedDate"
+  | "updatedAt"
   | "readingTime"
   | "image"
   | "lastVerified"

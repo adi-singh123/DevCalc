@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "DevCalc",
       type: "article",
       publishedTime: blog.publishedDate,
-      modifiedTime: blog.lastVerified ?? blog.publishedDate,
+      modifiedTime: blog.updatedAt ?? blog.lastVerified ?? blog.publishedDate,
       ...(blog.image
         ? { images: [{ url: blog.image, alt: blog.imageAlt ?? blog.title }] }
         : {}),
@@ -132,7 +132,7 @@ export default async function BlogDetailsPage({ params }: Props) {
         slug={blog.slug}
         image={blog.image}
         publishedDate={blog.publishedDate}
-        modifiedDate={blog.lastVerified}
+        modifiedDate={blog.updatedAt ?? blog.lastVerified}
         author={blog.author}
       />
 
@@ -294,7 +294,7 @@ export default async function BlogDetailsPage({ params }: Props) {
                   </h2>
 
                   <div className="space-y-5">
-                    {section.paragraphs.map((paragraph, idx) => (
+                    {section.bodyHtml ? <div className="blog-rich-content space-y-5 leading-8 text-stone-700 dark:text-slate-300 [&_h3]:font-serif [&_h3]:text-2xl [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_a]:underline [&_img]:h-auto [&_img]:max-w-full" dangerouslySetInnerHTML={{ __html: section.bodyHtml }} /> : <>{section.paragraphs.map((paragraph, idx) => (
                       <p
                         key={idx}
                         className="leading-8 text-stone-700 dark:text-slate-300"
@@ -317,7 +317,7 @@ export default async function BlogDetailsPage({ params }: Props) {
                           </li>
                         ))}
                       </ul>
-                    )}
+                    )}</>}
 
                     {section.table && (
                       <div className="overflow-x-auto rounded-2xl border border-stone-200 dark:border-slate-700">

@@ -7,6 +7,7 @@ import { getPublishedBlogSummariesFresh } from "@/src/lib/blogs/repository";
 import { STAMP_DUTY_STATES } from "@/src/data/states/stamp-duty-states";
 import { ROAD_TAX_STATES } from "@/src/data/states/road-tax-states";
 import { siteConfig } from "@/src/config/site";
+import { getPublishedSitePageSlugsFresh } from "@/src/lib/site-pages/repository";
 
 const APP_DIRECTORY = join(process.cwd(), "src", "app");
 
@@ -64,9 +65,10 @@ export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
-  const [blogs, calculators] = await Promise.all([
+  const [blogs, calculators, publishedSitePages] = await Promise.all([
     getPublishedBlogSummariesFresh(),
     getPublishedCalculatorSlugsFresh(),
+    getPublishedSitePageSlugsFresh(),
   ]);
 
   const calculatorUrls = calculators.map((slug) => ({
@@ -83,7 +85,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogUrls = blogs.map((blog) => ({
     url: `${baseUrl}/blog/${blog.slug}`,
-    lastModified: blog.lastVerified ?? blog.publishedDate,
+    lastModified: blog.updatedAt ?? blog.lastVerified ?? blog.publishedDate,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -101,6 +103,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const staticUrls = getStaticAppRoutes()
+    .filter((route) => !["/about", "/privacy-policy", "/terms"].includes(route) || publishedSitePages.includes(route.slice(1)))
     .sort()
     .map((route) => {
       const settings = STATIC_ROUTE_SETTINGS[route] ?? {

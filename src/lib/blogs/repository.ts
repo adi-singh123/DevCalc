@@ -14,6 +14,7 @@ type BlogRow = {
   category: unknown;
   author: unknown;
   published_at: unknown;
+  updated_at: unknown;
   reading_time: unknown;
   image_url: unknown;
   image_alt: unknown;
@@ -28,13 +29,13 @@ type BlogRow = {
 
 const SELECT_BLOG_COLUMNS = `
   slug, title, seo_title, seo_description, description, category, author,
-  published_at, reading_time, image_url, image_alt, keywords_json,
+  published_at, updated_at, reading_time, image_url, image_alt, keywords_json,
   last_verified_at, effective_date, sources_json,
   related_calculator_slugs_json, content_json, faqs_json
 `;
 
 const SELECT_BLOG_SUMMARY_COLUMNS = `
-  slug, title, description, category, author, published_at, reading_time,
+  slug, title, description, category, author, published_at, updated_at, reading_time,
   image_url, last_verified_at, related_calculator_slugs_json
 `;
 
@@ -64,6 +65,13 @@ function optionalText(value: unknown): string | undefined {
   return typeof value === "string" && value.trim() ? value : undefined;
 }
 
+function updatedTimestamp(value: unknown): string | undefined {
+  const text = optionalText(value);
+  if (!text) return undefined;
+  const date = new Date(text.includes("T") ? text : `${text.replace(" ", "T")}Z`);
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString();
+}
+
 function parseJson<T>(value: unknown, column: string): T {
   if (typeof value !== "string") {
     throw new Error(`Invalid blog JSON value for ${column}.`);
@@ -85,6 +93,7 @@ function rowToBlog(row: BlogRow): Blog {
     category: requiredText(row.category, "category"),
     author: requiredText(row.author, "author"),
     publishedDate: requiredText(row.published_at, "published_at"),
+    updatedAt: updatedTimestamp(row.updated_at),
     readingTime: requiredText(row.reading_time, "reading_time"),
     image: typeof row.image_url === "string" ? row.image_url : "",
     imageAlt: optionalText(row.image_alt),
@@ -109,6 +118,7 @@ function rowToBlogSummary(row: BlogRow): BlogSummary {
     category: requiredText(row.category, "category"),
     author: requiredText(row.author, "author"),
     publishedDate: requiredText(row.published_at, "published_at"),
+    updatedAt: updatedTimestamp(row.updated_at),
     readingTime: requiredText(row.reading_time, "reading_time"),
     image: typeof row.image_url === "string" ? row.image_url : "",
     lastVerified: optionalText(row.last_verified_at),

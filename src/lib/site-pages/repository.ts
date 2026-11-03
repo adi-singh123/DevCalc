@@ -79,3 +79,11 @@ export function getPublishedSitePage(slug: string): Promise<SitePage | null> {
   );
   return getCachedPage();
 }
+
+export async function getPublishedSitePageSlugsFresh(): Promise<string[]> {
+  const result = await withRetry(
+    () => getTursoClient().execute("SELECT slug FROM site_pages WHERE status = 'published'"),
+    "published site page slugs",
+  );
+  return result.rows.map((row) => requiredText(row.slug, "slug"));
+}

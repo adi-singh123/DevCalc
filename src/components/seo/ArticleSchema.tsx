@@ -28,7 +28,7 @@ export default function ArticleSchema({
     url: `https://www.devcalc.in/blog/${slug}`,
 
     image: image
-      ? [`https://www.devcalc.in${image}`]
+      ? [new URL(image, "https://www.devcalc.in").toString()]
       : undefined,
 
     datePublished: publishedDate,
@@ -60,9 +60,7 @@ export default function ArticleSchema({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(
-          schema
-        ),
+        __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
       }}
     />
   );
