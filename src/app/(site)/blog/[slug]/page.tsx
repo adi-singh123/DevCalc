@@ -5,6 +5,7 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 import ArticleSchema from "@/src/components/seo/ArticleSchema";
 import { getPublishedBlogBySlug, getPublishedBlogSummaries } from "@/src/lib/blogs/repository";
+import { prepareRichArticleBody } from "@/src/lib/blogs/rich-content";
 import { getCalculatorDirectory } from "@/src/lib/calculators/repository";
 import type { CalculatorDirectoryItem } from "@/src/types/calculator";
 import BreadcrumbSchema from "@/src/components/seo/BreadcrumbSchema";
@@ -79,6 +80,14 @@ export default async function BlogDetailsPage({ params }: Props) {
   if (!blog) {
     notFound();
   }
+
+  const unifiedBody = blog.content.length === 1 && !blog.content[0].heading && blog.content[0].bodyHtml
+    ? prepareRichArticleBody(blog.content[0].bodyHtml)
+    : null;
+  const tocItems = unifiedBody?.headings ?? blog.content.filter((section) => section.heading).map((section) => ({
+    title: section.heading,
+    id: section.heading.toLowerCase().replace(/\s+/g, "-"),
+  }));
 
   const sameCategoryBlogs = blogs.filter(
     (item) => item.slug !== blog.slug && item.category === blog.category,
@@ -235,26 +244,24 @@ export default async function BlogDetailsPage({ params }: Props) {
             )}
 
             {/* TOC */}
-            <section className="mt-10 rounded-2xl border border-stone-200 bg-[#faf7f0] p-6 dark:border-slate-700 dark:bg-slate-900">
+            {tocItems.length > 0 && <section className="mt-10 rounded-2xl border border-stone-200 bg-[#faf7f0] p-6 dark:border-slate-700 dark:bg-slate-900">
               <h2 className="mb-4 font-serif text-xl font-semibold text-[#26364a] dark:text-white">
                 Table of Contents
               </h2>
 
               <ul className="space-y-2">
-                {blog.content.map((section) => (
-                  <li key={section.heading}>
+                {tocItems.map((item) => (
+                  <li key={item.id}>
                     <a
-                      href={`#${section.heading
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
+                      href={`#${item.id}`}
                       className="text-[#1f3a5c] hover:underline dark:text-blue-400"
                     >
-                      {section.heading}
+                      {item.title}
                     </a>
                   </li>
                 ))}
               </ul>
-            </section>
+            </section>}
 
             {selectedCalculators.length > 0 && (
               <section className="mt-8 rounded-2xl border border-blue-100 bg-blue-50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
@@ -283,18 +290,18 @@ export default async function BlogDetailsPage({ params }: Props) {
 
             {/* Content */}
             <div className="mt-12 space-y-12">
-              {blog.content.map((section) => (
+              {blog.content.map((section, index) => (
                   <section
-                    key={section.heading}
-                    id={section.heading.toLowerCase().replace(/\s+/g, "-")}
+                    key={`${index}-${section.heading}`}
+                    id={section.heading ? section.heading.toLowerCase().replace(/\s+/g, "-") : undefined}
                     className="scroll-mt-24"
                   >
-                  <h2 className="mb-5 font-serif text-3xl font-semibold tracking-tight text-[#26364a] dark:text-white">
+                  {section.heading && <h2 className="mb-5 font-serif text-3xl font-semibold tracking-tight text-[#26364a] dark:text-white">
                     {section.heading}
-                  </h2>
+                  </h2>}
 
                   <div className="space-y-5">
-                    {section.bodyHtml ? <div className="blog-rich-content space-y-5 leading-8 text-stone-700 dark:text-slate-300 [&_h3]:font-serif [&_h3]:text-2xl [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_a]:underline [&_img]:h-auto [&_img]:max-w-full" dangerouslySetInnerHTML={{ __html: section.bodyHtml }} /> : <>{section.paragraphs.map((paragraph, idx) => (
+                    {section.bodyHtml ? <div className="blog-rich-content space-y-5 leading-8 text-stone-700 dark:text-slate-300 [&_h2]:scroll-mt-24 [&_h2]:font-serif [&_h2]:text-3xl [&_h2]:font-semibold [&_h3]:font-serif [&_h3]:text-2xl [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_a]:underline [&_img]:my-6 [&_img]:h-auto [&_img]:max-w-full [&_table]:block [&_table]:max-w-full [&_table]:overflow-x-auto" dangerouslySetInnerHTML={{ __html: unifiedBody?.bodyHtml ?? section.bodyHtml }} /> : <>{section.paragraphs.map((paragraph, idx) => (
                       <p
                         key={idx}
                         className="leading-8 text-stone-700 dark:text-slate-300"
