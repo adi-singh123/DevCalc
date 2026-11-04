@@ -58,10 +58,11 @@ function getStaticAppRoutes(directory = APP_DIRECTORY): string[] {
   });
 }
 
-// Blog posts are inserted directly into Turso without a deployment. A short
-// ISR window keeps discovery timely without making every crawler request wait
-// for two database queries.
-export const revalidate = 60;
+// CMS publishing changes the database without rebuilding the website. Generate
+// the sitemap from current published records on each request so new and deleted
+// pages do not depend on a cached deployment artifact.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
