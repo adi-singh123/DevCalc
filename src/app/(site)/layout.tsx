@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import "@/src/app/globals.css";
 import { siteConfig } from "@/src/config/site";
 import Header from "@/src/components/layout/Header";
@@ -188,27 +189,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K4GPT85Z');`,
-          }}
-        />
-      </head>
       <body className="flex min-h-screen flex-col">
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-K4GPT85Z"
-            height="0"
-            width="0"
-            title="Google Tag Manager"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+        <GoogleTagManager gtmId="GTM-K4GPT85Z" />
         <Script id="devcalc-service-worker" strategy="afterInteractive">
           {`if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
@@ -230,6 +212,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <Footer />
         <ChatWidget />
         <PwaManager />
+        <GoogleAnalytics gaId="G-RXYYY7TG81" />
       </body>
     </html>
   );
