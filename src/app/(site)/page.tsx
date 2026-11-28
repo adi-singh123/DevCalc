@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 // Keep the homepage server-rendered while avoiding repeated database work.
-export const revalidate = 300;
+export const revalidate = false;
 export default function HomePage() {
   return (
     <>

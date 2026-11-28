@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.devcalc.in/blog" },
 };
 
-export const revalidate = 60;
+export const revalidate = false;
 
 type Props = {
   searchParams: Promise<{ category?: string; q?: string }>;

@@ -112,7 +112,7 @@ async function queryCalculatorBySlug(slug: string): Promise<Calculator | null> {
 }
 
 const getCalculatorsCached = unstable_cache(queryCalculators, ["published-calculators"], {
-  revalidate: 300,
+  revalidate: false,
   tags: ["calculators"],
 });
 
@@ -127,7 +127,7 @@ const getCalculatorDirectoryCached = unstable_cache(async (): Promise<Calculator
     "calculator directory",
   );
   return result.rows.map((row) => rowToDirectoryItem(row as CalculatorRow));
-}, ["calculator-directory"], { revalidate: 300, tags: ["calculators"] });
+}, ["calculator-directory"], { revalidate: false, tags: ["calculators"] });
 
 const getCalculatorChatDirectoryCached = unstable_cache(async (): Promise<ChatCalculator[]> => {
   const result = await withRetry(
@@ -147,7 +147,7 @@ const getCalculatorChatDirectoryCached = unstable_cache(async (): Promise<ChatCa
     seo: { keywords: typeof row.seo_keywords_json === "string" ? JSON.parse(row.seo_keywords_json) as string[] : [] },
     faqs: typeof row.faqs_json === "string" ? JSON.parse(row.faqs_json) as Calculator["faqs"] : [],
   }));
-}, ["calculator-chat-directory"], { revalidate: 3600, tags: ["calculators"] });
+}, ["calculator-chat-directory"], { revalidate: false, tags: ["calculators"] });
 
 export function getCalculators(): Promise<Calculator[]> {
   return getCalculatorsCached();
@@ -159,8 +159,8 @@ export function getCalculatorsFresh(): Promise<Calculator[]> {
 
 export async function getCalculatorBySlug(slug: string): Promise<Calculator | null> {
   const cached = unstable_cache(() => queryCalculatorBySlug(slug), ["calculator", slug], {
-    revalidate: 300,
-    tags: ["calculators", `calculator:${slug}`],
+    revalidate: false,
+    tags: [`calculator:${slug}`],
   });
   return cached();
 }
@@ -216,7 +216,7 @@ export async function getCalculatorPage({
       total,
       totalPages,
     };
-  }, ["calculator-page", String(page), String(safePageSize), search], { revalidate: 300, tags: ["calculators"] });
+  }, ["calculator-page", String(page), String(safePageSize), search], { revalidate: false, tags: ["calculators"] });
 
   return getCachedPage();
 }
@@ -232,7 +232,7 @@ export async function getPopularCalculators(limit = 6): Promise<CalculatorDirect
       "popular calculators",
     );
     return result.rows.map((row) => rowToDirectoryItem(row as CalculatorRow));
-  }, ["popular-calculators", String(safeLimit)], { revalidate: 300, tags: ["calculators"] });
+  }, ["popular-calculators", String(safeLimit)], { revalidate: false, tags: ["calculators"] });
   return getCachedPopular();
 }
 
@@ -257,7 +257,7 @@ export async function getCalculatorsByCategory(
       `calculator category ${category}`,
     );
     return result.rows.map((row) => rowToDirectoryItem(row as CalculatorRow));
-  }, ["calculator-category", category, options.excludeSlug ?? "", String(limit)], { revalidate: 300, tags: ["calculators"] });
+  }, ["calculator-category", category, options.excludeSlug ?? "", String(limit)], { revalidate: false, tags: ["calculators"] });
   return getCachedCategory();
 }
 
@@ -272,7 +272,7 @@ export async function getPublishedCalculatorSlugsFresh(): Promise<string[]> {
 const getPublishedCalculatorSlugsCached = unstable_cache(
   getPublishedCalculatorSlugsFresh,
   ["published-calculator-slugs"],
-  { revalidate: 60, tags: ["calculators"] },
+  { revalidate: false, tags: ["calculators"] },
 );
 
 export function getPublishedCalculatorSlugs(): Promise<string[]> {
@@ -286,6 +286,6 @@ export async function getCalculatorCategoryCounts(): Promise<Map<string, number>
       "calculator category counts",
     );
     return result.rows.map((row) => [String(row.category), Number(row.total)] as const);
-  }, ["calculator-category-counts"], { revalidate: 300, tags: ["calculators"] });
+  }, ["calculator-category-counts"], { revalidate: false, tags: ["calculators"] });
   return new Map(await getCachedCounts());
 }

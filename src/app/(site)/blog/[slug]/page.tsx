@@ -20,7 +20,7 @@ type Props = {
   }>;
 };
 
-export const revalidate = 60;
+export const revalidate = false;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {

@@ -25,7 +25,7 @@ import CalculatorPageHero from "@/src/components/calculator/CalculatorPageHero";
 // updates are reflected without a deployment and remain present in page HTML.
 // Render complete HTML on the server, then reuse it briefly at the edge.
 // Database edits become visible without a deployment after this interval.
-export const revalidate = 300;
+export const revalidate = false;
 export const dynamicParams = true;
 
 // Pre-render every published calculator during deployment. Existing pages are

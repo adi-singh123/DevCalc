@@ -162,7 +162,7 @@ async function queryPublishedBlogBySlug(slug: string): Promise<Blog | null> {
 const getPublishedBlogSummariesCached = unstable_cache(
   queryPublishedBlogSummaries,
   ["published-blog-summaries"],
-  { revalidate: 60, tags: ["blog-posts"] },
+  { revalidate: false, tags: ["blog-posts"] },
 );
 
 export function getPublishedBlogSummaries(): Promise<BlogSummary[]> {
@@ -177,7 +177,7 @@ export async function getPublishedBlogBySlug(slug: string): Promise<Blog | null>
   const getCachedBlog = unstable_cache(
     () => queryPublishedBlogBySlug(slug),
     ["published-blog-post", slug],
-    { revalidate: 60, tags: ["blog-posts", `blog-post:${slug}`] },
+    { revalidate: false, tags: [`blog-post:${slug}`] },
   );
   return getCachedBlog();
 }
